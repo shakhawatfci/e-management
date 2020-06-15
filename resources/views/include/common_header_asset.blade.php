@@ -1,6 +1,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title','Limmex | EMS')</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('admin-assets/assets/img/favicon.ico') }}"/>
     <link href="{{ asset('admin-assets/assets/css/loader.css') }}" rel="stylesheet" type="text/css" />
@@ -14,4 +15,11 @@
     <link rel="stylesheet" href="{{ asset('admin-assets/plugins/font-icons/fontawesome/css/regular.css') }}">
     <link rel="stylesheet" href="{{ asset('admin-assets/plugins/font-icons/fontawesome/css/fontawesome.css') }}">
     <!-- font awesome -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin-assets/assets/css/forms/theme-checkbox-radio.css') }}">
+    <link href="{{ asset('admin-assets/assets/css/tables/table-basic.css') }}" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
+
+    <!-- contact page  -->
+    <link href="{{ url('admin-assets/plugins/jquery-ui/jquery-ui.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url('admin-assets/assets/css/apps/contacts.css') }}" rel="stylesheet" type="text/css" />
+    <!-- contact page  -->

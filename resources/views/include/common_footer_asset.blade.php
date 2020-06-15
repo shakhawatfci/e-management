@@ -9,3 +9,11 @@
         });
     </script>
     <script src="{{ asset('admin-assets/assets/js/custom.js') }}"></script>
+    <script>
+        checkall('todoAll', 'todochkbox');
+        $('[data-toggle="tooltip"]').tooltip()
+    </script>
+
+        <!-- END GLOBAL MANDATORY SCRIPTS -->
+    <script src="{{ asset('admin-assets/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('admin-assets/assets/js/apps/contact.js') }}"></script>
