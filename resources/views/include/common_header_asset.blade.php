@@ -22,4 +22,11 @@
     <!-- contact page  -->
     <link href="{{ url('admin-assets/plugins/jquery-ui/jquery-ui.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('admin-assets/assets/css/apps/contacts.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url('admin-assets/assets/css/elements/custom-pagination.css') }}" rel="stylesheet" type="text/css" />
     <!-- contact page  -->
+
+    <!-- sweet alert  -->
+    <link href="{{ asset('admin-assets/plugins/sweetalerts/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('admin-assets/plugins/sweetalerts/sweetalert.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('admin-assets/assets/css/components/custom-sweetalert.css') }}" rel="stylesheet" type="text/css" />
+    <!-- sweet alert  -->

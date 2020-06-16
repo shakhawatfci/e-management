@@ -27,7 +27,7 @@
                     </li>
 
                     <li class="menu @if(Route::is('our-vendor.index')) active active_url @endif">
-                        <a href="{{ route('our-vendor.index') }}" data-active="true" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
+                        <a href="{{ route('our-vendor.index') }}" data-active="true" class="dropdown-toggle">
                             <div class="">
                               <span><i class="far fa-plus-square"></i>&nbsp; Vendor</span>
                             </div>
