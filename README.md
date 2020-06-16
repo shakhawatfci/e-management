@@ -1,7 +1,7 @@
 
 ## About EMS
 
-EMS or equipment Management system is a open source software by Limmex Automation  which can be used for manage equipment business and partership and vendor .  it's based on Laravel and vue js 
+EMS or equipment Management system is an open source software by Limmex Automation  which can be used for manage equipment business and partership and vendor .  it's based on Laravel and vue js 
 
 
 ## Contributing

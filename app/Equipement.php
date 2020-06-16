@@ -13,7 +13,10 @@ class Equipement extends Model
 
     public function vendor()
     {
-    	return $this->belongsTo('App\Vendor');
+    	return $this->belongsTo('App\Vendor')->withDefault([
+            'id' => 0,
+            'vendor_name' => 'N/A'
+        ]);
     }
 
     // relation with car assign 

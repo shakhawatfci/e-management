@@ -5,7 +5,8 @@
     @include('include.common_header_asset')
 
     @stack('style')
-
+  <style>
+  </style>
 </head>
 <body>
     <!-- BEGIN LOADER -->
@@ -89,12 +90,15 @@
 
     </div>
     <!-- END MAIN CONTAINER -->
-
+    <script>
+        var base_url = "{{ url('/') }}"+'/';
+    </script>
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
     @include('include.common_footer_asset')
     <!-- END GLOBAL MANDATORY SCRIPTS -->
- 
+
   @stack('script')
+
 
 
 </body>
