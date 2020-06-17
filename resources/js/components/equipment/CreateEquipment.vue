@@ -1,7 +1,7 @@
 <template>
         <!-- Modal -->
     <div class="modal fade" id="createEquipment" tabindex="-1" role="dialog" aria-labelledby="addContactModalTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">\
+        <div class="modal-dialog" role="document">
             <form @submit.prevent="save()">
             <div class="modal-content">
                 <div class="modal-body">
@@ -62,6 +62,19 @@
                                 </div>
 
                                 <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="contact-email">
+                                            <i class="flaticon-mail-26"></i>
+                                            <select class="form-control" v-model="equipment.status">
+                                                <option value="">Equipment Status</option>
+                                                <option value="1">Active</option>
+                                                <option value="0">Inactive</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
                                     <div class="col-md-12">
                                         <div class="contact-location">
                                             <i class="flaticon-location-1"></i>
@@ -73,7 +86,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit"  class="btn btn-primary">Save</button>
+                    <button type="submit"  class="btn btn-primary ">
+                        <div class="spinner-grow text-white mr-2 align-self-center loader-sm" v-if="button_name != 'Save'">.</div>
+                         {{ button_name }} </button>
 
                     <button class="btn btn-default" data-dismiss="modal"> <i class="flaticon-delete-1"></i> Discard</button>
                 </div>
@@ -90,19 +105,19 @@ export default {
    mixins : [Mixin],
    props : ['vendors'],
    data()
-   {
-        
+   {  
        return {
          equipment : {
-          
           equipment_name : '',
           equipment_model : '',
           vendor : '',
           capacity : '',
           note : '',
+          status : '',
             
          },
          validation_error : {},
+         button_name : 'Save'
        }
    },
 
@@ -113,6 +128,8 @@ export default {
  methods : {
      save()
      {
+
+         this.button_name = 'Saving...';
          axios.post(base_url+'equipment',this.equipment)
          .then(response => {
              if(response.data.status === 'success')
@@ -120,10 +137,13 @@ export default {
               $('#createEquipment').modal('hide');
               this.successMessage(response.data);
               EventBus.$emit('equipment-created');
+              this.button_name = 'Save';
+              this.resetForm();
              } 
              else
              {
                this.successMessage(response.data);
+               this.button_name = 'Save';
              }
          })
          .catch(err => {
@@ -131,10 +151,12 @@ export default {
              {
                  this.validation_error = err.response.data.errors;
                  this.validationError();
+                 this.button_name = 'Save';
              }
              else
              {
-                 this.validationError();
+                 this.successMessage(err);
+                 this.button_name = 'Save';
              }
          })
      },
@@ -148,6 +170,7 @@ export default {
           vendor : '',
           capacity : '',
           note : '',
+          status : ''
             
           };
          this.validation_error = {};

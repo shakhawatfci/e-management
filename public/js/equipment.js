@@ -1995,6 +1995,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2007,9 +2022,11 @@ __webpack_require__.r(__webpack_exports__);
         equipment_model: '',
         vendor: '',
         capacity: '',
-        note: ''
+        note: '',
+        status: ''
       },
-      validation_error: {}
+      validation_error: {},
+      button_name: 'Save'
     };
   },
   mounted: function mounted() {},
@@ -2017,6 +2034,7 @@ __webpack_require__.r(__webpack_exports__);
     save: function save() {
       var _this = this;
 
+      this.button_name = 'Saving...';
       axios.post(base_url + 'equipment', this.equipment).then(function (response) {
         if (response.data.status === 'success') {
           $('#createEquipment').modal('hide');
@@ -2024,16 +2042,25 @@ __webpack_require__.r(__webpack_exports__);
           _this.successMessage(response.data);
 
           _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('equipment-created');
+          _this.button_name = 'Save';
+
+          _this.resetForm();
         } else {
           _this.successMessage(response.data);
+
+          _this.button_name = 'Save';
         }
       })["catch"](function (err) {
         if (err.response.status == 422) {
           _this.validation_error = err.response.data.errors;
 
           _this.validationError();
+
+          _this.button_name = 'Save';
         } else {
-          _this.validationError();
+          _this.successMessage(err);
+
+          _this.button_name = 'Save';
         }
       });
     },
@@ -2043,7 +2070,212 @@ __webpack_require__.r(__webpack_exports__);
         equipment_model: '',
         vendor: '',
         capacity: '',
-        note: ''
+        note: '',
+        status: ''
+      };
+      this.validation_error = {};
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/equipment/UpdateEquipment.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/equipment/UpdateEquipment.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_assets__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../vue-assets */ "./resources/js/vue-assets.js");
+/* harmony import */ var _mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixin */ "./resources/js/mixin.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
+  props: ['vendors'],
+  data: function data() {
+    return {
+      equipment: {
+        id: '',
+        equipment_name: '',
+        equipment_model: '',
+        vendor: '',
+        capacity: '',
+        note: '',
+        status: ''
+      },
+      validation_error: {},
+      button_name: 'Update'
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('edit-equipment', function (value) {
+      _this.equipment.id = value.id;
+      _this.equipment.equipment_name = value.eq_name;
+      _this.equipment.equipment_model = value.eq_model;
+      _this.equipment.capacity = value.eq_capacity;
+      _this.equipment.vendor = value.vendor_id;
+      _this.equipment.note = value.note;
+      _this.equipment.status = value.eq_status;
+      $('#updateEquipment').modal('show');
+    });
+  },
+  methods: {
+    save: function save() {
+      var _this2 = this;
+
+      this.button_name = 'Updating...';
+      axios.put(base_url + 'equipment/' + this.equipment.id, this.equipment).then(function (response) {
+        if (response.data.status === 'success') {
+          $('#updateEquipment').modal('hide');
+
+          _this2.successMessage(response.data);
+
+          _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('equipment-created');
+          _this2.button_name = 'Update';
+
+          _this2.resetForm();
+        } else {
+          _this2.successMessage(response.data);
+
+          _this2.button_name = 'Update';
+        }
+      })["catch"](function (err) {
+        if (err.response.status == 422) {
+          _this2.validation_error = err.response.data.errors;
+
+          _this2.validationError();
+
+          _this2.button_name = 'Update';
+        } else {
+          _this2.successMessage(err);
+
+          _this2.button_name = 'Update';
+        }
+      });
+    },
+    resetForm: function resetForm() {
+      this.equipment = {
+        id: '',
+        equipment_name: '',
+        equipment_model: '',
+        vendor: '',
+        capacity: '',
+        note: '',
+        status: ''
       };
       this.validation_error = {};
     }
@@ -2064,6 +2296,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vue_assets__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../vue-assets */ "./resources/js/vue-assets.js");
 /* harmony import */ var _mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixin */ "./resources/js/mixin.js");
 /* harmony import */ var _pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pagination/Pagination */ "./resources/js/components/pagination/Pagination.vue");
+/* harmony import */ var _UpdateEquipment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./UpdateEquipment */ "./resources/js/components/equipment/UpdateEquipment.vue");
 //
 //
 //
@@ -2127,6 +2360,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -2134,20 +2382,22 @@ __webpack_require__.r(__webpack_exports__);
   mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
   props: ["vendors"],
   components: {
-    'pagination': _pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"]
+    'pagination': _pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"],
+    'edit-equipment': _UpdateEquipment__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   data: function data() {
     return {
       equipments: [],
-      vendor_id: '',
-      keyword: '',
-      isLoading: false
+      vendor_id: "",
+      keyword: "",
+      isLoading: false,
+      url: base_url
     };
   },
   mounted: function mounted() {
     var _this = this;
 
-    _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('equipment-created', function () {
+    _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on("equipment-created", function () {
       _this.getEquipment();
     });
     this.getEquipment();
@@ -2161,6 +2411,30 @@ __webpack_require__.r(__webpack_exports__);
       axios.get(base_url + "equipment-list?page=".concat(page, "&vendor_id=").concat(this.vendor_id, "&keyword=").concat(this.keyword)).then(function (response) {
         _this2.equipments = response.data;
         _this2.isLoading = false;
+      });
+    },
+    edit: function edit(equipment) {
+      _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit("edit-equipment", equipment);
+    },
+    deleteEquipment: function deleteEquipment(id) {
+      var _this3 = this;
+
+      Swal.fire({
+        title: 'Are you sure ?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }, function () {}).then(function (result) {
+        if (result.value) {
+          axios["delete"]("".concat(base_url, "equipment/").concat(id)).then(function (response) {
+            _this3.successMessage(response.data);
+
+            _this3.getEquipment();
+          });
+        }
       });
     },
     pageClicked: function pageClicked(page) {
@@ -6588,256 +6862,719 @@ var render = function() {
       }
     },
     [
-      _c(
-        "div",
-        {
-          staticClass: "modal-dialog modal-dialog-centered",
-          attrs: { role: "document" }
-        },
-        [
-          _vm._v("\\\n        "),
-          _c(
-            "form",
-            {
-              on: {
-                submit: function($event) {
-                  $event.preventDefault()
-                  return _vm.save()
-                }
+      _c("div", { staticClass: "modal-dialog", attrs: { role: "document" } }, [
+        _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.save()
               }
-            },
-            [
-              _c("div", { staticClass: "modal-content" }, [
-                _c("div", { staticClass: "modal-body" }, [
-                  _c("i", {
-                    staticClass: "flaticon-cancel-12 close",
-                    attrs: { "data-dismiss": "modal" }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "add-contact-box" }, [
-                    _c("div", { staticClass: "add-contact-content" }, [
-                      _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-email" }, [
-                            _c("i", { staticClass: "flaticon-mail-26" }),
-                            _vm._v(" "),
-                            _c(
-                              "select",
-                              {
-                                directives: [
+            }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-body" }, [
+                _c("i", {
+                  staticClass: "flaticon-cancel-12 close",
+                  attrs: { "data-dismiss": "modal" }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "add-contact-box" }, [
+                  _c("div", { staticClass: "add-contact-content" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("div", { staticClass: "contact-email" }, [
+                          _c("i", { staticClass: "flaticon-mail-26" }),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.equipment.vendor,
+                                  expression: "equipment.vendor"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.equipment,
+                                    "vendor",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("Chose a vendor")
+                              ]),
+                              _vm._v(" "),
+                              _vm._l(_vm.vendors, function(vendor) {
+                                return _c(
+                                  "option",
                                   {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.equipment.vendor,
-                                    expression: "equipment.vendor"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                on: {
-                                  change: function($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call($event.target.options, function(o) {
-                                        return o.selected
-                                      })
-                                      .map(function(o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
-                                    _vm.$set(
-                                      _vm.equipment,
-                                      "vendor",
-                                      $event.target.multiple
-                                        ? $$selectedVal
-                                        : $$selectedVal[0]
+                                    key: vendor.id,
+                                    domProps: { value: vendor.id }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                                " +
+                                        _vm._s(vendor.vendor_name) +
+                                        "\n                                            "
                                     )
-                                  }
-                                }
-                              },
-                              [
-                                _c("option", { attrs: { value: "" } }, [
-                                  _vm._v("Chose a vendor")
-                                ]),
-                                _vm._v(" "),
-                                _vm._l(_vm.vendors, function(vendor) {
-                                  return _c(
-                                    "option",
-                                    {
-                                      key: vendor.id,
-                                      domProps: { value: vendor.id }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                                                " +
-                                          _vm._s(vendor.vendor_name) +
-                                          "\n                                            "
-                                      )
-                                    ]
-                                  )
-                                })
-                              ],
-                              2
-                            ),
-                            _vm._v(" "),
-                            _vm.validation_error.hasOwnProperty("vendor")
-                              ? _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\n                                            " +
-                                      _vm._s(_vm.validation_error.vendor[0]) +
-                                      "\n                                           "
-                                  )
-                                ])
-                              : _vm._e()
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-name" }, [
-                            _c("i", { staticClass: "flaticon-user-11" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.equipment.equipment_name,
-                                  expression: "equipment.equipment_name"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                id: "c-name",
-                                placeholder: "Equipment Name: "
-                              },
-                              domProps: { value: _vm.equipment.equipment_name },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.equipment,
-                                    "equipment_name",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.validation_error.hasOwnProperty(
-                              "equipment_name"
-                            )
-                              ? _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\n                                            " +
-                                      _vm._s(
-                                        _vm.validation_error.equipment_name[0]
-                                      ) +
-                                      "\n                                        "
-                                  )
-                                ])
-                              : _vm._e()
-                          ])
+                                  ]
+                                )
+                              })
+                            ],
+                            2
+                          ),
+                          _vm._v(" "),
+                          _vm.validation_error.hasOwnProperty("vendor")
+                            ? _c("span", { staticClass: "text-danger" }, [
+                                _vm._v(
+                                  "\n                                            " +
+                                    _vm._s(_vm.validation_error.vendor[0]) +
+                                    "\n                                           "
+                                )
+                              ])
+                            : _vm._e()
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-email" }, [
-                            _c("i", { staticClass: "flaticon-mail-26" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.equipment.equipment_model,
-                                  expression: "equipment.equipment_model"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                id: "c-email",
-                                placeholder: "Equipment Model"
-                              },
-                              domProps: {
-                                value: _vm.equipment.equipment_model
-                              },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.equipment,
-                                    "equipment_model",
-                                    $event.target.value
-                                  )
-                                }
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("div", { staticClass: "contact-name" }, [
+                          _c("i", { staticClass: "flaticon-user-11" }),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.equipment.equipment_name,
+                                expression: "equipment.equipment_name"
                               }
-                            }),
-                            _vm._v(" "),
-                            _vm.validation_error.hasOwnProperty(
-                              "equipment_model"
-                            )
-                              ? _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\n                                            " +
-                                      _vm._s(
-                                        _vm.validation_error.equipment_model[0]
-                                      ) +
-                                      "\n                                           "
-                                  )
-                                ])
-                              : _vm._e()
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-phone" }, [
-                            _c("i", { staticClass: "flaticon-telephone" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.equipment.capacity,
-                                  expression: "equipment.capacity"
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              id: "c-name",
+                              placeholder: "Equipment Name: "
+                            },
+                            domProps: { value: _vm.equipment.equipment_name },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
                                 }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                id: "c-phone",
-                                placeholder: "Capacity"
-                              },
-                              domProps: { value: _vm.equipment.capacity },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.equipment,
-                                    "capacity",
-                                    $event.target.value
-                                  )
-                                }
+                                _vm.$set(
+                                  _vm.equipment,
+                                  "equipment_name",
+                                  $event.target.value
+                                )
                               }
-                            }),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "text-danger" })
-                          ])
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm.validation_error.hasOwnProperty("equipment_name")
+                            ? _c("span", { staticClass: "text-danger" }, [
+                                _vm._v(
+                                  "\n                                            " +
+                                    _vm._s(
+                                      _vm.validation_error.equipment_name[0]
+                                    ) +
+                                    "\n                                        "
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("div", { staticClass: "contact-email" }, [
+                          _c("i", { staticClass: "flaticon-mail-26" }),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.equipment.equipment_model,
+                                expression: "equipment.equipment_model"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              id: "c-email",
+                              placeholder: "Equipment Model"
+                            },
+                            domProps: { value: _vm.equipment.equipment_model },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.equipment,
+                                  "equipment_model",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm.validation_error.hasOwnProperty("equipment_model")
+                            ? _c("span", { staticClass: "text-danger" }, [
+                                _vm._v(
+                                  "\n                                            " +
+                                    _vm._s(
+                                      _vm.validation_error.equipment_model[0]
+                                    ) +
+                                    "\n                                           "
+                                )
+                              ])
+                            : _vm._e()
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col-md-12" }, [
-                          _c("div", { staticClass: "contact-location" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("div", { staticClass: "contact-phone" }, [
+                          _c("i", { staticClass: "flaticon-telephone" }),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.equipment.capacity,
+                                expression: "equipment.capacity"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              id: "c-phone",
+                              placeholder: "Capacity"
+                            },
+                            domProps: { value: _vm.equipment.capacity },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.equipment,
+                                  "capacity",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "text-danger" })
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("div", { staticClass: "contact-email" }, [
+                          _c("i", { staticClass: "flaticon-mail-26" }),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.equipment.status,
+                                  expression: "equipment.status"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.equipment,
+                                    "status",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("Equipment Status")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "1" } }, [
+                                _vm._v("Active")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "0" } }, [
+                                _vm._v("Inactive")
+                              ])
+                            ]
+                          )
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c("div", { staticClass: "contact-location" }, [
+                          _c("i", { staticClass: "flaticon-location-1" }),
+                          _vm._v(" "),
+                          _c("textarea", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.equipment.note,
+                                expression: "equipment.note"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: { placeholder: "Note" },
+                            domProps: { value: _vm.equipment.note },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.equipment,
+                                  "note",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ])
+                      ])
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary ",
+                    attrs: { type: "submit" }
+                  },
+                  [
+                    _vm.button_name != "Save"
+                      ? _c(
+                          "div",
+                          {
+                            staticClass:
+                              "spinner-grow text-white mr-2 align-self-center loader-sm"
+                          },
+                          [_vm._v(".")]
+                        )
+                      : _vm._e(),
+                    _vm._v(
+                      "\n                     " + _vm._s(_vm.button_name) + " "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _vm._m(0)
+              ])
+            ])
+          ]
+        )
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      { staticClass: "btn btn-default", attrs: { "data-dismiss": "modal" } },
+      [_c("i", { staticClass: "flaticon-delete-1" }), _vm._v(" Discard")]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/equipment/UpdateEquipment.vue?vue&type=template&id=7181ea69&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/equipment/UpdateEquipment.vue?vue&type=template&id=7181ea69& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "modal fade",
+      attrs: {
+        id: "updateEquipment",
+        tabindex: "-1",
+        role: "dialog",
+        "aria-labelledby": "addContactModalTitle",
+        "aria-hidden": "true"
+      }
+    },
+    [
+      _c("div", { staticClass: "modal-dialog ", attrs: { role: "document" } }, [
+        _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.save()
+              }
+            }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-body" }, [
+                _c("i", {
+                  staticClass: "flaticon-cancel-12 close",
+                  attrs: { "data-dismiss": "modal" }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "add-contact-box" }, [
+                  _c("div", { staticClass: "add-contact-content" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("div", { staticClass: "contact-email text-left" }, [
+                          _c("i", { staticClass: "flaticon-mail-26" }),
+                          _vm._v(" "),
+                          _c("span", [_vm._v("Vendor")]),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.equipment.vendor,
+                                  expression: "equipment.vendor"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.equipment,
+                                    "vendor",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("Chose a vendor")
+                              ]),
+                              _vm._v(" "),
+                              _vm._l(_vm.vendors, function(vendor) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: vendor.id,
+                                    domProps: { value: vendor.id }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                                " +
+                                        _vm._s(vendor.vendor_name) +
+                                        "\n                                            "
+                                    )
+                                  ]
+                                )
+                              })
+                            ],
+                            2
+                          ),
+                          _vm._v(" "),
+                          _vm.validation_error.hasOwnProperty("vendor")
+                            ? _c("span", { staticClass: "text-danger" }, [
+                                _vm._v(
+                                  "\n                                            " +
+                                    _vm._s(_vm.validation_error.vendor[0]) +
+                                    "\n                                           "
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("div", { staticClass: "contact-name text-left" }, [
+                          _c("i", { staticClass: "flaticon-user-11" }),
+                          _vm._v(" "),
+                          _c("span", [_vm._v("Equipment Name")]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.equipment.equipment_name,
+                                expression: "equipment.equipment_name"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              id: "c-name",
+                              placeholder: "Equipment Name: "
+                            },
+                            domProps: { value: _vm.equipment.equipment_name },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.equipment,
+                                  "equipment_name",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm.validation_error.hasOwnProperty("equipment_name")
+                            ? _c("span", { staticClass: "text-danger" }, [
+                                _vm._v(
+                                  "\n                                            " +
+                                    _vm._s(
+                                      _vm.validation_error.equipment_name[0]
+                                    ) +
+                                    "\n                                        "
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("div", { staticClass: "contact-email text-left" }, [
+                          _c("i", { staticClass: "flaticon-mail-26" }),
+                          _vm._v(" "),
+                          _c("span", [_vm._v("Model")]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.equipment.equipment_model,
+                                expression: "equipment.equipment_model"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              id: "c-email",
+                              placeholder: "Equipment Model"
+                            },
+                            domProps: { value: _vm.equipment.equipment_model },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.equipment,
+                                  "equipment_model",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm.validation_error.hasOwnProperty("equipment_model")
+                            ? _c("span", { staticClass: "text-danger" }, [
+                                _vm._v(
+                                  "\n                                            " +
+                                    _vm._s(
+                                      _vm.validation_error.equipment_model[0]
+                                    ) +
+                                    "\n                                           "
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("div", { staticClass: "contact-phone text-left" }, [
+                          _c("i", { staticClass: "flaticon-telephone" }),
+                          _vm._v(" "),
+                          _c("span", [_vm._v("Capacity")]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.equipment.capacity,
+                                expression: "equipment.capacity"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              id: "c-phone",
+                              placeholder: "Capacity"
+                            },
+                            domProps: { value: _vm.equipment.capacity },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.equipment,
+                                  "capacity",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "text-danger" })
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("div", { staticClass: "contact-email text-left" }, [
+                          _c("i", { staticClass: "flaticon-mail-26" }),
+                          _vm._v(" "),
+                          _c("span", [_vm._v("Status")]),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.equipment.status,
+                                  expression: "equipment.status"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.equipment,
+                                    "status",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("Equipment Status")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "1" } }, [
+                                _vm._v("Active")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "0" } }, [
+                                _vm._v("Inactive")
+                              ])
+                            ]
+                          )
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c(
+                          "div",
+                          { staticClass: "contact-location text-left" },
+                          [
                             _c("i", { staticClass: "flaticon-location-1" }),
+                            _vm._v(" "),
+                            _c("span", [_vm._v("Note")]),
                             _vm._v(" "),
                             _c("textarea", {
                               directives: [
@@ -6864,19 +7601,43 @@ var render = function() {
                                 }
                               }
                             })
-                          ])
-                        ])
+                          ]
+                        )
                       ])
                     ])
                   ])
-                ]),
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+                  [
+                    _vm.button_name != "Update"
+                      ? _c(
+                          "div",
+                          {
+                            staticClass:
+                              "spinner-grow text-white mr-2 align-self-center loader-sm"
+                          },
+                          [_vm._v(".")]
+                        )
+                      : _vm._e(),
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.button_name) +
+                        "\n                    "
+                    )
+                  ]
+                ),
                 _vm._v(" "),
                 _vm._m(0)
               ])
-            ]
-          )
-        ]
-      )
+            ])
+          ]
+        )
+      ])
     ]
   )
 }
@@ -6885,19 +7646,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [_vm._v("Save")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-default", attrs: { "data-dismiss": "modal" } },
-        [_c("i", { staticClass: "flaticon-delete-1" }), _vm._v(" Discard")]
-      )
-    ])
+    return _c(
+      "button",
+      { staticClass: "btn btn-default", attrs: { "data-dismiss": "modal" } },
+      [_c("i", { staticClass: "flaticon-delete-1" }), _vm._v(" Discard")]
+    )
   }
 ]
 render._withStripped = true
@@ -6992,10 +7745,13 @@ var render = function() {
               }
             ],
             staticClass: "form-control",
-            attrs: { type: "text", placeholder: "Search Equipment" },
+            attrs: {
+              type: "text",
+              placeholder: "Search with name model capacity"
+            },
             domProps: { value: _vm.keyword },
             on: {
-              change: function($event) {
+              keyup: function($event) {
                 return _vm.getEquipment()
               },
               input: function($event) {
@@ -7011,44 +7767,99 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("div", { staticClass: "table-responsive" }, [
-          _c(
-            "table",
-            { staticClass: "table table-bordered table-hover  mb-4" },
-            [
-              _vm._m(0),
-              _vm._v(" "),
+      !_vm.isLoading
+        ? _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "table-responsive" }, [
               _c(
-                "tbody",
-                _vm._l(_vm.equipments.data, function(value) {
-                  return _c("tr", { key: value.id }, [
-                    _c("td", [_vm._v(_vm._s(value.eq_name))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(value.vendor.vendor_name))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(value.eq_model))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(value.eq_capacity))]),
-                    _vm._v(" "),
-                    _vm._m(1, true),
-                    _vm._v(" "),
-                    _vm._m(2, true)
-                  ])
-                }),
-                0
+                "table",
+                { staticClass: "table table-bordered table-hover mb-4" },
+                [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.equipments.data, function(value) {
+                      return _c("tr", { key: value.id }, [
+                        _c("td", [_vm._v(_vm._s(value.eq_name))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(value.vendor.vendor_name))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(value.eq_model))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(value.eq_capacity))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(value.note))]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          value.eq_status == 1
+                            ? _c("span", { staticClass: "text-success" }, [
+                                _vm._v("Active")
+                              ])
+                            : _c("span", { staticClass: "text-danger" }, [
+                                _vm._v("Inactive")
+                              ])
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "btn btn-dark mb-2 mr-2 rounded-circle",
+                              on: {
+                                click: function($event) {
+                                  return _vm.edit(value)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "far fa-edit" })]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "btn btn-danger mb-2 mr-2 rounded-circle",
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteEquipment(value.id)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "far fa-trash-alt" })]
+                          )
+                        ])
+                      ])
+                    }),
+                    0
+                  )
+                ]
               )
+            ])
+          ])
+        : _c(
+            "div",
+            {
+              staticClass: "col-md-12 text-center",
+              staticStyle: { "margin-top": "30px" }
+            },
+            [
+              _c("div", {
+                staticClass: "loader multi-loader mx-auto loader-xl"
+              })
             ]
           )
-        ])
-      ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
       _c(
         "div",
         { staticClass: "col-md-12 text-center mb-10 mt-10" },
-        [_c("pagination", { attrs: { pageData: this.equipments } })],
+        [
+          _c("pagination", { attrs: { pageData: this.equipments } }),
+          _vm._v(" "),
+          _c("edit-equipment", { attrs: { vendors: _vm.vendors } })
+        ],
         1
       )
     ])
@@ -7069,31 +7880,11 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Capacity")]),
         _vm._v(" "),
+        _c("th", [_vm._v("Note")]),
+        _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [_vm._v("Status")]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [_vm._v("action")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "text-center" }, [
-      _c("span", { staticClass: "text-success" }, [_vm._v("Active")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "text-center" }, [
-      _c("button", { staticClass: "btn btn-dark mb-2 mr-2 rounded-circle" }, [
-        _c("i", { staticClass: "far fa-edit" })
-      ]),
-      _vm._v(" "),
-      _c("button", { staticClass: "btn btn-danger mb-2 mr-2 rounded-circle" }, [
-        _c("i", { staticClass: "far fa-trash-alt" })
       ])
     ])
   }
@@ -19426,6 +20217,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/equipment/UpdateEquipment.vue":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/equipment/UpdateEquipment.vue ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _UpdateEquipment_vue_vue_type_template_id_7181ea69___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UpdateEquipment.vue?vue&type=template&id=7181ea69& */ "./resources/js/components/equipment/UpdateEquipment.vue?vue&type=template&id=7181ea69&");
+/* harmony import */ var _UpdateEquipment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UpdateEquipment.vue?vue&type=script&lang=js& */ "./resources/js/components/equipment/UpdateEquipment.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _UpdateEquipment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _UpdateEquipment_vue_vue_type_template_id_7181ea69___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _UpdateEquipment_vue_vue_type_template_id_7181ea69___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/equipment/UpdateEquipment.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/equipment/UpdateEquipment.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/equipment/UpdateEquipment.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateEquipment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./UpdateEquipment.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/equipment/UpdateEquipment.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateEquipment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/equipment/UpdateEquipment.vue?vue&type=template&id=7181ea69&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/equipment/UpdateEquipment.vue?vue&type=template&id=7181ea69& ***!
+  \**********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateEquipment_vue_vue_type_template_id_7181ea69___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./UpdateEquipment.vue?vue&type=template&id=7181ea69& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/equipment/UpdateEquipment.vue?vue&type=template&id=7181ea69&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateEquipment_vue_vue_type_template_id_7181ea69___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateEquipment_vue_vue_type_template_id_7181ea69___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/equipment/ViewEquipment.vue":
 /*!*************************************************************!*\
   !*** ./resources/js/components/equipment/ViewEquipment.vue ***!
@@ -19611,15 +20471,17 @@ __webpack_require__.r(__webpack_exports__);
 // import { format } from 'date-fns';
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
+    playSound: function playSound(sound_url) {
+      var audio = new Audio(sound_url);
+      audio.play();
+    },
     successMessage: function successMessage(data) {
-      // console.log(data)
-      // Swal.fire({
-      // 	position: 'bottom-end',
-      // 	icon: data.status,
-      // 	title: data.message,
-      // 	showConfirmButton: false,
-      // 	timer: 2500
-      // })
+      if (data.status === 'success') {
+        this.playSound(base_url + 'audio/success.mp3');
+      } else {
+        this.playSound(base_url + 'audio/error.mp3');
+      }
+
       var Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -19637,6 +20499,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     validationError: function validationError() {
+      this.playSound(base_url + 'audio/error.mp3');
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -19707,7 +20570,7 @@ var EventBus = new Vue();
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! I:\xampp\htdocs\e-management\resources\js\equipment.js */"./resources/js/equipment.js");
+module.exports = __webpack_require__(/*! E:\server\htdocs\e-management\resources\js\equipment.js */"./resources/js/equipment.js");
 
 
 /***/ })
