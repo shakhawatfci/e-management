@@ -1,77 +1,81 @@
 // import { format } from 'date-fns';
 export default {
-  
 
-  methods : {
 
-      successMessage(data){
-           
-        // console.log(data)
-                // Swal.fire({
-                // 	position: 'bottom-end',
-                // 	icon: data.status,
-                // 	title: data.message,
-                // 	showConfirmButton: false,
-                // 	timer: 2500
-                // })
+  methods: {
 
-                const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                onOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-                })
+    playSound(sound_url) {
+      var audio = new Audio(sound_url);
+      audio.play();
+    },
 
-                Toast.fire({
-                icon: data.status,
-                title: data.message
-                })
-            },
+    successMessage(data) {
 
-            validationError(){
-                   Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'please fill form correctly',
-                    });
-            }
+      if (data.status === 'success') {
+        this.playSound(base_url + 'audio/success.mp3');
+      }
+      else {
+        this.playSound(base_url + 'audio/error.mp3');
+      }
+
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        onOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+
+      Toast.fire({
+        icon: data.status,
+        title: data.message
+      })
+    },
+
+    validationError() {
+      this.playSound(base_url + 'audio/error.mp3');
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'please fill form correctly',
+      });
+    }
 
   },
 
-    mounted(){
+  mounted() {
 
     // $('.select2_demo_2').select2();
 
     // $('.multiselect__input').addClass('form-control');
 
+  },
+
+  filters: {
+    formatPrice: function (value) {
+
+      return parseFloat(value).toFixed(2);
+    },
+    strippedContent: function (string) {
+      return string.replace(/<\/?[^>]+>/ig, " ");
     },
 
-    filters: {
-        formatPrice: function (value) {
+    dateToString(datePassed) {
 
-            return parseFloat(value).toFixed(2);
-        },
-        strippedContent: function(string) {
-       return string.replace(/<\/?[^>]+>/ig, " "); 
-      },
+      const newYears = new Date(datePassed);
+      const formattedDate = newYears.toDateString().slice(3);
+      const valuedate = formattedDate.split(' ');
+      // console.log(valuedate);
+      return valuedate[1] + ' ' + valuedate[2] + ', ' + valuedate[3];
+      // const formattedDate = format(newYears.toDateString(), 'MMM dd, yyyy');
+      // return formattedDate;
 
-        dateToString(datePassed){
-           
-        const newYears = new Date(datePassed);
-        const formattedDate = newYears.toDateString().slice(3);
-        const valuedate = formattedDate.split(' ');
-        // console.log(valuedate);
-        return valuedate[1]+' '+valuedate[2]+', '+valuedate[3];
-        // const formattedDate = format(newYears.toDateString(), 'MMM dd, yyyy');
-        // return formattedDate;
-
-       }
     }
+  }
 
 
 
