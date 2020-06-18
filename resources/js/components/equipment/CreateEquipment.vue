@@ -4,12 +4,32 @@
         <div class="modal-dialog" role="document">
             <form @submit.prevent="save()">
             <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Create Equipment</h4>
+                </div>
                 <div class="modal-body">
                     <i class="flaticon-cancel-12 close" data-dismiss="modal"></i>
                     <div class="add-contact-box">
                         <div class="add-contact-content">
 
                                 <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="contact-email">
+                                            <i class="flaticon-mail-26"></i>
+                                            <select class="form-control" v-model="equipment.equipment_type">
+                                                <option value="">Chose a Equipment Type</option>
+                                                <option v-for="eq_type in equipment_types" :key="eq_type.id" :value="eq_type.id">
+                                                    {{ eq_type.name }}
+                                                </option>
+                                            </select>
+                                                 <span
+                                                 v-if="validation_error.hasOwnProperty('equipment_type')" 
+                                                class="text-danger">
+                                                {{ validation_error.equipment_type[0] }}
+                                               </span>
+                                        </div>
+                                    </div>
+
                                     <div class="col-md-6">
                                         <div class="contact-email">
                                             <i class="flaticon-mail-26"></i>
@@ -26,7 +46,13 @@
                                                </span>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+
+
+
+                                </div>
+
+                                <div class="row">
+                                 <div class="col-md-6">
                                         <div class="contact-name">
                                             <i class="flaticon-user-11"></i>
                                             <input type="text" v-model="equipment.equipment_name"
@@ -36,10 +62,7 @@
                                             </span>
                                         </div>
                                     </div>
-
-                                </div>
-
-                                <div class="row">
+                                    
                                     <div class="col-md-6">
                                         <div class="contact-email">
                                             <i class="flaticon-mail-26"></i>
@@ -52,16 +75,17 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6">
+
+                                </div>
+
+                                <div class="row">
+                                 <div class="col-md-6">
                                         <div class="contact-phone">
                                             <i class="flaticon-telephone"></i>
                                             <input type="text" id="c-phone" class="form-control" v-model="equipment.capacity" placeholder="Capacity">
                                             <span class="text-danger"></span>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="contact-email">
                                             <i class="flaticon-mail-26"></i>
@@ -103,7 +127,7 @@ import { EventBus  } from '../../vue-assets';
 import Mixin from '../../mixin';
 export default {
    mixins : [Mixin],
-   props : ['vendors'],
+   props : ['vendors','equipment_types'],
    data()
    {  
        return {

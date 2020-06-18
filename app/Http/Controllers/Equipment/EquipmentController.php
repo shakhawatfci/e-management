@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Equipment;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Equipement;
+use App\EquipmentType;
 use App\Vendor;
 use App\CarAssign;
 
@@ -18,9 +19,11 @@ class EquipmentController extends Controller
     public function index()
     {
       $vendor = Vendor::where('status','=',1)->get();
+      $equipment_types = EquipmentType::where('status','=',1)->get();
        return view('equipment.equipment',
        [
-           'vendor' => $vendor
+           'vendor' => $vendor,
+           'equipment_types' => $equipment_types
        ]);
     }
 
@@ -28,12 +31,18 @@ class EquipmentController extends Controller
 
     public function equipmentList(Request $request)
     {
-        $equipment = Equipement::with('vendor:id,vendor_name')->orderBy('eq_name','asc');
+        $equipment = Equipement::with(['vendor:id,vendor_name','equipment_type:id,name'])
+                                 ->orderBy('eq_name','asc');
         $search_keyword = $request->keyword;
 
         if($request->vendor_id != '')
         {
            $equipment->where('vendor_id','=',$request->vendor_id);
+        }
+
+        if($request->equipment_type_id != '')
+        {
+           $equipment->where('equipment_type_id','=',$request->equipment_type_id);
         }
 
         if($search_keyword != '')
@@ -77,7 +86,8 @@ class EquipmentController extends Controller
             [
                 'equipment_name'  => 'required|unique:equipement,eq_name',
                 'equipment_model' => 'required',
-                'vendor'          => 'required'
+                'vendor'          => 'required',
+                'equipment_type'  => 'required'
             ]
             );
 
@@ -90,6 +100,7 @@ class EquipmentController extends Controller
 
             $equipment->eq_name = $request->equipment_name;
             $equipment->vendor_id = $request->vendor;
+            $equipment->equipment_type_id = $request->equipment_type;
             $equipment->eq_model = $request->equipment_model;
             $equipment->eq_capacity = $request->capacity;
             $equipment->note = $request->note;
@@ -148,7 +159,8 @@ class EquipmentController extends Controller
             [
                 'equipment_name'  => 'required|unique:equipement,eq_name,'.$id,
                 'equipment_model' => 'required',
-                'vendor'          => 'required'
+                'vendor'          => 'required',
+                'equipment_type'  => 'required'
             ]
             );
 
@@ -161,6 +173,7 @@ class EquipmentController extends Controller
 
             $equipment->eq_name = $request->equipment_name;
             $equipment->vendor_id = $request->vendor;
+            $equipment->equipment_type_id = $request->equipment_type;
             $equipment->eq_model = $request->equipment_model;
             $equipment->eq_capacity = $request->capacity;
             $equipment->note = $request->note;

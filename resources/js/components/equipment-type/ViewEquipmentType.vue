@@ -1,29 +1,14 @@
 <template>
   <div>
     <div class="row">
-      <div class="col-md-3" style="margin-bottom:10px;">
-        <select class="form-control" v-model="equipment_type_id" @change="getEquipment()">
-          <option value>Filter By Equipment Type</option>
-          <option v-for="eq_type in equipment_types" :key="eq_type.id"
-           :value="eq_type.id">{{ eq_type.name }}</option>
-        </select>
-      </div>
 
-
-      <div class="col-md-3" style="margin-bottom:10px;">
-        <select class="form-control" v-model="vendor_id" @change="getEquipment()">
-          <option value>Filter By Vendor</option>
-          <option v-for="vd in vendors" :key="vd.id" :value="vd.id">{{ vd.vendor_name }}</option>
-        </select>
-      </div>
-
-      <div class="col-md-3" style="margin-bottom:10px;">
+      <div class="col-md-6" style="margin-bottom:10px;">
         <input
           type="text"
           v-model="keyword"
           class="form-control"
-          placeholder="Search with name model capacity"
-          @keyup="getEquipment()"
+          placeholder="Search by keyword"
+          @keyup="getEquipmentType()"
         />
       </div>
     </div>
@@ -34,33 +19,25 @@
           <table class="table table-bordered table-hover mb-4">
             <thead>
               <tr>
-                <th>Equipment Name</th>
-                <th>Equipment Type</th>
-                <th>Vendor</th>
-                <th>Model</th>
-                <th>Capacity</th>
+                <th>Name</th>
                 <th>Note</th>
                 <th class="text-center">Status</th>
                 <th class="text-center">action</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="value in equipments.data" :key="value.id">
-                <td>{{ value.eq_name }}</td>
-                <td>{{ value.equipment_type.name }}</td>
-                <td>{{ value.vendor.vendor_name }}</td>
-                <td>{{ value.eq_model }}</td>
-                <td>{{ value.eq_capacity }}</td>
+              <tr v-for="value in equipment_types.data" :key="value.id">
+                <td>{{ value.name }}</td>
                 <td>{{ value.note }}</td>
                 <td class="text-center">
-                  <span class="text-success" v-if="value.eq_status == 1">Active</span>
+                  <span class="text-success" v-if="value.status == 1">Active</span>
                   <span class="text-danger" v-else>Inactive</span>
                 </td>
                 <td class="text-center">
                   <button @click="edit(value)" class="btn btn-dark mb-2 mr-2 rounded-circle">
                     <i class="far fa-edit"></i>
                   </button>
-                  <button @click="deleteEquipment(value.id)" class="btn btn-danger mb-2 mr-2 rounded-circle">
+                  <button @click="deleteEquipmentType(value.id)" class="btn btn-danger mb-2 mr-2 rounded-circle">
                     <i class="far fa-trash-alt"></i>
                   </button>
                 </td>
@@ -78,8 +55,8 @@
     <div class="row">
       <div class="col-md-12 text-center mb-10 mt-10">
         <!-- import pagination here  -->
-        <pagination :pageData="equipments"></pagination>
-        <edit-equipment :vendors="vendors" :equipment_types="equipment_types"></edit-equipment>
+        <pagination :pageData="equipment_types"></pagination>
+        <edit-equipment-type ></edit-equipment-type>
       </div>
     </div>
   </div>
@@ -90,19 +67,16 @@
 import { EventBus } from "../../vue-assets";
 import Mixin from "../../mixin";
 import Pagination from "../pagination/Pagination";
-import UpdateEquipment from "./UpdateEquipment";
+import UpdateEquipmentType from "./UpdateEquipmentType";
 export default {
   mixins: [Mixin],
-  props: ["vendors",'equipment_types'],
   components: {
     'pagination': Pagination,
-    'edit-equipment': UpdateEquipment
+    'edit-equipment-type': UpdateEquipmentType
   },
   data() {
     return {
-      equipments: [],
-      vendor_id: "",
-      equipment_type_id: "",
+      equipment_types: [],
       keyword: "",
       isLoading: false,
       url : base_url
@@ -113,31 +87,31 @@ export default {
     var _this = this;
 
     EventBus.$on("equipment-created", function() {
-      _this.getEquipment();
+      _this.getEquipmentType();
     });
 
-    this.getEquipment();
+    this.getEquipmentType();
   },
 
   methods: {
-    getEquipment(page = 1) {
+    getEquipmentType(page = 1) {
       this.isLoading = true;
       axios
         .get(
           base_url +
-            `equipment-list?page=${page}&vendor_id=${this.vendor_id}&equipment_type_id=${this.equipment_type_id}&keyword=${this.keyword}`
+            `equipment-category-list?page=${page}&keyword=${this.keyword}`
         )
         .then(response => {
-          this.equipments = response.data;
+          this.equipment_types = response.data;
           this.isLoading = false;
         });
     },
 
     edit(equipment) {
-      EventBus.$emit("edit-equipment", equipment);
+      EventBus.$emit("edit-equipment-type", equipment);
     },
 
-     deleteEquipment(id){
+     deleteEquipmentType(id){
           Swal.fire({
             title: 'Are you sure ?',
             text: "You won't be able to revert this!",
@@ -150,16 +124,16 @@ export default {
 
         }).then((result) => {
            if(result.value){
-           axios.delete(`${base_url}equipment/${id}`)
+           axios.delete(`${base_url}equipment-type/${id}`)
            .then(response => {
               this.successMessage(response.data);
-              this.getEquipment();
+              this.getEquipmentType();
            });
            }
         }) 
     },
     pageClicked(page) {
-      this.getEquipment(page);
+      this.getEquipmentType(page);
     }
   }
 };

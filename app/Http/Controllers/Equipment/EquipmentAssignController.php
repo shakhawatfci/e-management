@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Equipment;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Auth;
 
-class AdminController extends Controller
+class EquipmentAssignController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        
+        return view('equipment.equipment_assign');
+
     }
 
     /**
@@ -82,11 +83,5 @@ class AdminController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function logout()
-    {
-       Auth::logout();
-       return redirect('/');
     }
 }
