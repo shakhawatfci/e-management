@@ -39,9 +39,9 @@ class AdminController extends Controller
 
 	           $check->save();
 
-	           Session::flash('success','Password Change Success');
+	           Session::flash('success','Password Changed Successfully !');
 
-	           return redirect()->route('/home');   
+	           return redirect()->route('/');   
 
 	       }
 	       else{

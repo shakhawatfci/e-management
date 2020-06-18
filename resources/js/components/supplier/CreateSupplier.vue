@@ -53,6 +53,18 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="contact-email">
+                                        <i class="flaticon-mail-26"></i>
+                                        <select class="form-control" v-model="supplier.status">
+                                            <option value="">Supplier Status</option>
+                                            <option value="1">Active</option>
+                                            <option value="0">Inactive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -81,7 +93,7 @@ export default {
           vendor_address : '',
           vendor_email : '',
           vendor_phone : '',
-          status : 1 
+          status : '' 
          },
          button_name : 'Save',
          validation_error : {},
@@ -98,32 +110,31 @@ export default {
          this.button_name = 'Saving...'
          axios.post(base_url+'supplier',this.supplier)
          .then(response => {
-          console.log(response.data)
              if(response.data.status === 'success')
              {
+              this.resetForm()
               $('#createSupplier').modal('hide');
               this.successMessage(response.data);
               this.button_name = 'Save'
-              this.resetForm()
               EventBus.$emit('supplier-created');
              } 
              else
              {
+               this.resetForm()
                this.successMessage(response.data);
                this.button_name = 'Save'
-               this.resetForm()
              }
          })
          .catch(err => {
              if(err.response.status == 422)
              {
-                 this.validation_error = err.response.data.errors;
-                 this.validationError();
-                 this.button_name = 'Save'
+                this.validation_error = err.response.data.errors;
+                this.validationError();
+                this.button_name = 'Save'
              }
              else
              {
-                 this.validationError();
+              this.validationError();
              }
          })
      },

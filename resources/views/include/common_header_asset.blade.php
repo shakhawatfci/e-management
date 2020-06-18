@@ -4,8 +4,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title','Limmex | EMS')</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('images/logo/loading.gif') }}"/>
-    <link href="{{ asset('admin-assets/assets/css/loader.css') }}" rel="stylesheet" type="text/css" />
-    <script src="{{ asset('admin-assets/assets/js/loader.js') }}"></script>
+    <!-- <link href="{{ asset('admin-assets/assets/css/loader.css') }}" rel="stylesheet" type="text/css" /> -->
+    <!-- <script src="{{ asset('admin-assets/assets/js/loader.js') }}"></script> -->
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
     <link href="{{ asset('admin-assets/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
@@ -34,3 +34,5 @@
     <!-- loader / -->
     <link rel="stylesheet" type="text/css" href="{{ asset('admin-assets/plugins/loaders/custom-loader.css') }}">
     <!-- loader / -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin-assets/assets/css/components/custom-modal.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin-assets/plugins/animate/animate.css') }}">

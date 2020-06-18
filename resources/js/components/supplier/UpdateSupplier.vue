@@ -103,7 +103,6 @@ export default {
          // axios.put(base_url+'supplier',this.supplier)
          axios.put(base_url+'supplier/'+this.supplier.id,this.supplier)
          .then(response => {
-          console.log(response.data)
              if(response.data.status === 'success')
              {
               $('#UpdateSupplier').modal('hide');

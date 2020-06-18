@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;
 use App\Vendor;
+use App\Equipement;
 
 class VendorController extends Controller
 {
@@ -37,12 +38,13 @@ class VendorController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'vendor_name'=>'required',
+            'vendor_email'=>'email|nullable',
+            'vendor_address'=>'required',
+            'vendor_phone'=>'required'
+        ]);
         try {
-            $request->validate([
-                'vendor_name'=>'required',
-                'vendor_address'=>'required',
-                'vendor_phone'=>'required'
-            ]);
 
           $vendor = Vendor::create($request->all());
 
@@ -73,7 +75,7 @@ class VendorController extends Controller
            $vendor->orWhere('vendor_address','LIKE','%'.$request->keyword.'%');
            $vendor->orWhere('vendor_phone','LIKE','%'.$request->keyword.'%');
         }
-        $vendor = $vendor->get();
+        $vendor = $vendor->paginate(10);
         return $vendor;
     }
 
@@ -97,12 +99,13 @@ class VendorController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'vendor_name'=>'required',
+            'vendor_email'=>'email|nullable',
+            'vendor_address'=>'required',
+            'vendor_phone'=>'required'
+        ]);
         try {
-            $request->validate([
-                'vendor_name'=>'required',
-                'vendor_address'=>'required',
-                'vendor_phone'=>'required'
-            ]);
 
             $vendor = Vendor::find($request->id);
             $vendor->vendor_name = $request->vendor_name;
@@ -126,6 +129,18 @@ class VendorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $count = Equipement::where('vendor_id','=',$id)->count();
+ 
+        if($count > 0 ) 
+        {
+          return response()->json(['status' => 'error' , 'message' => 'Vendor Having Equipments. You Have to delete thos Equipment First.']);
+        }
+        else
+        {
+            $vendor = Vendor::find($id);
+            $vendor->delete();
+
+            return response()->json(['status' => 'success' , 'message' => 'Vendor Deleted']);
+        }
     }
 }

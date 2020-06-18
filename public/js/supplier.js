@@ -2067,6 +2067,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2078,7 +2090,7 @@ __webpack_require__.r(__webpack_exports__);
         vendor_address: '',
         vendor_email: '',
         vendor_phone: '',
-        status: 1
+        status: ''
       },
       button_name: 'Save',
       validation_error: {}
@@ -2091,24 +2103,21 @@ __webpack_require__.r(__webpack_exports__);
 
       this.button_name = 'Saving...';
       axios.post(base_url + 'supplier', this.supplier).then(function (response) {
-        console.log(response.data);
-
         if (response.data.status === 'success') {
+          _this.resetForm();
+
           $('#createSupplier').modal('hide');
 
           _this.successMessage(response.data);
 
           _this.button_name = 'Save';
-
-          _this.resetForm();
-
           _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('supplier-created');
         } else {
+          _this.resetForm();
+
           _this.successMessage(response.data);
 
           _this.button_name = 'Save';
-
-          _this.resetForm();
         }
       })["catch"](function (err) {
         if (err.response.status == 422) {
@@ -2249,8 +2258,6 @@ __webpack_require__.r(__webpack_exports__);
 
       // axios.put(base_url+'supplier',this.supplier)
       axios.put(base_url + 'supplier/' + this.supplier.id, this.supplier).then(function (response) {
-        console.log(response.data);
-
         if (response.data.status === 'success') {
           $('#UpdateSupplier').modal('hide');
 
@@ -2356,6 +2363,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -2394,6 +2406,28 @@ __webpack_require__.r(__webpack_exports__);
     },
     editSupplier: function editSupplier(value) {
       _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('supplier-update', value);
+    },
+    deleteSupplier: function deleteSupplier(id) {
+      var _this3 = this;
+
+      Swal.fire({
+        title: 'Are you sure ?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }, function () {}).then(function (result) {
+        if (result.value) {
+          axios["delete"]("".concat(base_url, "supplier/").concat(id)).then(function (response) {
+            // console.log(response.data)
+            _this3.successMessage(response.data);
+
+            _this3.getSupplier();
+          });
+        }
+      });
     },
     pageClicked: function pageClicked(page) {
       this.getSupplier(page);
@@ -7075,6 +7109,62 @@ var render = function() {
                               : _vm._e()
                           ])
                         ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "contact-email" }, [
+                            _c("i", { staticClass: "flaticon-mail-26" }),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.supplier.status,
+                                    expression: "supplier.status"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.supplier,
+                                      "status",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  }
+                                }
+                              },
+                              [
+                                _c("option", { attrs: { value: "" } }, [
+                                  _vm._v("Supplier Status")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "1" } }, [
+                                  _vm._v("Active")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "0" } }, [
+                                  _vm._v("Inactive")
+                                ])
+                              ]
+                            )
+                          ])
+                        ])
                       ])
                     ])
                   ])
@@ -7460,58 +7550,99 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("div", { staticClass: "table-responsive" }, [
-            _c(
-              "table",
-              { staticClass: "table table-bordered table-hover  mb-4" },
-              [
-                _vm._m(0),
-                _vm._v(" "),
+        !_vm.isLoading
+          ? _c("div", { staticClass: "col-md-12" }, [
+              _c("div", { staticClass: "table-responsive" }, [
                 _c(
-                  "tbody",
-                  _vm._l(_vm.suppliers, function(value) {
-                    return _c("tr", { key: value.id }, [
-                      _c("td", [_vm._v(_vm._s(value.vendor_name))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(value.vendor_address))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(value.vendor_email))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(value.vendor_phone))]),
-                      _vm._v(" "),
-                      _vm._m(1, true),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "text-center" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass:
-                              "btn btn-dark mb-2 mr-2 rounded-circle",
-                            on: {
-                              click: function($event) {
-                                return _vm.editSupplier(value)
-                              }
-                            }
-                          },
-                          [_c("i", { staticClass: "far fa-edit" })]
-                        ),
-                        _vm._v(" "),
-                        _vm._m(2, true)
-                      ])
-                    ])
-                  }),
-                  0
+                  "table",
+                  { staticClass: "table table-bordered table-hover  mb-4" },
+                  [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.suppliers.data, function(value) {
+                        return _c("tr", { key: value.id }, [
+                          _c("td", [_vm._v(_vm._s(value.vendor_name))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(value.vendor_address))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(value.vendor_email))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(value.vendor_phone))]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            value.status == 1
+                              ? _c("span", { staticClass: "text-success" }, [
+                                  _vm._v("Active")
+                                ])
+                              : _c("span", { staticClass: "text-danger" }, [
+                                  _vm._v("Inactive")
+                                ])
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "btn btn-dark mb-2 mr-2 rounded-circle",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.editSupplier(value)
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "far fa-edit" })]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "btn btn-danger mb-2 mr-2 rounded-circle",
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.deleteSupplier(value.id)
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "far fa-trash-alt" })]
+                            )
+                          ])
+                        ])
+                      }),
+                      0
+                    )
+                  ]
                 )
+              ])
+            ])
+          : _c(
+              "div",
+              {
+                staticClass: "col-md-12 text-center",
+                staticStyle: { "margin-top": "30px" }
+              },
+              [
+                _c("div", {
+                  staticClass: "loader multi-loader mx-auto loader-xl"
+                })
               ]
             )
-          ])
-        ])
       ]),
       _vm._v(" "),
       _c("supplier-update"),
       _vm._v(" "),
-      _vm._m(3)
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "div",
+          { staticClass: "col-md-12 text-center mb-10 mt-10" },
+          [_c("pagination", { attrs: { pageData: this.suppliers } })],
+          1
+        )
+      ])
     ],
     1
   )
@@ -7535,32 +7666,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [_vm._v("action")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "text-center" }, [
-      _c("span", { staticClass: "text-success" }, [_vm._v("Active")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      { staticClass: "btn btn-danger mb-2 mr-2 rounded-circle" },
-      [_c("i", { staticClass: "far fa-trash-alt" })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12 text-center mb-10 mt-10" })
     ])
   }
 ]
@@ -20005,15 +20110,17 @@ __webpack_require__.r(__webpack_exports__);
 // import { format } from 'date-fns';
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
+    playSound: function playSound(sound_url) {
+      var audio = new Audio(sound_url);
+      audio.play();
+    },
     successMessage: function successMessage(data) {
-      // console.log(data)
-      // Swal.fire({
-      // 	position: 'bottom-end',
-      // 	icon: data.status,
-      // 	title: data.message,
-      // 	showConfirmButton: false,
-      // 	timer: 2500
-      // })
+      if (data.status === 'success') {
+        this.playSound(base_url + 'audio/success.mp3');
+      } else {
+        this.playSound(base_url + 'audio/error.mp3');
+      }
+
       var Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -20031,6 +20138,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     validationError: function validationError() {
+      this.playSound(base_url + 'audio/error.mp3');
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -20118,7 +20226,7 @@ var EventBus = new Vue();
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! E:\server\htdocs\e-management\resources\js\supplier.js */"./resources/js/supplier.js");
+module.exports = __webpack_require__(/*! I:\xampp\htdocs\e-management\resources\js\supplier.js */"./resources/js/supplier.js");
 
 
 /***/ })
