@@ -15,27 +15,32 @@ class CreateProjectClaimsTable extends Migration
     {
         Schema::create('project_claim', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('bill_no')->nullable();
             $table->integer('assign_id');
             $table->integer('project_id');
             $table->integer('vendor_id');
+            $table->integer('equipment_type_id');
             $table->integer('equipement_id');
             $table->string('month');
-            $table->double('project_hour');
+            $table->string('date');
+            $table->double('project_rate_per_hour');
+            $table->double('vendor_rate_per_hour');
             $table->double('project_amount');
-            $table->double('vat')->nullable();
-            $table->double('rate_given')->nullable();
-            $table->double('ait')->nullable();
-            $table->double('sup')->nullable();
-            $table->double('operator_amount')->nullable();
-            $table->double('operator_rate')->nullable();
-             $table->double('fuel_amount')->nullable();
-            $table->double('fuel_rate')->nullable();
-            $table->tinyInteger('mob_type')->default(0);
-            $table->double('mob_taken')->default(0);
-            $table->double('mob_given')->default(0);
-            $table->tinyInteger('status')->default(1);
+            $table->double('vendor_amount');
+            $table->double('project_vat')->default(0)->nullable();
+            $table->double('project_ait')->default(0)->nullable();
+            $table->double('project_sup')->default(0)->nullable();
+            $table->double('vendor_vat')->default(0)->nullable();
+            $table->double('vendor_ait')->default(0)->nullable();
+            $table->double('vendor_sup')->default(0)->nullable();
+            $table->double('total_project_amount');
+            $table->double('total_vendor_amount');
+            $table->double('vendor_payment')->default(0);
+            $table->double('vendor_adjustment_payment')->default(0);
+            $table->double('project_payment')->default(0);
+            $table->double('project_adjustment_payment')->default(0);
             $table->tinyInteger('rate_status')->default(1);
-            $table->double('payment')->default(0);
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

@@ -16,24 +16,22 @@ class CreateCarAssignsTable extends Migration
         Schema::create('car_assign', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('project_id');
+            $table->integer('equipment_type_id');
             $table->integer('vendor_id');
             $table->integer('equipement_id');
+            $table->integer('user_id')->comment = "assigned by which employee or admin assinged it";
+            $table->integer('operator_id')->nullabe()->default(0);
             $table->double('total_hour');
-            $table->double('amount');
-            $table->double('rate_per_hour');
-            $table->double('project_amount');
+            $table->double('total_project_amount');
+            $table->double('total_vendor_amount');
             $table->double('project_rate_per_hour');
-            $table->string('operator_name')->nullable();
-            $table->string('operator_phone')->nullable();
-            $table->double('operator_hour')->nullable();
-            $table->double('operator_price')->nullable();
-            $table->double('operator_rate_per_hour')->nullable();
-            $table->double('operator_project_amount')->nullable();
-            $table->double('operator_project_rate')->nullable();
-            $table->double('fuel_amount')->nullable();
-            $table->double('fuel_rate_per_hour')->nullable();
+            $table->double('vendor_rate_per_hour');
+            $table->text('documents_link')->nullable();
             $table->string('assign_date')->nullable();
-            $table->string('status')->default(1);
+            $table->string('release_date')->nullable();
+            $table->text('release_note')->nullable();
+            $table->tinyInteger('release_status')->default(1)->comment = "1 not release 0 release";
+            $table->tinyInteger('status')->default(1)->comment = "1 active or 0 not active";
             $table->timestamps();
         });
     }

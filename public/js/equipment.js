@@ -2297,7 +2297,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on("equipment-created", function () {
+    _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on("equipment-type-created", function () {
       _this.getEquipmentType();
     });
     this.getEquipmentType();

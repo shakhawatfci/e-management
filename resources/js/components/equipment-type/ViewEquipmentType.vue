@@ -86,7 +86,7 @@ export default {
   mounted() {
     var _this = this;
 
-    EventBus.$on("equipment-created", function() {
+    EventBus.$on("equipment-type-created", function() {
       _this.getEquipmentType();
     });
 

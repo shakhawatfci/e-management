@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateEquipementExpensesTable extends Migration
+class CreateVendorPaymentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,19 @@ class CreateEquipementExpensesTable extends Migration
      */
     public function up()
     {
-        Schema::create('equipement_expense', function (Blueprint $table) {
+        Schema::create('vendor_payments', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('project_claim_id');
             $table->integer('project_id');
             $table->integer('vendor_id');
             $table->integer('equipment_type_id');
             $table->integer('equipement_id');
-            $table->integer('equipment_expense_category_id');
+            $table->integer('user_id');
             $table->string('month');
-            $table->string('payment_date');
+            $table->string('date');
             $table->double('amount');
-            $table->string('document')->nullable();
-            $table->text('documents_link')->nullable();
-            $table->text('note')->nullable();
-            $table->tinyInteger('status')->default(0);
+            $table->text('note')->comment = "payment related note such as bank info";
+            $table->tinyInteger('status');
             $table->timestamps();
         });
     }
@@ -38,6 +37,6 @@ class CreateEquipementExpensesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('equipement_expense');
+        Schema::dropIfExists('vendor_payments');
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateExpenseCategoriesTable extends Migration
+class CreateOfficeExpenseHeadsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateExpenseCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('expense_category', function (Blueprint $table) {
+        Schema::create('office_expense_heads', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('expense_title');
-            $table->tinyInteger('type');
+            $table->string('head_name');
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
@@ -29,6 +28,6 @@ class CreateExpenseCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('expense_category');
+        Schema::dropIfExists('office_expense_heads');
     }
 }
