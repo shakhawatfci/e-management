@@ -1,8 +1,8 @@
 @extends('master.master')
-@section('title','EMS | Equipment')
+@section('title','EMS | Equipment Type')
 
 @section('page_header')
-<li class="breadcrumb-item"><a href="javascript:void(0);">Equipment</a></li>
+<li class="breadcrumb-item"><a href="javascript:void(0);">Equipment Type</a></li>
 <li class="breadcrumb-item active" aria-current="page"><span>Manage</span></li>
 @endsection
 @section('content')
@@ -13,21 +13,21 @@
 
                             <div class="row">
                                 <div class="col-xl-4 col-lg-5 col-md-5 col-sm-7 filtered-list-search layout-spacing align-self-center">
-                                  <h6 style="margin-top : 20px">Manage Equipment</h6>
+                                  <h6 style="margin-top : 20px">Equipment Types</h6>
                                 </div>
 
                                 <div class="col-xl-8 col-lg-7 col-md-7 col-sm-5 text-sm-right text-center layout-spacing align-self-center">
                                     <div class="d-flex justify-content-sm-end justify-content-center">
-                                        <button  data-toggle="modal"  data-target="#createEquipment"
+                                        <button  data-toggle="modal"  data-target="#createEquipmentType"
                                          class="btn btn-primary"  data-placement="top" title="Create New Equipment">
                                         <i class="far fa-plus-square"></i> Create New
                                         </button>
                                     </div>
-                                    <create-equipment :vendors='@json($vendor)' :equipment_types='@json($equipment_types)'></create-equipment>
+                                    <create-equipment-type></create-equipment-type>
                                 </div>
                             </div>
 
-                         <view-equipment :vendors='@json($vendor)' :equipment_types='@json($equipment_types)'></view-equipment>
+                         <view-equipment-type></view-equipment-type>
 
                         </div>
                     </div>

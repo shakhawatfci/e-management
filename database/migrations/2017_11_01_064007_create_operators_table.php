@@ -16,16 +16,17 @@ class CreateOperatorsTable extends Migration
         Schema::create('operators', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->text('address');
-            $table->string('mobile');
-            $table->string('equipement');
+            $table->text('address')->nullable();
+            $table->string('mobile')->nullable();
+            $table->string('email')->nullable();
             $table->string('bkash_number')->nullable();
             $table->string('join_date')->nullable();
             $table->string('nid')->nullable();
             $table->string('date_of_birth')->nullable();
             $table->string('file')->nullable();
+            $table->string('documents_link')->nullable();
             $table->double('salary');
-            $table->tinyInteger('status')->nullable();
+            $table->tinyInteger('status')->default(1)->nullable();
             $table->timestamps();
         });
     }

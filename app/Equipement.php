@@ -7,7 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Equipement extends Model
 {
     protected $table='equipement';
+    
+    // relation with equipment type 
 
+    public function equipment_type()
+    {
+        return $this->belongsTo('App\EquipmentType')->withDefault([
+            'id' => 0,
+            'name' => 'N/A'
+        ]);
+    }
 
     // relation with vendor 
 
@@ -18,6 +27,8 @@ class Equipement extends Model
             'vendor_name' => 'N/A'
         ]);
     }
+
+
 
     // relation with car assign 
     

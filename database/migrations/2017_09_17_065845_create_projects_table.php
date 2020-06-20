@@ -25,6 +25,7 @@ class CreateProjectsTable extends Migration
             $table->string('project_start_date')->nullable();
             $table->string('project_country')->nullable();
             $table->string('project_file')->nullable();
+            $table->text('project_file_links')->nullable();
             $table->text('project_details')->nullable();
             $table->tinyInteger('project_status')->default(1);
             $table->timestamps();
