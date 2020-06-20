@@ -77,18 +77,23 @@
                         </a>
                     </li>
 
-                    <li class="menu @if(Route::is('our-vendor.index')) active active_url @endif">
-                        <a href="{{ route('our-vendor.index') }}" data-active="true" class="dropdown-toggle">
+                    <li class="menu @if(Route::is('supplier.index')) active active_url @endif">
+                        <a href="{{ route('supplier.index') }}" data-active="true" class="dropdown-toggle">
                             <div class="">
                               <span><i class="far fa-plus-square"></i>&nbsp; Vendor</span>
                             </div>
                         </a>
                     </li>
-  
-                    
+
+                    <li class="menu @if(Route::is('project.index')) active active_url @endif">
+                        <a href="{{ route('project.index') }}" data-active="true" class="dropdown-toggle">
+                            <div class="">
+                              <span><i class="far fa-plus-square"></i>&nbsp; Project</span>
+                            </div>
+                        </a>
+                    </li>
                 </ul>
                 <!-- <div class="shadow-bottom"></div> -->
-                
             </nav>
 
         </div>
