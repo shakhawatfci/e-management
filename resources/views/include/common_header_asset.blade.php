@@ -30,9 +30,14 @@
     <link href="{{ asset('admin-assets/plugins/sweetalerts/sweetalert.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('admin-assets/assets/css/components/custom-sweetalert.css') }}" rel="stylesheet" type="text/css" />
     <!-- sweet alert  -->
-
+    
     <!-- loader / -->
     <link rel="stylesheet" type="text/css" href="{{ asset('admin-assets/plugins/loaders/custom-loader.css') }}">
     <!-- loader / -->
     <link rel="stylesheet" type="text/css" href="{{ asset('admin-assets/assets/css/components/custom-modal.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin-assets/plugins/animate/animate.css') }}">
+
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <link href="{{ asset('admin-assets/plugins/flatpickr/flatpickr.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('admin-assets/plugins/noUiSlider/nouislider.min.css') }}" rel="stylesheet" type="text/css">
+    <!-- END THEME GLOBAL STYLES -->

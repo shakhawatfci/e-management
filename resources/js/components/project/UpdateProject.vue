@@ -55,8 +55,7 @@
                                 <div class="col-md-6">
                                     <div class="contact-name">
                                         <i class="flaticon-user-11"></i>
-                                        <input type="text"
-                                        class="form-control" v-model="projects.project_argument_date" >
+                                        <input id="upbasicFlatpickr" v-model="projects.project_argument_date" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Select Project Agreement Date">
                                         <span v-if="validation_error.hasOwnProperty('project_argument_date')" class="text-danger">
                                                 {{ validation_error.project_argument_date[0] }}
                                         </span>
@@ -65,8 +64,7 @@
                                 <div class="col-md-6">
                                     <div class="contact-name">
                                         <i class="flaticon-user-11"></i>
-                                        <input type="text"
-                                        class="form-control" v-model="projects.project_start_date">
+                                        <input id="upbasicFlatpickr1" v-model="projects.project_start_date" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Select Project Start Date">
                                         <span v-if="validation_error.hasOwnProperty('project_start_date')" class="text-danger">
                                                 {{ validation_error.project_start_date[0] }}
                                         </span>
@@ -195,6 +193,8 @@ export default {
          _this.projects.project_details =  value.project_details;
          _this.projects.project_status =  value.project_status;
       })
+      var f1 = flatpickr(document.getElementById('upbasicFlatpickr'));
+      var f2 = flatpickr(document.getElementById('upbasicFlatpickr1'));
    },
 
  methods : {

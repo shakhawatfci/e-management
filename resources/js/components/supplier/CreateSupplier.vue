@@ -1,9 +1,12 @@
 <template>
 <!-- Modal -->
     <div class="modal fade" id="createSupplier" tabindex="-1" role="dialog" aria-labelledby="addContactModalTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <form @submit.prevent="save()">
             <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Create Vendor</h5>
+              </div>
                 <div class="modal-body">
                     <i class="flaticon-cancel-12 close" data-dismiss="modal"></i>
                     <div class="add-contact-box">
@@ -13,26 +16,12 @@
                                     <div class="contact-name">
                                         <i class="flaticon-user-11"></i>
                                         <input type="text"
-                                          class="form-control" v-model="supplier.vendor_name" placeholder="Supplier Name: ">
+                                          class="form-control" v-model="supplier.vendor_name" placeholder="Vendor Name:">
                                         <span v-if="validation_error.hasOwnProperty('vendor_name')" class="text-danger">
                                                 {{ validation_error.vendor_name[0] }}
                                         </span>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="contact-name">
-                                        <i class="flaticon-user-11"></i>
-                                        <input type="text"
-                                        class="form-control" v-model="supplier.vendor_address"  placeholder="Vendor Address: ">
-                                        <span v-if="validation_error.hasOwnProperty('vendor_address')" class="text-danger">
-                                                {{ validation_error.vendor_address[0] }}
-                                        </span>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="contact-email">
                                         <i class="flaticon-mail-26"></i>
@@ -52,8 +41,6 @@
                                         </span>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="contact-email">
                                         <i class="flaticon-mail-26"></i>
@@ -65,6 +52,18 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="contact-name">
+                                        <i class="flaticon-user-11"></i>
+                                        <textarea class="form-control" v-model="supplier.vendor_address"  placeholder="Vendor Address: " rows="3"></textarea>
+                                        <span v-if="validation_error.hasOwnProperty('vendor_address')" class="text-danger">
+                                                {{ validation_error.vendor_address[0] }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                           
                         </div>
                     </div>
                 </div>
@@ -84,6 +83,7 @@ import { EventBus  } from '../../vue-assets';
 import Mixin from '../../mixin';
 export default {
    mixins : [Mixin],
+
    data()
    {
         
@@ -120,7 +120,6 @@ export default {
              } 
              else
              {
-               this.resetForm()
                this.successMessage(response.data);
                this.button_name = 'Save'
              }

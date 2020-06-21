@@ -55,18 +55,18 @@
                                 <div class="col-md-6">
                                     <div class="contact-name">
                                         <i class="flaticon-user-11"></i>
-                                        <input type="date"
-                                        class="form-control" v-model="projects.project_argument_date">
+                                        <input id="basicFlatpickr" v-model="projects.project_argument_date" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Select Project Agreement Date">
+                                
                                         <span v-if="validation_error.hasOwnProperty('project_argument_date')" class="text-danger">
                                                 {{ validation_error.project_argument_date[0] }}
                                         </span>
                                     </div>
                                 </div>
+                                
                                 <div class="col-md-6">
                                     <div class="contact-name">
                                         <i class="flaticon-user-11"></i>
-                                        <input type="date"
-                                        class="form-control" v-model="projects.project_start_date">
+                                        <input id="basicFlatpickr1" v-model="projects.project_start_date" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Select Project Start Date">
                                         <span v-if="validation_error.hasOwnProperty('project_start_date')" class="text-danger">
                                                 {{ validation_error.project_start_date[0] }}
                                         </span>
@@ -176,7 +176,8 @@ export default {
    },
 
    mounted() {
-   
+      var f1 = flatpickr(document.getElementById('basicFlatpickr'));
+      var f2 = flatpickr(document.getElementById('basicFlatpickr1'));
    },
 
  methods : {
@@ -223,6 +224,7 @@ export default {
           .then(response => {
               if(response.data.status === 'success'){
                   this.successMessage(response.data);
+                  this.resetForm();
                   $('#createProject').modal('hide');
                   EventBus.$emit('project-created');
                   this.button_name = "Save";
