@@ -60,12 +60,13 @@ class EquipmentController extends Controller
 
     }
 
-    public function vendroEquipment(Request $request,$id)
+    public function vendroEquipment($id,$type)
     {
 
-        $equipment = Equipment::where('vendor_id','=',$id)
-                                ->where('status','=',1)
-                               ->get();
+        $equipment = Equipement::where('vendor_id','=',$id)
+                                ->where('equipment_type_id','=',$type)
+                                ->where('eq_status','=',1)
+                                ->get();
 
         return $equipment;
 

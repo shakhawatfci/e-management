@@ -23,18 +23,20 @@
                                         <i class="far fa-plus-square"></i> Assign New Equipment
                                         </button>
                                     </div>
-                                    <create-equipment 
+                                    <assign-equipment 
                                     :vendors='@json($vendors)' 
                                     :equipment_types='@json($equipment_types)'
                                     :projects='@json($projects)'
-                                    ></create-equipment>
+                                    :oerators='@json($projects)'
+                                    ></assign-equipment>
                                 </div>
                             </div>
 
-                         <view-equipment :vendors='@json($vendors)'
+                         <view-assigned-equipment :vendors='@json($vendors)'
                           :equipment_types='@json($equipment_types)'
                           :projects='@json($projects)'
-                          ></view-equipment>
+                          :operator='@json($projects)'
+                          ></view-assigned-equipment>
 
                         </div>
                     </div>
@@ -45,6 +47,6 @@
 <!-- push the script which you need only this page  -->
 @push('script')
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-<script src="{{ asset('public/js/equipment.js') }}"></script>
+<script src="{{ asset('public/js/project.js') }}"></script>
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 @endpush

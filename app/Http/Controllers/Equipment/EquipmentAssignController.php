@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Equipment;
 
 use App\AllStatic;
-use App\Equipment;
+use App\Equipement;
 use App\EquipmentType;
 use App\Http\Controllers\Controller;
 use App\Project;
@@ -33,7 +33,7 @@ class EquipmentAssignController extends Controller
             ->where('status', '=', AllStatic::$active)
             ->get();
 
-        $operator = Vendor::orderBy('operator_name', 'asc')
+        $operator = Operator::orderBy('name', 'asc')
             ->where('status', '=', AllStatic::$active)
             ->get();
 
@@ -69,11 +69,11 @@ class EquipmentAssignController extends Controller
            'equipment_type'          => 'required',
            'vendor'                  => 'required',
            'equipment'               => 'required',
-           'total_hour'              => 'required|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
-           'total_project_amount'    => 'required|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
-           'total_vendor_amout'      => 'required|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
-           'project_rate_per_hour'   => 'required|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
-           'venodr_rate_per_hour'    => 'required|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
+           'total_hour'              => 'required|gt:0|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
+           'total_project_amount'    => 'required|gt:0|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
+           'total_vendor_amount'     => 'required|gt:0|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
+           'project_rate_per_hour'   => 'required|gt:0|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
+           'venodr_rate_per_hour'    => 'required|gt:0|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
            'assign_date'             => 'required',
        ]);
 
@@ -162,11 +162,11 @@ class EquipmentAssignController extends Controller
             'equipment_type'          => 'required',
             'vendor'                  => 'required',
             'equipment'               => 'required',
-            'total_hour'              => 'required|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
-            'total_project_amount'    => 'required|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
-            'total_vendor_amout'      => 'required|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
-            'project_rate_per_hour'   => 'required|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
-            'venodr_rate_per_hour'    => 'required|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
+            'total_hour'              => 'required|gt:0|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
+            'total_project_amount'    => 'required|gt:0|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
+            'total_vendor_amount'     => 'required|gt:0|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
+            'project_rate_per_hour'   => 'required|gt:0|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
+            'venodr_rate_per_hour'    => 'required|gt:0|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
             'assign_date'             => 'required',
         ]);
  
