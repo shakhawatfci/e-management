@@ -2170,7 +2170,10 @@ __webpack_require__.r(__webpack_exports__);
       percentCompleted: 0
     };
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    var f1 = flatpickr(document.getElementById('basicFlatpickr'));
+    var f2 = flatpickr(document.getElementById('basicFlatpickr1'));
+  },
   methods: {
     onImageChange: function onImageChange(e) {
       if (e == "") return false; // this.projects.project_file = this.$refs.file.files[0];
@@ -2213,6 +2216,8 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         if (response.data.status === 'success') {
           _this.successMessage(response.data);
+
+          _this.resetForm();
 
           $('#createProject').modal('hide');
           _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('project-created');
@@ -2416,8 +2421,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2465,6 +2468,8 @@ __webpack_require__.r(__webpack_exports__);
       _this.projects.project_details = value.project_details;
       _this.projects.project_status = value.project_status;
     });
+    var f1 = flatpickr(document.getElementById('upbasicFlatpickr'));
+    var f2 = flatpickr(document.getElementById('upbasicFlatpickr1'));
   },
   methods: {
     onImageChange: function onImageChange(e) {
@@ -7402,8 +7407,13 @@ var render = function() {
                                   expression: "projects.project_argument_date"
                                 }
                               ],
-                              staticClass: "form-control",
-                              attrs: { type: "date" },
+                              staticClass:
+                                "form-control flatpickr flatpickr-input active",
+                              attrs: {
+                                id: "basicFlatpickr",
+                                type: "text",
+                                placeholder: "Select Project Agreement Date"
+                              },
                               domProps: {
                                 value: _vm.projects.project_argument_date
                               },
@@ -7451,8 +7461,13 @@ var render = function() {
                                   expression: "projects.project_start_date"
                                 }
                               ],
-                              staticClass: "form-control",
-                              attrs: { type: "date" },
+                              staticClass:
+                                "form-control flatpickr flatpickr-input active",
+                              attrs: {
+                                id: "basicFlatpickr1",
+                                type: "text",
+                                placeholder: "Select Project Start Date"
+                              },
                               domProps: {
                                 value: _vm.projects.project_start_date
                               },
@@ -8051,8 +8066,13 @@ var render = function() {
                                   expression: "projects.project_argument_date"
                                 }
                               ],
-                              staticClass: "form-control",
-                              attrs: { type: "text" },
+                              staticClass:
+                                "form-control flatpickr flatpickr-input active",
+                              attrs: {
+                                id: "upbasicFlatpickr",
+                                type: "text",
+                                placeholder: "Select Project Agreement Date"
+                              },
                               domProps: {
                                 value: _vm.projects.project_argument_date
                               },
@@ -8100,8 +8120,13 @@ var render = function() {
                                   expression: "projects.project_start_date"
                                 }
                               ],
-                              staticClass: "form-control",
-                              attrs: { type: "text" },
+                              staticClass:
+                                "form-control flatpickr flatpickr-input active",
+                              attrs: {
+                                id: "upbasicFlatpickr1",
+                                type: "text",
+                                placeholder: "Select Project Start Date"
+                              },
                               domProps: {
                                 value: _vm.projects.project_start_date
                               },

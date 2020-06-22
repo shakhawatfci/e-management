@@ -17,3 +17,5 @@
         <!-- END GLOBAL MANDATORY SCRIPTS -->
     <script src="{{ asset('admin-assets/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('admin-assets/assets/js/apps/contact.js') }}"></script>
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <script src="{{ asset('admin-assets/plugins/flatpickr/flatpickr.js') }}"></script>

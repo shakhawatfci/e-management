@@ -119,6 +119,7 @@ class VendorController extends Controller
             $vendor->vendor_address = $request->vendor_address;
             $vendor->vendor_email = $request->vendor_email;
             $vendor->vendor_phone = $request->vendor_phone;
+            $vendor->status = $request->status;
             $vendor->update();
 
           return response()->json(['status' => 'success', 'message' => 'Vendor Updated Successfully !']);

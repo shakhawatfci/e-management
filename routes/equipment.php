@@ -16,3 +16,6 @@ Route::get('equipment-by-vendor','Equipment\EquipmentController@vendroEquipment'
 
 Route::resource('assign-equipment','Equipment\EquipmentAssignController');
 Route::resource('assigned-equipment-list','Equipment\EquipmenAssignController@equipmentList');
+
+
+Route::resource('expense-equipment','ExpenseHeads\EquipmentExpenseController');
