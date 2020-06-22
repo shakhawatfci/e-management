@@ -2489,6 +2489,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       equipment: {
         equipment_name: '',
+        equipment_type: '',
         equipment_model: '',
         vendor: '',
         capacity: '',
@@ -2538,6 +2539,7 @@ __webpack_require__.r(__webpack_exports__);
       this.equipment = {
         equipment_name: '',
         equipment_model: '',
+        equipment_type: '',
         vendor: '',
         capacity: '',
         note: '',
@@ -2766,6 +2768,7 @@ __webpack_require__.r(__webpack_exports__);
         id: '',
         equipment_name: '',
         equipment_model: '',
+        equipment_type: '',
         vendor: '',
         capacity: '',
         note: '',
@@ -8058,440 +8061,454 @@ var render = function() {
       }
     },
     [
-      _c("div", { staticClass: "modal-dialog", attrs: { role: "document" } }, [
-        _c(
-          "form",
-          {
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.save()
+      _c(
+        "div",
+        { staticClass: "modal-dialog modal-lg", attrs: { role: "document" } },
+        [
+          _c(
+            "form",
+            {
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.save()
+                }
               }
-            }
-          },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _vm._m(0),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-body" }, [
-                _c("i", {
-                  staticClass: "flaticon-cancel-12 close",
-                  attrs: { "data-dismiss": "modal" }
-                }),
+            },
+            [
+              _c("div", { staticClass: "modal-content" }, [
+                _vm._m(0),
                 _vm._v(" "),
-                _c("div", { staticClass: "add-contact-box" }, [
-                  _c("div", { staticClass: "add-contact-content" }, [
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-md-6" }, [
-                        _c("div", { staticClass: "contact-email" }, [
-                          _c("i", { staticClass: "flaticon-mail-26" }),
-                          _vm._v(" "),
-                          _c(
-                            "select",
-                            {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.equipment.equipment_type,
-                                  expression: "equipment.equipment_type"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              on: {
-                                change: function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.$set(
-                                    _vm.equipment,
-                                    "equipment_type",
-                                    $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  )
-                                }
-                              }
-                            },
-                            [
-                              _c("option", { attrs: { value: "" } }, [
-                                _vm._v("Chose a Equipment Type")
-                              ]),
-                              _vm._v(" "),
-                              _vm._l(_vm.equipment_types, function(eq_type) {
-                                return _c(
-                                  "option",
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("i", {
+                    staticClass: "flaticon-cancel-12 close",
+                    attrs: { "data-dismiss": "modal" }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "add-contact-box" }, [
+                    _c("div", { staticClass: "add-contact-content" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "contact-email" }, [
+                            _c("i", { staticClass: "flaticon-mail-26" }),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
                                   {
-                                    key: eq_type.id,
-                                    domProps: { value: eq_type.id }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                                                " +
-                                        _vm._s(eq_type.name) +
-                                        "\n                                            "
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.equipment.equipment_type,
+                                    expression: "equipment.equipment_type"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.equipment,
+                                      "equipment_type",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
                                     )
-                                  ]
-                                )
-                              })
-                            ],
-                            2
-                          ),
-                          _vm._v(" "),
-                          _vm.validation_error.hasOwnProperty("equipment_type")
-                            ? _c("span", { staticClass: "text-danger" }, [
-                                _vm._v(
-                                  "\n                                            " +
-                                    _vm._s(
-                                      _vm.validation_error.equipment_type[0]
-                                    ) +
-                                    "\n                                           "
-                                )
-                              ])
-                            : _vm._e()
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6" }, [
-                        _c("div", { staticClass: "contact-email" }, [
-                          _c("i", { staticClass: "flaticon-mail-26" }),
-                          _vm._v(" "),
-                          _c(
-                            "select",
-                            {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.equipment.vendor,
-                                  expression: "equipment.vendor"
+                                  }
                                 }
-                              ],
-                              staticClass: "form-control",
-                              on: {
-                                change: function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.$set(
-                                    _vm.equipment,
-                                    "vendor",
-                                    $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
+                              },
+                              [
+                                _c("option", { attrs: { value: "" } }, [
+                                  _vm._v("Chose a Equipment Type")
+                                ]),
+                                _vm._v(" "),
+                                _vm._l(_vm.equipment_types, function(eq_type) {
+                                  return _c(
+                                    "option",
+                                    {
+                                      key: eq_type.id,
+                                      domProps: { value: eq_type.id }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                                " +
+                                          _vm._s(eq_type.name) +
+                                          "\n                                            "
+                                      )
+                                    ]
                                   )
-                                }
-                              }
-                            },
-                            [
-                              _c("option", { attrs: { value: "" } }, [
-                                _vm._v("Chose a vendor")
-                              ]),
-                              _vm._v(" "),
-                              _vm._l(_vm.vendors, function(vendor) {
-                                return _c(
-                                  "option",
+                                })
+                              ],
+                              2
+                            ),
+                            _vm._v(" "),
+                            _vm.validation_error.hasOwnProperty(
+                              "equipment_type"
+                            )
+                              ? _c("span", { staticClass: "text-danger" }, [
+                                  _vm._v(
+                                    "\n                                            " +
+                                      _vm._s(
+                                        _vm.validation_error.equipment_type[0]
+                                      ) +
+                                      "\n                                           "
+                                  )
+                                ])
+                              : _vm._e()
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "contact-email" }, [
+                            _c("i", { staticClass: "flaticon-mail-26" }),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
                                   {
-                                    key: vendor.id,
-                                    domProps: { value: vendor.id }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                                                " +
-                                        _vm._s(vendor.vendor_name) +
-                                        "\n                                            "
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.equipment.vendor,
+                                    expression: "equipment.vendor"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.equipment,
+                                      "vendor",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
                                     )
-                                  ]
-                                )
-                              })
-                            ],
-                            2
-                          ),
-                          _vm._v(" "),
-                          _vm.validation_error.hasOwnProperty("vendor")
-                            ? _c("span", { staticClass: "text-danger" }, [
-                                _vm._v(
-                                  "\n                                            " +
-                                    _vm._s(_vm.validation_error.vendor[0]) +
-                                    "\n                                           "
-                                )
-                              ])
-                            : _vm._e()
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-md-6" }, [
-                        _c("div", { staticClass: "contact-name" }, [
-                          _c("i", { staticClass: "flaticon-user-11" }),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.equipment.equipment_name,
-                                expression: "equipment.equipment_name"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              id: "c-name",
-                              placeholder: "Equipment Name: "
-                            },
-                            domProps: { value: _vm.equipment.equipment_name },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                                  }
                                 }
-                                _vm.$set(
-                                  _vm.equipment,
-                                  "equipment_name",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm.validation_error.hasOwnProperty("equipment_name")
-                            ? _c("span", { staticClass: "text-danger" }, [
-                                _vm._v(
-                                  "\n                                            " +
-                                    _vm._s(
-                                      _vm.validation_error.equipment_name[0]
-                                    ) +
-                                    "\n                                        "
-                                )
-                              ])
-                            : _vm._e()
+                              },
+                              [
+                                _c("option", { attrs: { value: "" } }, [
+                                  _vm._v("Chose a vendor")
+                                ]),
+                                _vm._v(" "),
+                                _vm._l(_vm.vendors, function(vendor) {
+                                  return _c(
+                                    "option",
+                                    {
+                                      key: vendor.id,
+                                      domProps: { value: vendor.id }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                                " +
+                                          _vm._s(vendor.vendor_name) +
+                                          "\n                                            "
+                                      )
+                                    ]
+                                  )
+                                })
+                              ],
+                              2
+                            ),
+                            _vm._v(" "),
+                            _vm.validation_error.hasOwnProperty("vendor")
+                              ? _c("span", { staticClass: "text-danger" }, [
+                                  _vm._v(
+                                    "\n                                            " +
+                                      _vm._s(_vm.validation_error.vendor[0]) +
+                                      "\n                                           "
+                                  )
+                                ])
+                              : _vm._e()
+                          ])
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6" }, [
-                        _c("div", { staticClass: "contact-email" }, [
-                          _c("i", { staticClass: "flaticon-mail-26" }),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.equipment.equipment_model,
-                                expression: "equipment.equipment_model"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              id: "c-email",
-                              placeholder: "Equipment Model"
-                            },
-                            domProps: { value: _vm.equipment.equipment_model },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.equipment,
-                                  "equipment_model",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm.validation_error.hasOwnProperty("equipment_model")
-                            ? _c("span", { staticClass: "text-danger" }, [
-                                _vm._v(
-                                  "\n                                            " +
-                                    _vm._s(
-                                      _vm.validation_error.equipment_model[0]
-                                    ) +
-                                    "\n                                           "
-                                )
-                              ])
-                            : _vm._e()
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-md-6" }, [
-                        _c("div", { staticClass: "contact-phone" }, [
-                          _c("i", { staticClass: "flaticon-telephone" }),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.equipment.capacity,
-                                expression: "equipment.capacity"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              id: "c-phone",
-                              placeholder: "Capacity"
-                            },
-                            domProps: { value: _vm.equipment.capacity },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.equipment,
-                                  "capacity",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("span", { staticClass: "text-danger" })
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6" }, [
-                        _c("div", { staticClass: "contact-email" }, [
-                          _c("i", { staticClass: "flaticon-mail-26" }),
-                          _vm._v(" "),
-                          _c(
-                            "select",
-                            {
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "contact-name" }, [
+                            _c("i", { staticClass: "flaticon-user-11" }),
+                            _vm._v(" "),
+                            _c("input", {
                               directives: [
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.equipment.status,
-                                  expression: "equipment.status"
+                                  value: _vm.equipment.equipment_name,
+                                  expression: "equipment.equipment_name"
                                 }
                               ],
                               staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                id: "c-name",
+                                placeholder: "Equipment Name: "
+                              },
+                              domProps: { value: _vm.equipment.equipment_name },
                               on: {
-                                change: function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
                                   _vm.$set(
                                     _vm.equipment,
-                                    "status",
-                                    $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
+                                    "equipment_name",
+                                    $event.target.value
                                   )
                                 }
                               }
-                            },
-                            [
-                              _c("option", { attrs: { value: "" } }, [
-                                _vm._v("Equipment Status")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "1" } }, [
-                                _vm._v("Active")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "0" } }, [
-                                _vm._v("Inactive")
-                              ])
-                            ]
-                          )
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-md-12" }, [
-                        _c("div", { staticClass: "contact-location" }, [
-                          _c("i", { staticClass: "flaticon-location-1" }),
-                          _vm._v(" "),
-                          _c("textarea", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.equipment.note,
-                                expression: "equipment.note"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: { placeholder: "Note" },
-                            domProps: { value: _vm.equipment.note },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                            }),
+                            _vm._v(" "),
+                            _vm.validation_error.hasOwnProperty(
+                              "equipment_name"
+                            )
+                              ? _c("span", { staticClass: "text-danger" }, [
+                                  _vm._v(
+                                    "\n                                            " +
+                                      _vm._s(
+                                        _vm.validation_error.equipment_name[0]
+                                      ) +
+                                      "\n                                        "
+                                  )
+                                ])
+                              : _vm._e()
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "contact-email" }, [
+                            _c("i", { staticClass: "flaticon-mail-26" }),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.equipment.equipment_model,
+                                  expression: "equipment.equipment_model"
                                 }
-                                _vm.$set(
-                                  _vm.equipment,
-                                  "note",
-                                  $event.target.value
-                                )
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                id: "c-email",
+                                placeholder: "Equipment Model"
+                              },
+                              domProps: {
+                                value: _vm.equipment.equipment_model
+                              },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.equipment,
+                                    "equipment_model",
+                                    $event.target.value
+                                  )
+                                }
                               }
-                            }
-                          })
+                            }),
+                            _vm._v(" "),
+                            _vm.validation_error.hasOwnProperty(
+                              "equipment_model"
+                            )
+                              ? _c("span", { staticClass: "text-danger" }, [
+                                  _vm._v(
+                                    "\n                                            " +
+                                      _vm._s(
+                                        _vm.validation_error.equipment_model[0]
+                                      ) +
+                                      "\n                                           "
+                                  )
+                                ])
+                              : _vm._e()
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "contact-phone" }, [
+                            _c("i", { staticClass: "flaticon-telephone" }),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.equipment.capacity,
+                                  expression: "equipment.capacity"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                id: "c-phone",
+                                placeholder: "Capacity"
+                              },
+                              domProps: { value: _vm.equipment.capacity },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.equipment,
+                                    "capacity",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("span", { staticClass: "text-danger" })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "contact-email" }, [
+                            _c("i", { staticClass: "flaticon-mail-26" }),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.equipment.status,
+                                    expression: "equipment.status"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.equipment,
+                                      "status",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  }
+                                }
+                              },
+                              [
+                                _c("option", { attrs: { value: "" } }, [
+                                  _vm._v("Equipment Status")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "1" } }, [
+                                  _vm._v("Active")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "0" } }, [
+                                  _vm._v("Inactive")
+                                ])
+                              ]
+                            )
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _c("div", { staticClass: "contact-location" }, [
+                            _c("i", { staticClass: "flaticon-location-1" }),
+                            _vm._v(" "),
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.equipment.note,
+                                  expression: "equipment.note"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: { placeholder: "Note" },
+                              domProps: { value: _vm.equipment.note },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.equipment,
+                                    "note",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
                         ])
                       ])
                     ])
                   ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-footer" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary ",
-                    attrs: { type: "submit" }
-                  },
-                  [
-                    _vm.button_name != "Save"
-                      ? _c(
-                          "div",
-                          {
-                            staticClass:
-                              "spinner-grow text-white mr-2 align-self-center loader-sm"
-                          },
-                          [_vm._v(".")]
-                        )
-                      : _vm._e(),
-                    _vm._v(
-                      "\n                     " + _vm._s(_vm.button_name) + " "
-                    )
-                  ]
-                ),
+                ]),
                 _vm._v(" "),
-                _vm._m(1)
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary ",
+                      attrs: { type: "submit" }
+                    },
+                    [
+                      _vm.button_name != "Save"
+                        ? _c(
+                            "div",
+                            {
+                              staticClass:
+                                "spinner-grow text-white mr-2 align-self-center loader-sm"
+                            },
+                            [_vm._v(".")]
+                          )
+                        : _vm._e(),
+                      _vm._v(
+                        "\n                     " +
+                          _vm._s(_vm.button_name) +
+                          " "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm._m(1)
+                ])
               ])
-            ])
-          ]
-        )
-      ])
+            ]
+          )
+        ]
+      )
     ]
   )
 }
@@ -8549,407 +8566,219 @@ var render = function() {
       }
     },
     [
-      _c("div", { staticClass: "modal-dialog ", attrs: { role: "document" } }, [
-        _c(
-          "form",
-          {
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.save()
+      _c(
+        "div",
+        { staticClass: "modal-dialog modal-lg", attrs: { role: "document" } },
+        [
+          _c(
+            "form",
+            {
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.save()
+                }
               }
-            }
-          },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _vm._m(0),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-body" }, [
-                _c("i", {
-                  staticClass: "flaticon-cancel-12 close",
-                  attrs: { "data-dismiss": "modal" }
-                }),
+            },
+            [
+              _c("div", { staticClass: "modal-content" }, [
+                _vm._m(0),
                 _vm._v(" "),
-                _c("div", { staticClass: "add-contact-box" }, [
-                  _c("div", { staticClass: "add-contact-content" }, [
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-md-6" }, [
-                        _c("div", { staticClass: "contact-email" }, [
-                          _c("i", { staticClass: "flaticon-mail-26" }),
-                          _vm._v(" "),
-                          _c("span", [_vm._v("Equipment Type")]),
-                          _vm._v(" "),
-                          _c(
-                            "select",
-                            {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.equipment.equipment_type,
-                                  expression: "equipment.equipment_type"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              on: {
-                                change: function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.$set(
-                                    _vm.equipment,
-                                    "equipment_type",
-                                    $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  )
-                                }
-                              }
-                            },
-                            [
-                              _c("option", { attrs: { value: "" } }, [
-                                _vm._v("Chose a Equipment Type")
-                              ]),
-                              _vm._v(" "),
-                              _vm._l(_vm.equipment_types, function(eq_type) {
-                                return _c(
-                                  "option",
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("i", {
+                    staticClass: "flaticon-cancel-12 close",
+                    attrs: { "data-dismiss": "modal" }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "add-contact-box" }, [
+                    _c("div", { staticClass: "add-contact-content" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "contact-email" }, [
+                            _c("i", { staticClass: "flaticon-mail-26" }),
+                            _vm._v(" "),
+                            _c("span", [_vm._v("Equipment Type")]),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
                                   {
-                                    key: eq_type.id,
-                                    domProps: { value: eq_type.id }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                                                " +
-                                        _vm._s(eq_type.name) +
-                                        "\n                                            "
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.equipment.equipment_type,
+                                    expression: "equipment.equipment_type"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.equipment,
+                                      "equipment_type",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
                                     )
-                                  ]
-                                )
-                              })
-                            ],
-                            2
-                          ),
-                          _vm._v(" "),
-                          _vm.validation_error.hasOwnProperty("equipment_type")
-                            ? _c("span", { staticClass: "text-danger" }, [
-                                _vm._v(
-                                  "\n                                            " +
-                                    _vm._s(
-                                      _vm.validation_error.equipment_type[0]
-                                    ) +
-                                    "\n                                           "
-                                )
-                              ])
-                            : _vm._e()
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6" }, [
-                        _c("div", { staticClass: "contact-email text-left" }, [
-                          _c("i", { staticClass: "flaticon-mail-26" }),
-                          _vm._v(" "),
-                          _c("span", [_vm._v("Vendor")]),
-                          _vm._v(" "),
-                          _c(
-                            "select",
-                            {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.equipment.vendor,
-                                  expression: "equipment.vendor"
+                                  }
                                 }
-                              ],
-                              staticClass: "form-control",
-                              on: {
-                                change: function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.$set(
-                                    _vm.equipment,
-                                    "vendor",
-                                    $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
+                              },
+                              [
+                                _c("option", { attrs: { value: "" } }, [
+                                  _vm._v("Chose a Equipment Type")
+                                ]),
+                                _vm._v(" "),
+                                _vm._l(_vm.equipment_types, function(eq_type) {
+                                  return _c(
+                                    "option",
+                                    {
+                                      key: eq_type.id,
+                                      domProps: { value: eq_type.id }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                                " +
+                                          _vm._s(eq_type.name) +
+                                          "\n                                            "
+                                      )
+                                    ]
                                   )
-                                }
-                              }
-                            },
+                                })
+                              ],
+                              2
+                            ),
+                            _vm._v(" "),
+                            _vm.validation_error.hasOwnProperty(
+                              "equipment_type"
+                            )
+                              ? _c("span", { staticClass: "text-danger" }, [
+                                  _vm._v(
+                                    "\n                                            " +
+                                      _vm._s(
+                                        _vm.validation_error.equipment_type[0]
+                                      ) +
+                                      "\n                                           "
+                                  )
+                                ])
+                              : _vm._e()
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c(
+                            "div",
+                            { staticClass: "contact-email text-left" },
                             [
-                              _c("option", { attrs: { value: "" } }, [
-                                _vm._v("Chose a vendor")
-                              ]),
+                              _c("i", { staticClass: "flaticon-mail-26" }),
                               _vm._v(" "),
-                              _vm._l(_vm.vendors, function(vendor) {
-                                return _c(
-                                  "option",
-                                  {
-                                    key: vendor.id,
-                                    domProps: { value: vendor.id }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                                                " +
-                                        _vm._s(vendor.vendor_name) +
-                                        "\n                                            "
+                              _c("span", [_vm._v("Vendor")]),
+                              _vm._v(" "),
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.equipment.vendor,
+                                      expression: "equipment.vendor"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        _vm.equipment,
+                                        "vendor",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("option", { attrs: { value: "" } }, [
+                                    _vm._v("Chose a vendor")
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm._l(_vm.vendors, function(vendor) {
+                                    return _c(
+                                      "option",
+                                      {
+                                        key: vendor.id,
+                                        domProps: { value: vendor.id }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                                " +
+                                            _vm._s(vendor.vendor_name) +
+                                            "\n                                            "
+                                        )
+                                      ]
                                     )
-                                  ]
-                                )
-                              })
-                            ],
-                            2
-                          ),
-                          _vm._v(" "),
-                          _vm.validation_error.hasOwnProperty("vendor")
-                            ? _c("span", { staticClass: "text-danger" }, [
-                                _vm._v(
-                                  "\n                                            " +
-                                    _vm._s(_vm.validation_error.vendor[0]) +
-                                    "\n                                           "
-                                )
-                              ])
-                            : _vm._e()
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-md-6" }, [
-                        _c("div", { staticClass: "contact-name text-left" }, [
-                          _c("i", { staticClass: "flaticon-user-11" }),
-                          _vm._v(" "),
-                          _c("span", [_vm._v("Equipment Name")]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.equipment.equipment_name,
-                                expression: "equipment.equipment_name"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              id: "c-name",
-                              placeholder: "Equipment Name: "
-                            },
-                            domProps: { value: _vm.equipment.equipment_name },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.equipment,
-                                  "equipment_name",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm.validation_error.hasOwnProperty("equipment_name")
-                            ? _c("span", { staticClass: "text-danger" }, [
-                                _vm._v(
-                                  "\n                                            " +
-                                    _vm._s(
-                                      _vm.validation_error.equipment_name[0]
-                                    ) +
-                                    "\n                                        "
-                                )
-                              ])
-                            : _vm._e()
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6" }, [
-                        _c("div", { staticClass: "contact-email text-left" }, [
-                          _c("i", { staticClass: "flaticon-mail-26" }),
-                          _vm._v(" "),
-                          _c("span", [_vm._v("Model")]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.equipment.equipment_model,
-                                expression: "equipment.equipment_model"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              id: "c-email",
-                              placeholder: "Equipment Model"
-                            },
-                            domProps: { value: _vm.equipment.equipment_model },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.equipment,
-                                  "equipment_model",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm.validation_error.hasOwnProperty("equipment_model")
-                            ? _c("span", { staticClass: "text-danger" }, [
-                                _vm._v(
-                                  "\n                                            " +
-                                    _vm._s(
-                                      _vm.validation_error.equipment_model[0]
-                                    ) +
-                                    "\n                                           "
-                                )
-                              ])
-                            : _vm._e()
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-md-6" }, [
-                        _c("div", { staticClass: "contact-phone text-left" }, [
-                          _c("i", { staticClass: "flaticon-telephone" }),
-                          _vm._v(" "),
-                          _c("span", [_vm._v("Capacity")]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.equipment.capacity,
-                                expression: "equipment.capacity"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              id: "c-phone",
-                              placeholder: "Capacity"
-                            },
-                            domProps: { value: _vm.equipment.capacity },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.equipment,
-                                  "capacity",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("span", { staticClass: "text-danger" })
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6" }, [
-                        _c("div", { staticClass: "contact-email text-left" }, [
-                          _c("i", { staticClass: "flaticon-mail-26" }),
-                          _vm._v(" "),
-                          _c("span", [_vm._v("Status")]),
-                          _vm._v(" "),
-                          _c(
-                            "select",
-                            {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.equipment.status,
-                                  expression: "equipment.status"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              on: {
-                                change: function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.$set(
-                                    _vm.equipment,
-                                    "status",
-                                    $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  )
-                                }
-                              }
-                            },
-                            [
-                              _c("option", { attrs: { value: "" } }, [
-                                _vm._v("Equipment Status")
-                              ]),
+                                  })
+                                ],
+                                2
+                              ),
                               _vm._v(" "),
-                              _c("option", { attrs: { value: "1" } }, [
-                                _vm._v("Active")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "0" } }, [
-                                _vm._v("Inactive")
-                              ])
+                              _vm.validation_error.hasOwnProperty("vendor")
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\n                                            " +
+                                        _vm._s(_vm.validation_error.vendor[0]) +
+                                        "\n                                           "
+                                    )
+                                  ])
+                                : _vm._e()
                             ]
                           )
                         ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-md-12" }, [
-                        _c(
-                          "div",
-                          { staticClass: "contact-location text-left" },
-                          [
-                            _c("i", { staticClass: "flaticon-location-1" }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "contact-name text-left" }, [
+                            _c("i", { staticClass: "flaticon-user-11" }),
                             _vm._v(" "),
-                            _c("span", [_vm._v("Note")]),
+                            _c("span", [_vm._v("Equipment Name")]),
                             _vm._v(" "),
-                            _c("textarea", {
+                            _c("input", {
                               directives: [
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.equipment.note,
-                                  expression: "equipment.note"
+                                  value: _vm.equipment.equipment_name,
+                                  expression: "equipment.equipment_name"
                                 }
                               ],
                               staticClass: "form-control",
-                              attrs: { placeholder: "Note" },
-                              domProps: { value: _vm.equipment.note },
+                              attrs: {
+                                type: "text",
+                                id: "c-name",
+                                placeholder: "Equipment Name: "
+                              },
+                              domProps: { value: _vm.equipment.equipment_name },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
@@ -8957,49 +8786,273 @@ var render = function() {
                                   }
                                   _vm.$set(
                                     _vm.equipment,
-                                    "note",
+                                    "equipment_name",
                                     $event.target.value
                                   )
                                 }
                               }
-                            })
-                          ]
-                        )
+                            }),
+                            _vm._v(" "),
+                            _vm.validation_error.hasOwnProperty(
+                              "equipment_name"
+                            )
+                              ? _c("span", { staticClass: "text-danger" }, [
+                                  _vm._v(
+                                    "\n                                            " +
+                                      _vm._s(
+                                        _vm.validation_error.equipment_name[0]
+                                      ) +
+                                      "\n                                        "
+                                  )
+                                ])
+                              : _vm._e()
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c(
+                            "div",
+                            { staticClass: "contact-email text-left" },
+                            [
+                              _c("i", { staticClass: "flaticon-mail-26" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Model")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.equipment.equipment_model,
+                                    expression: "equipment.equipment_model"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "c-email",
+                                  placeholder: "Equipment Model"
+                                },
+                                domProps: {
+                                  value: _vm.equipment.equipment_model
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.equipment,
+                                      "equipment_model",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "equipment_model"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\n                                            " +
+                                        _vm._s(
+                                          _vm.validation_error
+                                            .equipment_model[0]
+                                        ) +
+                                        "\n                                           "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ]
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c(
+                            "div",
+                            { staticClass: "contact-phone text-left" },
+                            [
+                              _c("i", { staticClass: "flaticon-telephone" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Capacity")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.equipment.capacity,
+                                    expression: "equipment.capacity"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "c-phone",
+                                  placeholder: "Capacity"
+                                },
+                                domProps: { value: _vm.equipment.capacity },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.equipment,
+                                      "capacity",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("span", { staticClass: "text-danger" })
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c(
+                            "div",
+                            { staticClass: "contact-email text-left" },
+                            [
+                              _c("i", { staticClass: "flaticon-mail-26" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Status")]),
+                              _vm._v(" "),
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.equipment.status,
+                                      expression: "equipment.status"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        _vm.equipment,
+                                        "status",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("option", { attrs: { value: "" } }, [
+                                    _vm._v("Equipment Status")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "1" } }, [
+                                    _vm._v("Active")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "0" } }, [
+                                    _vm._v("Inactive")
+                                  ])
+                                ]
+                              )
+                            ]
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _c(
+                            "div",
+                            { staticClass: "contact-location text-left" },
+                            [
+                              _c("i", { staticClass: "flaticon-location-1" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Note")]),
+                              _vm._v(" "),
+                              _c("textarea", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.equipment.note,
+                                    expression: "equipment.note"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { placeholder: "Note" },
+                                domProps: { value: _vm.equipment.note },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.equipment,
+                                      "note",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ]
+                          )
+                        ])
                       ])
                     ])
                   ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-footer" }, [
-                _c(
-                  "button",
-                  { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-                  [
-                    _vm.button_name != "Update"
-                      ? _c(
-                          "div",
-                          {
-                            staticClass:
-                              "spinner-grow text-white mr-2 align-self-center loader-sm"
-                          },
-                          [_vm._v(".")]
-                        )
-                      : _vm._e(),
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(_vm.button_name) +
-                        "\n                    "
-                    )
-                  ]
-                ),
+                ]),
                 _vm._v(" "),
-                _vm._m(1)
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "submit" }
+                    },
+                    [
+                      _vm.button_name != "Update"
+                        ? _c(
+                            "div",
+                            {
+                              staticClass:
+                                "spinner-grow text-white mr-2 align-self-center loader-sm"
+                            },
+                            [_vm._v(".")]
+                          )
+                        : _vm._e(),
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(_vm.button_name) +
+                          "\n                    "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm._m(1)
+                ])
               ])
-            ])
-          ]
-        )
-      ])
+            ]
+          )
+        ]
+      )
     ]
   )
 }
@@ -22214,7 +22267,7 @@ var EventBus = new Vue();
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! I:\xampp\htdocs\e-management\resources\js\equipment.js */"./resources/js/equipment.js");
+module.exports = __webpack_require__(/*! E:\server\htdocs\e-management\resources\js\equipment.js */"./resources/js/equipment.js");
 
 
 /***/ })

@@ -7,8 +7,9 @@ namespace App;
 class AllStatic
 {
  
- public $mobilization = 1;
- public $demobilization = 2;
+
+     public static $active   = 1;
+     public static $inactive = 0;
 
     
 }

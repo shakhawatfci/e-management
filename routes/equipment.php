@@ -11,6 +11,7 @@ Route::get('equipment-category-list','Equipment\EquipmentTypeController@equipmen
 
 Route::resource('equipment','Equipment\EquipmentController');
 Route::get('equipment-list','Equipment\EquipmentController@equipmentList');
+Route::get('equipment-by-vendor','Equipment\EquipmentController@vendroEquipment');
 
 
 Route::resource('assign-equipment','Equipment\EquipmentAssignController');

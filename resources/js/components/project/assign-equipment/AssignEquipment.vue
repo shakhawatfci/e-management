@@ -1,11 +1,11 @@
 <template>
         <!-- Modal -->
-    <div class="modal fade" id="createEquipment" tabindex="-1" role="dialog" aria-labelledby="addContactModalTitle" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+    <div class="modal fade" id="aissignEquipment" tabindex="-1" role="dialog" aria-labelledby="addContactModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
             <form @submit.prevent="save()">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Create Equipment</h4>
+                    <h4 class="modal-title">Assign Equipment</h4>
                 </div>
                 <div class="modal-body">
                     <i class="flaticon-cancel-12 close" data-dismiss="modal"></i>
@@ -16,6 +16,24 @@
                                     <div class="col-md-6">
                                         <div class="contact-email">
                                             <i class="flaticon-mail-26"></i>
+                                            <span>Project</span>
+                                            <select class="form-control" v-model="equipment.project">
+                                                <option value="">Chose Project</option>
+                                                <option v-for="pr in projects" :key="pr.id" :value="pr.id">
+                                                    {{ pr.project_name }}
+                                                </option>
+                                            </select>
+                                                 <span
+                                                 v-if="validation_error.hasOwnProperty('project')" 
+                                                class="text-danger">
+                                                {{ validation_error.project[0] }}
+                                               </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="contact-email">
+                                            <i class="flaticon-mail-26"></i>
+                                            <span>Equipment Type</span>
                                             <select class="form-control" v-model="equipment.equipment_type">
                                                 <option value="">Chose a Equipment Type</option>
                                                 <option v-for="eq_type in equipment_types" :key="eq_type.id" :value="eq_type.id">
@@ -33,7 +51,8 @@
                                     <div class="col-md-6">
                                         <div class="contact-email">
                                             <i class="flaticon-mail-26"></i>
-                                            <select class="form-control" v-model="equipment.vendor">
+                                            <span>Equipment Type</span>
+                                            <select class="form-control" v-model="equipment.vendor" @change="getVendorEquipments()">
                                                 <option value="">Chose a vendor</option>
                                                 <option v-for="vendor in vendors" :key="vendor.id" :value="vendor.id">
                                                     {{ vendor.vendor_name }}
@@ -48,54 +67,54 @@
                                     </div>
 
 
-
-                                </div>
-
-                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="contact-email">
+                                            <i class="flaticon-mail-26"></i>
+                                            <span>Equipment Type</span>
+                                            <select class="form-control" v-model="equipment.equipment">
+                                                <option value="">Chose a Equipment</option>
+                                                <option v-for="equipment in equipments" :key="equipment.id" :value="equipment.id">
+                                                    {{ equipment.equipment_name }}
+                                                </option>
+                                            </select>
+                                                 <span
+                                                 v-if="validation_error.hasOwnProperty('equipment')" 
+                                                class="text-danger">
+                                                {{ validation_error.equipment[0] }}
+                                               </span>
+                                        </div>
+                                    </div>
+                            
+                                    <div class="col-md-6">
+                                        <div class="contact-email">
+                                            <i class="flaticon-mail-26"></i>
+                                            <span>Operator</span>
+                                            <select class="form-control" v-model="equipment.operator">
+                                                <option value="">Chose a Operator</option>
+                                                <option v-for="operator in operators" :key="operator.id" :value="operator.id">
+                                                    {{ operator.operator_name }}
+                                                </option>
+                                            </select>
+                                                 <span
+                                                 v-if="validation_error.hasOwnProperty('operator')" 
+                                                class="text-danger">
+                                                {{ validation_error.operator[0] }}
+                                               </span>
+                                        </div>
+                                    </div>
+                            
                                  <div class="col-md-6">
                                         <div class="contact-name">
                                             <i class="flaticon-user-11"></i>
-                                            <input type="text" v-model="equipment.equipment_name"
-                                             id="c-name" class="form-control" placeholder="Equipment Name: ">
+                                            <span>Total Hour</span>
+                                            <input type="text" v-model="equipment.total_hour"
+                                             id="c-name" class="form-control" placeholder="Total Hour">
                                             <span v-if="validation_error.hasOwnProperty('equipment_name')" class="text-danger">
                                                 {{ validation_error.equipment_name[0] }}
                                             </span>
                                         </div>
-                                    </div>
-                                    
-                                    <div class="col-md-6">
-                                        <div class="contact-email">
-                                            <i class="flaticon-mail-26"></i>
-                                            <input type="text" id="c-email" v-model="equipment.equipment_model" class="form-control" placeholder="Equipment Model">
-                                                <span
-                                                 v-if="validation_error.hasOwnProperty('equipment_model')" 
-                                                class="text-danger">
-                                                {{ validation_error.equipment_model[0] }}
-                                               </span>
-                                        </div>
-                                    </div>
-
-
                                 </div>
-
-                                <div class="row">
-                                 <div class="col-md-6">
-                                        <div class="contact-phone">
-                                            <i class="flaticon-telephone"></i>
-                                            <input type="text" id="c-phone" class="form-control" v-model="equipment.capacity" placeholder="Capacity">
-                                            <span class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="contact-email">
-                                            <i class="flaticon-mail-26"></i>
-                                            <select class="form-control" v-model="equipment.status">
-                                                <option value="">Equipment Status</option>
-                                                <option value="1">Active</option>
-                                                <option value="0">Inactive</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
 
                                 <div class="row">

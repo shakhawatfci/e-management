@@ -1,7 +1,7 @@
 <template>
         <!-- Modal -->
     <div class="modal fade" id="updateEquipment" tabindex="-1" role="dialog" aria-labelledby="addContactModalTitle" aria-hidden="true">
-        <div class="modal-dialog " role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <form @submit.prevent="save()">
             <div class="modal-content">
                 <div class="modal-header">
@@ -212,8 +212,9 @@ export default {
           this.equipment = {
           
           id : '',
-          equipment_name : '',
+          equipment_name  : '',
           equipment_model : '',
+          equipment_type  : '',
           vendor : '',
           capacity : '',
           note : '',

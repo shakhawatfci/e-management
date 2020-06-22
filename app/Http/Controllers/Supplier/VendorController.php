@@ -46,7 +46,14 @@ class VendorController extends Controller
         ]);
         try {
 
-          $vendor = Vendor::create($request->all());
+          $vendor = new Vendor;
+
+          $vendor->vendor_name = $request->vendor_name;
+          $vendor->vendor_email = $request->vendor_email;
+          $vendor->vendor_address = $request->vendor_address;
+          $vendor->vendor_phone = $request->vendor_phone;
+          $vendor->status = $request->status;
+          $vendor->save();
 
           return response()->json(['status' => 'success', 'message' => 'Vendor Created Successfully !']);
             
