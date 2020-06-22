@@ -146,7 +146,7 @@
                                             <i class="flaticon-user-11"></i>
                                             <span>Project Rate Per Hour</span>
                                             <input type="text" 
-                                            :value="equipment.project_rate_per_hour = equipment.total_project_amount/equipment.total_hour"
+                                            :value="equipment.project_rate_per_hour = (( equipment.total_project_amount / equipment.total_hour ) | formatPrice)"
                                              id="c-name" class="form-control" placeholder="Project Rate Per Hour" readonly>
                                             <span v-if="validation_error.hasOwnProperty('project_rate_per_hour')" class="text-danger">
                                                 {{ validation_error.project_rate_per_hour[0] }}
@@ -159,7 +159,7 @@
                                             <i class="flaticon-user-11"></i>
                                             <span>Vendor Rate Per Hour</span>
                                             <input type="text" 
-                                            :value="equipment.vendor_rate_per_hour = equipment.total_vendor_amount / equipment.total_hour"
+                                            :value="equipment.vendor_rate_per_hour =((equipment.total_vendor_amount / equipment.total_hour) | formatPrice)"
                                              id="c-name" class="form-control" placeholder="Vendor Rate Per Hour" readonly>
                                             <span v-if="validation_error.hasOwnProperty('vendor_rate_per_hour')" class="text-danger">
                                                 {{ validation_error.vendor_rate_per_hour[0] }}
@@ -173,7 +173,7 @@
                                             <span>Assign Date</span>
                                             <input type="text" 
                                             v-model="equipment.assign_date"
-                                            id="basicFlatpickr1" class="form-control" placeholder="Assign Date">
+                                            id="basicFlatpickr3" class="form-control" placeholder="Assign Date">
                                             <span v-if="validation_error.hasOwnProperty('assign_date')" class="text-danger">
                                                 {{ validation_error.assign_date[0] }}
                                             </span>
@@ -239,7 +239,7 @@ export default {
    },
 
    mounted() {
-        var f1 = flatpickr(document.getElementById('basicFlatpickr'));
+        var f1 = flatpickr(document.getElementById('basicFlatpickr3'));
    },
 
  methods : {
@@ -251,7 +251,7 @@ export default {
          .then(response => {
              if(response.data.status === 'success')
              {
-              $('#createEquipment').modal('hide');
+              $('#aissignEquipment').modal('hide');
               this.successMessage(response.data);
               EventBus.$emit('equipment-assigned');
               this.button_name = 'Save';

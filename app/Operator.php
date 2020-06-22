@@ -15,4 +15,9 @@ class Operator extends Model
     return $this->hasMany('App\OperatorSalary');
 
    }
+
+   public function car_assign()
+   {
+      return $this->hasMany('App\CarAssign');
+   }
 }

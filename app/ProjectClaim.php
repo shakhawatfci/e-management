@@ -32,10 +32,25 @@ class ProjectClaim extends Model
 
     }
 
+
+    // relation with equipement 
+
+    public function equipment_type(){
+      
+      return $this->belongsTo('App\EquipmentType');
+
+    }
+
     // relation with bill 
 
-    public function bills(){
+    public function car_assign(){
 
-        return $this->hasMany('App\Bill');
+        return $this->belongsTo('App\CarAssign','assign_id')->withDefault([
+          'id' => 0,
+          'equipment_id' => 0,
+          'project_id' => 0,
+          'vendor_id' => 0, 
+        ]
+        );
     }
 }

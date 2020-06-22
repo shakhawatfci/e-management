@@ -12,4 +12,18 @@ class EquipmentType extends Model
     {
         return $this->hasMany('App\Equipment');
     }
+
+    // relation with car assign 
+
+    public function car_assign()
+    {
+        return $this->hasMany('App\CarAssign');
+    }
+    
+    // relation with projectClaim 
+    
+    public function project_claim()
+    {
+      return $this->hasMany('App\ProjectClaim');
+    }
 }

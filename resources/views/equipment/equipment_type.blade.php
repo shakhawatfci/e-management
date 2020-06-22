@@ -5,6 +5,12 @@
 <li class="breadcrumb-item"><a href="javascript:void(0);">Equipment Type</a></li>
 <li class="breadcrumb-item active" aria-current="page"><span>Manage</span></li>
 @endsection
+@section('create-button')
+<button  data-toggle="modal"  data-target="#createEquipmentType"
+    class="btn btn-outline-warning"  data-placement="top" title="Create New Equipment">
+<i class="far fa-plus-square"></i> Create New
+</button>
+@endsection
 @section('content')
 <div class="layout-px-spacing">                
                 <div class="row layout-spacing layout-top-spacing" id="cancel-row">
@@ -12,19 +18,9 @@
                         <div class="widget-content searchable-container list">
 
                             <div class="row">
-                                <div class="col-xl-4 col-lg-5 col-md-5 col-sm-7 filtered-list-search layout-spacing align-self-center">
-                                  <h6 style="margin-top : 20px">Equipment Types</h6>
-                                </div>
 
-                                <div class="col-xl-8 col-lg-7 col-md-7 col-sm-5 text-sm-right text-center layout-spacing align-self-center">
-                                    <div class="d-flex justify-content-sm-end justify-content-center">
-                                        <button  data-toggle="modal"  data-target="#createEquipmentType"
-                                         class="btn btn-primary"  data-placement="top" title="Create New Equipment">
-                                        <i class="far fa-plus-square"></i> Create New
-                                        </button>
-                                    </div>
                                     <create-equipment-type></create-equipment-type>
-                                </div>
+
                             </div>
 
                          <view-equipment-type></view-equipment-type>
