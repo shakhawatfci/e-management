@@ -4,7 +4,7 @@
       <div class="col-md-3" style="margin-bottom:10px;">
         <input type="text" v-model="keyword" 
         class="form-control"
-         placeholder="Search Supplier" @keyup="getProject()" />
+         placeholder="Search Supplier" @keyup="getEquipmentExpenseHead()" />
       </div>
     </div>
     
@@ -14,27 +14,23 @@
     <table class="table table-bordered table-hover  mb-4">
         <thead>
             <tr>
-                <th>Project</th>
-                <th>Location</th>
-                <th>Email</th>
-                <th>Phone</th>
+                <th>SL</th>
+                <th>Head</th>
                 <th class="text-center">Status</th>
                 <th class="text-center">action</th>
             </tr>
         </thead>
         <tbody>
-            <tr v-for="value in projects.data" :key="value.id">
-                <td>{{ value.project_name }}</td>
-                <td>{{ value.project_location }}</td>
-                <td>{{ value.project_email }}</td>
-                <td>{{ value.project_phone }}</td>
+            <tr v-for="value in equipments.data" :key="value.id">
+                <td>{{ value.id }}</td>
+                <td>{{ value.head_name }}</td>
                 <td class="text-center">
-                    <span class="text-success" v-if="value.project_status == 1">Active</span>
+                    <span class="text-success" v-if="value.status == 1">Active</span>
                     <span class="text-danger" v-else>Inactive</span>
                 </td>
                 <td class="text-center">
-                    <button class="btn btn-dark mb-2 mr-2 rounded-circle" @click="editProject(value)"><i class="far fa-edit"></i></button>
-                    <button class="btn btn-danger mb-2 mr-2 rounded-circle" @click.prevent="deleteProject(value.id)"><i class="far fa-trash-alt"></i></button>
+                    <button class="btn btn-dark mb-2 mr-2 rounded-circle" @click="editEquipmentHead(value)"><i class="far fa-edit"></i></button>
+                    <button class="btn btn-danger mb-2 mr-2 rounded-circle" @click.prevent="deleteEquipmentHead(value.id)"><i class="far fa-trash-alt"></i></button>
                 </td>
             </tr>
         </tbody>
@@ -48,11 +44,11 @@
         </div>
   </div>
 
-       <project-update> </project-update>
+       <equipmenthead-update> </equipmenthead-update>
     <div class="row">
       <div class="col-md-12 text-center mb-10 mt-10">
        <!-- import pagination here  -->
-       <pagination :pageData="this.projects"> </pagination>
+       <pagination :pageData="this.equipments"> </pagination>
 
       </div>
     </div>
@@ -61,19 +57,19 @@
 
 
 <script>
-import { EventBus } from "../../vue-assets";
-import Mixin from "../../mixin";
-import Pagination from '../pagination/Pagination';
-import ProjectUpdate from './UpdateProject';
+import { EventBus } from "../../../vue-assets";
+import Mixin from "../../../mixin";
+import Pagination from '../../pagination/Pagination';
+import EquipmentheadUpdate from './UpdateEquipmentHead';
 export default {
   mixins: [Mixin],
   components : {
    'pagination' : Pagination,
-   ProjectUpdate
+   EquipmentheadUpdate
   },
   data() {
     return {
-     projects : [],
+     equipments : [],
      keyword   : '',
      isLoading : false,
     }
@@ -83,33 +79,34 @@ export default {
 
       var _this = this;
 
-      EventBus.$on('project-created',function(){
-          _this.getProject();
+      EventBus.$on('EquipmentExpenseHead-created',function(){
+          _this.getEquipmentExpenseHead();
       })
 
-      this.getProject();
+      this.getEquipmentExpenseHead();
 
   },
 
   methods: {
      
-     getProject(page = 1) 
+     getEquipmentExpenseHead(page = 1) 
      {
          this.isLoading = true;
-         axios.get(base_url+`project-list?page=${page}&keyword=${this.keyword}`)
+         axios.get(base_url+`equipmenthead-list?page=${page}&keyword=${this.keyword}`)
          .then(response =>
           {
-            this.projects = response.data;
+            this.equipments = response.data;
             this.isLoading = false;
+            console.log(this.equipments)
          });
      },
 
-     editProject(value)
+     editEquipmentHead(value)
      {
-        EventBus.$emit('project-update',value)
+        EventBus.$emit('EquipmentExpenseHead-update',value)
      },
 
-     deleteProject(id)
+     deleteEquipmentHead(id)
      {
        Swal.fire({
             title: 'Are you sure ?',
@@ -123,10 +120,10 @@ export default {
 
         }).then((result) => {
            if(result.value){
-           axios.delete(`${base_url}project/${id}`)
+           axios.delete(`${base_url}expense-equipment/${id}`)
            .then(response => {
               this.successMessage(response.data);
-              this.getProject();
+              this.getEquipmentExpenseHead();
            });
            }
         }) 
@@ -134,7 +131,7 @@ export default {
 
      pageClicked(page)
      {
-         this.getProject(page);
+         this.getEquipmentExpenseHead(page);
      }
 
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ExpenseHeads;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\EquipmentExpenseHead;
 
 class EquipmentExpenseController extends Controller
 {
@@ -22,9 +23,13 @@ class EquipmentExpenseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function EquipmentHeadList(Request $request)
     {
-        //
+        $equipments = EquipmentExpenseHead::orderBy('id','desc');
+        if ($request->keyword != '') {
+            $equipments->where('head_name','LIKE','%'.$request->keyword.'%');
+        }
+        return $equipments->paginate(10);
     }
 
     /**

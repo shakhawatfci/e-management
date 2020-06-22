@@ -14,3 +14,4 @@ Route::get('equipment-list','Equipment\EquipmentController@equipmentList');
 Route::get('equipment-by-vendor/{type}/{id}','Equipment\EquipmentController@vendroEquipment');
 
 Route::resource('expense-equipment','ExpenseHeads\EquipmentExpenseController');
+Route::get('equipmenthead-list','ExpenseHeads\EquipmentExpenseController@EquipmentHeadList');
