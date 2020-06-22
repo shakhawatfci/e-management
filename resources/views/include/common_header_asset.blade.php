@@ -39,5 +39,4 @@
 
     <!-- BEGIN THEME GLOBAL STYLES -->
     <link href="{{ asset('admin-assets/plugins/flatpickr/flatpickr.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('admin-assets/plugins/noUiSlider/nouislider.min.css') }}" rel="stylesheet" type="text/css">
     <!-- END THEME GLOBAL STYLES -->

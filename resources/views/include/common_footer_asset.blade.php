@@ -19,4 +19,3 @@
     <script src="{{ asset('admin-assets/assets/js/apps/contact.js') }}"></script>
     <!-- BEGIN THEME GLOBAL STYLES -->
     <script src="{{ asset('admin-assets/plugins/flatpickr/flatpickr.js') }}"></script>
-    <script src="{{ asset('admin-assets/plugins/noUiSlider/nouislider.min.js') }}"></script>
