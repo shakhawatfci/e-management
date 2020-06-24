@@ -10,6 +10,7 @@ use App\Project;
 use App\Vendor;
 use App\CarAssign;
 use App\Operator;
+use App\ProjectClaim;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -53,7 +54,7 @@ class EquipmentAssignController extends Controller
                                      [
                                          'operator',
                                          'user:id,name',
-                                         'equipement:id,eq_name',
+                                         'equipement',
                                          'equipment_type:id,name',
                                          'vendor:id,vendor_name',
                                          'project:id,project_name',
@@ -157,7 +158,7 @@ class EquipmentAssignController extends Controller
         $equipment_assign->total_vendor_amount    =   $request->total_vendor_amount;
         $equipment_assign->project_rate_per_hour  =   $request->project_rate_per_hour;
         $equipment_assign->vendor_rate_per_hour   =   $request->vendor_rate_per_hour;
-        $equipment_assign->documents_link         =   $request->documents_links;
+        $equipment_assign->documents_link         =   $request->document_links;
         $equipment_assign->assign_date            =   $request->assign_date;
         $equipment_assign->release_status         =   1;
         $equipment_assign->status                 =   1;
@@ -185,7 +186,15 @@ class EquipmentAssignController extends Controller
      */
     public function show($id)
     {
-        //
+        return CarAssign:: with(
+            [
+                'operator',
+                'user:id,name',
+                'equipement',
+                'equipment_type:id,name',
+                'vendor',
+                'project',
+            ])->find($id);
     }
 
     /**
@@ -199,7 +208,10 @@ class EquipmentAssignController extends Controller
         $assigned_equipment = CarAssign::find($id);
         $equipments = Equipement::where('vendor_id','=',$assigned_equipment->vendor_id)->get();
 
-        return response()->json(['assigned_equipment' => $assigned_equipment,'equipments' => $equipments]);
+        return response()->json([
+            'assigned_equipment' => $assigned_equipment,
+            'equipments' => $equipments
+            ]);
     }
 
     /**
@@ -211,6 +223,8 @@ class EquipmentAssignController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        // return $request->all();
         $request->validate([
             'project'                 => 'required',
             'equipment_type'          => 'required',
@@ -227,7 +241,7 @@ class EquipmentAssignController extends Controller
         try
         {
 
-         $equipment_assign = new CarAssign;
+         $equipment_assign =  CarAssign::find($id);
          $equipment_assign->project_id             =   $request->project;
          $equipment_assign->equipment_type_id      =   $request->equipment_type;
          $equipment_assign->vendor_id              =   $request->vendor;
@@ -239,9 +253,9 @@ class EquipmentAssignController extends Controller
          $equipment_assign->total_vendor_amount    =   $request->total_vendor_amount;
          $equipment_assign->project_rate_per_hour  =   $request->project_rate_per_hour;
          $equipment_assign->vendor_rate_per_hour   =   $request->vendor_rate_per_hour;
-         $equipment_assign->documents_links        =   $request->documents_links;
+         $equipment_assign->documents_link         =   $request->document_links;
          $equipment_assign->assign_date            =   $request->assign_date;
-         $equipment_assign->update;
+         $equipment_assign->update();
  
          return response()->json([
              'status'  => 'success',
@@ -254,6 +268,30 @@ class EquipmentAssignController extends Controller
  
          return response()->json(['status'=>'error','message'=>$e->getMessage()]);
  
+        }
+    }
+
+    public function releaseEquipment(Request $request,$id){
+       
+        $request->validate([
+            'release_date' => 'required',
+            'release_status' => 'required'
+        ]);
+        try
+        {
+         $release = CarAssign::find($id);
+
+         $release->release_status = $request->release_status;
+         $release->release_note = $request->release_note;
+         $release->release_date = $request->release_date;
+         $release->update();
+         return response()->json(['status' => 'success','message'=>'Release Status Changed']);
+        }
+        catch(Exception $e)
+        {
+
+            return response()->json(['status' => 'error','message'=>$e->getMessage()]);
+
         }
     }
 

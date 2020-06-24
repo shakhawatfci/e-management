@@ -571,7 +571,7 @@ select.form-control.form-custom {
     border-radius: 5px;
     font-size: 12px;
     font-weight: 500;
-    color: #888ea8;
+    color: #fff;
     padding: 11px 8px; }
     .dropdown:not(.custom-dropdown-icon) .dropdown-menu a.dropdown-item.active, .dropdown:not(.custom-dropdown-icon) .dropdown-menu a.dropdown-item:active {
       background-color: transparent;

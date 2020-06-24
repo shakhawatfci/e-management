@@ -3031,6 +3031,772 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/project/assign-equipment/ReleaseEquipment.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/project/assign-equipment/ReleaseEquipment.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_assets__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../vue-assets */ "./resources/js/vue-assets.js");
+/* harmony import */ var _mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../mixin */ "./resources/js/mixin.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
+  data: function data() {
+    return {
+      equipment: {
+        equipement: {
+          eq_name: '',
+          eq_model: ''
+        },
+        project: {
+          project_name: '',
+          project_location: ''
+        },
+        equipment_type: {
+          name: ''
+        },
+        vendor: {
+          name: ''
+        },
+        release_status: 0
+      },
+      release_info: {
+        id: '',
+        release_date: '',
+        release_note: '',
+        release_status: 0
+      },
+      validation_error: {},
+      equipments: [],
+      button_name: 'Save'
+    };
+  },
+  mounted: function mounted() {
+    var f1 = flatpickr(document.getElementById('basicFlatpickr5'));
+
+    var _this = this;
+
+    _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('release-equipment', function (equipment) {
+      _this.equipment = equipment;
+      _this.release_info.release_status = equipment.release_status;
+      _this.release_info.release_date = equipment.release_date;
+      _this.release_info.release_note = equipment.release_note;
+      $('#aissignEquipmentRelease').modal('show');
+    });
+  },
+  methods: {
+    save: function save() {
+      var _this2 = this;
+
+      this.button_name = 'Saving...';
+      axios.put(base_url + 'release-equipment/' + this.equipment.id, this.release_info).then(function (response) {
+        if (response.data.status === 'success') {
+          $('#aissignEquipmentRelease').modal('hide');
+
+          _this2.successMessage(response.data);
+
+          _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('equipment-assigned');
+          _this2.button_name = 'Save';
+
+          _this2.resetForm();
+        } else {
+          _this2.successMessage(response.data);
+
+          _this2.button_name = 'Save';
+        }
+      })["catch"](function (err) {
+        if (err.response.status == 422) {
+          _this2.validation_error = err.response.data.errors;
+
+          _this2.validationError();
+
+          _this2.button_name = 'Save';
+        } else {
+          _this2.successMessage(err);
+
+          _this2.button_name = 'Save';
+        }
+      });
+    },
+    resetForm: function resetForm() {
+      this.release_info = {
+        release_date: '',
+        release_note: '',
+        release_status: 0
+      };
+      this.validation_error = {};
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/project/assign-equipment/UpdateAssignEquipment.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/project/assign-equipment/UpdateAssignEquipment.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_assets__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../vue-assets */ "./resources/js/vue-assets.js");
+/* harmony import */ var _mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../mixin */ "./resources/js/mixin.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
+  props: ['vendors', 'equipment_types', 'operators', 'projects'],
+  data: function data() {
+    return {
+      equipment: {
+        id: '',
+        project: '',
+        equipment_type: '',
+        vendor: '',
+        equipment: '',
+        operator: '',
+        total_hour: 240,
+        total_project_amount: 0,
+        total_vendor_amount: 0,
+        project_rate_per_hour: 0,
+        vendor_rate_per_hour: 0,
+        assign_date: '',
+        document_links: ''
+      },
+      validation_error: {},
+      equipments: [],
+      button_name: 'Update'
+    };
+  },
+  mounted: function mounted() {
+    var f1 = flatpickr(document.getElementById('basicFlatpickr4'));
+
+    var _this = this;
+
+    _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('edit-assigned-equipment', function (id) {
+      _this.getAssignedEquipment(id);
+
+      $('#aissignEquipmentUpdate').modal('show');
+    });
+  },
+  methods: {
+    getAssignedEquipment: function getAssignedEquipment(id) {
+      var _this2 = this;
+
+      axios.get(base_url + 'assign-equipment/' + id + '/edit').then(function (response) {
+        _this2.equipments = response.data.equipments;
+        _this2.equipment.id = response.data.assigned_equipment.id;
+        _this2.equipment.project = response.data.assigned_equipment.project_id;
+        _this2.equipment.equipment_type = response.data.assigned_equipment.equipment_type_id;
+        _this2.equipment.equipment = response.data.assigned_equipment.equipement_id;
+        _this2.equipment.vendor = response.data.assigned_equipment.vendor_id;
+        _this2.equipment.operator = response.data.assigned_equipment.operator_id;
+        _this2.equipment.total_hour = response.data.assigned_equipment.total_hour;
+        _this2.equipment.total_project_amount = response.data.assigned_equipment.total_project_amount;
+        _this2.equipment.total_vendor_amount = response.data.assigned_equipment.total_vendor_amount;
+        _this2.equipment.project_rate_per_hour = response.data.assigned_equipment.project_rate_per_hour;
+        _this2.equipment.vendor_rate_per_hour = response.data.assigned_equipment.vendor_rate_per_hour;
+        _this2.equipment.assign_date = response.data.assigned_equipment.assign_date;
+        _this2.equipment.document_links = response.data.assigned_equipment.documents_link;
+      });
+    },
+    save: function save() {
+      var _this3 = this;
+
+      this.button_name = 'Updating...';
+      axios.put(base_url + 'assign-equipment/' + this.equipment.id, this.equipment).then(function (response) {
+        if (response.data.status === 'success') {
+          $('#aissignEquipmentUpdate').modal('hide');
+
+          _this3.successMessage(response.data);
+
+          _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('equipment-assigned');
+          _this3.button_name = 'Update';
+
+          _this3.resetForm();
+        } else {
+          _this3.successMessage(response.data);
+
+          _this3.button_name = 'Update';
+        }
+      })["catch"](function (err) {
+        if (err.response.status == 422) {
+          _this3.validation_error = err.response.data.errors;
+
+          _this3.validationError();
+
+          _this3.button_name = 'Update';
+        } else {
+          _this3.successMessage(err);
+
+          _this3.button_name = 'Update';
+        }
+      });
+    },
+    getVendorEquipments: function getVendorEquipments() {
+      var _this4 = this;
+
+      if (this.equipment.equipment_type === '' || this.equipment.vendor === '') {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'please choose equipment type and vendor both field for equipment list'
+        });
+        return;
+      }
+
+      axios.get("".concat(base_url, "equipment-by-vendor/").concat(this.equipment.equipment_type, "/").concat(this.equipment.vendor)).then(function (response) {
+        _this4.equipments = response.data;
+      });
+    },
+    resetForm: function resetForm() {
+      this.equipment = {
+        id: '',
+        project: '',
+        equipment_type: '',
+        vendor: '',
+        equipment: '',
+        operator: '',
+        total_hour: 240,
+        total_project_amount: 0,
+        total_vendor_amount: 0,
+        project_rate_per_hour: 0,
+        vendor_rate_per_hour: 0,
+        assign_date: '',
+        document_links: ''
+      };
+      this.validation_error = {};
+      this.equipments = [];
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/project/assign-equipment/ViewAssignDetails.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/project/assign-equipment/ViewAssignDetails.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_assets__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../vue-assets */ "./resources/js/vue-assets.js");
+/* harmony import */ var _mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../mixin */ "./resources/js/mixin.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
+  data: function data() {
+    return {
+      equipment: null
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('assign-details', function (id) {
+      _this.getAssignEquipment(id);
+
+      $('#viewAssign').modal('show');
+    });
+  },
+  methods: {
+    getAssignEquipment: function getAssignEquipment(id) {
+      var _this2 = this;
+
+      axios.get(base_url + 'assign-equipment/' + id).then(function (response) {
+        _this2.equipment = response.data;
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/project/assign-equipment/ViewAssignedEquipment.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/project/assign-equipment/ViewAssignedEquipment.vue?vue&type=script&lang=js& ***!
@@ -3044,6 +3810,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../mixin */ "./resources/js/mixin.js");
 /* harmony import */ var _pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../pagination/Pagination */ "./resources/js/components/pagination/Pagination.vue");
 /* harmony import */ var _UpdateAssignEquipment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./UpdateAssignEquipment */ "./resources/js/components/project/assign-equipment/UpdateAssignEquipment.vue");
+/* harmony import */ var _ReleaseEquipment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ReleaseEquipment */ "./resources/js/components/project/assign-equipment/ReleaseEquipment.vue");
+/* harmony import */ var _ViewAssignDetails__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ViewAssignDetails */ "./resources/js/components/project/assign-equipment/ViewAssignDetails.vue");
 //
 //
 //
@@ -3149,6 +3917,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 
 
@@ -3158,7 +3937,9 @@ __webpack_require__.r(__webpack_exports__);
   props: ["vendors", 'equipment_types', 'projects'],
   components: {
     'pagination': _pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"],
-    'edit-assign-equipment': _UpdateAssignEquipment__WEBPACK_IMPORTED_MODULE_3__["default"]
+    'edit-assign-equipment': _UpdateAssignEquipment__WEBPACK_IMPORTED_MODULE_3__["default"],
+    'release-equipment': _ReleaseEquipment__WEBPACK_IMPORTED_MODULE_4__["default"],
+    'view-assign-details': _ViewAssignDetails__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   data: function data() {
     return {
@@ -3192,8 +3973,14 @@ __webpack_require__.r(__webpack_exports__);
         _this2.isLoading = false;
       });
     },
-    edit: function edit(equipment) {
-      _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit("edit-equipment", equipment);
+    edit: function edit(id) {
+      _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit("edit-assigned-equipment", id);
+    },
+    viewMore: function viewMore(id) {
+      _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('assign-details', id);
+    },
+    releaseEquipment: function releaseEquipment(equipment) {
+      _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('release-equipment', equipment);
     },
     deleteEquipment: function deleteEquipment(id) {
       var _this3 = this;
@@ -3208,7 +3995,7 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Yes, delete it!'
       }, function () {}).then(function (result) {
         if (result.value) {
-          axios["delete"]("".concat(base_url, "equipment/").concat(id)).then(function (response) {
+          axios["delete"]("".concat(base_url, "assign-equipment/").concat(id)).then(function (response) {
             _this3.successMessage(response.data);
 
             _this3.getEquipment();
@@ -10025,6 +10812,1998 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/project/assign-equipment/ReleaseEquipment.vue?vue&type=template&id=45c9cc35&":
+/*!********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/project/assign-equipment/ReleaseEquipment.vue?vue&type=template&id=45c9cc35& ***!
+  \********************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "modal animated rotateInDownLeft custo-rotateInDownLeft",
+      attrs: {
+        id: "aissignEquipmentRelease",
+        tabindex: "-1",
+        role: "dialog",
+        "aria-labelledby": "addContactModalTitle",
+        "aria-hidden": "true"
+      }
+    },
+    [
+      _c(
+        "div",
+        { staticClass: "modal-dialog modal-xl", attrs: { role: "document" } },
+        [
+          _c(
+            "form",
+            {
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.save()
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "modal-content" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("i", {
+                    staticClass: "flaticon-cancel-12 close",
+                    attrs: { "data-dismiss": "modal" }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "add-contact-box" }, [
+                    _c(
+                      "div",
+                      { staticClass: "add-contact-content text-left" },
+                      [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-12" }, [
+                            _c(
+                              "div",
+                              { staticClass: "card component-card_1" },
+                              [
+                                _c("div", { staticClass: "card-body" }, [
+                                  _vm.equipment.release_status == 1
+                                    ? _c("p", { staticClass: "card-text" }, [
+                                        _vm._v(
+                                          "\n                                    This Equipment is Currently Active, By Chosing Release option you can release it \n                                "
+                                        )
+                                      ])
+                                    : _c("p", { staticClass: "card-text" }, [
+                                        _vm._v(
+                                          "\n                                    Equipment already Released From Project by chosing active form current status you can activate it\n                                "
+                                        )
+                                      ])
+                                ])
+                              ]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Project")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.equipment.project.project_name,
+                                    expression: "equipment.project.project_name"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Project",
+                                  readonly: ""
+                                },
+                                domProps: {
+                                  value: _vm.equipment.project.project_name
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.equipment.project,
+                                      "project_name",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Vendor")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.equipment.vendor.vendor_name,
+                                    expression: "equipment.vendor.vendor_name"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Vendor",
+                                  readonly: ""
+                                },
+                                domProps: {
+                                  value: _vm.equipment.vendor.vendor_name
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.equipment.vendor,
+                                      "vendor_name",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Equipment Type")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.equipment.equipment_type.name,
+                                    expression: "equipment.equipment_type.name"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Project",
+                                  readonly: ""
+                                },
+                                domProps: {
+                                  value: _vm.equipment.equipment_type.name
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.equipment.equipment_type,
+                                      "name",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Equipment Name")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Project",
+                                  readonly: ""
+                                },
+                                domProps: {
+                                  value:
+                                    _vm.equipment.equipement.eq_name +
+                                    "-" +
+                                    _vm.equipment.equipement.eq_model
+                                }
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c("span", [
+                                _vm._v(
+                                  "Current Status (you have to chose it's going to be active or relase )"
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.release_info.release_status,
+                                      expression: "release_info.release_status"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        _vm.release_info,
+                                        "release_status",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("option", { attrs: { value: "0" } }, [
+                                    _vm._v("Release")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "1" } }, [
+                                    _vm._v("Active")
+                                  ])
+                                ]
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Release Date")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.release_info.release_date,
+                                    expression: "release_info.release_date"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "basicFlatpickr5",
+                                  placeholder: "Release Date"
+                                },
+                                domProps: {
+                                  value: _vm.release_info.release_date
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.release_info,
+                                      "release_date",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "release_date"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\n                                            " +
+                                        _vm._s(
+                                          _vm.validation_error.release_date[0]
+                                        ) +
+                                        "\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-12" }, [
+                            _c("div", { staticClass: "contact-location" }, [
+                              _c("i", { staticClass: "flaticon-location-1" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Release Note")]),
+                              _vm._v(" "),
+                              _c("textarea", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.release_info.release_note,
+                                    expression: "release_info.release_note"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  placeholder:
+                                    "Release Note: eg,reason for release"
+                                },
+                                domProps: {
+                                  value: _vm.release_info.release_note
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.release_info,
+                                      "release_note",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          ])
+                        ])
+                      ]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary ",
+                      attrs: { type: "submit" }
+                    },
+                    [
+                      _vm.button_name != "Save"
+                        ? _c(
+                            "div",
+                            {
+                              staticClass:
+                                "spinner-grow text-white mr-2 align-self-center loader-sm"
+                            },
+                            [_vm._v(".")]
+                          )
+                        : _vm._e(),
+                      _vm._v(
+                        "\n                     " +
+                          _vm._s(_vm.button_name) +
+                          " "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm._m(1)
+                ])
+              ])
+            ]
+          )
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h4", { staticClass: "modal-title" }, [_vm._v("Releasing Equipment")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      { staticClass: "btn btn-default", attrs: { "data-dismiss": "modal" } },
+      [_c("i", { staticClass: "flaticon-delete-1" }), _vm._v(" Discard")]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/project/assign-equipment/UpdateAssignEquipment.vue?vue&type=template&id=ba5f7a50&":
+/*!*************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/project/assign-equipment/UpdateAssignEquipment.vue?vue&type=template&id=ba5f7a50& ***!
+  \*************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "modal animated rotateInDownLeft custo-rotateInDownLeft",
+      attrs: {
+        id: "aissignEquipmentUpdate",
+        tabindex: "-1",
+        role: "dialog",
+        "aria-labelledby": "addContactModalTitle",
+        "aria-hidden": "true"
+      }
+    },
+    [
+      _c(
+        "div",
+        { staticClass: "modal-dialog modal-xl", attrs: { role: "document" } },
+        [
+          _c(
+            "form",
+            {
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.save()
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "modal-content" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("i", {
+                    staticClass: "flaticon-cancel-12 close",
+                    attrs: { "data-dismiss": "modal" }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "add-contact-box" }, [
+                    _c(
+                      "div",
+                      { staticClass: "add-contact-content text-left" },
+                      [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-email" }, [
+                              _c("i", { staticClass: "flaticon-mail-26" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Project")]),
+                              _vm._v(" "),
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.equipment.project,
+                                      expression: "equipment.project"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        _vm.equipment,
+                                        "project",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("option", { attrs: { value: "" } }, [
+                                    _vm._v("Chose Project")
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm._l(_vm.projects, function(pr) {
+                                    return _c(
+                                      "option",
+                                      {
+                                        key: pr.id,
+                                        domProps: { value: pr.id }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                                " +
+                                            _vm._s(pr.project_name) +
+                                            "\n                                            "
+                                        )
+                                      ]
+                                    )
+                                  })
+                                ],
+                                2
+                              ),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty("project")
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\n                                            " +
+                                        _vm._s(
+                                          _vm.validation_error.project[0]
+                                        ) +
+                                        "\n                                           "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-email" }, [
+                              _c("i", { staticClass: "flaticon-mail-26" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Equipment Type")]),
+                              _vm._v(" "),
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.equipment.equipment_type,
+                                      expression: "equipment.equipment_type"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        _vm.equipment,
+                                        "equipment_type",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("option", { attrs: { value: "" } }, [
+                                    _vm._v("Chose a Equipment Type")
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm._l(_vm.equipment_types, function(
+                                    eq_type
+                                  ) {
+                                    return _c(
+                                      "option",
+                                      {
+                                        key: eq_type.id,
+                                        domProps: { value: eq_type.id }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                                " +
+                                            _vm._s(eq_type.name) +
+                                            "\n                                            "
+                                        )
+                                      ]
+                                    )
+                                  })
+                                ],
+                                2
+                              ),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "equipment_type"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\n                                            " +
+                                        _vm._s(
+                                          _vm.validation_error.equipment_type[0]
+                                        ) +
+                                        "\n                                           "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-email" }, [
+                              _c("i", { staticClass: "flaticon-mail-26" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Select Vendor")]),
+                              _vm._v(" "),
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.equipment.vendor,
+                                      expression: "equipment.vendor"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  on: {
+                                    change: [
+                                      function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          _vm.equipment,
+                                          "vendor",
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      },
+                                      function($event) {
+                                        return _vm.getVendorEquipments()
+                                      }
+                                    ]
+                                  }
+                                },
+                                [
+                                  _c("option", { attrs: { value: "" } }, [
+                                    _vm._v("Chose a vendor")
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm._l(_vm.vendors, function(vendor) {
+                                    return _c(
+                                      "option",
+                                      {
+                                        key: vendor.id,
+                                        domProps: { value: vendor.id }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                                " +
+                                            _vm._s(vendor.vendor_name) +
+                                            "\n                                            "
+                                        )
+                                      ]
+                                    )
+                                  })
+                                ],
+                                2
+                              ),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty("vendor")
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\n                                            " +
+                                        _vm._s(_vm.validation_error.vendor[0]) +
+                                        "\n                                           "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-email" }, [
+                              _c("i", { staticClass: "flaticon-mail-26" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Select Equipment")]),
+                              _vm._v(" "),
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.equipment.equipment,
+                                      expression: "equipment.equipment"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        _vm.equipment,
+                                        "equipment",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("option", { attrs: { value: "" } }, [
+                                    _vm._v("Chose a Equipment")
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm._l(_vm.equipments, function(equipment) {
+                                    return _c(
+                                      "option",
+                                      {
+                                        key: equipment.id,
+                                        domProps: { value: equipment.id }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                                " +
+                                            _vm._s(equipment.eq_name) +
+                                            "\n                                            "
+                                        )
+                                      ]
+                                    )
+                                  })
+                                ],
+                                2
+                              ),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty("equipment")
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\n                                            " +
+                                        _vm._s(
+                                          _vm.validation_error.equipment[0]
+                                        ) +
+                                        "\n                                           "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-email" }, [
+                              _c("i", { staticClass: "flaticon-mail-26" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Operator")]),
+                              _vm._v(" "),
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.equipment.operator,
+                                      expression: "equipment.operator"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        _vm.equipment,
+                                        "operator",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("option", { attrs: { value: "" } }, [
+                                    _vm._v("Chose a Operator")
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm._l(_vm.operators, function(operator) {
+                                    return _c(
+                                      "option",
+                                      {
+                                        key: operator.id,
+                                        domProps: { value: operator.id }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                                " +
+                                            _vm._s(operator.operator_name) +
+                                            "\n                                            "
+                                        )
+                                      ]
+                                    )
+                                  })
+                                ],
+                                2
+                              ),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty("operator")
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\n                                            " +
+                                        _vm._s(
+                                          _vm.validation_error.operator[0]
+                                        ) +
+                                        "\n                                           "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Total Hour")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.equipment.total_hour,
+                                    expression: "equipment.total_hour"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "c-name",
+                                  placeholder: "Total Hour"
+                                },
+                                domProps: { value: _vm.equipment.total_hour },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.equipment,
+                                      "total_hour",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty("total_hour")
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\n                                            " +
+                                        _vm._s(
+                                          _vm.validation_error.total_hour[0]
+                                        ) +
+                                        "\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c("span", [
+                                _vm._v("Total Contact Amount With Project")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.equipment.total_project_amount,
+                                    expression: "equipment.total_project_amount"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "c-name",
+                                  placeholder:
+                                    "Total Contact Amount With Project"
+                                },
+                                domProps: {
+                                  value: _vm.equipment.total_project_amount
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.equipment,
+                                      "total_project_amount",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "total_project_amount"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\n                                            " +
+                                        _vm._s(
+                                          _vm.validation_error
+                                            .total_project_amount[0]
+                                        ) +
+                                        "\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c("span", [
+                                _vm._v("Total Contact Amount With Vendor")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.equipment.total_vendor_amount,
+                                    expression: "equipment.total_vendor_amount"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "c-name",
+                                  placeholder:
+                                    "Total Contact Amount With Vendor"
+                                },
+                                domProps: {
+                                  value: _vm.equipment.total_vendor_amount
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.equipment,
+                                      "total_vendor_amount",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "total_vendor_amount"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\n                                            " +
+                                        _vm._s(
+                                          _vm.validation_error
+                                            .total_vendor_amount[0]
+                                        ) +
+                                        "\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Project Rate Per Hour")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "c-name",
+                                  placeholder: "Project Rate Per Hour",
+                                  readonly: ""
+                                },
+                                domProps: {
+                                  value: (_vm.equipment.project_rate_per_hour =
+                                    (_vm.equipment.total_project_amount /
+                                      _vm.equipment.total_hour) |
+                                    _vm.formatPrice)
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "project_rate_per_hour"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\n                                            " +
+                                        _vm._s(
+                                          _vm.validation_error
+                                            .project_rate_per_hour[0]
+                                        ) +
+                                        "\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Vendor Rate Per Hour")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "c-name",
+                                  placeholder: "Vendor Rate Per Hour",
+                                  readonly: ""
+                                },
+                                domProps: {
+                                  value: (_vm.equipment.vendor_rate_per_hour =
+                                    (_vm.equipment.total_vendor_amount /
+                                      _vm.equipment.total_hour) |
+                                    _vm.formatPrice)
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "vendor_rate_per_hour"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\n                                            " +
+                                        _vm._s(
+                                          _vm.validation_error
+                                            .vendor_rate_per_hour[0]
+                                        ) +
+                                        "\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Assign Date")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.equipment.assign_date,
+                                    expression: "equipment.assign_date"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "basicFlatpickr4",
+                                  placeholder: "Assign Date"
+                                },
+                                domProps: { value: _vm.equipment.assign_date },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.equipment,
+                                      "assign_date",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty("assign_date")
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\n                                            " +
+                                        _vm._s(
+                                          _vm.validation_error.assign_date[0]
+                                        ) +
+                                        "\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-12" }, [
+                            _c("div", { staticClass: "contact-location" }, [
+                              _c("i", { staticClass: "flaticon-location-1" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Documnet links if any")]),
+                              _vm._v(" "),
+                              _c("textarea", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.equipment.document_links,
+                                    expression: "equipment.document_links"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  placeholder: "Paste Documents link here"
+                                },
+                                domProps: {
+                                  value: _vm.equipment.document_links
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.equipment,
+                                      "document_links",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          ])
+                        ])
+                      ]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary ",
+                      attrs: { type: "submit" }
+                    },
+                    [
+                      _vm.button_name != "Update"
+                        ? _c(
+                            "div",
+                            {
+                              staticClass:
+                                "spinner-grow text-white mr-2 align-self-center loader-sm"
+                            },
+                            [_vm._v(".")]
+                          )
+                        : _vm._e(),
+                      _vm._v(
+                        "\n                     " +
+                          _vm._s(_vm.button_name) +
+                          " "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm._m(1)
+                ])
+              ])
+            ]
+          )
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h4", { staticClass: "modal-title" }, [
+        _vm._v("Update Assigned Equipment")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      { staticClass: "btn btn-default", attrs: { "data-dismiss": "modal" } },
+      [_c("i", { staticClass: "flaticon-delete-1" }), _vm._v(" Discard")]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/project/assign-equipment/ViewAssignDetails.vue?vue&type=template&id=40cdc3a0&":
+/*!*********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/project/assign-equipment/ViewAssignDetails.vue?vue&type=template&id=40cdc3a0& ***!
+  \*********************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "modal animated rotateInDownLeft custo-rotateInDownLeft",
+      attrs: {
+        id: "viewAssign",
+        tabindex: "-1",
+        role: "dialog",
+        "aria-labelledby": "addContactModalTitle",
+        "aria-hidden": "true"
+      }
+    },
+    [
+      _c(
+        "div",
+        { staticClass: "modal-dialog modal-xl", attrs: { role: "document" } },
+        [
+          _vm.equipment
+            ? _c("div", { staticClass: "modal-content" }, [
+                _c("div", { staticClass: "modal-header" }, [
+                  _c("h4", { staticClass: "modal-title" }, [
+                    _vm._v(
+                      "Details About Assigned Equipment " +
+                        _vm._s(_vm.equipment.equipement.eq_name)
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("i", {
+                    staticClass: "flaticon-cancel-12 close",
+                    attrs: { "data-dismiss": "modal" }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "add-contact-box" }, [
+                    _c(
+                      "div",
+                      { staticClass: "add-contact-content text-left" },
+                      [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-12" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "note-container note-grid",
+                                attrs: { id: "ct" }
+                              },
+                              [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "note-item all-notes note-personal"
+                                  },
+                                  [
+                                    _c(
+                                      "div",
+                                      { staticClass: "note-inner-content" },
+                                      [
+                                        _c(
+                                          "div",
+                                          { staticClass: "note-content" },
+                                          [
+                                            _vm._m(0),
+                                            _vm._v(" "),
+                                            _c("hr"),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "note-description-content"
+                                              },
+                                              [
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "note-description",
+                                                    attrs: {
+                                                      "data-notedescription":
+                                                        "project"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("strong", [
+                                                      _vm._v("Project Name:")
+                                                    ]),
+                                                    _vm._v(
+                                                      " " +
+                                                        _vm._s(
+                                                          _vm.equipment.project
+                                                            .project_name
+                                                        ) +
+                                                        "."
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "note-description",
+                                                    attrs: {
+                                                      "data-notedescription":
+                                                        "project"
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                 Project location: " +
+                                                        _vm._s(
+                                                          _vm.equipment.project
+                                                            .project_location
+                                                        ) +
+                                                        "."
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "note-description",
+                                                    attrs: {
+                                                      "data-notedescription":
+                                                        "Agreement"
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                 Project Agreement With: " +
+                                                        _vm._s(
+                                                          _vm.equipment.project
+                                                            .project_argument_with
+                                                        ) +
+                                                        "."
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "note-item all-notes note-social"
+                                  },
+                                  [
+                                    _c(
+                                      "div",
+                                      { staticClass: "note-inner-content" },
+                                      [
+                                        _c(
+                                          "div",
+                                          { staticClass: "note-content" },
+                                          [
+                                            _vm._m(1),
+                                            _vm._v(" "),
+                                            _c("hr"),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "note-description-content"
+                                              },
+                                              [
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "note-description",
+                                                    attrs: {
+                                                      "data-notedescription":
+                                                        "Vendor"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("strong", [
+                                                      _vm._v("Vendor Name:")
+                                                    ]),
+                                                    _vm._v(
+                                                      " " +
+                                                        _vm._s(
+                                                          _vm.equipment.vendor
+                                                            .vendor_name
+                                                        ) +
+                                                        "."
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "note-description",
+                                                    attrs: {
+                                                      "data-notedescription":
+                                                        "Equipment"
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                 Equipment Type: " +
+                                                        _vm._s(
+                                                          _vm.equipment
+                                                            .equipment_type.name
+                                                        ) +
+                                                        "."
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "note-description",
+                                                    attrs: {
+                                                      "data-notedescription":
+                                                        "Equipment"
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                 Equipment: " +
+                                                        _vm._s(
+                                                          _vm.equipment
+                                                            .equipement.eq_name
+                                                        ) +
+                                                        "."
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "note-description",
+                                                    attrs: {
+                                                      "data-notedescription":
+                                                        "Equipment"
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                 Equipment Model: " +
+                                                        _vm._s(
+                                                          _vm.equipment
+                                                            .equipement.eq_model
+                                                        ) +
+                                                        "."
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "note-description",
+                                                    attrs: {
+                                                      "data-notedescription":
+                                                        "Operator"
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                 Operator: " +
+                                                        _vm._s(
+                                                          _vm.equipment.operator
+                                                            .name
+                                                        ) +
+                                                        "."
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "note-item all-notes note-important"
+                                  },
+                                  [
+                                    _c(
+                                      "div",
+                                      { staticClass: "note-inner-content" },
+                                      [
+                                        _c(
+                                          "div",
+                                          { staticClass: "note-content" },
+                                          [
+                                            _vm._m(2),
+                                            _vm._v(" "),
+                                            _c("hr"),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "note-description-content"
+                                              },
+                                              [
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "note-description",
+                                                    attrs: {
+                                                      "data-notedescription":
+                                                        "Vendor"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("strong", [
+                                                      _vm._v(
+                                                        "Total Contact Hour:"
+                                                      )
+                                                    ]),
+                                                    _vm._v(
+                                                      " " +
+                                                        _vm._s(
+                                                          _vm.equipment
+                                                            .total_hour
+                                                        ) +
+                                                        "."
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "note-description",
+                                                    attrs: {
+                                                      "data-notedescription":
+                                                        "Project Amount"
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                 Project Amount: " +
+                                                        _vm._s(
+                                                          _vm.equipment
+                                                            .total_project_amount
+                                                        ) +
+                                                        " (Hourly " +
+                                                        _vm._s(
+                                                          _vm.equipment
+                                                            .project_rate_per_hour
+                                                        ) +
+                                                        ")."
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "note-description",
+                                                    attrs: {
+                                                      "data-notedescription":
+                                                        "Vendor Amount"
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                 Vendor Amount: " +
+                                                        _vm._s(
+                                                          _vm.equipment
+                                                            .total_vendor_amount
+                                                        ) +
+                                                        " (Hourly " +
+                                                        _vm._s(
+                                                          _vm.equipment
+                                                            .vendor_rate_per_hour
+                                                        ) +
+                                                        ")."
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "note-item all-notes note-work"
+                                  },
+                                  [
+                                    _c(
+                                      "div",
+                                      { staticClass: "note-inner-content" },
+                                      [
+                                        _c(
+                                          "div",
+                                          { staticClass: "note-content" },
+                                          [
+                                            _vm._m(3),
+                                            _vm._v(" "),
+                                            _c("hr"),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "note-description-content"
+                                              },
+                                              [
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "note-description",
+                                                    attrs: {
+                                                      "data-notedescription":
+                                                        "Vendor"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("strong", [
+                                                      _vm._v("Assigned Date:")
+                                                    ]),
+                                                    _vm._v(
+                                                      " " +
+                                                        _vm._s(
+                                                          _vm._f(
+                                                            "dateToString"
+                                                          )(
+                                                            _vm.equipment
+                                                              .assign_date
+                                                          )
+                                                        ) +
+                                                        " Entry By \n                                                 " +
+                                                        _vm._s(
+                                                          _vm.equipment.user
+                                                            .name
+                                                        ) +
+                                                        "."
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _vm.equipment.release_status ==
+                                                1
+                                                  ? _c(
+                                                      "p",
+                                                      {
+                                                        staticClass:
+                                                          "note-description"
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "\n                                                   Status : currently Active at project\n                                                 "
+                                                        )
+                                                      ]
+                                                    )
+                                                  : _c(
+                                                      "p",
+                                                      {
+                                                        staticClass:
+                                                          "note-description"
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "\n                                                   Released at  " +
+                                                            _vm._s(
+                                                              _vm._f(
+                                                                "dateToString"
+                                                              )(
+                                                                _vm.equipment
+                                                                  .release_date
+                                                              )
+                                                            ) +
+                                                            " "
+                                                        ),
+                                                        _c("br"),
+                                                        _vm._v(
+                                                          "\n                                                   Reason : " +
+                                                            _vm._s(
+                                                              _vm.equipment
+                                                                .release_note
+                                                            ) +
+                                                            "\n                                                 "
+                                                        )
+                                                      ]
+                                                    )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "note-item all-notes" },
+                                  [
+                                    _c(
+                                      "div",
+                                      { staticClass: "note-inner-content" },
+                                      [
+                                        _c(
+                                          "div",
+                                          { staticClass: "note-content" },
+                                          [
+                                            _vm._m(4),
+                                            _vm._v(" "),
+                                            _c("hr"),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "note-description-content"
+                                              },
+                                              [
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "note-description",
+                                                    attrs: {
+                                                      "data-notedescription":
+                                                        "Vendor"
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                 " +
+                                                        _vm._s(
+                                                          _vm.equipment
+                                                            .documents_link
+                                                        ) +
+                                                        "\n                                                 "
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ])
+                        ])
+                      ]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(5)
+              ])
+            : _vm._e()
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "p",
+      { staticClass: "note-title", attrs: { "data-notetitle": "Project" } },
+      [_c("i", { staticClass: "fa fa-compass" }), _vm._v(" Project")]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "p",
+      { staticClass: "note-title", attrs: { "data-notetitle": "Project" } },
+      [_c("i", { staticClass: "fa fa-truck" }), _vm._v(" Equipment ")]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "p",
+      { staticClass: "note-title", attrs: { "data-notetitle": "Project" } },
+      [_c("i", { staticClass: "fa fa-dollar" }), _vm._v(" Hour and Pricing ")]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "p",
+      { staticClass: "note-title", attrs: { "data-notetitle": "Project" } },
+      [_c("i", { staticClass: "fa fa-clock" }), _vm._v(" Date and Status ")]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "p",
+      { staticClass: "note-title", attrs: { "data-notetitle": "Project" } },
+      [_c("i", { staticClass: "fa fa-file-alt" }), _vm._v(" Document Links ")]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-default", attrs: { "data-dismiss": "modal" } },
+        [_c("i", { staticClass: "flaticon-delete-1" }), _vm._v(" Close")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/project/assign-equipment/ViewAssignedEquipment.vue?vue&type=template&id=47c6d386&":
 /*!*************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/project/assign-equipment/ViewAssignedEquipment.vue?vue&type=template&id=47c6d386& ***!
@@ -10320,8 +13099,6 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(value.vendor_rate_per_hour))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(value.assign_date))]),
-                        _vm._v(" "),
                         _c("td", { staticClass: "text-center" }, [
                           value.release_status == 1
                             ? _c("span", { staticClass: "text-success" }, [
@@ -10329,38 +13106,92 @@ var render = function() {
                               ])
                             : _c("span", { staticClass: "text-danger" }, [
                                 _vm._v(
-                                  "Released at " + _vm._s(value.release_date)
+                                  "Released at " +
+                                    _vm._s(
+                                      _vm._f("dateToString")(value.release_date)
+                                    )
                                 )
                               ])
                         ]),
                         _vm._v(" "),
                         _c("td", { staticClass: "text-center" }, [
                           _c(
-                            "button",
-                            {
-                              staticClass:
-                                "btn btn-dark mb-2 mr-2 rounded-circle",
-                              on: {
-                                click: function($event) {
-                                  return _vm.edit(value)
-                                }
-                              }
-                            },
-                            [_c("i", { staticClass: "far fa-edit" })]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass:
-                                "btn btn-danger mb-2 mr-2 rounded-circle",
-                              on: {
-                                click: function($event) {
-                                  return _vm.deleteEquipment(value.id)
-                                }
-                              }
-                            },
-                            [_c("i", { staticClass: "far fa-trash-alt" })]
+                            "div",
+                            { staticClass: "dropdown custom-dropdown" },
+                            [
+                              _vm._m(1, true),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "dropdown-menu",
+                                  attrs: {
+                                    "aria-labelledby": "dropdownMenuLink2"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "dropdown-item",
+                                      attrs: { href: "" },
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          return _vm.viewMore(value.id)
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("View More")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "dropdown-item",
+                                      attrs: { href: "" },
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          return _vm.releaseEquipment(value)
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Release")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "dropdown-item",
+                                      attrs: { href: "" },
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          return _vm.edit(value.id)
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Edit")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "dropdown-item",
+                                      attrs: { href: "" },
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          return _vm.deleteEquipment(value.id)
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Delete")]
+                                  )
+                                ]
+                              )
+                            ]
                           )
                         ])
                       ])
@@ -10392,8 +13223,13 @@ var render = function() {
         [
           _c("pagination", { attrs: { pageData: _vm.assign_equipments } }),
           _vm._v(" "),
+          _c("release-equipment"),
+          _vm._v(" "),
+          _c("view-assign-details"),
+          _vm._v(" "),
           _c("edit-assign-equipment", {
             attrs: {
+              projects: _vm.projects,
               vendors: _vm.vendors,
               equipment_types: _vm.equipment_types
             }
@@ -10429,13 +13265,31 @@ var staticRenderFns = [
           _vm._v("Vendor R/H")
         ]),
         _vm._v(" "),
-        _c("th", [_vm._v("Assign Date")]),
-        _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [_vm._v("Status")]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [_vm._v("action")])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "dropdown-toggle",
+        attrs: {
+          href: "#",
+          role: "button",
+          id: "dropdownMenuLink2",
+          "data-toggle": "dropdown",
+          "aria-haspopup": "true",
+          "aria-expanded": "false"
+        }
+      },
+      [_c("i", { staticClass: "fa fa-cogs fa-2x" })]
+    )
   }
 ]
 render._withStripped = true
@@ -22936,6 +25790,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/project/assign-equipment/ReleaseEquipment.vue":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/project/assign-equipment/ReleaseEquipment.vue ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ReleaseEquipment_vue_vue_type_template_id_45c9cc35___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ReleaseEquipment.vue?vue&type=template&id=45c9cc35& */ "./resources/js/components/project/assign-equipment/ReleaseEquipment.vue?vue&type=template&id=45c9cc35&");
+/* harmony import */ var _ReleaseEquipment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ReleaseEquipment.vue?vue&type=script&lang=js& */ "./resources/js/components/project/assign-equipment/ReleaseEquipment.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ReleaseEquipment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ReleaseEquipment_vue_vue_type_template_id_45c9cc35___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ReleaseEquipment_vue_vue_type_template_id_45c9cc35___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/project/assign-equipment/ReleaseEquipment.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/project/assign-equipment/ReleaseEquipment.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/components/project/assign-equipment/ReleaseEquipment.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ReleaseEquipment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ReleaseEquipment.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/project/assign-equipment/ReleaseEquipment.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ReleaseEquipment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/project/assign-equipment/ReleaseEquipment.vue?vue&type=template&id=45c9cc35&":
+/*!**************************************************************************************************************!*\
+  !*** ./resources/js/components/project/assign-equipment/ReleaseEquipment.vue?vue&type=template&id=45c9cc35& ***!
+  \**************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ReleaseEquipment_vue_vue_type_template_id_45c9cc35___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ReleaseEquipment.vue?vue&type=template&id=45c9cc35& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/project/assign-equipment/ReleaseEquipment.vue?vue&type=template&id=45c9cc35&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ReleaseEquipment_vue_vue_type_template_id_45c9cc35___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ReleaseEquipment_vue_vue_type_template_id_45c9cc35___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/project/assign-equipment/UpdateAssignEquipment.vue":
 /*!************************************************************************************!*\
   !*** ./resources/js/components/project/assign-equipment/UpdateAssignEquipment.vue ***!
@@ -22945,17 +25868,20 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-var render, staticRenderFns
-var script = {}
+/* harmony import */ var _UpdateAssignEquipment_vue_vue_type_template_id_ba5f7a50___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UpdateAssignEquipment.vue?vue&type=template&id=ba5f7a50& */ "./resources/js/components/project/assign-equipment/UpdateAssignEquipment.vue?vue&type=template&id=ba5f7a50&");
+/* harmony import */ var _UpdateAssignEquipment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UpdateAssignEquipment.vue?vue&type=script&lang=js& */ "./resources/js/components/project/assign-equipment/UpdateAssignEquipment.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
-  script,
-  render,
-  staticRenderFns,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _UpdateAssignEquipment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _UpdateAssignEquipment_vue_vue_type_template_id_ba5f7a50___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _UpdateAssignEquipment_vue_vue_type_template_id_ba5f7a50___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -22963,8 +25889,111 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   
 )
 
+/* hot reload */
+if (false) { var api; }
 component.options.__file = "resources/js/components/project/assign-equipment/UpdateAssignEquipment.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/project/assign-equipment/UpdateAssignEquipment.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************!*\
+  !*** ./resources/js/components/project/assign-equipment/UpdateAssignEquipment.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateAssignEquipment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./UpdateAssignEquipment.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/project/assign-equipment/UpdateAssignEquipment.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateAssignEquipment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/project/assign-equipment/UpdateAssignEquipment.vue?vue&type=template&id=ba5f7a50&":
+/*!*******************************************************************************************************************!*\
+  !*** ./resources/js/components/project/assign-equipment/UpdateAssignEquipment.vue?vue&type=template&id=ba5f7a50& ***!
+  \*******************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateAssignEquipment_vue_vue_type_template_id_ba5f7a50___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./UpdateAssignEquipment.vue?vue&type=template&id=ba5f7a50& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/project/assign-equipment/UpdateAssignEquipment.vue?vue&type=template&id=ba5f7a50&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateAssignEquipment_vue_vue_type_template_id_ba5f7a50___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateAssignEquipment_vue_vue_type_template_id_ba5f7a50___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/project/assign-equipment/ViewAssignDetails.vue":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/project/assign-equipment/ViewAssignDetails.vue ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ViewAssignDetails_vue_vue_type_template_id_40cdc3a0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ViewAssignDetails.vue?vue&type=template&id=40cdc3a0& */ "./resources/js/components/project/assign-equipment/ViewAssignDetails.vue?vue&type=template&id=40cdc3a0&");
+/* harmony import */ var _ViewAssignDetails_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ViewAssignDetails.vue?vue&type=script&lang=js& */ "./resources/js/components/project/assign-equipment/ViewAssignDetails.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ViewAssignDetails_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ViewAssignDetails_vue_vue_type_template_id_40cdc3a0___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ViewAssignDetails_vue_vue_type_template_id_40cdc3a0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/project/assign-equipment/ViewAssignDetails.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/project/assign-equipment/ViewAssignDetails.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************!*\
+  !*** ./resources/js/components/project/assign-equipment/ViewAssignDetails.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewAssignDetails_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ViewAssignDetails.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/project/assign-equipment/ViewAssignDetails.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewAssignDetails_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/project/assign-equipment/ViewAssignDetails.vue?vue&type=template&id=40cdc3a0&":
+/*!***************************************************************************************************************!*\
+  !*** ./resources/js/components/project/assign-equipment/ViewAssignDetails.vue?vue&type=template&id=40cdc3a0& ***!
+  \***************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewAssignDetails_vue_vue_type_template_id_40cdc3a0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ViewAssignDetails.vue?vue&type=template&id=40cdc3a0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/project/assign-equipment/ViewAssignDetails.vue?vue&type=template&id=40cdc3a0&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewAssignDetails_vue_vue_type_template_id_40cdc3a0___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewAssignDetails_vue_vue_type_template_id_40cdc3a0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 

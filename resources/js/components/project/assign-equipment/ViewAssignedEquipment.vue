@@ -48,7 +48,7 @@
                 <th title="Project Rate Per Hour">Project R/H</th>
                 <th>Vendor Amount</th>
                 <th title="Vendor Rate Per Hour">Vendor R/H</th>
-                <th>Assign Date</th>
+
                 <th class="text-center">Status</th>
                 <th class="text-center">action</th>
               </tr>
@@ -67,19 +67,26 @@
                 <td>{{ value.project_rate_per_hour }}</td>
                 <td>{{ value.total_vendor_amount }}</td>
                 <td>{{ value.vendor_rate_per_hour }}</td>
-                <td>{{ value.assign_date }}</td>
+
                 <!-- <td>{{ value.note }}</td> -->
                 <td class="text-center">
                   <span class="text-success" v-if="value.release_status == 1">Active</span>
-                  <span class="text-danger" v-else>Released at {{ value.release_date }}</span>
+                  <span class="text-danger" v-else>Released at {{ value.release_date | dateToString }}</span>
                 </td>
                 <td class="text-center">
-                  <button @click="edit(value)" class="btn btn-dark mb-2 mr-2 rounded-circle">
-                    <i class="far fa-edit"></i>
-                  </button>
-                  <button @click="deleteEquipment(value.id)" class="btn btn-danger mb-2 mr-2 rounded-circle">
-                    <i class="far fa-trash-alt"></i>
-                  </button>
+                    <div class="dropdown custom-dropdown">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-cogs fa-2x"></i>
+                            
+                        </a>
+
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
+                            <a class="dropdown-item" href="" @click.prevent="viewMore(value.id)">View More</a>
+                            <a class="dropdown-item" href=""  @click.prevent="releaseEquipment(value)" >Release</a>
+                            <a class="dropdown-item" href="" @click.prevent="edit(value.id)">Edit</a>
+                            <a class="dropdown-item" href="" @click.prevent="deleteEquipment(value.id)">Delete</a>
+                     </div>
+                    </div>
                 </td>
               </tr>
             </tbody>
@@ -96,7 +103,9 @@
       <div class="col-md-12 text-center mb-10 mt-10">
         <!-- import pagination here  -->
         <pagination :pageData="assign_equipments"></pagination>
-        <edit-assign-equipment :vendors="vendors" :equipment_types="equipment_types"></edit-assign-equipment>
+        <release-equipment ></release-equipment>
+        <view-assign-details ></view-assign-details>
+        <edit-assign-equipment :projects="projects" :vendors="vendors" :equipment_types="equipment_types"></edit-assign-equipment>
       </div>
     </div>
   </div>
@@ -108,12 +117,16 @@ import { EventBus } from "../../../vue-assets";
 import Mixin from "../../../mixin";
 import Pagination from "../../pagination/Pagination";
 import UpdateAssignEquipment from "./UpdateAssignEquipment";
+import ReleaseEquipment from "./ReleaseEquipment";
+import ViewAssignDetails from "./ViewAssignDetails";
 export default {
   mixins: [Mixin],
   props: ["vendors",'equipment_types','projects'],
   components: {
     'pagination': Pagination,
-    'edit-assign-equipment': UpdateAssignEquipment
+    'edit-assign-equipment': UpdateAssignEquipment,
+    'release-equipment': ReleaseEquipment,
+    'view-assign-details': ViewAssignDetails,
   },
   data() {
     return {
@@ -153,8 +166,19 @@ export default {
         });
     },
 
-    edit(equipment) {
-      EventBus.$emit("edit-equipment", equipment);
+    edit(id) {
+      EventBus.$emit("edit-assigned-equipment", id);
+    },
+
+    viewMore(id) 
+    {
+    EventBus.$emit('assign-details',id);
+    },
+
+    releaseEquipment(equipment)
+    {
+       EventBus.$emit('release-equipment',equipment);
+       
     },
 
      deleteEquipment(id){
@@ -170,7 +194,7 @@ export default {
 
         }).then((result) => {
            if(result.value){
-           axios.delete(`${base_url}equipment/${id}`)
+           axios.delete(`${base_url}assign-equipment/${id}`)
            .then(response => {
               this.successMessage(response.data);
               this.getEquipment();

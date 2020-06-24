@@ -67,32 +67,75 @@
                         </ul>
                     </li>
 
-                    <!-- equipment menu  -->
 
-                   <li class="menu">
-                        <a href="{{ route('assign-equipment.index') }}" aria-expanded="false"
-                         data-active="@if(Route::is('assign-equipment.index')){{ 'true' }}@else{{ 'false' }}@endif" class="dropdown-toggle">
+                <!-- Project Menu  -->
+
+                    <li class="menu">
+                        <a href="#project" data-toggle="collapse"
+                         aria-expanded="false"  class="dropdown-toggle">
                             <div class="">
-                            <svg xmlns="http://www.w3.org/2000/svg" 
-                            width="24" height="24" 
-                            viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="2" 
-                             stroke-linecap="round" stroke-linejoin="round"
-                              class="feather feather-home">
-                              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                              <polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                                <span>Assign Equipment</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign">
+                                <line x1="12" y1="1" x2="12" y2="23">
+                                </line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6">
+                                </path></svg>
+                                <span>Project</span>
+                            </div>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" 
+                                width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" 
+                                 stroke-width="2" stroke-linecap="round"
+                                  stroke-linejoin="round" class="feather feather-chevron-right">
+                                  <polyline points="9 18 15 12 9 6"></polyline>
+                                  </svg>
                             </div>
                         </a>
+                        <ul class="collapse submenu list-unstyled"
+                         id="project" data-parent="#accordionExample">
+                            <li class="@if(Route::is('project.index')){{ 'active' }}@else{{ '' }}@endif">
+                                <a href="{{ route('project.index') }}" > Manage Project </a>
+                            </li>
+                            <li  class="@if(Route::is('assign-equipment.index')){{ 'active' }}@else{{ '' }}@endif">
+                                <a href="{{ route('assign-equipment.index') }}"> Assign Equipment </a>
+                            </li>
+                        </ul>
                     </li>
 
-                    <li class="menu @if(Route::is('project.index')) active active_url @endif">
-                        <a href="{{ route('project.index') }}" data-active="@if(Route::is('project.index')){{ 'true' }}@else{{ 'false' }}@endif" class="dropdown-toggle">
+                <!-- bill and payment menu  -->
+
+                    <li class="menu">
+                        <a href="#claim" data-toggle="collapse"
+                         aria-expanded="false"  class="dropdown-toggle">
                             <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pie-chart"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
-                              <span>Project</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign">
+                                <line x1="12" y1="1" x2="12" y2="23">
+                                </line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6">
+                                </path></svg>
+                                <span>Bill & Payments</span>
+                            </div>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" 
+                                width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" 
+                                 stroke-width="2" stroke-linecap="round"
+                                  stroke-linejoin="round" class="feather feather-chevron-right">
+                                  <polyline points="9 18 15 12 9 6"></polyline>
+                                  </svg>
                             </div>
                         </a>
+                        <ul class="collapse submenu list-unstyled"
+                         id="claim" data-parent="#accordionExample">
+                            <li class="@if(Route::is('equipment-type.index')){{ 'active' }}@else{{ '' }}@endif">
+                                <a href="{{ route('equipment-type.index') }}" > Bill </a>
+                            </li>
+                            <li  class="@if(Route::is('equipment.index')){{ 'active' }}@else{{ '' }}@endif">
+                                <a href="{{ route('equipment.index') }}"> Manage and Payment </a>
+                            </li>
+                        </ul>
                     </li>
 
                     <!-- expense Head  -->
