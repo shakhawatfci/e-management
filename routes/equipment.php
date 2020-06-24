@@ -15,7 +15,3 @@ Route::get('equipment-list','Equipment\EquipmentController@equipmentList');
 
 Route::resource('assign-equipment','Equipment\EquipmentAssignController');
 Route::resource('assigned-equipment-list','Equipment\EquipmenAssignController@equipmentList');
-
-
-Route::resource('expense-equipment','ExpenseHeads\EquipmentExpenseController');
-Route::get('equipmenthead-list','ExpenseHeads\EquipmentExpenseController@EquipmentHeadList');

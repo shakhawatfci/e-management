@@ -4,7 +4,7 @@
       <div class="col-md-3" style="margin-bottom:10px;">
         <input type="text" v-model="keyword" 
         class="form-control"
-         placeholder="Search Supplier" @keyup="getEquipmentExpenseHead()" />
+         placeholder="Search Equipment Head" @keyup="getEquipmentExpenseHead()" />
       </div>
     </div>
     
@@ -60,7 +60,7 @@
 import { EventBus } from "../../../vue-assets";
 import Mixin from "../../../mixin";
 import Pagination from '../../pagination/Pagination';
-import EquipmentheadUpdate from './UpdateEquipmentHead';
+import EquipmentheadUpdate from './UpdateEquipmentExpenseHead';
 export default {
   mixins: [Mixin],
   components : {
@@ -103,7 +103,7 @@ export default {
 
      editEquipmentHead(value)
      {
-        EventBus.$emit('EquipmentExpenseHead-update',value)
+        EventBus.$emit('equipmentExpenseHead-update',value)
      },
 
      deleteEquipmentHead(id)
@@ -120,7 +120,7 @@ export default {
 
         }).then((result) => {
            if(result.value){
-           axios.delete(`${base_url}expense-equipment/${id}`)
+           axios.delete(`${base_url}equipment-expense-head/${id}`)
            .then(response => {
               this.successMessage(response.data);
               this.getEquipmentExpenseHead();

@@ -1,8 +1,8 @@
 @extends('master.master')
-@section('title','EMS | Equipment Expense Heads')
+@section('title','EMS | Project Expense Heads')
 
 @section('page_header')
-<li class="breadcrumb-item"><a href="javascript:void(0);">Equipment Expense Heads</a></li>
+<li class="breadcrumb-item"><a href="javascript:void(0);">Project Expense Heads</a></li>
 <li class="breadcrumb-item active" aria-current="page"><span>Manage</span></li>
 @endsection
 @section('content')
@@ -13,21 +13,21 @@
 
                 <div class="row">
                     <div class="col-xl-4 col-lg-5 col-md-5 col-sm-7 filtered-list-search layout-spacing align-self-center">
-                      <h6 style="margin-top : 20px">Manage Equipment Expense Heads</h6>
+                      <h6 style="margin-top : 20px">Manage Project Expense Heads</h6>
                     </div>
 
                     <div class="col-xl-8 col-lg-7 col-md-7 col-sm-5 text-sm-right text-center layout-spacing align-self-center">
                         <div class="d-flex justify-content-sm-end justify-content-center">
-                            <button  data-toggle="modal"  data-target="#createEquipmentHead"
-                             class="btn btn-primary"  data-placement="top" title="Create Equipment Expense Head">
+                            <button  data-toggle="modal"  data-target="#createProjectHead"
+                             class="btn btn-primary"  data-placement="top" title="Create Project Expense Head">
                             <i class="far fa-plus-square"></i> Create New
                             </button>
                         </div>
-                        <create-equipmentexpenseheads></create-equipmentexpenseheads>
+                        <create-projectexpenseheads></create-projectexpenseheads>
                     </div>
                 </div>
 
-             <view-equipmentexpenseheads></view-equipmentexpenseheads>
+             <view-projectexpenseheads></view-projectexpenseheads>
 
             </div>
         </div>

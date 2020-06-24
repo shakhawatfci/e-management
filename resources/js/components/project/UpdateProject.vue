@@ -10,13 +10,14 @@
                 <div class="modal-body">
                     <i class="flaticon-cancel-12 close" data-dismiss="modal"></i>
                     <div class="add-contact-box">
-                        <div class="add-contact-content">
+                        <div class="add-contact-content text-left">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="contact-name">
                                         <i class="flaticon-user-11"></i>
+                                        <label for="up-project-name">Project Name</label>
                                         <input type="text"
-                                          class="form-control" v-model="projects.project_name">
+                                          class="form-control" id="up-project-name" v-model="projects.project_name">
                                         <span v-if="validation_error.hasOwnProperty('project_name')" class="text-danger">
                                                 {{ validation_error.project_name[0] }}
                                         </span>
@@ -25,8 +26,9 @@
                                 <div class="col-md-6">
                                     <div class="contact-name">
                                         <i class="flaticon-user-11"></i>
+                                        <label for="up-project-location">Project Location</label>
                                         <input type="text"
-                                        class="form-control" v-model="projects.project_location">
+                                        class="form-control" id="up-project-location" v-model="projects.project_location">
                                         <span v-if="validation_error.hasOwnProperty('project_location')" class="text-danger">
                                                 {{ validation_error.project_location[0] }}
                                         </span>
@@ -35,8 +37,9 @@
                                 <div class="col-md-6">
                                     <div class="contact-name">
                                         <i class="flaticon-user-11"></i>
+                                        <label for="up-contact-person">Project Contact Person</label>
                                         <input type="text"
-                                        class="form-control" v-model="projects.project_contact_person">
+                                        class="form-control" id="up-contact-person" v-model="projects.project_contact_person">
                                         <span v-if="validation_error.hasOwnProperty('project_contact_person')" class="text-danger">
                                                 {{ validation_error.project_contact_person[0] }}
                                         </span>
@@ -45,8 +48,9 @@
                                 <div class="col-md-6">
                                     <div class="contact-name">
                                         <i class="flaticon-user-11"></i>
+                                        <label for="up-argeement-with">Project Argeement with</label>
                                         <input type="text"
-                                        class="form-control" v-model="projects.project_argument_with">
+                                        class="form-control" id="up-argeement-with" v-model="projects.project_argument_with">
                                         <span v-if="validation_error.hasOwnProperty('project_argument_with')" class="text-danger">
                                                 {{ validation_error.project_argument_with[0] }}
                                         </span>
@@ -55,6 +59,7 @@
                                 <div class="col-md-6">
                                     <div class="contact-name">
                                         <i class="flaticon-user-11"></i>
+                                        <label for="upbasicFlatpickr">Select Project Agreement Date</label>
                                         <input id="upbasicFlatpickr" v-model="projects.project_argument_date" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Select Project Agreement Date">
                                         <span v-if="validation_error.hasOwnProperty('project_argument_date')" class="text-danger">
                                                 {{ validation_error.project_argument_date[0] }}
@@ -64,6 +69,7 @@
                                 <div class="col-md-6">
                                     <div class="contact-name">
                                         <i class="flaticon-user-11"></i>
+                                        <label for="upbasicFlatpickr1">Select Project Start Date</label>
                                         <input id="upbasicFlatpickr1" v-model="projects.project_start_date" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Select Project Start Date">
                                         <span v-if="validation_error.hasOwnProperty('project_start_date')" class="text-danger">
                                                 {{ validation_error.project_start_date[0] }}
@@ -73,8 +79,9 @@
                                 <div class="col-md-6">
                                     <div class="contact-name">
                                         <i class="flaticon-user-11"></i>
+                                        <label for="up-project-country">Project Country</label>
                                         <input type="text"
-                                        class="form-control" v-model="projects.project_country">
+                                        class="form-control" id="up-project-country" v-model="projects.project_country">
                                         <span v-if="validation_error.hasOwnProperty('project_country')" class="text-danger">
                                                 {{ validation_error.project_country[0] }}
                                         </span>
@@ -84,7 +91,8 @@
                                 <div class="col-md-6">
                                     <div class="contact-name">
                                         <i class="flaticon-user-11"></i>
-                                        <input type="file" id="update-file" ref="file" @change="onImageChange($event)"/>
+                                        <label for="update-file">Change Project File</label>
+                                        <input type="file" class="form-control" id="update-file" ref="file" @change="onImageChange($event)"/>
                                         <span v-if="projects.old_file">{{ projects.old_file }}</span>
                                     </div>
                                 </div>
@@ -92,7 +100,8 @@
                                 <div class="col-md-6">
                                     <div class="contact-email">
                                         <i class="flaticon-mail-26"></i>
-                                        <input type="text" class="form-control" v-model="projects.project_email">
+                                        <label for="up-project-email">Project Email</label>
+                                        <input type="email" class="form-control" id="up-project-email" v-model="projects.project_email">
                                         <span v-if="validation_error.hasOwnProperty('project_email')" class="text-danger">
                                                 {{ validation_error.project_email[0] }}
                                         </span>
@@ -102,7 +111,8 @@
                                 <div class="col-md-6">
                                     <div class="contact-phone">
                                         <i class="flaticon-telephone"></i>
-                                        <input type="text" class="form-control" v-model="projects.project_phone">
+                                        <label for="up-project-phone">Project Phone</label>
+                                        <input type="text" id="up-project-phone" class="form-control" v-model="projects.project_phone">
                                         <span v-if="validation_error.hasOwnProperty('project_phone')" class="text-danger">
                                                 {{ validation_error.project_phone[0] }}
                                         </span>
@@ -111,7 +121,8 @@
                                 <div class="col-md-6">
                                     <div class="contact-email">
                                         <i class="flaticon-mail-26"></i>
-                                        <select class="form-control" v-model="projects.project_status">
+                                        <label for="up-project-status">Project Status</label>
+                                        <select class="form-control" id="up-project-status" v-model="projects.project_status">
                                             <option value="">Project Status</option>
                                             <option value="1">Active</option>
                                             <option value="0">Inactive</option>
@@ -123,7 +134,8 @@
                                 <div class="col-md-12">
                                     <div class="contact-location">
                                         <i class="flaticon-location-1"></i>
-                                        <textarea class="form-control" v-model="projects.project_details"></textarea>
+                                        <label for="up-project-details">Project Details</label>
+                                        <textarea class="form-control" id="up-project-details" v-model="projects.project_details"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -131,7 +143,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit"  class="btn btn-primary">{{ button_name }}</button>
+                    <button type="submit" class="btn btn-primary"><div class="spinner-grow text-white mr-2 align-self-center loader-sm" v-if="button_name != 'Update'"></div>{{ button_name }}</button>
 
                     <button class="btn btn-default" data-dismiss="modal"> <i class="flaticon-delete-1"></i> Discard</button>
                 </div>

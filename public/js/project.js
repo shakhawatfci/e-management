@@ -2143,6 +2143,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2277,6 +2289,18 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vue_assets__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../vue-assets */ "./resources/js/vue-assets.js");
 /* harmony import */ var _mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixin */ "./resources/js/mixin.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -7190,567 +7214,661 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("div", { staticClass: "add-contact-box" }, [
-                    _c("div", { staticClass: "add-contact-content" }, [
-                      _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-name" }, [
-                            _c("i", { staticClass: "flaticon-user-11" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.projects.project_name,
-                                  expression: "projects.project_name"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                placeholder: "Project Name"
-                              },
-                              domProps: { value: _vm.projects.project_name },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.projects,
-                                    "project_name",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.validation_error.hasOwnProperty("project_name")
-                              ? _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\r\n                                                " +
-                                      _vm._s(
-                                        _vm.validation_error.project_name[0]
-                                      ) +
-                                      "\r\n                                        "
-                                  )
-                                ])
-                              : _vm._e()
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-name" }, [
-                            _c("i", { staticClass: "flaticon-user-11" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.projects.project_location,
-                                  expression: "projects.project_location"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                placeholder: "Project Location"
-                              },
-                              domProps: {
-                                value: _vm.projects.project_location
-                              },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.projects,
-                                    "project_location",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.validation_error.hasOwnProperty(
-                              "project_location"
-                            )
-                              ? _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\r\n                                                " +
-                                      _vm._s(
-                                        _vm.validation_error.project_location[0]
-                                      ) +
-                                      "\r\n                                        "
-                                  )
-                                ])
-                              : _vm._e()
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-name" }, [
-                            _c("i", { staticClass: "flaticon-user-11" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.projects.project_contact_person,
-                                  expression: "projects.project_contact_person"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                placeholder: "Project Contact Person"
-                              },
-                              domProps: {
-                                value: _vm.projects.project_contact_person
-                              },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.projects,
-                                    "project_contact_person",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.validation_error.hasOwnProperty(
-                              "project_contact_person"
-                            )
-                              ? _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\r\n                                                " +
-                                      _vm._s(
-                                        _vm.validation_error
-                                          .project_contact_person[0]
-                                      ) +
-                                      "\r\n                                        "
-                                  )
-                                ])
-                              : _vm._e()
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-name" }, [
-                            _c("i", { staticClass: "flaticon-user-11" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.projects.project_argument_with,
-                                  expression: "projects.project_argument_with"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                placeholder: "Project Argument with"
-                              },
-                              domProps: {
-                                value: _vm.projects.project_argument_with
-                              },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.projects,
-                                    "project_argument_with",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.validation_error.hasOwnProperty(
-                              "project_argument_with"
-                            )
-                              ? _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\r\n                                                " +
-                                      _vm._s(
-                                        _vm.validation_error
-                                          .project_argument_with[0]
-                                      ) +
-                                      "\r\n                                        "
-                                  )
-                                ])
-                              : _vm._e()
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-name" }, [
-                            _c("i", { staticClass: "flaticon-user-11" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.projects.project_argument_date,
-                                  expression: "projects.project_argument_date"
-                                }
-                              ],
-                              staticClass:
-                                "form-control flatpickr flatpickr-input active",
-                              attrs: {
-                                id: "basicFlatpickr",
-                                type: "text",
-                                placeholder: "Select Project Agreement Date"
-                              },
-                              domProps: {
-                                value: _vm.projects.project_argument_date
-                              },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.projects,
-                                    "project_argument_date",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.validation_error.hasOwnProperty(
-                              "project_argument_date"
-                            )
-                              ? _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\r\n                                                " +
-                                      _vm._s(
-                                        _vm.validation_error
-                                          .project_argument_date[0]
-                                      ) +
-                                      "\r\n                                        "
-                                  )
-                                ])
-                              : _vm._e()
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-name" }, [
-                            _c("i", { staticClass: "flaticon-user-11" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.projects.project_start_date,
-                                  expression: "projects.project_start_date"
-                                }
-                              ],
-                              staticClass:
-                                "form-control flatpickr flatpickr-input active",
-                              attrs: {
-                                id: "basicFlatpickr1",
-                                type: "text",
-                                placeholder: "Select Project Start Date"
-                              },
-                              domProps: {
-                                value: _vm.projects.project_start_date
-                              },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.projects,
-                                    "project_start_date",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.validation_error.hasOwnProperty(
-                              "project_start_date"
-                            )
-                              ? _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\r\n                                                " +
-                                      _vm._s(
-                                        _vm.validation_error
-                                          .project_start_date[0]
-                                      ) +
-                                      "\r\n                                        "
-                                  )
-                                ])
-                              : _vm._e()
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-name" }, [
-                            _c("i", { staticClass: "flaticon-user-11" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.projects.project_country,
-                                  expression: "projects.project_country"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                placeholder: "Project Country"
-                              },
-                              domProps: { value: _vm.projects.project_country },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.projects,
-                                    "project_country",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.validation_error.hasOwnProperty(
-                              "project_country"
-                            )
-                              ? _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\r\n                                                " +
-                                      _vm._s(
-                                        _vm.validation_error.project_country[0]
-                                      ) +
-                                      "\r\n                                        "
-                                  )
-                                ])
-                              : _vm._e()
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-name" }, [
-                            _c("i", { staticClass: "flaticon-user-11" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              ref: "file",
-                              staticClass: "form-control",
-                              attrs: { type: "file", id: "file" },
-                              on: {
-                                change: function($event) {
-                                  return _vm.onImageChange($event)
-                                }
-                              }
-                            })
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-email" }, [
-                            _c("i", { staticClass: "flaticon-mail-26" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.projects.project_email,
-                                  expression: "projects.project_email"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "email",
-                                placeholder: "Project Email"
-                              },
-                              domProps: { value: _vm.projects.project_email },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.projects,
-                                    "project_email",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.validation_error.hasOwnProperty("project_email")
-                              ? _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\r\n                                                " +
-                                      _vm._s(
-                                        _vm.validation_error.project_email[0]
-                                      ) +
-                                      "\r\n                                        "
-                                  )
-                                ])
-                              : _vm._e()
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-phone" }, [
-                            _c("i", { staticClass: "flaticon-telephone" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.projects.project_phone,
-                                  expression: "projects.project_phone"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                placeholder: "Project Phone"
-                              },
-                              domProps: { value: _vm.projects.project_phone },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.projects,
-                                    "project_phone",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.validation_error.hasOwnProperty("project_phone")
-                              ? _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\r\n                                                " +
-                                      _vm._s(
-                                        _vm.validation_error.project_phone[0]
-                                      ) +
-                                      "\r\n                                        "
-                                  )
-                                ])
-                              : _vm._e()
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-email" }, [
-                            _c("i", { staticClass: "flaticon-mail-26" }),
-                            _vm._v(" "),
-                            _c(
-                              "select",
-                              {
+                    _c(
+                      "div",
+                      { staticClass: "add-contact-content text-left" },
+                      [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c("label", { attrs: { for: "project-name" } }, [
+                                _vm._v("Project Name")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
                                 directives: [
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.projects.project_status,
-                                    expression: "projects.project_status"
+                                    value: _vm.projects.project_name,
+                                    expression: "projects.project_name"
                                   }
                                 ],
                                 staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "project-name",
+                                  placeholder: "Project Name"
+                                },
+                                domProps: { value: _vm.projects.project_name },
                                 on: {
-                                  change: function($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call($event.target.options, function(o) {
-                                        return o.selected
-                                      })
-                                      .map(function(o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
                                     _vm.$set(
                                       _vm.projects,
-                                      "project_status",
-                                      $event.target.multiple
-                                        ? $$selectedVal
-                                        : $$selectedVal[0]
+                                      "project_name",
+                                      $event.target.value
                                     )
                                   }
                                 }
-                              },
-                              [
-                                _c("option", { attrs: { value: "" } }, [
-                                  _vm._v("Project Status")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "1" } }, [
-                                  _vm._v("Active")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "0" } }, [
-                                  _vm._v("Inactive")
-                                ])
-                              ]
-                            )
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col-md-12" }, [
-                          _c("div", { staticClass: "contact-location" }, [
-                            _c("i", { staticClass: "flaticon-location-1" }),
-                            _vm._v(" "),
-                            _c("textarea", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.projects.project_details,
-                                  expression: "projects.project_details"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: { placeholder: "About Project" },
-                              domProps: { value: _vm.projects.project_details },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "project_name"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\r\n                                                " +
+                                        _vm._s(
+                                          _vm.validation_error.project_name[0]
+                                        ) +
+                                        "\r\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                { attrs: { for: "project-location" } },
+                                [_vm._v("Project Location")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.projects.project_location,
+                                    expression: "projects.project_location"
                                   }
-                                  _vm.$set(
-                                    _vm.projects,
-                                    "project_details",
-                                    $event.target.value
-                                  )
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "project-location",
+                                  placeholder: "Project Location"
+                                },
+                                domProps: {
+                                  value: _vm.projects.project_location
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.projects,
+                                      "project_location",
+                                      $event.target.value
+                                    )
+                                  }
                                 }
-                              }
-                            })
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "project_location"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\r\n                                                " +
+                                        _vm._s(
+                                          _vm.validation_error
+                                            .project_location[0]
+                                        ) +
+                                        "\r\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                { attrs: { for: "contact-person" } },
+                                [_vm._v("Project Contact Person")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.projects.project_contact_person,
+                                    expression:
+                                      "projects.project_contact_person"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "contact-person",
+                                  placeholder: "Project Contact Person"
+                                },
+                                domProps: {
+                                  value: _vm.projects.project_contact_person
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.projects,
+                                      "project_contact_person",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "project_contact_person"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\r\n                                                " +
+                                        _vm._s(
+                                          _vm.validation_error
+                                            .project_contact_person[0]
+                                        ) +
+                                        "\r\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                { attrs: { for: "argeement-with" } },
+                                [_vm._v("Project Argeement with")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.projects.project_argument_with,
+                                    expression: "projects.project_argument_with"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "argeement-with",
+                                  placeholder: "Project Argeement with"
+                                },
+                                domProps: {
+                                  value: _vm.projects.project_argument_with
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.projects,
+                                      "project_argument_with",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "project_argument_with"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\r\n                                                " +
+                                        _vm._s(
+                                          _vm.validation_error
+                                            .project_argument_with[0]
+                                        ) +
+                                        "\r\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                { attrs: { for: "basicFlatpickr" } },
+                                [_vm._v("Select Project Agreement Date")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.projects.project_argument_date,
+                                    expression: "projects.project_argument_date"
+                                  }
+                                ],
+                                staticClass:
+                                  "form-control flatpickr flatpickr-input active",
+                                attrs: {
+                                  id: "basicFlatpickr",
+                                  type: "text",
+                                  placeholder: "Select Project Agreement Date"
+                                },
+                                domProps: {
+                                  value: _vm.projects.project_argument_date
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.projects,
+                                      "project_argument_date",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "project_argument_date"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\r\n                                                " +
+                                        _vm._s(
+                                          _vm.validation_error
+                                            .project_argument_date[0]
+                                        ) +
+                                        "\r\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                { attrs: { for: "basicFlatpickr1" } },
+                                [_vm._v("Select Project Start Date")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.projects.project_start_date,
+                                    expression: "projects.project_start_date"
+                                  }
+                                ],
+                                staticClass:
+                                  "form-control flatpickr flatpickr-input active",
+                                attrs: {
+                                  id: "basicFlatpickr1",
+                                  type: "text",
+                                  placeholder: "Select Project Start Date"
+                                },
+                                domProps: {
+                                  value: _vm.projects.project_start_date
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.projects,
+                                      "project_start_date",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "project_start_date"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\r\n                                                " +
+                                        _vm._s(
+                                          _vm.validation_error
+                                            .project_start_date[0]
+                                        ) +
+                                        "\r\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                { attrs: { for: "project-country" } },
+                                [_vm._v("Project Country")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.projects.project_country,
+                                    expression: "projects.project_country"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "project-country",
+                                  placeholder: "Project Country"
+                                },
+                                domProps: {
+                                  value: _vm.projects.project_country
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.projects,
+                                      "project_country",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "project_country"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\r\n                                                " +
+                                        _vm._s(
+                                          _vm.validation_error
+                                            .project_country[0]
+                                        ) +
+                                        "\r\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c("label", { attrs: { for: "file" } }, [
+                                _vm._v("Upload Project File")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                ref: "file",
+                                staticClass: "form-control",
+                                attrs: { type: "file", id: "file" },
+                                on: {
+                                  change: function($event) {
+                                    return _vm.onImageChange($event)
+                                  }
+                                }
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-email" }, [
+                              _c("i", { staticClass: "flaticon-mail-26" }),
+                              _vm._v(" "),
+                              _c("label", { attrs: { for: "project-email" } }, [
+                                _vm._v("Project Email")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.projects.project_email,
+                                    expression: "projects.project_email"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "email",
+                                  id: "project-email",
+                                  placeholder: "Project Email"
+                                },
+                                domProps: { value: _vm.projects.project_email },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.projects,
+                                      "project_email",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "project_email"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\r\n                                                " +
+                                        _vm._s(
+                                          _vm.validation_error.project_email[0]
+                                        ) +
+                                        "\r\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-phone" }, [
+                              _c("i", { staticClass: "flaticon-telephone" }),
+                              _vm._v(" "),
+                              _c("label", { attrs: { for: "project-phone" } }, [
+                                _vm._v("Project Phone")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.projects.project_phone,
+                                    expression: "projects.project_phone"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "project-phone",
+                                  placeholder: "Project Phone"
+                                },
+                                domProps: { value: _vm.projects.project_phone },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.projects,
+                                      "project_phone",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "project_phone"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\r\n                                                " +
+                                        _vm._s(
+                                          _vm.validation_error.project_phone[0]
+                                        ) +
+                                        "\r\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-email" }, [
+                              _c("i", { staticClass: "flaticon-mail-26" }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                { attrs: { for: "project-status" } },
+                                [_vm._v("Project Status")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.projects.project_status,
+                                      expression: "projects.project_status"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: { id: "project-status" },
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        _vm.projects,
+                                        "project_status",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("option", { attrs: { value: "" } }, [
+                                    _vm._v("Select Project Status")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "1" } }, [
+                                    _vm._v("Active")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "0" } }, [
+                                    _vm._v("Inactive")
+                                  ])
+                                ]
+                              )
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-12" }, [
+                            _c("div", { staticClass: "contact-location" }, [
+                              _c("i", { staticClass: "flaticon-location-1" }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                { attrs: { for: "project-details" } },
+                                [_vm._v("Project Details")]
+                              ),
+                              _vm._v(" "),
+                              _c("textarea", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.projects.project_details,
+                                    expression: "projects.project_details"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  id: "project-details",
+                                  placeholder: "About Project"
+                                },
+                                domProps: {
+                                  value: _vm.projects.project_details
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.projects,
+                                      "project_details",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
                           ])
                         ])
-                      ])
-                    ])
+                      ]
+                    )
                   ])
                 ]),
                 _vm._v(" "),
@@ -7761,7 +7879,15 @@ var render = function() {
                       staticClass: "btn btn-primary",
                       attrs: { type: "submit" }
                     },
-                    [_vm._v(_vm._s(_vm.button_name))]
+                    [
+                      _vm.button_name != "Save"
+                        ? _c("div", {
+                            staticClass:
+                              "spinner-grow text-white mr-2 align-self-center loader-sm"
+                          })
+                        : _vm._e(),
+                      _vm._v(_vm._s(_vm.button_name))
+                    ]
                   ),
                   _vm._v(" "),
                   _vm._m(1)
@@ -7861,550 +7987,657 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("div", { staticClass: "add-contact-box" }, [
-                    _c("div", { staticClass: "add-contact-content" }, [
-                      _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-name" }, [
-                            _c("i", { staticClass: "flaticon-user-11" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.projects.project_name,
-                                  expression: "projects.project_name"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: { type: "text" },
-                              domProps: { value: _vm.projects.project_name },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.projects,
-                                    "project_name",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.validation_error.hasOwnProperty("project_name")
-                              ? _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\r\n                                                " +
-                                      _vm._s(
-                                        _vm.validation_error.project_name[0]
-                                      ) +
-                                      "\r\n                                        "
-                                  )
-                                ])
-                              : _vm._e()
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-name" }, [
-                            _c("i", { staticClass: "flaticon-user-11" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.projects.project_location,
-                                  expression: "projects.project_location"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: { type: "text" },
-                              domProps: {
-                                value: _vm.projects.project_location
-                              },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.projects,
-                                    "project_location",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.validation_error.hasOwnProperty(
-                              "project_location"
-                            )
-                              ? _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\r\n                                                " +
-                                      _vm._s(
-                                        _vm.validation_error.project_location[0]
-                                      ) +
-                                      "\r\n                                        "
-                                  )
-                                ])
-                              : _vm._e()
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-name" }, [
-                            _c("i", { staticClass: "flaticon-user-11" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.projects.project_contact_person,
-                                  expression: "projects.project_contact_person"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: { type: "text" },
-                              domProps: {
-                                value: _vm.projects.project_contact_person
-                              },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.projects,
-                                    "project_contact_person",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.validation_error.hasOwnProperty(
-                              "project_contact_person"
-                            )
-                              ? _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\r\n                                                " +
-                                      _vm._s(
-                                        _vm.validation_error
-                                          .project_contact_person[0]
-                                      ) +
-                                      "\r\n                                        "
-                                  )
-                                ])
-                              : _vm._e()
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-name" }, [
-                            _c("i", { staticClass: "flaticon-user-11" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.projects.project_argument_with,
-                                  expression: "projects.project_argument_with"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: { type: "text" },
-                              domProps: {
-                                value: _vm.projects.project_argument_with
-                              },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.projects,
-                                    "project_argument_with",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.validation_error.hasOwnProperty(
-                              "project_argument_with"
-                            )
-                              ? _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\r\n                                                " +
-                                      _vm._s(
-                                        _vm.validation_error
-                                          .project_argument_with[0]
-                                      ) +
-                                      "\r\n                                        "
-                                  )
-                                ])
-                              : _vm._e()
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-name" }, [
-                            _c("i", { staticClass: "flaticon-user-11" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.projects.project_argument_date,
-                                  expression: "projects.project_argument_date"
-                                }
-                              ],
-                              staticClass:
-                                "form-control flatpickr flatpickr-input active",
-                              attrs: {
-                                id: "upbasicFlatpickr",
-                                type: "text",
-                                placeholder: "Select Project Agreement Date"
-                              },
-                              domProps: {
-                                value: _vm.projects.project_argument_date
-                              },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.projects,
-                                    "project_argument_date",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.validation_error.hasOwnProperty(
-                              "project_argument_date"
-                            )
-                              ? _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\r\n                                                " +
-                                      _vm._s(
-                                        _vm.validation_error
-                                          .project_argument_date[0]
-                                      ) +
-                                      "\r\n                                        "
-                                  )
-                                ])
-                              : _vm._e()
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-name" }, [
-                            _c("i", { staticClass: "flaticon-user-11" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.projects.project_start_date,
-                                  expression: "projects.project_start_date"
-                                }
-                              ],
-                              staticClass:
-                                "form-control flatpickr flatpickr-input active",
-                              attrs: {
-                                id: "upbasicFlatpickr1",
-                                type: "text",
-                                placeholder: "Select Project Start Date"
-                              },
-                              domProps: {
-                                value: _vm.projects.project_start_date
-                              },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.projects,
-                                    "project_start_date",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.validation_error.hasOwnProperty(
-                              "project_start_date"
-                            )
-                              ? _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\r\n                                                " +
-                                      _vm._s(
-                                        _vm.validation_error
-                                          .project_start_date[0]
-                                      ) +
-                                      "\r\n                                        "
-                                  )
-                                ])
-                              : _vm._e()
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-name" }, [
-                            _c("i", { staticClass: "flaticon-user-11" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.projects.project_country,
-                                  expression: "projects.project_country"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: { type: "text" },
-                              domProps: { value: _vm.projects.project_country },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.projects,
-                                    "project_country",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.validation_error.hasOwnProperty(
-                              "project_country"
-                            )
-                              ? _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\r\n                                                " +
-                                      _vm._s(
-                                        _vm.validation_error.project_country[0]
-                                      ) +
-                                      "\r\n                                        "
-                                  )
-                                ])
-                              : _vm._e()
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-name" }, [
-                            _c("i", { staticClass: "flaticon-user-11" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              ref: "file",
-                              attrs: { type: "file", id: "update-file" },
-                              on: {
-                                change: function($event) {
-                                  return _vm.onImageChange($event)
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.projects.old_file
-                              ? _c("span", [
-                                  _vm._v(_vm._s(_vm.projects.old_file))
-                                ])
-                              : _vm._e()
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-email" }, [
-                            _c("i", { staticClass: "flaticon-mail-26" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.projects.project_email,
-                                  expression: "projects.project_email"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: { type: "text" },
-                              domProps: { value: _vm.projects.project_email },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.projects,
-                                    "project_email",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.validation_error.hasOwnProperty("project_email")
-                              ? _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\r\n                                                " +
-                                      _vm._s(
-                                        _vm.validation_error.project_email[0]
-                                      ) +
-                                      "\r\n                                        "
-                                  )
-                                ])
-                              : _vm._e()
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-phone" }, [
-                            _c("i", { staticClass: "flaticon-telephone" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.projects.project_phone,
-                                  expression: "projects.project_phone"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: { type: "text" },
-                              domProps: { value: _vm.projects.project_phone },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.projects,
-                                    "project_phone",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.validation_error.hasOwnProperty("project_phone")
-                              ? _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\r\n                                                " +
-                                      _vm._s(
-                                        _vm.validation_error.project_phone[0]
-                                      ) +
-                                      "\r\n                                        "
-                                  )
-                                ])
-                              : _vm._e()
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-email" }, [
-                            _c("i", { staticClass: "flaticon-mail-26" }),
-                            _vm._v(" "),
-                            _c(
-                              "select",
-                              {
+                    _c(
+                      "div",
+                      { staticClass: "add-contact-content text-left" },
+                      [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                { attrs: { for: "up-project-name" } },
+                                [_vm._v("Project Name")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
                                 directives: [
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.projects.project_status,
-                                    expression: "projects.project_status"
+                                    value: _vm.projects.project_name,
+                                    expression: "projects.project_name"
                                   }
                                 ],
                                 staticClass: "form-control",
+                                attrs: { type: "text", id: "up-project-name" },
+                                domProps: { value: _vm.projects.project_name },
                                 on: {
-                                  change: function($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call($event.target.options, function(o) {
-                                        return o.selected
-                                      })
-                                      .map(function(o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
                                     _vm.$set(
                                       _vm.projects,
-                                      "project_status",
-                                      $event.target.multiple
-                                        ? $$selectedVal
-                                        : $$selectedVal[0]
+                                      "project_name",
+                                      $event.target.value
                                     )
                                   }
                                 }
-                              },
-                              [
-                                _c("option", { attrs: { value: "" } }, [
-                                  _vm._v("Project Status")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "1" } }, [
-                                  _vm._v("Active")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "0" } }, [
-                                  _vm._v("Inactive")
-                                ])
-                              ]
-                            )
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col-md-12" }, [
-                          _c("div", { staticClass: "contact-location" }, [
-                            _c("i", { staticClass: "flaticon-location-1" }),
-                            _vm._v(" "),
-                            _c("textarea", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.projects.project_details,
-                                  expression: "projects.project_details"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              domProps: { value: _vm.projects.project_details },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "project_name"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\r\n                                                " +
+                                        _vm._s(
+                                          _vm.validation_error.project_name[0]
+                                        ) +
+                                        "\r\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                { attrs: { for: "up-project-location" } },
+                                [_vm._v("Project Location")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.projects.project_location,
+                                    expression: "projects.project_location"
                                   }
-                                  _vm.$set(
-                                    _vm.projects,
-                                    "project_details",
-                                    $event.target.value
-                                  )
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "up-project-location"
+                                },
+                                domProps: {
+                                  value: _vm.projects.project_location
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.projects,
+                                      "project_location",
+                                      $event.target.value
+                                    )
+                                  }
                                 }
-                              }
-                            })
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "project_location"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\r\n                                                " +
+                                        _vm._s(
+                                          _vm.validation_error
+                                            .project_location[0]
+                                        ) +
+                                        "\r\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                { attrs: { for: "up-contact-person" } },
+                                [_vm._v("Project Contact Person")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.projects.project_contact_person,
+                                    expression:
+                                      "projects.project_contact_person"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "up-contact-person"
+                                },
+                                domProps: {
+                                  value: _vm.projects.project_contact_person
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.projects,
+                                      "project_contact_person",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "project_contact_person"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\r\n                                                " +
+                                        _vm._s(
+                                          _vm.validation_error
+                                            .project_contact_person[0]
+                                        ) +
+                                        "\r\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                { attrs: { for: "up-argeement-with" } },
+                                [_vm._v("Project Argeement with")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.projects.project_argument_with,
+                                    expression: "projects.project_argument_with"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "up-argeement-with"
+                                },
+                                domProps: {
+                                  value: _vm.projects.project_argument_with
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.projects,
+                                      "project_argument_with",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "project_argument_with"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\r\n                                                " +
+                                        _vm._s(
+                                          _vm.validation_error
+                                            .project_argument_with[0]
+                                        ) +
+                                        "\r\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                { attrs: { for: "upbasicFlatpickr" } },
+                                [_vm._v("Select Project Agreement Date")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.projects.project_argument_date,
+                                    expression: "projects.project_argument_date"
+                                  }
+                                ],
+                                staticClass:
+                                  "form-control flatpickr flatpickr-input active",
+                                attrs: {
+                                  id: "upbasicFlatpickr",
+                                  type: "text",
+                                  placeholder: "Select Project Agreement Date"
+                                },
+                                domProps: {
+                                  value: _vm.projects.project_argument_date
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.projects,
+                                      "project_argument_date",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "project_argument_date"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\r\n                                                " +
+                                        _vm._s(
+                                          _vm.validation_error
+                                            .project_argument_date[0]
+                                        ) +
+                                        "\r\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                { attrs: { for: "upbasicFlatpickr1" } },
+                                [_vm._v("Select Project Start Date")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.projects.project_start_date,
+                                    expression: "projects.project_start_date"
+                                  }
+                                ],
+                                staticClass:
+                                  "form-control flatpickr flatpickr-input active",
+                                attrs: {
+                                  id: "upbasicFlatpickr1",
+                                  type: "text",
+                                  placeholder: "Select Project Start Date"
+                                },
+                                domProps: {
+                                  value: _vm.projects.project_start_date
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.projects,
+                                      "project_start_date",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "project_start_date"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\r\n                                                " +
+                                        _vm._s(
+                                          _vm.validation_error
+                                            .project_start_date[0]
+                                        ) +
+                                        "\r\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                { attrs: { for: "up-project-country" } },
+                                [_vm._v("Project Country")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.projects.project_country,
+                                    expression: "projects.project_country"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "up-project-country"
+                                },
+                                domProps: {
+                                  value: _vm.projects.project_country
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.projects,
+                                      "project_country",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "project_country"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\r\n                                                " +
+                                        _vm._s(
+                                          _vm.validation_error
+                                            .project_country[0]
+                                        ) +
+                                        "\r\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c("label", { attrs: { for: "update-file" } }, [
+                                _vm._v("Change Project File")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                ref: "file",
+                                staticClass: "form-control",
+                                attrs: { type: "file", id: "update-file" },
+                                on: {
+                                  change: function($event) {
+                                    return _vm.onImageChange($event)
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.projects.old_file
+                                ? _c("span", [
+                                    _vm._v(_vm._s(_vm.projects.old_file))
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-email" }, [
+                              _c("i", { staticClass: "flaticon-mail-26" }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                { attrs: { for: "up-project-email" } },
+                                [_vm._v("Project Email")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.projects.project_email,
+                                    expression: "projects.project_email"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "email",
+                                  id: "up-project-email"
+                                },
+                                domProps: { value: _vm.projects.project_email },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.projects,
+                                      "project_email",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "project_email"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\r\n                                                " +
+                                        _vm._s(
+                                          _vm.validation_error.project_email[0]
+                                        ) +
+                                        "\r\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-phone" }, [
+                              _c("i", { staticClass: "flaticon-telephone" }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                { attrs: { for: "up-project-phone" } },
+                                [_vm._v("Project Phone")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.projects.project_phone,
+                                    expression: "projects.project_phone"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { type: "text", id: "up-project-phone" },
+                                domProps: { value: _vm.projects.project_phone },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.projects,
+                                      "project_phone",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "project_phone"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\r\n                                                " +
+                                        _vm._s(
+                                          _vm.validation_error.project_phone[0]
+                                        ) +
+                                        "\r\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-email" }, [
+                              _c("i", { staticClass: "flaticon-mail-26" }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                { attrs: { for: "up-project-status" } },
+                                [_vm._v("Project Status")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.projects.project_status,
+                                      expression: "projects.project_status"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: { id: "up-project-status" },
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        _vm.projects,
+                                        "project_status",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("option", { attrs: { value: "" } }, [
+                                    _vm._v("Project Status")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "1" } }, [
+                                    _vm._v("Active")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "0" } }, [
+                                    _vm._v("Inactive")
+                                  ])
+                                ]
+                              )
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-12" }, [
+                            _c("div", { staticClass: "contact-location" }, [
+                              _c("i", { staticClass: "flaticon-location-1" }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                { attrs: { for: "up-project-details" } },
+                                [_vm._v("Project Details")]
+                              ),
+                              _vm._v(" "),
+                              _c("textarea", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.projects.project_details,
+                                    expression: "projects.project_details"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { id: "up-project-details" },
+                                domProps: {
+                                  value: _vm.projects.project_details
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.projects,
+                                      "project_details",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
                           ])
                         ])
-                      ])
-                    ])
+                      ]
+                    )
                   ])
                 ]),
                 _vm._v(" "),
@@ -8415,7 +8648,15 @@ var render = function() {
                       staticClass: "btn btn-primary",
                       attrs: { type: "submit" }
                     },
-                    [_vm._v(_vm._s(_vm.button_name))]
+                    [
+                      _vm.button_name != "Update"
+                        ? _c("div", {
+                            staticClass:
+                              "spinner-grow text-white mr-2 align-self-center loader-sm"
+                          })
+                        : _vm._e(),
+                      _vm._v(_vm._s(_vm.button_name))
+                    ]
                   ),
                   _vm._v(" "),
                   _vm._m(1)
@@ -8491,7 +8732,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              attrs: { type: "text", placeholder: "Search Supplier" },
+              attrs: { type: "text", placeholder: "Search Project" },
               domProps: { value: _vm.keyword },
               on: {
                 keyup: function($event) {
