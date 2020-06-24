@@ -4,9 +4,9 @@ namespace App\Http\Controllers\ExpenseHeads;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\EquipmentExpenseHead;
+use App\ProjectExpenseHead;
 
-class EquipmentExpenseController extends Controller
+class ProjectExpenseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class EquipmentExpenseController extends Controller
      */
     public function index()
     {
-        return view('expense_heads.equipment_expense_heads');
+        return view('expense_heads.project_expense_heads');
     }
 
     /**
@@ -23,13 +23,13 @@ class EquipmentExpenseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function EquipmentHeadList(Request $request)
+    public function projectHeadList(Request $request)
     {
-        $equipments = EquipmentExpenseHead::orderBy('id','desc');
-        if ($request->keyword != '') {
-            $equipments->where('head_name','LIKE','%'.$request->keyword.'%');
+        $projects = ProjectExpenseHead::orderBy('id','desc');
+        if($request->keyword != '') {
+            $projects->where('head_name','LIKE','%'.$request->keyword.'%');
         }
-        return $equipments->paginate(10);
+        return $projects->paginate(10);
     }
 
     /**
@@ -45,13 +45,12 @@ class EquipmentExpenseController extends Controller
         ]);
         try {
             $status = $request->status ? 1 : 0;
-            $equipment = EquipmentExpenseHead::insert([
+            $insert = ProjectExpenseHead::insert([
                 'head_name' => $request->head_name,
                 'status' => $status
             ]);
-
-            if($equipment){
-                return response()->json(['status' => 'success', 'message' => 'New Equipment Expense Head Created !']);
+            if ($insert) {
+                return response()->json(['status' => 'success', 'message' => 'New Project Expense Head Created !']);
             }else{
                 return response()->json(['status' => 'error', 'message' => 'Something went wrong !']);
 
@@ -97,14 +96,15 @@ class EquipmentExpenseController extends Controller
         ]);
         try {
             $status = $request->status ? 1 : 0;
-            $equipment = EquipmentExpenseHead::find($id);
-            $equipment->head_name = $request->head_name;
-            $equipment->status = $status;
-            
-            if($equipment->update()){
-                return response()->json(['status' => 'success', 'message' => 'Equipment Expense Head Updated !']);
+            $update = ProjectExpenseHead::find($id);
+            $update->head_name = $request->head_name;
+            $update->status = $status;
+
+            if ($update->update()) {
+                return response()->json(['status' => 'success', 'message' => 'Project Expense Head Updated !']);
             }else{
                 return response()->json(['status' => 'error', 'message' => 'Something went wrong !']);
+
             }
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
@@ -119,16 +119,15 @@ class EquipmentExpenseController extends Controller
      */
     public function destroy($id)
     {
-        try {
-            $equipment = EquipmentExpenseHead::find($id);
-            if($equipment->delete()){
-                return response()->json(['status' => 'success', 'message' => 'Equipment Expense Head Deleted !']);
+        try{
+            $delete = ProjectExpenseHead::find($id);
+            if($delete->delete()){
+                return response()->json(['status' => 'success', 'message' => 'Project Expense Head Deleted !']);
             }else{
                 return response()->json(['status' => 'error', 'message' => 'Something went wrong !']);
             }
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
         }
-        
     }
 }

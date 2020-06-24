@@ -4,9 +4,9 @@ namespace App\Http\Controllers\ExpenseHeads;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\EquipmentExpenseHead;
+use App\OfficeExpenseHead;
 
-class EquipmentExpenseController extends Controller
+class OfficeExpenseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class EquipmentExpenseController extends Controller
      */
     public function index()
     {
-        return view('expense_heads.equipment_expense_heads');
+        return view('expense_heads.office_expense_heads');
     }
 
     /**
@@ -23,13 +23,13 @@ class EquipmentExpenseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function EquipmentHeadList(Request $request)
+    public function officeHeadList(Request $request)
     {
-        $equipments = EquipmentExpenseHead::orderBy('id','desc');
-        if ($request->keyword != '') {
-            $equipments->where('head_name','LIKE','%'.$request->keyword.'%');
+        $office = OfficeExpenseHead::orderBy('id','desc');
+        if($request->keyword != '') {
+            $office->where('head_name','LIKE','%'.$request->keyword.'%');
         }
-        return $equipments->paginate(10);
+        return $office->paginate(10);
     }
 
     /**
@@ -45,13 +45,12 @@ class EquipmentExpenseController extends Controller
         ]);
         try {
             $status = $request->status ? 1 : 0;
-            $equipment = EquipmentExpenseHead::insert([
+            $insert = OfficeExpenseHead::insert([
                 'head_name' => $request->head_name,
                 'status' => $status
             ]);
-
-            if($equipment){
-                return response()->json(['status' => 'success', 'message' => 'New Equipment Expense Head Created !']);
+            if ($insert) {
+                return response()->json(['status' => 'success', 'message' => 'New Office Expense Head Created !']);
             }else{
                 return response()->json(['status' => 'error', 'message' => 'Something went wrong !']);
 
@@ -97,14 +96,15 @@ class EquipmentExpenseController extends Controller
         ]);
         try {
             $status = $request->status ? 1 : 0;
-            $equipment = EquipmentExpenseHead::find($id);
-            $equipment->head_name = $request->head_name;
-            $equipment->status = $status;
-            
-            if($equipment->update()){
-                return response()->json(['status' => 'success', 'message' => 'Equipment Expense Head Updated !']);
+            $update = OfficeExpenseHead::find($id);
+            $update->head_name = $request->head_name;
+            $update->status = $status;
+
+            if ($update->update()) {
+                return response()->json(['status' => 'success', 'message' => 'Office Expense Head Updated !']);
             }else{
                 return response()->json(['status' => 'error', 'message' => 'Something went wrong !']);
+
             }
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
@@ -119,16 +119,15 @@ class EquipmentExpenseController extends Controller
      */
     public function destroy($id)
     {
-        try {
-            $equipment = EquipmentExpenseHead::find($id);
-            if($equipment->delete()){
-                return response()->json(['status' => 'success', 'message' => 'Equipment Expense Head Deleted !']);
+        try{
+            $delete = OfficeExpenseHead::find($id);
+            if($delete->delete()){
+                return response()->json(['status' => 'success', 'message' => 'Office Expense Head Deleted !']);
             }else{
                 return response()->json(['status' => 'error', 'message' => 'Something went wrong !']);
             }
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
         }
-        
     }
 }

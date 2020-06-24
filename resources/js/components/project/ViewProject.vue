@@ -4,7 +4,7 @@
       <div class="col-md-3" style="margin-bottom:10px;">
         <input type="text" v-model="keyword" 
         class="form-control"
-         placeholder="Search Supplier" @keyup="getProject()" />
+         placeholder="Search Project" @keyup="getProject()" />
       </div>
     </div>
     

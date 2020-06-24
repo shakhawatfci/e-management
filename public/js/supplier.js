@@ -2078,6 +2078,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2233,6 +2238,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2260,18 +2270,24 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    updated: function updated() {
+    update: function update() {
       var _this2 = this;
 
-      // axios.put(base_url+'supplier',this.supplier)
+      this.button_name = 'Updating...';
       axios.put(base_url + 'supplier/' + this.supplier.id, this.supplier).then(function (response) {
         if (response.data.status === 'success') {
           $('#UpdateSupplier').modal('hide');
 
           _this2.successMessage(response.data);
 
+          _this2.button_name = 'Update';
+
+          _this2.resetForm();
+
           _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('supplier-created');
         } else {
+          _this2.button_name = 'Update';
+
           _this2.successMessage(response.data);
         }
       })["catch"](function (err) {
@@ -2279,8 +2295,12 @@ __webpack_require__.r(__webpack_exports__);
           _this2.validation_error = err.response.data.errors;
 
           _this2.validationError();
+
+          _this2.button_name = 'Update';
         } else {
           _this2.validationError();
+
+          _this2.button_name = 'Update';
         }
       });
     },
@@ -6887,7 +6907,7 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: "modal fade",
+      staticClass: "modal animated fadeInUp custo-fadeInUp show",
       attrs: {
         id: "createSupplier",
         tabindex: "-1",
@@ -6925,255 +6945,292 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("div", { staticClass: "add-contact-box" }, [
-                    _c("div", { staticClass: "add-contact-content" }, [
-                      _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-name" }, [
-                            _c("i", { staticClass: "flaticon-user-11" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.supplier.vendor_name,
-                                  expression: "supplier.vendor_name"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                placeholder: "Vendor Name:"
-                              },
-                              domProps: { value: _vm.supplier.vendor_name },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.supplier,
-                                    "vendor_name",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.validation_error.hasOwnProperty("vendor_name")
-                              ? _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\r\n                                                " +
-                                      _vm._s(
-                                        _vm.validation_error.vendor_name[0]
-                                      ) +
-                                      "\r\n                                        "
-                                  )
-                                ])
-                              : _vm._e()
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-email" }, [
-                            _c("i", { staticClass: "flaticon-mail-26" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.supplier.vendor_email,
-                                  expression: "supplier.vendor_email"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                placeholder: "Vendor Email"
-                              },
-                              domProps: { value: _vm.supplier.vendor_email },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.supplier,
-                                    "vendor_email",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.validation_error.hasOwnProperty("vendor_email")
-                              ? _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\r\n                                                " +
-                                      _vm._s(
-                                        _vm.validation_error.vendor_email[0]
-                                      ) +
-                                      "\r\n                                        "
-                                  )
-                                ])
-                              : _vm._e()
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-phone" }, [
-                            _c("i", { staticClass: "flaticon-telephone" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.supplier.vendor_phone,
-                                  expression: "supplier.vendor_phone"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                placeholder: "Vendor Phone"
-                              },
-                              domProps: { value: _vm.supplier.vendor_phone },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.supplier,
-                                    "vendor_phone",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.validation_error.hasOwnProperty("vendor_phone")
-                              ? _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\r\n                                                " +
-                                      _vm._s(
-                                        _vm.validation_error.vendor_phone[0]
-                                      ) +
-                                      "\r\n                                        "
-                                  )
-                                ])
-                              : _vm._e()
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-email" }, [
-                            _c("i", { staticClass: "flaticon-mail-26" }),
-                            _vm._v(" "),
-                            _c(
-                              "select",
-                              {
+                    _c(
+                      "div",
+                      { staticClass: "add-contact-content text-left" },
+                      [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c("label", { attrs: { for: "vendor-name" } }, [
+                                _vm._v("Vendor Name")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
                                 directives: [
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.supplier.status,
-                                    expression: "supplier.status"
+                                    value: _vm.supplier.vendor_name,
+                                    expression: "supplier.vendor_name"
                                   }
                                 ],
                                 staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "vendor-name",
+                                  placeholder: "Vendor Name:"
+                                },
+                                domProps: { value: _vm.supplier.vendor_name },
                                 on: {
-                                  change: function($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call($event.target.options, function(o) {
-                                        return o.selected
-                                      })
-                                      .map(function(o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
                                     _vm.$set(
                                       _vm.supplier,
-                                      "status",
-                                      $event.target.multiple
-                                        ? $$selectedVal
-                                        : $$selectedVal[0]
+                                      "vendor_name",
+                                      $event.target.value
                                     )
                                   }
                                 }
-                              },
-                              [
-                                _c("option", { attrs: { value: "" } }, [
-                                  _vm._v("Supplier Status")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "1" } }, [
-                                  _vm._v("Active")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "0" } }, [
-                                  _vm._v("Inactive")
-                                ])
-                              ]
-                            )
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col-md-12" }, [
-                          _c("div", { staticClass: "contact-name" }, [
-                            _c("i", { staticClass: "flaticon-user-11" }),
-                            _vm._v(" "),
-                            _c("textarea", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.supplier.vendor_address,
-                                  expression: "supplier.vendor_address"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                placeholder: "Vendor Address: ",
-                                rows: "3"
-                              },
-                              domProps: { value: _vm.supplier.vendor_address },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty("vendor_name")
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\r\n                                                " +
+                                        _vm._s(
+                                          _vm.validation_error.vendor_name[0]
+                                        ) +
+                                        "\r\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-email" }, [
+                              _c("i", { staticClass: "flaticon-mail-26" }),
+                              _vm._v(" "),
+                              _c("label", { attrs: { for: "vendor-email" } }, [
+                                _vm._v("Vendor Email")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.supplier.vendor_email,
+                                    expression: "supplier.vendor_email"
                                   }
-                                  _vm.$set(
-                                    _vm.supplier,
-                                    "vendor_address",
-                                    $event.target.value
-                                  )
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "vendor-email",
+                                  placeholder: "Vendor Email"
+                                },
+                                domProps: { value: _vm.supplier.vendor_email },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.supplier,
+                                      "vendor_email",
+                                      $event.target.value
+                                    )
+                                  }
                                 }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.validation_error.hasOwnProperty(
-                              "vendor_address"
-                            )
-                              ? _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\r\n                                                " +
-                                      _vm._s(
-                                        _vm.validation_error.vendor_address[0]
-                                      ) +
-                                      "\r\n                                        "
-                                  )
-                                ])
-                              : _vm._e()
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "vendor_email"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\r\n                                                " +
+                                        _vm._s(
+                                          _vm.validation_error.vendor_email[0]
+                                        ) +
+                                        "\r\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-phone" }, [
+                              _c("i", { staticClass: "flaticon-telephone" }),
+                              _vm._v(" "),
+                              _c("label", { attrs: { for: "vendor-phone" } }, [
+                                _vm._v("Vendor Phone")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.supplier.vendor_phone,
+                                    expression: "supplier.vendor_phone"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "vendor-phone",
+                                  placeholder: "Vendor Phone"
+                                },
+                                domProps: { value: _vm.supplier.vendor_phone },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.supplier,
+                                      "vendor_phone",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "vendor_phone"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\r\n                                                " +
+                                        _vm._s(
+                                          _vm.validation_error.vendor_phone[0]
+                                        ) +
+                                        "\r\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-email" }, [
+                              _c("i", { staticClass: "flaticon-mail-26" }),
+                              _vm._v(" "),
+                              _c("label", { attrs: { for: "vendor-status" } }, [
+                                _vm._v("Vendor Status")
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.supplier.status,
+                                      expression: "supplier.status"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: { id: "vendor-status" },
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        _vm.supplier,
+                                        "status",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("option", { attrs: { value: "" } }, [
+                                    _vm._v("Select Vendor Status")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "1" } }, [
+                                    _vm._v("Active")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "0" } }, [
+                                    _vm._v("Inactive")
+                                  ])
+                                ]
+                              )
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-12" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c("label", { attrs: { for: "vendor-status" } }, [
+                                _vm._v("Vendor Address")
+                              ]),
+                              _vm._v(" "),
+                              _c("textarea", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.supplier.vendor_address,
+                                    expression: "supplier.vendor_address"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  id: "vendor-address",
+                                  placeholder: "Vendor Address: ",
+                                  rows: "3"
+                                },
+                                domProps: {
+                                  value: _vm.supplier.vendor_address
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.supplier,
+                                      "vendor_address",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "vendor_address"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\r\n                                                " +
+                                        _vm._s(
+                                          _vm.validation_error.vendor_address[0]
+                                        ) +
+                                        "\r\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
                           ])
                         ])
-                      ])
-                    ])
+                      ]
+                    )
                   ])
                 ]),
                 _vm._v(" "),
@@ -7184,7 +7241,15 @@ var render = function() {
                       staticClass: "btn btn-primary",
                       attrs: { type: "submit" }
                     },
-                    [_vm._v(_vm._s(_vm.button_name))]
+                    [
+                      _vm.button_name != "Save"
+                        ? _c("div", {
+                            staticClass:
+                              "spinner-grow text-white mr-2 align-self-center loader-sm"
+                          })
+                        : _vm._e(),
+                      _vm._v(_vm._s(_vm.button_name))
+                    ]
                   ),
                   _vm._v(" "),
                   _vm._m(1)
@@ -7245,7 +7310,7 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: "modal fade",
+      staticClass: "modal animated fadeInUp custo-fadeInUp show",
       attrs: {
         id: "UpdateSupplier",
         tabindex: "-1",
@@ -7268,7 +7333,7 @@ var render = function() {
               on: {
                 submit: function($event) {
                   $event.preventDefault()
-                  return _vm.updated()
+                  return _vm.update()
                 }
               }
             },
@@ -7283,253 +7348,300 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("div", { staticClass: "add-contact-box" }, [
-                    _c("div", { staticClass: "add-contact-content" }, [
-                      _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-name" }, [
-                            _c("i", { staticClass: "flaticon-user-11" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.supplier.vendor_name,
-                                  expression: "supplier.vendor_name"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                placeholder: "Vendor Name: "
-                              },
-                              domProps: { value: _vm.supplier.vendor_name },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.supplier,
-                                    "vendor_name",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.validation_error.hasOwnProperty("vendor_name")
-                              ? _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\r\n                                                " +
-                                      _vm._s(
-                                        _vm.validation_error.vendor_name[0]
-                                      ) +
-                                      "\r\n                                        "
-                                  )
-                                ])
-                              : _vm._e()
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-email" }, [
-                            _c("i", { staticClass: "flaticon-mail-26" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.supplier.vendor_email,
-                                  expression: "supplier.vendor_email"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                placeholder: "Vendor Email"
-                              },
-                              domProps: { value: _vm.supplier.vendor_email },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.supplier,
-                                    "vendor_email",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.validation_error.hasOwnProperty("vendor_email")
-                              ? _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\r\n                                                " +
-                                      _vm._s(
-                                        _vm.validation_error.vendor_email[0]
-                                      ) +
-                                      "\r\n                                        "
-                                  )
-                                ])
-                              : _vm._e()
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-phone" }, [
-                            _c("i", { staticClass: "flaticon-telephone" }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.supplier.vendor_phone,
-                                  expression: "supplier.vendor_phone"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                placeholder: "Vendor Phone"
-                              },
-                              domProps: { value: _vm.supplier.vendor_phone },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.supplier,
-                                    "vendor_phone",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.validation_error.hasOwnProperty("vendor_phone")
-                              ? _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\r\n                                                " +
-                                      _vm._s(
-                                        _vm.validation_error.vendor_phone[0]
-                                      ) +
-                                      "\r\n                                        "
-                                  )
-                                ])
-                              : _vm._e()
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "contact-email" }, [
-                            _c("i", { staticClass: "flaticon-mail-26" }),
-                            _vm._v(" "),
-                            _c(
-                              "select",
-                              {
+                    _c(
+                      "div",
+                      { staticClass: "add-contact-content text-left" },
+                      [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                { attrs: { for: "up-vendor-name" } },
+                                [_vm._v("Vendor Name")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
                                 directives: [
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.supplier.status,
-                                    expression: "supplier.status"
+                                    value: _vm.supplier.vendor_name,
+                                    expression: "supplier.vendor_name"
                                   }
                                 ],
                                 staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "up-vendor-name",
+                                  placeholder: "Vendor Name: "
+                                },
+                                domProps: { value: _vm.supplier.vendor_name },
                                 on: {
-                                  change: function($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call($event.target.options, function(o) {
-                                        return o.selected
-                                      })
-                                      .map(function(o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
                                     _vm.$set(
                                       _vm.supplier,
-                                      "status",
-                                      $event.target.multiple
-                                        ? $$selectedVal
-                                        : $$selectedVal[0]
+                                      "vendor_name",
+                                      $event.target.value
                                     )
                                   }
                                 }
-                              },
-                              [
-                                _c("option", [_vm._v("Supplier Status")]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "1" } }, [
-                                  _vm._v("Active")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "0" } }, [
-                                  _vm._v("Inactive")
-                                ])
-                              ]
-                            )
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col-md-12" }, [
-                          _c("div", { staticClass: "contact-name" }, [
-                            _c("i", { staticClass: "flaticon-user-11" }),
-                            _vm._v(" "),
-                            _c("textarea", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.supplier.vendor_address,
-                                  expression: "supplier.vendor_address"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                placeholder: "Vendor Address: ",
-                                rows: "3"
-                              },
-                              domProps: { value: _vm.supplier.vendor_address },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty("vendor_name")
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\r\n                                                " +
+                                        _vm._s(
+                                          _vm.validation_error.vendor_name[0]
+                                        ) +
+                                        "\r\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-email" }, [
+                              _c("i", { staticClass: "flaticon-mail-26" }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                { attrs: { for: "up-vendor-email" } },
+                                [_vm._v("Vendor Email")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.supplier.vendor_email,
+                                    expression: "supplier.vendor_email"
                                   }
-                                  _vm.$set(
-                                    _vm.supplier,
-                                    "vendor_address",
-                                    $event.target.value
-                                  )
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "up-vendor-email",
+                                  placeholder: "Vendor Email"
+                                },
+                                domProps: { value: _vm.supplier.vendor_email },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.supplier,
+                                      "vendor_email",
+                                      $event.target.value
+                                    )
+                                  }
                                 }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.validation_error.hasOwnProperty(
-                              "vendor_address"
-                            )
-                              ? _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v(
-                                    "\r\n                                                " +
-                                      _vm._s(
-                                        _vm.validation_error.vendor_address[0]
-                                      ) +
-                                      "\r\n                                        "
-                                  )
-                                ])
-                              : _vm._e()
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "vendor_email"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\r\n                                                " +
+                                        _vm._s(
+                                          _vm.validation_error.vendor_email[0]
+                                        ) +
+                                        "\r\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-phone" }, [
+                              _c("i", { staticClass: "flaticon-telephone" }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                { attrs: { for: "up-vendor-phone" } },
+                                [_vm._v("Vendor Phone")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.supplier.vendor_phone,
+                                    expression: "supplier.vendor_phone"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "up-vendor-phone",
+                                  placeholder: "Vendor Phone"
+                                },
+                                domProps: { value: _vm.supplier.vendor_phone },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.supplier,
+                                      "vendor_phone",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "vendor_phone"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\r\n                                                " +
+                                        _vm._s(
+                                          _vm.validation_error.vendor_phone[0]
+                                        ) +
+                                        "\r\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "contact-email" }, [
+                              _c("i", { staticClass: "flaticon-mail-26" }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                { attrs: { for: "up-vendor-status" } },
+                                [_vm._v("Supplier Status")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.supplier.status,
+                                      expression: "supplier.status"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: { id: "up-vendor-status" },
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        _vm.supplier,
+                                        "status",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("option", [_vm._v("Supplier Status")]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "1" } }, [
+                                    _vm._v("Active")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "0" } }, [
+                                    _vm._v("Inactive")
+                                  ])
+                                ]
+                              )
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-12" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                { attrs: { for: "up-vendor-status" } },
+                                [_vm._v("Vendor Address")]
+                              ),
+                              _vm._v(" "),
+                              _c("textarea", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.supplier.vendor_address,
+                                    expression: "supplier.vendor_address"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  id: "up-vendor-address",
+                                  placeholder: "Vendor Address: ",
+                                  rows: "3"
+                                },
+                                domProps: {
+                                  value: _vm.supplier.vendor_address
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.supplier,
+                                      "vendor_address",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "vendor_address"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\r\n                                                " +
+                                        _vm._s(
+                                          _vm.validation_error.vendor_address[0]
+                                        ) +
+                                        "\r\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
                           ])
                         ])
-                      ])
-                    ])
+                      ]
+                    )
                   ])
                 ]),
                 _vm._v(" "),
@@ -7540,7 +7652,15 @@ var render = function() {
                       staticClass: "btn btn-primary",
                       attrs: { type: "submit" }
                     },
-                    [_vm._v(_vm._s(_vm.button_name))]
+                    [
+                      _vm.button_name != "Update"
+                        ? _c("div", {
+                            staticClass:
+                              "spinner-grow text-white mr-2 align-self-center loader-sm"
+                          })
+                        : _vm._e(),
+                      _vm._v(_vm._s(_vm.button_name))
+                    ]
                   ),
                   _vm._v(" "),
                   _vm._m(1)
@@ -7616,7 +7736,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              attrs: { type: "text", placeholder: "Search Supplier" },
+              attrs: { type: "text", placeholder: "Search Vendor" },
               domProps: { value: _vm.keyword },
               on: {
                 keyup: function($event) {

@@ -19,7 +19,7 @@
                                 <div class="col-xl-8 col-lg-7 col-md-7 col-sm-5 text-sm-right text-center layout-spacing align-self-center">
                                     <div class="d-flex justify-content-sm-end justify-content-center">
                                         <button  data-toggle="modal"  data-target="#createSupplier"
-                                         class="btn btn-primary"  data-placement="top" title="Create New Supplier">
+                                         class="btn btn-primary"  data-placement="top" title="Create New Vendor">
                                         <i class="far fa-plus-square"></i> Create New
                                         </button>
                                     </div>

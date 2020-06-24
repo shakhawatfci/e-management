@@ -189,7 +189,11 @@ class ProjectController extends Controller
             return response()->json(['status' => 'error', 'message' => 'First delete Car Assign !']);
         }
         else {
-         Project::find($id)->delete();
+         $data = Project::find($id);
+            if(file_exists('upload/'.$data->project_file) && $data->project_file != null){ 
+                unlink('upload/'.$data->project_file);
+            }
+         $data->delete();
             return response()->json(['status' => 'success', 'message' => 'Project Deleted !']);
         }
     }
