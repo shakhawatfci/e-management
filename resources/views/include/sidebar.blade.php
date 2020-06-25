@@ -129,11 +129,11 @@
                         </a>
                         <ul class="collapse submenu list-unstyled"
                          id="claim" data-parent="#accordionExample">
-                            <li class="@if(Route::is('equipment-type.index')){{ 'active' }}@else{{ '' }}@endif">
-                                <a href="{{ route('equipment-type.index') }}" > Bill </a>
+                            <li class="@if(Route::is('bill.index')){{ 'active' }}@else{{ '' }}@endif">
+                                <a href="{{ route('bill.index') }}" > Bill </a>
                             </li>
-                            <li  class="@if(Route::is('equipment.index')){{ 'active' }}@else{{ '' }}@endif">
-                                <a href="{{ route('equipment.index') }}"> Manage and Payment </a>
+                            <li  class="@if(Route::is('billing.payment')){{ 'active' }}@else{{ '' }}@endif">
+                                <a href="{{ route('billing.payment') }}"> Manage and Payment </a>
                             </li>
                         </ul>
                     </li>

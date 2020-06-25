@@ -11,7 +11,7 @@
       </div>
       <div class="col-md-3" style="margin-bottom:10px;">
         <select class="form-control" v-model="project_id" @change="getEquipment()">
-          <option value="">All Projects</option>
+          <option value>All Projects</option>
           <option v-for="project in projects" :key="project.id"
            :value="project.id">{{ project.project_name }}</option>
         </select>
@@ -19,7 +19,7 @@
 
       <div class="col-md-3" style="margin-bottom:10px;">
         <select class="form-control" v-model="equipment_type_id" @change="getEquipment()">
-          <option value="">All Equipment Type</option>
+          <option value>All Equipment Type</option>
           <option v-for="eq_type in equipment_types" :key="eq_type.id"
            :value="eq_type.id">{{ eq_type.name }}</option>
         </select>
@@ -28,7 +28,7 @@
 
       <div class="col-md-3" style="margin-bottom:10px;">
         <select class="form-control" v-model="vendor_id" @change="getVendorEquipments()">
-          <option value="">All Vendor</option>
+          <option value>All Vendor</option>
           <option v-for="vd in vendors" :key="vd.id" :value="vd.id">{{ vd.vendor_name }}</option>
         </select>
       </div>
@@ -36,7 +36,7 @@
 
       <div class="col-md-3" style="margin-bottom:10px;">
         <select class="form-control" v-model="equipment_id" @change="getEquipment()">
-          <option value="">All Equipment</option>
+          <option value>All Equipment</option>
           <option v-for="eq in equipments" :key="eq.id" :value="eq.id">{{ eq.eq_name }}</option>
         </select>
       </div>
@@ -90,9 +90,7 @@
 
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
                             <a class="dropdown-item" href="" @click.prevent="viewMore(value.id)">View More</a>
-                            <a class="dropdown-item" href=""  @click.prevent="releaseEquipment(value)" >Release</a>
-                            <a class="dropdown-item" href="" @click.prevent="edit(value.id)">Edit</a>
-                            <a class="dropdown-item" href="" @click.prevent="deleteEquipment(value.id)">Delete</a>
+                            <a class="dropdown-item" href="" @click.prevent="billCreate(value)">Create Bill</a>
                      </div>
                     </div>
                 </td>
@@ -111,9 +109,8 @@
       <div class="col-md-12 text-center mb-10 mt-10">
         <!-- import pagination here  -->
         <pagination :pageData="assign_equipments"></pagination>
-        <release-equipment ></release-equipment>
         <view-assign-details ></view-assign-details>
-        <edit-assign-equipment :projects="projects" :vendors="vendors" :equipment_types="equipment_types"></edit-assign-equipment>
+        <bill-create ></bill-create>
       </div>
     </div>
   </div>
@@ -121,19 +118,17 @@
 
 
 <script>
-import { EventBus } from "../../../vue-assets";
-import Mixin from "../../../mixin";
-import Pagination from "../../pagination/Pagination";
-import UpdateAssignEquipment from "./UpdateAssignEquipment";
-import ReleaseEquipment from "./ReleaseEquipment";
-import ViewAssignDetails from "./ViewAssignDetails";
+import { EventBus } from "../../vue-assets";
+import Mixin from "../../mixin";
+import Pagination from "../pagination/Pagination";
+import ViewAssignDetails from "../project/assign-equipment/ViewAssignDetails";
+import CreateBill from "./CreateBill";
 export default {
   mixins: [Mixin],
   props: ["vendors",'equipment_types','projects'],
   components: {
     'pagination': Pagination,
-    'edit-assign-equipment': UpdateAssignEquipment,
-    'release-equipment': ReleaseEquipment,
+    'bill-create': CreateBill,
     'view-assign-details': ViewAssignDetails,
   },
   data() {
@@ -154,7 +149,7 @@ export default {
   mounted() {
     var _this = this;
 
-    EventBus.$on("equipment-assigned", function() {
+    EventBus.$on("bill-created", function() {
       _this.getEquipment();
     });
 
@@ -180,42 +175,18 @@ export default {
         });
     },
 
-    edit(id) {
-      EventBus.$emit("edit-assigned-equipment", id);
-    },
+
 
     viewMore(id) 
     {
     EventBus.$emit('assign-details',id);
     },
 
-    releaseEquipment(equipment)
+    billCreate(equipment)
     {
-       EventBus.$emit('release-equipment',equipment);
-       
+         EventBus.$emit('create-bill',equipment);
     },
 
-     deleteEquipment(id){
-          Swal.fire({
-            title: 'Are you sure ?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        },() => {
-
-        }).then((result) => {
-           if(result.value){
-           axios.delete(`${base_url}assign-equipment/${id}`)
-           .then(response => {
-              this.successMessage(response.data);
-              this.getEquipment();
-           });
-           }
-        }) 
-    },
      getVendorEquipments()
      {
        

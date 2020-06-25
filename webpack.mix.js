@@ -16,4 +16,5 @@ mix.js('resources/js/app.js', 'public/js')
    .js('resources/js/equipment.js','public/js')
    .js('resources/js/project.js','public/js')
    .js('resources/js/expense.js','public/js')
+   .js('resources/js/bill.js','public/js')
     .sass('resources/sass/app.scss', 'public/css');

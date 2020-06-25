@@ -79,6 +79,12 @@ class EquipmentAssignController extends Controller
                       if($request->equipment_type_id != '')
                       {
                         $assigned_equipments->where('equipment_type_id','=',$request->equipment_type_id);
+                      } 
+                      
+                      
+                      if($request->release_status != '')
+                      {
+                        $assigned_equipments->where('release_status','=',$request->release_status);
                       }               
 
                       if($request->operator_id != '')
