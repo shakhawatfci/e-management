@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Expense;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\ProjectExpense;
+use Auth;
 
 class ProjectExpenseController extends Controller
 {
@@ -14,7 +16,7 @@ class ProjectExpenseController extends Controller
      */
     public function index()
     {
-        //
+        return view('expense.project_expense');
     }
 
     /**
@@ -22,9 +24,13 @@ class ProjectExpenseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function projectExpenseList(Request $request)
     {
-        //
+        $projects = ProjectExpense::with(['project_expense_head:id,head_name','project'])->orderBy('id','desc');
+        if($request->keyword != '') {
+            $projects->where('project_id','LIKE','%'.$request->keyword.'%');
+        }
+        return $projects->paginate(10);
     }
 
     /**
@@ -35,7 +41,45 @@ class ProjectExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'project_expense_head_id' => 'required',
+            'project_id' => 'required',
+            'month' => 'required',
+            'date' => 'required',
+            'amount' => 'required|numeric',
+            'note' => 'required'
+        ]);
+
+        try {
+           $status = $request->status ? 1 : 0;
+           $filename = NULL;
+            if($request->file('document')){
+                $data = $request->file('document');
+                $ext = $data->getClientOriginalExtension();
+                $filename = time().'.'.$ext;
+                $data->move('upload/',$filename);
+            }
+            $insert = ProjectExpense::insert([
+                'project_expense_head_id' => $request->project_expense_head_id,
+                'project_id' => $request->project_id,
+                'user_id' => Auth::id(),
+                'month' => $request->month,
+                'date' => $request->date,
+                'amount' => $request->amount,
+                'document' => $filename,
+                'document_link' => $request->document_link,
+                'note' => $request->note,
+                'status' => $status
+            ]);
+            if ($insert) {
+                return response()->json(['status' => 'success', 'message' => 'New Project Expense Created !']);
+            }else{
+                return response()->json(['status' => 'error', 'message' => 'Something went wrong !']);
+
+            }
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+        }
     }
 
     /**
@@ -69,7 +113,39 @@ class ProjectExpenseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'project_expense_head_id' => 'required',
+            'project_id' => 'required',
+            'month' => 'required',
+            'date' => 'required',
+            'amount' => 'required|numeric',
+            'note' => 'required'
+        ]);
+
+        try {
+           $status = $request->status ? 1 : 0;
+           
+            $update = ProjectExpense::find($id);
+            
+            $update->project_expense_head_id = $request->project_expense_head_id;
+            $update->project_id = $request->project_id;
+            $update->user_id = Auth::id();
+            $update->month = $request->month;
+            $update->date = $request->date;
+            $update->amount = $request->amount;
+            $update->document_link = $request->document_link;
+            $update->note = $request->note;
+            $update->status = $status;
+         
+            if ($update->update()) {
+                return response()->json(['status' => 'success', 'message' => 'Project Expense Updated !']);
+            }else{
+                return response()->json(['status' => 'error', 'message' => 'Something went wrong !']);
+
+            }
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+        }
     }
 
     /**
@@ -80,6 +156,16 @@ class ProjectExpenseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $delete = ProjectExpense::find($id);
+            
+        if ($delete->delete()) {
+                return response()->json(['status' => 'success', 'message' => 'Project Expense Deleted !']);
+            }else{
+                return response()->json(['status' => 'error', 'message' => 'Something went wrong !']);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+        }
     }
 }

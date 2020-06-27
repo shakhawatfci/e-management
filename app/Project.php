@@ -46,17 +46,15 @@ class Project extends Model
         return $this->hasMany('App\ProjectIncome','project_id');
     }
 
-    // relation with project expense 
-
-    public function project_expense(){
-     
-     return $this->hasMany('App\OthersExpense','project_id');
-    }
-    
      // relation with Equipemtn expense
 
     public function equipement_expense(){
 
         return $this->hasMany('App\EquipementExpense','project_id');
+    }
+
+    public function project_expense(){
+
+        return $this->hasMany('App\ProjectExpense');
     }
 }
