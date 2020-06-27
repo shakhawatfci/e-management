@@ -74,6 +74,17 @@ export default {
       // const formattedDate = format(newYears.toDateString(), 'MMM dd, yyyy');
       // return formattedDate;
 
+    },
+
+    monthToString(month)
+    {
+
+      // pass  2020
+      const newYears = new Date(month);
+      const formattedDate = newYears.toDateString().slice(3);
+      const valuedate = formattedDate.split(' ');
+
+      return valuedate[1] + ', ' + valuedate[3];
     }
   }
 

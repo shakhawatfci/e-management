@@ -58,6 +58,7 @@ class EquipmentAssignController extends Controller
                                          'equipment_type:id,name',
                                          'vendor:id,vendor_name',
                                          'project:id,project_name',
+                                         'latest_bill:id,bill_no,assign_id,month,date'
                                      ])
                                      ->orderBy('updated_at','desc');
 

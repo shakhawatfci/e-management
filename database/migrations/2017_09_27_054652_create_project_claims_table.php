@@ -45,6 +45,7 @@ class CreateProjectClaimsTable extends Migration
             $table->text('documents_link')->nullable();
             $table->tinyInteger('rate_status')->nullable()->default(1);
             $table->tinyInteger('payment_status')->nullable()->default(0);
+            $table->tinyInteger('vendor_payment_status')->nullable()->default(0);
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });

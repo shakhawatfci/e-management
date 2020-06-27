@@ -287,7 +287,7 @@ export default {
           project_vat     : 0,
           project_ait     : 0,
           project_sup     : 0,
-          vendor_vat      : 0,
+          vendor_vat      : 0, 
           vendor_ait      : 0,
           vendor_sup      : 0,
           total_project_amount : 0,

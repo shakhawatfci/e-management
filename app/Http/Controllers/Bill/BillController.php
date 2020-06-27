@@ -52,6 +52,35 @@ class BillController extends Controller
 
     }
 
+    public function billingPage()
+    {
+
+      $project = Project::orderBy('project_name', 'asc')
+      ->where('project_status', '=', AllStatic::$active)
+      ->get();
+
+    $equipment_type = EquipmentType::orderBy('name', 'asc')
+      ->where('status', '=', AllStatic::$active)
+      ->get();
+
+    $vendor = Vendor::orderBy('vendor_name', 'asc')
+      ->where('status', '=', AllStatic::$active)
+      ->get();
+
+    $operator = Operator::orderBy('name', 'asc')
+      ->where('status', '=', AllStatic::$active)
+      ->get();
+
+    return view('bill.bill_payment', [
+      'projects'         =>  $project,
+      'vendors'          =>  $vendor,
+      'equipment_types'  =>  $equipment_type,
+      'operators'         =>  $operator
+     ]);
+
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -146,7 +175,7 @@ class BillController extends Controller
     }
 
 
-    public function billList()
+    public function billList(Request $request)
     {
         $per_page = 10;
 
@@ -156,7 +185,7 @@ class BillController extends Controller
         }
 
         $bill = ProjectClaim::with([
-            'user:id,name',
+            
             'equipement',
             'equipment_type:id,name',
             'vendor:id,vendor_name',

@@ -57,6 +57,7 @@
                 <th>Vendor Amount</th>
                 <th title="Vendor Rate Per Hour">Vendor R/H</th>
 
+                <th class="text-center">Last Bill</th>
                 <th class="text-center">Status</th>
                 <th class="text-center">action</th>
               </tr>
@@ -75,9 +76,14 @@
                 <td>{{ value.project_rate_per_hour }}</td>
                 <td>{{ value.total_vendor_amount }}</td>
                 <td>{{ value.vendor_rate_per_hour }}</td>
+                <td> 
+                  <span v-if="value.latest_bill">{{ value.latest_bill.month | monthToString }}</span>
+                  <span v-else> No Bill Yet </span>
+                  </td>
 
                 <!-- <td>{{ value.note }}</td> -->
                 <td class="text-center">
+
                   <span class="text-success" v-if="value.release_status == 1">Active</span>
                   <span class="text-danger" v-else>Released at {{ value.release_date | dateToString }}</span>
                 </td>
