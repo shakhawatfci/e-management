@@ -22267,7 +22267,7 @@ var EventBus = new Vue();
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! E:\server\htdocs\e-management\resources\js\equipment.js */"./resources/js/equipment.js");
+module.exports = __webpack_require__(/*! I:\xampp\htdocs\e-management\resources\js\equipment.js */"./resources/js/equipment.js");
 
 
 /***/ })

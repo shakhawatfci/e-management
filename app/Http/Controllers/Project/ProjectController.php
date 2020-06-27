@@ -42,6 +42,11 @@ class ProjectController extends Controller
         return $project;
     }
 
+    public function projectData()
+    {
+        return Project::orderBy('id','desc')->get();
+    }
+
     /**
      * Store a newly created resource in storage.
      *

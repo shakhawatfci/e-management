@@ -18,3 +18,5 @@ Route::get('project-expense-list','Expense\ProjectExpenseController@projectExpen
 
 Route::resource('equipment-expense','Expense\EquipmentExpenseController');
 Route::get('equipment-expense-list','Expense\EquipmentExpenseController@equipmentExpenseList');
+Route::get('project-head-data','ExpenseHeads\ProjectExpenseController@projectHeadData');
+Route::get('project-data','project\ProjectController@projectData');
