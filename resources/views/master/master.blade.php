@@ -6,6 +6,24 @@
 
     @stack('style')
   <style>
+   .bg-paid {
+    background-color : green;
+     }
+
+/* .bg-paid:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  background-image: url("{{ url('images/tick.png') }}");
+  background-size: 100px 100px;
+  background-position: 30px 30px;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+} */
   </style>
 </head>
 <body>

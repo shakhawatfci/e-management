@@ -19,7 +19,7 @@ class CreateEquipementExpensesTable extends Migration
             $table->integer('vendor_id');
             $table->integer('equipment_type_id');
             $table->integer('equipement_id');
-            $table->integer('equipment_expense_category_id');
+            $table->integer('equipment_expense_head_id');
             $table->string('month');
             $table->string('payment_date');
             $table->double('amount');

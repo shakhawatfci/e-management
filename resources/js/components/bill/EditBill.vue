@@ -1,12 +1,12 @@
 <template>
         <!-- Modal -->
-    <div class="modal animated rotateInDownLeft custo-rotateInDownLeft" id="CreateBill" tabindex="-1" role="dialog" aria-labelledby="addContactModalTitle" aria-hidden="true">
+    <div class="modal animated rotateInDownLeft custo-rotateInDownLeft" id="EditBill" tabindex="-1" role="dialog" aria-labelledby="addContactModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-xl custom-modal" role="document" >
-            <form @submit.prevent="save()">
+            <form @submit.prevent="Update()">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" v-if="equipment">Bill For {{ equipment.vendor.vendor_name }} {{ equipment.equipement.eq_name }} in
-                         {{ equipment.project.project_name  }}</h4>
+                    <h4 class="modal-title" v-if="bill.vendor || bill.equipement || bill.project">Bill Edit {{ bill.vendor.vendor_name }} {{ bill.equipement.eq_name }} in
+                         {{ bill.project.project_name  }} Bill NO : {{ bill.bill_no }}</h4>
                 </div>
                 <div class="modal-body">
                     <i class="flaticon-cancel-12 close" data-dismiss="modal"></i>
@@ -32,7 +32,7 @@
                                             <span>Bill  Date</span>
                                             <input type="text" 
                                             v-model="bill.date"
-                                            id="basicFlatpickr4" class="form-control" placeholder="Bill Date">
+                                            id="basicFlatpickr6" class="form-control" placeholder="Bill Date">
                                             <span v-if="validation_error.hasOwnProperty('date')" class="text-danger">
                                                 {{ validation_error.date[0] }}
                                             </span>
@@ -273,7 +273,7 @@
                 <div class="modal-footer">
                     <button type="submit"  class="btn btn-primary ">
                         <div class="spinner-grow text-white mr-2 align-self-center loader-sm" 
-                        v-if="button_name != 'Save'">.</div>
+                        v-if="button_name != 'Update'">.</div>
                          {{ button_name }} </button>
 
                     <button class="btn btn-default" data-dismiss="modal"> <i class="flaticon-delete-1"></i> Discard</button>
@@ -292,9 +292,9 @@ export default {
    data()
    {  
        return {
-         equipment : null,  
          bill : {
           assign_id : '',
+          bill_no : '',
           total_hour : 0,
           project_rate_per_hour : 0,
           vendor_rate_per_hour : 0,
@@ -316,38 +316,35 @@ export default {
          },
          validation_error : {},
          equipments : [],
-         button_name : 'Save'
+         button_name : 'Update'
        }
    },
 
    mounted() {
 
         var _this = this;
-        EventBus.$on('create-bill',function(equipment) {
-                _this.equipment = equipment;
-                _this.bill.assign_id = equipment.id;
-                _this.bill.total_hour = equipment.total_hour;
-                _this.bill.project_rate_per_hour = equipment.project_rate_per_hour;
-                _this.bill.vendor_rate_per_hour  = equipment.vendor_rate_per_hour;
-           $('#CreateBill').modal('show');
+        EventBus.$on('edit-bill',function(bill) {
+                _this.bill = bill;
+                _this.bill.print_status = 0;
+           $('#EditBill').modal('show');
         });
-                var f1 = flatpickr(document.getElementById('basicFlatpickr4'));
+        var f1 = flatpickr(document.getElementById('basicFlatpickr6'));
    },
 
  methods : {
 
-     save()
+     Update()
      {
 
-         this.button_name = 'Saving...';
-         axios.post(base_url+'bill',this.bill)
+         this.button_name = 'Updating...';
+         axios.put(base_url+'bill/'+this.bill.id,this.bill)
          .then(response => {
              if(response.data.status === 'success')
              {
-              $('#CreateBill').modal('hide');
+              $('#EditBill').modal('hide');
               this.successMessage(response.data);
-              EventBus.$emit('bill-created');
-              this.button_name = 'Save';
+              EventBus.$emit('bill-changed');
+              this.button_name = 'Update';
               this.resetForm();
               if(response.data.print_status == 1)
               {
@@ -357,7 +354,7 @@ export default {
              else
              {
                this.successMessage(response.data);
-               this.button_name = 'Save';
+               this.button_name = 'Update';
              }
          })
          .catch(err => {
@@ -365,12 +362,12 @@ export default {
              {
                  this.validation_error = err.response.data.errors;
                  this.validationError();
-                 this.button_name = 'Save';
+                 this.button_name = 'Update';
              }
              else
              {
                  this.successMessage(err);
-                 this.button_name = 'Save';
+                 this.button_name = 'Update';
              }
          })
      },
