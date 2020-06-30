@@ -2,8 +2,16 @@
   <div>
     <div class="row">
       <div class="col-md-3" style="margin-bottom:10px;">
+        <select class="form-control" v-model="release_status" @change="getEquipment()">
+          <option value="">All Assign Equipment</option>
+          <option value="1">Active</option>
+          <option value="0">Released</option>
+   
+        </select>
+      </div>
+      <div class="col-md-3" style="margin-bottom:10px;">
         <select class="form-control" v-model="project_id" @change="getEquipment()">
-          <option value>All Projects</option>
+          <option value="">All Projects</option>
           <option v-for="project in projects" :key="project.id"
            :value="project.id">{{ project.project_name }}</option>
         </select>
@@ -11,7 +19,7 @@
 
       <div class="col-md-3" style="margin-bottom:10px;">
         <select class="form-control" v-model="equipment_type_id" @change="getEquipment()">
-          <option value>All Equipment Type</option>
+          <option value="">All Equipment Type</option>
           <option v-for="eq_type in equipment_types" :key="eq_type.id"
            :value="eq_type.id">{{ eq_type.name }}</option>
         </select>
@@ -20,7 +28,7 @@
 
       <div class="col-md-3" style="margin-bottom:10px;">
         <select class="form-control" v-model="vendor_id" @change="getVendorEquipments()">
-          <option value>All Vendor</option>
+          <option value="">All Vendor</option>
           <option v-for="vd in vendors" :key="vd.id" :value="vd.id">{{ vd.vendor_name }}</option>
         </select>
       </div>
@@ -28,7 +36,7 @@
 
       <div class="col-md-3" style="margin-bottom:10px;">
         <select class="form-control" v-model="equipment_id" @change="getEquipment()">
-          <option value>All Equipment</option>
+          <option value="">All Equipment</option>
           <option v-for="eq in equipments" :key="eq.id" :value="eq.id">{{ eq.eq_name }}</option>
         </select>
       </div>
@@ -136,6 +144,7 @@ export default {
       equipment_type_id: "",
       project_id: "",
       equipment_id: "",
+      release_status: "",
       keyword: "",
       isLoading: false,
       url : base_url
@@ -158,7 +167,12 @@ export default {
       axios
         .get(
           base_url +
-            `assigned-equipment-list?page=${page}&vendor_id=${this.vendor_id}&equipment_type_id=${this.equipment_type_id}&project_id=${this.project_id}&equipment_id=${this.equipment_id}`
+            `assigned-equipment-list?page=${page}
+            &vendor_id=${this.vendor_id}
+            &equipment_type_id=${this.equipment_type_id}
+            &project_id=${this.project_id}
+            &equipment_id=${this.equipment_id}
+            &release_status=${this.release_status}`
         )
         .then(response => {
           this.assign_equipments = response.data;

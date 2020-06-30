@@ -3950,6 +3950,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3973,6 +3981,7 @@ __webpack_require__.r(__webpack_exports__);
       equipment_type_id: "",
       project_id: "",
       equipment_id: "",
+      release_status: "",
       keyword: "",
       isLoading: false,
       url: base_url
@@ -3992,7 +4001,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       this.isLoading = true;
-      axios.get(base_url + "assigned-equipment-list?page=".concat(page, "&vendor_id=").concat(this.vendor_id, "&equipment_type_id=").concat(this.equipment_type_id, "&project_id=").concat(this.project_id, "&equipment_id=").concat(this.equipment_id)).then(function (response) {
+      axios.get(base_url + "assigned-equipment-list?page=".concat(page, "\n            &vendor_id=").concat(this.vendor_id, "\n            &equipment_type_id=").concat(this.equipment_type_id, "\n            &project_id=").concat(this.project_id, "\n            &equipment_id=").concat(this.equipment_id, "\n            &release_status=").concat(this.release_status)).then(function (response) {
         _this2.assign_equipments = response.data;
         _this2.isLoading = false;
       });
@@ -13062,6 +13071,56 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
+        [
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.release_status,
+                  expression: "release_status"
+                }
+              ],
+              staticClass: "form-control",
+              on: {
+                change: [
+                  function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.release_status = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  },
+                  function($event) {
+                    return _vm.getEquipment()
+                  }
+                ]
+              }
+            },
+            [
+              _c("option", { attrs: { value: "" } }, [
+                _vm._v("All Assign Equipment")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "1" } }, [_vm._v("Active")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "0" } }, [_vm._v("Released")])
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
       _c(
         "div",
         { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
@@ -26372,6 +26431,13 @@ __webpack_require__.r(__webpack_exports__);
 
       return valuedate[1] + ' ' + valuedate[2] + ', ' + valuedate[3]; // const formattedDate = format(newYears.toDateString(), 'MMM dd, yyyy');
       // return formattedDate;
+    },
+    monthToString: function monthToString(month) {
+      // pass  2020
+      var newYears = new Date(month);
+      var formattedDate = newYears.toDateString().slice(3);
+      var valuedate = formattedDate.split(' ');
+      return valuedate[1] + ', ' + valuedate[3];
     }
   }
 });
@@ -26437,7 +26503,7 @@ var EventBus = new Vue();
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! I:\xampp\htdocs\e-management\resources\js\project.js */"./resources/js/project.js");
+module.exports = __webpack_require__(/*! E:\server\htdocs\e-management\resources\js\project.js */"./resources/js/project.js");
 
 
 /***/ })

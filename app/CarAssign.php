@@ -69,6 +69,14 @@ class CarAssign extends Model
   {
     return $this->hasMany('App\ProjectClaim','assign_id');
   }
+
+
+  // latest bil 
+
+  public function latest_bill()
+  {
+    return $this->hasOne('App\ProjectClaim','assign_id')->latest();
+  }
   
 
 

@@ -20368,6 +20368,13 @@ __webpack_require__.r(__webpack_exports__);
 
       return valuedate[1] + ' ' + valuedate[2] + ', ' + valuedate[3]; // const formattedDate = format(newYears.toDateString(), 'MMM dd, yyyy');
       // return formattedDate;
+    },
+    monthToString: function monthToString(month) {
+      // pass  2020
+      var newYears = new Date(month);
+      var formattedDate = newYears.toDateString().slice(3);
+      var valuedate = formattedDate.split(' ');
+      return valuedate[1] + ', ' + valuedate[3];
     }
   }
 });
@@ -20431,7 +20438,7 @@ var EventBus = new Vue();
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! I:\xampp\htdocs\e-management\resources\js\supplier.js */"./resources/js/supplier.js");
+module.exports = __webpack_require__(/*! E:\server\htdocs\e-management\resources\js\supplier.js */"./resources/js/supplier.js");
 
 
 /***/ })

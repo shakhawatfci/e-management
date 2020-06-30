@@ -33,4 +33,11 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\CarAssign');
     }
+
+    // relation with project claim 
+
+    public function project_claim()
+    {
+        return $this->hasMany('App\ProjectClaim');
+    }
 }

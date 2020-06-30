@@ -50,7 +50,15 @@ class ProjectClaim extends Model
           'equipment_id' => 0,
           'project_id' => 0,
           'vendor_id' => 0, 
+          'equipment_type_id' => 0, 
         ]
         );
+    }
+
+    // relation with user table 
+
+    public function user()
+    {
+      return $this->belongTo('App\User','user_id');
     }
 }

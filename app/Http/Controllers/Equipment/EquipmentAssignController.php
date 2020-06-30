@@ -58,6 +58,7 @@ class EquipmentAssignController extends Controller
                                          'equipment_type:id,name',
                                          'vendor:id,vendor_name',
                                          'project:id,project_name',
+                                         'latest_bill:id,bill_no,assign_id,month,date'
                                      ])
                                      ->orderBy('updated_at','desc');
 
@@ -79,6 +80,12 @@ class EquipmentAssignController extends Controller
                       if($request->equipment_type_id != '')
                       {
                         $assigned_equipments->where('equipment_type_id','=',$request->equipment_type_id);
+                      } 
+                      
+                      
+                      if($request->release_status != '')
+                      {
+                        $assigned_equipments->where('release_status','=',$request->release_status);
                       }               
 
                       if($request->operator_id != '')
