@@ -159,6 +159,7 @@ export default {
 
    mounted() {
     var f1 = flatpickr(document.getElementById('up-basicFlatpickr'));
+      this.getProjectHead()
       this.getProjectData()
       var _this = this;
       EventBus.$on('projectexpense-update', function(value){
@@ -207,13 +208,16 @@ export default {
           );
      },
 
+     getProjectHead()
+     {
+        axios.get(base_url+'project-head-data')
+        .then(response => this.project_expense_head = response.data)
+     },
+
      getProjectData()
      {
         axios.get(base_url+'project-data')
-        .then(response => {
-          this.projects = response.data.project
-          this.project_expense_head = response.data.project_heads
-        })
+        .then(response => this.projects = response.data)
      },
 
      resetForm()

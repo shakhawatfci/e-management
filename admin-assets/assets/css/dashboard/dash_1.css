@@ -325,7 +325,8 @@
     -webkit-transition: all 0.1s ease;
     transition: all 0.1s ease;
 }
-.widget-table-one .transactions-list:not(:last-child) {
+/*.widget-table-one .transactions-list:not(:last-child) {*/
+.widget-table-one .transactions-list {
     margin-bottom: 15px;
 }
 .widget-table-one .transactions-list:hover {
@@ -380,15 +381,15 @@
     align-self: center;
 }
 .widget-table-one .transactions-list .t-item .t-name h4 {
-    font-size: 15px;
+    font-size: 14px;
     letter-spacing: 0px;
-    font-weight: 600;
+    font-weight: 500;
     margin-bottom: 0;
 }
 .widget-table-one .transactions-list .t-item .t-name .meta-date {
-    font-size: 12px;
+    font-size: 13px;
     margin-bottom: 0;
-    font-weight: 600;
+    font-weight: 500;
     color: #888ea8;
 }
 .widget-table-one .transactions-list .t-item .t-rate {

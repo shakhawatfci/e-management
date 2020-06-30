@@ -1,6 +1,6 @@
 <template>
 <!-- Modal -->
-    <div id="UpdateProjectExpense" class="modal animated fadeInRight custo-fadeInRight show" tabindex="-1" role="dialog" aria-labelledby="addContactModalTitle" aria-hidden="true">
+    <div id="UpdateOfficeExpense" class="modal animated fadeInRight custo-fadeInRight show" tabindex="-1" role="dialog" aria-labelledby="addContactModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <form role="form">
             <div class="modal-content">
@@ -15,35 +15,17 @@
                               <div class="col-md-6">
                                   <div class="contact-email">
                                       <i class="flaticon-mail-26"></i>
-                                      <label for="up-project-head">Project Expense Head</label>
-                                      <select class="form-control" id="up-project-head" v-model="project.project_expense_head_id">
-                                          <option value="">Chose Project Expense Head</option>
-                                          <option v-for="project in project_expense_head" :key="project.id" :value="project.id">
-                                              {{ project.head_name }}
+                                      <label for="project-head">Office Expense Head</label>
+                                      <select class="form-control" id="project-head" v-model="office.office_expense_head_id">
+                                          <option value="">Chose Office Expense Head</option>
+                                          <option v-for="office_exp in office_expense_head" :key="office_exp.id" :value="office_exp.id">
+                                              {{ office_exp.head_name }}
                                           </option>
                                       </select>
                                            <span
-                                           v-if="validation_error.hasOwnProperty('project_expense_head_id')" 
+                                           v-if="validation_error.hasOwnProperty('office_expense_head_id')" 
                                           class="text-danger">
-                                          {{ validation_error.project_expense_head_id[0] }}
-                                         </span>
-                                  </div>
-                              </div>
-
-                              <div class="col-md-6">
-                                  <div class="contact-email">
-                                      <i class="flaticon-mail-26"></i>
-                                      <label for="up-project-name">Project Name</label>
-                                      <select class="form-control" id="up-project-name" v-model="project.project_id">
-                                          <option value="">Chose a Project</option>
-                                          <option v-for="value in projects" :key="value.id" :value="value.id">
-                                              {{ value.project_name }}
-                                          </option>
-                                      </select>
-                                           <span
-                                           v-if="validation_error.hasOwnProperty('project_id')" 
-                                          class="text-danger">
-                                          {{ validation_error.project_id[0] }}
+                                          {{ validation_error.office_expense_head_id[0] }}
                                          </span>
                                   </div>
                               </div>
@@ -52,7 +34,7 @@
                                 <div class="contact-name">
                                     <i class="flaticon-mail-11"></i>
                                      <label for="up-basicFlatpickr">Date</label>
-                                      <input id="up-basicFlatpickr" v-model="project.date" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Select Date">
+                                      <input id="up-basicFlatpickr" v-model="office.date" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Select Date">
                                         <span
                                          v-if="validation_error.hasOwnProperty('date')" 
                                         class="text-danger">
@@ -64,7 +46,7 @@
                             <div class="col-md-6">
                                 <div class="contact-name">
                                     <i class="flaticon-user-11"></i>
-                                    <label>Month</label>
+                                    <label for="basicFlatpickr2">Month</label>
                                     <month-picker @change="showDate" :input-pre-filled="false" :no-default="true" :show-year="true"></month-picker>
                                     <span v-if="validation_error.hasOwnProperty('month')" class="text-danger">
                                         {{ validation_error.month[0] }}
@@ -75,8 +57,8 @@
                              <div class="col-md-6">
                                 <div class="contact-phone">
                                     <i class="flaticon-telephone"></i>
-                                    <label for="up-amount">Amount</label>
-                                    <input type="text" id="up-amount" class="form-control" v-model="project.amount" placeholder="amount">
+                                    <label for="amount">Amount</label>
+                                    <input type="text" id="amount" class="form-control" v-model="office.amount" placeholder="amount">
                                     <span
                                        v-if="validation_error.hasOwnProperty('amount')" 
                                       class="text-danger">
@@ -84,28 +66,28 @@
                                      </span>
                                 </div>
                               </div>
-                                
+                               
                             </div>
                             <div class="row">
                               <div class="col-md-12">
-                                  <div class="contact-phone">
-                                      <i class="flaticon-telephone"></i>
-                                      <label for="up-document-link">Project Document Link</label>
-                                      <input type="text" id="up-document-link" class="form-control" v-model="project.document_link" placeholder="Document Link">
-                                      <span
-                                         v-if="validation_error.hasOwnProperty('document_link')" 
-                                        class="text-danger">
-                                        {{ validation_error.document_link[0] }}
-                                       </span>
-                                  </div>
+                                <div class="contact-phone">
+                                    <i class="flaticon-telephone"></i>
+                                    <label for="document-link">Document Link</label>
+                                    <input type="text" id="document-link" class="form-control" v-model="office.document_link" placeholder="Document Link">
+                                    <span
+                                       v-if="validation_error.hasOwnProperty('document_link')" 
+                                      class="text-danger">
+                                      {{ validation_error.document_link[0] }}
+                                     </span>
                                 </div>
+                              </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="contact-location">
                                         <i class="flaticon-location-1"></i>
-                                        <label for="up-note">Expense Note</label>
-                                        <textarea class="form-control" id="up-note" placeholder="Note" v-model="project.note"></textarea>
+                                        <label for="note">Expense Note</label>
+                                        <textarea class="form-control" id="note" placeholder="Note" v-model="office.note"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -140,49 +122,46 @@ export default {
    {
         
        return {
-          project : {
-            id : '',
-            project_expense_head_id : '',
-            project_id : '',
-            month : '',
-            date : '',
-            amount : '',
-            document_link : '',
-            note : ''
-          },
-          project_expense_head : [],
-          projects : [],
-         button_name : 'Update',
-         validation_error : {}
+        office : {
+          id : '',
+          office_expense_head_id : '',
+          month : '',
+          date : '',
+          amount : '',
+          document_link : '',
+          note : ''
+        },
+        office_expense_head : [],
+        button_name : 'Update',
+        validation_error : {}
        }
    },
 
    mounted() {
     var f1 = flatpickr(document.getElementById('up-basicFlatpickr'));
-      this.getProjectData()
+      this.getOfficeHead()
       var _this = this;
-      EventBus.$on('projectexpense-update', function(value){
-        $('#UpdateProjectExpense').modal('show')
-          _this.project = value;
+      EventBus.$on('officeexpense-update', function(value){
+        $('#UpdateOfficeExpense').modal('show')
+          _this.office = value;
       })
    },
 
  methods : {
       showDate(date){
-          this.project.month = date.year+'-'+date.monthIndex
-          // console.log(this.project.month );
+          this.office.month = date.year+'-'+date.monthIndex
        },
 
      update()
      {
         this.button_name = "Updating...";
-          axios.put(base_url+'project-expense/'+this.project.id,this.project)
+          axios.put(base_url+'office-expense/'+this.office.id,this.office)
           .then(response => {
               if(response.data.status === 'success'){
                   this.successMessage(response.data);
                   this.resetForm();
-                  $('#UpdateProjectExpense').modal('hide');
-                  EventBus.$emit('ProjectExpense-created');
+                  $('#UpdateOfficeExpense').modal('hide');
+                  EventBus.$emit('OfficeExpense-created');
                   this.button_name = "Update";
               }
              else
@@ -207,28 +186,29 @@ export default {
           );
      },
 
-     getProjectData()
+     getOfficeHead()
      {
-        axios.get(base_url+'project-data')
+        axios.get(base_url+'office-head-data')
         .then(response => {
-          this.projects = response.data.project
-          this.project_expense_head = response.data.project_heads
+          this.office_expense_head = response.data
+          console.log(response.data)
         })
      },
 
      resetForm()
      {
-        this.project = {
-            id : '',
-            project_expense_head_id : '',
-            project_id : '',
-            month : '',
-            date : '',
-            amount : '',
-            document_link : '',
-            note : ''
-          };
-         this.validation_error = {};
+          this.office = {
+          id : '',
+          office_expense_head_id : '',
+          month : '',
+          date : '',
+          amount : '',
+          document : '',
+          doucment_link : '',
+          note : ''
+        };
+        this.office_expense_head = [];
+        this.validation_error = {};
      }
  } 
    

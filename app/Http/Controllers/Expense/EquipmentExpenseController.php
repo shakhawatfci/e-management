@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Expense;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\EquipementExpense;
 
 class EquipmentExpenseController extends Controller
 {
@@ -14,7 +15,7 @@ class EquipmentExpenseController extends Controller
      */
     public function index()
     {
-        //
+        return view('expense.equipment_expense');
     }
 
     /**
@@ -22,9 +23,13 @@ class EquipmentExpenseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function equipmentExpenseList(Request $request)
     {
-        //
+        $equipment = EquipementExpense::with(['project:id,project_name','vendor:id,vendor_name','equipement:id,eq_name','expense_category:id,expense_title'])->orderBy('id','desc');
+        if($request->keyword != '') {
+            $equipment->where('project_id','LIKE','%'.$request->keyword.'%');
+        }
+        return $equipment->paginate(10);
     }
 
     /**
@@ -35,7 +40,7 @@ class EquipmentExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -44,9 +49,21 @@ class EquipmentExpenseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function equipmentExpenseData()
     {
-        //
+        $project = \App\Project::all();
+        $vendor = \App\Vendor::where('status',1)->get();
+        $eq_type = \App\EquipmentType::where('status',1)->get();
+        // $equipment = \App\Equipement::all();
+        $expense_category = \App\EquipmentExpenseHead::all();
+
+        return response()->json([
+            'project' => $project,
+            'vendor' => $vendor,
+            'eq_type' => $eq_type,
+            // 'equipment' => $equipment,
+            'expense_category' => $expense_category
+        ]);
     }
 
     /**

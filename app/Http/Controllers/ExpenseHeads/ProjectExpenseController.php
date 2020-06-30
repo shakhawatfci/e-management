@@ -32,11 +32,6 @@ class ProjectExpenseController extends Controller
         return $projects->paginate(10);
     }
 
-    public function projectHeadData()
-    {
-        return ProjectExpenseHead::orderBy('id','desc')->get();
-    }
-
     /**
      * Store a newly created resource in storage.
      *

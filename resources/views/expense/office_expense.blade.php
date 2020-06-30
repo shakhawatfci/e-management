@@ -1,8 +1,8 @@
 @extends('master.master')
-@section('title','EMS | Office Expense Heads')
+@section('title','EMS | Office Expense')
 
 @section('page_header')
-<li class="breadcrumb-item"><a href="javascript:void(0);">Office Expense Heads</a></li>
+<li class="breadcrumb-item"><a href="javascript:void(0);">Office Expense</a></li>
 <li class="breadcrumb-item active" aria-current="page"><span>Manage</span></li>
 @endsection
 @section('content')
@@ -13,21 +13,21 @@
 
                 <div class="row">
                     <div class="col-xl-4 col-lg-5 col-md-5 col-sm-7 filtered-list-search layout-spacing align-self-center">
-                      <h6 style="margin-top : 20px">Manage Office Expense Heads</h6>
+                      <h6 style="margin-top : 20px">Manage Office Expense</h6>
                     </div>
 
                     <div class="col-xl-8 col-lg-7 col-md-7 col-sm-5 text-sm-right text-center layout-spacing align-self-center">
                         <div class="d-flex justify-content-sm-end justify-content-center">
-                            <button  data-toggle="modal"  data-target="#createOfficeHead"
-                             class="btn btn-primary"  data-placement="top" title="Create Office Expense Head">
+                            <button  data-toggle="modal"  data-target="#createOfficeExpense"
+                             class="btn btn-primary"  data-placement="top" title="Create Office Expense">
                             <i class="far fa-plus-square"></i> Create New
                             </button>
                         </div>
-                        <create-officeexpenseheads></create-officeexpenseheads>
+                        <create-officeexpense></create-officeexpense>
                     </div>
                 </div>
 
-             <view-officeexpenseheads></view-officeexpenseheads>
+             <view-officeexpense></view-officeexpense>
 
             </div>
         </div>

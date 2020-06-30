@@ -4,7 +4,7 @@
       <div class="col-md-3" style="margin-bottom:10px;">
         <input type="text" v-model="keyword" 
         class="form-control"
-         placeholder="Search Project Expense" @keyup="getProjectExpense()" />
+         placeholder="Search Office Expense" @keyup="getOfficeExpense()" />
       </div>
     </div>
     
@@ -14,23 +14,24 @@
     <table class="table table-bordered table-hover  mb-4">
         <thead>
             <tr>
-                <th>Project Name</th>
-                <th>Project Expense</th>
-                <th>Amount</th>
+                <th>Office Head</th>
+                <th>Month</th>
                 <th>Date</th>
-                <th class="text-center">action</th>
+                <th>Amount</th>
+                <th>Document Link</th>
+                <th class="text-center">Action</th>
             </tr>
         </thead>
         <tbody>
-            <tr v-for="value in projects.data" :key="value.id">
-                <td>{{ value.project.project_name }}</td>
-                <td>{{ value.project_expense_head.head_name }}</td>
-                <td>{{ value.amount }}</td>
+            <tr v-for="value in offices.data" :key="value.id">
+                <td>{{ value.office_expense_head.head_name }}</td>
+                <td>{{ value.month }}</td>
                 <td>{{ value.date }}</td>
+                <td>{{ value.amount }}</td>
+                <td>{{ value.document_link }}</td>
                 <td class="text-center">
-                    <button class="btn btn-warning mb-2 mr-2 rounded-circle" title="View" @click="viewProjectExpense(value)"><i class="far fa-eye"></i></button>
-                    <button class="btn btn-dark mb-2 mr-2 rounded-circle" title="Edit" @click.prevent="editProjectExpense(value)"><i class="far fa-edit"></i></button>
-                    <button class="btn btn-danger mb-2 mr-2 rounded-circle" title="Delete" @click.prevent="deleteProjectExpense(value.id)"><i class="far fa-trash-alt"></i></button>
+                    <button class="btn btn-dark mb-2 mr-2 rounded-circle" title="Edit" @click.prevent="editOfficeExpense(value)"><i class="far fa-edit"></i></button>
+                    <button class="btn btn-danger mb-2 mr-2 rounded-circle" title="Delete" @click.prevent="deleteOfficeExpense(value.id)"><i class="far fa-trash-alt"></i></button>
                 </td>
             </tr>
         </tbody>
@@ -44,12 +45,11 @@
         </div>
   </div>
 
-       <update-projectexpense> </update-projectexpense>
-       <show-projectexpense> </show-projectexpense>
+       <update-officeexpense> </update-officeexpense>
     <div class="row">
       <div class="col-md-12 text-center mb-10 mt-10">
        <!-- import pagination here  -->
-       <pagination :pageData="this.projects"> </pagination>
+       <pagination :pageData="this.offices"> </pagination>
 
       </div>
     </div>
@@ -61,17 +61,16 @@
 import { EventBus } from "../../../vue-assets";
 import Mixin from "../../../mixin";
 import Pagination from '../../pagination/Pagination';
-import ShowProjectexpense from './SingleViewProjectexpense';
-import UpdateProjectexpense from './UpdateProjectexpense';
+import UpdateOfficeexpense from './UpdateOfficeExpense';
 export default {
   mixins: [Mixin],
   components : {
    'pagination' : Pagination,
-   UpdateProjectexpense,ShowProjectexpense
+   UpdateOfficeexpense
   },
   data() {
     return {
-     projects : [],
+     offices : [],
      keyword   : '',
      isLoading : false,
     }
@@ -81,38 +80,33 @@ export default {
 
       var _this = this;
 
-      EventBus.$on('ProjectExpense-created',function(){
-          _this.getProjectExpense();
+      EventBus.$on('OfficeExpense-created',function(){
+          _this.getOfficeExpense();
       })
 
-      this.getProjectExpense();
+      this.getOfficeExpense();
 
   },
 
   methods: {
      
-     getProjectExpense(page = 1) 
+     getOfficeExpense(page = 1) 
      {
          this.isLoading = true;
-         axios.get(base_url+`project-expense-list?page=${page}&keyword=${this.keyword}`)
+         axios.get(base_url+`office-expense-list?page=${page}&keyword=${this.keyword}`)
          .then(response =>
           {
-            this.projects = response.data;
+            this.offices = response.data;
             this.isLoading = false;
          });
      },
 
-     editProjectExpense(value)
+     editOfficeExpense(value)
      {
-        EventBus.$emit('projectexpense-update',value)
+        EventBus.$emit('officeexpense-update',value)
      },
 
-     viewProjectExpense(value)
-     {
-        EventBus.$emit('projectexpense-view',value)
-     },
-
-     deleteProjectExpense(id)
+     deleteOfficeExpense(id)
      {
        Swal.fire({
             title: 'Are you sure ?',
@@ -126,10 +120,10 @@ export default {
 
         }).then((result) => {
            if(result.value){
-           axios.delete(`${base_url}project-expense/${id}`)
+           axios.delete(`${base_url}office-expense/${id}`)
            .then(response => {
               this.successMessage(response.data);
-              this.getProjectExpense();
+              this.getOfficeExpense();
            });
            }
         }) 
@@ -137,7 +131,7 @@ export default {
 
      pageClicked(page)
      {
-         this.getProjectExpense(page);
+         this.getOfficeExpense(page);
      }
 
     }
