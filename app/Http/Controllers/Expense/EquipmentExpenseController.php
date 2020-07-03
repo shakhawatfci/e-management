@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Expense;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\EquipementExpense;
 
 class EquipmentExpenseController extends Controller
 {
@@ -14,7 +15,7 @@ class EquipmentExpenseController extends Controller
      */
     public function index()
     {
-        //
+        return view('expense.equipment_expense');
     }
 
     /**
@@ -22,9 +23,14 @@ class EquipmentExpenseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function equipmentExpenseList(Request $request)
     {
-        //
+        $equipment = EquipementExpense::with(['project:id,project_name','vendor:id,vendor_name','equipement:id,eq_name','equipment_type:id,name','equipment_expense_head:id,head_name'])
+            ->orderBy('id','desc');
+        if($request->keyword != '') {
+            $equipment->where('project_id','LIKE','%'.$request->keyword.'%');
+        }
+        return $equipment->paginate(10);
     }
 
     /**
@@ -35,18 +41,63 @@ class EquipmentExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'project_id' => 'required',
+            'vendor_id' => 'required',
+            'equipment_type_id' => 'required',
+            'equipement_id' => 'required',
+            'expense_category_id' => 'required',
+            'month' => 'required',
+            'payment_date' => 'required',
+            'amount' => 'required'
+        ]);
+        try {
+            $status = $request->status ? 1 : 0;
+            $insert = EquipementExpense::insert([
+                'project_id' => $request->project_id,
+                'vendor_id' => $request->vendor_id,
+                'equipment_type_id' => $request->equipment_type_id,
+                'equipement_id' => $request->equipement_id,
+                'equipment_expense_head_id' => $request->expense_category_id,
+                'month' => $request->month,
+                'payment_date' => $request->payment_date,
+                'amount' => $request->amount,
+                'document' => null,
+                'documents_link' => $request->document_link,
+                'note' => $request->note,
+                'status' => $status
+            ]);
 
+            if($insert) {
+               return response()->json(['status' => 'success', 'message' => 'Equipment Expense Created !']);
+            }else{
+                return response()->json(['status' => 'error', 'message' => 'Something went wrong !']);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+        }
+    }
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function equipmentExpenseData()
     {
-        //
+        $project = \App\Project::all();
+        $vendor = \App\Vendor::where('status',1)->get();
+        $eq_type = \App\EquipmentType::where('status',1)->get();
+        $equipment = \App\Equipement::all();
+        $expense_category = \App\EquipmentExpenseHead::all();
+
+        return response()->json([
+            'project' => $project,
+            'vendor' => $vendor,
+            'eq_type' => $eq_type,
+            'equipment' => $equipment,
+            'expense_category' => $expense_category
+        ]);
     }
 
     /**
@@ -69,7 +120,40 @@ class EquipmentExpenseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'project_id' => 'required',
+            'vendor_id' => 'required',
+            'equipment_type_id' => 'required',
+            'equipement_id' => 'required',
+            'equipment_expense_head_id' => 'required',
+            'month' => 'required',
+            'payment_date' => 'required',
+            'amount' => 'required'
+        ]);
+
+        try {
+            $status = $request->status ? 1 : 0;
+            $update = EquipementExpense::find($id);
+                $update->project_id = $request->project_id;
+                $update->vendor_id = $request->vendor_id;
+                $update->equipment_type_id = $request->equipment_type_id;
+                $update->equipement_id = $request->equipement_id;
+                $update->equipment_expense_head_id = $request->equipment_expense_head_id;
+                $update->month = $request->month;
+                $update->payment_date = $request->payment_date;
+                $update->amount = $request->amount;
+                $update->documents_link = $request->document_link;
+                $update->note = $request->note;
+                $update->status = $status;
+
+            if($update->update()) {
+               return response()->json(['status' => 'success', 'message' => 'Equipment Expense Updated !']);
+            }else{
+                return response()->json(['status' => 'error', 'message' => 'Something went wrong !']);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+        }
     }
 
     /**
@@ -80,6 +164,16 @@ class EquipmentExpenseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $delete = EquipementExpense::find($id);
+            
+        if ($delete->delete()) {
+                return response()->json(['status' => 'success', 'message' => 'Equipment Expense Deleted !']);
+            }else{
+                return response()->json(['status' => 'error', 'message' => 'Something went wrong !']);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+        }
     }
 }

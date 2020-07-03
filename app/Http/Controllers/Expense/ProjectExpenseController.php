@@ -26,19 +26,24 @@ class ProjectExpenseController extends Controller
      */
     public function projectExpenseList(Request $request)
     {
-        $projects = ProjectExpense::with(['project_expense_head:id,head_name','project'])->orderBy('id','desc');
+        $projects = ProjectExpense::with(['project_expense_head:id,head_name','project:id,project_name'])->orderBy('id','desc');
         if($request->keyword != '') {
             $projects->where('project_id','LIKE','%'.$request->keyword.'%');
         }
         return $projects->paginate(10);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function projectData()
+    {
+        $project = \App\Project::orderBy('id','desc')->get();
+        $project_heads = \App\ProjectExpenseHead::orderBy('id','desc')->get();
+
+        return response()->json([
+            'project' => $project,
+            'project_heads' => $project_heads
+        ]);
+    }
+
     public function store(Request $request)
     {
         $request->validate([

@@ -32,6 +32,11 @@ class OfficeExpenseController extends Controller
         return $office->paginate(10);
     }
 
+    public function officeHeadData(Request $request)
+    {
+        return OfficeExpenseHead::orderBy('id','desc')->get();
+    }
+
     /**
      * Store a newly created resource in storage.
      *

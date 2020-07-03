@@ -15,6 +15,15 @@ Vue.component('view-officeexpenseheads', require('./components/expense_heads/off
 Vue.component('create-projectexpense', require('./components/expense/project/CreateProjectExpense.vue').default);
 Vue.component('view-projectexpense', require('./components/expense/project/ViewProjectExpense.vue').default);
 
+Vue.component('create-equipmentexpense', require('./components/expense/equipment/CreateEquipmentExpense.vue').default);
+Vue.component('view-equipmentexpense', require('./components/expense/equipment/ViewEquipmentExpense.vue').default);
+
+Vue.component('create-officeexpense', require('./components/expense/office/CreateOfficeExpense.vue').default);
+Vue.component('view-officeexpense', require('./components/expense/office/ViewOfficeExpense.vue').default);
+
+Vue.component('create-operator', require('./components/expense/operator/CreateOperator.vue').default);
+Vue.component('view-operator', require('./components/expense/operator/ViewOperator.vue').default);
+
 var app = new Vue({
 
     el: '#content'

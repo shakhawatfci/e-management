@@ -12,11 +12,17 @@ Route::get('officehead-list','ExpenseHeads\OfficeExpenseController@officeHeadLis
 // -- Expense --
 Route::resource('office-expense','Expense\OfficeExpenseController');
 Route::get('office-expense-list','Expense\OfficeExpenseController@officeExpenseList');
+Route::get('office-head-data','ExpenseHeads\OfficeExpenseController@officeHeadData');
 
 Route::resource('project-expense','Expense\ProjectExpenseController');
 Route::get('project-expense-list','Expense\ProjectExpenseController@projectExpenseList');
 
 Route::resource('equipment-expense','Expense\EquipmentExpenseController');
+Route::get('equipment-data','Expense\EquipmentExpenseController@equipmentExpenseData');
 Route::get('equipment-expense-list','Expense\EquipmentExpenseController@equipmentExpenseList');
-Route::get('project-head-data','ExpenseHeads\ProjectExpenseController@projectHeadData');
-Route::get('project-data','project\ProjectController@projectData');
+
+Route::get('project-data','Expense\ProjectExpenseController@projectData');
+
+// Operator
+Route::resource('operator','Expense\OperatorController');
+Route::get('operator-list','Expense\OperatorController@operatorList');

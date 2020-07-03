@@ -40,7 +40,8 @@
     <!-- BEGIN THEME GLOBAL STYLES -->
     <link href="{{ asset('admin-assets/plugins/flatpickr/flatpickr.css') }}" rel="stylesheet" type="text/css">
     <!-- END THEME GLOBAL STYLES -->
-
+    <!-- <link href="{{ asset('admin-assets/plugins/apex/apexcharts.css') }}" rel="stylesheet" type="text/css"> -->
+    <link href="{{ asset('admin-assets/assets/css/dashboard/dash_1.css') }}" rel="stylesheet" type="text/css" />
     <!-- notes  -->
     <link href="{{ asset('admin-assets/assets/css/apps/notes.css') }}" rel="stylesheet" type="text/css">
     <!-- notes  -->
