@@ -12,7 +12,7 @@
                     <div class="add-contact-box">
                         <div class="add-contact-content text-left">
                            <div class="row">
-                              <div class="col-md-6">
+                              <div class="col-md-4">
                                   <div class="contact-email">
                                       <i class="flaticon-mail-26"></i>
                                       <label for="project">Project</label>
@@ -30,7 +30,7 @@
                                   </div>
                               </div>
 
-                              <div class="col-md-6">
+                              <div class="col-md-4">
                                   <div class="contact-email">
                                       <i class="flaticon-mail-26"></i>
                                       <label for="euqipment-type">Equipment Type</label>
@@ -48,7 +48,7 @@
                                   </div>
                               </div>
 
-                              <div class="col-md-6">
+                              <div class="col-md-4">
                                   <div class="contact-email">
                                       <i class="flaticon-mail-26"></i>
                                       <label for="vendor">Vendor</label>
@@ -68,7 +68,7 @@
 
                               
 
-                          <div class="col-md-6">
+                          <div class="col-md-4">
                               <div class="contact-email">
                                   <i class="flaticon-mail-26"></i>
                                   <label for="equipement-name">Equipment Name</label>
@@ -86,7 +86,7 @@
                               </div>
                           </div>
 
-                          <div class="col-md-6">
+                          <div class="col-md-4">
                               <div class="contact-email">
                                   <i class="flaticon-mail-26"></i>
                                   <label for="equipement-name">Expense Category</label>
@@ -104,44 +104,31 @@
                               </div>
                           </div>
 
-                          <div class="col-md-6">
-                            <div class="contact-name">
-                                <i class="flaticon-mail-11"></i>
-                                 <label for="basicFlatpickr">Date</label>
-                                  <input id="basicFlatpickr" v-model="euqipment.date" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Select Date">
-                                    <span
-                                     v-if="validation_error.hasOwnProperty('date')" 
-                                    class="text-danger">
-                                    {{ validation_error.date[0] }}
-                                   </span>
-                            </div>
-                        </div>
-         
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="contact-name">
                                 <i class="flaticon-user-11"></i>
                                 <label for="month">Month</label>
-                                <input v-model="euqipment.date" id="month" class="form-control" type="text" placeholder="YYYY-MM">
+                                <input v-model="euqipment.month" id="month" class="form-control" type="text" placeholder="YYYY-MM">
                                 <span v-if="validation_error.hasOwnProperty('month')" class="text-danger">
                                     {{ validation_error.month[0] }}
                                 </span>
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="contact-name">
                                 <i class="flaticon-mail-11"></i>
-                                 <label for="basicFlatpickr2">Payment Date</label>
-                                  <input id="basicFlatpickr2" v-model="euqipment.payment_date" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Select Payment Date">
+                                 <label for="basicFlatpickr">Payment Date</label>
+                                  <input id="basicFlatpickr" v-model="euqipment.payment_date" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Select Payment Date">
                                     <span
-                                     v-if="validation_error.hasOwnProperty('date')" 
+                                     v-if="validation_error.hasOwnProperty('payment_date')" 
                                     class="text-danger">
-                                    {{ validation_error.date[0] }}
+                                    {{ validation_error.payment_date[0] }}
                                    </span>
                             </div>
                         </div>
 
-                         <div class="col-md-6">
+                         <div class="col-md-4">
                             <div class="contact-phone">
                                 <i class="flaticon-telephone"></i>
                                 <label for="amount">Amount</label>
@@ -154,58 +141,15 @@
                             </div>
                           </div>
 
-                        <div class="col-md-6">
-                            <div class="contact-email">
-                                <i class="flaticon-mail-26"></i>
-                                <label for="payment-type">Payment Type</label>
-                                <select class="form-control" id="payment-type" v-model="euqipment.payment_type">
-                                    <option value="">Chose a Payment Type</option>
-                                    <option value="cash">Cash</option>
-                                    <option value="banking">Banking</option>
-                                </select>
-                                     <span
-                                     v-if="validation_error.hasOwnProperty('payment_type')" 
-                                    class="text-danger">
-                                    {{ validation_error.payment_type[0] }}
-                                   </span>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                          <div class="contact-phone">
-                              <i class="flaticon-telephone"></i>
-                              <label for="bank">Bank</label>
-                              <input type="text" id="bank" class="form-control" v-model="euqipment.bank" placeholder="Bank">
-                              <span
-                                 v-if="validation_error.hasOwnProperty('bank')" 
-                                class="text-danger">
-                                {{ validation_error.bank[0] }}
-                               </span>
-                          </div>
-                        </div>
-
-                        <div class="col-md-6">
-                          <div class="contact-phone">
-                              <i class="flaticon-telephone"></i>
-                              <label for="account_no">Account no:</label>
-                              <input type="text" id="account_no" class="form-control" v-model="euqipment.account_no" placeholder="Account no">
-                              <span
-                                 v-if="validation_error.hasOwnProperty('account_no')" 
-                                class="text-danger">
-                                {{ validation_error.account_no[0] }}
-                               </span>
-                          </div>
-                        </div>
-
-                      <div class="col-md-6">
+                      <div class="col-md-4">
                         <div class="contact-phone">
                             <i class="flaticon-telephone"></i>
-                            <label for="document">Document</label>
-                            <input type="file" id="document" class="form-control">
+                            <label for="document_link">Document Link</label>
+                            <input type="text" id="document_link" class="form-control" v-model="euqipment.document_link">
                             <span
-                               v-if="validation_error.hasOwnProperty('document')" 
+                               v-if="validation_error.hasOwnProperty('document_link')" 
                               class="text-danger">
-                              {{ validation_error.document[0] }}
+                              {{ validation_error.document_link[0] }}
                              </span>
                         </div>
                       </div>
@@ -262,10 +206,7 @@ export default {
           month : '',
           payment_date : '',
           amount : '',
-          payment_type : '',
-          bank : '',
-          account_no : '',
-          document : '',
+          document_link : '',
           note : ''
         },
         projects: [],
@@ -280,7 +221,7 @@ export default {
 
    mounted() {
       var f1 = flatpickr(document.getElementById('basicFlatpickr'));
-      var f2 = flatpickr(document.getElementById('basicFlatpickr2'));
+      // var f2 = flatpickr(document.getElementById('basicFlatpickr2'));
       this.getEquipmentData()
    },
 
@@ -298,7 +239,7 @@ export default {
      save()
      {
         this.button_name = "Saving...";
-          axios.post(base_url+'project-expense',this.project)
+          axios.post(base_url+'equipment-expense',this.euqipment)
           .then(response => {
               if(response.data.status === 'success'){
                   this.successMessage(response.data);
@@ -335,7 +276,6 @@ export default {
         .then(response => {
           this.projects = response.data.project
           this.vendors = response.data.vendor
-          // this.equipments = response.data.equipment
           this.expense_categories = response.data.expense_category
           this.equipment_types = response.data.eq_type
         })
@@ -354,16 +294,14 @@ export default {
           month : '',
           payment_date : '',
           amount : '',
-          payment_type : '',
-          bank : '',
-          account_no : '',
-          document : '',
+          document_link : '',
           note : ''
         };
         this.projects = [];
         this.vendors  = [];
         this.equipment_types  = [];
         this.equipments  = [];
+        this.expense_categories  = [];
         this.validation_error = {};
      }
  } 

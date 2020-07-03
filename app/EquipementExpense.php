@@ -40,5 +40,17 @@ class EquipementExpense extends Model
 
     }
 
+    public function equipment_type(){
+
+      return $this->belongsTo('App\EquipmentType');
+
+    }
+
+    public function equipment_expense_head(){
+
+      return $this->belongsTo('App\EquipmentExpenseHead');
+
+    }
+
 
 }

@@ -21,6 +21,9 @@ Vue.component('view-equipmentexpense', require('./components/expense/equipment/V
 Vue.component('create-officeexpense', require('./components/expense/office/CreateOfficeExpense.vue').default);
 Vue.component('view-officeexpense', require('./components/expense/office/ViewOfficeExpense.vue').default);
 
+Vue.component('create-operator', require('./components/expense/operator/CreateOperator.vue').default);
+Vue.component('view-operator', require('./components/expense/operator/ViewOperator.vue').default);
+
 var app = new Vue({
 
     el: '#content'

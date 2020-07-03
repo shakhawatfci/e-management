@@ -4,7 +4,7 @@
       <div class="col-md-3" style="margin-bottom:10px;">
         <input type="text" v-model="keyword" 
         class="form-control"
-         placeholder="Search Equipment Expense" @keyup="getEquipmentExpense()" />
+         placeholder="Search Operator Expense" @keyup="getOperator()" />
       </div>
     </div>
     
@@ -14,25 +14,30 @@
     <table class="table table-bordered table-hover  mb-4">
         <thead>
             <tr>
+                <th>Picture</th>
                 <th>Name</th>
-                <th>Expense</th>
-                <th>Equipment</th>
-                <th>Payment Date</th>
-                <th>Amount</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Bkash</th>
+                <th>Status</th>
                 <th class="text-center">action</th>
             </tr>
         </thead>
         <tbody>
-            <tr v-for="value in equipments.data" :key="value.id">
-                <td>{{ value.project.project_name }}</td>
-                <td>{{ value.vendor.vendor_name }}</td>
-                <td>{{ value.equipement.eq_name }}</td>
-                <td>{{ value.payment_date }}</td>
-                <td>{{ value.amount }}</td>
+            <tr v-for="value in operators.data" :key="value.id">
+                <td><img :src="url+'images/operator/'+value.file" :alt="value.name" height="50px" width="50px" /></td>
+                <td>{{ value.name }}</td>
+                <td>{{ value.address }}</td>
+                <td>{{ value.mobile }}</td>
+                <td>{{ value.bkash_number }}</td>
+                <td>
+                  <span class="text-success" v-if="value.status == 1">Active</span>
+                  <span class="text-danger" v-else>Inactive</span>
+                </td>
                 <td class="text-center">
-                    <button class="btn btn-warning mb-2 mr-2 rounded-circle" title="View" @click="viewEquipmentExpense(value)"><i class="far fa-eye"></i></button>
-                    <button class="btn btn-dark mb-2 mr-2 rounded-circle" title="Edit" @click.prevent="editEquipmentExpense(value)"><i class="far fa-edit"></i></button>
-                    <button class="btn btn-danger mb-2 mr-2 rounded-circle" title="Delete" @click.prevent="deleteEquipmentExpense(value.id)"><i class="far fa-trash-alt"></i></button>
+                    <button class="btn btn-warning mb-2 mr-2 rounded-circle" title="View" @click="viewOperator(value)"><i class="far fa-eye"></i></button>
+                    <button class="btn btn-dark mb-2 mr-2 rounded-circle" title="Edit" @click.prevent="editOperator(value)"><i class="far fa-edit"></i></button>
+                    <button class="btn btn-danger mb-2 mr-2 rounded-circle" title="Delete" @click.prevent="deleteOperator(value.id)"><i class="far fa-trash-alt"></i></button>
                 </td>
             </tr>
         </tbody>
@@ -46,12 +51,12 @@
         </div>
   </div>
 
-       <update-equipmentexpense> </update-equipmentexpense>
-       <show-equipmentexpense> </show-equipmentexpense>
+       <update-operator> </update-operator>
+       <single-viewoperator> </single-viewoperator>
     <div class="row">
       <div class="col-md-12 text-center mb-10 mt-10">
        <!-- import pagination here  -->
-       <pagination :pageData="this.equipments"> </pagination>
+       <pagination :pageData="this.operators"> </pagination>
 
       </div>
     </div>
@@ -63,17 +68,18 @@
 import { EventBus } from "../../../vue-assets";
 import Mixin from "../../../mixin";
 import Pagination from '../../pagination/Pagination';
-import ShowEquipmentexpense from './SingleViewEquipmentexpense';
-import UpdateEquipmentexpense from './UpdateEquipmentexpense';
+import SingleViewoperator from './SingleViewoperator';
+import UpdateOperator from './UpdateOperator';
 export default {
   mixins: [Mixin],
   components : {
    'pagination' : Pagination,
-   UpdateEquipmentexpense,ShowEquipmentexpense
+   UpdateOperator,SingleViewoperator
   },
   data() {
     return {
-     equipments : [],
+     operators : [],
+     url : base_url,
      keyword   : '',
      isLoading : false,
     }
@@ -83,38 +89,38 @@ export default {
 
       var _this = this;
 
-      EventBus.$on('EquipmentExpense-created',function(){
-          _this.getEquipmentExpense();
+      EventBus.$on('operator-created',function(){
+          _this.getOperator();
       })
 
-      this.getEquipmentExpense();
+      this.getOperator();
 
   },
 
   methods: {
      
-     getEquipmentExpense(page = 1) 
+     getOperator(page = 1) 
      {
          this.isLoading = true;
-         axios.get(base_url+`equipment-expense-list?page=${page}&keyword=${this.keyword}`)
+         axios.get(base_url+`operator-list?page=${page}&keyword=${this.keyword}`)
          .then(response =>
           {
-            this.equipments = response.data;
+            this.operators = response.data;
             this.isLoading = false;
          });
      },
 
-     editEquipmentExpense(value)
+     editOperator(value)
      {
-        EventBus.$emit('equipmentexpense-update',value)
+        EventBus.$emit('operator-update',value)
      },
 
-     viewEquipmentExpense(value)
+     viewOperator(value)
      {
-        EventBus.$emit('equipmentexpense-view',value)
+        EventBus.$emit('operator-show',value)
      },
 
-     deleteEquipmentExpense(id)
+     deleteOperator(id)
      {
        Swal.fire({
             title: 'Are you sure ?',
@@ -128,10 +134,10 @@ export default {
 
         }).then((result) => {
            if(result.value){
-           axios.delete(`${base_url}equipment-expense/${id}`)
+           axios.delete(`${base_url}operator/${id}`)
            .then(response => {
               this.successMessage(response.data);
-              this.getEquipmentExpense();
+              this.getOperator();
            });
            }
         }) 
@@ -139,7 +145,7 @@ export default {
 
      pageClicked(page)
      {
-         this.getEquipmentExpense(page);
+         this.getOperator(page);
      }
 
     }

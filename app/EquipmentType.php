@@ -26,4 +26,9 @@ class EquipmentType extends Model
     {
       return $this->hasMany('App\ProjectClaim');
     }
+
+    public function equipement_expense()
+    {
+      return $this->hasMany('App\EquipementExpense');
+    }
 }
