@@ -102,7 +102,7 @@ class BillController extends Controller
         // validate bill before submiting
 
         $request->validate([
-            'month' => 'required',
+            'month' => 'required|date_format:Y-m',
             'date' => 'required',
             'total_hour' => 'required',
             'project_rate_per_hour' => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
@@ -117,6 +117,9 @@ class BillController extends Controller
             'vendor_vat' => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
             'vendor_ait' => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
             'vendor_sup' => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+        ],
+        [
+            'month.date_format' => 'Month Format Must be yyyy-mm as like 2020-06'
         ]);
 
         try
@@ -254,7 +257,7 @@ class BillController extends Controller
         // validate bill before submiting
 
         $request->validate([
-            'month' => 'required',
+            'month' => 'required|date_format:Y-m',
             'date' => 'required',
             'total_hour' => 'required',
             'project_rate_per_hour' => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',

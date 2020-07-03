@@ -38,7 +38,7 @@ class VendorPaymentController extends Controller
      */
     public function store(Request $request)
     {
-
+       
         $request->validate([
             'date' => 'required',
             'month' => 'required',
@@ -60,7 +60,7 @@ class VendorPaymentController extends Controller
           $payment->amount = $request->payment_amount; 
           $payment->date = $request->date; 
           $payment->month = $request->month;  
-          $payment->note =  $request->note; 
+          $payment->note =  $request->notes; 
           $payment->user_id =  Auth::user()->id; 
           $payment->status =  1; 
           $payment->save();
@@ -96,7 +96,8 @@ class VendorPaymentController extends Controller
      */
     public function show($bill_id)
     {
-        $vendor_payment = VendorPayment::where('project_claim_id','=',$bill_id)
+        $vendor_payment = VendorPayment::with('user')
+                                         ->where('project_claim_id','=',$bill_id)
                                          ->get();
           
         return $vendor_payment;

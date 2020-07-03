@@ -113,7 +113,7 @@
         
         <div class="col-md-6 col-xs-6">
                 <table class="table table-bordered">
-                    <tr>
+                    <!-- <tr>
                         <td>Vat Registration No</td>
                         <td>{{ $form_data['reg_no'] }}</td>
                     </tr> 
@@ -121,7 +121,7 @@
                      <tr>
                         <td>TIN No</td>
                         <td>{{ $form_data['tin_no'] }}</td>
-                    </tr>   
+                    </tr>    -->
 
                     <tr>
                         <td>Bank Name</td>

@@ -10,13 +10,7 @@
           @keyup="getBillList()"
         />
       </div>
-      <div class="col-md-3" style="margin-bottom:10px;">
-        <select class="form-control" v-model="payment_status" @change="getBillList()">
-          <option value>Payment Status</option>
-          <option value="1">Paid</option>
-          <option value="0">Unpaid</option>
-        </select>
-      </div>
+
       <div class="col-md-3" style="margin-bottom:10px;">
         <select class="form-control" v-model="project_id" @change="getBillList()">
           <option value>All Projects</option>
@@ -50,6 +44,14 @@
         <select class="form-control" v-model="equipment_id" @change="getBillList()">
           <option value>All Equipment</option>
           <option v-for="eq in equipments" :key="eq.id" :value="eq.id">{{ eq.eq_name }}</option>
+        </select>
+      </div>
+
+      <div class="col-md-3" style="margin-bottom:10px;">
+        <select class="form-control" v-model="payment_status" @change="getBillList()">
+          <option value>Project Payment Status</option>
+          <option value="1">Paid</option>
+          <option value="0">Unpaid</option>
         </select>
       </div>
     </div>
@@ -158,17 +160,20 @@
                       <a
                         class="dropdown-item"
                         href
+                        @click.prevent="projectPaymentHistory(value)"
+                      >
+                      Project Paymetn History
+                      </a>
+                      <a
+                        class="dropdown-item"
+                        href
                         @click.prevent="makeVendorPayment(value)"
                       >Make Vendor Payment</a>
+
                       <a
                         class="dropdown-item"
                         href
-                        @click.prevent="projectPaymentHistory(value)"
-                      >Project Paymetn History</a>
-                      <a
-                        class="dropdown-item"
-                        href
-                        @click.prevent="vendorPaymentHistory(value.id)"
+                        @click.prevent="vendorPaymentHistory(value)"
                       >Vendor Payment History</a>
                       <a
                         class="dropdown-item"
@@ -277,7 +282,7 @@ export default {
     },
 
     viewMore(id) {
-      alert("work on progress check project payment option");
+      alert("work on progress check below others menu they are done");
       EventBus.$emit("bill-details", id);
     },
 
@@ -314,6 +319,11 @@ export default {
 
     makeVendorPayment(bill) {
       EventBus.$emit("make-vendor-payment", bill);
+    },
+
+    vendorPaymentHistory(bill)
+    {
+      EventBus.$emit('view-vendor-payment',bill);
     },
 
     getVendorEquipments() {

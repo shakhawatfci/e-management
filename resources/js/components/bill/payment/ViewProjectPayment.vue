@@ -5,7 +5,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" v-if="bill">Payment History  For {{ bill.vendor.vendor_name }} for {{ bill.equipement.eq_name }} in
-                         in {{ bill.project.project_name  }} Bill No {{ bill.bill_no }}</h4>
+                          {{ bill.project.project_name  }} Bill No {{ bill.bill_no }}</h4>
                 </div>
                 <div class="modal-body">
                     <i class="flaticon-cancel-12 close" data-dismiss="modal"></i>
@@ -14,8 +14,8 @@
 
                                 <div class="row">
                                   
-                                  <div class="col-md-12">
-                                      <div class="table-responsive" v-if="payments.lenght > 0">
+                                  <div class="col-md-12" v-if="!isLoading">
+                                      <div class="table-responsive" v-if="payments.length > 0">
                                          <table class="table table-bordered table-hover mb-4 text-white">
                                              <tr>
                                               <th>Date</th>
@@ -38,8 +38,10 @@
                                              </tr>
 
                                               <tr>
-                                                <td colspan="4" class="text-right">Total Payed Amount</td>
+                                                <td colspan="2" class="text-right">Total Paid Amount</td>
                                                 <td>{{ totalPayment }}</td>
+                                                <td></td>
+                                                <td></td>
                                               </tr>
                                          </table>
                                       </div>
@@ -48,9 +50,13 @@
                                       </div>
                                   </div>
 
+                                <div class="col-dm-12 text-center" v-else>
+                                   <h3>Loading....</h3>
+                                </div>
                                 
                                     
                                 </div>
+
 
 
                         </div>
@@ -76,6 +82,7 @@ export default {
        return {
          bill : null,  
          payments : [],
+         isLoading : true
        }
    },
 
@@ -92,9 +99,11 @@ export default {
 
  getProjectPayment(id)
  {
+   this.isLoading = true;
      axios.get(base_url+'project-payment/'+id)
           .then(response => {
             this.payments = response.data;
+            this.isLoading = false;
           });
 
  },

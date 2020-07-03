@@ -844,8 +844,8 @@ code {
   justify-content: space-between;
   padding: 10px 12px 10px 48px;
   padding-left: 24px;
-  margin-left: 36px;
-  font-size: 13px;
+  margin-left: 15px;
+  font-size: 14px;
   color: #888ea8; }
 
 #sidebar ul.menu-categories li.menu ul.submenu > li a:before {

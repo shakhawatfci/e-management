@@ -59,7 +59,7 @@ class ProjectPaymentController extends Controller
           $payment->amount = $request->payment_amount; 
           $payment->date = $request->date; 
           $payment->month = $request->month;  
-          $payment->note =  $request->note; 
+          $payment->note =  $request->notes; 
           $payment->user_id =  Auth::user()->id; 
           $payment->status =  1; 
           $payment->save();

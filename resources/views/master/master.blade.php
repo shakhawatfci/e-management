@@ -102,10 +102,23 @@
     <!-- END MAIN CONTAINER -->
     <script>
         var base_url = "{{ url('/') }}"+'/';
+
+
     </script>
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
     @include('include.common_footer_asset')
     <!-- END GLOBAL MANDATORY SCRIPTS -->
+
+    <script>
+        $( document ).ready(function() {
+            $(".active").parents(".menu").children("a").removeClass('collapsed');
+            $(".active").parents(".menu").children("a").removeAttr('area-expanded');
+            $(".active").parents(".menu").children("a").attr('area-expanded',true);
+            $(".active").parents(".menu").children("a").attr('data-active',true);
+            $(".active").parents().addClass('show');
+
+        });
+    </script>
 
   @stack('script')
 
