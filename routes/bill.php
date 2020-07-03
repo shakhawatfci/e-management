@@ -11,4 +11,5 @@ Route::get('bill-print','Bill\BillController@billPrint')->name('bill.print');
 // project payment 
 
 Route::resource('project-payment','ProjectPaymentController');
+Route::resource('vendor-payment','VendorPaymentController');
 

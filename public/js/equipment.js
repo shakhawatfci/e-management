@@ -22209,7 +22209,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   filters: {
     formatPrice: function formatPrice(value) {
-      return parseFloat(value).toFixed(2);
+      return Number(value).toFixed(2);
     },
     strippedContent: function strippedContent(string) {
       return string.replace(/<\/?[^>]+>/ig, " ");

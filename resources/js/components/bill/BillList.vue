@@ -106,7 +106,7 @@
                   <br />
                   Status : {{ value.payment_status == 1 ? 'Paid' : 'Unpaid' }}
                 </td>
-                <td>
+                <td :class="value.vendor_payment_status == 1 ? 'bg-paid' : ''">
                   Vendor Amount (R*H) : ({{ value.vendor_rate_per_hour }} * {{ value.total_hour }}) = {{ value.vendor_amount }}
                   <br />
                   Vat : {{ value.vendor_vat }}% = {{ ((value.vendor_amount*value.vendor_vat)/100) | formatPrice }}
@@ -158,12 +158,12 @@
                       <a
                         class="dropdown-item"
                         href
-                        @click.prevent="makeVendorPayment(value.id)"
+                        @click.prevent="makeVendorPayment(value)"
                       >Make Vendor Payment</a>
                       <a
                         class="dropdown-item"
                         href
-                        @click.prevent="projectPaymentHistory(value.id)"
+                        @click.prevent="projectPaymentHistory(value)"
                       >Project Paymetn History</a>
                       <a
                         class="dropdown-item"
@@ -194,6 +194,9 @@
         <!-- import pagination here  -->
         <edit-bill></edit-bill>
         <crate-project-payment></crate-project-payment>
+        <view-project-payment></view-project-payment>
+        <crate-vendor-payment></crate-vendor-payment>
+        <view-vendor-payment></view-vendor-payment>
         <pagination :pageData="bill_list"></pagination>
       </div>
     </div>
@@ -206,13 +209,19 @@ import { EventBus } from "../../vue-assets";
 import Mixin from "../../mixin";
 import Pagination from "../pagination/Pagination";
 import CreateProjectPayment from "./payment/CreateProjectPayment";
+import ViewProjectPayment from "./payment/ViewProjectPayment";
+import CreateVendortPayment from "./payment/CreateVendorPayment";
+import ViewVendorPayment from "./payment/ViewVendorPayment";
 import EditBill from "./EditBill";
 export default {
   mixins: [Mixin],
   props: ["vendors", "equipment_types", "projects"],
   components: {
     pagination: Pagination,
-    "crate-project-payment": CreateProjectPayment,
+    "crate-project-payment"  : CreateProjectPayment,
+    "crate-vendor-payment"   : CreateVendortPayment,
+    "view-project-payment"   : ViewProjectPayment,
+    "view-vendor-payment"    : ViewVendorPayment,
     "edit-bill": EditBill
   },
   data() {
@@ -296,6 +305,15 @@ export default {
 
     makeProjectPayment(bill) {
       EventBus.$emit("make-project-payment", bill);
+    },
+
+    projectPaymentHistory(bill)
+    {
+      EventBus.$emit('view-project-payment',bill);
+    },
+
+    makeVendorPayment(bill) {
+      EventBus.$emit("make-vendor-payment", bill);
     },
 
     getVendorEquipments() {

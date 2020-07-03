@@ -17,7 +17,7 @@
                                 <div class="col-md-3">
                                         <div class="contact-name">
                                             <i class="flaticon-user-11"></i>
-                                            <span>Paying for the Month</span>
+                                            <span>Paying for bill of the Month</span>
                                             <input type="text" 
                                             v-model="payment.month"
                                              class="form-control" placeholder="" readonly>
@@ -30,7 +30,7 @@
                                             <span>Payment   Date</span>
                                             <input type="text" 
                                             v-model="payment.date"
-                                            id="basicFlatpickr4" class="form-control" placeholder="Bill Date">
+                                            id="basicFlatpickr4" class="form-control" placeholder="Payment Date">
                                             <span v-if="validation_error.hasOwnProperty('date')" class="text-danger">
                                                 {{ validation_error.date[0] }}
                                             </span>
@@ -185,9 +185,9 @@ export default {
                 _this.bill = bill;
                 _this.payment.id = bill.id
                 _this.payment.total_project_amount = bill.total_project_amount;
-                _this.payment.project_adjustment = bill.project_adjustment_payment;
+                _this.payment.project_adjustment_payment = bill.project_adjustment_payment;
                 _this.payment.project_payment = bill.project_payment;
-                _this.payment.project_adjustment = bill.project_adjustment_payment;
+                // _this.payment.project_adjustment = bill.project_adjustment_payment;
                 _this.payment.month = bill.month;
                
            $('#CreatePayment').modal('show');

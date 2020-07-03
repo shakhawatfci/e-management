@@ -24,7 +24,7 @@ class CreateVendorPaymentsTable extends Migration
             $table->string('month');
             $table->string('date');
             $table->double('amount');
-            $table->text('note')->comment = "payment related note such as bank info";
+            $table->text('note')->nullable()->comment = "payment related note such as bank info";
             $table->tinyInteger('status');
             $table->timestamps();
         });

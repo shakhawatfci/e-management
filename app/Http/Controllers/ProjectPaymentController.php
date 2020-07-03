@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\ProjectPayment;
 use App\ProjectClaim;
 use Auth;
+use DB;
 use Illuminate\Http\Request;
 
 class ProjectPaymentController extends Controller
@@ -91,9 +92,14 @@ class ProjectPaymentController extends Controller
      * @param  \App\ProjectPayment  $projectPayment
      * @return \Illuminate\Http\Response
      */
-    public function show(ProjectPayment $projectPayment)
+    public function show($bill_id)
     {
-        //
+
+        // finding all payment under a bill 
+        $project_payment = ProjectPayment::with('user:id,name')->where('project_claim_id','=',$bill_id)
+        ->get();
+
+        return $project_payment;
     }
 
     /**
@@ -127,6 +133,33 @@ class ProjectPaymentController extends Controller
      */
     public function destroy(ProjectPayment $projectPayment)
     {
-        //
+    try
+      {
+        
+        DB::beginTransaction();
+
+        // update project claim table before deleted 
+
+        $bill = ProjectClaim::find($projectPayment->project_claim_id);
+        $bill->project_payment -= $projectPayment->amount;
+        if($bill->project_payment+$bill->project_adjustment_payment >= $bill->total_project_amount)
+        {
+        $bill->project_payment_status == 1;
+        } 
+        $bill->update();
+
+        // now delete this shit 
+        $projectPayment->delete();
+
+        DB::commit();
+
+        return response()->json(['status'=>'success','message' => 'Vendor Payment Deleted']);
+
+      }
+      catch(\Exception $e)
+      {   
+          DB::rollback();
+          return response()->json(['status'=>'error','message'=>$e->getMessage()]);
+      }
     }
 }
