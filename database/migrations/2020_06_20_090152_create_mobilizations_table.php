@@ -14,12 +14,12 @@ class CreateMobilizationsTable extends Migration
     public function up()
     {
         Schema::create('mobilizations', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('vendor_id')->nullable()->default(0);
-            $table->integer('equipment_type_id')->nullable()->default(0);
-            $table->integer('project_id')->nullable()->default(0);
-            $table->integer('equipment_id')->nullable()->default(0);
-            $table->integer('user_id')->comment = "entired by";
+            $table->id();
+            $table->foreignId('vendor_id')->nullable()->default(0);
+            $table->foreignId('equipment_type_id')->nullable()->default(0);
+            $table->foreignId('project_id')->nullable()->default(0);
+            $table->foreignId('equipment_id')->nullable()->default(0);
+            $table->foreignId('user_id')->comment = "entired by";
             $table->string('month');
             $table->string('date');
             $table->string('destination_from');

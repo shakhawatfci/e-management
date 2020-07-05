@@ -14,7 +14,7 @@ class CreateOperatorsTable extends Migration
     public function up()
     {
         Schema::create('operators', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('name');
             $table->text('address')->nullable();
             $table->string('mobile')->nullable();

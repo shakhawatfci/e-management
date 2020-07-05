@@ -14,9 +14,9 @@ class CreateOfficeExpensesTable extends Migration
     public function up()
     {
         Schema::create('office_expenses', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('office_expense_head_id');
-            $table->integer('user_id');
+            $table->id();
+            $table->foreignId('office_expense_head_id');
+            $table->foreignId('user_id');
             $table->string('month');
             $table->string('date');
             $table->double('amount');

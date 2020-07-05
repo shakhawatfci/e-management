@@ -92,7 +92,7 @@
                                             <select class="form-control" v-model="equipment.operator">
                                                 <option value="">Chose a Operator</option>
                                                 <option v-for="operator in operators" :key="operator.id" :value="operator.id">
-                                                    {{ operator.operator_name }}
+                                                    {{ operator.name }}
                                                 </option>
                                             </select>
                                                  <span

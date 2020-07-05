@@ -35,7 +35,7 @@ class EquipmentAssignController extends Controller
             ->where('status', '=', AllStatic::$active)
             ->get();
 
-        $operator = Operator::orderBy('name', 'asc')
+     $operator = Operator::orderBy('name', 'asc')
             ->where('status', '=', AllStatic::$active)
             ->get();
 

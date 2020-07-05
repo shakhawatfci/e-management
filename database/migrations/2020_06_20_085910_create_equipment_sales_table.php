@@ -14,9 +14,9 @@ class CreateEquipmentSalesTable extends Migration
     public function up()
     {
         Schema::create('equipment_sales', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('equipment_type_id');
-            $table->integer('user_id');
+            $table->id();
+            $table->foreignId('equipment_type_id');
+            $table->foreignId('user_id');
             $table->string('customer_name');
             $table->string('month');
             $table->string('date');

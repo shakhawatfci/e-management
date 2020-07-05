@@ -14,14 +14,14 @@ class CreateProjectClaimsTable extends Migration
     public function up()
     {
         Schema::create('project_claim', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('bill_no')->nullable();
-            $table->integer('assign_id');
-            $table->integer('project_id');
-            $table->integer('vendor_id');
-            $table->integer('equipment_type_id');
-            $table->integer('equipement_id');
-            $table->integer('user_id');
+            $table->foreignId('assign_id');
+            $table->foreignId('project_id');
+            $table->foreignId('vendor_id');
+            $table->foreignId('equipment_type_id');
+            $table->foreignId('equipement_id');
+            $table->foreignId('user_id');
             $table->string('month');
             $table->string('date');
             $table->double('total_hour');

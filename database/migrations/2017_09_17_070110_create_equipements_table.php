@@ -14,9 +14,9 @@ class CreateEquipementsTable extends Migration
     public function up()
     {
         Schema::create('equipement', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('vendor_id');
-            $table->integer('equipment_type_id');
+            $table->id();
+            $table->foreignId('vendor_id');
+            $table->foreignId('equipment_type_id');
             $table->string('eq_name');
             $table->string('eq_model');
             $table->string('eq_capacity')->nullable();

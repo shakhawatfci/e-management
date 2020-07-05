@@ -14,13 +14,13 @@ class CreateCarAssignsTable extends Migration
     public function up()
     {
         Schema::create('car_assign', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('project_id');
-            $table->integer('equipment_type_id');
-            $table->integer('vendor_id');
-            $table->integer('equipement_id');
-            $table->integer('user_id')->comment = "assigned by which employee or admin assinged it";
-            $table->integer('operator_id')->nullabe()->default(0);
+            $table->id();
+            $table->foreignId('project_id');
+            $table->foreignId('equipment_type_id');
+            $table->foreignId('vendor_id');
+            $table->foreignId('equipement_id');
+            $table->foreignId('user_id')->comment = "assigned by which employee or admin assinged it";
+            $table->foreignId('operator_id')->nullabe()->default(0);
             $table->double('total_hour');
             $table->double('total_project_amount');
             $table->double('total_vendor_amount');

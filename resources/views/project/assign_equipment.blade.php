@@ -27,14 +27,14 @@
                                     :vendors='@json($vendors)' 
                                     :equipment_types='@json($equipment_types)'
                                     :projects='@json($projects)'
-                                    :oerators='@json($projects)'
+                                    :operators='@json($operators)'
                                     ></assign-equipment>
                             </div>
 
                          <view-assigned-equipment :vendors='@json($vendors)'
                           :equipment_types='@json($equipment_types)'
                           :projects='@json($projects)'
-                          :operator='@json($projects)'
+                          :operators='@json($operators)'
                           ></view-assigned-equipment>
 
                         </div>

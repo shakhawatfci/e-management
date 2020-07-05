@@ -119,7 +119,7 @@ class EquipmentController extends Controller
             $equipment->eq_model = $request->equipment_model;
             $equipment->eq_capacity = $request->capacity;
             $equipment->note = $request->note;
-            $equipment->eq_status = $request->status;
+            $equipment->eq_status = $request->status  ? $request->status : 1;
             $equipment->save();
 
             return response()->json(['status' => 'success' , 'message' => 'Equipment Added']);

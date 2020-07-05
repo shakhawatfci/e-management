@@ -14,8 +14,8 @@ class CreateOperatorSalariesTable extends Migration
     public function up()
     {
         Schema::create('operator_salaries', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('operator_id');
+            $table->id();
+            $table->foreignId('operator_id');
             $table->string('month');
             $table->string('payment_date');
             $table->double('payment_amount');

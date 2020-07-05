@@ -14,12 +14,12 @@ class CreateEquipementExpensesTable extends Migration
     public function up()
     {
         Schema::create('equipement_expense', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('project_id');
-            $table->integer('vendor_id');
-            $table->integer('equipment_type_id');
-            $table->integer('equipement_id');
-            $table->integer('equipment_expense_head_id');
+            $table->id();
+            $table->foreignId('project_id');
+            $table->foreignId('vendor_id');
+            $table->foreignId('equipment_type_id');
+            $table->foreignId('equipement_id');
+            $table->foreignId('equipment_expense_head_id');
             $table->string('month');
             $table->string('payment_date');
             $table->double('amount');
