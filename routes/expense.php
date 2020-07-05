@@ -21,8 +21,6 @@ Route::resource('equipment-expense','Expense\EquipmentExpenseController');
 Route::get('equipment-data','Expense\EquipmentExpenseController@equipmentExpenseData');
 Route::get('equipment-expense-list','Expense\EquipmentExpenseController@equipmentExpenseList');
 
-Route::get('project-data','Expense\ProjectExpenseController@projectData');
-
 // Operator
 Route::resource('operator','Expense\OperatorController');
 Route::get('operator-list','Expense\OperatorController@operatorList');

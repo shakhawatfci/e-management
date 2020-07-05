@@ -2862,6 +2862,59 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2877,6 +2930,11 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       equipments: [],
+      project_id: '',
+      vendor_id: '',
+      equipment_type_id: '',
+      equipement_id: '',
+      equipment_expense_head_id: '',
       keyword: '',
       isLoading: false
     };
@@ -2895,7 +2953,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       this.isLoading = true;
-      axios.get(base_url + "equipment-expense-list?page=".concat(page, "&keyword=").concat(this.keyword)).then(function (response) {
+      axios.get(base_url + "equipment-expense-list?page=".concat(page, "&keyword=").concat(this.keyword, "&project=").concat(this.project_id, "&vendor=").concat(this.vendor_id, "&equipment_type=").concat(this.equipment_type_id, "&equipement=").concat(this.equipement_id, "&equipment_head=").concat(this.equipment_expense_head_id)).then(function (response) {
         _this2.equipments = response.data;
         _this2.isLoading = false;
       });
@@ -2926,6 +2984,15 @@ __webpack_require__.r(__webpack_exports__);
           });
         }
       });
+    },
+    filterClear: function filterClear() {
+      this.project_id = '';
+      this.vendor_id = '';
+      this.equipment_type_id = '';
+      this.equipement_id = '';
+      this.equipment_expense_head_id = '';
+      this.keyword = '';
+      this.getEquipmentExpense();
     },
     pageClicked: function pageClicked(page) {
       this.getEquipmentExpense(page);
@@ -4641,6 +4708,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
+  props: ['project_expense_head', 'projects'],
   components: {
     MonthPicker: vue_month_picker__WEBPACK_IMPORTED_MODULE_2__["MonthPicker"]
   },
@@ -4655,16 +4723,12 @@ __webpack_require__.r(__webpack_exports__);
         document_link: '',
         note: ''
       },
-      project_expense_head: [],
-      projects: [],
       button_name: 'Save',
       validation_error: {}
     };
   },
   mounted: function mounted() {
     var f1 = flatpickr(document.getElementById('basicFlatpickr')); // var f2 = flatpickr(document.getElementById('basicFlatpickr2'));
-
-    this.getProjectData();
   },
   methods: {
     showDate: function showDate(date) {
@@ -4702,14 +4766,6 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    getProjectData: function getProjectData() {
-      var _this2 = this;
-
-      axios.get(base_url + 'project-data').then(function (response) {
-        _this2.projects = response.data.project;
-        _this2.project_expense_head = response.data.project_heads;
-      });
-    },
     resetForm: function resetForm() {
       this.project = {
         project_expense_head_id: '',
@@ -4722,8 +4778,6 @@ __webpack_require__.r(__webpack_exports__);
         doucment_link: '',
         note: ''
       };
-      this.project_expense_head = [];
-      this.projects = [];
       this.users = [];
       this.validation_error = {};
     }
@@ -5082,6 +5136,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
+  props: ['project_expense_head', 'project_data'],
   components: {
     MonthPicker: vue_month_picker__WEBPACK_IMPORTED_MODULE_2__["MonthPicker"]
   },
@@ -5097,26 +5152,25 @@ __webpack_require__.r(__webpack_exports__);
         document_link: '',
         note: ''
       },
-      project_expense_head: [],
-      projects: [],
       button_name: 'Update',
       validation_error: {}
     };
   },
   mounted: function mounted() {
     var f1 = flatpickr(document.getElementById('up-basicFlatpickr'));
-    this.getProjectData();
 
     var _this = this;
 
     _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('projectexpense-update', function (value) {
       $('#UpdateProjectExpense').modal('show');
       _this.project = value;
+      console.log(_this.project_expense_head);
     });
+    console.log(this.project_data);
   },
   methods: {
     showDate: function showDate(date) {
-      this.project.month = date.year + '-' + date.monthIndex; // console.log(this.project.month );
+      this.project.month = date.year + '-' + date.monthIndex;
     },
     update: function update() {
       var _this2 = this;
@@ -5148,14 +5202,6 @@ __webpack_require__.r(__webpack_exports__);
 
           _this2.button_name = "Update";
         }
-      });
-    },
-    getProjectData: function getProjectData() {
-      var _this3 = this;
-
-      axios.get(base_url + 'project-data').then(function (response) {
-        _this3.projects = response.data.project;
-        _this3.project_expense_head = response.data.project_heads;
       });
     },
     resetForm: function resetForm() {
@@ -5249,6 +5295,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5256,6 +5326,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
+  props: ['project_expense_head', 'projects_data'],
   components: {
     'pagination': _pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"],
     UpdateProjectexpense: _UpdateProjectexpense__WEBPACK_IMPORTED_MODULE_4__["default"],
@@ -5264,6 +5335,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       projects: [],
+      project_id: '',
+      project_head_id: '',
       keyword: '',
       isLoading: false
     };
@@ -5282,7 +5355,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       this.isLoading = true;
-      axios.get(base_url + "project-expense-list?page=".concat(page, "&keyword=").concat(this.keyword)).then(function (response) {
+      axios.get(base_url + "project-expense-list?page=".concat(page, "&keyword=").concat(this.keyword, "&project=").concat(this.project_id, "&project_head=").concat(this.project_head_id)).then(function (response) {
         _this2.projects = response.data;
         _this2.isLoading = false;
       });
@@ -5313,6 +5386,12 @@ __webpack_require__.r(__webpack_exports__);
           });
         }
       });
+    },
+    filterClear: function filterClear() {
+      this.project_id = '';
+      this.project_head_id = '';
+      this.keyword = '';
+      this.getProjectExpense();
     },
     pageClicked: function pageClicked(page) {
       this.getProjectExpense(page);
@@ -13455,6 +13534,297 @@ var render = function() {
           "div",
           { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
           [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.project_id,
+                    expression: "project_id"
+                  }
+                ],
+                staticClass: "form-control",
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.project_id = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    function($event) {
+                      return _vm.getEquipmentExpense()
+                    }
+                  ]
+                }
+              },
+              [
+                _c("option", { attrs: { value: "" } }, [
+                  _vm._v("All Projects")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.equipments.data, function(project) {
+                  return _c(
+                    "option",
+                    {
+                      key: project.id,
+                      domProps: { value: project.project_id }
+                    },
+                    [_vm._v(_vm._s(project.project.project_name))]
+                  )
+                })
+              ],
+              2
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
+          [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.vendor_id,
+                    expression: "vendor_id"
+                  }
+                ],
+                staticClass: "form-control",
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.vendor_id = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    function($event) {
+                      return _vm.getEquipmentExpense()
+                    }
+                  ]
+                }
+              },
+              [
+                _c("option", { attrs: { value: "" } }, [_vm._v("All Vendor")]),
+                _vm._v(" "),
+                _vm._l(_vm.equipments.data, function(vendor) {
+                  return _c(
+                    "option",
+                    { key: vendor.id, domProps: { value: vendor.vendor_id } },
+                    [_vm._v(_vm._s(vendor.vendor.vendor_name))]
+                  )
+                })
+              ],
+              2
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
+          [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.equipment_type_id,
+                    expression: "equipment_type_id"
+                  }
+                ],
+                staticClass: "form-control",
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.equipment_type_id = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    function($event) {
+                      return _vm.getEquipmentExpense()
+                    }
+                  ]
+                }
+              },
+              [
+                _c("option", { attrs: { value: "" } }, [
+                  _vm._v("All Equipment Type")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.equipments.data, function(equip_type) {
+                  return _c(
+                    "option",
+                    {
+                      key: equip_type.id,
+                      domProps: { value: equip_type.equipment_type_id }
+                    },
+                    [_vm._v(_vm._s(equip_type.equipment_type.name))]
+                  )
+                })
+              ],
+              2
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
+          [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.equipement_id,
+                    expression: "equipement_id"
+                  }
+                ],
+                staticClass: "form-control",
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.equipement_id = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    function($event) {
+                      return _vm.getEquipmentExpense()
+                    }
+                  ]
+                }
+              },
+              [
+                _c("option", { attrs: { value: "" } }, [
+                  _vm._v("All Equipment")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.equipments.data, function(equipment) {
+                  return _c(
+                    "option",
+                    {
+                      key: equipment.id,
+                      domProps: { value: equipment.equipement_id }
+                    },
+                    [_vm._v(_vm._s(equipment.equipement.eq_name))]
+                  )
+                })
+              ],
+              2
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
+          [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.equipment_expense_head_id,
+                    expression: "equipment_expense_head_id"
+                  }
+                ],
+                staticClass: "form-control",
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.equipment_expense_head_id = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    function($event) {
+                      return _vm.getEquipmentExpense()
+                    }
+                  ]
+                }
+              },
+              [
+                _c("option", { attrs: { value: "" } }, [
+                  _vm._v("All Equipment Head")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.equipments.data, function(equipment_head) {
+                  return _c(
+                    "option",
+                    {
+                      key: equipment_head.id,
+                      domProps: {
+                        value: equipment_head.equipment_expense_head_id
+                      }
+                    },
+                    [
+                      _vm._v(
+                        _vm._s(equipment_head.equipment_expense_head.head_name)
+                      )
+                    ]
+                  )
+                })
+              ],
+              2
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
+          [
             _c("input", {
               directives: [
                 {
@@ -13479,6 +13849,26 @@ var render = function() {
                 }
               }
             })
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-md-2", staticStyle: { "margin-bottom": "15px" } },
+          [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-danger",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    return _vm.filterClear()
+                  }
+                }
+              },
+              [_vm._v("Clear")]
+            )
           ]
         )
       ]),
@@ -17551,7 +17941,7 @@ var render = function() {
                                 _vm._v("Chose a Project")
                               ]),
                               _vm._v(" "),
-                              _vm._l(_vm.projects, function(value) {
+                              _vm._l(_vm.project_data, function(value) {
                                 return _c(
                                   "option",
                                   {
@@ -17896,6 +18286,119 @@ var render = function() {
           "div",
           { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
           [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.project_id,
+                    expression: "project_id"
+                  }
+                ],
+                staticClass: "form-control",
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.project_id = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    function($event) {
+                      return _vm.getProjectExpense()
+                    }
+                  ]
+                }
+              },
+              [
+                _c("option", { attrs: { value: "" } }, [
+                  _vm._v("All Projects")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.projects_data, function(project) {
+                  return _c(
+                    "option",
+                    { key: project.id, domProps: { value: project.id } },
+                    [_vm._v(_vm._s(project.project_name))]
+                  )
+                })
+              ],
+              2
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
+          [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.project_head_id,
+                    expression: "project_head_id"
+                  }
+                ],
+                staticClass: "form-control",
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.project_head_id = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    function($event) {
+                      return _vm.getProjectExpense()
+                    }
+                  ]
+                }
+              },
+              [
+                _c("option", { attrs: { value: "" } }, [
+                  _vm._v("All Project Head")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.project_expense_head, function(project_expense) {
+                  return _c(
+                    "option",
+                    {
+                      key: project_expense.id,
+                      domProps: { value: project_expense.id }
+                    },
+                    [_vm._v(_vm._s(project_expense.head_name))]
+                  )
+                })
+              ],
+              2
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
+          [
             _c("input", {
               directives: [
                 {
@@ -17920,6 +18423,26 @@ var render = function() {
                 }
               }
             })
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-md-2", staticStyle: { "margin-bottom": "15px" } },
+          [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-danger",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    return _vm.filterClear()
+                  }
+                }
+              },
+              [_vm._v("Clear")]
+            )
           ]
         )
       ]),
@@ -18020,7 +18543,12 @@ var render = function() {
             )
       ]),
       _vm._v(" "),
-      _c("update-projectexpense"),
+      _c("update-projectexpense", {
+        attrs: {
+          project_data: _vm.projects_data,
+          project_expense_head: _vm.project_expense_head
+        }
+      }),
       _vm._v(" "),
       _c("show-projectexpense"),
       _vm._v(" "),
@@ -34384,7 +34912,7 @@ var EventBus = new Vue();
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! E:\server\htdocs\e-management\resources\js\expense.js */"./resources/js/expense.js");
+module.exports = __webpack_require__(/*! I:\xampp\htdocs\e-management\resources\js\expense.js */"./resources/js/expense.js");
 
 
 /***/ })

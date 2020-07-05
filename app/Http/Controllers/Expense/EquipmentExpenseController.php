@@ -27,6 +27,21 @@ class EquipmentExpenseController extends Controller
     {
         $equipment = EquipementExpense::with(['project:id,project_name','vendor:id,vendor_name','equipement:id,eq_name','equipment_type:id,name','equipment_expense_head:id,head_name'])
             ->orderBy('id','desc');
+        if($request->project != '') {
+            $equipment->where('project_id','=',$request->project);
+        }
+        if($request->vendor != '') {
+            $equipment->where('vendor_id','=',$request->vendor);
+        }
+        if($request->equipment_type != '') {
+            $equipment->where('equipment_type_id','=',$request->equipment_type);
+        }
+        if($request->equipement != '') {
+            $equipment->where('equipement_id','=',$request->equipement);
+        }
+        if($request->equipment_head != '') {
+            $equipment->where('equipment_expense_head_id','=',$request->equipment_head);
+        }
         if($request->keyword != '') {
             $equipment->where('project_id','LIKE','%'.$request->keyword.'%');
         }

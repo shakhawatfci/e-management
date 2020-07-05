@@ -36,7 +36,7 @@
                                       <label for="up-project-name">Project Name</label>
                                       <select class="form-control" id="up-project-name" v-model="project.project_id">
                                           <option value="">Chose a Project</option>
-                                          <option v-for="value in projects" :key="value.id" :value="value.id">
+                                          <option v-for="value in project_data" :key="value.id" :value="value.id">
                                               {{ value.project_name }}
                                           </option>
                                       </select>
@@ -133,12 +133,12 @@ import Mixin from '../../../mixin';
 import { MonthPicker } from 'vue-month-picker'
 export default {
    mixins : [Mixin],
+   props : ['project_expense_head','project_data'],
    components: {
       MonthPicker
     },
    data()
    {
-        
        return {
           project : {
             id : '',
@@ -150,8 +150,6 @@ export default {
             document_link : '',
             note : ''
           },
-          project_expense_head : [],
-          projects : [],
          button_name : 'Update',
          validation_error : {}
        }
@@ -159,18 +157,18 @@ export default {
 
    mounted() {
     var f1 = flatpickr(document.getElementById('up-basicFlatpickr'));
-      this.getProjectData()
       var _this = this;
       EventBus.$on('projectexpense-update', function(value){
         $('#UpdateProjectExpense').modal('show')
           _this.project = value;
+      console.log(_this.project_expense_head)
       })
+      console.log(this.project_data)
    },
 
  methods : {
       showDate(date){
           this.project.month = date.year+'-'+date.monthIndex
-          // console.log(this.project.month );
        },
 
      update()
@@ -205,15 +203,6 @@ export default {
                   }
               }
           );
-     },
-
-     getProjectData()
-     {
-        axios.get(base_url+'project-data')
-        .then(response => {
-          this.projects = response.data.project
-          this.project_expense_head = response.data.project_heads
-        })
      },
 
      resetForm()

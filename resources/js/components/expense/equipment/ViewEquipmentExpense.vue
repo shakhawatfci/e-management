@@ -2,9 +2,62 @@
   <div>
     <div class="row">
       <div class="col-md-3" style="margin-bottom:10px;">
+        <select class="form-control" v-model="project_id" @change="getEquipmentExpense()">
+          <option value>All Projects</option>
+          <option
+            v-for="project in equipments.data"
+            :key="project.id"
+            :value="project.project_id"
+          >{{ project.project.project_name }}</option>
+        </select>
+      </div>
+      <div class="col-md-3" style="margin-bottom:10px;">
+        <select class="form-control" v-model="vendor_id" @change="getEquipmentExpense()">
+          <option value>All Vendor</option>
+          <option
+            v-for="vendor in equipments.data"
+            :key="vendor.id"
+            :value="vendor.vendor_id"
+          >{{ vendor.vendor.vendor_name }}</option>
+        </select>
+      </div>
+      <div class="col-md-3" style="margin-bottom:10px;">
+        <select class="form-control" v-model="equipment_type_id" @change="getEquipmentExpense()">
+          <option value>All Equipment Type</option>
+          <option
+            v-for="equip_type in equipments.data"
+            :key="equip_type.id"
+            :value="equip_type.equipment_type_id"
+          >{{ equip_type.equipment_type.name }}</option>
+        </select>
+      </div>
+      <div class="col-md-3" style="margin-bottom:10px;">
+        <select class="form-control" v-model="equipement_id" @change="getEquipmentExpense()">
+          <option value>All Equipment</option>
+          <option
+            v-for="equipment in equipments.data"
+            :key="equipment.id"
+            :value="equipment.equipement_id"
+          >{{ equipment.equipement.eq_name }}</option>
+        </select>
+      </div>
+      <div class="col-md-3" style="margin-bottom:10px;">
+        <select class="form-control" v-model="equipment_expense_head_id" @change="getEquipmentExpense()">
+          <option value>All Equipment Head</option>
+          <option
+            v-for="equipment_head in equipments.data"
+            :key="equipment_head.id"
+            :value="equipment_head.equipment_expense_head_id"
+          >{{ equipment_head.equipment_expense_head.head_name }}</option>
+        </select>
+      </div>
+      <div class="col-md-3" style="margin-bottom:10px;">
         <input type="text" v-model="keyword" 
         class="form-control"
          placeholder="Search Equipment Expense" @keyup="getEquipmentExpense()" />
+      </div>
+      <div class="col-md-2" style="margin-bottom:15px;">
+        <button type="button" class="btn btn-danger" @click="filterClear()">Clear</button>
       </div>
     </div>
     
@@ -74,6 +127,11 @@ export default {
   data() {
     return {
      equipments : [],
+     project_id   : '',
+     vendor_id   : '',
+     equipment_type_id   : '',
+     equipement_id   : '',
+     equipment_expense_head_id   : '',
      keyword   : '',
      isLoading : false,
     }
@@ -96,7 +154,7 @@ export default {
      getEquipmentExpense(page = 1) 
      {
          this.isLoading = true;
-         axios.get(base_url+`equipment-expense-list?page=${page}&keyword=${this.keyword}`)
+         axios.get(base_url+`equipment-expense-list?page=${page}&keyword=${this.keyword}&project=${this.project_id}&vendor=${this.vendor_id}&equipment_type=${this.equipment_type_id}&equipement=${this.equipement_id}&equipment_head=${this.equipment_expense_head_id}`)
          .then(response =>
           {
             this.equipments = response.data;
@@ -135,6 +193,16 @@ export default {
            });
            }
         }) 
+     },
+
+     filterClear(){
+       this.project_id   = '';
+       this.vendor_id   = '';
+       this.equipment_type_id   = '';
+       this.equipement_id   = '';
+       this.equipment_expense_head_id   = '';
+       this.keyword   = '';
+       this.getEquipmentExpense();
      },
 
      pageClicked(page)

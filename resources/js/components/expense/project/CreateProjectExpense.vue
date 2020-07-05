@@ -133,6 +133,7 @@ import Mixin from '../../../mixin';
 import { MonthPicker } from 'vue-month-picker'
 export default {
    mixins : [Mixin],
+   props : ['project_expense_head','projects'],
    components: {
       MonthPicker
     },
@@ -150,8 +151,6 @@ export default {
           document_link : '',
           note : ''
         },
-        project_expense_head : [],
-        projects : [],
         button_name : 'Save',
         validation_error : {}
        }
@@ -160,7 +159,6 @@ export default {
    mounted() {
       var f1 = flatpickr(document.getElementById('basicFlatpickr'));
       // var f2 = flatpickr(document.getElementById('basicFlatpickr2'));
-      this.getProjectData()
    },
    
  methods : {
@@ -204,15 +202,6 @@ export default {
           );
      },
 
-     getProjectData()
-     {
-        axios.get(base_url+'project-data')
-        .then(response => {
-          this.projects = response.data.project
-          this.project_expense_head = response.data.project_heads
-        })
-     },
-
      resetForm()
      {
           this.project = {
@@ -226,8 +215,6 @@ export default {
           doucment_link : '',
           note : ''
         };
-        this.project_expense_head = [];
-        this.projects = [];
         this.users = [];
         this.validation_error = {};
      }

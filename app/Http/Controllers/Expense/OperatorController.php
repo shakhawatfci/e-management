@@ -36,15 +36,11 @@ class OperatorController extends Controller
     {
         $request->validate([
             'operator_name' => 'required',
-	        'mobile' 		=> 'required|numeric|min:11',
+            'mobile'        => 'required',
 	        'address' 		=> 'required',
-	        'email' 		=> 'required',
-	        'bkash' 		=> 'required|numeric|min:11',
 	        'join_date' 	=> 'required',
 	        'nid' 			=> 'required|numeric',
-	        'date_of_birth' => 'required',
-	        'picture' 		=> 'image|nullable',
-	        'salary' 		=> 'required|numeric'
+	        'picture' 		=> 'image|nullable'
         ]);
 
         try {
