@@ -76,7 +76,7 @@
                 <td>
                   No : {{ value.bill_no }}
                   <br />
-                  Month : {{ value.bill_no | monthToString }}
+                  Month : {{ value.month | monthToString }}
                 </td>
                 <td>{{ value.project.project_name }}</td>
                 <td>
@@ -91,39 +91,26 @@
                   <br />
                 </td>
                 <td>{{ value.total_hour }}</td>
-                <td :class="value.payment_status == 1 ? 'bg-paid' : ''">
-                  Net Amount (R*H) : ({{ value.project_rate_per_hour }} * {{ value.total_hour }}) = {{ value.project_amount }}
-                  <br />
-                  Vat : {{ value.project_vat }}% = {{ ((value.project_amount*value.project_vat)/100) | formatPrice }}
-                  <br />
-                  Ait : {{ value.project_ait }}% = {{ ((value.project_amount*value.project_ait)/100) | formatPrice }}
-                  <br />
-                  Others Vat: {{ value.project_sup }}% = {{ ((value.project_amount*value.project_sup)/100) | formatPrice }}
-                  <br />
+                <td>
+
                   Total Amount : {{ value.total_project_amount }}
                   <br />
                   Paid Amount : {{ Number(value.project_payment)+Number(value.project_adjustment_payment) }}
                   <br />
                   OutStanding : {{ value.total_project_amount - (Number(value.project_payment)+Number(value.project_adjustment_payment)) }}
                   <br />
-                  Status : {{ value.payment_status == 1 ? 'Paid' : 'Unpaid' }}
+                  Status :    <span class="badge badge-success" v-if="value.payment_status == 1">Paid</span>
+                                      <span class="badge badge-danger" v-else>Unpaid</span>
                 </td>
-                <td :class="value.vendor_payment_status == 1 ? 'bg-paid' : ''">
-                  Vendor Amount (R*H) : ({{ value.vendor_rate_per_hour }} * {{ value.total_hour }}) = {{ value.vendor_amount }}
-                  <br />
-                  Vat : {{ value.vendor_vat }}% = {{ ((value.vendor_amount*value.vendor_vat)/100) | formatPrice }}
-                  <br />
-                  Ait : {{ value.vendor_ait }}% = {{ ((value.vendor_amount*value.vendor_ait)/100) | formatPrice }}
-                  <br />
-                  Others Vat: {{ value.vendor_supt }}% = {{ ((value.vendor_amount*value.vendor_sup)/100) | formatPrice }}
-                  <br />
+                <td>
                   Total Amount : {{ value.total_vendor_amount }}
                   <br />
                   Paid Amount : {{ Number(value.vendor_payment)+Number(value.vendor_adjustment_payment) }}
                   <br />
                   OutStanding : {{ value.total_vendor_amount - (Number(value.vendor_payment)+Number(value.vendor_adjustment_payment)) }}
                   <br />
-                  Status : {{ value.vendor_payment_status == 1 ? 'Paid' : 'Unpaid' }}
+                  Status :   <span class="badge badge-success" v-if="value.vendor_payment_status == 1">Paid</span>
+                                      <span class="badge badge-danger" v-else>Unpaid</span>
                 </td>
 
                 <td class="text-center">
@@ -144,7 +131,7 @@
                       <a
                         class="dropdown-item"
                         href
-                        @click.prevent="viewMore(value.id)"
+                        @click.prevent="viewMore(value)"
                       >View Bill Details</a>
                       <a
                         class="dropdown-item"
@@ -202,6 +189,7 @@
         <view-project-payment></view-project-payment>
         <crate-vendor-payment></crate-vendor-payment>
         <view-vendor-payment></view-vendor-payment>
+        <bill-details></bill-details>
         <pagination :pageData="bill_list"></pagination>
       </div>
     </div>
@@ -218,6 +206,7 @@ import ViewProjectPayment from "./payment/ViewProjectPayment";
 import CreateVendortPayment from "./payment/CreateVendorPayment";
 import ViewVendorPayment from "./payment/ViewVendorPayment";
 import EditBill from "./EditBill";
+import BillDetails from "./BillDetails";
 export default {
   mixins: [Mixin],
   props: ["vendors", "equipment_types", "projects"],
@@ -227,7 +216,8 @@ export default {
     "crate-vendor-payment"   : CreateVendortPayment,
     "view-project-payment"   : ViewProjectPayment,
     "view-vendor-payment"    : ViewVendorPayment,
-    "edit-bill": EditBill
+    "bill-details"           : BillDetails,
+    "edit-bill"              : EditBill
   },
   data() {
     return {
@@ -282,7 +272,6 @@ export default {
     },
 
     viewMore(id) {
-      alert("work on progress check below others menu they are done");
       EventBus.$emit("bill-details", id);
     },
 
@@ -325,7 +314,6 @@ export default {
     {
       EventBus.$emit('view-vendor-payment',bill);
     },
-
     getVendorEquipments() {
       axios
         .get(`${base_url}equipment-by-vendor/0/${this.vendor_id}`)

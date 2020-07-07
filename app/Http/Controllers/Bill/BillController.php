@@ -187,11 +187,11 @@ class BillController extends Controller
         }
 
         $bill = ProjectClaim::with([
-
+            'user:id,name',
             'equipement',
-            'equipment_type:id,name',
-            'vendor:id,vendor_name',
-            'project:id,project_name',
+            'equipment_type',
+            'vendor',
+            'project'
         ])->orderBy('updated_at', 'desc');
 
         if ($request->bill_no != '') {

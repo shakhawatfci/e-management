@@ -59,6 +59,9 @@ class ProjectClaim extends Model
 
     public function user()
     {
-      return $this->belongTo('App\User','user_id');
+      return $this->belongsTo('App\User')->withDefault([
+        'id' => 0,
+        'name' => 'Deleted User',
+      ]);
     }
 }

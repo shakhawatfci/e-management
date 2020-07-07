@@ -2106,6 +2106,288 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bill/BillDetails.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/bill/BillDetails.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_assets__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../vue-assets */ "./resources/js/vue-assets.js");
+/* harmony import */ var _mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixin */ "./resources/js/mixin.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
+  data: function data() {
+    return {
+      bill: null
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('bill-details', function (bill) {
+      _this.bill = bill;
+      $('#ViewDetails').modal('show');
+    });
+  },
+  methods: {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bill/BillList.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/bill/BillList.vue?vue&type=script&lang=js& ***!
@@ -2123,6 +2405,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _payment_CreateVendorPayment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./payment/CreateVendorPayment */ "./resources/js/components/bill/payment/CreateVendorPayment.vue");
 /* harmony import */ var _payment_ViewVendorPayment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./payment/ViewVendorPayment */ "./resources/js/components/bill/payment/ViewVendorPayment.vue");
 /* harmony import */ var _EditBill__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./EditBill */ "./resources/js/components/bill/EditBill.vue");
+/* harmony import */ var _BillDetails__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./BillDetails */ "./resources/js/components/bill/BillDetails.vue");
 //
 //
 //
@@ -2322,18 +2605,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
@@ -2351,6 +2623,7 @@ __webpack_require__.r(__webpack_exports__);
     "crate-vendor-payment": _payment_CreateVendorPayment__WEBPACK_IMPORTED_MODULE_5__["default"],
     "view-project-payment": _payment_ViewProjectPayment__WEBPACK_IMPORTED_MODULE_4__["default"],
     "view-vendor-payment": _payment_ViewVendorPayment__WEBPACK_IMPORTED_MODULE_6__["default"],
+    "bill-details": _BillDetails__WEBPACK_IMPORTED_MODULE_8__["default"],
     "edit-bill": _EditBill__WEBPACK_IMPORTED_MODULE_7__["default"]
   },
   data: function data() {
@@ -2392,7 +2665,6 @@ __webpack_require__.r(__webpack_exports__);
       _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('edit-bill', value);
     },
     viewMore: function viewMore(id) {
-      alert("work on progress check below others menu they are done");
       _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit("bill-details", id);
     },
     deleteBill: function deleteBill(id) {
@@ -4408,6 +4680,25 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bill/BillDetails.vue?vue&type=style&index=0&id=322792de&scoped=true&lang=css&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/bill/BillDetails.vue?vue&type=style&index=0&id=322792de&scoped=true&lang=css& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.custom-modal[data-v-322792de] {\r\n min-width: 95% !important;\n}\n.meta-date[data-v-322792de]{\r\n    color: white !important;\n}\n.meta-date strong[data-v-322792de]{\r\n    color : aqua;\n}\n.amount[data-v-322792de]\r\n{\r\n    color : #E7515A;\r\n    font-weight: bold;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bill/BillList.vue?vue&type=style&index=0&id=657503b2&scoped=true&lang=css&":
 /*!*******************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/bill/BillList.vue?vue&type=style&index=0&id=657503b2&scoped=true&lang=css& ***!
@@ -4420,7 +4711,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* .bg-green {\r\n  background-color : green;\r\n } */\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* .bg-green {\r\n  background-color : green;\r\n } */\r\n", ""]);
 
 // exports
 
@@ -5037,6 +5328,36 @@ process.umask = function() { return 0; };
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../process/browser.js */ "./node_modules/process/browser.js")))
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bill/BillDetails.vue?vue&type=style&index=0&id=322792de&scoped=true&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/bill/BillDetails.vue?vue&type=style&index=0&id=322792de&scoped=true&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./BillDetails.vue?vue&type=style&index=0&id=322792de&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bill/BillDetails.vue?vue&type=style&index=0&id=322792de&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
 
 /***/ }),
 
@@ -9574,6 +9895,1180 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bill/BillDetails.vue?vue&type=template&id=322792de&scoped=true&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/bill/BillDetails.vue?vue&type=template&id=322792de&scoped=true& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "modal animated rotateInDownLeft custo-rotateInDownLeft",
+      attrs: {
+        id: "ViewDetails",
+        tabindex: "-1",
+        role: "dialog",
+        "aria-labelledby": "addContactModalTitle",
+        "aria-hidden": "true"
+      }
+    },
+    [
+      _c(
+        "div",
+        {
+          staticClass: "modal-dialog modal-xl custom-modal",
+          attrs: { role: "document" }
+        },
+        [
+          _vm.bill
+            ? _c("div", { staticClass: "modal-content" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "modal-header",
+                    staticStyle: { display: "flex" }
+                  },
+                  [
+                    _c("h4", { staticClass: "modal-title" }, [
+                      _c("span", [
+                        _vm._v(
+                          " Details Of bill no: " +
+                            _vm._s(_vm.bill.bill_no) +
+                            " (" +
+                            _vm._s(_vm._f("monthToString")(_vm.bill.month)) +
+                            ") "
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(0)
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("i", {
+                    staticClass: "flaticon-cancel-12 close",
+                    attrs: { "data-dismiss": "modal" }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "add-contact-box" }, [
+                    _c(
+                      "div",
+                      { staticClass: "add-contact-content text-left" },
+                      [
+                        _c("div", { staticClass: "widget widget-table-one" }, [
+                          _c("div", { staticClass: "widget-content" }, [
+                            _c("div", { staticClass: "row" }, [
+                              _c(
+                                "div",
+                                { staticClass: "col-4 transactions-list" },
+                                [
+                                  _c("div", { staticClass: "t-item" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "t-company-name" },
+                                      [
+                                        _vm._m(1),
+                                        _vm._v(" "),
+                                        _c("div", { staticClass: "t-name" }, [
+                                          _c("h3", [_vm._v("Bill Info")]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "p",
+                                            { staticClass: "meta-date" },
+                                            [
+                                              _c("strong", [
+                                                _vm._v("Bill No:")
+                                              ]),
+                                              _vm._v(_vm._s(_vm.bill.bill_no))
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "p",
+                                            { staticClass: "meta-date" },
+                                            [
+                                              _c("strong", [
+                                                _vm._v("Bill Month: ")
+                                              ]),
+                                              _vm._v(
+                                                _vm._s(
+                                                  _vm._f("monthToString")(
+                                                    _vm.bill.month
+                                                  )
+                                                )
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "p",
+                                            { staticClass: "meta-date" },
+                                            [
+                                              _c("strong", [_vm._v("Date: ")]),
+                                              _vm._v(
+                                                _vm._s(
+                                                  _vm._f("dateToString")(
+                                                    _vm.bill.date
+                                                  )
+                                                )
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "p",
+                                            { staticClass: "meta-date" },
+                                            [
+                                              _c("strong", [
+                                                _vm._v("Prepared By: ")
+                                              ]),
+                                              _vm._v(_vm._s(_vm.bill.user.name))
+                                            ]
+                                          )
+                                        ])
+                                      ]
+                                    )
+                                  ])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "col-4 transactions-list" },
+                                [
+                                  _c("div", { staticClass: "t-item" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "t-company-name" },
+                                      [
+                                        _vm._m(2),
+                                        _vm._v(" "),
+                                        _c("div", { staticClass: "t-name" }, [
+                                          _c("h3", [_vm._v("Project ")]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "p",
+                                            { staticClass: "meta-date" },
+                                            [
+                                              _c("strong", [_vm._v("Name: ")]),
+                                              _vm._v(
+                                                _vm._s(
+                                                  _vm.bill.project.project_name
+                                                )
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "p",
+                                            { staticClass: "meta-date" },
+                                            [
+                                              _c("strong", [
+                                                _vm._v("Locatoin: ")
+                                              ]),
+                                              _vm._v(
+                                                _vm._s(
+                                                  _vm.bill.project
+                                                    .project_location
+                                                )
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "p",
+                                            { staticClass: "meta-date" },
+                                            [
+                                              _c("strong", [
+                                                _vm._v("Agreement With: ")
+                                              ]),
+                                              _vm._v(
+                                                _vm._s(
+                                                  _vm.bill.project
+                                                    .project_argument_with
+                                                )
+                                              )
+                                            ]
+                                          )
+                                        ])
+                                      ]
+                                    )
+                                  ])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "col-4 transactions-list" },
+                                [
+                                  _c("div", { staticClass: "t-item" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "t-company-name" },
+                                      [
+                                        _vm._m(3),
+                                        _vm._v(" "),
+                                        _c("div", { staticClass: "t-name" }, [
+                                          _c("h3", [_vm._v("Equipment")]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "p",
+                                            { staticClass: "meta-date" },
+                                            [
+                                              _c("strong", [
+                                                _vm._v("Equipment Type: ")
+                                              ]),
+                                              _vm._v(
+                                                _vm._s(
+                                                  _vm.bill.equipment_type.name
+                                                )
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "p",
+                                            { staticClass: "meta-date" },
+                                            [
+                                              _c("strong", [
+                                                _vm._v("Vendor: ")
+                                              ]),
+                                              _vm._v(
+                                                _vm._s(
+                                                  _vm.bill.vendor.vendor_name
+                                                )
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "p",
+                                            { staticClass: "meta-date" },
+                                            [
+                                              _c("strong", [
+                                                _vm._v("Equipment: ")
+                                              ]),
+                                              _vm._v(
+                                                _vm._s(
+                                                  _vm.bill.equipement.eq_name
+                                                ) +
+                                                  "\n                                          " +
+                                                  _vm._s(
+                                                    _vm.bill.equipement.eq_model
+                                                  ) +
+                                                  " "
+                                              )
+                                            ]
+                                          )
+                                        ])
+                                      ]
+                                    )
+                                  ])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "col-6 transactions-list" },
+                                [
+                                  _c("div", { staticClass: "t-item" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "t-company-name" },
+                                      [
+                                        _c("div", { staticClass: "t-icon" }, [
+                                          _c(
+                                            "div",
+                                            { staticClass: "avatar avatar-xl" },
+                                            [
+                                              _c(
+                                                "span",
+                                                {
+                                                  staticClass:
+                                                    "avatar-title rounded-circle"
+                                                },
+                                                [
+                                                  _vm.bill.payment_status == 1
+                                                    ? _c("i", {
+                                                        staticClass:
+                                                          "fa fa-check"
+                                                      })
+                                                    : _c("i", {
+                                                        staticClass:
+                                                          "fa fa-close"
+                                                      })
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("div", [
+                                          _c("h3", [_vm._v("Project Bill")]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "table",
+                                            {
+                                              staticStyle: {
+                                                width: "100%",
+                                                "font-size": "15px",
+                                                color: "white"
+                                              }
+                                            },
+                                            [
+                                              _c("tbody", [
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [_vm._v("Hour")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= " +
+                                                        _vm._s(
+                                                          _vm.bill.total_hour
+                                                        )
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [_vm._v("Rate Per Hour")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= " +
+                                                        _vm._s(
+                                                          _vm.bill
+                                                            .project_rate_per_hour
+                                                        )
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [_vm._v("Amount (R*H)")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= " +
+                                                        _vm._s(
+                                                          _vm.bill
+                                                            .project_amount
+                                                        )
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "VAT " +
+                                                          _vm._s(
+                                                            _vm.bill.project_vat
+                                                          ) +
+                                                          "%"
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= " +
+                                                        _vm._s(
+                                                          _vm._f("formatPrice")(
+                                                            (_vm.bill
+                                                              .project_amount *
+                                                              _vm.bill
+                                                                .project_vat) /
+                                                              100
+                                                          )
+                                                        )
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "AIT " +
+                                                          _vm._s(
+                                                            _vm.bill.project_ait
+                                                          ) +
+                                                          "%"
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= " +
+                                                        _vm._s(
+                                                          _vm._f("formatPrice")(
+                                                            (_vm.bill
+                                                              .project_amount *
+                                                              _vm.bill
+                                                                .project_ait) /
+                                                              100
+                                                          )
+                                                        )
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "Others VAT " +
+                                                          _vm._s(
+                                                            _vm.bill.project_sup
+                                                          ) +
+                                                          "%"
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= " +
+                                                        _vm._s(
+                                                          _vm._f("formatPrice")(
+                                                            (_vm.bill
+                                                              .project_amount *
+                                                              _vm.bill
+                                                                .project_sup) /
+                                                              100
+                                                          )
+                                                        )
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "Total Bill Amount + VAT"
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= " +
+                                                        _vm._s(
+                                                          _vm._f("formatPrice")(
+                                                            _vm.bill
+                                                              .total_project_amount
+                                                          )
+                                                        )
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [_vm._v("Paid Amount")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= " +
+                                                        _vm._s(
+                                                          _vm._f("formatPrice")(
+                                                            _vm.bill
+                                                              .project_payment
+                                                          )
+                                                        )
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [_vm._v("Adjustment")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= " +
+                                                        _vm._s(
+                                                          _vm._f("formatPrice")(
+                                                            _vm.bill
+                                                              .project_adjustment_payment
+                                                          )
+                                                        )
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [_vm._v("Total Paid")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= " +
+                                                        _vm._s(
+                                                          Number(
+                                                            _vm.bill
+                                                              .project_payment
+                                                          ) +
+                                                            Number(
+                                                              _vm.bill
+                                                                .project_adjustment_payment
+                                                            )
+                                                        )
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [_vm._v("OutStanding")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= " +
+                                                        _vm._s(
+                                                          _vm.bill
+                                                            .total_project_amount -
+                                                            (Number(
+                                                              _vm.bill
+                                                                .project_payment
+                                                            ) +
+                                                              Number(
+                                                                _vm.bill
+                                                                  .project_adjustment_payment
+                                                              ))
+                                                        )
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [_vm._v("Status")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= \n                                                     "
+                                                    ),
+                                                    _vm.bill.payment_status == 1
+                                                      ? _c(
+                                                          "span",
+                                                          {
+                                                            staticClass:
+                                                              "badge badge-success"
+                                                          },
+                                                          [_vm._v("Paid")]
+                                                        )
+                                                      : _c(
+                                                          "span",
+                                                          {
+                                                            staticClass:
+                                                              "badge badge-danger"
+                                                          },
+                                                          [_vm._v("Unpaid")]
+                                                        )
+                                                  ])
+                                                ])
+                                              ])
+                                            ]
+                                          )
+                                        ])
+                                      ]
+                                    )
+                                  ])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "col-6 transactions-list" },
+                                [
+                                  _c("div", { staticClass: "t-item" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "t-company-name" },
+                                      [
+                                        _c("div", { staticClass: "t-icon" }, [
+                                          _c(
+                                            "div",
+                                            { staticClass: "avatar avatar-xl" },
+                                            [
+                                              _c(
+                                                "span",
+                                                {
+                                                  staticClass:
+                                                    "avatar-title rounded-circle"
+                                                },
+                                                [
+                                                  _vm.bill
+                                                    .vendor_payment_status == 1
+                                                    ? _c("i", {
+                                                        staticClass:
+                                                          "fa fa-check"
+                                                      })
+                                                    : _c("i", {
+                                                        staticClass:
+                                                          "fa fa-close"
+                                                      })
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("div", [
+                                          _c("h3", [_vm._v("Vendor Bill")]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "table",
+                                            {
+                                              staticStyle: {
+                                                width: "100%",
+                                                "font-size": "15px",
+                                                color: "white"
+                                              }
+                                            },
+                                            [
+                                              _c("tbody", [
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [_vm._v("Hour")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= " +
+                                                        _vm._s(
+                                                          _vm.bill.total_hour
+                                                        )
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [_vm._v("Rate Per Hour")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= " +
+                                                        _vm._s(
+                                                          _vm.bill
+                                                            .vendor_rate_per_hour
+                                                        )
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [_vm._v("Amount (R*H)")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= " +
+                                                        _vm._s(
+                                                          _vm.bill.vendor_amount
+                                                        )
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "VAT " +
+                                                          _vm._s(
+                                                            _vm.bill.vendor_vat
+                                                          ) +
+                                                          "%"
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= " +
+                                                        _vm._s(
+                                                          _vm._f("formatPrice")(
+                                                            (_vm.bill
+                                                              .vendor_amount *
+                                                              _vm.bill
+                                                                .vendor_vat) /
+                                                              100
+                                                          )
+                                                        )
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "AIT " +
+                                                          _vm._s(
+                                                            _vm.bill.vendor_ait
+                                                          ) +
+                                                          "%"
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= " +
+                                                        _vm._s(
+                                                          _vm._f("formatPrice")(
+                                                            (_vm.bill
+                                                              .vendor_amount *
+                                                              _vm.bill
+                                                                .vendor_ait) /
+                                                              100
+                                                          )
+                                                        )
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "Others VAT " +
+                                                          _vm._s(
+                                                            _vm.bill.vendor_sup
+                                                          ) +
+                                                          "%"
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= " +
+                                                        _vm._s(
+                                                          _vm._f("formatPrice")(
+                                                            (_vm.bill
+                                                              .vendor_amount *
+                                                              _vm.bill
+                                                                .vendor_sup) /
+                                                              100
+                                                          )
+                                                        )
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "Total Bill Amount + VAT"
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= " +
+                                                        _vm._s(
+                                                          _vm._f("formatPrice")(
+                                                            _vm.bill
+                                                              .total_vendor_amount
+                                                          )
+                                                        )
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [_vm._v("Paid Amount")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= " +
+                                                        _vm._s(
+                                                          _vm._f("formatPrice")(
+                                                            _vm.bill
+                                                              .vendor_payment
+                                                          )
+                                                        )
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [_vm._v("Adjustment")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= " +
+                                                        _vm._s(
+                                                          _vm._f("formatPrice")(
+                                                            _vm.bill
+                                                              .vendor_adjustment_payment
+                                                          )
+                                                        )
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [_vm._v("Total Paid")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= " +
+                                                        _vm._s(
+                                                          Number(
+                                                            _vm.bill
+                                                              .vendor_payment
+                                                          ) +
+                                                            Number(
+                                                              _vm.bill
+                                                                .vendor_adjustment_payment
+                                                            )
+                                                        )
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [_vm._v("OutStanding")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= " +
+                                                        _vm._s(
+                                                          _vm.bill
+                                                            .total_vendor_amount -
+                                                            (Number(
+                                                              _vm.bill
+                                                                .vendor_payment
+                                                            ) +
+                                                              Number(
+                                                                _vm.bill
+                                                                  .vendor_adjustment_payment
+                                                              ))
+                                                        )
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [_vm._v("Status")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= \n                                                     "
+                                                    ),
+                                                    _vm.bill
+                                                      .vendor_payment_status ==
+                                                    1
+                                                      ? _c(
+                                                          "span",
+                                                          {
+                                                            staticClass:
+                                                              "badge badge-success"
+                                                          },
+                                                          [_vm._v("Paid")]
+                                                        )
+                                                      : _c(
+                                                          "span",
+                                                          {
+                                                            staticClass:
+                                                              "badge badge-danger"
+                                                          },
+                                                          [_vm._v("Unpaid")]
+                                                        )
+                                                  ])
+                                                ])
+                                              ])
+                                            ]
+                                          )
+                                        ])
+                                      ]
+                                    )
+                                  ])
+                                ]
+                              )
+                            ])
+                          ])
+                        ])
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            : _vm._e()
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h4", { staticClass: "modal-title" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-default", attrs: { "data-dismiss": "modal" } },
+        [_c("i", { staticClass: "flaticon-delete-1" }), _vm._v(" Close")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "t-icon" }, [
+      _c("div", { staticClass: "avatar avatar-xl" }, [
+        _c("span", { staticClass: "avatar-title rounded-circle" }, [
+          _c("i", { staticClass: "fa fa-info" })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "t-icon" }, [
+      _c("div", { staticClass: "avatar avatar-xl" }, [
+        _c("span", { staticClass: "avatar-title rounded-circle" }, [
+          _c("i", { staticClass: "fa fa-tasks" })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "t-icon" }, [
+      _c("div", { staticClass: "avatar avatar-xl" }, [
+        _c("span", { staticClass: "avatar-title rounded-circle" }, [
+          _c("i", { staticClass: "fa fa-truck" })
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bill/BillList.vue?vue&type=template&id=657503b2&scoped=true&":
 /*!****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/bill/BillList.vue?vue&type=template&id=657503b2&scoped=true& ***!
@@ -9913,7 +11408,7 @@ var render = function() {
                           _c("br"),
                           _vm._v(
                             "\n                Month : " +
-                              _vm._s(_vm._f("monthToString")(value.bill_no)) +
+                              _vm._s(_vm._f("monthToString")(value.month)) +
                               "\n              "
                           )
                         ]),
@@ -9955,186 +11450,85 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(value.total_hour))]),
                         _vm._v(" "),
-                        _c(
-                          "td",
-                          { class: value.payment_status == 1 ? "bg-paid" : "" },
-                          [
-                            _vm._v(
-                              "\n                Net Amount (R*H) : (" +
-                                _vm._s(value.project_rate_per_hour) +
-                                " * " +
-                                _vm._s(value.total_hour) +
-                                ") = " +
-                                _vm._s(value.project_amount) +
-                                "\n                "
-                            ),
-                            _c("br"),
-                            _vm._v(
-                              "\n                Vat : " +
-                                _vm._s(value.project_vat) +
-                                "% = " +
-                                _vm._s(
-                                  _vm._f("formatPrice")(
-                                    (value.project_amount * value.project_vat) /
-                                      100
-                                  )
-                                ) +
-                                "\n                "
-                            ),
-                            _c("br"),
-                            _vm._v(
-                              "\n                Ait : " +
-                                _vm._s(value.project_ait) +
-                                "% = " +
-                                _vm._s(
-                                  _vm._f("formatPrice")(
-                                    (value.project_amount * value.project_ait) /
-                                      100
-                                  )
-                                ) +
-                                "\n                "
-                            ),
-                            _c("br"),
-                            _vm._v(
-                              "\n                Others Vat: " +
-                                _vm._s(value.project_sup) +
-                                "% = " +
-                                _vm._s(
-                                  _vm._f("formatPrice")(
-                                    (value.project_amount * value.project_sup) /
-                                      100
-                                  )
-                                ) +
-                                "\n                "
-                            ),
-                            _c("br"),
-                            _vm._v(
-                              "\n                Total Amount : " +
-                                _vm._s(value.total_project_amount) +
-                                "\n                "
-                            ),
-                            _c("br"),
-                            _vm._v(
-                              "\n                Paid Amount : " +
-                                _vm._s(
-                                  Number(value.project_payment) +
-                                    Number(value.project_adjustment_payment)
-                                ) +
-                                "\n                "
-                            ),
-                            _c("br"),
-                            _vm._v(
-                              "\n                OutStanding : " +
-                                _vm._s(
-                                  value.total_project_amount -
-                                    (Number(value.project_payment) +
-                                      Number(value.project_adjustment_payment))
-                                ) +
-                                "\n                "
-                            ),
-                            _c("br"),
-                            _vm._v(
-                              "\n                Status : " +
-                                _vm._s(
-                                  value.payment_status == 1 ? "Paid" : "Unpaid"
-                                ) +
-                                "\n              "
-                            )
-                          ]
-                        ),
+                        _c("td", [
+                          _vm._v(
+                            "\n\n                Total Amount : " +
+                              _vm._s(value.total_project_amount) +
+                              "\n                "
+                          ),
+                          _c("br"),
+                          _vm._v(
+                            "\n                Paid Amount : " +
+                              _vm._s(
+                                Number(value.project_payment) +
+                                  Number(value.project_adjustment_payment)
+                              ) +
+                              "\n                "
+                          ),
+                          _c("br"),
+                          _vm._v(
+                            "\n                OutStanding : " +
+                              _vm._s(
+                                value.total_project_amount -
+                                  (Number(value.project_payment) +
+                                    Number(value.project_adjustment_payment))
+                              ) +
+                              "\n                "
+                          ),
+                          _c("br"),
+                          _vm._v("\n                Status :    "),
+                          value.payment_status == 1
+                            ? _c(
+                                "span",
+                                { staticClass: "badge badge-success" },
+                                [_vm._v("Paid")]
+                              )
+                            : _c(
+                                "span",
+                                { staticClass: "badge badge-danger" },
+                                [_vm._v("Unpaid")]
+                              )
+                        ]),
                         _vm._v(" "),
-                        _c(
-                          "td",
-                          {
-                            class:
-                              value.vendor_payment_status == 1 ? "bg-paid" : ""
-                          },
-                          [
-                            _vm._v(
-                              "\n                Vendor Amount (R*H) : (" +
-                                _vm._s(value.vendor_rate_per_hour) +
-                                " * " +
-                                _vm._s(value.total_hour) +
-                                ") = " +
-                                _vm._s(value.vendor_amount) +
-                                "\n                "
-                            ),
-                            _c("br"),
-                            _vm._v(
-                              "\n                Vat : " +
-                                _vm._s(value.vendor_vat) +
-                                "% = " +
-                                _vm._s(
-                                  _vm._f("formatPrice")(
-                                    (value.vendor_amount * value.vendor_vat) /
-                                      100
-                                  )
-                                ) +
-                                "\n                "
-                            ),
-                            _c("br"),
-                            _vm._v(
-                              "\n                Ait : " +
-                                _vm._s(value.vendor_ait) +
-                                "% = " +
-                                _vm._s(
-                                  _vm._f("formatPrice")(
-                                    (value.vendor_amount * value.vendor_ait) /
-                                      100
-                                  )
-                                ) +
-                                "\n                "
-                            ),
-                            _c("br"),
-                            _vm._v(
-                              "\n                Others Vat: " +
-                                _vm._s(value.vendor_supt) +
-                                "% = " +
-                                _vm._s(
-                                  _vm._f("formatPrice")(
-                                    (value.vendor_amount * value.vendor_sup) /
-                                      100
-                                  )
-                                ) +
-                                "\n                "
-                            ),
-                            _c("br"),
-                            _vm._v(
-                              "\n                Total Amount : " +
-                                _vm._s(value.total_vendor_amount) +
-                                "\n                "
-                            ),
-                            _c("br"),
-                            _vm._v(
-                              "\n                Paid Amount : " +
-                                _vm._s(
-                                  Number(value.vendor_payment) +
-                                    Number(value.vendor_adjustment_payment)
-                                ) +
-                                "\n                "
-                            ),
-                            _c("br"),
-                            _vm._v(
-                              "\n                OutStanding : " +
-                                _vm._s(
-                                  value.total_vendor_amount -
-                                    (Number(value.vendor_payment) +
-                                      Number(value.vendor_adjustment_payment))
-                                ) +
-                                "\n                "
-                            ),
-                            _c("br"),
-                            _vm._v(
-                              "\n                Status : " +
-                                _vm._s(
-                                  value.vendor_payment_status == 1
-                                    ? "Paid"
-                                    : "Unpaid"
-                                ) +
-                                "\n              "
-                            )
-                          ]
-                        ),
+                        _c("td", [
+                          _vm._v(
+                            "\n                Total Amount : " +
+                              _vm._s(value.total_vendor_amount) +
+                              "\n                "
+                          ),
+                          _c("br"),
+                          _vm._v(
+                            "\n                Paid Amount : " +
+                              _vm._s(
+                                Number(value.vendor_payment) +
+                                  Number(value.vendor_adjustment_payment)
+                              ) +
+                              "\n                "
+                          ),
+                          _c("br"),
+                          _vm._v(
+                            "\n                OutStanding : " +
+                              _vm._s(
+                                value.total_vendor_amount -
+                                  (Number(value.vendor_payment) +
+                                    Number(value.vendor_adjustment_payment))
+                              ) +
+                              "\n                "
+                          ),
+                          _c("br"),
+                          _vm._v("\n                Status :   "),
+                          value.vendor_payment_status == 1
+                            ? _c(
+                                "span",
+                                { staticClass: "badge badge-success" },
+                                [_vm._v("Paid")]
+                              )
+                            : _c(
+                                "span",
+                                { staticClass: "badge badge-danger" },
+                                [_vm._v("Unpaid")]
+                              )
+                        ]),
                         _vm._v(" "),
                         _c("td", { staticClass: "text-center" }, [
                           _c(
@@ -10160,7 +11554,7 @@ var render = function() {
                                       on: {
                                         click: function($event) {
                                           $event.preventDefault()
-                                          return _vm.viewMore(value.id)
+                                          return _vm.viewMore(value)
                                         }
                                       }
                                     },
@@ -10318,6 +11712,8 @@ var render = function() {
           _c("crate-vendor-payment"),
           _vm._v(" "),
           _c("view-vendor-payment"),
+          _vm._v(" "),
+          _c("bill-details"),
           _vm._v(" "),
           _c("pagination", { attrs: { pageData: _vm.bill_list } })
         ],
@@ -26949,6 +28345,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AssignedEquipmentList_vue_vue_type_template_id_5138a8fe___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AssignedEquipmentList_vue_vue_type_template_id_5138a8fe___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/bill/BillDetails.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/bill/BillDetails.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _BillDetails_vue_vue_type_template_id_322792de_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BillDetails.vue?vue&type=template&id=322792de&scoped=true& */ "./resources/js/components/bill/BillDetails.vue?vue&type=template&id=322792de&scoped=true&");
+/* harmony import */ var _BillDetails_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BillDetails.vue?vue&type=script&lang=js& */ "./resources/js/components/bill/BillDetails.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _BillDetails_vue_vue_type_style_index_0_id_322792de_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./BillDetails.vue?vue&type=style&index=0&id=322792de&scoped=true&lang=css& */ "./resources/js/components/bill/BillDetails.vue?vue&type=style&index=0&id=322792de&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _BillDetails_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _BillDetails_vue_vue_type_template_id_322792de_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _BillDetails_vue_vue_type_template_id_322792de_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "322792de",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/bill/BillDetails.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/bill/BillDetails.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/bill/BillDetails.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BillDetails_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./BillDetails.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bill/BillDetails.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BillDetails_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/bill/BillDetails.vue?vue&type=style&index=0&id=322792de&scoped=true&lang=css&":
+/*!***************************************************************************************************************!*\
+  !*** ./resources/js/components/bill/BillDetails.vue?vue&type=style&index=0&id=322792de&scoped=true&lang=css& ***!
+  \***************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_BillDetails_vue_vue_type_style_index_0_id_322792de_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./BillDetails.vue?vue&type=style&index=0&id=322792de&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bill/BillDetails.vue?vue&type=style&index=0&id=322792de&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_BillDetails_vue_vue_type_style_index_0_id_322792de_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_BillDetails_vue_vue_type_style_index_0_id_322792de_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_BillDetails_vue_vue_type_style_index_0_id_322792de_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_BillDetails_vue_vue_type_style_index_0_id_322792de_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_BillDetails_vue_vue_type_style_index_0_id_322792de_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/bill/BillDetails.vue?vue&type=template&id=322792de&scoped=true&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/components/bill/BillDetails.vue?vue&type=template&id=322792de&scoped=true& ***!
+  \*************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BillDetails_vue_vue_type_template_id_322792de_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./BillDetails.vue?vue&type=template&id=322792de&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bill/BillDetails.vue?vue&type=template&id=322792de&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BillDetails_vue_vue_type_template_id_322792de_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BillDetails_vue_vue_type_template_id_322792de_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

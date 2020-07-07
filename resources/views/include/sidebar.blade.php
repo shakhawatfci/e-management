@@ -8,8 +8,8 @@
                    <li class="menu">
                         <a href="{{ url('/') }}" aria-expanded="false" 
                         data-active="@if(request()->is('/')){{ 'true' }}@else{{ 'false' }}@endif" class="dropdown-toggle">
-                            <div class="">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                            <div class="menu_heading">
+                               <i class="fa fa-home"></i>
                                 <span>Dashboard</span>
                             </div>
                         </a>
@@ -17,8 +17,8 @@
                     <!-- Vendor menu  -->
                     <li class="menu @if(Route::is('supplier.index')) active active_url @endif">
                         <a href="{{ route('supplier.index') }}" data-active="@if(Route::is('supplier.index')){{ 'true' }}@else{{ 'false' }}@endif" class="dropdown-toggle">
-                            <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+                            <div class="menu_heading">
+                            <i class="fa fa-users"></i>
                               <span>Vendor</span>
                             </div>
                         </a>
@@ -29,21 +29,8 @@
                     <li class="menu">
                         <a href="#equipment" data-toggle="collapse"
                          aria-expanded="false"  class="dropdown-toggle">
-                            <div class="">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                             width="24" height="24"
-                              viewBox="0 0 24 24"
-                               fill="none" stroke="currentColor" 
-                               stroke-width="2" stroke-linecap="round" 
-                               stroke-linejoin="round"
-                                class="feather feather-truck">
-                                <rect x="1" y="3" width="15" height="13"></rect>
-                                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8">
-                                </polygon>
-                                <circle cx="5.5" cy="18.5" r="2.5">
-                                </circle><circle cx="18.5" cy="18.5" r="2.5">
-                                </circle>
-                                </svg>
+                            <div class="menu_headling">
+                                <i class="fa fa-truck"></i>
                                 <span>Equipment</span>
                             </div>
                             <div>

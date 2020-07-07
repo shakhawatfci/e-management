@@ -10,6 +10,14 @@
     background-color : green;
      }
 
+     .menu-categories  i{
+         
+         font-size: 25px;
+         margin-right: 10px;
+         vertical-align: middle;
+         
+     }
+
 /* .bg-paid:after {
   content: "";
   display: block;

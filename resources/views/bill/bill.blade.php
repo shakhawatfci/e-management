@@ -4,7 +4,7 @@
 @section('page_header')
 
         <li class="breadcrumb-item"><a href="javascript:void(0);">Bill and Payment</a></li>
-        <li class="breadcrumb-item active" aria-current="page"><span>Bill</span></li>
+        <li class="breadcrumb-item active" aria-current="page"><span>Equipment List For BILL</span></li>
 @endsection
 
 @section('create-button')
