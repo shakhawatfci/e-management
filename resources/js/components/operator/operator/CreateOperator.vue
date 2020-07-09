@@ -183,17 +183,14 @@
 <script>
 import { EventBus  } from '../../../vue-assets';
 import Mixin from '../../../mixin';
-import { MonthPicker } from 'vue-month-picker'
+
 export default {
    mixins : [Mixin],
-   components: {
-      MonthPicker
-    },
 
    data()
    {
         
-       return {
+    return {
         operator : {
           operator_name : '',
           mobile : '',

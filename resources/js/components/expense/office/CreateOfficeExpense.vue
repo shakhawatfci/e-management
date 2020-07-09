@@ -202,7 +202,6 @@ export default {
           doucment_link : '',
           note : ''
         };
-        this.office_expense_head = [];
         this.validation_error = {};
      }
  } 

@@ -230,8 +230,8 @@
                             <li class="">
                                 <a href="#" >Operator Fooding </a>
                             </li>
-                            <li class="">
-                                <a href="#">Operator Salary </a>
+                            <li class="@if(Route::is('operator.index')){{ 'active' }}@else{{ '' }}@endif">
+                                <a href="{{ route('operator-salary.index') }}">Operator Salary </a>
                             </li>
                         </ul>
                     </li>

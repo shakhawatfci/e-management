@@ -2,9 +2,22 @@
   <div>
     <div class="row">
       <div class="col-md-3" style="margin-bottom:10px;">
+        <select class="form-control" v-model="office_expense_head_id" @change="getOfficeExpense()">
+          <option value>All Office Head</option>
+          <option
+            v-for="office_head in office_heads"
+            :key="office_head.id"
+            :value="office_head.id"
+          >{{ office_head.head_name }}</option>
+        </select>
+      </div>
+      <div class="col-md-3" style="margin-bottom:10px;">
         <input type="text" v-model="keyword" 
         class="form-control"
          placeholder="Search Office Expense" @keyup="getOfficeExpense()" />
+      </div>
+      <div class="col-md-2" style="margin-bottom:15px;">
+        <button type="button" class="btn btn-danger" @click="filterClear()">Clear</button>
       </div>
     </div>
     
@@ -64,6 +77,7 @@ import Pagination from '../../pagination/Pagination';
 import UpdateOfficeexpense from './UpdateOfficeExpense';
 export default {
   mixins: [Mixin],
+  props: ['office_heads'],
   components : {
    'pagination' : Pagination,
    UpdateOfficeexpense
@@ -71,6 +85,7 @@ export default {
   data() {
     return {
      offices : [],
+     office_expense_head_id : '',
      keyword   : '',
      isLoading : false,
     }
@@ -93,7 +108,7 @@ export default {
      getOfficeExpense(page = 1) 
      {
          this.isLoading = true;
-         axios.get(base_url+`office-expense-list?page=${page}&keyword=${this.keyword}`)
+         axios.get(base_url+`office-expense-list?page=${page}&keyword=${this.keyword}&office_head=${this.office_expense_head_id}`)
          .then(response =>
           {
             this.offices = response.data;
@@ -127,6 +142,11 @@ export default {
            });
            }
         }) 
+     },
+
+     filterClear(){
+        this.office_expense_head_id = ''
+        this.getOfficeExpense()
      },
 
      pageClicked(page)

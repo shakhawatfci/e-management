@@ -21,7 +21,7 @@ class CreateOfficeExpensesTable extends Migration
             $table->string('date');
             $table->double('amount');
             $table->string('document')->nullable();
-            $table->text('doucment_link')->nullable();
+            $table->text('document_link')->nullable();
             $table->text('note');
             $table->tinyInteger('status');
             $table->timestamps();

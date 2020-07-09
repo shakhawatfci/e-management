@@ -5,50 +5,51 @@
         <select class="form-control" v-model="project_id" @change="getEquipmentExpense()">
           <option value>All Projects</option>
           <option
-            v-for="project in equipments.data"
+            v-for="project in projects"
             :key="project.id"
-            :value="project.project_id"
-          >{{ project.project.project_name }}</option>
-        </select>
-      </div>
-      <div class="col-md-3" style="margin-bottom:10px;">
-        <select class="form-control" v-model="vendor_id" @change="getEquipmentExpense()">
-          <option value>All Vendor</option>
-          <option
-            v-for="vendor in equipments.data"
-            :key="vendor.id"
-            :value="vendor.vendor_id"
-          >{{ vendor.vendor.vendor_name }}</option>
+            :value="project.id"
+          >{{ project.project_name }}</option>
         </select>
       </div>
       <div class="col-md-3" style="margin-bottom:10px;">
         <select class="form-control" v-model="equipment_type_id" @change="getEquipmentExpense()">
           <option value>All Equipment Type</option>
           <option
-            v-for="equip_type in equipments.data"
+            v-for="equip_type in equipment_types"
             :key="equip_type.id"
-            :value="equip_type.equipment_type_id"
-          >{{ equip_type.equipment_type.name }}</option>
+            :value="equip_type.id"
+          >{{ equip_type.name }}</option>
         </select>
       </div>
+      <div class="col-md-3" style="margin-bottom:10px;">
+        <select class="form-control" v-model="vendor_id" @change="getEquipmentExpense()">
+          <option value>All Vendor</option>
+          <option
+            v-for="vendor in vendors"
+            :key="vendor.id"
+            :value="vendor.id"
+          >{{ vendor.vendor_name }}</option>
+        </select>
+      </div>
+      
       <div class="col-md-3" style="margin-bottom:10px;">
         <select class="form-control" v-model="equipement_id" @change="getEquipmentExpense()">
           <option value>All Equipment</option>
           <option
-            v-for="equipment in equipments.data"
+            v-for="equipment in equipements"
             :key="equipment.id"
-            :value="equipment.equipement_id"
-          >{{ equipment.equipement.eq_name }}</option>
+            :value="equipment.id"
+          >{{ equipment.eq_name }}</option>
         </select>
       </div>
       <div class="col-md-3" style="margin-bottom:10px;">
         <select class="form-control" v-model="equipment_expense_head_id" @change="getEquipmentExpense()">
           <option value>All Equipment Head</option>
           <option
-            v-for="equipment_head in equipments.data"
+            v-for="equipment_head in equipment_heads"
             :key="equipment_head.id"
-            :value="equipment_head.equipment_expense_head_id"
-          >{{ equipment_head.equipment_expense_head.head_name }}</option>
+            :value="equipment_head.id"
+          >{{ equipment_head.head_name }}</option>
         </select>
       </div>
       <div class="col-md-3" style="margin-bottom:10px;">
@@ -120,6 +121,7 @@ import ShowEquipmentexpense from './SingleViewEquipmentexpense';
 import UpdateEquipmentexpense from './UpdateEquipmentexpense';
 export default {
   mixins: [Mixin],
+  props: ['projects','equipment_types','vendors','equipements','equipment_heads'],
   components : {
    'pagination' : Pagination,
    UpdateEquipmentexpense,ShowEquipmentexpense

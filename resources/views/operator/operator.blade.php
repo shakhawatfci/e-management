@@ -38,6 +38,6 @@
 <!-- push the script which you need only this page  -->
 @push('script')
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-<script src="{{ asset('public/js/expense.js') }}"></script>
+<script src="{{ asset('public/js/operator.js') }}"></script>
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 @endpush
