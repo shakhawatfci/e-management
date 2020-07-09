@@ -3,7 +3,9 @@
     "/css/app.css": "/css/app.css",
     "/js/bill.js": "/js/bill.js",
     "/js/equipment.js": "/js/equipment.js",
+    "/js/equipment_sales.js": "/js/equipment_sales.js",
     "/js/expense.js": "/js/expense.js",
+    "/js/mobilization.js": "/js/mobilization.js",
     "/js/project.js": "/js/project.js",
     "/js/supplier.js": "/js/supplier.js"
 }

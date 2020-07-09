@@ -61,7 +61,8 @@
                         <a href="#project" data-toggle="collapse"
                          aria-expanded="false"  class="dropdown-toggle">
                             <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-zap"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                            <i class="fa fa-empire" aria-hidden="true"></i>
+
                                 <span>Project</span>
                             </div>
                             <div>
@@ -91,12 +92,7 @@
                         <a href="#claim" data-toggle="collapse"
                          aria-expanded="false"  class="dropdown-toggle">
                             <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign">
-                                <line x1="12" y1="1" x2="12" y2="23">
-                                </line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6">
-                                </path></svg>
+                            <i class="fa fa-file-text" aria-hidden="true"></i>
                                 <span>Bill & Payments</span>
                             </div>
                             <div>
@@ -115,7 +111,7 @@
                                 <a href="{{ route('bill.index') }}" > Bill </a>
                             </li>
                             <li  class="@if(Route::is('billing.payment')){{ 'active' }}@else{{ '' }}@endif">
-                                <a href="{{ route('billing.payment') }}"> Manage and Payment </a>
+                                <a href="{{ route('billing.payment') }}"> Manage & Payment </a>
                             </li>
                         </ul>
                     </li>
@@ -126,7 +122,7 @@
                         <a href="#expense-head" data-toggle="collapse"
                          aria-expanded="false"  class="dropdown-toggle">
                             <div class="">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+                            <i class="fa fa-bars" aria-hidden="true"></i>
                                 <span>Expense Heads</span>
                             </div>
                             <div>
@@ -161,7 +157,7 @@
                         <a href="#expense" data-toggle="collapse"
                          aria-expanded="false"  class="dropdown-toggle">
                             <div class="">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                            <i class="fa fa-check-square-o" aria-hidden="true"></i>
                                 <span>Expense</span>
                             </div>
                             <div>
@@ -196,7 +192,7 @@
                         <a href="#operator" data-toggle="collapse"
                          aria-expanded="false"  class="dropdown-toggle">
                             <div class="">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                            <i class="fa fa-male" aria-hidden="true"></i>
                                 <span>Operator</span>
                             </div>
                             <div>
@@ -220,6 +216,42 @@
                             <li class="">
                                 <a href="#">Operator Salary </a>
                             </li>
+                        </ul>
+                    </li>
+
+                    <!-- /Operator  -->
+                    <!-- Operator -->
+
+                    <li class="menu">
+                        <a href="#Sales" data-toggle="collapse"
+                         aria-expanded="false"  class="dropdown-toggle">
+                            <div class="">
+                            <i class="fa fa-money" aria-hidden="true"></i>
+                                <span>Sales & Mob</span>
+                            </div>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" 
+                                width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" 
+                                 stroke-width="2" stroke-linecap="round"
+                                  stroke-linejoin="round" class="feather feather-chevron-right">
+                                  <polyline points="9 18 15 12 9 6"></polyline>
+                                  </svg>
+                            </div>
+                        </a>
+                        <ul class="collapse submenu list-unstyled"
+                         id="Sales" data-parent="#accordionExample">
+                            <li  class="@if(Route::is('equipment-sales.index')){{ 'active' }}@else{{ '' }}@endif">
+                                <a href="{{ route('equipment-sales.index') }}"> Equipment Sales</a>
+                            </li> 
+                        <ul class="collapse submenu list-unstyled"
+                         id="Sales" data-parent="#accordionExample">
+                            <li  class="@if(Route::is('mobilization.index')){{ 'active' }}@else{{ '' }}@endif">
+                                <a href="{{ route('mobilization.index') }}"> Mobilization</a>
+                            </li> 
+                            <!-- <li class="">
+                                <a href="#">Operator Salary </a>
+                            </li> -->
                         </ul>
                     </li>
 

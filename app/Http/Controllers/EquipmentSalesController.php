@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\EquipmentSales;
+use App\EquipmentType;
 use Illuminate\Http\Request;
+use Auth;
+use Session;
 
 class EquipmentSalesController extends Controller
 {
@@ -14,7 +17,36 @@ class EquipmentSalesController extends Controller
      */
     public function index()
     {
-        //
+        $equipment_type = EquipmentType::orderBy('name','asc')->get();
+       return view('sales.equipment.equipment_sales',['equipment_types' => $equipment_type]);
+    }
+
+    public function equipmentSalesList(Request $request)
+    {
+         
+        $sales = EquipmentSales::with(['user:id,name','equipment_type:id,name'])->
+                                orderBy('month','desc');
+
+                 if($request->keyword != '')
+                 {
+                   $sales->where('customer_name','LIKE','%'.$requuest->keyword.'%');
+                 }
+
+                 if($request->equipment_type != '')
+                 {
+                   $sales->where('equipment_type_id','=',$request->equipment_type);
+                 }
+
+                 if($request->user != '')
+                 {
+                   $sales->where('user','=',$request->user);
+                 }
+
+                 $sales = $sales->paginate(10);
+                 return $sales;
+
+                 
+
     }
 
     /**
@@ -35,7 +67,35 @@ class EquipmentSalesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'equipment_type'      => 'required',
+            'customer_name'       => 'required',
+            'month'               => 'required|date_format:Y-m',
+            'date'                => 'required',
+            'profit'              => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+        ],[
+            'month.date_format' => 'Month Format Must Be yyyy-mm as like 2020-02'
+        ]);
+
+        try
+        { 
+          $sales = new EquipmentSales;
+          $sales->equipment_type_id = $request->equipment_type;
+          $sales->customer_name = $request->customer_name;
+          $sales->month = $request->month;
+          $sales->date = $request->date;
+          $sales->profit = $request->profit;
+          $sales->note = $request->note;
+          $sales->status = 1;
+          $sales->user_id = Auth::user()->id;
+          $sales->save();
+          return response()->json(['status'=>'success','message' => 'request successful']);
+        }
+        catch(\Exception $e)
+        {
+           return response()->json(['status'=>'error','message' => $e->getMessage()]);
+        }
+
     }
 
     /**
@@ -67,9 +127,36 @@ class EquipmentSalesController extends Controller
      * @param  \App\EquipmentSales  $equipmentSales
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, EquipmentSales $equipmentSales)
+    public function update(Request $request, EquipmentSales $sales)
     {
-        //
+        $request->validate([
+            'equipment_type'      => 'required',
+            'customer_name'       => 'required',
+            'month'               => 'required|date_format:Y-m',
+            'date'                => 'required',
+            'profit'              => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+        ],[
+            'month.date_format' => 'Month Format Must Be yyyy-mm as like 2020-02'
+        ]);
+
+        try
+        { 
+
+          $sales->equipment_type_id = $request->equipment_type;
+          $sales->customer_name = $request->customer_name;
+          $sales->month = $request->month;
+          $sales->date = $request->date;
+          $sales->profit = $request->profit;
+          $sales->note = $request->note;
+          $sales->status = 1;
+          $sales->user_id = Auth::user()->id;
+          $sales->update();
+          return response()->json(['status'=>'success','message' => 'Request successful']);
+        }
+        catch(\Exception $e)
+        {
+           return response()->json(['status'=>'error','message' => $e->getMessage()]);
+        }
     }
 
     /**
@@ -80,6 +167,7 @@ class EquipmentSalesController extends Controller
      */
     public function destroy(EquipmentSales $equipmentSales)
     {
-        //
+        $equipmentSales->delete();
+        return response()->json(['status'=>'success','message' => 'Data Deleted']);
     }
 }

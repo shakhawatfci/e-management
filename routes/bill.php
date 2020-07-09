@@ -13,3 +13,17 @@ Route::get('bill-print','Bill\BillController@billPrint')->name('bill.print');
 Route::resource('project-payment','ProjectPaymentController');
 Route::resource('vendor-payment','VendorPaymentController');
 
+// equipment  sales
+
+Route::resource('equipment-sales','EquipmentSalesController');
+
+Route::get('equipment-sales-list','EquipmentSalesController@equipmentSalesList');
+
+
+// equipment  sales
+
+Route::resource('mobilization','MobilizationController');
+
+Route::get('mobilization-list','MobilizationController@mobilzationList');
+
+
