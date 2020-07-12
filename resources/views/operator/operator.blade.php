@@ -23,11 +23,11 @@
                             <i class="far fa-plus-square"></i> Create New
                             </button>
                         </div>
-                        <create-operator></create-operator>
+                        <create-operator :vendors="{{ $vendors }}" :equipment_types="{{ $equipment_types }}" :equipements="{{ $equipements }}"></create-operator>
                     </div>
                 </div>
 
-             <view-operator></view-operator>
+             <view-operator :vendors="{{ $vendors }}" :equipment_types="{{ $equipment_types }}" :equipements="{{ $equipements }}"></view-operator>
 
             </div>
         </div>

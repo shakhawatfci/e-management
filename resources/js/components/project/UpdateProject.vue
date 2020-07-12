@@ -1,7 +1,7 @@
 <template>
 <!-- Modal -->
     <div id="UpdateProject" class="modal animated rotateInDownLeft custo-rotateInDownLeft" tabindex="-1" role="dialog" aria-labelledby="addContactModalTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
             <form @submit.prevent="update()" role="form">
             <div class="modal-content">
               <div class="modal-header">
@@ -12,7 +12,7 @@
                     <div class="add-contact-box">
                         <div class="add-contact-content text-left">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="contact-name">
                                         <i class="flaticon-user-11"></i>
                                         <label for="up-project-name">Project Name</label>
@@ -23,7 +23,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="contact-name">
                                         <i class="flaticon-user-11"></i>
                                         <label for="up-project-location">Project Location</label>
@@ -34,7 +34,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="contact-name">
                                         <i class="flaticon-user-11"></i>
                                         <label for="up-contact-person">Project Contact Person</label>
@@ -45,7 +45,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="contact-name">
                                         <i class="flaticon-user-11"></i>
                                         <label for="up-argeement-with">Project Argeement with</label>
@@ -56,7 +56,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="contact-name">
                                         <i class="flaticon-user-11"></i>
                                         <label for="upbasicFlatpickr">Select Project Agreement Date</label>
@@ -66,7 +66,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="contact-name">
                                         <i class="flaticon-user-11"></i>
                                         <label for="upbasicFlatpickr1">Select Project Start Date</label>
@@ -76,7 +76,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="contact-name">
                                         <i class="flaticon-user-11"></i>
                                         <label for="up-project-country">Project Country</label>
@@ -88,7 +88,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="contact-name">
                                         <i class="flaticon-user-11"></i>
                                         <label for="update-file">Change Project File</label>
@@ -97,7 +97,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="contact-email">
                                         <i class="flaticon-mail-26"></i>
                                         <label for="up-project-email">Project Email</label>
@@ -108,7 +108,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="contact-phone">
                                         <i class="flaticon-telephone"></i>
                                         <label for="up-project-phone">Project Phone</label>
@@ -118,7 +118,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="contact-email">
                                         <i class="flaticon-mail-26"></i>
                                         <label for="up-project-status">Project Status</label>

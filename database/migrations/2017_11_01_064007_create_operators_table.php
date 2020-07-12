@@ -15,6 +15,9 @@ class CreateOperatorsTable extends Migration
     {
         Schema::create('operators', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('equipment_type_id')->nullable();
+            $table->foreignId('vendor_id')->nullable();
+            $table->foreignId('equipement_id')->nullable();
             $table->string('name');
             $table->text('address')->nullable();
             $table->string('mobile')->nullable();

@@ -2092,14 +2092,66 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
+  props: ['vendors', 'equipment_types', 'equipements'],
   data: function data() {
     return {
       operator: {
         operator_name: '',
+        equipment_type_id: '',
+        vendor_id: '',
+        equipement_id: '',
         mobile: '',
         address: '',
         email: '',
@@ -2680,6 +2732,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2688,6 +2790,18 @@ __webpack_require__.r(__webpack_exports__);
     return {
       operator: {
         id: '',
+        vendor: {
+          id: '',
+          vendor_name: ''
+        },
+        equipment_type: {
+          id: '',
+          name: ''
+        },
+        equipement: {
+          id: '',
+          eq_name: ''
+        },
         name: '',
         mobile: '',
         address: '',
@@ -2876,8 +2990,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -2885,6 +2997,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
+  props: ['vendors', 'equipment_types', 'equipements'],
   components: {
     'pagination': _pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"],
     UpdateOperator: _UpdateOperator__WEBPACK_IMPORTED_MODULE_4__["default"],
@@ -9052,7 +9165,7 @@ var render = function() {
     [
       _c(
         "div",
-        { staticClass: "modal-dialog modal-lg", attrs: { role: "document" } },
+        { staticClass: "modal-dialog modal-xl", attrs: { role: "document" } },
         [
           _c("form", { attrs: { role: "form" } }, [
             _c("div", { staticClass: "modal-content" }, [
@@ -9067,7 +9180,7 @@ var render = function() {
                 _c("div", { staticClass: "add-contact-box" }, [
                   _c("div", { staticClass: "add-contact-content text-left" }, [
                     _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "col-md-4" }, [
                         _c("div", { staticClass: "contact-email" }, [
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
@@ -9119,7 +9232,232 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c("div", { staticClass: "contact-email" }, [
+                          _c("i", { staticClass: "flaticon-mail-26" }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "equipment-type" } }, [
+                            _vm._v("Equipment Type")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.operator.equipment_type_id,
+                                  expression: "operator.equipment_type_id"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: { id: "equipment-type" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.operator,
+                                    "equipment_type_id",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("Select Equipment Type")
+                              ]),
+                              _vm._v(" "),
+                              _vm._l(_vm.equipment_types, function(equipment) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: equipment.id,
+                                    domProps: { value: equipment.id }
+                                  },
+                                  [_vm._v(_vm._s(equipment.name))]
+                                )
+                              })
+                            ],
+                            2
+                          ),
+                          _vm._v(" "),
+                          _vm.validation_error.hasOwnProperty(
+                            "equipment_type_id"
+                          )
+                            ? _c("span", { staticClass: "text-danger" }, [
+                                _vm._v(
+                                  "\r\n                                          " +
+                                    _vm._s(
+                                      _vm.validation_error.equipment_type_id[0]
+                                    ) +
+                                    "\r\n                                         "
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c("div", { staticClass: "contact-email" }, [
+                          _c("i", { staticClass: "flaticon-mail-26" }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "vendor-name" } }, [
+                            _vm._v("Vendor Name")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.operator.vendor_id,
+                                  expression: "operator.vendor_id"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: { id: "vendor-name" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.operator,
+                                    "vendor_id",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("Select Vendor")
+                              ]),
+                              _vm._v(" "),
+                              _vm._l(_vm.vendors, function(vendor) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: vendor.id,
+                                    domProps: { value: vendor.id }
+                                  },
+                                  [_vm._v(_vm._s(vendor.vendor_name))]
+                                )
+                              })
+                            ],
+                            2
+                          ),
+                          _vm._v(" "),
+                          _vm.validation_error.hasOwnProperty("vendor_id")
+                            ? _c("span", { staticClass: "text-danger" }, [
+                                _vm._v(
+                                  "\r\n                                          " +
+                                    _vm._s(_vm.validation_error.vendor_id[0]) +
+                                    "\r\n                                         "
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c("div", { staticClass: "contact-email" }, [
+                          _c("i", { staticClass: "flaticon-mail-26" }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "equipment-name" } }, [
+                            _vm._v("Equipment Name")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.operator.equipement_id,
+                                  expression: "operator.equipement_id"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: { id: "equipment-name" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.operator,
+                                    "equipement_id",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("Select Equipment")
+                              ]),
+                              _vm._v(" "),
+                              _vm._l(_vm.equipements, function(equipement) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: equipement.id,
+                                    domProps: { value: equipement.id }
+                                  },
+                                  [_vm._v(_vm._s(equipement.eq_name))]
+                                )
+                              })
+                            ],
+                            2
+                          ),
+                          _vm._v(" "),
+                          _vm.validation_error.hasOwnProperty("equipement_id")
+                            ? _c("span", { staticClass: "text-danger" }, [
+                                _vm._v(
+                                  "\r\n                                          " +
+                                    _vm._s(
+                                      _vm.validation_error.equipement_id[0]
+                                    ) +
+                                    "\r\n                                         "
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
                         _c("div", { staticClass: "contact-email" }, [
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
@@ -9169,7 +9507,7 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "col-md-4" }, [
                         _c("div", { staticClass: "contact-email" }, [
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
@@ -9219,7 +9557,7 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "col-md-4" }, [
                         _c("div", { staticClass: "contact-email" }, [
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
@@ -9269,7 +9607,7 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "col-md-4" }, [
                         _c("div", { staticClass: "contact-email" }, [
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
@@ -9319,7 +9657,7 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "col-md-4" }, [
                         _c("div", { staticClass: "contact-name" }, [
                           _c("i", { staticClass: "flaticon-mail-11" }),
                           _vm._v(" "),
@@ -9370,7 +9708,7 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "col-md-4" }, [
                         _c("div", { staticClass: "contact-name" }, [
                           _c("i", { staticClass: "flaticon-mail-11" }),
                           _vm._v(" "),
@@ -9423,7 +9761,7 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "col-md-4" }, [
                         _c("div", { staticClass: "contact-name" }, [
                           _c("i", { staticClass: "flaticon-user-11" }),
                           _vm._v(" "),
@@ -9454,7 +9792,7 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "col-md-4" }, [
                         _c("div", { staticClass: "contact-phone" }, [
                           _c("i", { staticClass: "flaticon-telephone" }),
                           _vm._v(" "),
@@ -9504,7 +9842,59 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "col-md-8" }, [
+                        _c("div", { staticClass: "contact-phone" }, [
+                          _c("i", { staticClass: "flaticon-telephone" }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "document-link" } }, [
+                            _vm._v("Document Link")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.operator.documents_link,
+                                expression: "operator.documents_link"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              id: "document-link",
+                              placeholder: "Document Link"
+                            },
+                            domProps: { value: _vm.operator.documents_link },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.operator,
+                                  "documents_link",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm.validation_error.hasOwnProperty("documents_link")
+                            ? _c("span", { staticClass: "text-danger" }, [
+                                _vm._v(
+                                  "\r\n                                      " +
+                                    _vm._s(
+                                      _vm.validation_error.documents_link[0]
+                                    ) +
+                                    "\r\n                                     "
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
                         _c("div", { staticClass: "contact-email" }, [
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
@@ -9565,58 +9955,6 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-md-12" }, [
-                        _c("div", { staticClass: "contact-phone" }, [
-                          _c("i", { staticClass: "flaticon-telephone" }),
-                          _vm._v(" "),
-                          _c("label", { attrs: { for: "document-link" } }, [
-                            _vm._v("Document Link")
-                          ]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.operator.documents_link,
-                                expression: "operator.documents_link"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              id: "document-link",
-                              placeholder: "Document Link"
-                            },
-                            domProps: { value: _vm.operator.documents_link },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.operator,
-                                  "documents_link",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm.validation_error.hasOwnProperty("documents_link")
-                            ? _c("span", { staticClass: "text-danger" }, [
-                                _vm._v(
-                                  "\r\n                                      " +
-                                    _vm._s(
-                                      _vm.validation_error.documents_link[0]
-                                    ) +
-                                    "\r\n                                     "
-                                )
-                              ])
-                            : _vm._e()
-                        ])
-                      ]),
-                      _vm._v(" "),
                       _c("div", { staticClass: "col-md-12" }, [
                         _c("div", { staticClass: "contact-location" }, [
                           _c("i", { staticClass: "flaticon-location-1" }),
@@ -10237,7 +10575,7 @@ var render = function() {
     [
       _c(
         "div",
-        { staticClass: "modal-dialog modal-lg", attrs: { role: "document" } },
+        { staticClass: "modal-dialog modal-xl", attrs: { role: "document" } },
         [
           _c("form", { attrs: { role: "form" } }, [
             _c("div", { staticClass: "modal-content" }, [
@@ -10252,7 +10590,7 @@ var render = function() {
                 _c("div", { staticClass: "add-contact-box" }, [
                   _c("div", { staticClass: "add-contact-content text-left" }, [
                     _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "col-md-4" }, [
                         _c("div", { staticClass: "contact-email" }, [
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
@@ -10302,7 +10640,232 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c("div", { staticClass: "contact-email" }, [
+                          _c("i", { staticClass: "flaticon-mail-26" }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "equipment-type" } }, [
+                            _vm._v("Equipment Type")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.operator.equipment_type_id,
+                                  expression: "operator.equipment_type_id"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: { id: "equipment-type" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.operator,
+                                    "equipment_type_id",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("Select Equipment Type")
+                              ]),
+                              _vm._v(" "),
+                              _vm._l(_vm.equipment_types, function(equipment) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: equipment.id,
+                                    domProps: { value: equipment.id }
+                                  },
+                                  [_vm._v(_vm._s(equipment.name))]
+                                )
+                              })
+                            ],
+                            2
+                          ),
+                          _vm._v(" "),
+                          _vm.validation_error.hasOwnProperty(
+                            "equipment_type_id"
+                          )
+                            ? _c("span", { staticClass: "text-danger" }, [
+                                _vm._v(
+                                  "\r\n                                          " +
+                                    _vm._s(
+                                      _vm.validation_error.equipment_type_id[0]
+                                    ) +
+                                    "\r\n                                         "
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c("div", { staticClass: "contact-email" }, [
+                          _c("i", { staticClass: "flaticon-mail-26" }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "vendor-name" } }, [
+                            _vm._v("Vendor Name")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.operator.vendor_id,
+                                  expression: "operator.vendor_id"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: { id: "vendor-name" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.operator,
+                                    "vendor_id",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("Select Vendor")
+                              ]),
+                              _vm._v(" "),
+                              _vm._l(_vm.vendors, function(vendor) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: vendor.id,
+                                    domProps: { value: vendor.id }
+                                  },
+                                  [_vm._v(_vm._s(vendor.vendor_name))]
+                                )
+                              })
+                            ],
+                            2
+                          ),
+                          _vm._v(" "),
+                          _vm.validation_error.hasOwnProperty("vendor_id")
+                            ? _c("span", { staticClass: "text-danger" }, [
+                                _vm._v(
+                                  "\r\n                                          " +
+                                    _vm._s(_vm.validation_error.vendor_id[0]) +
+                                    "\r\n                                         "
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c("div", { staticClass: "contact-email" }, [
+                          _c("i", { staticClass: "flaticon-mail-26" }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "equipment-name" } }, [
+                            _vm._v("Equipment Name")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.operator.equipement_id,
+                                  expression: "operator.equipement_id"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: { id: "equipment-name" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.operator,
+                                    "equipement_id",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("Select Equipment")
+                              ]),
+                              _vm._v(" "),
+                              _vm._l(_vm.equipements, function(equipement) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: equipement.id,
+                                    domProps: { value: equipement.id }
+                                  },
+                                  [_vm._v(_vm._s(equipement.eq_name))]
+                                )
+                              })
+                            ],
+                            2
+                          ),
+                          _vm._v(" "),
+                          _vm.validation_error.hasOwnProperty("equipement_id")
+                            ? _c("span", { staticClass: "text-danger" }, [
+                                _vm._v(
+                                  "\r\n                                          " +
+                                    _vm._s(
+                                      _vm.validation_error.equipement_id[0]
+                                    ) +
+                                    "\r\n                                         "
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
                         _c("div", { staticClass: "contact-email" }, [
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
@@ -10354,7 +10917,7 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "col-md-4" }, [
                         _c("div", { staticClass: "contact-email" }, [
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
@@ -10404,7 +10967,7 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "col-md-4" }, [
                         _c("div", { staticClass: "contact-email" }, [
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
@@ -10456,7 +11019,7 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "col-md-4" }, [
                         _c("div", { staticClass: "contact-email" }, [
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
@@ -10506,7 +11069,7 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "col-md-4" }, [
                         _c("div", { staticClass: "contact-name" }, [
                           _c("i", { staticClass: "flaticon-mail-11" }),
                           _vm._v(" "),
@@ -10557,7 +11120,7 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "col-md-4" }, [
                         _c("div", { staticClass: "contact-name" }, [
                           _c("i", { staticClass: "flaticon-mail-11" }),
                           _vm._v(" "),
@@ -10612,7 +11175,7 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "col-md-4" }, [
                         _c("div", { staticClass: "contact-name" }, [
                           _c("i", { staticClass: "flaticon-user-11" }),
                           _vm._v(" "),
@@ -10643,7 +11206,7 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "col-md-4" }, [
                         _c("div", { staticClass: "contact-phone" }, [
                           _c("i", { staticClass: "flaticon-telephone" }),
                           _vm._v(" "),
@@ -10693,7 +11256,59 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "col-md-8" }, [
+                        _c("div", { staticClass: "contact-phone" }, [
+                          _c("i", { staticClass: "flaticon-telephone" }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "up-document-link" } }, [
+                            _vm._v("Document Link")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.operator.documents_link,
+                                expression: "operator.documents_link"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              id: "up-document-link",
+                              placeholder: "Document Link"
+                            },
+                            domProps: { value: _vm.operator.documents_link },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.operator,
+                                  "documents_link",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm.validation_error.hasOwnProperty("documents_link")
+                            ? _c("span", { staticClass: "text-danger" }, [
+                                _vm._v(
+                                  "\r\n                                    " +
+                                    _vm._s(
+                                      _vm.validation_error.documents_link[0]
+                                    ) +
+                                    "\r\n                                   "
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
                         _c("div", { staticClass: "contact-email" }, [
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
@@ -10756,58 +11371,6 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-md-12" }, [
-                        _c("div", { staticClass: "contact-phone" }, [
-                          _c("i", { staticClass: "flaticon-telephone" }),
-                          _vm._v(" "),
-                          _c("label", { attrs: { for: "up-document-link" } }, [
-                            _vm._v("Document Link")
-                          ]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.operator.documents_link,
-                                expression: "operator.documents_link"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              id: "up-document-link",
-                              placeholder: "Document Link"
-                            },
-                            domProps: { value: _vm.operator.documents_link },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.operator,
-                                  "documents_link",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm.validation_error.hasOwnProperty("documents_link")
-                            ? _c("span", { staticClass: "text-danger" }, [
-                                _vm._v(
-                                  "\r\n                                      " +
-                                    _vm._s(
-                                      _vm.validation_error.documents_link[0]
-                                    ) +
-                                    "\r\n                                     "
-                                )
-                              ])
-                            : _vm._e()
-                        ])
-                      ]),
-                      _vm._v(" "),
                       _c("div", { staticClass: "col-md-12" }, [
                         _c("div", { staticClass: "contact-location" }, [
                           _c("i", { staticClass: "flaticon-location-1" }),
@@ -10977,17 +11540,6 @@ var render = function() {
                       "tbody",
                       _vm._l(_vm.operators.data, function(value) {
                         return _c("tr", { key: value.id }, [
-                          _c("td", [
-                            _c("img", {
-                              attrs: {
-                                src: _vm.url + "images/operator/" + value.file,
-                                alt: value.name,
-                                height: "50px",
-                                width: "50px"
-                              }
-                            })
-                          ]),
-                          _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(value.name))]),
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(value.address))]),
@@ -11076,7 +11628,13 @@ var render = function() {
             )
       ]),
       _vm._v(" "),
-      _c("update-operator"),
+      _c("update-operator", {
+        attrs: {
+          vendors: _vm.vendors,
+          equipment_types: _vm.equipment_types,
+          equipements: _vm.equipements
+        }
+      }),
       _vm._v(" "),
       _c("single-viewoperator"),
       _vm._v(" "),
@@ -11099,8 +11657,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("Picture")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Name")]),
         _vm._v(" "),
         _c("th", [_vm._v("Address")]),

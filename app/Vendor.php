@@ -62,4 +62,9 @@ class Vendor extends Model
 
         return $this->hasMany('App\OperatorFooding');
     }
+
+    public function operator()
+    {
+        return $this->hasMany('App\Operator');
+    }
 }

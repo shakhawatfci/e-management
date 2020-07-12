@@ -5,17 +5,27 @@ namespace App\Http\Controllers\Operator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Operator;
+use App\Vendor;
+use App\EquipmentType;
+use App\Equipement;
 
 class OperatorController extends Controller
 {
     public function index()
     {
-    	return view('operator.operator');
+        $vendor = Vendor::all();
+        $equipment_type = EquipmentType::all();
+        $equipement = Equipement::all();
+    	return view('operator.operator',[
+            'vendors' => $vendor,
+            'equipment_types' => $equipment_type,
+            'equipements' => $equipement
+        ]);
     }
 
     public function operatorList(Request $request)
     {
-    	$operator = Operator::orderBy('id','desc');
+    	$operator = Operator::with(['equipment_type','equipement'])->orderBy('id','desc');
         if($request->keyword != '') {
             $operator->where('name','LIKE','%'.$request->keyword.'%');
             $operator->orWhere('email','LIKE','%'.$request->keyword.'%');
@@ -51,6 +61,9 @@ class OperatorController extends Controller
             }
             $insert = Operator::insert([
             	'name'			=> $request->operator_name,
+                'equipment_type_id' => $request->equipment_type_id,
+                'vendor_id' => $request->vendor_id,
+                'equipement_id' => $request->equipement_id,
 		        'mobile' 		=> $request->mobile,
 		        'address' 		=> $request->address,
 		        'email' 		=> $request->email,
@@ -92,6 +105,9 @@ class OperatorController extends Controller
 
             $update = Operator::find($id);
                 $update->name           = $request->name;
+                $update->vendor_id = $request->vendor_id;
+                $update->equipment_type_id = $request->equipment_type_id;
+                $update->equipement_id = $request->equipement_id;
                 $update->mobile         = $request->mobile;
                 $update->address        = $request->address;
                 $update->email          = $request->email;

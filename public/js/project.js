@@ -8508,7 +8508,7 @@ var render = function() {
       _c(
         "div",
         {
-          staticClass: "modal-dialog modal-dialog-centered modal-lg",
+          staticClass: "modal-dialog modal-dialog-centered modal-xl",
           attrs: { role: "document" }
         },
         [
@@ -8539,7 +8539,7 @@ var render = function() {
                       { staticClass: "add-contact-content text-left" },
                       [
                         _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-name" }, [
                               _c("i", { staticClass: "flaticon-user-11" }),
                               _vm._v(" "),
@@ -8593,7 +8593,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-name" }, [
                               _c("i", { staticClass: "flaticon-user-11" }),
                               _vm._v(" "),
@@ -8652,7 +8652,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-name" }, [
                               _c("i", { staticClass: "flaticon-user-11" }),
                               _vm._v(" "),
@@ -8712,7 +8712,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-name" }, [
                               _c("i", { staticClass: "flaticon-user-11" }),
                               _vm._v(" "),
@@ -8771,7 +8771,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-name" }, [
                               _c("i", { staticClass: "flaticon-user-11" }),
                               _vm._v(" "),
@@ -8831,7 +8831,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-name" }, [
                               _c("i", { staticClass: "flaticon-user-11" }),
                               _vm._v(" "),
@@ -8891,7 +8891,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-name" }, [
                               _c("i", { staticClass: "flaticon-user-11" }),
                               _vm._v(" "),
@@ -8950,7 +8950,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-name" }, [
                               _c("i", { staticClass: "flaticon-user-11" }),
                               _vm._v(" "),
@@ -8971,7 +8971,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-email" }, [
                               _c("i", { staticClass: "flaticon-mail-26" }),
                               _vm._v(" "),
@@ -9025,7 +9025,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-phone" }, [
                               _c("i", { staticClass: "flaticon-telephone" }),
                               _vm._v(" "),
@@ -9079,7 +9079,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-email" }, [
                               _c("i", { staticClass: "flaticon-mail-26" }),
                               _vm._v(" "),
@@ -9281,7 +9281,7 @@ var render = function() {
       _c(
         "div",
         {
-          staticClass: "modal-dialog modal-dialog-centered modal-lg",
+          staticClass: "modal-dialog modal-dialog-centered modal-xl",
           attrs: { role: "document" }
         },
         [
@@ -9312,7 +9312,7 @@ var render = function() {
                       { staticClass: "add-contact-content text-left" },
                       [
                         _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-name" }, [
                               _c("i", { staticClass: "flaticon-user-11" }),
                               _vm._v(" "),
@@ -9364,7 +9364,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-name" }, [
                               _c("i", { staticClass: "flaticon-user-11" }),
                               _vm._v(" "),
@@ -9422,7 +9422,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-name" }, [
                               _c("i", { staticClass: "flaticon-user-11" }),
                               _vm._v(" "),
@@ -9481,7 +9481,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-name" }, [
                               _c("i", { staticClass: "flaticon-user-11" }),
                               _vm._v(" "),
@@ -9539,7 +9539,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-name" }, [
                               _c("i", { staticClass: "flaticon-user-11" }),
                               _vm._v(" "),
@@ -9599,7 +9599,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-name" }, [
                               _c("i", { staticClass: "flaticon-user-11" }),
                               _vm._v(" "),
@@ -9659,7 +9659,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-name" }, [
                               _c("i", { staticClass: "flaticon-user-11" }),
                               _vm._v(" "),
@@ -9717,7 +9717,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-name" }, [
                               _c("i", { staticClass: "flaticon-user-11" }),
                               _vm._v(" "),
@@ -9744,7 +9744,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-email" }, [
                               _c("i", { staticClass: "flaticon-mail-26" }),
                               _vm._v(" "),
@@ -9799,7 +9799,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-phone" }, [
                               _c("i", { staticClass: "flaticon-telephone" }),
                               _vm._v(" "),
@@ -9851,7 +9851,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-email" }, [
                               _c("i", { staticClass: "flaticon-mail-26" }),
                               _vm._v(" "),
@@ -10254,7 +10254,7 @@ var render = function() {
                       { staticClass: "add-contact-content text-left" },
                       [
                         _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-email" }, [
                               _c("i", { staticClass: "flaticon-mail-26" }),
                               _vm._v(" "),
@@ -10334,7 +10334,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-email" }, [
                               _c("i", { staticClass: "flaticon-mail-26" }),
                               _vm._v(" "),
@@ -10418,7 +10418,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-email" }, [
                               _c("i", { staticClass: "flaticon-mail-26" }),
                               _vm._v(" "),
@@ -10501,7 +10501,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-email" }, [
                               _c("i", { staticClass: "flaticon-mail-26" }),
                               _vm._v(" "),
@@ -10581,7 +10581,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-email" }, [
                               _c("i", { staticClass: "flaticon-mail-26" }),
                               _vm._v(" "),
@@ -10661,7 +10661,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-name" }, [
                               _c("i", { staticClass: "flaticon-user-11" }),
                               _vm._v(" "),
@@ -10711,7 +10711,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-name" }, [
                               _c("i", { staticClass: "flaticon-user-11" }),
                               _vm._v(" "),
@@ -10769,7 +10769,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-name" }, [
                               _c("i", { staticClass: "flaticon-user-11" }),
                               _vm._v(" "),
@@ -10827,7 +10827,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-name" }, [
                               _c("i", { staticClass: "flaticon-user-11" }),
                               _vm._v(" "),
@@ -10866,7 +10866,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-name" }, [
                               _c("i", { staticClass: "flaticon-user-11" }),
                               _vm._v(" "),
@@ -10905,7 +10905,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-name" }, [
                               _c("i", { staticClass: "flaticon-user-11" }),
                               _vm._v(" "),
@@ -11565,7 +11565,7 @@ var render = function() {
                       { staticClass: "add-contact-content text-left" },
                       [
                         _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-email" }, [
                               _c("i", { staticClass: "flaticon-mail-26" }),
                               _vm._v(" "),
@@ -11645,7 +11645,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-email" }, [
                               _c("i", { staticClass: "flaticon-mail-26" }),
                               _vm._v(" "),
@@ -11729,7 +11729,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-email" }, [
                               _c("i", { staticClass: "flaticon-mail-26" }),
                               _vm._v(" "),
@@ -11812,7 +11812,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-email" }, [
                               _c("i", { staticClass: "flaticon-mail-26" }),
                               _vm._v(" "),
@@ -11892,7 +11892,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-email" }, [
                               _c("i", { staticClass: "flaticon-mail-26" }),
                               _vm._v(" "),
@@ -11972,7 +11972,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-name" }, [
                               _c("i", { staticClass: "flaticon-user-11" }),
                               _vm._v(" "),
@@ -12022,7 +12022,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-name" }, [
                               _c("i", { staticClass: "flaticon-user-11" }),
                               _vm._v(" "),
@@ -12080,7 +12080,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-name" }, [
                               _c("i", { staticClass: "flaticon-user-11" }),
                               _vm._v(" "),
@@ -12138,7 +12138,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-name" }, [
                               _c("i", { staticClass: "flaticon-user-11" }),
                               _vm._v(" "),
@@ -12177,7 +12177,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-name" }, [
                               _c("i", { staticClass: "flaticon-user-11" }),
                               _vm._v(" "),
@@ -12216,7 +12216,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
                             _c("div", { staticClass: "contact-name" }, [
                               _c("i", { staticClass: "flaticon-user-11" }),
                               _vm._v(" "),

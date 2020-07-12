@@ -14,7 +14,6 @@
     <table class="table table-bordered table-hover  mb-4">
         <thead>
             <tr>
-                <th>Picture</th>
                 <th>Name</th>
                 <th>Address</th>
                 <th>Phone</th>
@@ -25,7 +24,6 @@
         </thead>
         <tbody>
             <tr v-for="value in operators.data" :key="value.id">
-                <td><img :src="url+'images/operator/'+value.file" :alt="value.name" height="50px" width="50px" /></td>
                 <td>{{ value.name }}</td>
                 <td>{{ value.address }}</td>
                 <td>{{ value.mobile }}</td>
@@ -51,7 +49,7 @@
         </div>
   </div>
 
-       <update-operator> </update-operator>
+       <update-operator :vendors="vendors" :equipment_types="equipment_types" :equipements="equipements"> </update-operator>
        <single-viewoperator> </single-viewoperator>
     <div class="row">
       <div class="col-md-12 text-center mb-10 mt-10">
@@ -72,6 +70,7 @@ import SingleViewoperator from './SingleViewoperator';
 import UpdateOperator from './UpdateOperator';
 export default {
   mixins: [Mixin],
+  props : ['vendors','equipment_types','equipements'],
   components : {
    'pagination' : Pagination,
    UpdateOperator,SingleViewoperator

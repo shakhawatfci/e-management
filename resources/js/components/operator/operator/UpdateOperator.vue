@@ -1,7 +1,7 @@
 <template>
 <!-- Modal -->
     <div id="UpdateOperator" class="modal animated fadeInRight custo-fadeInRight show" tabindex="-1" role="dialog" aria-labelledby="addContactModalTitle" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-xl" role="document">
             <form role="form">
             <div class="modal-content">
               <div class="modal-header">
@@ -11,7 +11,7 @@
                     <div class="add-contact-box">
                         <div class="add-contact-content text-left">
                            <div class="row">
-                              <div class="col-md-6">
+                              <div class="col-md-4">
                                   <div class="contact-email">
                                       <i class="flaticon-mail-26"></i>
                                       <label for="up-operator-name">Operator Name</label>
@@ -24,7 +24,55 @@
                                   </div>
                               </div>
 
-                              <div class="col-md-6">
+                              <div class="col-md-4">
+                                  <div class="contact-email">
+                                      <i class="flaticon-mail-26"></i>
+                                      <label for="equipment-type">Equipment Type</label>
+                                        <select class="form-control" id="equipment-type" v-model="operator.equipment_type_id">
+                                            <option value="">Select Equipment Type</option>
+                                            <option v-for="equipment in equipment_types" :key="equipment.id" :value="equipment.id">{{ equipment.name }}</option>
+                                        </select>
+                                           <span
+                                           v-if="validation_error.hasOwnProperty('equipment_type_id')" 
+                                          class="text-danger">
+                                          {{ validation_error.equipment_type_id[0] }}
+                                         </span>
+                                  </div>
+                              </div>
+                              
+                              <div class="col-md-4">
+                                  <div class="contact-email">
+                                      <i class="flaticon-mail-26"></i>
+                                      <label for="vendor-name">Vendor Name</label>
+                                        <select class="form-control" id="vendor-name" v-model="operator.vendor_id">
+                                            <option value="">Select Vendor</option>
+                                            <option v-for="vendor in vendors" :key="vendor.id" :value="vendor.id">{{ vendor.vendor_name }}</option>
+                                        </select>
+                                           <span
+                                           v-if="validation_error.hasOwnProperty('vendor_id')" 
+                                          class="text-danger">
+                                          {{ validation_error.vendor_id[0] }}
+                                         </span>
+                                  </div>
+                              </div>
+
+                              <div class="col-md-4">
+                                  <div class="contact-email">
+                                      <i class="flaticon-mail-26"></i>
+                                      <label for="equipment-name">Equipment Name</label>
+                                        <select class="form-control" id="equipment-name" v-model="operator.equipement_id">
+                                            <option value="">Select Equipment</option>
+                                            <option v-for="equipement in equipements" :key="equipement.id" :value="equipement.id">{{ equipement.eq_name }}</option>
+                                        </select>
+                                           <span
+                                           v-if="validation_error.hasOwnProperty('equipement_id')" 
+                                          class="text-danger">
+                                          {{ validation_error.equipement_id[0] }}
+                                         </span>
+                                  </div>
+                              </div>
+
+                              <div class="col-md-4">
                                   <div class="contact-email">
                                       <i class="flaticon-mail-26"></i>
                                       <label for="up-operator-mobile">Operator Mobile</label>
@@ -37,7 +85,7 @@
                                   </div>
                               </div>
 
-                              <div class="col-md-6">
+                              <div class="col-md-4">
                                   <div class="contact-email">
                                       <i class="flaticon-mail-26"></i>
                                       <label for="up-operator-email">Operator Email</label>
@@ -50,7 +98,7 @@
                                   </div>
                               </div>
 
-                              <div class="col-md-6">
+                              <div class="col-md-4">
                                   <div class="contact-email">
                                       <i class="flaticon-mail-26"></i>
                                       <label for="up-operator-bkash">B-kash Number</label>
@@ -63,7 +111,7 @@
                                   </div>
                               </div>
 
-                              <div class="col-md-6">
+                              <div class="col-md-4">
                                   <div class="contact-email">
                                       <i class="flaticon-mail-26"></i>
                                       <label for="up-operator-nid">NID</label>
@@ -76,7 +124,7 @@
                                   </div>
                               </div>
 
-                              <div class="col-md-6">
+                              <div class="col-md-4">
                                 <div class="contact-name">
                                     <i class="flaticon-mail-11"></i>
                                      <label for="up-basicFlatpickr">Join Date</label>
@@ -89,7 +137,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="contact-name">
                                     <i class="flaticon-mail-11"></i>
                                      <label for="up-basicFlatpickr2">Date Of Birth</label>
@@ -102,7 +150,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="contact-name">
                                     <i class="flaticon-user-11"></i>
                                     <label for="up-file">Upload Picture</label>
@@ -115,7 +163,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                               <div class="contact-phone">
                                   <i class="flaticon-telephone"></i>
                                   <label for="up-salary">Salary</label>
@@ -127,8 +175,21 @@
                                    </span>
                               </div>
                             </div>
+
+                            <div class="col-md-8">
+                              <div class="contact-phone">
+                                  <i class="flaticon-telephone"></i>
+                                  <label for="up-document-link">Document Link</label>
+                                  <input type="text" id="up-document-link" class="form-control" v-model="operator.documents_link" placeholder="Document Link">
+                                  <span
+                                     v-if="validation_error.hasOwnProperty('documents_link')" 
+                                    class="text-danger">
+                                    {{ validation_error.documents_link[0] }}
+                                   </span>
+                              </div>
+                            </div>
                              
-                           <div class="col-md-6">
+                           <div class="col-md-4">
                                 <div class="contact-email">
                                     <i class="flaticon-mail-26"></i>
                                     <label for="up-operator-status">Operator Status</label>
@@ -142,18 +203,7 @@
 
                             </div>
                             <div class="row">
-                              <div class="col-md-12">
-                                <div class="contact-phone">
-                                    <i class="flaticon-telephone"></i>
-                                    <label for="up-document-link">Document Link</label>
-                                    <input type="text" id="up-document-link" class="form-control" v-model="operator.documents_link" placeholder="Document Link">
-                                    <span
-                                       v-if="validation_error.hasOwnProperty('documents_link')" 
-                                      class="text-danger">
-                                      {{ validation_error.documents_link[0] }}
-                                     </span>
-                                </div>
-                              </div>
+                              
                                 <div class="col-md-12">
                                     <div class="contact-location">
                                         <i class="flaticon-location-1"></i>
@@ -191,6 +241,9 @@ export default {
        return {
         operator : {
           id : '',
+          vendor : {id : '', vendor_name : ''},
+          equipment_type : {id : '', name : ''},
+          equipement : {id : '', eq_name : ''},
           name : '',
           mobile : '',
           address : '',

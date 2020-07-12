@@ -164,6 +164,15 @@ class OperatorFoodingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $delete = OperatorFooding::find($id);
+        if ($delete->delete()) {
+                return response()->json(['status' => 'success', 'message' => 'Operator Fooding Deleted !']);
+            }else{
+                return response()->json(['status' => 'error', 'message' => 'Something went wrong !']);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+        }
     }
 }

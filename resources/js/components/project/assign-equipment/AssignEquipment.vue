@@ -13,7 +13,7 @@
                         <div class="add-contact-content text-left">
 
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="contact-email">
                                             <i class="flaticon-mail-26"></i>
                                             <span>Project</span>
@@ -30,7 +30,7 @@
                                                </span>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="contact-email">
                                             <i class="flaticon-mail-26"></i>
                                             <span>Equipment Type</span>
@@ -48,7 +48,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="contact-email">
                                             <i class="flaticon-mail-26"></i>
                                             <span>Select Vendor</span>
@@ -67,7 +67,7 @@
                                     </div>
 
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="contact-email">
                                             <i class="flaticon-mail-26"></i>
                                             <span>Select Equipment</span>
@@ -85,7 +85,7 @@
                                         </div>
                                     </div>
                             
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="contact-email">
                                             <i class="flaticon-mail-26"></i>
                                             <span>Operator</span>
@@ -103,7 +103,7 @@
                                         </div>
                                     </div>
                             
-                                 <div class="col-md-6">
+                                 <div class="col-md-4">
                                         <div class="contact-name">
                                             <i class="flaticon-user-11"></i>
                                             <span>Total Hour</span>
@@ -115,7 +115,7 @@
                                         </div>
                                 </div>
 
-                                 <div class="col-md-6">
+                                 <div class="col-md-4">
                                         <div class="contact-name">
                                             <i class="flaticon-user-11"></i>
                                             <span>Total Contact Amount With Project</span>
@@ -128,7 +128,7 @@
                                 </div>
 
 
-                                 <div class="col-md-6">
+                                 <div class="col-md-4">
                                         <div class="contact-name">
                                             <i class="flaticon-user-11"></i>
                                             <span>Total Contact Amount With Vendor</span>
@@ -141,7 +141,7 @@
                                 </div>
 
 
-                                 <div class="col-md-6">
+                                 <div class="col-md-4">
                                         <div class="contact-name">
                                             <i class="flaticon-user-11"></i>
                                             <span>Project Rate Per Hour</span>
@@ -154,7 +154,7 @@
                                         </div>
                                 </div>
 
-                                 <div class="col-md-6">
+                                 <div class="col-md-4">
                                         <div class="contact-name">
                                             <i class="flaticon-user-11"></i>
                                             <span>Vendor Rate Per Hour</span>
@@ -167,7 +167,7 @@
                                         </div>
                                 </div>
 
-                                 <div class="col-md-6">
+                                 <div class="col-md-4">
                                         <div class="contact-name">
                                             <i class="flaticon-user-11"></i>
                                             <span>Assign Date</span>
