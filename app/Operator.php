@@ -20,4 +20,9 @@ class Operator extends Model
    {
       return $this->hasMany('App\CarAssign');
    }
+
+   public function operator_fooding(){
+
+        return $this->hasMany('App\OperatorFooding');
+    }
 }

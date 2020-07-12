@@ -84,11 +84,7 @@ class OperatorController extends Controller
     {
         // return $request->all();
         $request->validate([
-            'name'          => 'required',
-            'mobile'        => 'required',
-            'address'       => 'required',
-            'join_date'     => 'required',
-            'nid'           => 'required|numeric',
+            'name'          => 'required'
         ]);
 
         try {

@@ -109,7 +109,7 @@
                                     <i class="flaticon-mail-26"></i>
                                     <label for="fooding-status">Fooding Status</label>
                                     <select class="form-control" id="fooding-status" v-model="fooding.status">
-                                        <option value="">Fooding Status</option>
+                                        <option value="">Status</option>
                                         <option value="1">Active</option>
                                         <option value="0">Inactive</option>
                                     </select>
@@ -201,7 +201,7 @@ export default {
 
      resetForm()
      {
-        this.salary = {
+        this.fooding = {
           project_id : '',
           vendor_id : '',
           equipment_type_id : '',

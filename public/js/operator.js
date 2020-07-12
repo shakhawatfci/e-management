@@ -3154,7 +3154,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     resetForm: function resetForm() {
-      this.salary = {
+      this.fooding = {
         project_id: '',
         vendor_id: '',
         equipment_type_id: '',
@@ -3321,78 +3321,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
   data: function data() {
     return {
-      salary: {
+      fooding: {
+        project: {
+          id: '',
+          project_name: ''
+        },
+        vendor: {
+          id: '',
+          vendor_name: ''
+        },
+        equipment_type: {
+          id: '',
+          name: ''
+        },
+        equipement: {
+          id: '',
+          eq_name: ''
+        },
         operator: {
           id: '',
           name: ''
         },
-        month: '',
-        payment_date: '',
-        payment_amount: '',
-        mode: '',
-        bank_note: '',
-        bkash_note: '',
-        salary_type: '',
+        fooding_amount: '',
         status: ''
       },
       url: base_url
@@ -3401,9 +3357,9 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('operator-salary-show', function (value) {
-      $('#ShowOperatorSalary').modal('show');
-      _this.salary = value;
+    _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('operator-fooding-show', function (value) {
+      $('#ShowOperatorFooding').modal('show');
+      _this.fooding = value;
     });
   }
 });
@@ -3557,38 +3513,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
-  props: ['operators'],
+  props: ['projects', 'vendors', 'equipment_types', 'equipements', 'operators'],
   data: function data() {
     return {
-      salary: {
+      fooding: {
         id: '',
-        operator_id: '',
-        month: '',
-        payment_date: '',
-        payment_amount: '',
-        mode: '',
-        bank_note: '',
-        bkash_note: '',
-        salary_type: '',
+        project: {
+          id: '',
+          project_name: ''
+        },
+        vendor: {
+          id: '',
+          vendor_name: ''
+        },
+        equipment_type: {
+          id: '',
+          name: ''
+        },
+        equipement: {
+          id: '',
+          eq_name: ''
+        },
+        operator: {
+          id: '',
+          name: ''
+        },
+        fooding_amount: '',
         status: ''
       },
       button_name: 'Update',
@@ -3596,13 +3550,11 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    var f1 = flatpickr(document.getElementById('up-basicFlatpickr'));
-
     var _this = this;
 
     _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('operator-fooding-update', function (value) {
       $("#UpdateOperatorFooding").modal('show');
-      _this.salary = value;
+      _this.fooding = value;
     });
   },
   methods: {
@@ -3610,7 +3562,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       this.button_name = "Updating...";
-      axios.put(base_url + 'operator-salary/' + this.salary.id, this.salary).then(function (response) {
+      axios.put(base_url + 'operator-fooding/' + this.fooding.id, this.fooding).then(function (response) {
         if (response.data.status === 'success') {
           _this2.successMessage(response.data);
 
@@ -3639,21 +3591,15 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     resetForm: function resetForm() {
-      this.operator = {
-        name: '',
-        mobile: '',
-        address: '',
-        email: '',
-        bkash_number: '',
-        join_date: '',
-        nid: '',
-        date_of_birth: '',
-        file: '',
-        documents_link: '',
-        salary: '',
+      this.fooding = {
+        project_id: '',
+        vendor_id: '',
+        equipment_type_id: '',
+        equipement_id: '',
+        operator_id: '',
+        fooding_amount: '',
         status: ''
       };
-      this.dataform = new FormData();
       this.button_name = "Update";
       this.validation_error = {};
     }
@@ -3751,7 +3697,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
-  props: ['operators'],
+  props: ['projects', 'vendors', 'equipment_types', 'equipements', 'operators'],
   components: {
     'pagination': _pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"],
     ShowFooding: _SingleViewoperatorFooding__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -3960,32 +3906,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3997,14 +3917,13 @@ __webpack_require__.r(__webpack_exports__);
         operator_id: '',
         month: '',
         payment_date: '',
-        payment_amount: '',
+        payment_amount: 0,
         mode: '',
-        bank_note: '',
-        bkash_note: '',
+        bank_bkash_note: '',
         salary_type: '',
         status: ''
       },
-      operator_salary: 0,
+      bank_bkash_note: '',
       button_name: 'Save',
       validation_error: {}
     };
@@ -4016,10 +3935,14 @@ __webpack_require__.r(__webpack_exports__);
     setSalary: function setSalary() {
       var _this = this;
 
-      var data = this.operators.filter(function (operator) {
-        return operator.id === _this.operator_id;
+      var amount = this.operators.filter(function (operator) {
+        return operator.id === _this.salary.operator_id;
       });
-      console.log(data);
+      this.salary.payment_amount = amount[0].salary;
+    },
+    setNote: function setNote() {
+      var field = this.salary.mode == 2 ? 'Enter Bank Note' : this.salary.mode == 1 ? 'N/A' : 'Enter Bkash Note';
+      this.bank_bkash_note = field;
     },
     save: function save() {
       var _this2 = this;
@@ -4084,6 +4007,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vue_assets__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../vue-assets */ "./resources/js/vue-assets.js");
 /* harmony import */ var _mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../mixin */ "./resources/js/mixin.js");
+//
+//
+//
 //
 //
 //
@@ -4453,27 +4379,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4486,11 +4391,9 @@ __webpack_require__.r(__webpack_exports__);
         operator_id: '',
         month: '',
         payment_date: '',
-        payment_amount: '',
+        payment_amount: 0,
         mode: '',
-        bank_note: '',
-        bkash_note: '',
-        salary_type: '',
+        bank_bkash_note: '',
         status: ''
       },
       button_name: 'Update',
@@ -4505,38 +4408,47 @@ __webpack_require__.r(__webpack_exports__);
     _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('operator-salary-update', function (value) {
       $("#UpdateOperatorSalary").modal('show');
       _this.salary = value;
+      _this.bank_bkash_note = value.bank_note != '' ? value.bank_note : value.bkash_note;
     });
   },
   methods: {
-    update: function update() {
+    setSalary: function setSalary() {
       var _this2 = this;
+
+      var amount = this.operators.filter(function (operator) {
+        return operator.id === _this2.salary.operator_id;
+      });
+      this.salary.payment_amount = amount[0].salary;
+    },
+    update: function update() {
+      var _this3 = this;
 
       this.button_name = "Updating...";
       axios.put(base_url + 'operator-salary/' + this.salary.id, this.salary).then(function (response) {
         if (response.data.status === 'success') {
-          _this2.successMessage(response.data);
+          _this3.successMessage(response.data);
 
-          _this2.resetForm();
+          _this3.resetForm();
 
           $('#UpdateOperatorSalary').modal('hide');
           _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('operator-salary-created');
-          _this2.button_name = "Update";
+          _this3.button_name = "Update";
         } else {
-          _this2.successMessage(response.data);
+          _this3.successMessage(response.data);
 
-          _this2.button_name = "Update";
+          _this3.button_name = "Update";
         }
       })["catch"](function (err) {
         if (err.response.status == 422) {
-          _this2.validation_error = err.response.data.errors;
+          _this3.validation_error = err.response.data.errors;
 
-          _this2.validationError();
+          _this3.validationError();
 
-          _this2.button_name = "Update";
+          _this3.button_name = "Update";
         } else {
-          _this2.successMessage(err);
+          _this3.successMessage(err);
 
-          _this2.button_name = "Update";
+          _this3.button_name = "Update";
         }
       });
     },
@@ -4578,6 +4490,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../pagination/Pagination */ "./resources/js/components/pagination/Pagination.vue");
 /* harmony import */ var _SingleViewoperatorsalary__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SingleViewoperatorsalary */ "./resources/js/components/operator/operator_salary/SingleViewoperatorsalary.vue");
 /* harmony import */ var _UpdateOperatorsalary__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./UpdateOperatorsalary */ "./resources/js/components/operator/operator_salary/UpdateOperatorsalary.vue");
+//
+//
+//
+//
 //
 //
 //
@@ -11720,7 +11636,7 @@ var render = function() {
                             },
                             [
                               _c("option", { attrs: { value: "" } }, [
-                                _vm._v("Fooding Status")
+                                _vm._v("Status")
                               ]),
                               _vm._v(" "),
                               _c("option", { attrs: { value: "1" } }, [
@@ -11820,7 +11736,7 @@ var render = function() {
     {
       staticClass: "modal animated fadeInRight custo-fadeInRight show",
       attrs: {
-        id: "ShowOperatorSalary",
+        id: "ShowOperatorFooding",
         tabindex: "-1",
         role: "dialog",
         "aria-labelledby": "addContactModalTitle",
@@ -11849,17 +11765,19 @@ var render = function() {
                         _c("div", { staticClass: "row" }, [
                           _c(
                             "div",
-                            { staticClass: "col-4 transactions-list" },
+                            { staticClass: "col-6 transactions-list" },
                             [
                               _c("div", { staticClass: "t-item" }, [
                                 _c("div", { staticClass: "t-company-name" }, [
                                   _vm._m(1),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "t-name" }, [
-                                    _c("h4", [_vm._v("Operator")]),
+                                    _c("h4", [_vm._v("Project")]),
                                     _vm._v(" "),
                                     _c("p", { staticClass: "meta-date" }, [
-                                      _vm._v(_vm._s(_vm.salary.operator.name))
+                                      _vm._v(
+                                        _vm._s(_vm.fooding.project.project_name)
+                                      )
                                     ])
                                   ])
                                 ])
@@ -11869,17 +11787,19 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "div",
-                            { staticClass: "col-4 transactions-list" },
+                            { staticClass: "col-6 transactions-list" },
                             [
                               _c("div", { staticClass: "t-item" }, [
                                 _c("div", { staticClass: "t-company-name" }, [
                                   _vm._m(2),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "t-name" }, [
-                                    _c("h4", [_vm._v("Month")]),
+                                    _c("h4", [_vm._v("Vendor")]),
                                     _vm._v(" "),
                                     _c("p", { staticClass: "meta-date" }, [
-                                      _vm._v(_vm._s(_vm.salary.month))
+                                      _vm._v(
+                                        _vm._s(_vm.fooding.vendor.vendor_name)
+                                      )
                                     ])
                                   ])
                                 ])
@@ -11889,17 +11809,19 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "div",
-                            { staticClass: "col-4 transactions-list" },
+                            { staticClass: "col-6 transactions-list" },
                             [
                               _c("div", { staticClass: "t-item" }, [
                                 _c("div", { staticClass: "t-company-name" }, [
                                   _vm._m(3),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "t-name" }, [
-                                    _c("h4", [_vm._v("Payment Date")]),
+                                    _c("h4", [_vm._v("Equipment Type")]),
                                     _vm._v(" "),
                                     _c("p", { staticClass: "meta-date" }, [
-                                      _vm._v(_vm._s(_vm.salary.payment_date))
+                                      _vm._v(
+                                        _vm._s(_vm.fooding.equipment_type.name)
+                                      )
                                     ])
                                   ])
                                 ])
@@ -11909,17 +11831,19 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "div",
-                            { staticClass: "col-4 transactions-list" },
+                            { staticClass: "col-6 transactions-list" },
                             [
                               _c("div", { staticClass: "t-item" }, [
                                 _c("div", { staticClass: "t-company-name" }, [
                                   _vm._m(4),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "t-name" }, [
-                                    _c("h4", [_vm._v("Payment Amount")]),
+                                    _c("h4", [_vm._v("Equipment")]),
                                     _vm._v(" "),
                                     _c("p", { staticClass: "meta-date" }, [
-                                      _vm._v(_vm._s(_vm.salary.payment_amount))
+                                      _vm._v(
+                                        _vm._s(_vm.fooding.equipement.eq_name)
+                                      )
                                     ])
                                   ])
                                 ])
@@ -11929,17 +11853,17 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "div",
-                            { staticClass: "col-4 transactions-list" },
+                            { staticClass: "col-6 transactions-list" },
                             [
                               _c("div", { staticClass: "t-item" }, [
                                 _c("div", { staticClass: "t-company-name" }, [
                                   _vm._m(5),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "t-name" }, [
-                                    _c("h4", [_vm._v("Mode")]),
+                                    _c("h4", [_vm._v("Operator")]),
                                     _vm._v(" "),
                                     _c("p", { staticClass: "meta-date" }, [
-                                      _vm._v(_vm._s(_vm.salary.mode))
+                                      _vm._v(_vm._s(_vm.fooding.operator.name))
                                     ])
                                   ])
                                 ])
@@ -11949,76 +11873,16 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "div",
-                            { staticClass: "col-4 transactions-list" },
+                            { staticClass: "col-6 transactions-list" },
                             [
                               _c("div", { staticClass: "t-item" }, [
                                 _c("div", { staticClass: "t-company-name" }, [
                                   _vm._m(6),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "t-name" }, [
-                                    _c("h4", [_vm._v("Bank Note")]),
-                                    _vm._v(" "),
-                                    _c("p", { staticClass: "meta-date" }, [
-                                      _vm._v(_vm._s(_vm.salary.bank_note))
-                                    ])
-                                  ])
-                                ])
-                              ])
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "col-4 transactions-list" },
-                            [
-                              _c("div", { staticClass: "t-item" }, [
-                                _c("div", { staticClass: "t-company-name" }, [
-                                  _vm._m(7),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "t-name" }, [
-                                    _c("h4", [_vm._v("Bkash Note")]),
-                                    _vm._v(" "),
-                                    _c("p", { staticClass: "meta-date" }, [
-                                      _vm._v(_vm._s(_vm.salary.bkash_note))
-                                    ])
-                                  ])
-                                ])
-                              ])
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "col-4 transactions-list" },
-                            [
-                              _c("div", { staticClass: "t-item" }, [
-                                _c("div", { staticClass: "t-company-name" }, [
-                                  _vm._m(8),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "t-name" }, [
-                                    _c("h4", [_vm._v("Salary Type")]),
-                                    _vm._v(" "),
-                                    _c("p", { staticClass: "meta-date" }, [
-                                      _vm._v(_vm._s(_vm.salary.salary_type))
-                                    ])
-                                  ])
-                                ])
-                              ])
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "col-4 transactions-list" },
-                            [
-                              _c("div", { staticClass: "t-item" }, [
-                                _c("div", { staticClass: "t-company-name" }, [
-                                  _vm._m(9),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "t-name" }, [
                                     _c("h4", [_vm._v("Status")]),
                                     _vm._v(" "),
-                                    _vm.salary.status == 1
+                                    _vm.fooding.status == 1
                                       ? _c("p", { staticClass: "meta-date" }, [
                                           _vm._v("Active")
                                         ])
@@ -12038,7 +11902,7 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._m(10)
+            _vm._m(7)
           ])
         ]
       )
@@ -12051,7 +11915,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "widget-heading" }, [
-      _c("h5", {}, [_vm._v("View Operator Salary")])
+      _c("h5", {}, [_vm._v("View Operator Fooding")])
     ])
   },
   function() {
@@ -12061,7 +11925,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "t-icon" }, [
       _c("div", { staticClass: "avatar avatar-xl" }, [
         _c("span", { staticClass: "avatar-title rounded-circle" }, [
-          _vm._v("NM")
+          _vm._v("PT")
         ])
       ])
     ])
@@ -12073,7 +11937,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "t-icon" }, [
       _c("div", { staticClass: "avatar avatar-xl" }, [
         _c("span", { staticClass: "avatar-title rounded-circle" }, [
-          _vm._v("EM")
+          _vm._v("VN")
         ])
       ])
     ])
@@ -12085,7 +11949,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "t-icon" }, [
       _c("div", { staticClass: "avatar avatar-xl" }, [
         _c("span", { staticClass: "avatar-title rounded-circle" }, [
-          _vm._v("PH")
+          _vm._v("ET")
         ])
       ])
     ])
@@ -12097,7 +11961,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "t-icon" }, [
       _c("div", { staticClass: "avatar avatar-xl" }, [
         _c("span", { staticClass: "avatar-title rounded-circle" }, [
-          _vm._v("BK")
+          _vm._v("EQ")
         ])
       ])
     ])
@@ -12109,43 +11973,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "t-icon" }, [
       _c("div", { staticClass: "avatar avatar-xl" }, [
         _c("span", { staticClass: "avatar-title rounded-circle" }, [
-          _vm._v("JD")
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "t-icon" }, [
-      _c("div", { staticClass: "avatar avatar-xl" }, [
-        _c("span", { staticClass: "avatar-title rounded-circle" }, [
-          _vm._v("NID")
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "t-icon" }, [
-      _c("div", { staticClass: "avatar avatar-xl" }, [
-        _c("span", { staticClass: "avatar-title rounded-circle" }, [
-          _vm._v("DB")
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "t-icon" }, [
-      _c("div", { staticClass: "avatar avatar-xl" }, [
-        _c("span", { staticClass: "avatar-title rounded-circle" }, [
-          _vm._v("SA")
+          _vm._v("OP")
         ])
       ])
     ])
@@ -12211,7 +12039,7 @@ var render = function() {
     [
       _c(
         "div",
-        { staticClass: "modal-dialog modal-lg", attrs: { role: "document" } },
+        { staticClass: "modal-dialog modal-xl", attrs: { role: "document" } },
         [
           _c("form", { attrs: { role: "form" } }, [
             _c("div", { staticClass: "modal-content" }, [
@@ -12230,6 +12058,304 @@ var render = function() {
                         _c("div", { staticClass: "contact-email" }, [
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
+                          _c("label", { attrs: { for: "project-name" } }, [
+                            _vm._v("Project Name")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.fooding.project_id,
+                                  expression: "fooding.project_id"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: { id: "project-name" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.fooding,
+                                    "project_id",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("Select Operator")
+                              ]),
+                              _vm._v(" "),
+                              _vm._l(_vm.projects, function(project) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: project.id,
+                                    domProps: { value: project.id }
+                                  },
+                                  [_vm._v(_vm._s(project.project_name))]
+                                )
+                              })
+                            ],
+                            2
+                          ),
+                          _vm._v(" "),
+                          _vm.validation_error.hasOwnProperty("project_id")
+                            ? _c("span", { staticClass: "text-danger" }, [
+                                _vm._v(
+                                  "\r\n                                          " +
+                                    _vm._s(_vm.validation_error.project_id[0]) +
+                                    "\r\n                                         "
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c("div", { staticClass: "contact-email" }, [
+                          _c("i", { staticClass: "flaticon-mail-26" }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "equipment-type" } }, [
+                            _vm._v("Equipment Type")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.fooding.equipment_type_id,
+                                  expression: "fooding.equipment_type_id"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: { id: "equipment-type" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.fooding,
+                                    "equipment_type_id",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("Select Equipment Type")
+                              ]),
+                              _vm._v(" "),
+                              _vm._l(_vm.equipment_types, function(equipment) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: equipment.id,
+                                    domProps: { value: equipment.id }
+                                  },
+                                  [_vm._v(_vm._s(equipment.name))]
+                                )
+                              })
+                            ],
+                            2
+                          ),
+                          _vm._v(" "),
+                          _vm.validation_error.hasOwnProperty(
+                            "equipment_type_id"
+                          )
+                            ? _c("span", { staticClass: "text-danger" }, [
+                                _vm._v(
+                                  "\r\n                                          " +
+                                    _vm._s(
+                                      _vm.validation_error.equipment_type_id[0]
+                                    ) +
+                                    "\r\n                                         "
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c("div", { staticClass: "contact-email" }, [
+                          _c("i", { staticClass: "flaticon-mail-26" }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "vendor-name" } }, [
+                            _vm._v("Vendor Name")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.fooding.vendor_id,
+                                  expression: "fooding.vendor_id"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: { id: "vendor-name" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.fooding,
+                                    "vendor_id",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("Select Vendor")
+                              ]),
+                              _vm._v(" "),
+                              _vm._l(_vm.vendors, function(vendor) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: vendor.id,
+                                    domProps: { value: vendor.id }
+                                  },
+                                  [_vm._v(_vm._s(vendor.vendor_name))]
+                                )
+                              })
+                            ],
+                            2
+                          ),
+                          _vm._v(" "),
+                          _vm.validation_error.hasOwnProperty("vendor_id")
+                            ? _c("span", { staticClass: "text-danger" }, [
+                                _vm._v(
+                                  "\r\n                                          " +
+                                    _vm._s(_vm.validation_error.vendor_id[0]) +
+                                    "\r\n                                         "
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c("div", { staticClass: "contact-email" }, [
+                          _c("i", { staticClass: "flaticon-mail-26" }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "equipment-name" } }, [
+                            _vm._v("Equipment Name")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.fooding.equipement_id,
+                                  expression: "fooding.equipement_id"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: { id: "equipment-name" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.fooding,
+                                    "equipement_id",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("Select Equipment")
+                              ]),
+                              _vm._v(" "),
+                              _vm._l(_vm.equipements, function(equipement) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: equipement.id,
+                                    domProps: { value: equipement.id }
+                                  },
+                                  [_vm._v(_vm._s(equipement.eq_name))]
+                                )
+                              })
+                            ],
+                            2
+                          ),
+                          _vm._v(" "),
+                          _vm.validation_error.hasOwnProperty("equipement_id")
+                            ? _c("span", { staticClass: "text-danger" }, [
+                                _vm._v(
+                                  "\r\n                                          " +
+                                    _vm._s(
+                                      _vm.validation_error.equipement_id[0]
+                                    ) +
+                                    "\r\n                                         "
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c("div", { staticClass: "contact-email" }, [
+                          _c("i", { staticClass: "flaticon-mail-26" }),
+                          _vm._v(" "),
                           _c("label", { attrs: { for: "operator-name" } }, [
                             _vm._v("Operator Name")
                           ]),
@@ -12241,8 +12367,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.salary.operator_id,
-                                  expression: "salary.operator_id"
+                                  value: _vm.fooding.operator_id,
+                                  expression: "fooding.operator_id"
                                 }
                               ],
                               staticClass: "form-control",
@@ -12259,7 +12385,7 @@ var render = function() {
                                       return val
                                     })
                                   _vm.$set(
-                                    _vm.salary,
+                                    _vm.fooding,
                                     "operator_id",
                                     $event.target.multiple
                                       ? $$selectedVal
@@ -12290,11 +12416,11 @@ var render = function() {
                           _vm.validation_error.hasOwnProperty("operator_id")
                             ? _c("span", { staticClass: "text-danger" }, [
                                 _vm._v(
-                                  "\r\n                                      " +
+                                  "\r\n                                          " +
                                     _vm._s(
                                       _vm.validation_error.operator_id[0]
                                     ) +
-                                    "\r\n                                     "
+                                    "\r\n                                         "
                                 )
                               ])
                             : _vm._e()
@@ -12305,8 +12431,8 @@ var render = function() {
                         _c("div", { staticClass: "contact-email" }, [
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
-                          _c("label", { attrs: { for: "salary-month" } }, [
-                            _vm._v("Salary Month")
+                          _c("label", { attrs: { for: "fooding-amount" } }, [
+                            _vm._v("Fooding Amount")
                           ]),
                           _vm._v(" "),
                           _c("input", {
@@ -12314,90 +12440,39 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.salary.month,
-                                expression: "salary.month"
+                                value: _vm.fooding.fooding_amount,
+                                expression: "fooding.fooding_amount"
                               }
                             ],
                             staticClass: "form-control",
                             attrs: {
                               type: "text",
-                              id: "salary-month",
-                              placeholder: "Salary Month"
+                              id: "fooding-amount",
+                              placeholder: "Fooding Amount"
                             },
-                            domProps: { value: _vm.salary.month },
+                            domProps: { value: _vm.fooding.fooding_amount },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
                                 }
                                 _vm.$set(
-                                  _vm.salary,
-                                  "month",
+                                  _vm.fooding,
+                                  "fooding_amount",
                                   $event.target.value
                                 )
                               }
                             }
                           }),
                           _vm._v(" "),
-                          _vm.validation_error.hasOwnProperty("month")
+                          _vm.validation_error.hasOwnProperty("fooding_amount")
                             ? _c("span", { staticClass: "text-danger" }, [
                                 _vm._v(
-                                  "\r\n                                      " +
-                                    _vm._s(_vm.validation_error.month[0]) +
-                                    "\r\n                                     "
-                                )
-                              ])
-                            : _vm._e()
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-4" }, [
-                        _c("div", { staticClass: "contact-email" }, [
-                          _c("i", { staticClass: "flaticon-mail-26" }),
-                          _vm._v(" "),
-                          _c("label", { attrs: { for: "up-basicFlatpickr" } }, [
-                            _vm._v("Payment Date")
-                          ]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.salary.payment_date,
-                                expression: "salary.payment_date"
-                              }
-                            ],
-                            staticClass:
-                              "form-control flatpickr flatpickr-input active",
-                            attrs: {
-                              id: "up-basicFlatpickr",
-                              type: "text",
-                              placeholder: "Payment Date"
-                            },
-                            domProps: { value: _vm.salary.payment_date },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.salary,
-                                  "payment_date",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm.validation_error.hasOwnProperty("payment_date")
-                            ? _c("span", { staticClass: "text-danger" }, [
-                                _vm._v(
-                                  "\r\n                                      " +
+                                  "\r\n                                          " +
                                     _vm._s(
-                                      _vm.validation_error.payment_date[0]
+                                      _vm.validation_error.fooding_amount[0]
                                     ) +
-                                    "\r\n                                     "
+                                    "\r\n                                         "
                                 )
                               ])
                             : _vm._e()
@@ -12408,210 +12483,8 @@ var render = function() {
                         _c("div", { staticClass: "contact-email" }, [
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
-                          _c("label", { attrs: { for: "payment-amount" } }, [
-                            _vm._v("Payment Amount")
-                          ]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.salary.payment_amount,
-                                expression: "salary.payment_amount"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              id: "payment-amount",
-                              placeholder: "Payment Amount"
-                            },
-                            domProps: { value: _vm.salary.payment_amount },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.salary,
-                                  "payment_amount",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm.validation_error.hasOwnProperty("payment_amount")
-                            ? _c("span", { staticClass: "text-danger" }, [
-                                _vm._v(
-                                  "\r\n                                      " +
-                                    _vm._s(
-                                      _vm.validation_error.payment_amount[0]
-                                    ) +
-                                    "\r\n                                     "
-                                )
-                              ])
-                            : _vm._e()
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-4" }, [
-                        _c("div", { staticClass: "contact-email" }, [
-                          _c("i", { staticClass: "flaticon-mail-26" }),
-                          _vm._v(" "),
-                          _c("label", { attrs: { for: "salary-mode" } }, [
-                            _vm._v("Mode")
-                          ]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.salary.mode,
-                                expression: "salary.mode"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              id: "salary-mode",
-                              placeholder: "Salary Mode"
-                            },
-                            domProps: { value: _vm.salary.mode },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.salary,
-                                  "mode",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm.validation_error.hasOwnProperty("mode")
-                            ? _c("span", { staticClass: "text-danger" }, [
-                                _vm._v(
-                                  "\r\n                                      " +
-                                    _vm._s(_vm.validation_error.mode[0]) +
-                                    "\r\n                                     "
-                                )
-                              ])
-                            : _vm._e()
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-4" }, [
-                        _c("div", { staticClass: "contact-email" }, [
-                          _c("i", { staticClass: "flaticon-mail-26" }),
-                          _vm._v(" "),
-                          _c("label", { attrs: { for: "bank-note" } }, [
-                            _vm._v("Bank Note")
-                          ]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.salary.bank_note,
-                                expression: "salary.bank_note"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              id: "bank-note",
-                              placeholder: "Salary Mode"
-                            },
-                            domProps: { value: _vm.salary.bank_note },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.salary,
-                                  "bank_note",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm.validation_error.hasOwnProperty("bank_note")
-                            ? _c("span", { staticClass: "text-danger" }, [
-                                _vm._v(
-                                  "\r\n                                      " +
-                                    _vm._s(_vm.validation_error.bank_note[0]) +
-                                    "\r\n                                     "
-                                )
-                              ])
-                            : _vm._e()
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-4" }, [
-                        _c("div", { staticClass: "contact-email" }, [
-                          _c("i", { staticClass: "flaticon-mail-26" }),
-                          _vm._v(" "),
-                          _c("label", { attrs: { for: "bkash-note" } }, [
-                            _vm._v("bkash Note")
-                          ]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.salary.bkash_note,
-                                expression: "salary.bkash_note"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              id: "bkash-note",
-                              placeholder: "bkash Note"
-                            },
-                            domProps: { value: _vm.salary.bkash_note },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.salary,
-                                  "bkash_note",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm.validation_error.hasOwnProperty("bkash_note")
-                            ? _c("span", { staticClass: "text-danger" }, [
-                                _vm._v(
-                                  "\r\n                                      " +
-                                    _vm._s(_vm.validation_error.bkash_note[0]) +
-                                    "\r\n                                     "
-                                )
-                              ])
-                            : _vm._e()
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-4" }, [
-                        _c("div", { staticClass: "contact-email" }, [
-                          _c("i", { staticClass: "flaticon-mail-26" }),
-                          _vm._v(" "),
-                          _c("label", { attrs: { for: "salary-type" } }, [
-                            _vm._v("Salary Type")
+                          _c("label", { attrs: { for: "fooding-status" } }, [
+                            _vm._v("Fooding Status")
                           ]),
                           _vm._v(" "),
                           _c(
@@ -12621,12 +12494,12 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.salary.salary_type,
-                                  expression: "salary.salary_type"
+                                  value: _vm.fooding.status,
+                                  expression: "fooding.status"
                                 }
                               ],
                               staticClass: "form-control",
-                              attrs: { id: "salary-type" },
+                              attrs: { id: "fooding-status" },
                               on: {
                                 change: function($event) {
                                   var $$selectedVal = Array.prototype.filter
@@ -12639,70 +12512,7 @@ var render = function() {
                                       return val
                                     })
                                   _vm.$set(
-                                    _vm.salary,
-                                    "salary_type",
-                                    $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  )
-                                }
-                              }
-                            },
-                            [
-                              _c("option", { attrs: { value: "" } }, [
-                                _vm._v("Select Salary Type")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "1" } }, [
-                                _vm._v("Cash")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "2" } }, [
-                                _vm._v("Bank")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "3" } }, [
-                                _vm._v("Mobile Bank")
-                              ])
-                            ]
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-4" }, [
-                        _c("div", { staticClass: "contact-email" }, [
-                          _c("i", { staticClass: "flaticon-mail-26" }),
-                          _vm._v(" "),
-                          _c("label", { attrs: { for: "Salary-status" } }, [
-                            _vm._v("Salary Status")
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "select",
-                            {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.salary.status,
-                                  expression: "salary.status"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: { id: "Salary-status" },
-                              on: {
-                                change: function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.$set(
-                                    _vm.salary,
+                                    _vm.fooding,
                                     "status",
                                     $event.target.multiple
                                       ? $$selectedVal
@@ -12713,7 +12523,7 @@ var render = function() {
                             },
                             [
                               _c("option", { attrs: { value: "" } }, [
-                                _vm._v("Salary Status")
+                                _vm._v("Status")
                               ]),
                               _vm._v(" "),
                               _c("option", { attrs: { value: "1" } }, [
@@ -12858,15 +12668,17 @@ var render = function() {
                       "tbody",
                       _vm._l(_vm.foodings.data, function(value) {
                         return _c("tr", { key: value.id }, [
-                          _c("td", [_vm._v(_vm._s(value.project_id))]),
+                          _c("td", [
+                            _vm._v(_vm._s(value.project.project_name))
+                          ]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(value.vendor_id))]),
+                          _c("td", [_vm._v(_vm._s(value.vendor.vendor_name))]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(value.equipment_type_id))]),
+                          _c("td", [_vm._v(_vm._s(value.equipment_type.name))]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(value.equipement_id))]),
+                          _c("td", [_vm._v(_vm._s(value.equipement.eq_name))]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(value.operator_id))]),
+                          _c("td", [_vm._v(_vm._s(value.operator.name))]),
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(value.fooding_amount))]),
                           _vm._v(" "),
@@ -12950,7 +12762,15 @@ var render = function() {
             )
       ]),
       _vm._v(" "),
-      _c("update-fooding", { attrs: { operators: _vm.operators } }),
+      _c("update-fooding", {
+        attrs: {
+          projects: _vm.projects,
+          vendors: _vm.vendors,
+          equipment_types: _vm.equipment_types,
+          equipements: _vm.equipements,
+          operators: _vm.operators
+        }
+      }),
       _vm._v(" "),
       _c("show-fooding"),
       _vm._v(" "),
@@ -13136,23 +12956,23 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.operator_salary,
-                                expression: "operator_salary"
+                                value: _vm.salary.payment_amount,
+                                expression: "salary.payment_amount"
                               }
                             ],
                             staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              id: "operator-salary",
-                              disabled: ""
-                            },
-                            domProps: { value: _vm.operator_salary },
+                            attrs: { type: "text", id: "operator-salary" },
+                            domProps: { value: _vm.salary.payment_amount },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
                                 }
-                                _vm.operator_salary = $event.target.value
+                                _vm.$set(
+                                  _vm.salary,
+                                  "payment_amount",
+                                  $event.target.value
+                                )
                               }
                             }
                           })
@@ -13180,7 +13000,7 @@ var render = function() {
                             attrs: {
                               type: "text",
                               id: "salary-month",
-                              placeholder: "Salary Month"
+                              placeholder: "YYYY-MM"
                             },
                             domProps: { value: _vm.salary.month },
                             on: {
@@ -13266,58 +13086,6 @@ var render = function() {
                         _c("div", { staticClass: "contact-email" }, [
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
-                          _c("label", { attrs: { for: "payment-amount" } }, [
-                            _vm._v("Payment Amount")
-                          ]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.salary.payment_amount,
-                                expression: "salary.payment_amount"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              id: "payment-amount",
-                              placeholder: "Payment Amount"
-                            },
-                            domProps: { value: _vm.salary.payment_amount },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.salary,
-                                  "payment_amount",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm.validation_error.hasOwnProperty("payment_amount")
-                            ? _c("span", { staticClass: "text-danger" }, [
-                                _vm._v(
-                                  "\r\n                                          " +
-                                    _vm._s(
-                                      _vm.validation_error.payment_amount[0]
-                                    ) +
-                                    "\r\n                                         "
-                                )
-                              ])
-                            : _vm._e()
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-4" }, [
-                        _c("div", { staticClass: "contact-email" }, [
-                          _c("i", { staticClass: "flaticon-mail-26" }),
-                          _vm._v(" "),
                           _c("label", { attrs: { for: "salary-mode" } }, [
                             _vm._v("Mode")
                           ]),
@@ -13336,24 +13104,29 @@ var render = function() {
                               staticClass: "form-control",
                               attrs: { id: "salary-mode" },
                               on: {
-                                change: function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.$set(
-                                    _vm.salary,
-                                    "mode",
-                                    $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  )
-                                }
+                                change: [
+                                  function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.salary,
+                                      "mode",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  },
+                                  function($event) {
+                                    return _vm.setNote()
+                                  }
+                                ]
                               }
                             },
                             [
@@ -13392,7 +13165,7 @@ var render = function() {
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
                           _c("label", { attrs: { for: "bank-note" } }, [
-                            _vm._v("Bank Note")
+                            _vm._v("Bank/bkash Note")
                           ]),
                           _vm._v(" "),
                           _c("input", {
@@ -13400,17 +13173,17 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.salary.bank_note,
-                                expression: "salary.bank_note"
+                                value: _vm.salary.bank_bkash_note,
+                                expression: "salary.bank_bkash_note"
                               }
                             ],
                             staticClass: "form-control",
                             attrs: {
                               type: "text",
                               id: "bank-note",
-                              placeholder: "Bank Note"
+                              placeholder: _vm.bank_bkash_note
                             },
-                            domProps: { value: _vm.salary.bank_note },
+                            domProps: { value: _vm.salary.bank_bkash_note },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
@@ -13418,68 +13191,20 @@ var render = function() {
                                 }
                                 _vm.$set(
                                   _vm.salary,
-                                  "bank_note",
+                                  "bank_bkash_note",
                                   $event.target.value
                                 )
                               }
                             }
                           }),
                           _vm._v(" "),
-                          _vm.validation_error.hasOwnProperty("bank_note")
+                          _vm.validation_error.hasOwnProperty("bank_bkash_note")
                             ? _c("span", { staticClass: "text-danger" }, [
                                 _vm._v(
                                   "\r\n                                          " +
-                                    _vm._s(_vm.validation_error.bank_note[0]) +
-                                    "\r\n                                         "
-                                )
-                              ])
-                            : _vm._e()
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-4" }, [
-                        _c("div", { staticClass: "contact-email" }, [
-                          _c("i", { staticClass: "flaticon-mail-26" }),
-                          _vm._v(" "),
-                          _c("label", { attrs: { for: "bkash-note" } }, [
-                            _vm._v("bkash Note")
-                          ]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.salary.bkash_note,
-                                expression: "salary.bkash_note"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              id: "bkash-note",
-                              placeholder: "bkash Note"
-                            },
-                            domProps: { value: _vm.salary.bkash_note },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.salary,
-                                  "bkash_note",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm.validation_error.hasOwnProperty("bkash_note")
-                            ? _c("span", { staticClass: "text-danger" }, [
-                                _vm._v(
-                                  "\r\n                                          " +
-                                    _vm._s(_vm.validation_error.bkash_note[0]) +
+                                    _vm._s(
+                                      _vm.validation_error.bank_bkash_note[0]
+                                    ) +
                                     "\r\n                                         "
                                 )
                               ])
@@ -13750,7 +13475,11 @@ var render = function() {
                                     _c("h4", [_vm._v("Mode")]),
                                     _vm._v(" "),
                                     _c("p", { staticClass: "meta-date" }, [
-                                      _vm._v(_vm._s(_vm.salary.mode))
+                                      _vm.salary.mode == 1
+                                        ? _c("span", [_vm._v("Cash")])
+                                        : _vm.salary.mode == 2
+                                        ? _c("span", [_vm._v("Bank")])
+                                        : _c("span", [_vm._v("Mobile Bank")])
                                     ])
                                   ])
                                 ])
@@ -14022,7 +13751,7 @@ var render = function() {
     [
       _c(
         "div",
-        { staticClass: "modal-dialog modal-lg", attrs: { role: "document" } },
+        { staticClass: "modal-dialog modal-xl", attrs: { role: "document" } },
         [
           _c("form", { attrs: { role: "form" } }, [
             _c("div", { staticClass: "modal-content" }, [
@@ -14116,8 +13845,60 @@ var render = function() {
                         _c("div", { staticClass: "contact-email" }, [
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
+                          _c("label", { attrs: { for: "payment-amount" } }, [
+                            _vm._v("Amount")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.salary.payment_amount,
+                                expression: "salary.payment_amount"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              id: "payment-amount",
+                              placeholder: "Payment Amount"
+                            },
+                            domProps: { value: _vm.salary.payment_amount },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.salary,
+                                  "payment_amount",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm.validation_error.hasOwnProperty("payment_amount")
+                            ? _c("span", { staticClass: "text-danger" }, [
+                                _vm._v(
+                                  "\r\n                                      " +
+                                    _vm._s(
+                                      _vm.validation_error.payment_amount[0]
+                                    ) +
+                                    "\r\n                                     "
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c("div", { staticClass: "contact-email" }, [
+                          _c("i", { staticClass: "flaticon-mail-26" }),
+                          _vm._v(" "),
                           _c("label", { attrs: { for: "salary-month" } }, [
-                            _vm._v("Salary Month")
+                            _vm._v("Month")
                           ]),
                           _vm._v(" "),
                           _c("input", {
@@ -14219,91 +14000,62 @@ var render = function() {
                         _c("div", { staticClass: "contact-email" }, [
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
-                          _c("label", { attrs: { for: "payment-amount" } }, [
-                            _vm._v("Payment Amount")
-                          ]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.salary.payment_amount,
-                                expression: "salary.payment_amount"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              id: "payment-amount",
-                              placeholder: "Payment Amount"
-                            },
-                            domProps: { value: _vm.salary.payment_amount },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.salary,
-                                  "payment_amount",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm.validation_error.hasOwnProperty("payment_amount")
-                            ? _c("span", { staticClass: "text-danger" }, [
-                                _vm._v(
-                                  "\r\n                                      " +
-                                    _vm._s(
-                                      _vm.validation_error.payment_amount[0]
-                                    ) +
-                                    "\r\n                                     "
-                                )
-                              ])
-                            : _vm._e()
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-4" }, [
-                        _c("div", { staticClass: "contact-email" }, [
-                          _c("i", { staticClass: "flaticon-mail-26" }),
-                          _vm._v(" "),
                           _c("label", { attrs: { for: "salary-mode" } }, [
                             _vm._v("Mode")
                           ]),
                           _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.salary.mode,
-                                expression: "salary.mode"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              id: "salary-mode",
-                              placeholder: "Salary Mode"
-                            },
-                            domProps: { value: _vm.salary.mode },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.salary.mode,
+                                  expression: "salary.mode"
                                 }
-                                _vm.$set(
-                                  _vm.salary,
-                                  "mode",
-                                  $event.target.value
-                                )
+                              ],
+                              staticClass: "form-control",
+                              attrs: { id: "salary-mode" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.salary,
+                                    "mode",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
                               }
-                            }
-                          }),
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("Select Salary Mode")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "1" } }, [
+                                _vm._v("Cash")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "2" } }, [
+                                _vm._v("Bank")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "3" } }, [
+                                _vm._v("Mobile Bank")
+                              ])
+                            ]
+                          ),
                           _vm._v(" "),
                           _vm.validation_error.hasOwnProperty("mode")
                             ? _c("span", { staticClass: "text-danger" }, [
@@ -14322,7 +14074,7 @@ var render = function() {
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
                           _c("label", { attrs: { for: "bank-note" } }, [
-                            _vm._v("Bank Note")
+                            _vm._v("Bank/bkash Note")
                           ]),
                           _vm._v(" "),
                           _c("input", {
@@ -14330,17 +14082,13 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.salary.bank_note,
-                                expression: "salary.bank_note"
+                                value: _vm.salary.bank_bkash_note,
+                                expression: "salary.bank_bkash_note"
                               }
                             ],
                             staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              id: "bank-note",
-                              placeholder: "Salary Mode"
-                            },
-                            domProps: { value: _vm.salary.bank_note },
+                            attrs: { type: "text", id: "bank-note" },
+                            domProps: { value: _vm.salary.bank_bkash_note },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
@@ -14348,135 +14096,24 @@ var render = function() {
                                 }
                                 _vm.$set(
                                   _vm.salary,
-                                  "bank_note",
+                                  "bank_bkash_note",
                                   $event.target.value
                                 )
                               }
                             }
                           }),
                           _vm._v(" "),
-                          _vm.validation_error.hasOwnProperty("bank_note")
+                          _vm.validation_error.hasOwnProperty("bank_bkash_note")
                             ? _c("span", { staticClass: "text-danger" }, [
                                 _vm._v(
                                   "\r\n                                      " +
-                                    _vm._s(_vm.validation_error.bank_note[0]) +
+                                    _vm._s(
+                                      _vm.validation_error.bank_bkash_note[0]
+                                    ) +
                                     "\r\n                                     "
                                 )
                               ])
                             : _vm._e()
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-4" }, [
-                        _c("div", { staticClass: "contact-email" }, [
-                          _c("i", { staticClass: "flaticon-mail-26" }),
-                          _vm._v(" "),
-                          _c("label", { attrs: { for: "bkash-note" } }, [
-                            _vm._v("bkash Note")
-                          ]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.salary.bkash_note,
-                                expression: "salary.bkash_note"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              id: "bkash-note",
-                              placeholder: "bkash Note"
-                            },
-                            domProps: { value: _vm.salary.bkash_note },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.salary,
-                                  "bkash_note",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm.validation_error.hasOwnProperty("bkash_note")
-                            ? _c("span", { staticClass: "text-danger" }, [
-                                _vm._v(
-                                  "\r\n                                      " +
-                                    _vm._s(_vm.validation_error.bkash_note[0]) +
-                                    "\r\n                                     "
-                                )
-                              ])
-                            : _vm._e()
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-4" }, [
-                        _c("div", { staticClass: "contact-email" }, [
-                          _c("i", { staticClass: "flaticon-mail-26" }),
-                          _vm._v(" "),
-                          _c("label", { attrs: { for: "salary-type" } }, [
-                            _vm._v("Salary Type")
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "select",
-                            {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.salary.salary_type,
-                                  expression: "salary.salary_type"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: { id: "salary-type" },
-                              on: {
-                                change: function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.$set(
-                                    _vm.salary,
-                                    "salary_type",
-                                    $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  )
-                                }
-                              }
-                            },
-                            [
-                              _c("option", { attrs: { value: "" } }, [
-                                _vm._v("Select Salary Type")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "1" } }, [
-                                _vm._v("Cash")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "2" } }, [
-                                _vm._v("Bank")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "3" } }, [
-                                _vm._v("Mobile Bank")
-                              ])
-                            ]
-                          )
                         ])
                       ]),
                       _vm._v(" "),
@@ -14675,7 +14312,14 @@ var render = function() {
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(value.payment_amount))]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(value.salary_type))]),
+                          _c("td", [
+                            value.mode == 1
+                              ? _c("span", [_vm._v("Cash")])
+                              : value.mode == 2
+                              ? _c("span", [_vm._v("Bank")])
+                              : _c("span", [_vm._v("Mobile Bank")]),
+                            _c("p")
+                          ]),
                           _vm._v(" "),
                           _c("td", [
                             value.status == 1
@@ -14786,7 +14430,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Payment Amount")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Salary Type")]),
+        _c("th", [_vm._v("Mode")]),
         _vm._v(" "),
         _c("th", [_vm._v("Status")]),
         _vm._v(" "),

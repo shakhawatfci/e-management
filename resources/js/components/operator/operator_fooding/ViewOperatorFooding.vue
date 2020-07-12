@@ -26,11 +26,11 @@
         </thead>
         <tbody>
             <tr v-for="value in foodings.data" :key="value.id">
-                <td>{{ value.project_id }}</td>
-                <td>{{ value.vendor_id }}</td>
-                <td>{{ value.equipment_type_id }}</td>
-                <td>{{ value.equipement_id }}</td>
-                <td>{{ value.operator_id }}</td>
+                <td>{{ value.project.project_name }}</td>
+                <td>{{ value.vendor.vendor_name }}</td>
+                <td>{{ value.equipment_type.name }}</td>
+                <td>{{ value.equipement.eq_name }}</td>
+                <td>{{ value.operator.name }}</td>
                 <td>{{ value.fooding_amount }}</td>
                 <td>
                   <span class="text-success" v-if="value.status == 1">Active</span>
@@ -53,7 +53,7 @@
         </div>
   </div>
 
-       <update-fooding :operators="operators"> </update-fooding>
+       <update-fooding :projects="projects" :vendors="vendors" :equipment_types="equipment_types" :equipements="equipements" :operators="operators"> </update-fooding>
        <show-fooding> </show-fooding>
     <div class="row">
       <div class="col-md-12 text-center mb-10 mt-10">
@@ -74,7 +74,7 @@ import ShowFooding from './SingleViewoperatorFooding';
 import UpdateFooding from './UpdateOperatorFooding';
 export default {
   mixins: [Mixin],
-  props : ['operators'],
+  props : ['projects','vendors','equipment_types','equipements','operators'],
   components : {
    'pagination' : Pagination,
     ShowFooding,

@@ -27,7 +27,7 @@
                     </div>
                 </div>
 
-             <view-operator-fooding :operators="{{ $operators }}"></view-operator-fooding>
+             <view-operator-fooding :projects="{{ $projects }}" :vendors="{{ $vendors }}" :equipment_types="{{ $equipment_types }}" :equipements="{{ $equipements }}" :operators="{{ $operators }}"></view-operator-fooding>
 
             </div>
         </div>

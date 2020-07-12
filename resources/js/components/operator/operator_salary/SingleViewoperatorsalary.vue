@@ -95,7 +95,10 @@
                                             </div>
                                             <div class="t-name">
                                                 <h4>Mode</h4>
-                                                <p class="meta-date">{{ salary.mode }}</p>
+                                                <p class="meta-date">
+                                                    <span v-if="salary.mode == 1">Cash</span>
+                                                    <span v-else-if="salary.mode == 2">Bank</span>
+                                                    <span v-else>Mobile Bank</span></p>
                                             </div>
 
                                         </div>

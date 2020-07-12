@@ -57,4 +57,9 @@ class Vendor extends Model
 
         return $this->hasMany('App\EquipementExpense','vendor_id');
     }
+
+    public function operator_fooding(){
+
+        return $this->hasMany('App\OperatorFooding');
+    }
 }

@@ -23,7 +23,7 @@ class CreateOperatorSalariesTable extends Migration
             $table->text('bank_note')->nullable();
             $table->text('bkash_note')->nullable();
             $table->tinyInteger('status')->nullable();
-            $table->tinyInteger('salary_type')->default(1);
+            $table->tinyInteger('salary_type')->nullable()->default(1);
             $table->timestamps();
         });
     }

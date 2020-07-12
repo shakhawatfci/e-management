@@ -38,28 +38,27 @@ class OperatorSalaryController extends Controller
     {
         $request->validate([
             'operator_id' 	 => 'required',
-            'month'			 => 'required',
+            'month'			 => 'required|date_format:Y-m',
 	        'payment_date' 	 => 'required',
 	        'payment_amount' => 'required|numeric',
-	        'mode' 			 => 'required',
-	        'salary_type' 	 => 'required'
+	        'mode' 			 => 'required'
         ]);
 
         try {
            $status = $request->status ? 1 : 0;
-
-            $insert = OperatorSalary::insert([
-            	'operator_id'	=> $request->operator_id,
-		        'month' 		=> $request->month,
-		        'payment_date' 	=> $request->payment_date,
-		        'payment_amount'=> $request->payment_amount,
-		        'mode' 			=> $request->mode,
-		        'bank_note' 	=> $request->bank_note,
-		        'bkash_note' 	=> $request->bkash_note,
-		        'salary_type' 	=> $request->salary_type,
-		        'status' 		=> $status
-            ]);
-            if ($insert) {
+           $bank_note = $request->mode == 2 ? $request->bank_bkash_note : NULL;
+           $bkah_note = $request->mode == 3 ? $request->bank_bkash_note : NULL;
+            $insert = new OperatorSalary();
+        	$insert->operator_id	= $request->operator_id;
+	        $insert->month 		    = $request->month;
+	        $insert->payment_date 	= $request->payment_date;
+	        $insert->payment_amount = $request->payment_amount;
+	        $insert->mode 			= $request->mode;
+	        $insert->bank_note 	    = $bank_note;
+	        $insert->bkash_note 	= $bkah_note;
+	        $insert->salary_type 	= NULL;
+	        $insert->status 		= $status;
+            if($insert->save()) {
                 return response()->json(['status' => 'success', 'message' => 'Operator Salary Created !']);
             }else{
                 return response()->json(['status' => 'error', 'message' => 'Something went wrong !']);
@@ -80,25 +79,26 @@ class OperatorSalaryController extends Controller
     {
         $request->validate([
             'operator_id' 	 => 'required',
-            'month'			 => 'required',
+            'month'			 => 'required|date_format:Y-m',
 	        'payment_date' 	 => 'required',
 	        'payment_amount' => 'required|numeric',
-	        'mode' 			 => 'required',
-	        'salary_type' 	 => 'required'
+	        'mode' 			 => 'required'
         ]);
 
         try {
            $status = $request->status ? 1 : 0;
+           $bank_note = $request->mode == 2 ? $request->bank_bkash_note : NULL;
+           $bkah_note = $request->mode == 3 ? $request->bank_bkash_note : NULL;
 
             $update = OperatorSalary::find($id);
+
                 $update->operator_id	= $request->operator_id;
 		        $update->month 			= $request->month;
 		        $update->payment_date 	= $request->payment_date;
 		        $update->payment_amount	= $request->payment_amount;
 		        $update->mode 			= $request->mode;
-		        $update->bank_note 		= $request->bank_note;
-		        $update->bkash_note 	= $request->bkash_note;
-		        $update->salary_type 	= $request->salary_type;
+		        $update->bank_note 		= $bank_note;
+		        $update->bkash_note 	= $bkash_note;
                 $update->status         = $status;
 
             if ($update->update()) {

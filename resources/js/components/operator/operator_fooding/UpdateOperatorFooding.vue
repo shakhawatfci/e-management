@@ -1,7 +1,7 @@
 <template>
 <!-- Modal -->
     <div id="UpdateOperatorFooding" class="modal animated fadeInRight custo-fadeInRight show" tabindex="-1" role="dialog" aria-labelledby="addContactModalTitle" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-xl" role="document">
             <form role="form">
             <div class="modal-content">
               <div class="modal-header">
@@ -11,126 +11,111 @@
                   <div class="add-contact-box">
                     <div class="add-contact-content text-left">
                        <div class="row">
-                          <div class="col-md-4">
-                              <div class="contact-email">
-                                  <i class="flaticon-mail-26"></i>
-                                  <label for="operator-name">Operator Name</label>
-                                    <select class="form-control" id="operator-name" v-model="salary.operator_id">
-                                        <option value="">Select Operator</option>
-                                        <option v-for="operator in operators" :key="operator.id" :value="operator.id">{{ operator.name }}</option>
+                              <div class="col-md-4">
+                                  <div class="contact-email">
+                                      <i class="flaticon-mail-26"></i>
+                                      <label for="project-name">Project Name</label>
+                                        <select class="form-control" id="project-name" v-model="fooding.project_id">
+                                            <option value="">Select Operator</option>
+                                            <option v-for="project in projects" :key="project.id" :value="project.id">{{ project.project_name }}</option>
+                                        </select>
+                                           <span
+                                           v-if="validation_error.hasOwnProperty('project_id')" 
+                                          class="text-danger">
+                                          {{ validation_error.project_id[0] }}
+                                         </span>
+                                  </div>
+                              </div>
+
+                              <div class="col-md-4">
+                                  <div class="contact-email">
+                                      <i class="flaticon-mail-26"></i>
+                                      <label for="equipment-type">Equipment Type</label>
+                                        <select class="form-control" id="equipment-type" v-model="fooding.equipment_type_id">
+                                            <option value="">Select Equipment Type</option>
+                                            <option v-for="equipment in equipment_types" :key="equipment.id" :value="equipment.id">{{ equipment.name }}</option>
+                                        </select>
+                                           <span
+                                           v-if="validation_error.hasOwnProperty('equipment_type_id')" 
+                                          class="text-danger">
+                                          {{ validation_error.equipment_type_id[0] }}
+                                         </span>
+                                  </div>
+                              </div>
+
+                              <div class="col-md-4">
+                                  <div class="contact-email">
+                                      <i class="flaticon-mail-26"></i>
+                                      <label for="vendor-name">Vendor Name</label>
+                                        <select class="form-control" id="vendor-name" v-model="fooding.vendor_id">
+                                            <option value="">Select Vendor</option>
+                                            <option v-for="vendor in vendors" :key="vendor.id" :value="vendor.id">{{ vendor.vendor_name }}</option>
+                                        </select>
+                                           <span
+                                           v-if="validation_error.hasOwnProperty('vendor_id')" 
+                                          class="text-danger">
+                                          {{ validation_error.vendor_id[0] }}
+                                         </span>
+                                  </div>
+                              </div>
+                              
+                              <div class="col-md-4">
+                                  <div class="contact-email">
+                                      <i class="flaticon-mail-26"></i>
+                                      <label for="equipment-name">Equipment Name</label>
+                                        <select class="form-control" id="equipment-name" v-model="fooding.equipement_id">
+                                            <option value="">Select Equipment</option>
+                                            <option v-for="equipement in equipements" :key="equipement.id" :value="equipement.id">{{ equipement.eq_name }}</option>
+                                        </select>
+                                           <span
+                                           v-if="validation_error.hasOwnProperty('equipement_id')" 
+                                          class="text-danger">
+                                          {{ validation_error.equipement_id[0] }}
+                                         </span>
+                                  </div>
+                              </div>
+                              <div class="col-md-4">
+                                  <div class="contact-email">
+                                      <i class="flaticon-mail-26"></i>
+                                      <label for="operator-name">Operator Name</label>
+                                        <select class="form-control" id="operator-name" v-model="fooding.operator_id">
+                                            <option value="">Select Operator</option>
+                                            <option v-for="operator in operators" :key="operator.id" :value="operator.id">{{ operator.name }}</option>
+                                        </select>
+                                           <span
+                                           v-if="validation_error.hasOwnProperty('operator_id')" 
+                                          class="text-danger">
+                                          {{ validation_error.operator_id[0] }}
+                                         </span>
+                                  </div>
+                              </div>
+
+                              <div class="col-md-4">
+                                  <div class="contact-email">
+                                      <i class="flaticon-mail-26"></i>
+                                      <label for="fooding-amount">Fooding Amount</label>
+                                      <input type="text"  id="fooding-amount" class="form-control" v-model="fooding.fooding_amount" placeholder="Fooding Amount">
+                                           <span
+                                           v-if="validation_error.hasOwnProperty('fooding_amount')" 
+                                          class="text-danger">
+                                          {{ validation_error.fooding_amount[0] }}
+                                         </span>
+                                  </div>
+                              </div>
+
+                            <div class="col-md-4">
+                                <div class="contact-email">
+                                    <i class="flaticon-mail-26"></i>
+                                    <label for="fooding-status">Fooding Status</label>
+                                    <select class="form-control" id="fooding-status" v-model="fooding.status">
+                                        <option value="">Status</option>
+                                        <option value="1">Active</option>
+                                        <option value="0">Inactive</option>
                                     </select>
-                                       <span
-                                       v-if="validation_error.hasOwnProperty('operator_id')" 
-                                      class="text-danger">
-                                      {{ validation_error.operator_id[0] }}
-                                     </span>
-                              </div>
-                          </div>
-
-                          <div class="col-md-4">
-                              <div class="contact-email">
-                                  <i class="flaticon-mail-26"></i>
-                                  <label for="salary-month">Salary Month</label>
-                                  <input type="text"  id="salary-month" class="form-control" v-model="salary.month" placeholder="Salary Month">
-                                       <span
-                                       v-if="validation_error.hasOwnProperty('month')" 
-                                      class="text-danger">
-                                      {{ validation_error.month[0] }}
-                                     </span>
-                              </div>
-                          </div>
-
-                          <div class="col-md-4">
-                              <div class="contact-email">
-                                  <i class="flaticon-mail-26"></i>
-                                  <label for="up-basicFlatpickr">Payment Date</label>
-                                  <input id="up-basicFlatpickr" v-model="salary.payment_date" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Payment Date">
-                                       <span
-                                       v-if="validation_error.hasOwnProperty('payment_date')" 
-                                      class="text-danger">
-                                      {{ validation_error.payment_date[0] }}
-                                     </span>
-                              </div>
-                          </div>
-
-                          <div class="col-md-4">
-                              <div class="contact-email">
-                                  <i class="flaticon-mail-26"></i>
-                                  <label for="payment-amount">Payment Amount</label>
-                                  <input type="text"  id="payment-amount" class="form-control" v-model="salary.payment_amount" placeholder="Payment Amount">
-                                       <span
-                                       v-if="validation_error.hasOwnProperty('payment_amount')" 
-                                      class="text-danger">
-                                      {{ validation_error.payment_amount[0] }}
-                                     </span>
-                              </div>
-                          </div>
-
-                          <div class="col-md-4">
-                              <div class="contact-email">
-                                  <i class="flaticon-mail-26"></i>
-                                  <label for="salary-mode">Mode</label>
-                                  <input type="text"  id="salary-mode" class="form-control" v-model="salary.mode" placeholder="Salary Mode">
-                                       <span
-                                       v-if="validation_error.hasOwnProperty('mode')" 
-                                      class="text-danger">
-                                      {{ validation_error.mode[0] }}
-                                     </span>
-                              </div>
-                          </div>
-
-                          <div class="col-md-4">
-                              <div class="contact-email">
-                                  <i class="flaticon-mail-26"></i>
-                                  <label for="bank-note">Bank Note</label>
-                                  <input type="text"  id="bank-note" class="form-control" v-model="salary.bank_note" placeholder="Salary Mode">
-                                       <span
-                                       v-if="validation_error.hasOwnProperty('bank_note')" 
-                                      class="text-danger">
-                                      {{ validation_error.bank_note[0] }}
-                                     </span>
-                              </div>
-                          </div>
-
-                          <div class="col-md-4">
-                              <div class="contact-email">
-                                  <i class="flaticon-mail-26"></i>
-                                  <label for="bkash-note">bkash Note</label>
-                                  <input type="text"  id="bkash-note" class="form-control" v-model="salary.bkash_note" placeholder="bkash Note">
-                                       <span
-                                       v-if="validation_error.hasOwnProperty('bkash_note')" 
-                                      class="text-danger">
-                                      {{ validation_error.bkash_note[0] }}
-                                     </span>
-                              </div>
-                          </div>
-
-                       <div class="col-md-4">
-                            <div class="contact-email">
-                                <i class="flaticon-mail-26"></i>
-                                <label for="salary-type">Salary Type</label>
-                                <select class="form-control" id="salary-type" v-model="salary.salary_type">
-                                    <option value="">Select Salary Type</option>
-                                    <option value="1">Cash</option>
-                                    <option value="2">Bank</option>
-                                    <option value="3">Mobile Bank</option>
-                                </select>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-md-4">
-                            <div class="contact-email">
-                                <i class="flaticon-mail-26"></i>
-                                <label for="Salary-status">Salary Status</label>
-                                <select class="form-control" id="Salary-status" v-model="salary.status">
-                                    <option value="">Salary Status</option>
-                                    <option value="1">Active</option>
-                                    <option value="0">Inactive</option>
-                                </select>
                             </div>
-                        </div>
-
-                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -154,21 +139,19 @@ import { EventBus } from "../../../vue-assets";
 import Mixin from "../../../mixin";
 export default {
    mixins : [Mixin],
-   props: ['operators'],
+   props : ['projects','vendors','equipment_types','equipements','operators'],
    data()
    {
         
        return {
-        salary : {
+        fooding : {
           id : '',
-          operator_id : '',
-          month : '',
-          payment_date : '',
-          payment_amount : '',
-          mode : '',
-          bank_note : '',
-          bkash_note : '',
-          salary_type : '',
+          project : {id : '', project_name : ''},
+          vendor : {id : '', vendor_name : ''},
+          equipment_type : {id : '', name : ''},
+          equipement : {id : '', eq_name : ''},
+          operator : {id : '', name : ''},
+          fooding_amount : '',
           status : ''
         },
         button_name : 'Update',
@@ -177,11 +160,10 @@ export default {
    },
 
    mounted() {
-      var f1 = flatpickr(document.getElementById('up-basicFlatpickr'));
       var _this = this;
       EventBus.$on('operator-fooding-update',function(value){
         $("#UpdateOperatorFooding").modal('show')
-        _this.salary = value;
+        _this.fooding = value;
       })
    },
    
@@ -191,7 +173,7 @@ export default {
      {
         this.button_name = "Updating...";
 
-        axios.put(base_url+'operator-salary/'+this.salary.id,this.salary,)
+        axios.put(base_url+'operator-fooding/'+this.fooding.id,this.fooding)
           .then(response => {
               if(response.data.status === 'success'){
                   this.successMessage(response.data);
@@ -224,21 +206,15 @@ export default {
 
      resetForm()
      {
-        this.operator = {
-          name : '',
-          mobile : '',
-          address : '',
-          email : '',
-          bkash_number : '',
-          join_date : '',
-          nid : '',
-          date_of_birth : '',
-          file : '',
-          documents_link : '',
-          salary : '',
+        this.fooding = {
+          project_id : '',
+          vendor_id : '',
+          equipment_type_id : '',
+          equipement_id : '',
+          operator_id : '',
+          fooding_amount : '',
           status : ''
         };
-        this.dataform = new FormData();
         this.button_name = "Update";
         this.validation_error = {};
      }

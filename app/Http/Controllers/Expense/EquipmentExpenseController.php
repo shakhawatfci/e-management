@@ -96,7 +96,7 @@ class EquipmentExpenseController extends Controller
             'equipment_type_id' => 'required',
             'equipement_id' => 'required',
             'expense_category_id' => 'required',
-            'month' => 'required',
+            'month' => 'required|date_format:Y-m',
             'payment_date' => 'required',
             'amount' => 'required'
         ]);
@@ -175,7 +175,7 @@ class EquipmentExpenseController extends Controller
             'equipment_type_id' => 'required',
             'equipement_id' => 'required',
             'equipment_expense_head_id' => 'required',
-            'month' => 'required',
+            'month' => 'required|date_format:Y-m',
             'payment_date' => 'required',
             'amount' => 'required'
         ]);

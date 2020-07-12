@@ -49,7 +49,7 @@ class ProjectExpenseController extends Controller
         $request->validate([
             'project_expense_head_id' => 'required',
             'project_id' => 'required',
-            'month' => 'required',
+            'month' => 'required|date_format:Y-m',
             'date' => 'required',
             'amount' => 'required|numeric',
             'note' => 'required'
@@ -121,7 +121,7 @@ class ProjectExpenseController extends Controller
         $request->validate([
             'project_expense_head_id' => 'required',
             'project_id' => 'required',
-            'month' => 'required',
+            'month' => 'required|date_format:Y-m',
             'date' => 'required',
             'amount' => 'required|numeric',
             'note' => 'required'

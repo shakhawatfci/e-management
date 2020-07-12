@@ -1,7 +1,7 @@
 <template>
 <!-- Modal -->
     <div id="UpdateOperatorSalary" class="modal animated fadeInRight custo-fadeInRight show" tabindex="-1" role="dialog" aria-labelledby="addContactModalTitle" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-xl" role="document">
             <form role="form">
             <div class="modal-content">
               <div class="modal-header">
@@ -30,7 +30,20 @@
                           <div class="col-md-4">
                               <div class="contact-email">
                                   <i class="flaticon-mail-26"></i>
-                                  <label for="salary-month">Salary Month</label>
+                                  <label for="payment-amount">Amount</label>
+                                  <input type="text"  id="payment-amount" class="form-control" v-model="salary.payment_amount" placeholder="Payment Amount">
+                                       <span
+                                       v-if="validation_error.hasOwnProperty('payment_amount')" 
+                                      class="text-danger">
+                                      {{ validation_error.payment_amount[0] }}
+                                     </span>
+                              </div>
+                          </div>
+
+                          <div class="col-md-4">
+                              <div class="contact-email">
+                                  <i class="flaticon-mail-26"></i>
+                                  <label for="salary-month">Month</label>
                                   <input type="text"  id="salary-month" class="form-control" v-model="salary.month" placeholder="Salary Month">
                                        <span
                                        v-if="validation_error.hasOwnProperty('month')" 
@@ -56,21 +69,13 @@
                           <div class="col-md-4">
                               <div class="contact-email">
                                   <i class="flaticon-mail-26"></i>
-                                  <label for="payment-amount">Payment Amount</label>
-                                  <input type="text"  id="payment-amount" class="form-control" v-model="salary.payment_amount" placeholder="Payment Amount">
-                                       <span
-                                       v-if="validation_error.hasOwnProperty('payment_amount')" 
-                                      class="text-danger">
-                                      {{ validation_error.payment_amount[0] }}
-                                     </span>
-                              </div>
-                          </div>
-
-                          <div class="col-md-4">
-                              <div class="contact-email">
-                                  <i class="flaticon-mail-26"></i>
                                   <label for="salary-mode">Mode</label>
-                                  <input type="text"  id="salary-mode" class="form-control" v-model="salary.mode" placeholder="Salary Mode">
+                                  <select class="form-control" id="salary-mode" v-model="salary.mode">
+                                        <option value="">Select Salary Mode</option>
+                                        <option value="1">Cash</option>
+                                        <option value="2">Bank</option>
+                                        <option value="3">Mobile Bank</option>
+                                  </select>
                                        <span
                                        v-if="validation_error.hasOwnProperty('mode')" 
                                       class="text-danger">
@@ -82,41 +87,15 @@
                           <div class="col-md-4">
                               <div class="contact-email">
                                   <i class="flaticon-mail-26"></i>
-                                  <label for="bank-note">Bank Note</label>
-                                  <input type="text"  id="bank-note" class="form-control" v-model="salary.bank_note" placeholder="Salary Mode">
+                                  <label for="bank-note">Bank/bkash Note</label>
+                                  <input type="text"  id="bank-note" class="form-control" v-model="salary.bank_bkash_note">
                                        <span
-                                       v-if="validation_error.hasOwnProperty('bank_note')" 
+                                       v-if="validation_error.hasOwnProperty('bank_bkash_note')" 
                                       class="text-danger">
-                                      {{ validation_error.bank_note[0] }}
+                                      {{ validation_error.bank_bkash_note[0] }}
                                      </span>
                               </div>
                           </div>
-
-                          <div class="col-md-4">
-                              <div class="contact-email">
-                                  <i class="flaticon-mail-26"></i>
-                                  <label for="bkash-note">bkash Note</label>
-                                  <input type="text"  id="bkash-note" class="form-control" v-model="salary.bkash_note" placeholder="bkash Note">
-                                       <span
-                                       v-if="validation_error.hasOwnProperty('bkash_note')" 
-                                      class="text-danger">
-                                      {{ validation_error.bkash_note[0] }}
-                                     </span>
-                              </div>
-                          </div>
-
-                       <div class="col-md-4">
-                            <div class="contact-email">
-                                <i class="flaticon-mail-26"></i>
-                                <label for="salary-type">Salary Type</label>
-                                <select class="form-control" id="salary-type" v-model="salary.salary_type">
-                                    <option value="">Select Salary Type</option>
-                                    <option value="1">Cash</option>
-                                    <option value="2">Bank</option>
-                                    <option value="3">Mobile Bank</option>
-                                </select>
-                            </div>
-                        </div>
 
                         <div class="col-md-4">
                             <div class="contact-email">
@@ -164,13 +143,12 @@ export default {
           operator_id : '',
           month : '',
           payment_date : '',
-          payment_amount : '',
+          payment_amount : 0,
           mode : '',
-          bank_note : '',
-          bkash_note : '',
-          salary_type : '',
+          bank_bkash_note : '',
           status : ''
         },
+
         button_name : 'Update',
         validation_error : {}
        }
@@ -182,10 +160,15 @@ export default {
       EventBus.$on('operator-salary-update',function(value){
         $("#UpdateOperatorSalary").modal('show')
         _this.salary = value;
+        _this.bank_bkash_note = value.bank_note != '' ? value.bank_note : value.bkash_note;
       })
    },
    
  methods : {
+    setSalary(){
+      var amount  = this.operators.filter(operator => operator.id === this.salary.operator_id)
+      this.salary.payment_amount = amount[0].salary
+    },
 
      update()
      {

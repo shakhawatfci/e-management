@@ -42,7 +42,7 @@ class OperatorFoodingController extends Controller
      */
     public function operatorFoodingList(Request $request)
     {
-        $foodings = OperatorFooding::orderBy('id','desc');
+        $foodings = OperatorFooding::with(['project:id,project_name','vendor:id,vendor_name','equipment_type:id,name','equipement:id,eq_name','operator:id,name'])->orderBy('id','desc');
         if($request->project != '') {
             $foodings->where('project_id','=',$request->project);
         }
@@ -69,7 +69,32 @@ class OperatorFoodingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'operator_id' => 'required',
+            'fooding_amount' => 'required|numeric'
+        ]);
+
+        try {
+           $status = $request->status ? 1 : 0;
+
+            $insert = OperatorFooding::insert([
+                'project_id' => $request->project_id,
+                'vendor_id' => $request->vendor_id,
+                'equipment_type_id' => $request->equipment_type_id,
+                'equipement_id' => $request->equipement_id,
+                'operator_id'  => $request->operator_id,
+                'fooding_amount' => $request->fooding_amount,
+                'status'       => $status
+            ]);
+            if ($insert) {
+                return response()->json(['status' => 'success', 'message' => 'New Operator Fooding Created !']);
+            }else{
+                return response()->json(['status' => 'error', 'message' => 'Something went wrong !']);
+
+            }
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+        }
     }
 
     /**
@@ -103,7 +128,32 @@ class OperatorFoodingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'operator_id' => 'required',
+            'fooding_amount' => 'required|numeric'
+        ]);
+
+        try {
+           $status = $request->status ? 1 : 0;
+
+            $update = OperatorFooding::find($id);
+            $update->project_id = $request->project_id;
+            $update->vendor_id = $request->vendor_id;
+            $update->equipment_type_id = $request->equipment_type_id;
+            $update->equipement_id = $request->equipement_id;
+            $update->operator_id  = $request->operator_id;
+            $update->fooding_amount = $request->fooding_amount;
+            $update->status       = $status;
+
+            if($update->update()) {
+                return response()->json(['status' => 'success', 'message' => 'Operator Fooding Updated !']);
+            }else{
+                return response()->json(['status' => 'error', 'message' => 'Something went wrong !']);
+
+            }
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+        }
     }
 
     /**

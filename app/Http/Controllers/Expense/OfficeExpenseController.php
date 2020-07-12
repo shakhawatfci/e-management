@@ -52,7 +52,7 @@ class OfficeExpenseController extends Controller
     {
         $request->validate([
             'office_expense_head_id' => 'required',
-            'month' => 'required',
+            'month' => 'required|date_format:Y-m',
             'date' => 'required',
             'amount' => 'required|numeric'
         ]);
@@ -121,7 +121,7 @@ class OfficeExpenseController extends Controller
     {
         $request->validate([
             'office_expense_head_id' => 'required',
-            'month' => 'required',
+            'month' => 'required|date_format:Y-m',
             'date' => 'required',
             'amount' => 'required|numeric'
         ]);

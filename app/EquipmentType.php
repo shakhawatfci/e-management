@@ -31,4 +31,9 @@ class EquipmentType extends Model
     {
       return $this->hasMany('App\EquipementExpense');
     }
+
+    public function operator_fooding(){
+
+        return $this->hasMany('App\OperatorFooding');
+    }
 }

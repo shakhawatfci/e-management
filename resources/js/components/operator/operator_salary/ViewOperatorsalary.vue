@@ -17,7 +17,7 @@
                 <th>Operator</th>
                 <th>Payment Date</th>
                 <th>Payment Amount</th>
-                <th>Salary Type</th>
+                <th>Mode</th>
                 <th>Status</th>
                 <th class="text-center">Action</th>
             </tr>
@@ -27,7 +27,11 @@
                 <td>{{ value.operator.name }}</td>
                 <td>{{ value.payment_date }}</td>
                 <td>{{ value.payment_amount }}</td>
-                <td>{{ value.salary_type }}</td>
+                <td>
+                  <span v-if="value.mode == 1">Cash</span>
+                  <span v-else-if="value.mode == 2">Bank</span>
+                  <span v-else>Mobile Bank</span></p>
+                </td>
                 <td>
                   <span class="text-success" v-if="value.status == 1">Active</span>
                   <span class="text-danger" v-else>Inactive</span>
