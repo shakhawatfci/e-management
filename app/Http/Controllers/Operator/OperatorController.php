@@ -36,10 +36,7 @@ class OperatorController extends Controller
     {
         $request->validate([
             'operator_name' => 'required',
-            'mobile'        => 'required',
-	        'address' 		=> 'required',
-	        'join_date' 	=> 'required',
-	        'nid' 			=> 'required|numeric',
+            'salary'        => 'required',
 	        'picture' 		=> 'image|nullable'
         ]);
 

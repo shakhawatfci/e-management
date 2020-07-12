@@ -16,6 +16,7 @@
         class="form-control"
          placeholder="Search Office Expense" @keyup="getOfficeExpense()" />
       </div>
+
       <div class="col-md-2" style="margin-bottom:15px;">
         <button type="button" class="btn btn-danger" @click="filterClear()">Clear</button>
       </div>
