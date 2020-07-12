@@ -52,7 +52,10 @@ class VendorController extends Controller
           $vendor->vendor_email = $request->vendor_email;
           $vendor->vendor_address = $request->vendor_address;
           $vendor->vendor_phone = $request->vendor_phone;
-          $vendor->status = $request->status;
+          $vendor->concerned_person = $request->concerned_person;
+          $vendor->phone_number_2 = $request->phone_number_2;
+          $vendor->bkash_number = $request->bkash_number;
+          $vendor->bank_details = $request->bank_details;
           $vendor->save();
 
           return response()->json(['status' => 'success', 'message' => 'Vendor Created Successfully !']);
@@ -81,6 +84,7 @@ class VendorController extends Controller
            $vendor->where('vendor_name','LIKE','%'.$request->keyword.'%');
            $vendor->orWhere('vendor_address','LIKE','%'.$request->keyword.'%');
            $vendor->orWhere('vendor_phone','LIKE','%'.$request->keyword.'%');
+           $vendor->orWhere('concerned_person','LIKE','%'.$request->keyword.'%');
         }
         $vendor = $vendor->paginate(10);
         return $vendor;
@@ -106,6 +110,7 @@ class VendorController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $request->validate([
             'vendor_name'=>'required',
             'vendor_email'=>'email|nullable',
@@ -119,6 +124,10 @@ class VendorController extends Controller
             $vendor->vendor_address = $request->vendor_address;
             $vendor->vendor_email = $request->vendor_email;
             $vendor->vendor_phone = $request->vendor_phone;
+            $vendor->concerned_person = $request->concerned_person;
+            $vendor->phone_number_2 = $request->phone_number_2;
+            $vendor->bkash_number = $request->bkash_number;
+            $vendor->bank_details = $request->bank_details;
             $vendor->status = $request->status;
             $vendor->update();
 

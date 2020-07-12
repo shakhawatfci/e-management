@@ -18,6 +18,7 @@
                 <th>Address</th>
                 <th>Email</th>
                 <th>Phone</th>
+                <th>Concerned Person</th>
                 <th class="text-center">Status</th>
                 <th class="text-center">action</th>
             </tr>
@@ -28,12 +29,16 @@
                 <td>{{ value.vendor_address }}</td>
                 <td>{{ value.vendor_email }}</td>
                 <td>{{ value.vendor_phone }}</td>
+                <td>{{ value.concerned_person }}</td>
                 <td class="text-center">
                     <span class="text-success" v-if="value.status == 1">Active</span>
                     <span class="text-danger" v-else>Inactive</span>
                 </td>
                 <td class="text-center">
-                    <button class="btn btn-dark mb-2 mr-2 rounded-circle" @click="editSupplier(value)"><i class="far fa-edit"></i></button>
+                    <button class="btn btn-dark mb-2 mr-2 rounded-circle" @click="viewDetails(value)">
+                      <i class="far fa-eye"></i></button>
+                    <button class="btn btn-dark mb-2 mr-2 rounded-circle" @click="editSupplier(value)">
+                      <i class="far fa-edit"></i></button>
                     <button class="btn btn-danger mb-2 mr-2 rounded-circle" @click.prevent="deleteSupplier(value.id)"><i class="far fa-trash-alt"></i></button>
                 </td>
             </tr>
@@ -48,7 +53,8 @@
         </div>
   </div>
 
-       <supplier-update> </supplier-update>
+       <supplier-update></supplier-update>
+       <view-more></view-more>
     <div class="row">
       <div class="col-md-12 text-center mb-10 mt-10">
        <!-- import pagination here  -->
@@ -65,10 +71,12 @@ import { EventBus } from "../../vue-assets";
 import Mixin from "../../mixin";
 import Pagination from '../pagination/Pagination';
 import SupplierUpdate from './UpdateSupplier';
+import ViewMore from './ViewDetails';
 export default {
   mixins: [Mixin],
   components : {
    'pagination' : Pagination,
+   'view-more' : ViewMore,
    SupplierUpdate
   },
   data() {
@@ -104,10 +112,16 @@ export default {
          });
      },
 
+     viewDetails(value)
+     {
+        EventBus.$emit('view-details',value)
+     },
+
      editSupplier(value)
      {
         EventBus.$emit('supplier-update',value)
      },
+
 
      deleteSupplier(id)
      {

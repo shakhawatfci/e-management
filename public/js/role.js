@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 8);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1987,10 +1987,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/supplier/CreateSupplier.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/supplier/CreateSupplier.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/role/CreateRole.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/role/CreateRole.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2036,150 +2036,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
   data: function data() {
     return {
-      supplier: {
-        vendor_name: '',
-        vendor_address: '',
-        vendor_email: '',
-        vendor_phone: '',
-        concerned_person: '',
-        phone_number_2: '',
-        bkash_number: '',
-        bank_details: '',
-        status: ''
+      role: {
+        'role_name': ''
       },
-      button_name: 'Save',
-      validation_error: {}
+      button_name: "Save",
+      validation_error: null
     };
   },
-  mounted: function mounted() {},
   methods: {
     save: function save() {
       var _this = this;
 
-      this.button_name = 'Saving...';
-      axios.post(base_url + 'supplier', this.supplier).then(function (response) {
+      this.button_name = "Saving...";
+      axios.post(base_url + 'role', this.role).then(function (response) {
         if (response.data.status === 'success') {
-          _this.resetForm();
+          $('#CreateRole').modal('hide');
 
-          $('#createSupplier').modal('hide');
+          _this.resetForm();
 
           _this.successMessage(response.data);
 
-          _this.button_name = 'Save';
-          _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('supplier-created');
+          _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('role-created');
+          _this.button_name = "Save";
         } else {
           _this.successMessage(response.data);
 
-          _this.button_name = 'Save';
+          _this.button_name = "Save";
         }
       })["catch"](function (err) {
         if (err.response.status == 422) {
@@ -2187,499 +2075,30 @@ __webpack_require__.r(__webpack_exports__);
 
           _this.validationError();
 
-          _this.button_name = 'Save';
+          _this.button_name = "Save";
         } else {
-          _this.validationError();
+          _this.successMessage(err);
+
+          _this.isloading = false;
+          _this.button_name = "Save";
         }
       });
     },
     resetForm: function resetForm() {
-      this.supplier = {
-        vendor_name: '',
-        vendor_adress: '',
-        vendor_email: '',
-        vendor_phone: '',
-        concerned_person: '',
-        phone_number_2: '',
-        bkash_number: '',
-        bank_details: '',
-        status: 1
+      this.role = {
+        'role_name': ''
       };
-      this.validation_error = {};
+      this.validation_error = null;
     }
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/supplier/UpdateSupplier.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/supplier/UpdateSupplier.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _vue_assets__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../vue-assets */ "./resources/js/vue-assets.js");
-/* harmony import */ var _mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixin */ "./resources/js/mixin.js");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
-  data: function data() {
-    return {
-      supplier: {
-        id: '',
-        vendor_name: '',
-        vendor_address: '',
-        vendor_email: '',
-        vendor_phone: '',
-        concerned_person: '',
-        phone_number_2: '',
-        bkash_number: '',
-        bank_details: '',
-        status: 1
-      },
-      button_name: 'Update',
-      validation_error: {}
-    };
-  },
-  mounted: function mounted() {
-    var _this = this;
-
-    _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('supplier-update', function (value) {
-      $('#UpdateSupplier').modal('show');
-      _this.supplier = value;
-    });
-  },
-  methods: {
-    update: function update() {
-      var _this2 = this;
-
-      this.button_name = 'Updating...';
-      axios.put(base_url + 'supplier/' + this.supplier.id, this.supplier).then(function (response) {
-        if (response.data.status === 'success') {
-          $('#UpdateSupplier').modal('hide');
-
-          _this2.successMessage(response.data);
-
-          _this2.button_name = 'Update';
-
-          _this2.resetForm();
-
-          _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('supplier-created');
-        } else {
-          _this2.button_name = 'Update';
-
-          _this2.successMessage(response.data);
-        }
-      })["catch"](function (err) {
-        if (err.response.status == 422) {
-          _this2.validation_error = err.response.data.errors;
-
-          _this2.validationError();
-
-          _this2.button_name = 'Update';
-        } else {
-          _this2.validationError();
-
-          _this2.button_name = 'Update';
-        }
-      });
-    },
-    resetForm: function resetForm() {
-      this.supplier = {
-        id: '',
-        vendor_name: '',
-        vendor_adress: '',
-        vendor_email: '',
-        vendor_phone: '',
-        concerned_person: '',
-        phone_number_2: '',
-        bkash_number: '',
-        bank_details: '',
-        status: 1
-      };
-      this.validation_error = {};
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/supplier/ViewDetails.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/supplier/ViewDetails.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _vue_assets__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../vue-assets */ "./resources/js/vue-assets.js");
-/* harmony import */ var _mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixin */ "./resources/js/mixin.js");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
-  data: function data() {
-    return {
-      vendor: null,
-      url: base_url
-    };
-  },
-  mounted: function mounted() {
-    var _this = this;
-
-    _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('view-details', function (value) {
-      $('#ViewVendorDetails').modal('show');
-      _this.vendor = value;
-    });
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/supplier/ViewSupplier.vue?vue&type=script&lang=js&":
-/*!********************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/supplier/ViewSupplier.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/role/ViewRole.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/role/ViewRole.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2688,18 +2107,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vue_assets__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../vue-assets */ "./resources/js/vue-assets.js");
 /* harmony import */ var _mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixin */ "./resources/js/mixin.js");
 /* harmony import */ var _pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pagination/Pagination */ "./resources/js/components/pagination/Pagination.vue");
-/* harmony import */ var _UpdateSupplier__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./UpdateSupplier */ "./resources/js/components/supplier/UpdateSupplier.vue");
-/* harmony import */ var _ViewDetails__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ViewDetails */ "./resources/js/components/supplier/ViewDetails.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var _EditRole__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./EditRole */ "./resources/js/components/role/EditRole.vue");
+/* harmony import */ var _Permission__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Permission */ "./resources/js/components/role/Permission.vue");
 //
 //
 //
@@ -2767,65 +2176,76 @@ __webpack_require__.r(__webpack_exports__);
   mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
   components: {
     'pagination': _pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"],
-    'view-more': _ViewDetails__WEBPACK_IMPORTED_MODULE_4__["default"],
-    SupplierUpdate: _UpdateSupplier__WEBPACK_IMPORTED_MODULE_3__["default"]
+    'edit-role': _EditRole__WEBPACK_IMPORTED_MODULE_3__["default"],
+    'role-permission': _Permission__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   data: function data() {
     return {
-      suppliers: [],
+      roles: [],
+      isLoading: false,
       keyword: '',
-      isLoading: false
+      url: base_url
     };
   },
   mounted: function mounted() {
+    // this  will not work in eventBus that why 
+    // we are initializing with _this
     var _this = this;
 
-    _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('supplier-created', function () {
-      _this.getSupplier();
+    _this.getrole();
+
+    _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('role-created', function () {
+      // getting updated data when insert update delete happend 
+      _this.getrole();
     });
-    this.getSupplier();
   },
   methods: {
-    getSupplier: function getSupplier() {
+    getrole: function getrole() {
       var _this2 = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       this.isLoading = true;
-      axios.get(base_url + "supplier-list?page=".concat(page, "&keyword=").concat(this.keyword)).then(function (response) {
-        _this2.suppliers = response.data;
+      axios.get(base_url + 'role-list?page=' + page + '&keyword=' + this.keyword).then(function (response) {
+        _this2.roles = response.data;
         _this2.isLoading = false;
       });
     },
-    viewDetails: function viewDetails(value) {
-      _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('view-details', value);
+    pageClicked: function pageClicked(pageNo) {
+      var vm = this;
+      vm.getrole(pageNo);
     },
-    editSupplier: function editSupplier(value) {
-      _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('supplier-update', value);
+    // edit role 
+    edit: function edit(id) {
+      _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('update-role', id);
     },
-    deleteSupplier: function deleteSupplier(id) {
+    perMission: function perMission(id) {
+      this.successMessage({
+        status: 'error',
+        message: 'Work On Progress'
+      });
+      _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('assign-permission', id);
+    },
+    // delete role 
+    deleterole: function deleterole(id) {
       var _this3 = this;
 
       Swal.fire({
         title: 'Are you sure ?',
         text: "You won't be able to revert this!",
-        icon: 'warning',
+        type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!'
       }, function () {}).then(function (result) {
         if (result.value) {
-          axios["delete"]("".concat(base_url, "supplier/").concat(id)).then(function (response) {
-            // console.log(response.data)
-            _this3.successMessage(response.data);
+          axios.get(base_url + 'role/delete/' + id).then(function (res) {
+            _this3.successMessage(res.data);
 
-            _this3.getSupplier();
+            _this3.getrole();
           });
         }
       });
-    },
-    pageClicked: function pageClicked(page) {
-      this.getSupplier(page);
     }
   }
 });
@@ -7257,10 +6677,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/supplier/CreateSupplier.vue?vue&type=template&id=6e197fb0&":
-/*!**************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/supplier/CreateSupplier.vue?vue&type=template&id=6e197fb0& ***!
-  \**************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/role/CreateRole.vue?vue&type=template&id=b2801420&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/role/CreateRole.vue?vue&type=template&id=b2801420& ***!
+  \******************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -7275,1546 +6695,99 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: "modal animated fadeInUp custo-fadeInUp show",
-      attrs: {
-        id: "createSupplier",
-        tabindex: "-1",
-        role: "dialog",
-        "aria-labelledby": "addContactModalTitle",
-        "aria-hidden": "true"
-      }
+      staticClass: "modal fade",
+      attrs: { id: "CreateRole", "aria-hidden": "true" }
     },
     [
-      _c(
-        "div",
-        {
-          staticClass: "modal-dialog modal-dialog-centered modal-xl",
-          attrs: { role: "document" }
-        },
-        [
-          _c(
-            "form",
-            {
-              on: {
-                submit: function($event) {
-                  $event.preventDefault()
-                  return _vm.save()
-                }
-              }
-            },
-            [
-              _c("div", { staticClass: "modal-content" }, [
-                _vm._m(0),
+      _c("div", { staticClass: "modal-dialog modal-lg" }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-sm-8 mr-auto ml-auto" }, [
+                _c("h3", { staticClass: "m-t-none m-b" }, [_vm._v("Add Role")]),
                 _vm._v(" "),
-                _c("div", { staticClass: "modal-body" }, [
-                  _c("i", {
-                    staticClass: "flaticon-cancel-12 close",
-                    attrs: { "data-dismiss": "modal" }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "add-contact-box" }, [
-                    _c(
-                      "div",
-                      { staticClass: "add-contact-content text-left" },
-                      [
-                        _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _c("div", { staticClass: "contact-name" }, [
-                              _c("i", { staticClass: "flaticon-user-11" }),
-                              _vm._v(" "),
-                              _c("label", { attrs: { for: "vendor-name" } }, [
-                                _vm._v("Vendor Name")
-                              ]),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.supplier.vendor_name,
-                                    expression: "supplier.vendor_name"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  id: "vendor-name",
-                                  placeholder: "Vendor Name:"
-                                },
-                                domProps: { value: _vm.supplier.vendor_name },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.supplier,
-                                      "vendor_name",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _vm.validation_error.hasOwnProperty("vendor_name")
-                                ? _c("span", { staticClass: "text-danger" }, [
-                                    _vm._v(
-                                      "\r\n                                                " +
-                                        _vm._s(
-                                          _vm.validation_error.vendor_name[0]
-                                        ) +
-                                        "\r\n                                        "
-                                    )
-                                  ])
-                                : _vm._e()
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _c("div", { staticClass: "contact-email" }, [
-                              _c("i", { staticClass: "flaticon-mail-26" }),
-                              _vm._v(" "),
-                              _c("label", { attrs: { for: "vendor-email" } }, [
-                                _vm._v("Vendor Email")
-                              ]),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.supplier.vendor_email,
-                                    expression: "supplier.vendor_email"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  id: "vendor-email",
-                                  placeholder: "Vendor Email"
-                                },
-                                domProps: { value: _vm.supplier.vendor_email },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.supplier,
-                                      "vendor_email",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _vm.validation_error.hasOwnProperty(
-                                "vendor_email"
-                              )
-                                ? _c("span", { staticClass: "text-danger" }, [
-                                    _vm._v(
-                                      "\r\n                                                " +
-                                        _vm._s(
-                                          _vm.validation_error.vendor_email[0]
-                                        ) +
-                                        "\r\n                                        "
-                                    )
-                                  ])
-                                : _vm._e()
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _c("div", { staticClass: "contact-phone" }, [
-                              _c("i", { staticClass: "flaticon-telephone" }),
-                              _vm._v(" "),
-                              _c("label", { attrs: { for: "vendor-phone" } }, [
-                                _vm._v("Vendor Phone")
-                              ]),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.supplier.vendor_phone,
-                                    expression: "supplier.vendor_phone"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  id: "vendor-phone",
-                                  placeholder: "Vendor Phone"
-                                },
-                                domProps: { value: _vm.supplier.vendor_phone },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.supplier,
-                                      "vendor_phone",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _vm.validation_error.hasOwnProperty(
-                                "vendor_phone"
-                              )
-                                ? _c("span", { staticClass: "text-danger" }, [
-                                    _vm._v(
-                                      "\r\n                                                " +
-                                        _vm._s(
-                                          _vm.validation_error.vendor_phone[0]
-                                        ) +
-                                        "\r\n                                        "
-                                    )
-                                  ])
-                                : _vm._e()
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _c("div", { staticClass: "contact-phone" }, [
-                              _c("i", { staticClass: "flaticon-telephone" }),
-                              _vm._v(" "),
-                              _c("label", { attrs: { for: "vendor-phone" } }, [
-                                _vm._v("Concerned Person")
-                              ]),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.supplier.concerned_person,
-                                    expression: "supplier.concerned_person"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  id: "vendor-phone",
-                                  placeholder: "Concerned Person"
-                                },
-                                domProps: {
-                                  value: _vm.supplier.concerned_person
-                                },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.supplier,
-                                      "concerned_person",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _vm.validation_error.hasOwnProperty(
-                                "concerned_person"
-                              )
-                                ? _c("span", { staticClass: "text-danger" }, [
-                                    _vm._v(
-                                      "\r\n                                                " +
-                                        _vm._s(
-                                          _vm.validation_error
-                                            .concerned_person[0]
-                                        ) +
-                                        "\r\n                                        "
-                                    )
-                                  ])
-                                : _vm._e()
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _c("div", { staticClass: "contact-phone" }, [
-                              _c("i", { staticClass: "flaticon-telephone" }),
-                              _vm._v(" "),
-                              _c("label", { attrs: { for: "vendor-phone" } }, [
-                                _vm._v("Phone Number 2")
-                              ]),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.supplier.phone_number_2,
-                                    expression: "supplier.phone_number_2"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  id: "vendor-phone",
-                                  placeholder: "Another Phone"
-                                },
-                                domProps: {
-                                  value: _vm.supplier.phone_number_2
-                                },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.supplier,
-                                      "phone_number_2",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _vm.validation_error.hasOwnProperty(
-                                "phone_number_2"
-                              )
-                                ? _c("span", { staticClass: "text-danger" }, [
-                                    _vm._v(
-                                      "\r\n                                                " +
-                                        _vm._s(
-                                          _vm.validation_error.phone_number_2[0]
-                                        ) +
-                                        "\r\n                                        "
-                                    )
-                                  ])
-                                : _vm._e()
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _c("div", { staticClass: "contact-phone" }, [
-                              _c("i", { staticClass: "flaticon-telephone" }),
-                              _vm._v(" "),
-                              _c("label", { attrs: { for: "vendor-phone" } }, [
-                                _vm._v("Bkash No:")
-                              ]),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.supplier.bkash_number,
-                                    expression: "supplier.bkash_number"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  id: "vendor-phone",
-                                  placeholder: "Bkash No"
-                                },
-                                domProps: { value: _vm.supplier.bkash_number },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.supplier,
-                                      "bkash_number",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _vm.validation_error.hasOwnProperty(
-                                "bkash_number"
-                              )
-                                ? _c("span", { staticClass: "text-danger" }, [
-                                    _vm._v(
-                                      "\r\n                                                " +
-                                        _vm._s(
-                                          _vm.validation_error.bkash_number[0]
-                                        ) +
-                                        "\r\n                                        "
-                                    )
-                                  ])
-                                : _vm._e()
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _c("div", { staticClass: "contact-phone" }, [
-                              _c("i", { staticClass: "flaticon-telephone" }),
-                              _vm._v(" "),
-                              _c("label", { attrs: { for: "vendor-phone" } }, [
-                                _vm._v("Bank Info:")
-                              ]),
-                              _vm._v(" "),
-                              _c("textarea", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.supplier.bank_details,
-                                    expression: "supplier.bank_details"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: { placeholder: "Bank Info" },
-                                domProps: { value: _vm.supplier.bank_details },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.supplier,
-                                      "bank_details",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _vm.validation_error.hasOwnProperty(
-                                "bank_details"
-                              )
-                                ? _c("span", { staticClass: "text-danger" }, [
-                                    _vm._v(
-                                      "\r\n                                                " +
-                                        _vm._s(
-                                          _vm.validation_error.bank_details[0]
-                                        ) +
-                                        "\r\n                                        "
-                                    )
-                                  ])
-                                : _vm._e()
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _c("div", { staticClass: "contact-email" }, [
-                              _c("i", { staticClass: "flaticon-mail-26" }),
-                              _vm._v(" "),
-                              _c("label", { attrs: { for: "vendor-status" } }, [
-                                _vm._v("Vendor Status")
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "select",
-                                {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.supplier.status,
-                                      expression: "supplier.status"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: { id: "vendor-status" },
-                                  on: {
-                                    change: function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.$set(
-                                        _vm.supplier,
-                                        "status",
-                                        $event.target.multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
-                                      )
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("option", { attrs: { value: "" } }, [
-                                    _vm._v("Select Vendor Status")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "1" } }, [
-                                    _vm._v("Active")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "0" } }, [
-                                    _vm._v("Inactive")
-                                  ])
-                                ]
-                              )
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col-md-12" }, [
-                            _c("div", { staticClass: "contact-name" }, [
-                              _c("i", { staticClass: "flaticon-user-11" }),
-                              _vm._v(" "),
-                              _c("label", { attrs: { for: "vendor-status" } }, [
-                                _vm._v("Vendor Address")
-                              ]),
-                              _vm._v(" "),
-                              _c("textarea", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.supplier.vendor_address,
-                                    expression: "supplier.vendor_address"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  id: "vendor-address",
-                                  placeholder: "Vendor Address: ",
-                                  rows: "3"
-                                },
-                                domProps: {
-                                  value: _vm.supplier.vendor_address
-                                },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.supplier,
-                                      "vendor_address",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _vm.validation_error.hasOwnProperty(
-                                "vendor_address"
-                              )
-                                ? _c("span", { staticClass: "text-danger" }, [
-                                    _vm._v(
-                                      "\r\n                                                " +
-                                        _vm._s(
-                                          _vm.validation_error.vendor_address[0]
-                                        ) +
-                                        "\r\n                                        "
-                                    )
-                                  ])
-                                : _vm._e()
-                            ])
-                          ])
-                        ])
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "modal-footer" }, [
-                  _c(
-                    "button",
+                _c(
+                  "form",
+                  {
+                    attrs: { role: "form" },
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.save()
+                      }
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Role Name *")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.role.role_name,
+                            expression: "role.role_name"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", placeholder: "Role Name" },
+                        domProps: { value: _vm.role.role_name },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.role, "role_name", $event.target.value)
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticStyle: { "margin-bottom": "20px" } }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-lg  btn-primary float-right ",
+                          attrs: { type: "submit" }
+                        },
+                        [_c("strong", [_vm._v(_vm._s(_vm.button_name))])]
+                      )
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _vm.validation_error
+                ? _c(
+                    "div",
                     {
-                      staticClass: "btn btn-primary",
-                      attrs: { type: "submit" }
+                      staticClass: "col-md-8 mr-auto ml-auto",
+                      staticStyle: { "margin-top": "20px" }
                     },
                     [
-                      _vm.button_name != "Save"
-                        ? _c("div", {
-                            staticClass:
-                              "spinner-grow text-white mr-2 align-self-center loader-sm"
-                          })
-                        : _vm._e(),
-                      _vm._v(_vm._s(_vm.button_name))
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _vm._m(1)
-                ])
-              ])
-            ]
-          )
-        ]
-      )
-    ]
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "h5",
-        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
-        [_vm._v("Create Vendor")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      { staticClass: "btn btn-default", attrs: { "data-dismiss": "modal" } },
-      [_c("i", { staticClass: "flaticon-delete-1" }), _vm._v(" Discard")]
-    )
-  }
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/supplier/UpdateSupplier.vue?vue&type=template&id=85146806&":
-/*!**************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/supplier/UpdateSupplier.vue?vue&type=template&id=85146806& ***!
-  \**************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "modal animated fadeInUp custo-fadeInUp show",
-      attrs: {
-        id: "UpdateSupplier",
-        tabindex: "-1",
-        role: "dialog",
-        "aria-labelledby": "addContactModalTitle",
-        "aria-hidden": "true"
-      }
-    },
-    [
-      _c(
-        "div",
-        {
-          staticClass: "modal-dialog modal-dialog-centered modal-lg",
-          attrs: { role: "document" }
-        },
-        [
-          _c(
-            "form",
-            {
-              on: {
-                submit: function($event) {
-                  $event.preventDefault()
-                  return _vm.update()
-                }
-              }
-            },
-            [
-              _c("div", { staticClass: "modal-content" }, [
-                _vm._m(0),
-                _vm._v(" "),
-                _c("div", { staticClass: "modal-body" }, [
-                  _c("i", {
-                    staticClass: "flaticon-cancel-12 close",
-                    attrs: { "data-dismiss": "modal" }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "add-contact-box" }, [
-                    _c(
-                      "div",
-                      { staticClass: "add-contact-content text-left" },
-                      [
-                        _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _c("div", { staticClass: "contact-name" }, [
-                              _c("i", { staticClass: "flaticon-user-11" }),
-                              _vm._v(" "),
-                              _c(
-                                "label",
-                                { attrs: { for: "up-vendor-name" } },
-                                [_vm._v("Vendor Name")]
-                              ),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.supplier.vendor_name,
-                                    expression: "supplier.vendor_name"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  id: "up-vendor-name",
-                                  placeholder: "Vendor Name: "
-                                },
-                                domProps: { value: _vm.supplier.vendor_name },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.supplier,
-                                      "vendor_name",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _vm.validation_error.hasOwnProperty("vendor_name")
-                                ? _c("span", { staticClass: "text-danger" }, [
-                                    _vm._v(
-                                      "\r\n                                                " +
-                                        _vm._s(
-                                          _vm.validation_error.vendor_name[0]
-                                        ) +
-                                        "\r\n                                        "
-                                    )
-                                  ])
-                                : _vm._e()
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _c("div", { staticClass: "contact-email" }, [
-                              _c("i", { staticClass: "flaticon-mail-26" }),
-                              _vm._v(" "),
-                              _c(
-                                "label",
-                                { attrs: { for: "up-vendor-email" } },
-                                [_vm._v("Vendor Email")]
-                              ),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.supplier.vendor_email,
-                                    expression: "supplier.vendor_email"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  id: "up-vendor-email",
-                                  placeholder: "Vendor Email"
-                                },
-                                domProps: { value: _vm.supplier.vendor_email },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.supplier,
-                                      "vendor_email",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _vm.validation_error.hasOwnProperty(
-                                "vendor_email"
-                              )
-                                ? _c("span", { staticClass: "text-danger" }, [
-                                    _vm._v(
-                                      "\r\n                                                " +
-                                        _vm._s(
-                                          _vm.validation_error.vendor_email[0]
-                                        ) +
-                                        "\r\n                                        "
-                                    )
-                                  ])
-                                : _vm._e()
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _c("div", { staticClass: "contact-phone" }, [
-                              _c("i", { staticClass: "flaticon-telephone" }),
-                              _vm._v(" "),
-                              _c(
-                                "label",
-                                { attrs: { for: "up-vendor-phone" } },
-                                [_vm._v("Vendor Phone")]
-                              ),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.supplier.vendor_phone,
-                                    expression: "supplier.vendor_phone"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  id: "up-vendor-phone",
-                                  placeholder: "Vendor Phone"
-                                },
-                                domProps: { value: _vm.supplier.vendor_phone },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.supplier,
-                                      "vendor_phone",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _vm.validation_error.hasOwnProperty(
-                                "vendor_phone"
-                              )
-                                ? _c("span", { staticClass: "text-danger" }, [
-                                    _vm._v(
-                                      "\r\n                                                " +
-                                        _vm._s(
-                                          _vm.validation_error.vendor_phone[0]
-                                        ) +
-                                        "\r\n                                        "
-                                    )
-                                  ])
-                                : _vm._e()
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _c("div", { staticClass: "contact-phone" }, [
-                              _c("i", { staticClass: "flaticon-telephone" }),
-                              _vm._v(" "),
-                              _c("label", { attrs: { for: "vendor-phone" } }, [
-                                _vm._v("Concerned Person")
-                              ]),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.supplier.concerned_person,
-                                    expression: "supplier.concerned_person"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  id: "vendor-phone",
-                                  placeholder: "Concerned Person"
-                                },
-                                domProps: {
-                                  value: _vm.supplier.concerned_person
-                                },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.supplier,
-                                      "concerned_person",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _vm.validation_error.hasOwnProperty(
-                                "concerned_person"
-                              )
-                                ? _c("span", { staticClass: "text-danger" }, [
-                                    _vm._v(
-                                      "\r\n                                                " +
-                                        _vm._s(
-                                          _vm.validation_error
-                                            .concerned_person[0]
-                                        ) +
-                                        "\r\n                                        "
-                                    )
-                                  ])
-                                : _vm._e()
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _c("div", { staticClass: "contact-phone" }, [
-                              _c("i", { staticClass: "flaticon-telephone" }),
-                              _vm._v(" "),
-                              _c("label", { attrs: { for: "vendor-phone" } }, [
-                                _vm._v("Phone Number 2")
-                              ]),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.supplier.phone_number_2,
-                                    expression: "supplier.phone_number_2"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  id: "vendor-phone",
-                                  placeholder: "Another Phone"
-                                },
-                                domProps: {
-                                  value: _vm.supplier.phone_number_2
-                                },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.supplier,
-                                      "phone_number_2",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _vm.validation_error.hasOwnProperty(
-                                "phone_number_2"
-                              )
-                                ? _c("span", { staticClass: "text-danger" }, [
-                                    _vm._v(
-                                      "\r\n                                                " +
-                                        _vm._s(
-                                          _vm.validation_error.phone_number_2[0]
-                                        ) +
-                                        "\r\n                                        "
-                                    )
-                                  ])
-                                : _vm._e()
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _c("div", { staticClass: "contact-phone" }, [
-                              _c("i", { staticClass: "flaticon-telephone" }),
-                              _vm._v(" "),
-                              _c("label", { attrs: { for: "vendor-phone" } }, [
-                                _vm._v("Bkash No:")
-                              ]),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.supplier.bkash_number,
-                                    expression: "supplier.bkash_number"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  id: "vendor-phone",
-                                  placeholder: "Bkash No"
-                                },
-                                domProps: { value: _vm.supplier.bkash_number },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.supplier,
-                                      "bkash_number",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _vm.validation_error.hasOwnProperty(
-                                "bkash_number"
-                              )
-                                ? _c("span", { staticClass: "text-danger" }, [
-                                    _vm._v(
-                                      "\r\n                                                " +
-                                        _vm._s(
-                                          _vm.validation_error.bkash_number[0]
-                                        ) +
-                                        "\r\n                                        "
-                                    )
-                                  ])
-                                : _vm._e()
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _c("div", { staticClass: "contact-phone" }, [
-                              _c("i", { staticClass: "flaticon-telephone" }),
-                              _vm._v(" "),
-                              _c("label", { attrs: { for: "vendor-phone" } }, [
-                                _vm._v("Bank Info:")
-                              ]),
-                              _vm._v(" "),
-                              _c("textarea", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.supplier.bank_details,
-                                    expression: "supplier.bank_details"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: { placeholder: "Bank Info" },
-                                domProps: { value: _vm.supplier.bank_details },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.supplier,
-                                      "bank_details",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _vm.validation_error.hasOwnProperty(
-                                "bank_details"
-                              )
-                                ? _c("span", { staticClass: "text-danger" }, [
-                                    _vm._v(
-                                      "\r\n                                                " +
-                                        _vm._s(
-                                          _vm.validation_error.bank_details[0]
-                                        ) +
-                                        "\r\n                                        "
-                                    )
-                                  ])
-                                : _vm._e()
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-6" }, [
-                            _c("div", { staticClass: "contact-email" }, [
-                              _c("i", { staticClass: "flaticon-mail-26" }),
-                              _vm._v(" "),
-                              _c(
-                                "label",
-                                { attrs: { for: "up-vendor-status" } },
-                                [_vm._v("Vendor Status")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "select",
-                                {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.supplier.status,
-                                      expression: "supplier.status"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: { id: "up-vendor-status" },
-                                  on: {
-                                    change: function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.$set(
-                                        _vm.supplier,
-                                        "status",
-                                        $event.target.multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
-                                      )
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("option", [_vm._v("Supplier Status")]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "1" } }, [
-                                    _vm._v("Active")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "0" } }, [
-                                    _vm._v("Inactive")
-                                  ])
-                                ]
-                              )
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col-md-12" }, [
-                            _c("div", { staticClass: "contact-name" }, [
-                              _c("i", { staticClass: "flaticon-user-11" }),
-                              _vm._v(" "),
-                              _c(
-                                "label",
-                                { attrs: { for: "up-vendor-status" } },
-                                [_vm._v("Vendor Address")]
-                              ),
-                              _vm._v(" "),
-                              _c("textarea", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.supplier.vendor_address,
-                                    expression: "supplier.vendor_address"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  id: "up-vendor-address",
-                                  placeholder: "Vendor Address: ",
-                                  rows: "3"
-                                },
-                                domProps: {
-                                  value: _vm.supplier.vendor_address
-                                },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.supplier,
-                                      "vendor_address",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _vm.validation_error.hasOwnProperty(
-                                "vendor_address"
-                              )
-                                ? _c("span", { staticClass: "text-danger" }, [
-                                    _vm._v(
-                                      "\r\n                                                " +
-                                        _vm._s(
-                                          _vm.validation_error.vendor_address[0]
-                                        ) +
-                                        "\r\n                                        "
-                                    )
-                                  ])
-                                : _vm._e()
-                            ])
-                          ])
-                        ])
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "modal-footer" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary",
-                      attrs: { type: "submit" }
-                    },
-                    [
-                      _vm.button_name != "Update"
-                        ? _c("div", {
-                            staticClass:
-                              "spinner-grow text-white mr-2 align-self-center loader-sm"
-                          })
-                        : _vm._e(),
-                      _vm._v(_vm._s(_vm.button_name))
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _vm._m(1)
-                ])
-              ])
-            ]
-          )
-        ]
-      )
-    ]
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "h5",
-        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
-        [_vm._v("Update Vendor")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      { staticClass: "btn btn-default", attrs: { "data-dismiss": "modal" } },
-      [_c("i", { staticClass: "flaticon-delete-1" }), _vm._v(" Discard")]
-    )
-  }
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/supplier/ViewDetails.vue?vue&type=template&id=55fd3076&":
-/*!***********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/supplier/ViewDetails.vue?vue&type=template&id=55fd3076& ***!
-  \***********************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "modal animated fadeInRight custo-fadeInRight show",
-      attrs: {
-        id: "ViewVendorDetails",
-        tabindex: "-1",
-        role: "dialog",
-        "aria-labelledby": "addContactModalTitle",
-        "aria-hidden": "true"
-      }
-    },
-    [
-      _c(
-        "div",
-        { staticClass: "modal-dialog modal-lg", attrs: { role: "document" } },
-        [
-          _vm.vendor
-            ? _c("div", { staticClass: "modal-content" }, [
-                _c("div", { staticClass: "modal-body" }, [
-                  _c("i", {
-                    staticClass: "flaticon-cancel-12 close",
-                    attrs: { "data-dismiss": "modal" }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "add-contact-box" }, [
-                    _c("div", { staticClass: "add-contact-content" }, [
-                      _c("div", { staticClass: "layout-spacing" }, [
-                        _c("div", { staticClass: "widget widget-table-one" }, [
-                          _vm._m(0),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "widget-content" }, [
-                            _c("div", { staticClass: "row" }, [
-                              _c(
-                                "div",
-                                { staticClass: "col-4 transactions-list" },
-                                [
-                                  _c("div", { staticClass: "t-item" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "t-company-name" },
-                                      [
-                                        _vm._m(1),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "t-name" }, [
-                                          _c("h4", [_vm._v("Vendor Name")]),
-                                          _vm._v(" "),
-                                          _c(
-                                            "p",
-                                            { staticClass: "meta-date" },
-                                            [
-                                              _vm._v(
-                                                _vm._s(_vm.vendor.vendor_name)
-                                              )
-                                            ]
-                                          )
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "col-4 transactions-list" },
-                                [
-                                  _c("div", { staticClass: "t-item" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "t-company-name" },
-                                      [
-                                        _vm._m(2),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "t-name" }, [
-                                          _c("h4", [_vm._v("Email")]),
-                                          _vm._v(" "),
-                                          _c(
-                                            "p",
-                                            { staticClass: "meta-date" },
-                                            [
-                                              _vm._v(
-                                                _vm._s(_vm.vendor.vendor_email)
-                                              )
-                                            ]
-                                          )
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "col-4 transactions-list" },
-                                [
-                                  _c("div", { staticClass: "t-item" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "t-company-name" },
-                                      [
-                                        _vm._m(3),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "t-name" }, [
-                                          _c("h4", [_vm._v("Vendor Phone")]),
-                                          _vm._v(" "),
-                                          _c(
-                                            "p",
-                                            { staticClass: "meta-date" },
-                                            [
-                                              _vm._v(
-                                                _vm._s(_vm.vendor.vendor_phone)
-                                              )
-                                            ]
-                                          )
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "col-4 transactions-list" },
-                                [
-                                  _c("div", { staticClass: "t-item" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "t-company-name" },
-                                      [
-                                        _vm._m(4),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "t-name" }, [
-                                          _c("h4", [_vm._v("Vendor Address")]),
-                                          _vm._v(" "),
-                                          _c(
-                                            "p",
-                                            { staticClass: "meta-date" },
-                                            [
-                                              _vm._v(
-                                                _vm._s(
-                                                  _vm.vendor.vendor_address
-                                                )
-                                              )
-                                            ]
-                                          )
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "col-4 transactions-list" },
-                                [
-                                  _c("div", { staticClass: "t-item" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "t-company-name" },
-                                      [
-                                        _vm._m(5),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "t-name" }, [
-                                          _c("h4", [
-                                            _vm._v("Concerned Person")
-                                          ]),
-                                          _vm._v(" "),
-                                          _c(
-                                            "p",
-                                            { staticClass: "meta-date" },
-                                            [
-                                              _vm._v(
-                                                _vm._s(
-                                                  _vm.vendor.concerned_person
-                                                )
-                                              )
-                                            ]
-                                          )
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "col-4 transactions-list" },
-                                [
-                                  _c("div", { staticClass: "t-item" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "t-company-name" },
-                                      [
-                                        _vm._m(6),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "t-name" }, [
-                                          _c("h4", [
-                                            _vm._v("Alternative phone Number")
-                                          ]),
-                                          _vm._v(" "),
-                                          _c(
-                                            "p",
-                                            { staticClass: "meta-date" },
-                                            [
-                                              _vm._v(
-                                                _vm._s(
-                                                  _vm.vendor.phone_number_2
-                                                )
-                                              )
-                                            ]
-                                          )
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "col-4 transactions-list" },
-                                [
-                                  _c("div", { staticClass: "t-item" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "t-company-name" },
-                                      [
-                                        _vm._m(7),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "t-name" }, [
-                                          _c("h4", [_vm._v("Bkash")]),
-                                          _vm._v(" "),
-                                          _c(
-                                            "p",
-                                            { staticClass: "meta-date" },
-                                            [
-                                              _vm._v(
-                                                _vm._s(_vm.vendor.bkash_number)
-                                              )
-                                            ]
-                                          )
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "col-4 transactions-list" },
-                                [
-                                  _c("div", { staticClass: "t-item" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "t-company-name" },
-                                      [
-                                        _vm._m(8),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "t-name" }, [
-                                          _c("h4", [_vm._v("Bank Details")]),
-                                          _vm._v(" "),
-                                          _c(
-                                            "p",
-                                            { staticClass: "meta-date" },
-                                            [
-                                              _vm._v(
-                                                _vm._s(_vm.vendor.bank_details)
-                                              )
-                                            ]
-                                          )
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ]
-                              )
-                            ])
-                          ])
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("div", [
+                          _c(
+                            "ul",
+                            _vm._l(_vm.validation_error, function(error) {
+                              return _c("li", { staticClass: "text-danger" }, [
+                                _vm._v(_vm._s(error[0]))
+                              ])
+                            }),
+                            0
+                          )
                         ])
                       ])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _vm._m(9)
-              ])
-            : _vm._e()
-        ]
-      )
+                    ]
+                  )
+                : _vm._e()
+            ])
+          ])
+        ])
+      ])
     ]
   )
 }
@@ -8823,130 +6796,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "widget-heading" }, [
-      _c("h5", {}, [_vm._v("View vendor")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "t-icon" }, [
-      _c("div", { staticClass: "avatar avatar-xl" }, [
-        _c("span", { staticClass: "avatar-title rounded-circle" }, [
-          _c("i", {
-            staticClass: "fa fa-user-secret",
-            attrs: { "aria-hidden": "true" }
-          })
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "t-icon" }, [
-      _c("div", { staticClass: "avatar avatar-xl" }, [
-        _c("span", { staticClass: "avatar-title rounded-circle" }, [
-          _c("i", {
-            staticClass: "fa fa-envelope-open",
-            attrs: { "aria-hidden": "true" }
-          })
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "t-icon" }, [
-      _c("div", { staticClass: "avatar avatar-xl" }, [
-        _c("span", { staticClass: "avatar-title rounded-circle" }, [
-          _c("i", { staticClass: "fa fa-phone" })
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "t-icon" }, [
-      _c("div", { staticClass: "avatar avatar-xl" }, [
-        _c("span", { staticClass: "avatar-title rounded-circle" }, [
-          _c("i", {
-            staticClass: "fa fa-map-marker",
-            attrs: { "aria-hidden": "true" }
-          })
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "t-icon" }, [
-      _c("div", { staticClass: "avatar avatar-xl" }, [
-        _c("span", { staticClass: "avatar-title rounded-circle" }, [
-          _c("i", { staticClass: "fa fa-users" })
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "t-icon" }, [
-      _c("div", { staticClass: "avatar avatar-xl" }, [
-        _c("span", { staticClass: "avatar-title rounded-circle" }, [
-          _c("i", { staticClass: "fa fa-phone" })
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "t-icon" }, [
-      _c("div", { staticClass: "avatar avatar-xl" }, [
-        _c("span", { staticClass: "avatar-title rounded-circle" }, [
-          _c("i", {
-            staticClass: "fa fa-money",
-            attrs: { "aria-hidden": "true" }
-          })
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "t-icon" }, [
-      _c("div", { staticClass: "avatar avatar-xl" }, [
-        _c("span", { staticClass: "avatar-title rounded-circle" }, [
-          _c("i", {
-            staticClass: "fa fa-university",
-            attrs: { "aria-hidden": "true" }
-          })
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
+    return _c("div", { staticClass: "modal-header text-right" }, [
       _c(
         "button",
         { staticClass: "btn btn-default", attrs: { "data-dismiss": "modal" } },
-        [_c("i", { staticClass: "flaticon-delete-1" }), _vm._v(" Close")]
+        [_vm._v("X")]
       )
     ])
   }
@@ -8957,10 +6811,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/supplier/ViewSupplier.vue?vue&type=template&id=1f32a04e&":
-/*!************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/supplier/ViewSupplier.vue?vue&type=template&id=1f32a04e& ***!
-  \************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/role/ViewRole.vue?vue&type=template&id=77245019&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/role/ViewRole.vue?vue&type=template&id=77245019& ***!
+  \****************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -8972,157 +6826,145 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("div", { staticClass: "row" }, [
-        _c(
-          "div",
-          { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
-          [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.keyword,
-                  expression: "keyword"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", placeholder: "Search Vendor" },
-              domProps: { value: _vm.keyword },
-              on: {
-                keyup: function($event) {
-                  return _vm.getSupplier()
-                },
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.keyword = $event.target.value
-                }
-              }
-            })
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        !_vm.isLoading
-          ? _c("div", { staticClass: "col-md-12" }, [
-              _c("div", { staticClass: "table-responsive" }, [
-                _c(
-                  "table",
-                  { staticClass: "table table-bordered table-hover  mb-4" },
-                  [
-                    _vm._m(0),
-                    _vm._v(" "),
-                    _c(
-                      "tbody",
-                      _vm._l(_vm.suppliers.data, function(value) {
-                        return _c("tr", { key: value.id }, [
-                          _c("td", [_vm._v(_vm._s(value.vendor_name))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(value.vendor_address))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(value.vendor_email))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(value.vendor_phone))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(value.concerned_person))]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "text-center" }, [
-                            value.status == 1
-                              ? _c("span", { staticClass: "text-success" }, [
-                                  _vm._v("Active")
-                                ])
-                              : _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v("Inactive")
-                                ])
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "text-center" }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass:
-                                  "btn btn-dark mb-2 mr-2 rounded-circle",
-                                on: {
-                                  click: function($event) {
-                                    return _vm.viewDetails(value)
-                                  }
-                                }
-                              },
-                              [_c("i", { staticClass: "far fa-eye" })]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass:
-                                  "btn btn-dark mb-2 mr-2 rounded-circle",
-                                on: {
-                                  click: function($event) {
-                                    return _vm.editSupplier(value)
-                                  }
-                                }
-                              },
-                              [_c("i", { staticClass: "far fa-edit" })]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass:
-                                  "btn btn-danger mb-2 mr-2 rounded-circle",
-                                on: {
-                                  click: function($event) {
-                                    $event.preventDefault()
-                                    return _vm.deleteSupplier(value.id)
-                                  }
-                                }
-                              },
-                              [_c("i", { staticClass: "far fa-trash-alt" })]
-                            )
-                          ])
-                        ])
-                      }),
-                      0
-                    )
-                  ]
-                )
-              ])
-            ])
-          : _c(
-              "div",
+  return _c("div", [
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-md-6", staticStyle: { "margin-bottom": "10px" } },
+        [
+          _c("input", {
+            directives: [
               {
-                staticClass: "col-md-12 text-center",
-                staticStyle: { "margin-top": "30px" }
+                name: "model",
+                rawName: "v-model",
+                value: _vm.keyword,
+                expression: "keyword"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", placeholder: "Search by keyword" },
+            domProps: { value: _vm.keyword },
+            on: {
+              keyup: function($event) {
+                return _vm.getrole()
               },
-              [
-                _c("div", {
-                  staticClass: "loader multi-loader mx-auto loader-xl"
-                })
-              ]
-            )
-      ]),
-      _vm._v(" "),
-      _c("supplier-update"),
-      _vm._v(" "),
-      _c("view-more"),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c(
-          "div",
-          { staticClass: "col-md-12 text-center mb-10 mt-10" },
-          [_c("pagination", { attrs: { pageData: this.suppliers } })],
-          1
-        )
-      ])
-    ],
-    1
-  )
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.keyword = $event.target.value
+              }
+            }
+          })
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      !_vm.isLoading
+        ? _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "table-responsive" }, [
+              _c(
+                "table",
+                { staticClass: "table table-bordered table-hover mb-4" },
+                [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.roles.data, function(value, index) {
+                      return _c("tr", { key: index }, [
+                        _c("td", [_vm._v(_vm._s(value.role_name))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-sm btn-secondary rounded",
+                              attrs: { href: "" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.perMission(value.id)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fa fa-key" })]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-sm btn-primary",
+                              attrs: { href: "#" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.edit(value)
+                                }
+                              }
+                            },
+                            [
+                              _c("i", {
+                                staticClass: "fa fa-edit",
+                                attrs: { title: "Edit" }
+                              })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-sm btn-danger",
+                              attrs: { href: "#" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.deleterole(value.id)
+                                }
+                              }
+                            },
+                            [
+                              _c("i", {
+                                staticClass: "fa fa-trash",
+                                attrs: { title: "Delete" }
+                              })
+                            ]
+                          )
+                        ])
+                      ])
+                    }),
+                    0
+                  )
+                ]
+              )
+            ])
+          ])
+        : _c(
+            "div",
+            {
+              staticClass: "col-md-12 text-center",
+              staticStyle: { "margin-top": "30px" }
+            },
+            [
+              _c("div", {
+                staticClass: "loader multi-loader mx-auto loader-xl"
+              })
+            ]
+          )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-md-12 text-center mb-10 mt-10" },
+        [_c("pagination", { attrs: { pageData: _vm.roles } })],
+        1
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -9131,19 +6973,11 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("Vendor")]),
+        _c("th", [_vm._v("Role Name")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Address")]),
+        _c("th", [_vm._v("Permissions")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Email")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Phone")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Concerned Person")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "text-center" }, [_vm._v("Status")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "text-center" }, [_vm._v("action")])
+        _c("th", [_vm._v("Action")])
       ])
     ])
   }
@@ -21370,17 +19204,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/supplier/CreateSupplier.vue":
-/*!*************************************************************!*\
-  !*** ./resources/js/components/supplier/CreateSupplier.vue ***!
-  \*************************************************************/
+/***/ "./resources/js/components/role/CreateRole.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/role/CreateRole.vue ***!
+  \*****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _CreateSupplier_vue_vue_type_template_id_6e197fb0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreateSupplier.vue?vue&type=template&id=6e197fb0& */ "./resources/js/components/supplier/CreateSupplier.vue?vue&type=template&id=6e197fb0&");
-/* harmony import */ var _CreateSupplier_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateSupplier.vue?vue&type=script&lang=js& */ "./resources/js/components/supplier/CreateSupplier.vue?vue&type=script&lang=js&");
+/* harmony import */ var _CreateRole_vue_vue_type_template_id_b2801420___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreateRole.vue?vue&type=template&id=b2801420& */ "./resources/js/components/role/CreateRole.vue?vue&type=template&id=b2801420&");
+/* harmony import */ var _CreateRole_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateRole.vue?vue&type=script&lang=js& */ "./resources/js/components/role/CreateRole.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -21390,9 +19224,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _CreateSupplier_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _CreateSupplier_vue_vue_type_template_id_6e197fb0___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _CreateSupplier_vue_vue_type_template_id_6e197fb0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _CreateRole_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CreateRole_vue_vue_type_template_id_b2801420___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CreateRole_vue_vue_type_template_id_b2801420___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -21402,245 +19236,171 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/supplier/CreateSupplier.vue"
+component.options.__file = "resources/js/components/role/CreateRole.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/supplier/CreateSupplier.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************!*\
-  !*** ./resources/js/components/supplier/CreateSupplier.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************/
+/***/ "./resources/js/components/role/CreateRole.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/role/CreateRole.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateSupplier_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./CreateSupplier.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/supplier/CreateSupplier.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateSupplier_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateRole_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./CreateRole.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/role/CreateRole.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateRole_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/supplier/CreateSupplier.vue?vue&type=template&id=6e197fb0&":
-/*!********************************************************************************************!*\
-  !*** ./resources/js/components/supplier/CreateSupplier.vue?vue&type=template&id=6e197fb0& ***!
-  \********************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateSupplier_vue_vue_type_template_id_6e197fb0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./CreateSupplier.vue?vue&type=template&id=6e197fb0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/supplier/CreateSupplier.vue?vue&type=template&id=6e197fb0&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateSupplier_vue_vue_type_template_id_6e197fb0___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateSupplier_vue_vue_type_template_id_6e197fb0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/supplier/UpdateSupplier.vue":
-/*!*************************************************************!*\
-  !*** ./resources/js/components/supplier/UpdateSupplier.vue ***!
-  \*************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _UpdateSupplier_vue_vue_type_template_id_85146806___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UpdateSupplier.vue?vue&type=template&id=85146806& */ "./resources/js/components/supplier/UpdateSupplier.vue?vue&type=template&id=85146806&");
-/* harmony import */ var _UpdateSupplier_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UpdateSupplier.vue?vue&type=script&lang=js& */ "./resources/js/components/supplier/UpdateSupplier.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _UpdateSupplier_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _UpdateSupplier_vue_vue_type_template_id_85146806___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _UpdateSupplier_vue_vue_type_template_id_85146806___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/supplier/UpdateSupplier.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/supplier/UpdateSupplier.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************!*\
-  !*** ./resources/js/components/supplier/UpdateSupplier.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateSupplier_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./UpdateSupplier.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/supplier/UpdateSupplier.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateSupplier_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/supplier/UpdateSupplier.vue?vue&type=template&id=85146806&":
-/*!********************************************************************************************!*\
-  !*** ./resources/js/components/supplier/UpdateSupplier.vue?vue&type=template&id=85146806& ***!
-  \********************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateSupplier_vue_vue_type_template_id_85146806___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./UpdateSupplier.vue?vue&type=template&id=85146806& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/supplier/UpdateSupplier.vue?vue&type=template&id=85146806&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateSupplier_vue_vue_type_template_id_85146806___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateSupplier_vue_vue_type_template_id_85146806___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/supplier/ViewDetails.vue":
-/*!**********************************************************!*\
-  !*** ./resources/js/components/supplier/ViewDetails.vue ***!
-  \**********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ViewDetails_vue_vue_type_template_id_55fd3076___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ViewDetails.vue?vue&type=template&id=55fd3076& */ "./resources/js/components/supplier/ViewDetails.vue?vue&type=template&id=55fd3076&");
-/* harmony import */ var _ViewDetails_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ViewDetails.vue?vue&type=script&lang=js& */ "./resources/js/components/supplier/ViewDetails.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _ViewDetails_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ViewDetails_vue_vue_type_template_id_55fd3076___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ViewDetails_vue_vue_type_template_id_55fd3076___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/supplier/ViewDetails.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/supplier/ViewDetails.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************!*\
-  !*** ./resources/js/components/supplier/ViewDetails.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewDetails_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ViewDetails.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/supplier/ViewDetails.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewDetails_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/supplier/ViewDetails.vue?vue&type=template&id=55fd3076&":
-/*!*****************************************************************************************!*\
-  !*** ./resources/js/components/supplier/ViewDetails.vue?vue&type=template&id=55fd3076& ***!
-  \*****************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewDetails_vue_vue_type_template_id_55fd3076___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./ViewDetails.vue?vue&type=template&id=55fd3076& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/supplier/ViewDetails.vue?vue&type=template&id=55fd3076&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewDetails_vue_vue_type_template_id_55fd3076___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewDetails_vue_vue_type_template_id_55fd3076___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/supplier/ViewSupplier.vue":
-/*!***********************************************************!*\
-  !*** ./resources/js/components/supplier/ViewSupplier.vue ***!
-  \***********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ViewSupplier_vue_vue_type_template_id_1f32a04e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ViewSupplier.vue?vue&type=template&id=1f32a04e& */ "./resources/js/components/supplier/ViewSupplier.vue?vue&type=template&id=1f32a04e&");
-/* harmony import */ var _ViewSupplier_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ViewSupplier.vue?vue&type=script&lang=js& */ "./resources/js/components/supplier/ViewSupplier.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _ViewSupplier_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ViewSupplier_vue_vue_type_template_id_1f32a04e___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ViewSupplier_vue_vue_type_template_id_1f32a04e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/supplier/ViewSupplier.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/supplier/ViewSupplier.vue?vue&type=script&lang=js&":
+/***/ "./resources/js/components/role/CreateRole.vue?vue&type=template&id=b2801420&":
 /*!************************************************************************************!*\
-  !*** ./resources/js/components/supplier/ViewSupplier.vue?vue&type=script&lang=js& ***!
+  !*** ./resources/js/components/role/CreateRole.vue?vue&type=template&id=b2801420& ***!
   \************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewSupplier_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ViewSupplier.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/supplier/ViewSupplier.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewSupplier_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/supplier/ViewSupplier.vue?vue&type=template&id=1f32a04e&":
-/*!******************************************************************************************!*\
-  !*** ./resources/js/components/supplier/ViewSupplier.vue?vue&type=template&id=1f32a04e& ***!
-  \******************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewSupplier_vue_vue_type_template_id_1f32a04e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./ViewSupplier.vue?vue&type=template&id=1f32a04e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/supplier/ViewSupplier.vue?vue&type=template&id=1f32a04e&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewSupplier_vue_vue_type_template_id_1f32a04e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateRole_vue_vue_type_template_id_b2801420___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./CreateRole.vue?vue&type=template&id=b2801420& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/role/CreateRole.vue?vue&type=template&id=b2801420&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateRole_vue_vue_type_template_id_b2801420___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewSupplier_vue_vue_type_template_id_1f32a04e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateRole_vue_vue_type_template_id_b2801420___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/role/EditRole.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/components/role/EditRole.vue ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/role/EditRole.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/role/Permission.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/role/Permission.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/role/Permission.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/role/ViewRole.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/components/role/ViewRole.vue ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ViewRole_vue_vue_type_template_id_77245019___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ViewRole.vue?vue&type=template&id=77245019& */ "./resources/js/components/role/ViewRole.vue?vue&type=template&id=77245019&");
+/* harmony import */ var _ViewRole_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ViewRole.vue?vue&type=script&lang=js& */ "./resources/js/components/role/ViewRole.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ViewRole_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ViewRole_vue_vue_type_template_id_77245019___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ViewRole_vue_vue_type_template_id_77245019___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/role/ViewRole.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/role/ViewRole.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/role/ViewRole.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewRole_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ViewRole.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/role/ViewRole.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewRole_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/role/ViewRole.vue?vue&type=template&id=77245019&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/role/ViewRole.vue?vue&type=template&id=77245019& ***!
+  \**********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewRole_vue_vue_type_template_id_77245019___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./ViewRole.vue?vue&type=template&id=77245019& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/role/ViewRole.vue?vue&type=template&id=77245019&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewRole_vue_vue_type_template_id_77245019___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewRole_vue_vue_type_template_id_77245019___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -21724,17 +19484,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/supplier.js":
-/*!**********************************!*\
-  !*** ./resources/js/supplier.js ***!
-  \**********************************/
+/***/ "./resources/js/role.js":
+/*!******************************!*\
+  !*** ./resources/js/role.js ***!
+  \******************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! ./vue-assets */ "./resources/js/vue-assets.js");
 
-Vue.component('create-supplier', __webpack_require__(/*! ./components/supplier/CreateSupplier.vue */ "./resources/js/components/supplier/CreateSupplier.vue")["default"]);
-Vue.component('view-supplier', __webpack_require__(/*! ./components/supplier/ViewSupplier.vue */ "./resources/js/components/supplier/ViewSupplier.vue")["default"]);
+Vue.component('create-role', __webpack_require__(/*! ./components/role/CreateRole.vue */ "./resources/js/components/role/CreateRole.vue")["default"]);
+Vue.component('view-role', __webpack_require__(/*! ./components/role/ViewRole.vue */ "./resources/js/components/role/ViewRole.vue")["default"]);
 var app = new Vue({
   el: '#content'
 });
@@ -21774,14 +19534,14 @@ var EventBus = new Vue();
 
 /***/ }),
 
-/***/ 1:
-/*!****************************************!*\
-  !*** multi ./resources/js/supplier.js ***!
-  \****************************************/
+/***/ 8:
+/*!************************************!*\
+  !*** multi ./resources/js/role.js ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! E:\server\htdocs\e-management\resources\js\supplier.js */"./resources/js/supplier.js");
+module.exports = __webpack_require__(/*! E:\server\htdocs\e-management\resources\js\role.js */"./resources/js/role.js");
 
 
 /***/ })

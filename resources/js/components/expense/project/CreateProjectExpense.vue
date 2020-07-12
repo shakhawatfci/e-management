@@ -65,7 +65,10 @@
                                 <div class="contact-name">
                                     <i class="flaticon-user-11"></i>
                                     <label for="basicFlatpickr2">Month</label>
-                                    <month-picker @change="showDate" :input-pre-filled="false" :no-default="true" :show-year="true"></month-picker>
+                                    <month-picker @change="showDate"
+                                     :input-pre-filled="false"
+                                      :no-default="true" 
+                                      :show-year="true" :variant="'dark'"></month-picker>
                                     <span v-if="validation_error.hasOwnProperty('month')" class="text-danger">
                                         {{ validation_error.month[0] }}
                                     </span>

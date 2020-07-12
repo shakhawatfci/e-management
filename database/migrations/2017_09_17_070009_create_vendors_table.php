@@ -19,6 +19,10 @@ class CreateVendorsTable extends Migration
             $table->string('vendor_address')->nullable();
             $table->string('vendor_email')->nullable();
             $table->string('vendor_phone')->nullable();
+            $table->string('concerned_person')->nullable();
+            $table->string('phone_number_2')->nullable();
+            $table->text('bank_details')->nullable();
+            $table->text('bkash_number')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });

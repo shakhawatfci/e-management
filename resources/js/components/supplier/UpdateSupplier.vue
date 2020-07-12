@@ -44,10 +44,66 @@
                                         </span>
                                     </div>
                                 </div>
+                     
+                     <!-- newly added  -->
+
+                                <div class="col-md-6">
+                                    <div class="contact-phone">
+                                        <i class="flaticon-telephone"></i>
+                                        <label for="vendor-phone">Concerned Person</label>
+                                        <input type="text" id="vendor-phone" class="form-control" v-model="supplier.concerned_person" 
+                                        placeholder="Concerned Person">
+                                        <span v-if="validation_error.hasOwnProperty('concerned_person')" class="text-danger">
+                                                {{ validation_error.concerned_person[0] }}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="contact-phone">
+                                        <i class="flaticon-telephone"></i>
+                                        <label for="vendor-phone">Phone Number 2</label>
+                                        <input type="text" id="vendor-phone" class="form-control" v-model="supplier.phone_number_2" 
+                                        placeholder="Another Phone">
+                                        <span v-if="validation_error.hasOwnProperty('phone_number_2')" class="text-danger">
+                                                {{ validation_error.phone_number_2[0] }}
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <div class="contact-phone">
+                                        <i class="flaticon-telephone"></i>
+                                        <label for="vendor-phone">Bkash No:</label>
+                                        <input type="text" id="vendor-phone" class="form-control" v-model="supplier.bkash_number" 
+                                        placeholder="Bkash No">
+                                        <span v-if="validation_error.hasOwnProperty('bkash_number')" class="text-danger">
+                                                {{ validation_error.bkash_number[0] }}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="contact-phone">
+                                        <i class="flaticon-telephone"></i>
+                                        <label for="vendor-phone">Bank Info:</label>
+                                        <textarea class="form-control" 
+                                        v-model="supplier.bank_details" 
+                                        placeholder="Bank Info"></textarea>
+                                        <span v-if="validation_error.hasOwnProperty('bank_details')" class="text-danger">
+                                                {{ validation_error.bank_details[0] }}
+                                        </span>
+                                    </div>
+                                </div>
+                         
+                         
+                         <!-- newly added  -->
+
                                 <div class="col-md-6">
                                     <div class="contact-email">
                                         <i class="flaticon-mail-26"></i>
-                                        <label for="up-vendor-status">Supplier Status</label>
+                                        <label for="up-vendor-status">Vendor Status</label>
                                         <select class="form-control" id="up-vendor-status" v-model="supplier.status">
                                             <option>Supplier Status</option>
                                             <option value="1">Active</option>
@@ -97,6 +153,10 @@ export default {
           vendor_address : '',
           vendor_email : '',
           vendor_phone : '',
+          concerned_person : '',
+          phone_number_2 : '',
+          bkash_number : '',
+          bank_details : '',
           status : 1 
          },
          button_name : 'Update',
@@ -155,6 +215,10 @@ export default {
             vendor_adress : '',
             vendor_email : '',
             vendor_phone : '',
+           concerned_person : '',
+           phone_number_2 : '',
+           bkash_number : '',
+           bank_details : '',
             status : 1  
           };
          this.validation_error = {};

@@ -20,7 +20,7 @@ class CreateMenusTable extends Migration
             $table->string('icon')->nullable();
             $table->string('menu_url')->nullable();
             $table->integer('president')->default(0);
-            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('status')->default(0);  
             $table->timestamps();
         });
     }

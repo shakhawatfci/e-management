@@ -4636,6 +4636,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -16812,7 +16815,8 @@ var render = function() {
                               attrs: {
                                 "input-pre-filled": false,
                                 "no-default": true,
-                                "show-year": true
+                                "show-year": true,
+                                variant: "dark"
                               },
                               on: { change: _vm.showDate }
                             }),

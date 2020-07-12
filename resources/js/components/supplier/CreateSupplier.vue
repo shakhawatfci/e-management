@@ -1,7 +1,7 @@
 <template>
 <!-- Modal -->
     <div class="modal animated fadeInUp custo-fadeInUp show" id="createSupplier" tabindex="-1" role="dialog" aria-labelledby="addContactModalTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
             <form @submit.prevent="save()">
             <div class="modal-content">
                 <div class="modal-header">
@@ -44,6 +44,62 @@
                                         </span>
                                     </div>
                                 </div>
+                         <!-- newly added  -->
+
+                                <div class="col-md-6">
+                                    <div class="contact-phone">
+                                        <i class="flaticon-telephone"></i>
+                                        <label for="vendor-phone">Concerned Person</label>
+                                        <input type="text" id="vendor-phone" class="form-control" v-model="supplier.concerned_person" 
+                                        placeholder="Concerned Person">
+                                        <span v-if="validation_error.hasOwnProperty('concerned_person')" class="text-danger">
+                                                {{ validation_error.concerned_person[0] }}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="contact-phone">
+                                        <i class="flaticon-telephone"></i>
+                                        <label for="vendor-phone">Phone Number 2</label>
+                                        <input type="text" id="vendor-phone" class="form-control" v-model="supplier.phone_number_2" 
+                                        placeholder="Another Phone">
+                                        <span v-if="validation_error.hasOwnProperty('phone_number_2')" class="text-danger">
+                                                {{ validation_error.phone_number_2[0] }}
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <div class="contact-phone">
+                                        <i class="flaticon-telephone"></i>
+                                        <label for="vendor-phone">Bkash No:</label>
+                                        <input type="text" id="vendor-phone" class="form-control" v-model="supplier.bkash_number" 
+                                        placeholder="Bkash No">
+                                        <span v-if="validation_error.hasOwnProperty('bkash_number')" class="text-danger">
+                                                {{ validation_error.bkash_number[0] }}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="contact-phone">
+                                        <i class="flaticon-telephone"></i>
+                                        <label for="vendor-phone">Bank Info:</label>
+                                        <textarea class="form-control" 
+                                        v-model="supplier.bank_details" 
+                                        placeholder="Bank Info"></textarea>
+                                        <span v-if="validation_error.hasOwnProperty('bank_details')" class="text-danger">
+                                                {{ validation_error.bank_details[0] }}
+                                        </span>
+                                    </div>
+                                </div>
+                         
+                         
+                         <!-- newly added  -->
+
+
                                 <div class="col-md-6">
                                     <div class="contact-email">
                                         <i class="flaticon-mail-26"></i>
@@ -98,6 +154,10 @@ export default {
           vendor_address : '',
           vendor_email : '',
           vendor_phone : '',
+          concerned_person : '',
+          phone_number_2 : '',
+          bkash_number : '',
+          bank_details : '',
           status : '' 
          },
          button_name : 'Save',
@@ -150,6 +210,10 @@ export default {
             vendor_adress : '',
             vendor_email : '',
             vendor_phone : '',
+            concerned_person : '',
+            phone_number_2 : '',
+            bkash_number : '',
+            bank_details : '',
             status : 1  
           };
          this.validation_error = {};

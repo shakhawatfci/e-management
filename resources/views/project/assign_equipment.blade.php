@@ -9,7 +9,7 @@
 
 @section('create-button')
 <button  data-toggle="modal"  data-target="#aissignEquipment"
-                class="btn   btn-outline-warning"  data-placement="top" title="Assign New Equipment">
+                class="btn   btn-primary"  data-placement="top" title="Assign New Equipment">
             <i class="far fa-plus-square"></i> Assign  Equipment
 </button>
 @endsection

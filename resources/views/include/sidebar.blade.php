@@ -14,6 +14,40 @@
                             </div>
                         </a>
                     </li>
+
+                <!-- adminstration  -->
+
+                                <li class="menu">
+                        <a href="#equipment" data-toggle="collapse"
+                         aria-expanded="false"  class="dropdown-toggle">
+                            <div class="menu_headling">
+                                <i class="fa fa-sitemap"></i>
+                                <span>Adminstration</span>
+                            </div>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" 
+                                width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" 
+                                 stroke-width="2" stroke-linecap="round"
+                                  stroke-linejoin="round" class="feather feather-chevron-right">
+                                  <polyline points="9 18 15 12 9 6"></polyline>
+                                  </svg>
+                            </div>
+                        </a>
+                        <ul class="collapse submenu list-unstyled"
+                         id="equipment" data-parent="#accordionExample">
+                            <li class="@if(Route::is('role.index')){{ 'active' }}@else{{ '' }}@endif">
+                                <a href="{{ route('role.index') }}" >Roles & Permission</a>
+                            </li>
+                            <li  class="@if(Route::is('role.index')){{ 'active' }}@else{{ '' }}@endif">
+                                <a href="{{ route('role.index') }}"> Employee </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                <!-- adminstration  -->
+
                     <!-- Vendor menu  -->
                     <li class="menu @if(Route::is('supplier.index')) active active_url @endif">
                         <a href="{{ route('supplier.index') }}" data-active="@if(Route::is('supplier.index')){{ 'true' }}@else{{ 'false' }}@endif" class="dropdown-toggle">
@@ -244,15 +278,10 @@
                             <li  class="@if(Route::is('equipment-sales.index')){{ 'active' }}@else{{ '' }}@endif">
                                 <a href="{{ route('equipment-sales.index') }}"> Equipment Sales</a>
                             </li> 
-                        <ul class="collapse submenu list-unstyled"
-                         id="Sales" data-parent="#accordionExample">
+
                             <li  class="@if(Route::is('mobilization.index')){{ 'active' }}@else{{ '' }}@endif">
                                 <a href="{{ route('mobilization.index') }}"> Mobilization</a>
                             </li> 
-                            <!-- <li class="">
-                                <a href="#">Operator Salary </a>
-                            </li> -->
-                        </ul>
                     </li>
 
                     <!-- /Operator  -->

@@ -442,7 +442,5 @@ export default {
 </script>
 
 <style  scoped>
-.custom-modal {
- min-width: 95% !important;
-}
+
 </style>
