@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Expense;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\OfficeExpense;
+use App\AllStatic;
+use App\OfficeExpenseHead;
 use Auth;
 
 class OfficeExpenseController extends Controller
@@ -16,7 +18,10 @@ class OfficeExpenseController extends Controller
      */
     public function index()
     {
-        return view('expense.office_expense');
+        $office_heads = OfficeExpenseHead::orderBy('head_name','asc')
+                ->where('status','=',AllStatic::$active)->get();
+
+        return view('expense.office_expense',['office_head' => $office_heads]);
     }
 
     /**
@@ -28,6 +33,9 @@ class OfficeExpenseController extends Controller
     {
         // 
         $office = OfficeExpense::with(['office_expense_head:id,head_name'])->orderBy('id','desc');
+        if($request->office_head != '') {
+            $office->where('office_expense_head_id','=',$request->office_head);
+        }
         if($request->keyword != '') {
             $office->where('project_id','LIKE','%'.$request->keyword.'%');
         }
@@ -44,7 +52,7 @@ class OfficeExpenseController extends Controller
     {
         $request->validate([
             'office_expense_head_id' => 'required',
-            'month' => 'required',
+            'month' => 'required|date_format:Y-m',
             'date' => 'required',
             'amount' => 'required|numeric'
         ]);
@@ -113,7 +121,7 @@ class OfficeExpenseController extends Controller
     {
         $request->validate([
             'office_expense_head_id' => 'required',
-            'month' => 'required',
+            'month' => 'required|date_format:Y-m',
             'date' => 'required',
             'amount' => 'required|numeric'
         ]);

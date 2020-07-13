@@ -297,11 +297,6 @@ export default {
           document_link : '',
           note : ''
         };
-        this.projects = [];
-        this.vendors  = [];
-        this.equipment_types  = [];
-        this.equipments  = [];
-        this.expense_categories  = [];
         this.validation_error = {};
      }
  } 

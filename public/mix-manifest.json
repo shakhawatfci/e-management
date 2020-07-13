@@ -6,6 +6,7 @@
     "/js/equipment_sales.js": "/js/equipment_sales.js",
     "/js/expense.js": "/js/expense.js",
     "/js/mobilization.js": "/js/mobilization.js",
+    "/js/operator.js": "/js/operator.js",
     "/js/project.js": "/js/project.js",
     "/js/role.js": "/js/role.js",
     "/js/supplier.js": "/js/supplier.js"

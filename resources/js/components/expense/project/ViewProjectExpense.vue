@@ -2,9 +2,33 @@
   <div>
     <div class="row">
       <div class="col-md-3" style="margin-bottom:10px;">
+        <select class="form-control" v-model="project_id" @change="getProjectExpense()">
+          <option value>All Projects</option>
+          <option
+            v-for="project in projects_data"
+            :key="project.id"
+            :value="project.id"
+          >{{ project.project_name }}</option>
+        </select>
+      </div>
+
+      <div class="col-md-3" style="margin-bottom:10px;">
+        <select class="form-control" v-model="project_head_id" @change="getProjectExpense()">
+          <option value>All Project Head</option>
+          <option
+            v-for="project_expense in project_expense_head"
+            :key="project_expense.id"
+            :value="project_expense.id"
+          >{{ project_expense.head_name }}</option>
+        </select>
+      </div>
+      <div class="col-md-3" style="margin-bottom:10px;">
         <input type="text" v-model="keyword" 
         class="form-control"
          placeholder="Search Project Expense" @keyup="getProjectExpense()" />
+      </div>
+      <div class="col-md-2" style="margin-bottom:15px;">
+        <button type="button" class="btn btn-danger" @click="filterClear()">Clear</button>
       </div>
     </div>
     
@@ -44,12 +68,12 @@
         </div>
   </div>
 
-       <update-projectexpense> </update-projectexpense>
-       <show-projectexpense> </show-projectexpense>
+       <update-projectexpense :project_data="projects_data" :project_expense_head="project_expense_head"> </update-projectexpense>
+       <show-projectexpense></show-projectexpense>
     <div class="row">
       <div class="col-md-12 text-center mb-10 mt-10">
        <!-- import pagination here  -->
-       <pagination :pageData="this.projects"> </pagination>
+       <pagination :pageData="this.projects"></pagination>
 
       </div>
     </div>
@@ -65,6 +89,7 @@ import ShowProjectexpense from './SingleViewProjectexpense';
 import UpdateProjectexpense from './UpdateProjectexpense';
 export default {
   mixins: [Mixin],
+  props : ['project_expense_head','projects_data'],
   components : {
    'pagination' : Pagination,
    UpdateProjectexpense,ShowProjectexpense
@@ -72,6 +97,8 @@ export default {
   data() {
     return {
      projects : [],
+     project_id : '',
+     project_head_id : '',
      keyword   : '',
      isLoading : false,
     }
@@ -94,7 +121,7 @@ export default {
      getProjectExpense(page = 1) 
      {
          this.isLoading = true;
-         axios.get(base_url+`project-expense-list?page=${page}&keyword=${this.keyword}`)
+         axios.get(base_url+`project-expense-list?page=${page}&keyword=${this.keyword}&project=${this.project_id}&project_head=${this.project_head_id}`)
          .then(response =>
           {
             this.projects = response.data;
@@ -133,6 +160,14 @@ export default {
            });
            }
         }) 
+     },
+
+     filterClear()
+     {
+        this.project_id = '';
+        this.project_head_id = '';
+        this.keyword  = '';
+        this.getProjectExpense();
      },
 
      pageClicked(page)

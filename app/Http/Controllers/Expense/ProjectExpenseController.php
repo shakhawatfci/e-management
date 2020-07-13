@@ -16,7 +16,12 @@ class ProjectExpenseController extends Controller
      */
     public function index()
     {
-        return view('expense.project_expense');
+        $project = \App\Project::orderBy('id','desc')->get();
+        $project_heads = \App\ProjectExpenseHead::orderBy('id','desc')->get();
+        return view('expense.project_expense')->with([
+            'project' => $project,
+            'project_heads' => $project_heads
+        ]);
     }
 
     /**
@@ -27,21 +32,16 @@ class ProjectExpenseController extends Controller
     public function projectExpenseList(Request $request)
     {
         $projects = ProjectExpense::with(['project_expense_head:id,head_name','project:id,project_name'])->orderBy('id','desc');
+        if($request->project != '') {
+            $projects->where('project_id','=',$request->project);
+        }
+        if($request->project_head != '') {
+            $projects->where('project_expense_head_id','=',$request->project_head);
+        }
         if($request->keyword != '') {
             $projects->where('project_id','LIKE','%'.$request->keyword.'%');
         }
         return $projects->paginate(10);
-    }
-
-    public function projectData()
-    {
-        $project = \App\Project::orderBy('id','desc')->get();
-        $project_heads = \App\ProjectExpenseHead::orderBy('id','desc')->get();
-
-        return response()->json([
-            'project' => $project,
-            'project_heads' => $project_heads
-        ]);
     }
 
     public function store(Request $request)
@@ -49,7 +49,7 @@ class ProjectExpenseController extends Controller
         $request->validate([
             'project_expense_head_id' => 'required',
             'project_id' => 'required',
-            'month' => 'required',
+            'month' => 'required|date_format:Y-m',
             'date' => 'required',
             'amount' => 'required|numeric',
             'note' => 'required'
@@ -121,7 +121,7 @@ class ProjectExpenseController extends Controller
         $request->validate([
             'project_expense_head_id' => 'required',
             'project_id' => 'required',
-            'month' => 'required',
+            'month' => 'required|date_format:Y-m',
             'date' => 'required',
             'amount' => 'required|numeric',
             'note' => 'required'

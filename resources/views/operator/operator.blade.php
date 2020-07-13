@@ -1,8 +1,8 @@
 @extends('master.master')
-@section('title','EMS | Office Expense')
+@section('title','EMS | Operator')
 
 @section('page_header')
-<li class="breadcrumb-item"><a href="javascript:void(0);">Office Expense</a></li>
+<li class="breadcrumb-item"><a href="javascript:void(0);">Operator</a></li>
 <li class="breadcrumb-item active" aria-current="page"><span>Manage</span></li>
 @endsection
 @section('content')
@@ -13,21 +13,21 @@
 
                 <div class="row">
                     <div class="col-xl-4 col-lg-5 col-md-5 col-sm-7 filtered-list-search layout-spacing align-self-center">
-                      <h6 style="margin-top : 20px">Manage Office Expense</h6>
+                      <h6 style="margin-top : 20px">Manage Operator</h6>
                     </div>
 
                     <div class="col-xl-8 col-lg-7 col-md-7 col-sm-5 text-sm-right text-center layout-spacing align-self-center">
                         <div class="d-flex justify-content-sm-end justify-content-center">
-                            <button  data-toggle="modal"  data-target="#createOfficeExpense"
-                             class="btn btn-primary"  data-placement="top" title="Create Office Expense">
+                            <button  data-toggle="modal"  data-target="#createOperator"
+                             class="btn btn-primary"  data-placement="top" title="Create New Operator">
                             <i class="far fa-plus-square"></i> Create New
                             </button>
                         </div>
-                        <create-officeexpense></create-officeexpense>
+                        <create-operator :vendors="{{ $vendors }}" :equipment_types="{{ $equipment_types }}" :equipements="{{ $equipements }}"></create-operator>
                     </div>
                 </div>
 
-             <view-officeexpense :office_heads="{{ $office_head }}"></view-officeexpense>
+             <view-operator :vendors="{{ $vendors }}" :equipment_types="{{ $equipment_types }}" :equipements="{{ $equipements }}"></view-operator>
 
             </div>
         </div>
@@ -38,6 +38,6 @@
 <!-- push the script which you need only this page  -->
 @push('script')
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-<script src="{{ asset('public/js/expense.js') }}"></script>
+<script src="{{ asset('public/js/operator.js') }}"></script>
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 @endpush

@@ -1,0 +1,129 @@
+<?php
+
+namespace App\Http\Controllers\Operator;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\OperatorSalary;
+use App\Operator;
+use App\AllStatic;
+
+class OperatorSalaryController extends Controller
+{
+    public function index()
+    {
+    	$operator = Operator::all();
+    	return view('operator.operator_salary',['operator_data' => $operator]);
+    }
+
+    public function operatorSalaryList(Request $request)
+    {
+    	$salary = OperatorSalary::with('operator:id,name')->orderBy('id','desc');
+        if($request->keyword != '') {
+            $salary->where('payment_date','LIKE','%'.$request->keyword.'%');
+            $salary->orWhere('month','LIKE','%'.$request->keyword.'%');
+            $salary->orWhere('payment_amount','LIKE','%'.$request->keyword.'%');
+            $salary->orWhere('salary_type','LIKE','%'.$request->keyword.'%');
+        }
+        return $salary->paginate(10);
+    }
+
+/**
+ * Store a newly created resource in storage.
+ *
+ * @param  \Illuminate\Http\Request  $request
+ * @return \Illuminate\Http\Response
+ */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'operator_id' 	 => 'required',
+            'month'			 => 'required|date_format:Y-m',
+	        'payment_date' 	 => 'required',
+	        'payment_amount' => 'required|numeric',
+	        'mode' 			 => 'required'
+        ]);
+
+        try {
+           $status = $request->status ? 1 : 0;
+           $bank_note = $request->mode == 2 ? $request->bank_bkash_note : NULL;
+           $bkah_note = $request->mode == 3 ? $request->bank_bkash_note : NULL;
+            $insert = new OperatorSalary();
+        	$insert->operator_id	= $request->operator_id;
+	        $insert->month 		    = $request->month;
+	        $insert->payment_date 	= $request->payment_date;
+	        $insert->payment_amount = $request->payment_amount;
+	        $insert->mode 			= $request->mode;
+	        $insert->bank_note 	    = $bank_note;
+	        $insert->bkash_note 	= $bkah_note;
+	        $insert->salary_type 	= NULL;
+	        $insert->status 		= $status;
+            if($insert->save()) {
+                return response()->json(['status' => 'success', 'message' => 'Operator Salary Created !']);
+            }else{
+                return response()->json(['status' => 'error', 'message' => 'Something went wrong !']);
+
+            }
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+        }
+    }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request,$id)
+    {
+        $request->validate([
+            'operator_id' 	 => 'required',
+            'month'			 => 'required|date_format:Y-m',
+	        'payment_date' 	 => 'required',
+	        'payment_amount' => 'required|numeric',
+	        'mode' 			 => 'required'
+        ]);
+
+        try {
+           $status = $request->status ? 1 : 0;
+           $bank_note = $request->mode == 2 ? $request->bank_bkash_note : NULL;
+           $bkah_note = $request->mode == 3 ? $request->bank_bkash_note : NULL;
+
+            $update = OperatorSalary::find($id);
+
+                $update->operator_id	= $request->operator_id;
+		        $update->month 			= $request->month;
+		        $update->payment_date 	= $request->payment_date;
+		        $update->payment_amount	= $request->payment_amount;
+		        $update->mode 			= $request->mode;
+		        $update->bank_note 		= $bank_note;
+		        $update->bkash_note 	= $bkash_note;
+                $update->status         = $status;
+
+            if ($update->update()) {
+                return response()->json(['status' => 'success', 'message' => 'Operator Salary Updated !']);
+            }else{
+                return response()->json(['status' => 'error', 'message' => 'Something went wrong !']);
+
+            }
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+        }
+    }
+
+
+    public function destroy($id)
+    {
+        try {
+            $delete = OperatorSalary::find($id);
+        if($delete->delete()) {
+                return response()->json(['status' => 'success', 'message' => 'Operator Salary Deleted !']);
+            }else{
+                return response()->json(['status' => 'error', 'message' => 'Something went wrong !']);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+        }
+    }
+}

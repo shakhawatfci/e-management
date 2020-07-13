@@ -23,11 +23,11 @@
                             <i class="far fa-plus-square"></i> Create New
                             </button>
                         </div>
-                        <create-projectexpense></create-projectexpense>
+                        <create-projectexpense :project_expense_head="{{ $project_heads }}" :projects="{{ $project }}"></create-projectexpense>
                     </div>
                 </div>
 
-             <view-projectexpense></view-projectexpense>
+             <view-projectexpense :project_expense_head="{{ $project_heads }}" :projects_data="{{ $project }}"></view-projectexpense>
 
             </div>
         </div>

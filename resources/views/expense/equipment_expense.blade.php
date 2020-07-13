@@ -27,7 +27,7 @@
                     </div>
                 </div>
 
-             <view-equipmentexpense></view-equipmentexpense>
+             <view-equipmentexpense :projects="{{ $projects }}" :vendors="{{ $vendors }}" :equipment_types="{{ $equipment_types }}" :equipements="{{ $equipements }}" :equipment_heads="{{ $equipment_heads }}"></view-equipmentexpense>
 
             </div>
         </div>

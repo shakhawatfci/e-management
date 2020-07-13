@@ -4,7 +4,15 @@ namespace App\Http\Controllers\Expense;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\AllStatic;
 use App\EquipementExpense;
+use App\EquipmentExpenseHead;
+use App\EquipmentType;
+use App\Equipement;
+use App\Project;
+use App\ProjectClaim;
+use App\ProjectPayment;
+use App\Vendor;
 
 class EquipmentExpenseController extends Controller
 {
@@ -15,7 +23,33 @@ class EquipmentExpenseController extends Controller
      */
     public function index()
     {
-        return view('expense.equipment_expense');
+        $project = Project::orderBy('project_name', 'asc')
+            ->where('project_status', '=', AllStatic::$active)
+            ->get();
+
+        $equipment_type = EquipmentType::orderBy('name', 'asc')
+            ->where('status', '=', AllStatic::$active)
+            ->get();
+
+        $vendor = Vendor::orderBy('vendor_name', 'asc')
+            ->where('status', '=', AllStatic::$active)
+            ->get();
+
+        $equipement = Equipement::orderBy('eq_name', 'asc')
+            ->where('eq_status', '=', AllStatic::$active)
+            ->get();
+
+        $equipment_head = EquipmentExpenseHead::orderBy('head_name', 'asc')
+            ->where('status', '=', AllStatic::$active)
+            ->get();
+
+        return view('expense.equipment_expense', [
+            'projects' => $project,
+            'vendors' => $vendor,
+            'equipment_types' => $equipment_type,
+            'equipements' => $equipement,
+            'equipment_heads' => $equipment_head,
+        ]);
     }
 
     /**
@@ -27,6 +61,21 @@ class EquipmentExpenseController extends Controller
     {
         $equipment = EquipementExpense::with(['project:id,project_name','vendor:id,vendor_name','equipement:id,eq_name','equipment_type:id,name','equipment_expense_head:id,head_name'])
             ->orderBy('id','desc');
+        if($request->project != '') {
+            $equipment->where('project_id','=',$request->project);
+        }
+        if($request->vendor != '') {
+            $equipment->where('vendor_id','=',$request->vendor);
+        }
+        if($request->equipment_type != '') {
+            $equipment->where('equipment_type_id','=',$request->equipment_type);
+        }
+        if($request->equipement != '') {
+            $equipment->where('equipement_id','=',$request->equipement);
+        }
+        if($request->equipment_head != '') {
+            $equipment->where('equipment_expense_head_id','=',$request->equipment_head);
+        }
         if($request->keyword != '') {
             $equipment->where('project_id','LIKE','%'.$request->keyword.'%');
         }
@@ -47,7 +96,7 @@ class EquipmentExpenseController extends Controller
             'equipment_type_id' => 'required',
             'equipement_id' => 'required',
             'expense_category_id' => 'required',
-            'month' => 'required',
+            'month' => 'required|date_format:Y-m',
             'payment_date' => 'required',
             'amount' => 'required'
         ]);
@@ -126,7 +175,7 @@ class EquipmentExpenseController extends Controller
             'equipment_type_id' => 'required',
             'equipement_id' => 'required',
             'equipment_expense_head_id' => 'required',
-            'month' => 'required',
+            'month' => 'required|date_format:Y-m',
             'payment_date' => 'required',
             'amount' => 'required'
         ]);
