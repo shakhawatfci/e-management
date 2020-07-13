@@ -11,6 +11,38 @@
                   <div class="add-contact-box">
                     <div class="add-contact-content text-left">
                        <div class="row">
+
+                            <div class="col-md-4">
+                                  <div class="contact-email">
+                                      <i class="flaticon-mail-26"></i>
+                                      <label for="project-name">Month</label>
+                                           <input type="text" class="form-control"
+                                           v-model="fooding.month"
+                                            placeholder="Month Format : yyyy-mm, Eg , 2020-09">
+                                           <span
+                                           v-if="validation_error.hasOwnProperty('month')" 
+                                          class="text-danger">
+                                          {{ validation_error.month[0] }}
+                                         </span>
+                                  </div>
+                              </div>
+
+                              <div class="col-md-4">
+                                  <div class="contact-email">
+                                      <i class="flaticon-mail-26"></i>
+                                      <label for="project-name">Date</label>
+                                           <input type="text" class="form-control"
+                                           v-model="fooding.date"
+                                           id="foodingDatePicker"
+                                            placeholder="Date">
+                                           <span
+                                           v-if="validation_error.hasOwnProperty('date')" 
+                                          class="text-danger">
+                                          {{ validation_error.date[0] }}
+                                         </span>
+                                  </div>
+                              </div>
+
                               <div class="col-md-4">
                                   <div class="contact-email">
                                       <i class="flaticon-mail-26"></i>
@@ -47,7 +79,7 @@
                                   <div class="contact-email">
                                       <i class="flaticon-mail-26"></i>
                                       <label for="vendor-name">Vendor Name</label>
-                                        <select class="form-control" id="vendor-name" v-model="fooding.vendor_id">
+                                        <select class="form-control" id="vendor-name" v-model="fooding.vendor_id" @change="getVendorEquipments()">
                                             <option value="">Select Vendor</option>
                                             <option v-for="vendor in vendors" :key="vendor.id" :value="vendor.id">{{ vendor.vendor_name }}</option>
                                         </select>
@@ -65,7 +97,7 @@
                                       <label for="equipment-name">Equipment Name</label>
                                         <select class="form-control" id="equipment-name" v-model="fooding.equipement_id">
                                             <option value="">Select Equipment</option>
-                                            <option v-for="equipement in equipements" :key="equipement.id" :value="equipement.id">{{ equipement.eq_name }}</option>
+                                            <option v-for="equipement in equipments" :key="equipement.id" :value="equipement.id">{{ equipement.eq_name }}</option>
                                         </select>
                                            <span
                                            v-if="validation_error.hasOwnProperty('equipement_id')" 
@@ -139,23 +171,26 @@ import { EventBus } from "../../../vue-assets";
 import Mixin from "../../../mixin";
 export default {
    mixins : [Mixin],
-   props : ['projects','vendors','equipment_types','equipements','operators'],
+   props : ['projects','vendors','equipment_types','operators'],
    data()
    {
         
        return {
         fooding : {
           id : '',
-          project : {id : '', project_name : ''},
-          vendor : {id : '', vendor_name : ''},
-          equipment_type : {id : '', name : ''},
-          equipement : {id : '', eq_name : ''},
-          operator : {id : '', name : ''},
+          date : '',
+          month : '',
+          project : '',
+          vendor : '',
+          equipment_type : '',
+          equipement : '',
+          operator : '',
           fooding_amount : '',
           status : ''
         },
         button_name : 'Update',
-        validation_error : {}
+        validation_error : {},
+        equipments : []
        }
    },
 
@@ -164,7 +199,9 @@ export default {
       EventBus.$on('operator-fooding-update',function(value){
         $("#UpdateOperatorFooding").modal('show')
         _this.fooding = value;
-      })
+        _this.getVendorEquipments();
+      });
+       var f1 = flatpickr(document.getElementById('foodingDatePicker'));
    },
    
  methods : {
@@ -204,9 +241,19 @@ export default {
           );
      },
 
+      getVendorEquipments()
+     {
+       axios.get(`${base_url}equipment-by-vendor/0/${this.fooding.vendor_id}`)
+            .then(response => {
+              this.equipments = response.data;
+            });
+     },
+
      resetForm()
      {
         this.fooding = {
+          date : '',
+          month : '',
           project_id : '',
           vendor_id : '',
           equipment_type_id : '',
@@ -217,6 +264,7 @@ export default {
         };
         this.button_name = "Update";
         this.validation_error = {};
+        this.equipments = [];
      }
  } 
    

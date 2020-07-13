@@ -48,16 +48,33 @@ class OperatorSalaryController extends Controller
            $status = $request->status ? 1 : 0;
            $bank_note = $request->mode == 2 ? $request->bank_bkash_note : NULL;
            $bkah_note = $request->mode == 3 ? $request->bank_bkash_note : NULL;
+           
+           $operator =  Operator::find($request->operator_id);
+
+        //    check operator already have payment 
+
+            $count_salary = OperatorSalary::where('month','=',$request->month)
+                                            ->where('operator_id','=',$request->operator_id)
+                                            ->count();
+
+             if($count_salary > 0)
+             { 
+               return response()->json(['status'=>'error','message' => 'Salary Already Given in this month']);
+             }                               
+
             $insert = new OperatorSalary();
-        	$insert->operator_id	= $request->operator_id;
-	        $insert->month 		    = $request->month;
-	        $insert->payment_date 	= $request->payment_date;
-	        $insert->payment_amount = $request->payment_amount;
-	        $insert->mode 			= $request->mode;
-	        $insert->bank_note 	    = $bank_note;
-	        $insert->bkash_note 	= $bkah_note;
-	        $insert->salary_type 	= NULL;
-	        $insert->status 		= $status;
+        	$insert->operator_id	      =    $request->operator_id;
+        	$insert->equipement_id	      =    $operator->equipement_id;
+        	$insert->equipment_type_id	  =    $request->equipment_type_id;
+        	$insert->vendor_id	          =    $request->vendor_id;
+	        $insert->month 		          =    $request->month;
+	        $insert->payment_date 	      =    $request->payment_date;
+	        $insert->payment_amount       =    $request->payment_amount;
+	        $insert->mode 			      =    $request->mode;
+	        $insert->bank_note 	          =    $bank_note;
+	        $insert->bkash_note 	      =    $bkah_note;
+	        $insert->salary_type 	      =    1;
+	        $insert->status 		      =    $status;
             if($insert->save()) {
                 return response()->json(['status' => 'success', 'message' => 'Operator Salary Created !']);
             }else{
@@ -88,7 +105,7 @@ class OperatorSalaryController extends Controller
         try {
            $status = $request->status ? 1 : 0;
            $bank_note = $request->mode == 2 ? $request->bank_bkash_note : NULL;
-           $bkah_note = $request->mode == 3 ? $request->bank_bkash_note : NULL;
+           $bkash_note = $request->mode == 3 ? $request->bank_bkash_note : NULL;
 
             $update = OperatorSalary::find($id);
 

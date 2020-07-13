@@ -9,14 +9,8 @@
 </head>
 <body>
 
-	<div class="container">
-
-
-        <div class="row" style="text-align: center;margin-top: 30px;">
-        	<!-- <div class="col-md-12 col-xs-12">
-                <div  class="btn btn-default" style="font-size: 20px;">INVOICE PREVIEW</div>    
-            </div> -->
-        </div>     
+	<div class="container" style="margin-top:50px !important;">
+  
 
         <div class="row">
         	<div class="col-md-12 col-xs-12">

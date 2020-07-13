@@ -20,6 +20,8 @@ class CreateOperatorFoodingsTable extends Migration
             $table->integer('equipment_type_id')->nullable()->default(0);
             $table->integer('equipement_id')->nullable()->default(0);
             $table->integer('user_id')->nullable()->default(0);
+            $table->string('month');
+            $table->string('date');
             $table->integer('operator_id');
             $table->double('fooding_amount');
             $table->tinyInteger('status')->nullable()->status(1);

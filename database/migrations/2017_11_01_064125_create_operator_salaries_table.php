@@ -16,6 +16,9 @@ class CreateOperatorSalariesTable extends Migration
         Schema::create('operator_salaries', function (Blueprint $table) {
             $table->id();
             $table->foreignId('operator_id');
+            $table->foreignId('equipment_type_id')->nullable();
+            $table->foreignId('vendor_id')->nullable();
+            $table->foreignId('equipement_id')->nullable();
             $table->string('month');
             $table->string('payment_date');
             $table->double('payment_amount');

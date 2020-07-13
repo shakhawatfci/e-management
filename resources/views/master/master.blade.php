@@ -24,7 +24,12 @@
 
       .btn-primary:hover{
         box-shadow: 0px 5px 70px #5dc8fd !important;
-      }          
+      }
+
+    .btn.rounded-circle:hover {
+
+    box-shadow: 0px 5px 15px aqua !important;
+       }
   </style>
 </head>
 <body>

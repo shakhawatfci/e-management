@@ -18,20 +18,44 @@ class OperatorController extends Controller
         $equipement = Equipement::all();
     	return view('operator.operator',[
             'vendors' => $vendor,
-            'equipment_types' => $equipment_type,
-            'equipements' => $equipement
+            'equipment_types' => $equipment_type
         ]);
     }
 
     public function operatorList(Request $request)
     {
-    	$operator = Operator::with(['equipment_type','equipement'])->orderBy('id','desc');
-        if($request->keyword != '') {
-            $operator->where('name','LIKE','%'.$request->keyword.'%');
-            $operator->orWhere('email','LIKE','%'.$request->keyword.'%');
-            $operator->orWhere('phone','LIKE','%'.$request->keyword.'%');
-            $operator->orWhere('bkash_number','LIKE','%'.$request->keyword.'%');
-            $operator->orWhere('nid','LIKE','%'.$request->keyword.'%');
+        $operator = Operator::with(['vendor','equipment_type','equipement'])
+                              ->orderBy('id','desc');
+        $keyword = $request->keyword;
+
+        if($request->operator_type != '')
+        {
+            $operator->where('operator_type','=',$request->operator_type);
+        }
+
+        if($request->equipment_type_id != '')
+        {
+            $operator->where('equipment_type_id','=',$request->equipment_type_id);
+        }
+
+        if($request->vendor_id != '')
+        {
+            $operator->where('vendor_id','=',$request->vendor_id);
+        }
+
+        if($request->equipment_id != '')
+        {
+            $operator->where('equipement_id','=',$request->equipment_id);
+        }
+
+        if($keyword != '') {
+            $operator->where(function($query) use($keyword) {
+                $query->where('name','LIKE','%'.$request->keyword.'%');
+                $query->orWhere('mobile','LIKE','%'.$request->keyword.'%');
+                $query->orWhere('email','LIKE','%'.$request->keyword.'%');
+                $query->orWhere('salary','LIKE','%'.$request->keyword.'%');
+                $query->orWhere('nid','LIKE','%'.$request->keyword.'%');
+            });
         }
         return $operator->paginate(10);
     }
@@ -44,6 +68,9 @@ class OperatorController extends Controller
  */
     public function store(Request $request)
     {
+
+       
+
         $request->validate([
             'operator_name' => 'required',
             'salary'        => 'required',
@@ -60,21 +87,22 @@ class OperatorController extends Controller
                 $data->move('images/operator/',$filename);
             }
             $insert = Operator::insert([
-            	'name'			=> $request->operator_name,
-                'equipment_type_id' => $request->equipment_type_id,
-                'vendor_id' => $request->vendor_id,
-                'equipement_id' => $request->equipement_id,
-		        'mobile' 		=> $request->mobile,
-		        'address' 		=> $request->address,
-		        'email' 		=> $request->email,
-		        'bkash_number' 	=> $request->bkash,
-		        'join_date' 	=> $request->join_date,
-		        'nid' 			=> $request->nid,
-		        'date_of_birth' => $request->date_of_birth,
-		        'file' 			=> $filename,
-		        'documents_link'=> $request->documents_link,
-		        'salary' 		=> $request->salary,
-		        'status' 		=> $status
+            	'name'			    =>    $request->operator_name,
+                'equipment_type_id' =>    $request->equipment_type_id,
+                'vendor_id'         =>    $request->vendor_id,
+                'equipement_id'     =>    $request->equipement_id,
+                'operator_type'     =>    $request->operator_type,
+		        'mobile' 		    =>    $request->mobile,
+		        'address' 		    =>    $request->address,
+		        'email' 		    =>    $request->email,
+		        'bkash_number' 	    =>    $request->bkash,
+		        'join_date' 	    =>    $request->join_date,
+		        'nid' 			    =>    $request->nid,
+		        'date_of_birth'     =>    $request->date_of_birth,
+		        'file' 			    =>    $filename,
+		        'documents_link'    =>    $request->documents_link,
+		        'salary' 		    =>    $request->salary,
+		        'status' 		    =>        $status
             ]);
             if ($insert) {
                 return response()->json(['status' => 'success', 'message' => 'New Operator Created !']);
@@ -107,7 +135,8 @@ class OperatorController extends Controller
                 $update->name           = $request->name;
                 $update->vendor_id = $request->vendor_id;
                 $update->equipment_type_id = $request->equipment_type_id;
-                $update->equipement_id = $request->equipement_id;
+                $update->equipement_id   = $request->equipement_id;
+                $update->operator_type  = $request->operator_type;
                 $update->mobile         = $request->mobile;
                 $update->address        = $request->address;
                 $update->email          = $request->email;

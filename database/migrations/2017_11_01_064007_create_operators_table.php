@@ -28,7 +28,8 @@ class CreateOperatorsTable extends Migration
             $table->string('date_of_birth')->nullable();
             $table->string('file')->nullable();
             $table->string('documents_link')->nullable();
-            $table->double('salary');
+            $table->double('salary')->nullable()->default(0);
+            $table->tinyInteger('operator_type')->default(0)->comment = "0 = own operator  1 = vendor operator";
             $table->tinyInteger('status')->default(1)->nullable();
             $table->timestamps();
         });

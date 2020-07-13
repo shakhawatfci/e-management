@@ -41,7 +41,7 @@
         	   <p style=""><input type="text" value="{{ $bill->project->project_location }}" name="project_location" class="form-control"></p>
         	   <p style="margin-top: 20px;">
         	   	<strong style="word-spacing: 1px;">Subject:
-                    <input type="text" value="Bill For {{ $bill->equipement->eq_name }} ( {{ $bill->equipement->eq_model }} )  on Rental Basis For The Month Of {{ date('F Y', strtotime($bill->month)) }}" class="form-control" name="subject" required="">
+                    <input type="text" value="Bill of {{ $bill->equipment_type->name }} ( {{ $bill->equipement->eq_model }} )  {{ $bill->equipement->eq_capacity }}  for The Month Of {{ date('F Y', strtotime($bill->month)) }}" class="form-control" name="subject" required="">
                  </strong>
         	   </p>
 
@@ -125,22 +125,15 @@
             <div class="col-md-6 col-xs-6">
                 <p style="margin-top: 20px;">Thanks & Regards</p>
                 <p style="margin-top: 60px;"><input type="text" name="bill_by" value="Mizanur Rahman" class="form-control"></p>
-                <p><input type="text" name="designation" value="Project Cordinator" class="form-control" required=""></p>
+                <p><input type="text" name="designation" value="Project Coordinator" class="form-control" required=""></p>
                 <p><input type="text" name="company" value="Limmex Construction" class="form-control" required=""></p>
             </div>  
 
 
             <div class="col-md-6 col-xs-6">
-                <table class="table table-bordered">
-                    <tr>
-                        <td>Vat Registration No</td>
-                        <td><input class="form-control" type="text" name="reg_no" value="000082012" required=""></td>
-                    </tr> 
-
-                     <tr>
-                        <td>TIN No</td>
-                        <td><input class="form-control" type="text" name="tin_no" value="174916187470" required=""></td>
-                    </tr>   
+			<input class="form-control" type="hidden" name="tin_no" value="" required="">
+			<input class="form-control" type="hidden" name="reg_no" value="" required="">
+                <table class="table table-bordered">  
 
                     <tr>
                         <td>Bank Name</td>

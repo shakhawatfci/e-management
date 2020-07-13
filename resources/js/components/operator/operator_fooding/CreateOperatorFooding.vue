@@ -15,6 +15,37 @@
                               <div class="col-md-4">
                                   <div class="contact-email">
                                       <i class="flaticon-mail-26"></i>
+                                      <label for="project-name">Month</label>
+                                           <input type="text" class="form-control"
+                                            v-model="fooding.month"
+                                            placeholder="Month Format : yyyy-mm, Eg , 2020-09">
+                                           <span
+                                           v-if="validation_error.hasOwnProperty('month')" 
+                                          class="text-danger">
+                                          {{ validation_error.month[0] }}
+                                         </span>
+                                  </div>
+                              </div>
+                              <div class="col-md-4">
+                                  <div class="contact-email">
+                                      <i class="flaticon-mail-26"></i>
+                                      <label for="project-name">Date</label>
+                                           <input type="text" class="form-control"
+                                           v-model="fooding.date"
+                                           id="foodingDatePicker"
+                                            placeholder="Date">
+                                           <span
+                                           v-if="validation_error.hasOwnProperty('date')" 
+                                          class="text-danger">
+                                          {{ validation_error.date[0] }}
+                                         </span>
+                                  </div>
+                              </div>
+
+
+                              <div class="col-md-4">
+                                  <div class="contact-email">
+                                      <i class="flaticon-mail-26"></i>
                                       <label for="project-name">Project Name</label>
                                         <select class="form-control" id="project-name" v-model="fooding.project_id">
                                             <option value="">Select Operator</option>
@@ -32,7 +63,7 @@
                                   <div class="contact-email">
                                       <i class="flaticon-mail-26"></i>
                                       <label for="equipment-type">Equipment Type</label>
-                                        <select class="form-control" id="equipment-type" v-model="fooding.equipment_type_id">
+                                        <select class="form-control" id="equipment-type"  v-model="fooding.equipment_type_id">
                                             <option value="">Select Equipment Type</option>
                                             <option v-for="equipment in equipment_types" :key="equipment.id" :value="equipment.id">{{ equipment.name }}</option>
                                         </select>
@@ -48,7 +79,7 @@
                                   <div class="contact-email">
                                       <i class="flaticon-mail-26"></i>
                                       <label for="vendor-name">Vendor Name</label>
-                                        <select class="form-control" id="vendor-name" v-model="fooding.vendor_id">
+                                        <select class="form-control" id="vendor-name" @change="getVendorEquipments()" v-model="fooding.vendor_id">
                                             <option value="">Select Vendor</option>
                                             <option v-for="vendor in vendors" :key="vendor.id" :value="vendor.id">{{ vendor.vendor_name }}</option>
                                         </select>
@@ -66,7 +97,7 @@
                                       <label for="equipment-name">Equipment Name</label>
                                         <select class="form-control" id="equipment-name" v-model="fooding.equipement_id">
                                             <option value="">Select Equipment</option>
-                                            <option v-for="equipement in equipements" :key="equipement.id" :value="equipement.id">{{ equipement.eq_name }}</option>
+                                            <option v-for="equipement in equipments" :key="equipement.id" :value="equipement.id">{{ equipement.eq_name }}</option>
                                         </select>
                                            <span
                                            v-if="validation_error.hasOwnProperty('equipement_id')" 
@@ -140,7 +171,7 @@ import Mixin from '../../../mixin';
 
 export default {
    mixins : [Mixin],
-   props : ['projects','vendors','equipment_types','equipements','operators'],
+   props : ['projects','vendors','equipment_types','operators'],
    data()
    {
         
@@ -148,6 +179,8 @@ export default {
         fooding : {
           project_id : '',
           vendor_id : '',
+          date : '',
+          month : '',
           equipment_type_id : '',
           equipement_id : '',
           operator_id : '',
@@ -155,12 +188,13 @@ export default {
           status : ''
         },
         button_name : 'Save',
-        validation_error : {}
+        validation_error : {},
+        equipments : []
        }
    },
 
    mounted() {
-      
+        var f1 = flatpickr(document.getElementById('foodingDatePicker'));
    },
    
  methods : {
@@ -199,11 +233,21 @@ export default {
           );
      },
 
+    getVendorEquipments()
+     {
+       axios.get(`${base_url}equipment-by-vendor/0/${this.fooding.vendor_id}`)
+            .then(response => {
+              this.equipments = response.data;
+            });
+     },
+
      resetForm()
      {
         this.fooding = {
           project_id : '',
           vendor_id : '',
+          date : '',
+          month : '',
           equipment_type_id : '',
           equipement_id : '',
           operator_id : '',
@@ -212,6 +256,7 @@ export default {
         };
         this.button_name = "Save";
         this.validation_error = {};
+        this.equipments = [];
      }
  } 
    

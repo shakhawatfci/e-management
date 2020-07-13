@@ -15,26 +15,23 @@
         <thead>
             <tr>
                 <th>Operator</th>
+                <th>Month</th>
                 <th>Payment Date</th>
                 <th>Payment Amount</th>
                 <th>Mode</th>
-                <th>Status</th>
                 <th class="text-center">Action</th>
             </tr>
         </thead>
         <tbody>
             <tr v-for="value in salaries.data" :key="value.id">
                 <td>{{ value.operator.name }}</td>
-                <td>{{ value.payment_date }}</td>
+                <td>{{ value.month | monthToString }}</td>
+                <td>{{ value.payment_date | dateToString }}</td>
                 <td>{{ value.payment_amount }}</td>
                 <td>
                   <span v-if="value.mode == 1">Cash</span>
                   <span v-else-if="value.mode == 2">Bank</span>
                   <span v-else>Mobile Bank</span></p>
-                </td>
-                <td>
-                  <span class="text-success" v-if="value.status == 1">Active</span>
-                  <span class="text-danger" v-else>Inactive</span>
                 </td>
                 <td class="text-center">
                     <button class="btn btn-warning mb-2 mr-2 rounded-circle" title="View" @click="viewOperatorSalary(value)"><i class="far fa-eye"></i></button>

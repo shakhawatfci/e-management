@@ -4,8 +4,45 @@
       <div class="col-md-3" style="margin-bottom:10px;">
         <input type="text" v-model="keyword" 
         class="form-control"
-         placeholder="Search Operator Expense" @keyup="getOperator()" />
+         placeholder="Search By Name , phone ,  salary" @keyup="getOperator()" />
       </div>
+
+      <div class="col-md-3" style="margin-bottom:10px;">
+          <select class="form-control" v-model="operator_type" @change="getOperator()">
+            <option value="">All Types</option>
+            <option value="0">Own Operator</option>
+            <option value="1">Vendor Operator</option>
+          </select>
+      </div>
+
+
+      <div class="col-md-3" style="margin-bottom:10px;">
+         <select class="form-control" id="equipment-type" @change="getOperator()" v-model="equipment_type_id">
+              <option value="">All Equipment Type</option>
+              <option v-for="equipment in equipment_types" 
+              :key="equipment.id" :value="equipment.id">{{ equipment.name }}</option>
+          </select>
+      </div>
+
+
+      <div class="col-md-3" style="margin-bottom:10px;">
+         <select class="form-control" id="equipment-type" @change="getVendorEquipments()" v-model="vendor_id">
+              <option value="">All Vendor</option>
+              <option v-for="vendor in vendors" 
+              :key="vendor.id" :value="vendor.id">{{ vendor.vendor_name }}</option>
+          </select>
+      </div>
+
+      <div class="col-md-3" style="margin-bottom:10px;">
+         <select class="form-control" id="equipment-type" @change="getOperator()" v-model="equipment_id">
+              <option value="">All Equipment</option>
+              <option v-for="eq in equipments" 
+              :key="eq.id" :value="eq.id">{{ eq.eq_name  }} ({{ eq.eq_model }})</option>
+          </select>
+      </div>
+
+
+
     </div>
     
   <div class="row">
@@ -15,7 +52,8 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Address</th>
+                <th>Equipment Type</th>
+                <th>Vendor/EQ</th>
                 <th>Phone</th>
                 <th>Bkash</th>
                 <th>Status</th>
@@ -24,8 +62,9 @@
         </thead>
         <tbody>
             <tr v-for="value in operators.data" :key="value.id">
-                <td>{{ value.name }}</td>
-                <td>{{ value.address }}</td>
+                <td>{{ value.name }} ({{ value.operator_type == 1 ?  'Vendor' : 'Own' }})</td>
+                <td>{{ value.equipment_type.name }}</td>
+                <td>{{ value.vendor.vendor_name }} / {{ value.equipement.eq_name }} ({{ value.equipement.eq_model }})</td>
                 <td>{{ value.mobile }}</td>
                 <td>{{ value.bkash_number }}</td>
                 <td>
@@ -49,7 +88,8 @@
         </div>
   </div>
 
-       <update-operator :vendors="vendors" :equipment_types="equipment_types" :equipements="equipements"> </update-operator>
+       <update-operator :vendors="vendors" 
+       :equipment_types="equipment_types"> </update-operator>
        <single-viewoperator> </single-viewoperator>
     <div class="row">
       <div class="col-md-12 text-center mb-10 mt-10">
@@ -70,7 +110,7 @@ import SingleViewoperator from './SingleViewoperator';
 import UpdateOperator from './UpdateOperator';
 export default {
   mixins: [Mixin],
-  props : ['vendors','equipment_types','equipements'],
+  props : ['vendors','equipment_types'],
   components : {
    'pagination' : Pagination,
    UpdateOperator,SingleViewoperator
@@ -80,7 +120,12 @@ export default {
      operators : [],
      url : base_url,
      keyword   : '',
+     operator_type : '',
+     equipment_type_id : '',
+     equipment_id : '',
+     vendor_id : '',
      isLoading : false,
+     equipments : [],
     }
   },
 
@@ -101,7 +146,8 @@ export default {
      getOperator(page = 1) 
      {
          this.isLoading = true;
-         axios.get(base_url+`operator-list?page=${page}&keyword=${this.keyword}`)
+         axios.get(base_url+`operator-list?page=${page}&keyword=${this.keyword}&operator_type=${this.operator_type}
+         &equipment_type_id=${this.equipment_type_id}&vendor_id=${this.vendor_id}&equipment_id=${this.equipment_id}`)
          .then(response =>
           {
             this.operators = response.data;
@@ -117,6 +163,17 @@ export default {
      viewOperator(value)
      {
         EventBus.$emit('operator-show',value)
+     },
+
+    getVendorEquipments()
+     {
+
+       
+       axios.get(`${base_url}equipment-by-vendor/0/${this.vendor_id}`)
+            .then(response => {
+              this.equipments = response.data;
+            });
+        this.getOperator();
      },
 
      deleteOperator(id)

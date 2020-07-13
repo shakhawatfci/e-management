@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -2140,15 +2140,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
-  props: ['vendors', 'equipment_types', 'equipements'],
+  props: ['vendors', 'equipment_types'],
   data: function data() {
     return {
       operator: {
         operator_name: '',
+        operator_type: 0,
         equipment_type_id: '',
         vendor_id: '',
         equipement_id: '',
@@ -2166,7 +2183,8 @@ __webpack_require__.r(__webpack_exports__);
       },
       data: new FormData(),
       button_name: 'Save',
-      validation_error: {}
+      validation_error: {},
+      equipments: []
     };
   },
   mounted: function mounted() {
@@ -2190,6 +2208,10 @@ __webpack_require__.r(__webpack_exports__);
       this.data.append('date_of_birth', this.operator.date_of_birth);
       this.data.append('picture', this.operator.picture);
       this.data.append('documents_link', this.operator.documents_link);
+      this.data.append('operator_type', this.operator.operator_type);
+      this.data.append('equipment_type_id', this.operator.equipment_type_id);
+      this.data.append('equipement_id', this.operator.equipement_id);
+      this.data.append('vendor_id', this.operator.vendor_id);
       this.data.append('salary', this.operator.salary);
       this.data.append('status', this.operator.status);
     },
@@ -2230,9 +2252,29 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
+    getVendorEquipments: function getVendorEquipments() {
+      var _this2 = this;
+
+      if (this.operator.equipment_type === '' || this.operator.vendor === '') {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'please choose equipment type and vendor both field for equipment list'
+        });
+        return;
+      }
+
+      axios.get("".concat(base_url, "equipment-by-vendor/").concat(this.operator.equipment_type_id, "/").concat(this.operator.vendor_id)).then(function (response) {
+        _this2.equipments = response.data;
+      });
+    },
     resetForm: function resetForm() {
       this.operator = {
         operator_name: '',
+        operator_type: 0,
+        equipment_type_id: '',
+        vendor_id: '',
+        equipement_id: '',
         mobile: '',
         address: '',
         email: '',
@@ -2248,6 +2290,7 @@ __webpack_require__.r(__webpack_exports__);
       this.data = new FormData();
       this.button_name = "Save";
       this.validation_error = {};
+      this.equipments = [];
     }
   }
 });
@@ -2265,6 +2308,57 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vue_assets__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../vue-assets */ "./resources/js/vue-assets.js");
 /* harmony import */ var _mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../mixin */ "./resources/js/mixin.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2782,26 +2876,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
+  props: ['vendors', 'equipment_types'],
   data: function data() {
     return {
       operator: {
         id: '',
-        vendor: {
-          id: '',
-          vendor_name: ''
-        },
-        equipment_type: {
-          id: '',
-          name: ''
-        },
-        equipement: {
-          id: '',
-          eq_name: ''
-        },
+        operator_type: 0,
+        vendor_id: '',
+        equipment_type_id: '',
+        equipement_id: '',
         name: '',
         mobile: '',
         address: '',
@@ -2817,7 +2920,8 @@ __webpack_require__.r(__webpack_exports__);
       },
       dataform: new FormData(),
       button_name: 'Update',
-      validation_error: {}
+      validation_error: {},
+      equipments: []
     };
   },
   mounted: function mounted() {
@@ -2829,6 +2933,8 @@ __webpack_require__.r(__webpack_exports__);
     _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('operator-update', function (value) {
       $("#UpdateOperator").modal('show');
       _this.operator = value;
+
+      _this.getVendorEquipments();
     });
   },
   methods: {
@@ -2848,6 +2954,10 @@ __webpack_require__.r(__webpack_exports__);
       this.dataform.append('date_of_birth', this.operator.date_of_birth);
       this.dataform.append('file', this.operator.file);
       this.dataform.append('documents_link', this.operator.documents_link);
+      this.dataform.append('operator_type', this.operator.operator_type);
+      this.dataform.append('equipment_type_id', this.operator.equipment_type_id);
+      this.dataform.append('equipement_id', this.operator.equipement_id);
+      this.dataform.append('vendor_id', this.operator.vendor_id);
       this.dataform.append('salary', this.operator.salary);
       this.dataform.append('status', this.operator.status);
     },
@@ -2888,9 +2998,29 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
+    getVendorEquipments: function getVendorEquipments() {
+      var _this3 = this;
+
+      if (this.operator.equipment_type === '' || this.operator.vendor === '') {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'please choose equipment type and vendor both field for equipment list'
+        });
+        return;
+      }
+
+      axios.get("".concat(base_url, "equipment-by-vendor/").concat(this.operator.equipment_type_id, "/").concat(this.operator.vendor_id)).then(function (response) {
+        _this3.equipments = response.data;
+      });
+    },
     resetForm: function resetForm() {
       this.operator = {
         name: '',
+        operator_type: 0,
+        vendor_id: '',
+        equipment_type_id: '',
+        equipement_id: '',
         mobile: '',
         address: '',
         email: '',
@@ -2906,6 +3036,7 @@ __webpack_require__.r(__webpack_exports__);
       this.dataform = new FormData();
       this.button_name = "Update";
       this.validation_error = {};
+      this.equipments = [];
     }
   }
 });
@@ -2990,6 +3121,46 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2997,7 +3168,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
-  props: ['vendors', 'equipment_types', 'equipements'],
+  props: ['vendors', 'equipment_types'],
   components: {
     'pagination': _pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"],
     UpdateOperator: _UpdateOperator__WEBPACK_IMPORTED_MODULE_4__["default"],
@@ -3008,7 +3179,12 @@ __webpack_require__.r(__webpack_exports__);
       operators: [],
       url: base_url,
       keyword: '',
-      isLoading: false
+      operator_type: '',
+      equipment_type_id: '',
+      equipment_id: '',
+      vendor_id: '',
+      isLoading: false,
+      equipments: []
     };
   },
   mounted: function mounted() {
@@ -3025,7 +3201,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       this.isLoading = true;
-      axios.get(base_url + "operator-list?page=".concat(page, "&keyword=").concat(this.keyword)).then(function (response) {
+      axios.get(base_url + "operator-list?page=".concat(page, "&keyword=").concat(this.keyword, "&operator_type=").concat(this.operator_type, "\n         &equipment_type_id=").concat(this.equipment_type_id, "&vendor_id=").concat(this.vendor_id, "&equipment_id=").concat(this.equipment_id)).then(function (response) {
         _this2.operators = response.data;
         _this2.isLoading = false;
       });
@@ -3036,8 +3212,16 @@ __webpack_require__.r(__webpack_exports__);
     viewOperator: function viewOperator(value) {
       _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('operator-show', value);
     },
-    deleteOperator: function deleteOperator(id) {
+    getVendorEquipments: function getVendorEquipments() {
       var _this3 = this;
+
+      axios.get("".concat(base_url, "equipment-by-vendor/0/").concat(this.vendor_id)).then(function (response) {
+        _this3.equipments = response.data;
+      });
+      this.getOperator();
+    },
+    deleteOperator: function deleteOperator(id) {
+      var _this4 = this;
 
       Swal.fire({
         title: 'Are you sure ?',
@@ -3050,9 +3234,9 @@ __webpack_require__.r(__webpack_exports__);
       }, function () {}).then(function (result) {
         if (result.value) {
           axios["delete"]("".concat(base_url, "operator/").concat(id)).then(function (response) {
-            _this3.successMessage(response.data);
+            _this4.successMessage(response.data);
 
-            _this3.getOperator();
+            _this4.getOperator();
           });
         }
       });
@@ -3212,16 +3396,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
-  props: ['projects', 'vendors', 'equipment_types', 'equipements', 'operators'],
+  props: ['projects', 'vendors', 'equipment_types', 'operators'],
   data: function data() {
     return {
       fooding: {
         project_id: '',
         vendor_id: '',
+        date: '',
+        month: '',
         equipment_type_id: '',
         equipement_id: '',
         operator_id: '',
@@ -3229,10 +3446,13 @@ __webpack_require__.r(__webpack_exports__);
         status: ''
       },
       button_name: 'Save',
-      validation_error: {}
+      validation_error: {},
+      equipments: []
     };
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    var f1 = flatpickr(document.getElementById('foodingDatePicker'));
+  },
   methods: {
     save: function save() {
       var _this = this;
@@ -3266,10 +3486,19 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
+    getVendorEquipments: function getVendorEquipments() {
+      var _this2 = this;
+
+      axios.get("".concat(base_url, "equipment-by-vendor/0/").concat(this.fooding.vendor_id)).then(function (response) {
+        _this2.equipments = response.data;
+      });
+    },
     resetForm: function resetForm() {
       this.fooding = {
         project_id: '',
         vendor_id: '',
+        date: '',
+        month: '',
         equipment_type_id: '',
         equipement_id: '',
         operator_id: '',
@@ -3278,6 +3507,7 @@ __webpack_require__.r(__webpack_exports__);
       };
       this.button_name = "Save";
       this.validation_error = {};
+      this.equipments = [];
     }
   }
 });
@@ -3626,40 +3856,60 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
-  props: ['projects', 'vendors', 'equipment_types', 'equipements', 'operators'],
+  props: ['projects', 'vendors', 'equipment_types', 'operators'],
   data: function data() {
     return {
       fooding: {
         id: '',
-        project: {
-          id: '',
-          project_name: ''
-        },
-        vendor: {
-          id: '',
-          vendor_name: ''
-        },
-        equipment_type: {
-          id: '',
-          name: ''
-        },
-        equipement: {
-          id: '',
-          eq_name: ''
-        },
-        operator: {
-          id: '',
-          name: ''
-        },
+        date: '',
+        month: '',
+        project: '',
+        vendor: '',
+        equipment_type: '',
+        equipement: '',
+        operator: '',
         fooding_amount: '',
         status: ''
       },
       button_name: 'Update',
-      validation_error: {}
+      validation_error: {},
+      equipments: []
     };
   },
   mounted: function mounted() {
@@ -3668,7 +3918,10 @@ __webpack_require__.r(__webpack_exports__);
     _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('operator-fooding-update', function (value) {
       $("#UpdateOperatorFooding").modal('show');
       _this.fooding = value;
+
+      _this.getVendorEquipments();
     });
+    var f1 = flatpickr(document.getElementById('foodingDatePicker'));
   },
   methods: {
     update: function update() {
@@ -3703,8 +3956,17 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
+    getVendorEquipments: function getVendorEquipments() {
+      var _this3 = this;
+
+      axios.get("".concat(base_url, "equipment-by-vendor/0/").concat(this.fooding.vendor_id)).then(function (response) {
+        _this3.equipments = response.data;
+      });
+    },
     resetForm: function resetForm() {
       this.fooding = {
+        date: '',
+        month: '',
         project_id: '',
         vendor_id: '',
         equipment_type_id: '',
@@ -3715,6 +3977,7 @@ __webpack_require__.r(__webpack_exports__);
       };
       this.button_name = "Update";
       this.validation_error = {};
+      this.equipments = [];
     }
   }
 });
@@ -3894,6 +4157,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vue_assets__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../vue-assets */ "./resources/js/vue-assets.js");
 /* harmony import */ var _mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../mixin */ "./resources/js/mixin.js");
+//
 //
 //
 //
@@ -4603,9 +4867,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../pagination/Pagination */ "./resources/js/components/pagination/Pagination.vue");
 /* harmony import */ var _SingleViewoperatorsalary__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SingleViewoperatorsalary */ "./resources/js/components/operator/operator_salary/SingleViewoperatorsalary.vue");
 /* harmony import */ var _UpdateOperatorsalary__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./UpdateOperatorsalary */ "./resources/js/components/operator/operator_salary/UpdateOperatorsalary.vue");
-//
-//
-//
 //
 //
 //
@@ -9237,6 +9498,73 @@ var render = function() {
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
                           _c("label", { attrs: { for: "equipment-type" } }, [
+                            _vm._v("Operator Type")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.operator.operator_type,
+                                  expression: "operator.operator_type"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: { id: "equipment-type" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.operator,
+                                    "operator_type",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "0" } }, [
+                                _vm._v("Own Operator")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "1" } }, [
+                                _vm._v("Vendor Operator")
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _vm.validation_error.hasOwnProperty("operator_type")
+                            ? _c("span", { staticClass: "text-danger" }, [
+                                _vm._v(
+                                  "\r\n                                          " +
+                                    _vm._s(
+                                      _vm.validation_error.operator_type[0]
+                                    ) +
+                                    "\r\n                                         "
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c("div", { staticClass: "contact-email" }, [
+                          _c("i", { staticClass: "flaticon-mail-26" }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "equipment-type" } }, [
                             _vm._v("Equipment Type")
                           ]),
                           _vm._v(" "),
@@ -9331,24 +9659,27 @@ var render = function() {
                               staticClass: "form-control",
                               attrs: { id: "vendor-name" },
                               on: {
-                                change: function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.$set(
-                                    _vm.operator,
-                                    "vendor_id",
-                                    $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  )
-                                }
+                                change: [
+                                  function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.operator,
+                                      "vendor_id",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  },
+                                  _vm.getVendorEquipments
+                                ]
                               }
                             },
                             [
@@ -9429,7 +9760,7 @@ var render = function() {
                                 _vm._v("Select Equipment")
                               ]),
                               _vm._v(" "),
-                              _vm._l(_vm.equipements, function(equipement) {
+                              _vm._l(_vm.equipments, function(equipement) {
                                 return _c(
                                   "option",
                                   {
@@ -10161,6 +10492,81 @@ var render = function() {
                                   _vm._m(2),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "t-name" }, [
+                                    _c("h4", [_vm._v("Vendor")]),
+                                    _vm._v(" "),
+                                    _c("p", { staticClass: "meta-date" }, [
+                                      _vm._v(
+                                        _vm._s(_vm.operator.vendor.vendor_name)
+                                      )
+                                    ])
+                                  ])
+                                ])
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "col-4 transactions-list" },
+                            [
+                              _c("div", { staticClass: "t-item" }, [
+                                _c("div", { staticClass: "t-company-name" }, [
+                                  _vm._m(3),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "t-name" }, [
+                                    _c("h4", [_vm._v("Equipment Type")]),
+                                    _vm._v(" "),
+                                    _c("p", { staticClass: "meta-date" }, [
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm.operator.equipment_type.name
+                                        ) + " "
+                                      )
+                                    ])
+                                  ])
+                                ])
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "col-4 transactions-list" },
+                            [
+                              _c("div", { staticClass: "t-item" }, [
+                                _c("div", { staticClass: "t-company-name" }, [
+                                  _vm._m(4),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "t-name" }, [
+                                    _c("h4", [_vm._v("Equipment")]),
+                                    _vm._v(" "),
+                                    _c("p", { staticClass: "meta-date" }, [
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm.operator.equipement.eq_name
+                                        ) +
+                                          " " +
+                                          _vm._s(
+                                            _vm.operator.equipement.eq_model
+                                          ) +
+                                          " "
+                                      )
+                                    ])
+                                  ])
+                                ])
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "col-4 transactions-list" },
+                            [
+                              _c("div", { staticClass: "t-item" }, [
+                                _c("div", { staticClass: "t-company-name" }, [
+                                  _vm._m(5),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "t-name" }, [
                                     _c("h4", [_vm._v("Email")]),
                                     _vm._v(" "),
                                     _c("p", { staticClass: "meta-date" }, [
@@ -10178,7 +10584,7 @@ var render = function() {
                             [
                               _c("div", { staticClass: "t-item" }, [
                                 _c("div", { staticClass: "t-company-name" }, [
-                                  _vm._m(3),
+                                  _vm._m(6),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "t-name" }, [
                                     _c("h4", [_vm._v("Mobile")]),
@@ -10198,7 +10604,7 @@ var render = function() {
                             [
                               _c("div", { staticClass: "t-item" }, [
                                 _c("div", { staticClass: "t-company-name" }, [
-                                  _vm._m(4),
+                                  _vm._m(7),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "t-name" }, [
                                     _c("h4", [_vm._v("B-kash")]),
@@ -10218,7 +10624,7 @@ var render = function() {
                             [
                               _c("div", { staticClass: "t-item" }, [
                                 _c("div", { staticClass: "t-company-name" }, [
-                                  _vm._m(5),
+                                  _vm._m(8),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "t-name" }, [
                                     _c("h4", [_vm._v("Join Date")]),
@@ -10238,7 +10644,7 @@ var render = function() {
                             [
                               _c("div", { staticClass: "t-item" }, [
                                 _c("div", { staticClass: "t-company-name" }, [
-                                  _vm._m(6),
+                                  _vm._m(9),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "t-name" }, [
                                     _c("h4", [_vm._v("NID")]),
@@ -10258,7 +10664,7 @@ var render = function() {
                             [
                               _c("div", { staticClass: "t-item" }, [
                                 _c("div", { staticClass: "t-company-name" }, [
-                                  _vm._m(7),
+                                  _vm._m(10),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "t-name" }, [
                                     _c("h4", [_vm._v("Date of Birth")]),
@@ -10278,7 +10684,7 @@ var render = function() {
                             [
                               _c("div", { staticClass: "t-item" }, [
                                 _c("div", { staticClass: "t-company-name" }, [
-                                  _vm._m(8),
+                                  _vm._m(11),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "t-name" }, [
                                     _c("h4", [_vm._v("Salary")]),
@@ -10298,7 +10704,7 @@ var render = function() {
                             [
                               _c("div", { staticClass: "t-item" }, [
                                 _c("div", { staticClass: "t-company-name" }, [
-                                  _vm._m(9),
+                                  _vm._m(12),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "t-name" }, [
                                     _c("h4", [_vm._v("Status")]),
@@ -10324,7 +10730,7 @@ var render = function() {
                             [
                               _c("div", { staticClass: "t-item" }, [
                                 _c("div", { staticClass: "t-company-name" }, [
-                                  _vm._m(10),
+                                  _vm._m(13),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "t-name" }, [
                                     _c("h4", [_vm._v("Document Link")]),
@@ -10357,7 +10763,7 @@ var render = function() {
                             [
                               _c("div", { staticClass: "t-item" }, [
                                 _c("div", { staticClass: "t-company-name" }, [
-                                  _vm._m(11),
+                                  _vm._m(14),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "t-name" }, [
                                     _c("h4", [_vm._v("Address")]),
@@ -10378,7 +10784,7 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._m(12)
+            _vm._m(15)
           ])
         ]
       )
@@ -10402,6 +10808,42 @@ var staticRenderFns = [
       _c("div", { staticClass: "avatar avatar-xl" }, [
         _c("span", { staticClass: "avatar-title rounded-circle" }, [
           _vm._v("NM")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "t-icon" }, [
+      _c("div", { staticClass: "avatar avatar-xl" }, [
+        _c("span", { staticClass: "avatar-title rounded-circle" }, [
+          _vm._v("VN")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "t-icon" }, [
+      _c("div", { staticClass: "avatar avatar-xl" }, [
+        _c("span", { staticClass: "avatar-title rounded-circle" }, [
+          _vm._v("ET")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "t-icon" }, [
+      _c("div", { staticClass: "avatar avatar-xl" }, [
+        _c("span", { staticClass: "avatar-title rounded-circle" }, [
+          _vm._v("EQ")
         ])
       ])
     ])
@@ -10645,6 +11087,73 @@ var render = function() {
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
                           _c("label", { attrs: { for: "equipment-type" } }, [
+                            _vm._v("Operator Type")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.operator.operator_type,
+                                  expression: "operator.operator_type"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: { id: "equipment-type" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.operator,
+                                    "operator_type",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "0" } }, [
+                                _vm._v("Own Operator")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "1" } }, [
+                                _vm._v("Vendor Operator")
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _vm.validation_error.hasOwnProperty("operator_type")
+                            ? _c("span", { staticClass: "text-danger" }, [
+                                _vm._v(
+                                  "\r\n                                          " +
+                                    _vm._s(
+                                      _vm.validation_error.operator_type[0]
+                                    ) +
+                                    "\r\n                                         "
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c("div", { staticClass: "contact-email" }, [
+                          _c("i", { staticClass: "flaticon-mail-26" }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "equipment-type" } }, [
                             _vm._v("Equipment Type")
                           ]),
                           _vm._v(" "),
@@ -10739,24 +11248,29 @@ var render = function() {
                               staticClass: "form-control",
                               attrs: { id: "vendor-name" },
                               on: {
-                                change: function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.$set(
-                                    _vm.operator,
-                                    "vendor_id",
-                                    $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  )
-                                }
+                                change: [
+                                  function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.operator,
+                                      "vendor_id",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  },
+                                  function($event) {
+                                    return _vm.getVendorEquipments()
+                                  }
+                                ]
                               }
                             },
                             [
@@ -10795,7 +11309,7 @@ var render = function() {
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
                           _c("label", { attrs: { for: "equipment-name" } }, [
-                            _vm._v("Equipment Name")
+                            _vm._v("Equipment")
                           ]),
                           _vm._v(" "),
                           _c(
@@ -10837,7 +11351,7 @@ var render = function() {
                                 _vm._v("Select Equipment")
                               ]),
                               _vm._v(" "),
-                              _vm._l(_vm.equipements, function(equipement) {
+                              _vm._l(_vm.equipments, function(equipement) {
                                 return _c(
                                   "option",
                                   {
@@ -11508,7 +12022,10 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              attrs: { type: "text", placeholder: "Search Operator Expense" },
+              attrs: {
+                type: "text",
+                placeholder: "Search By Name , phone ,  salary"
+              },
               domProps: { value: _vm.keyword },
               on: {
                 keyup: function($event) {
@@ -11522,6 +12039,228 @@ var render = function() {
                 }
               }
             })
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
+          [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.operator_type,
+                    expression: "operator_type"
+                  }
+                ],
+                staticClass: "form-control",
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.operator_type = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    function($event) {
+                      return _vm.getOperator()
+                    }
+                  ]
+                }
+              },
+              [
+                _c("option", { attrs: { value: "" } }, [_vm._v("All Types")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "0" } }, [
+                  _vm._v("Own Operator")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "1" } }, [
+                  _vm._v("Vendor Operator")
+                ])
+              ]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
+          [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.equipment_type_id,
+                    expression: "equipment_type_id"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { id: "equipment-type" },
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.equipment_type_id = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    function($event) {
+                      return _vm.getOperator()
+                    }
+                  ]
+                }
+              },
+              [
+                _c("option", { attrs: { value: "" } }, [
+                  _vm._v("All Equipment Type")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.equipment_types, function(equipment) {
+                  return _c(
+                    "option",
+                    { key: equipment.id, domProps: { value: equipment.id } },
+                    [_vm._v(_vm._s(equipment.name))]
+                  )
+                })
+              ],
+              2
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
+          [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.vendor_id,
+                    expression: "vendor_id"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { id: "equipment-type" },
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.vendor_id = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    function($event) {
+                      return _vm.getVendorEquipments()
+                    }
+                  ]
+                }
+              },
+              [
+                _c("option", { attrs: { value: "" } }, [_vm._v("All Vendor")]),
+                _vm._v(" "),
+                _vm._l(_vm.vendors, function(vendor) {
+                  return _c(
+                    "option",
+                    { key: vendor.id, domProps: { value: vendor.id } },
+                    [_vm._v(_vm._s(vendor.vendor_name))]
+                  )
+                })
+              ],
+              2
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
+          [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.equipment_id,
+                    expression: "equipment_id"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { id: "equipment-type" },
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.equipment_id = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    function($event) {
+                      return _vm.getOperator()
+                    }
+                  ]
+                }
+              },
+              [
+                _c("option", { attrs: { value: "" } }, [
+                  _vm._v("All Equipment")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.equipments, function(eq) {
+                  return _c(
+                    "option",
+                    { key: eq.id, domProps: { value: eq.id } },
+                    [
+                      _vm._v(
+                        _vm._s(eq.eq_name) + " (" + _vm._s(eq.eq_model) + ")"
+                      )
+                    ]
+                  )
+                })
+              ],
+              2
+            )
           ]
         )
       ]),
@@ -11540,9 +12279,29 @@ var render = function() {
                       "tbody",
                       _vm._l(_vm.operators.data, function(value) {
                         return _c("tr", { key: value.id }, [
-                          _c("td", [_vm._v(_vm._s(value.name))]),
+                          _c("td", [
+                            _vm._v(
+                              _vm._s(value.name) +
+                                " (" +
+                                _vm._s(
+                                  value.operator_type == 1 ? "Vendor" : "Own"
+                                ) +
+                                ")"
+                            )
+                          ]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(value.address))]),
+                          _c("td", [_vm._v(_vm._s(value.equipment_type.name))]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(
+                              _vm._s(value.vendor.vendor_name) +
+                                " / " +
+                                _vm._s(value.equipement.eq_name) +
+                                " (" +
+                                _vm._s(value.equipement.eq_model) +
+                                ")"
+                            )
+                          ]),
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(value.mobile))]),
                           _vm._v(" "),
@@ -11629,11 +12388,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("update-operator", {
-        attrs: {
-          vendors: _vm.vendors,
-          equipment_types: _vm.equipment_types,
-          equipements: _vm.equipements
-        }
+        attrs: { vendors: _vm.vendors, equipment_types: _vm.equipment_types }
       }),
       _vm._v(" "),
       _c("single-viewoperator"),
@@ -11659,7 +12414,9 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Name")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Address")]),
+        _c("th", [_vm._v("Equipment Type")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Vendor/EQ")]),
         _vm._v(" "),
         _c("th", [_vm._v("Phone")]),
         _vm._v(" "),
@@ -11723,6 +12480,106 @@ var render = function() {
                 _c("div", { staticClass: "add-contact-box" }, [
                   _c("div", { staticClass: "add-contact-content text-left" }, [
                     _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c("div", { staticClass: "contact-email" }, [
+                          _c("i", { staticClass: "flaticon-mail-26" }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "project-name" } }, [
+                            _vm._v("Month")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.fooding.month,
+                                expression: "fooding.month"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              placeholder:
+                                "Month Format : yyyy-mm, Eg , 2020-09"
+                            },
+                            domProps: { value: _vm.fooding.month },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.fooding,
+                                  "month",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm.validation_error.hasOwnProperty("month")
+                            ? _c("span", { staticClass: "text-danger" }, [
+                                _vm._v(
+                                  "\r\n                                          " +
+                                    _vm._s(_vm.validation_error.month[0]) +
+                                    "\r\n                                         "
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c("div", { staticClass: "contact-email" }, [
+                          _c("i", { staticClass: "flaticon-mail-26" }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "project-name" } }, [
+                            _vm._v("Date")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.fooding.date,
+                                expression: "fooding.date"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              id: "foodingDatePicker",
+                              placeholder: "Date"
+                            },
+                            domProps: { value: _vm.fooding.date },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.fooding,
+                                  "date",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm.validation_error.hasOwnProperty("date")
+                            ? _c("span", { staticClass: "text-danger" }, [
+                                _vm._v(
+                                  "\r\n                                          " +
+                                    _vm._s(_vm.validation_error.date[0]) +
+                                    "\r\n                                         "
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
                       _c("div", { staticClass: "col-md-4" }, [
                         _c("div", { staticClass: "contact-email" }, [
                           _c("i", { staticClass: "flaticon-mail-26" }),
@@ -11895,24 +12752,29 @@ var render = function() {
                               staticClass: "form-control",
                               attrs: { id: "vendor-name" },
                               on: {
-                                change: function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.$set(
-                                    _vm.fooding,
-                                    "vendor_id",
-                                    $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  )
-                                }
+                                change: [
+                                  function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.fooding,
+                                      "vendor_id",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  },
+                                  function($event) {
+                                    return _vm.getVendorEquipments()
+                                  }
+                                ]
                               }
                             },
                             [
@@ -11993,7 +12855,7 @@ var render = function() {
                                 _vm._v("Select Equipment")
                               ]),
                               _vm._v(" "),
-                              _vm._l(_vm.equipements, function(equipement) {
+                              _vm._l(_vm.equipments, function(equipement) {
                                 return _c(
                                   "option",
                                   {
@@ -12615,6 +13477,106 @@ var render = function() {
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
                           _c("label", { attrs: { for: "project-name" } }, [
+                            _vm._v("Month")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.fooding.month,
+                                expression: "fooding.month"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              placeholder:
+                                "Month Format : yyyy-mm, Eg , 2020-09"
+                            },
+                            domProps: { value: _vm.fooding.month },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.fooding,
+                                  "month",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm.validation_error.hasOwnProperty("month")
+                            ? _c("span", { staticClass: "text-danger" }, [
+                                _vm._v(
+                                  "\r\n                                          " +
+                                    _vm._s(_vm.validation_error.month[0]) +
+                                    "\r\n                                         "
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c("div", { staticClass: "contact-email" }, [
+                          _c("i", { staticClass: "flaticon-mail-26" }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "project-name" } }, [
+                            _vm._v("Date")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.fooding.date,
+                                expression: "fooding.date"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              id: "foodingDatePicker",
+                              placeholder: "Date"
+                            },
+                            domProps: { value: _vm.fooding.date },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.fooding,
+                                  "date",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm.validation_error.hasOwnProperty("date")
+                            ? _c("span", { staticClass: "text-danger" }, [
+                                _vm._v(
+                                  "\r\n                                          " +
+                                    _vm._s(_vm.validation_error.date[0]) +
+                                    "\r\n                                         "
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c("div", { staticClass: "contact-email" }, [
+                          _c("i", { staticClass: "flaticon-mail-26" }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "project-name" } }, [
                             _vm._v("Project Name")
                           ]),
                           _vm._v(" "),
@@ -12782,24 +13744,29 @@ var render = function() {
                               staticClass: "form-control",
                               attrs: { id: "vendor-name" },
                               on: {
-                                change: function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.$set(
-                                    _vm.fooding,
-                                    "vendor_id",
-                                    $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  )
-                                }
+                                change: [
+                                  function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.fooding,
+                                      "vendor_id",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  },
+                                  function($event) {
+                                    return _vm.getVendorEquipments()
+                                  }
+                                ]
                               }
                             },
                             [
@@ -12880,7 +13847,7 @@ var render = function() {
                                 _vm._v("Select Equipment")
                               ]),
                               _vm._v(" "),
-                              _vm._l(_vm.equipements, function(equipement) {
+                              _vm._l(_vm.equipments, function(equipement) {
                                 return _c(
                                   "option",
                                   {
@@ -13478,7 +14445,18 @@ var render = function() {
                                     key: operator.id,
                                     domProps: { value: operator.id }
                                   },
-                                  [_vm._v(_vm._s(operator.name))]
+                                  [
+                                    _vm._v(
+                                      _vm._s(operator.name) +
+                                        " (" +
+                                        _vm._s(
+                                          operator.operator_type == 1
+                                            ? "vendor"
+                                            : "own"
+                                        ) +
+                                        ")"
+                                    )
+                                  ]
                                 )
                               })
                             ],
@@ -14864,7 +15842,15 @@ var render = function() {
                         return _c("tr", { key: value.id }, [
                           _c("td", [_vm._v(_vm._s(value.operator.name))]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(value.payment_date))]),
+                          _c("td", [
+                            _vm._v(_vm._s(_vm._f("monthToString")(value.month)))
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(
+                              _vm._s(_vm._f("dateToString")(value.payment_date))
+                            )
+                          ]),
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(value.payment_amount))]),
                           _vm._v(" "),
@@ -14875,16 +15861,6 @@ var render = function() {
                               ? _c("span", [_vm._v("Bank")])
                               : _c("span", [_vm._v("Mobile Bank")]),
                             _c("p")
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
-                            value.status == 1
-                              ? _c("span", { staticClass: "text-success" }, [
-                                  _vm._v("Active")
-                                ])
-                              : _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v("Inactive")
-                                ])
                           ]),
                           _vm._v(" "),
                           _c("td", { staticClass: "text-center" }, [
@@ -14982,13 +15958,13 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Operator")]),
         _vm._v(" "),
+        _c("th", [_vm._v("Month")]),
+        _vm._v(" "),
         _c("th", [_vm._v("Payment Date")]),
         _vm._v(" "),
         _c("th", [_vm._v("Payment Amount")]),
         _vm._v(" "),
         _c("th", [_vm._v("Mode")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Status")]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [_vm._v("Action")])
       ])
@@ -28303,14 +29279,14 @@ var EventBus = new Vue();
 
 /***/ }),
 
-/***/ 6:
+/***/ 9:
 /*!****************************************!*\
   !*** multi ./resources/js/operator.js ***!
   \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! I:\xampp\htdocs\e-management\resources\js\operator.js */"./resources/js/operator.js");
+module.exports = __webpack_require__(/*! E:\server\htdocs\e-management\resources\js\operator.js */"./resources/js/operator.js");
 
 
 /***/ })

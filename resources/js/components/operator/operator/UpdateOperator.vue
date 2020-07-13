@@ -24,6 +24,22 @@
                                   </div>
                               </div>
 
+                             <div class="col-md-4">
+                                  <div class="contact-email">
+                                      <i class="flaticon-mail-26"></i>
+                                      <label for="equipment-type">Operator Type</label>
+                                        <select class="form-control" id="equipment-type" v-model="operator.operator_type">
+                                            <option value="0">Own Operator</option>
+                                            <option value="1">Vendor Operator</option>
+                                        </select>
+                                           <span
+                                           v-if="validation_error.hasOwnProperty('operator_type')" 
+                                          class="text-danger">
+                                          {{ validation_error.operator_type[0] }}
+                                         </span>
+                                  </div>
+                              </div>
+
                               <div class="col-md-4">
                                   <div class="contact-email">
                                       <i class="flaticon-mail-26"></i>
@@ -44,7 +60,7 @@
                                   <div class="contact-email">
                                       <i class="flaticon-mail-26"></i>
                                       <label for="vendor-name">Vendor Name</label>
-                                        <select class="form-control" id="vendor-name" v-model="operator.vendor_id">
+                                        <select class="form-control" id="vendor-name" @change="getVendorEquipments()"  v-model="operator.vendor_id">
                                             <option value="">Select Vendor</option>
                                             <option v-for="vendor in vendors" :key="vendor.id" :value="vendor.id">{{ vendor.vendor_name }}</option>
                                         </select>
@@ -59,10 +75,10 @@
                               <div class="col-md-4">
                                   <div class="contact-email">
                                       <i class="flaticon-mail-26"></i>
-                                      <label for="equipment-name">Equipment Name</label>
+                                      <label for="equipment-name">Equipment</label>
                                         <select class="form-control" id="equipment-name" v-model="operator.equipement_id">
                                             <option value="">Select Equipment</option>
-                                            <option v-for="equipement in equipements" :key="equipement.id" :value="equipement.id">{{ equipement.eq_name }}</option>
+                                            <option v-for="equipement in equipments" :key="equipement.id" :value="equipement.id">{{ equipement.eq_name }}</option>
                                         </select>
                                            <span
                                            v-if="validation_error.hasOwnProperty('equipement_id')" 
@@ -235,15 +251,17 @@ import { EventBus } from "../../../vue-assets";
 import Mixin from "../../../mixin";
 export default {
    mixins : [Mixin],
+   props : ['vendors','equipment_types'],
    data()
    {
         
        return {
         operator : {
           id : '',
-          vendor : {id : '', vendor_name : ''},
-          equipment_type : {id : '', name : ''},
-          equipement : {id : '', eq_name : ''},
+          operator_type : 0,
+          vendor_id : '',
+          equipment_type_id : '',
+          equipement_id : '',
           name : '',
           mobile : '',
           address : '',
@@ -259,7 +277,8 @@ export default {
         },
         dataform : new FormData(),
         button_name : 'Update',
-        validation_error : {}
+        validation_error : {},
+        equipments : [],
        }
    },
 
@@ -270,6 +289,7 @@ export default {
       EventBus.$on('operator-update',function(value){
         $("#UpdateOperator").modal('show')
         _this.operator = value;
+        _this.getVendorEquipments();
       })
    },
    
@@ -293,6 +313,10 @@ export default {
       this.dataform.append('date_of_birth', this.operator.date_of_birth);
       this.dataform.append('file', this.operator.file);
       this.dataform.append('documents_link', this.operator.documents_link);
+      this.dataform.append('operator_type', this.operator.operator_type);
+      this.dataform.append('equipment_type_id', this.operator.equipment_type_id);
+      this.dataform.append('equipement_id', this.operator.equipement_id);
+      this.dataform.append('vendor_id', this.operator.vendor_id);
       this.dataform.append('salary', this.operator.salary);
       this.dataform.append('status', this.operator.status);
     },
@@ -335,10 +359,31 @@ export default {
           );
      },
 
+    getVendorEquipments()
+     {
+       if(this.operator.equipment_type === '' || this.operator.vendor === '')
+       {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'please choose equipment type and vendor both field for equipment list',
+            });
+           return ;
+       }
+       axios.get(`${base_url}equipment-by-vendor/${this.operator.equipment_type_id}/${this.operator.vendor_id}`)
+            .then(response => {
+              this.equipments = response.data;
+            });
+     },
+
      resetForm()
      {
         this.operator = {
           name : '',
+          operator_type : 0,
+          vendor_id : '',
+          equipment_type_id : '',
+          equipement_id : '',
           mobile : '',
           address : '',
           email : '',
@@ -354,6 +399,7 @@ export default {
         this.dataform = new FormData();
         this.button_name = "Update";
         this.validation_error = {};
+        this.equipments = [];
      }
  } 
    

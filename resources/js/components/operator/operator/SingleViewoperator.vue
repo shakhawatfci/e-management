@@ -46,6 +46,57 @@
                                         <div class="t-company-name">
                                             <div class="t-icon">
                                                 <div class="avatar avatar-xl">
+                                                    <span class="avatar-title rounded-circle">VN</span>
+                                                </div>
+                                            </div>
+                                            <div class="t-name">
+                                                <h4>Vendor</h4>
+                                                <p class="meta-date">{{ operator.vendor.vendor_name }}</p>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+
+                                <div class="col-4 transactions-list">
+                                    <div class="t-item">
+                                        <div class="t-company-name">
+                                            <div class="t-icon">
+                                                <div class="avatar avatar-xl">
+                                                    <span class="avatar-title rounded-circle">ET</span>
+                                                </div>
+                                            </div>
+                                            <div class="t-name">
+                                                <h4>Equipment Type</h4>
+                                                <p class="meta-date">{{ operator.equipment_type.name }} </p>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+
+                                <div class="col-4 transactions-list">
+                                    <div class="t-item">
+                                        <div class="t-company-name">
+                                            <div class="t-icon">
+                                                <div class="avatar avatar-xl">
+                                                    <span class="avatar-title rounded-circle">EQ</span>
+                                                </div>
+                                            </div>
+                                            <div class="t-name">
+                                                <h4>Equipment</h4>
+                                                <p class="meta-date">{{ operator.equipement.eq_name }} {{ operator.equipement.eq_model }} </p>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+
+                                <div class="col-4 transactions-list">
+                                    <div class="t-item">
+                                        <div class="t-company-name">
+                                            <div class="t-icon">
+                                                <div class="avatar avatar-xl">
                                                     <span class="avatar-title rounded-circle">EM</span>
                                                 </div>
                                             </div>

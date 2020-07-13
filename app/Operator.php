@@ -25,4 +25,36 @@ class Operator extends Model
 
         return $this->hasMany('App\OperatorFooding');
     }
+
+    public function vendor()
+    {
+    	return $this->belongsTo('App\Vendor')->withDefault(
+          [
+             'id' => 0,
+             'vendor_name' => 'N/A'
+          ]
+         );
+    }
+
+    public function equipment_type()
+    {
+    	return $this->belongsTo('App\EquipmentType')->withDefault(
+         [
+            'id' => 0,
+            'name' => 'N/A'
+         ]
+      );
+    }
+
+    public function equipement()
+    {
+    	return $this->belongsTo('App\Equipement')->withDefault(
+         [
+            'id'          => 0,
+            'eq_name'     => 'N/A',
+            'eq_model'    => 'N/A',
+            'eq_capacity' => 'N/A'
+         ]
+      );
+    }
 }

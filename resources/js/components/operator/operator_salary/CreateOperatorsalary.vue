@@ -18,7 +18,8 @@
                                       <label for="operator-name">Operator Name</label>
                                         <select class="form-control" id="operator-name" v-model="salary.operator_id" @change="setSalary()">
                                             <option value="">Select Operator</option>
-                                            <option v-for="operator in operators" :key="operator.id" :value="operator.id">{{ operator.name }}</option>
+                                            <option v-for="operator in operators" :key="operator.id" 
+                                            :value="operator.id">{{ operator.name }} ({{ operator.operator_type == 1 ? 'vendor' : 'own' }})</option>
                                         </select>
                                            <span
                                            v-if="validation_error.hasOwnProperty('operator_id')" 

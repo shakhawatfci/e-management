@@ -3732,6 +3732,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -4498,84 +4501,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-<<<<<<< HEAD
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-=======
->>>>>>> e4fe6376b5aff5bdb017e29dda447fc6a8e7fcf9
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -31910,7 +31835,7 @@ var EventBus = new Vue();
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! I:\xampp\htdocs\e-management\resources\js\expense.js */"./resources/js/expense.js");
+module.exports = __webpack_require__(/*! E:\server\htdocs\e-management\resources\js\expense.js */"./resources/js/expense.js");
 
 
 /***/ })

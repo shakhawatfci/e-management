@@ -3,7 +3,13 @@
 
 @section('page_header')
 <li class="breadcrumb-item"><a href="javascript:void(0);">Operator</a></li>
-<li class="breadcrumb-item active" aria-current="page"><span>Manage</span></li>
+<li class="breadcrumb-item active" aria-current="page"><span>Manage Operator</span></li>
+@endsection
+@section('create-button')
+<button  data-toggle="modal"  data-target="#createOperator"
+                             class="btn btn-primary"  data-placement="top" title="Create New Operator">
+                            <i class="far fa-plus-square"></i> Create New 
+</button>
 @endsection
 @section('content')
 <div class="layout-px-spacing">                
@@ -12,22 +18,11 @@
             <div class="widget-content searchable-container list">
 
                 <div class="row">
-                    <div class="col-xl-4 col-lg-5 col-md-5 col-sm-7 filtered-list-search layout-spacing align-self-center">
-                      <h6 style="margin-top : 20px">Manage Operator</h6>
-                    </div>
-
-                    <div class="col-xl-8 col-lg-7 col-md-7 col-sm-5 text-sm-right text-center layout-spacing align-self-center">
-                        <div class="d-flex justify-content-sm-end justify-content-center">
-                            <button  data-toggle="modal"  data-target="#createOperator"
-                             class="btn btn-primary"  data-placement="top" title="Create New Operator">
-                            <i class="far fa-plus-square"></i> Create New
-                            </button>
-                        </div>
-                        <create-operator :vendors="{{ $vendors }}" :equipment_types="{{ $equipment_types }}" :equipements="{{ $equipements }}"></create-operator>
+                        <create-operator :vendors="{{ $vendors }}" :equipment_types="{{ $equipment_types }}"></create-operator>
                     </div>
                 </div>
 
-             <view-operator :vendors="{{ $vendors }}" :equipment_types="{{ $equipment_types }}" :equipements="{{ $equipements }}"></view-operator>
+             <view-operator :vendors="{{ $vendors }}" :equipment_types="{{ $equipment_types }}"></view-operator>
 
             </div>
         </div>
