@@ -18,7 +18,6 @@
                 <th>Location</th>
                 <th>Email</th>
                 <th>Phone</th>
-                <th class="text-center">Status</th>
                 <th class="text-center">action</th>
             </tr>
         </thead>
@@ -28,10 +27,6 @@
                 <td>{{ value.project_location }}</td>
                 <td>{{ value.project_email }}</td>
                 <td>{{ value.project_phone }}</td>
-                <td class="text-center">
-                    <span class="text-success" v-if="value.project_status == 1">Active</span>
-                    <span class="text-danger" v-else>Inactive</span>
-                </td>
                 <td class="text-center">
                     <button class="btn btn-dark mb-2 mr-2 rounded-circle" @click="editProject(value)"><i class="far fa-edit"></i></button>
                     <button class="btn btn-danger mb-2 mr-2 rounded-circle" @click.prevent="deleteProject(value.id)"><i class="far fa-trash-alt"></i></button>

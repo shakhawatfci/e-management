@@ -58,6 +58,12 @@ class OperatorFoodingController extends Controller
         if($request->operator != '') {
             $foodings->where('operator_id','=',$request->operator);
         }
+        if($request->month_filter != '') {
+            // return  $request->month_filter;
+            $filter_month = date('Y-m',strtotime(str_replace('/','-',$request->month_filter)));
+            // return $filter_month;
+            $foodings->where('month','=',$filter_month);
+        }
         return $foodings->paginate(10);
     }
 
@@ -70,7 +76,7 @@ class OperatorFoodingController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'month' => 'required|date_format:Y-m',
+            'month' => 'required',
             'date' => 'required',
             'operator_id' => 'required',
             'fooding_amount' => 'required|numeric'
@@ -86,7 +92,7 @@ class OperatorFoodingController extends Controller
                 'equipement_id' => $request->equipement_id,
                 'operator_id'  => $request->operator_id,
                 'fooding_amount' => $request->fooding_amount,
-                'month' => $request->month,
+                'month' => date('Y-m',strtotime($request->month)),
                 'date' => $request->date,
                 'status'       => $status
             ]);
@@ -133,7 +139,7 @@ class OperatorFoodingController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'month' => 'required|date_format:Y-m',
+            'month' => 'required',
             'date' => 'required',
             'operator_id' => 'required',
             'fooding_amount' => 'required|numeric'
@@ -149,8 +155,8 @@ class OperatorFoodingController extends Controller
             $update->equipement_id = $request->equipement_id;
             $update->operator_id  = $request->operator_id;
             $update->fooding_amount = $request->fooding_amount;
-            $update->month = $request->month;
-            $update->month = $request->month;
+            $update->date = $request->date;
+            $update->month = date('Y-m',strtotime($request->month));
             $update->status       = $status;
 
             if($update->update()) {

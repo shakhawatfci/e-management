@@ -30,6 +30,16 @@
 
     box-shadow: 0px 5px 15px aqua !important;
        }
+
+    .vue-monthly-picker .input {
+      background-color : #1b2e4b !important;
+      height: calc(1.4em + 1.4rem + 2px) !important;
+      padding-left: 10px;
+      /*margin-left: 10px;*/
+      color : #007c63 !important;
+      border: none !important;
+      width: 100%;
+    }
   </style>
 </head>
 <body>

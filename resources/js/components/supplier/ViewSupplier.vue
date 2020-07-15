@@ -19,7 +19,6 @@
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Concerned Person</th>
-                <th class="text-center">Status</th>
                 <th class="text-center">action</th>
             </tr>
         </thead>
@@ -30,10 +29,6 @@
                 <td>{{ value.vendor_email }}</td>
                 <td>{{ value.vendor_phone }}</td>
                 <td>{{ value.concerned_person }}</td>
-                <td class="text-center">
-                    <span class="text-success" v-if="value.status == 1">Active</span>
-                    <span class="text-danger" v-else>Inactive</span>
-                </td>
                 <td class="text-center">
                     <button class="btn btn-dark mb-2 mr-2 rounded-circle" @click="viewDetails(value)">
                       <i class="far fa-eye"></i></button>

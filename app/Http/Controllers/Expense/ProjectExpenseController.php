@@ -46,10 +46,11 @@ class ProjectExpenseController extends Controller
 
     public function store(Request $request)
     {
+
         $request->validate([
             'project_expense_head_id' => 'required',
             'project_id' => 'required',
-            'month' => 'required|date_format:Y-m',
+            'month' => 'required',
             'date' => 'required',
             'amount' => 'required|numeric',
             'note' => 'required'
@@ -68,7 +69,7 @@ class ProjectExpenseController extends Controller
                 'project_expense_head_id' => $request->project_expense_head_id,
                 'project_id' => $request->project_id,
                 'user_id' => Auth::id(),
-                'month' => $request->month,
+                'month' => date('Y-m',strtotime($request->month)),
                 'date' => $request->date,
                 'amount' => $request->amount,
                 'document' => $filename,
@@ -121,7 +122,7 @@ class ProjectExpenseController extends Controller
         $request->validate([
             'project_expense_head_id' => 'required',
             'project_id' => 'required',
-            'month' => 'required|date_format:Y-m',
+            'month' => 'required',
             'date' => 'required',
             'amount' => 'required|numeric',
             'note' => 'required'
@@ -135,7 +136,7 @@ class ProjectExpenseController extends Controller
             $update->project_expense_head_id = $request->project_expense_head_id;
             $update->project_id = $request->project_id;
             $update->user_id = Auth::id();
-            $update->month = $request->month;
+            $update->month = date('Y-m',strtotime($request->month));
             $update->date = $request->date;
             $update->amount = $request->amount;
             $update->document_link = $request->document_link;

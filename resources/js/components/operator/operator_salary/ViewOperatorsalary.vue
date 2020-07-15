@@ -4,7 +4,30 @@
       <div class="col-md-3" style="margin-bottom:10px;">
         <input type="text" v-model="keyword" 
         class="form-control"
-         placeholder="Search Operator Salary" @keyup="getOperatorSalary()" />
+         placeholder="Search By Salary" @keyup="getOperatorSalary()" />
+      </div>
+      <div class="col-md-3" style="margin-bottom:10px;">
+          <select class="form-control" v-model="operator_id" @change="getOperatorSalary()">
+            <option value="">All Operator</option>
+            <option v-for="operator in operators" :key="operator.id" :value="operator.id">{{ operator.name }}</option>
+          </select>
+      </div>
+
+      <div class="col-md-2" style="margin-bottom:10px;">
+         <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="pickermonth.text" v-model="filtermonth" @input="getOperatorSalary()"></vue-monthly-picker>
+      </div>
+
+      <div class="col-md-2" style="margin-bottom:10px;">
+          <select class="form-control" v-model="by_mode" @change="getOperatorSalary()">
+            <option value="">All Mode</option>
+            <option value="1">Cash</option>
+            <option value="2">Bank</option>
+            <option value="3">Mobile Bank</option>
+          </select>
+      </div>
+
+      <div class="col-md-2" style="margin-bottom:10px;">
+         <button class="btn btn-danger" @click="filterClear()">Filter Clear</button>
       </div>
     </div>
     
@@ -66,6 +89,7 @@
 <script>
 import { EventBus } from "../../../vue-assets";
 import Mixin from "../../../mixin";
+import VueMonthlyPicker from 'vue-monthly-picker'
 import Pagination from '../../pagination/Pagination';
 import ShowSalary from './SingleViewoperatorsalary';
 import UpdateSalary from './UpdateOperatorsalary';
@@ -75,11 +99,18 @@ export default {
   components : {
    'pagination' : Pagination,
     ShowSalary,
-    UpdateSalary
+    UpdateSalary, VueMonthlyPicker
   },
   data() {
     return {
      salaries : [],
+     operator_id : '',
+     filtermonth : '',
+     pickermonth : {
+        lebel : ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
+        text : "Search By Month",
+     },
+     by_mode : '',
      url : base_url,
      keyword   : '',
      isLoading : false,
@@ -103,7 +134,12 @@ export default {
      getOperatorSalary(page = 1) 
      {
          this.isLoading = true;
-         axios.get(base_url+`operator-salary-list?page=${page}&keyword=${this.keyword}`)
+         var mo = '';
+         if(this.filtermonth.hasOwnProperty('_i') && this.filtermonth != null)
+         {
+          mo = this.filtermonth._i;
+         }
+         axios.get(base_url+`operator-salary-list?page=${page}&keyword=${this.keyword}&operator=${this.operator_id}&month_filter=${mo}&mode=${this.by_mode}`)
          .then(response =>
           {
             this.salaries = response.data;
@@ -119,6 +155,13 @@ export default {
      viewOperatorSalary(value)
      {
         EventBus.$emit('operator-salary-show',value)
+     },
+
+     filterClear(){
+        this.operator_id = '';
+        this.filtermonth = '';
+        this.by_mode = '';
+        this.getOperatorSalary();
      },
 
      deleteOperatorSalary(id)

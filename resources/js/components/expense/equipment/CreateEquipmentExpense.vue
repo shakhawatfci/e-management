@@ -107,8 +107,8 @@
                         <div class="col-md-4">
                             <div class="contact-name">
                                 <i class="flaticon-user-11"></i>
-                                <label for="month">Month</label>
-                                <input v-model="euqipment.month" id="month" class="form-control" type="text" placeholder="YYYY-MM">
+                                <label>Month</label>
+                                <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="pickermonth.text" v-model="euqipment.month" dateFormt="YYYY-MM"></vue-monthly-picker>
                                 <span v-if="validation_error.hasOwnProperty('month')" class="text-danger">
                                     {{ validation_error.month[0] }}
                                 </span>
@@ -144,12 +144,12 @@
                       <div class="col-md-4">
                         <div class="contact-phone">
                             <i class="flaticon-telephone"></i>
-                            <label for="document_link">Document Link</label>
-                            <input type="text" id="document_link" class="form-control" v-model="euqipment.document_link">
+                            <label for="documents-link">Document Link</label>
+                            <input type="text" id="documents-link" class="form-control" v-model="euqipment.documents_link">
                             <span
-                               v-if="validation_error.hasOwnProperty('document_link')" 
+                               v-if="validation_error.hasOwnProperty('documents_link')" 
                               class="text-danger">
-                              {{ validation_error.document_link[0] }}
+                              {{ validation_error.documents_link[0] }}
                              </span>
                         </div>
                       </div>
@@ -186,11 +186,11 @@
 <script>
 import { EventBus  } from '../../../vue-assets';
 import Mixin from '../../../mixin';
-import { MonthPicker } from 'vue-month-picker'
+import VueMonthlyPicker from 'vue-monthly-picker'
 export default {
    mixins : [Mixin],
    components: {
-      MonthPicker
+      VueMonthlyPicker
     },
 
    data()
@@ -206,8 +206,13 @@ export default {
           month : '',
           payment_date : '',
           amount : '',
-          document_link : '',
+          documents_link : '',
           note : ''
+        },
+
+        pickermonth : {
+          lebel : ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
+          text : "Month"
         },
         projects: [],
         vendors : [],
@@ -294,7 +299,7 @@ export default {
           month : '',
           payment_date : '',
           amount : '',
-          document_link : '',
+          documents_link : '',
           note : ''
         };
         this.validation_error = {};

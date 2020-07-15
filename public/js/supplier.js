@@ -2753,11 +2753,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -9033,16 +9028,6 @@ var render = function() {
                           _c("td", [_vm._v(_vm._s(value.concerned_person))]),
                           _vm._v(" "),
                           _c("td", { staticClass: "text-center" }, [
-                            value.status == 1
-                              ? _c("span", { staticClass: "text-success" }, [
-                                  _vm._v("Active")
-                                ])
-                              : _c("span", { staticClass: "text-danger" }, [
-                                  _vm._v("Inactive")
-                                ])
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "text-center" }, [
                             _c(
                               "button",
                               {
@@ -9140,8 +9125,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Phone")]),
         _vm._v(" "),
         _c("th", [_vm._v("Concerned Person")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "text-center" }, [_vm._v("Status")]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [_vm._v("action")])
       ])
@@ -21781,7 +21764,7 @@ var EventBus = new Vue();
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! E:\server\htdocs\e-management\resources\js\supplier.js */"./resources/js/supplier.js");
+module.exports = __webpack_require__(/*! I:\xampp\htdocs\e-management\resources\js\supplier.js */"./resources/js/supplier.js");
 
 
 /***/ })

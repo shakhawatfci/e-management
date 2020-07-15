@@ -19,12 +19,21 @@ class OperatorSalaryController extends Controller
     public function operatorSalaryList(Request $request)
     {
     	$salary = OperatorSalary::with('operator:id,name')->orderBy('id','desc');
+        if($request->operator != '') {
+            $salary->where('operator_id','=',$request->operator);
+        }
+        if($request->month_filter != '') {
+            $filter_month = date('Y-m',strtotime(str_replace('/','-',$request->month_filter)));
+            $salary->where('month','=',$filter_month);
+        }
+        if($request->mode != '') {
+            $salary->where('mode','=',$request->mode);
+        }
         if($request->keyword != '') {
             $salary->where('payment_date','LIKE','%'.$request->keyword.'%');
-            $salary->orWhere('month','LIKE','%'.$request->keyword.'%');
             $salary->orWhere('payment_amount','LIKE','%'.$request->keyword.'%');
-            $salary->orWhere('salary_type','LIKE','%'.$request->keyword.'%');
         }
+        
         return $salary->paginate(10);
     }
 
@@ -38,7 +47,7 @@ class OperatorSalaryController extends Controller
     {
         $request->validate([
             'operator_id' 	 => 'required',
-            'month'			 => 'required|date_format:Y-m',
+            'month'			 => 'required',
 	        'payment_date' 	 => 'required',
 	        'payment_amount' => 'required|numeric',
 	        'mode' 			 => 'required'
@@ -67,7 +76,7 @@ class OperatorSalaryController extends Controller
         	$insert->equipement_id	      =    $operator->equipement_id;
         	$insert->equipment_type_id	  =    $request->equipment_type_id;
         	$insert->vendor_id	          =    $request->vendor_id;
-	        $insert->month 		          =    $request->month;
+	        $insert->month 		          =    date('Y-m',strtotime($request->month));
 	        $insert->payment_date 	      =    $request->payment_date;
 	        $insert->payment_amount       =    $request->payment_amount;
 	        $insert->mode 			      =    $request->mode;
@@ -96,7 +105,7 @@ class OperatorSalaryController extends Controller
     {
         $request->validate([
             'operator_id' 	 => 'required',
-            'month'			 => 'required|date_format:Y-m',
+            'month'			 => 'required',
 	        'payment_date' 	 => 'required',
 	        'payment_amount' => 'required|numeric',
 	        'mode' 			 => 'required'
@@ -110,7 +119,7 @@ class OperatorSalaryController extends Controller
             $update = OperatorSalary::find($id);
 
                 $update->operator_id	= $request->operator_id;
-		        $update->month 			= $request->month;
+		        $update->month 			= date('Y-m',strtotime($request->month));
 		        $update->payment_date 	= $request->payment_date;
 		        $update->payment_amount	= $request->payment_amount;
 		        $update->mode 			= $request->mode;

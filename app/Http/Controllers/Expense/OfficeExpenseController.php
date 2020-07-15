@@ -52,7 +52,7 @@ class OfficeExpenseController extends Controller
     {
         $request->validate([
             'office_expense_head_id' => 'required',
-            'month' => 'required|date_format:Y-m',
+            'month' => 'required',
             'date' => 'required',
             'amount' => 'required|numeric'
         ]);
@@ -69,7 +69,7 @@ class OfficeExpenseController extends Controller
             $insert = OfficeExpense::insert([
                 'office_expense_head_id' => $request->office_expense_head_id,
                 'user_id' => Auth::id(),
-                'month' => $request->month,
+                'month' => date('Y-m',strtotime($request->month)),
                 'date' => $request->date,
                 'amount' => $request->amount,
                 'document' => $filename,
@@ -121,7 +121,7 @@ class OfficeExpenseController extends Controller
     {
         $request->validate([
             'office_expense_head_id' => 'required',
-            'month' => 'required|date_format:Y-m',
+            'month' => 'required',
             'date' => 'required',
             'amount' => 'required|numeric'
         ]);
@@ -132,7 +132,7 @@ class OfficeExpenseController extends Controller
             $update = OfficeExpense::find($id);
             $update->office_expense_head_id = $request->office_expense_head_id;
             $update->user_id = Auth::id();
-            $update->month = $request->month;
+            $update->month = date('Y-m',strtotime($request->month));
             $update->date = $request->date;
             $update->amount = $request->amount;
             $update->document = $filename;

@@ -68,9 +68,6 @@ class OperatorController extends Controller
  */
     public function store(Request $request)
     {
-
-       
-
         $request->validate([
             'operator_name' => 'required',
             'salary'        => 'required',

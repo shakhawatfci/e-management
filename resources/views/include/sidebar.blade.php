@@ -18,7 +18,7 @@
                 <!-- adminstration  -->
 
                                 <li class="menu">
-                        <a href="#equipment" data-toggle="collapse"
+                        <a href="#administration" data-toggle="collapse"
                          aria-expanded="false"  class="dropdown-toggle">
                             <div class="menu_headling">
                                 <i class="fa fa-sitemap"></i>
@@ -35,7 +35,7 @@
                             </div>
                         </a>
                         <ul class="collapse submenu list-unstyled"
-                         id="equipment" data-parent="#accordionExample">
+                         id="administration" data-parent="#accordionExample">
                             <li class="@if(Route::is('role.index')){{ 'active' }}@else{{ '' }}@endif">
                                 <a href="{{ route('role.index') }}" >Roles & Permission</a>
                             </li>

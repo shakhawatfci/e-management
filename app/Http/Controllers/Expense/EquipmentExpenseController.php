@@ -96,7 +96,7 @@ class EquipmentExpenseController extends Controller
             'equipment_type_id' => 'required',
             'equipement_id' => 'required',
             'expense_category_id' => 'required',
-            'month' => 'required|date_format:Y-m',
+            'month' => 'required',
             'payment_date' => 'required',
             'amount' => 'required'
         ]);
@@ -108,11 +108,11 @@ class EquipmentExpenseController extends Controller
                 'equipment_type_id' => $request->equipment_type_id,
                 'equipement_id' => $request->equipement_id,
                 'equipment_expense_head_id' => $request->expense_category_id,
-                'month' => $request->month,
+                'month' => date('Y-m',strtotime($request->month)),
                 'payment_date' => $request->payment_date,
                 'amount' => $request->amount,
                 'document' => null,
-                'documents_link' => $request->document_link,
+                'documents_link' => $request->documents_link,
                 'note' => $request->note,
                 'status' => $status
             ]);
@@ -175,7 +175,7 @@ class EquipmentExpenseController extends Controller
             'equipment_type_id' => 'required',
             'equipement_id' => 'required',
             'equipment_expense_head_id' => 'required',
-            'month' => 'required|date_format:Y-m',
+            'month' => 'required',
             'payment_date' => 'required',
             'amount' => 'required'
         ]);
@@ -188,10 +188,10 @@ class EquipmentExpenseController extends Controller
                 $update->equipment_type_id = $request->equipment_type_id;
                 $update->equipement_id = $request->equipement_id;
                 $update->equipment_expense_head_id = $request->equipment_expense_head_id;
-                $update->month = $request->month;
+                $update->month = date('Y-m',strtotime($request->month));
                 $update->payment_date = $request->payment_date;
                 $update->amount = $request->amount;
-                $update->documents_link = $request->document_link;
+                $update->documents_link = $request->documents_link;
                 $update->note = $request->note;
                 $update->status = $status;
 

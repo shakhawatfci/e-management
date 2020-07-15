@@ -65,7 +65,7 @@
                                 <div class="contact-name">
                                     <i class="flaticon-user-11"></i>
                                     <label>Month</label>
-                                    <month-picker @change="showDate" :input-pre-filled="false" :no-default="true" :show-year="true"></month-picker>
+                                    <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="pickermonth.text" v-model="project.month" dateFormt="YYYY-MM"></vue-monthly-picker>
                                     <span v-if="validation_error.hasOwnProperty('month')" class="text-danger">
                                         {{ validation_error.month[0] }}
                                     </span>
@@ -84,10 +84,7 @@
                                      </span>
                                 </div>
                               </div>
-                                
-                            </div>
-                            <div class="row">
-                              <div class="col-md-12">
+                              <div class="col-md-6">
                                   <div class="contact-phone">
                                       <i class="flaticon-telephone"></i>
                                       <label for="up-document-link">Project Document Link</label>
@@ -98,7 +95,7 @@
                                         {{ validation_error.document_link[0] }}
                                        </span>
                                   </div>
-                                </div>
+                                </div> 
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
@@ -130,12 +127,12 @@
 <script>
 import { EventBus  } from '../../../vue-assets';
 import Mixin from '../../../mixin';
-import { MonthPicker } from 'vue-month-picker'
+import VueMonthlyPicker from 'vue-monthly-picker'
 export default {
    mixins : [Mixin],
    props : ['project_expense_head','project_data'],
    components: {
-      MonthPicker
+      VueMonthlyPicker
     },
    data()
    {
@@ -149,6 +146,10 @@ export default {
             amount : '',
             document_link : '',
             note : ''
+          },
+          pickermonth : {
+            lebel : ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
+            text : "Month",
           },
          button_name : 'Update',
          validation_error : {}
@@ -167,9 +168,6 @@ export default {
    },
 
  methods : {
-      showDate(date){
-          this.project.month = date.year+'-'+date.monthIndex
-       },
 
      update()
      {

@@ -43,8 +43,8 @@
                           <div class="col-md-4">
                               <div class="contact-email">
                                   <i class="flaticon-mail-26"></i>
-                                  <label for="salary-month">Month</label>
-                                  <input type="text"  id="salary-month" class="form-control" v-model="salary.month" placeholder="Salary Month">
+                                  <label>Month</label>
+                                      <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="pickermonth.text" v-model="fooding.month" dateFormt="YYYY-MM"></vue-monthly-picker>
                                        <span
                                        v-if="validation_error.hasOwnProperty('month')" 
                                       class="text-danger">
@@ -131,8 +131,12 @@
 <script>
 import { EventBus } from "../../../vue-assets";
 import Mixin from "../../../mixin";
+import VueMonthlyPicker from 'vue-monthly-picker'
 export default {
    mixins : [Mixin],
+   components: {
+      VueMonthlyPicker
+    },
    props: ['operators'],
    data()
    {
@@ -148,7 +152,10 @@ export default {
           bank_bkash_note : '',
           status : ''
         },
-
+        pickermonth : {
+          lebel : ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
+          text : "Month"
+        },
         button_name : 'Update',
         validation_error : {}
        }
