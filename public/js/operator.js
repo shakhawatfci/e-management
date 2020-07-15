@@ -37003,11 +37003,11 @@ var render = function() {
                                 dateFormt: "YYYY-MM"
                               },
                               model: {
-                                value: _vm.fooding.month,
+                                value: _vm.salary.month,
                                 callback: function($$v) {
-                                  _vm.$set(_vm.fooding, "month", $$v)
+                                  _vm.$set(_vm.salary, "month", $$v)
                                 },
-                                expression: "fooding.month"
+                                expression: "salary.month"
                               }
                             }),
                             _vm._v(" "),
