@@ -63,36 +63,36 @@ class RouteServiceProvider extends ServiceProvider
             ->group(base_path('routes/web.php'));
         
         //   admin related route 
-        Route::middleware(['web','auth'])
+        Route::middleware(['web','auth','permission'])
             ->namespace($this->namespace)
             ->group(base_path('routes/admin.php'));
             
         //   equipment related route 
-        Route::middleware(['web','auth'])
+        Route::middleware(['web','auth','permission'])
             ->namespace($this->namespace)
             ->group(base_path('routes/equipment.php'));
 
-        Route::middleware(['web','auth'])
+        Route::middleware(['web','auth','permission'])
             ->namespace($this->namespace)
             ->group(base_path('routes/supplier.php'));
 
-        Route::middleware(['web','auth'])
+        Route::middleware(['web','auth','permission'])
             ->namespace($this->namespace)
             ->group(base_path('routes/project.php'));
 
-        Route::middleware(['web','auth'])
+        Route::middleware(['web','auth','permission'])
             ->namespace($this->namespace)
             ->group(base_path('routes/expense.php'));
 
-        Route::middleware(['web','auth'])
+        Route::middleware(['web','auth','permission'])
             ->namespace($this->namespace)
             ->group(base_path('routes/bill.php'));
 
-        Route::middleware(['web','auth'])
+        Route::middleware(['web','auth','permission'])
             ->namespace($this->namespace)
             ->group(base_path('routes/operator.php'));
         
-         Route::middleware(['web','auth'])
+         Route::middleware(['web','auth','permission'])
             ->namespace($this->namespace)
             ->group(base_path('routes/employee.php'));
     }

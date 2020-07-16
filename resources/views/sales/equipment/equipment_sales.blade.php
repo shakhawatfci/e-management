@@ -3,7 +3,7 @@
 
 @section('page_header')
 <li class="breadcrumb-item"><a href="javascript:void(0);">Sales </a></li>
-<li class="breadcrumb-item active" aria-current="page"><span>Equipment Sales</span></li>
+<li class="breadcrumb-item active" aria-current="page"><span>Equipment Sale</span></li>
 @endsection
 @section('create-button')
 <button  data-toggle="modal"  data-target="#CreateSales"
@@ -18,9 +18,7 @@
                         <div class="widget-content searchable-container list">
 
                             <div class="row">
->
                                     <create-sales  :equipment_types='@json($equipment_types)'></create-sales>
-
                             </div>
 
                          <view-sales  :equipment_types='@json($equipment_types)'></view-sales>

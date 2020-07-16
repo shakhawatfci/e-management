@@ -23,6 +23,7 @@
     
     <script src="{{ asset('admin-assets/plugins/flatpickr/flatpickr.js') }}"></script>
     <script src="{{ asset('admin-assets/plugins/monthpicker/jquery.ui.monthpicker.js') }}"></script>
+    
     <script>
         jQuery(document).ready(function() {
             jQuery("#month1").monthpicker({

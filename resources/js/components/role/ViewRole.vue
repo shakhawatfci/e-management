@@ -28,7 +28,7 @@
                         <tbody>
                         <tr v-for="(value,index) in roles.data" :key="index">
                             <td>{{ value.role_name }}</td>
-                            <td><a @click.prevent="perMission(value.id)" href="" class="btn btn-sm btn-secondary rounded"><i class="fa fa-key"></i></a></td>
+                            <td><a @click.prevent="perMission(value)" href="" class="btn btn-sm btn-secondary rounded"><i class="fa fa-key"></i></a></td>
                             <td>
                                 <a @click.prevent="edit(value)" class="btn btn-sm btn-primary" href="#"><i class="fa fa-edit" title="Edit"></i></a> 
                                 <a @click.prevent="deleterole(value.id)" class="btn btn-sm btn-danger" href="#"><i class="fa fa-trash" title="Delete"></i></a>
@@ -49,8 +49,8 @@
       <div class="col-md-12 text-center mb-10 mt-10">
         <!-- import pagination here  -->
         <pagination :pageData="roles"></pagination>
-        <!-- <edit-role ></edit-role>
-        <role-permission></role-permission> -->
+        <edit-role ></edit-role>
+        <role-permission></role-permission>
       </div>
     </div>
   </div>
@@ -137,15 +137,12 @@
 
         // edit role 
 
-        edit(id){           
-            EventBus.$emit('update-role',id);
+        edit(role){           
+            EventBus.$emit('edit-role',role);
         },
 
-        perMission(id){
-          
-          this.successMessage({ status : 'error' , message : 'Work On Progress'  });
-          EventBus.$emit('assign-permission',id);
-
+        perMission(role){  
+          EventBus.$emit('assign-permission',role);
         },
 
 
