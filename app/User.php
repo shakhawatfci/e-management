@@ -40,4 +40,21 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\ProjectClaim');
     }
+
+    // relation with employee 
+
+    public function employee()
+    {
+        return $this->belongsTo('App\Employee');
+    }
+
+    // relation with role 
+
+    public function role()
+    {
+        return $this->belongsTo('App\Role')->withDefault([
+            'id' => 0,
+            'role_name' => 'N/A'
+        ]);
+    }
 }

@@ -21,4 +21,5 @@ mix.js('resources/js/app.js', 'public/js')
    .js('resources/js/mobilization.js','public/js')
    .js('resources/js/role.js','public/js')
    .js('resources/js/operator.js','public/js')
+   .js('resources/js/employee.js','public/js')
     .sass('resources/sass/app.scss', 'public/css');

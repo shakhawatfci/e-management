@@ -39,8 +39,8 @@
                             <li class="@if(Route::is('role.index')){{ 'active' }}@else{{ '' }}@endif">
                                 <a href="{{ route('role.index') }}" >Roles & Permission</a>
                             </li>
-                            <li  class="@if(Route::is('role.index')){{ 'active' }}@else{{ '' }}@endif">
-                                <a href="{{ route('role.index') }}"> Employee </a>
+                            <li  class="@if(Route::is('employee.index')){{ 'active' }}@else{{ '' }}@endif">
+                                <a href="{{ route('employee.index') }}"> Employee </a>
                             </li>
                         </ul>
                     </li>
