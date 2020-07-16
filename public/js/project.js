@@ -3958,6 +3958,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -3966,7 +3967,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
-  props: ["vendors", 'equipment_types', 'projects'],
+  props: ["vendors", 'equipment_types', 'projects', 'operators'],
   components: {
     'pagination': _pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"],
     'edit-assign-equipment': _UpdateAssignEquipment__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -13531,7 +13532,8 @@ var render = function() {
             attrs: {
               projects: _vm.projects,
               vendors: _vm.vendors,
-              equipment_types: _vm.equipment_types
+              equipment_types: _vm.equipment_types,
+              operators: _vm.operators
             }
           })
         ],

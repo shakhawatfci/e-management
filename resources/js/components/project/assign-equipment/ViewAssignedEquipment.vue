@@ -113,7 +113,8 @@
         <pagination :pageData="assign_equipments"></pagination>
         <release-equipment ></release-equipment>
         <view-assign-details ></view-assign-details>
-        <edit-assign-equipment :projects="projects" :vendors="vendors" :equipment_types="equipment_types"></edit-assign-equipment>
+        <edit-assign-equipment :projects="projects" :vendors="vendors" 
+        :equipment_types="equipment_types" :operators="operators"></edit-assign-equipment>
       </div>
     </div>
   </div>
@@ -129,7 +130,7 @@ import ReleaseEquipment from "./ReleaseEquipment";
 import ViewAssignDetails from "./ViewAssignDetails";
 export default {
   mixins: [Mixin],
-  props: ["vendors",'equipment_types','projects'],
+  props: ["vendors",'equipment_types','projects','operators'],
   components: {
     'pagination': Pagination,
     'edit-assign-equipment': UpdateAssignEquipment,

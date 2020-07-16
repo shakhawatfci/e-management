@@ -38,8 +38,15 @@
                   <span class="text-danger" v-else>Inactive</span>
                 </td>
                 <td class="text-center">
-                  <button @click="edit(value)" class="btn btn-dark mb-2 mr-2 rounded-circle">
+                  <button @click="viewMore(value)" class="btn btn-dark mb-2 mr-2 rounded-circle">
+                    <i class="far fa-eye"></i>
+                  </button>
+                  <button @click="edit(value)" class="btn btn-primary mb-2 mr-2 rounded-circle">
                     <i class="far fa-edit"></i>
+                  </button>
+                  <button @click="passwordChange(value.id,value.name)" title="Password Change" 
+                  class="btn btn-secondary mb-2 mr-2 rounded-circle">
+                    <i class="fa fa-lock"></i>
                   </button>
                   <button @click="deleteEquipmentType(value.id)" class="btn btn-danger mb-2 mr-2 rounded-circle">
                     <i class="far fa-trash-alt"></i>
@@ -63,6 +70,8 @@
        
       </div>
        <edit-employee :roles="roles" ></edit-employee>
+       <employee-details ></employee-details>
+       <password-change ></password-change>
     </div>
   </div>
 </template>
@@ -73,12 +82,16 @@ import { EventBus } from "../../vue-assets";
 import Mixin from "../../mixin";
 import Pagination from "../pagination/Pagination";
 import UpdateEmployee from "./UpdateEmployee";
+import EmployeeDetails from "./EmployeeDetails";
+import PasswordChange from "./PasswordChange";
 export default {
   mixins: [Mixin],
   props: ['roles'],
   components: {
     'pagination': Pagination,
-    'edit-employee': UpdateEmployee
+    'edit-employee': UpdateEmployee,
+    'employee-details': EmployeeDetails,
+    'password-change': PasswordChange
   },
   data() {
     return {
@@ -115,6 +128,17 @@ export default {
 
     edit(employee) {
       EventBus.$emit("edit-employee", employee);
+    },
+
+    viewMore(employee) {
+      EventBus.$emit("employee-details", employee);
+    },
+
+    passwordChange(employee_id,name)
+    { 
+
+      EventBus.$emit('employee-password',{ employee_id : employee_id, name : name });
+
     },
 
      deleteEquipmentType(id){

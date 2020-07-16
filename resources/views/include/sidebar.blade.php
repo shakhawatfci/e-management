@@ -15,14 +15,17 @@
                         </a>
                     </li>
 
-                <!-- adminstration  -->
-
-                                <li class="menu">
-                        <a href="#equipment" data-toggle="collapse"
+                    @php
+                    $side_menu = sideMenu(Auth::user()->role_id) 
+                    @endphp
+                    @foreach($side_menu as $value) 
+                    @if(count($value['sub_menu'])>0)
+                    <li class="menu">
+                        <a href="#{{ str_replace('&','',str_replace(' ','',$value['name'])) }}" data-toggle="collapse"
                          aria-expanded="false"  class="dropdown-toggle">
                             <div class="menu_headling">
-                                <i class="fa fa-sitemap"></i>
-                                <span>Adminstration</span>
+                                <i class="{{ $value['icon'] }}"></i>
+                                <span>{{ $value['name'] }}</span>
                             </div>
                             <div>
                                 <svg xmlns="http://www.w3.org/2000/svg" 
@@ -35,256 +38,34 @@
                             </div>
                         </a>
                         <ul class="collapse submenu list-unstyled"
-                         id="equipment" data-parent="#accordionExample">
-                            <li class="@if(Route::is('role.index')){{ 'active' }}@else{{ '' }}@endif">
-                                <a href="{{ route('role.index') }}" >Roles & Permission</a>
+                         id="{{ str_replace('&','',str_replace(' ','',$value['name'])) }}" data-parent="#accordionExample">
+                         @foreach($value['sub_menu'] as $sub)
+                            <li @if(Route::currentRouteName() == $sub->menu_url) class="active" @endif>
+                                <a href="{{ $sub->menu_url ? route($sub->menu_url) : '' }}" >{{ $sub->name }}</a>
                             </li>
-                            <li  class="@if(Route::is('employee.index')){{ 'active' }}@else{{ '' }}@endif">
-                                <a href="{{ route('employee.index') }}"> Employee </a>
-                            </li>
+                         @endforeach   
                         </ul>
                     </li>
 
+                
+
 
                 <!-- adminstration  -->
-
+                    @else
                     <!-- Vendor menu  -->
-                    <li class="menu @if(Route::is('supplier.index')) active active_url @endif">
-                        <a href="{{ route('supplier.index') }}" data-active="@if(Route::is('supplier.index')){{ 'true' }}@else{{ 'false' }}@endif" class="dropdown-toggle">
+                    <li class="menu @if(Route::currentRouteName() == $value['url']) active active_url @endif">
+                        <a href="{{ $value['url'] ? route($value['url']) : '' }}" 
+                        data-active="@if(Route::currentRouteName() == $value['url']){{ 'true' }}@else{{ 'false' }}@endif" 
+                        class="dropdown-toggle">
                             <div class="menu_heading">
-                            <i class="fa fa-users"></i>
-                              <span>Vendor</span>
+                            <i class="{{ $value['icon'] }}"></i>
+                              <span>{{ $value['name'] }}</span>
                             </div>
                         </a>
                     </li>
+                    @endif
+                    @endforeach
                     
-                <!-- equipment menu  -->
-
-                    <li class="menu">
-                        <a href="#equipment" data-toggle="collapse"
-                         aria-expanded="false"  class="dropdown-toggle">
-                            <div class="menu_headling">
-                                <i class="fa fa-truck"></i>
-                                <span>Equipment</span>
-                            </div>
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" 
-                                width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none" stroke="currentColor" 
-                                 stroke-width="2" stroke-linecap="round"
-                                  stroke-linejoin="round" class="feather feather-chevron-right">
-                                  <polyline points="9 18 15 12 9 6"></polyline>
-                                  </svg>
-                            </div>
-                        </a>
-                        <ul class="collapse submenu list-unstyled"
-                         id="equipment" data-parent="#accordionExample">
-                            <li class="@if(Route::is('equipment-type.index')){{ 'active' }}@else{{ '' }}@endif">
-                                <a href="{{ route('equipment-type.index') }}" > Equipment Type </a>
-                            </li>
-                            <li  class="@if(Route::is('equipment.index')){{ 'active' }}@else{{ '' }}@endif">
-                                <a href="{{ route('equipment.index') }}"> Equipment </a>
-                            </li>
-                        </ul>
-                    </li>
-
-
-                <!-- Project Menu  -->
-
-                    <li class="menu">
-                        <a href="#project" data-toggle="collapse"
-                         aria-expanded="false"  class="dropdown-toggle">
-                            <div class="">
-                            <i class="fa fa-empire" aria-hidden="true"></i>
-
-                                <span>Project</span>
-                            </div>
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" 
-                                width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none" stroke="currentColor" 
-                                 stroke-width="2" stroke-linecap="round"
-                                  stroke-linejoin="round" class="feather feather-chevron-right">
-                                  <polyline points="9 18 15 12 9 6"></polyline>
-                                  </svg>
-                            </div>
-                        </a>
-                        <ul class="collapse submenu list-unstyled"
-                         id="project" data-parent="#accordionExample">
-                            <li class="@if(Route::is('project.index')){{ 'active' }}@else{{ '' }}@endif">
-                                <a href="{{ route('project.index') }}" > Manage Project </a>
-                            </li>
-                            <li  class="@if(Route::is('assign-equipment.index')){{ 'active' }}@else{{ '' }}@endif">
-                                <a href="{{ route('assign-equipment.index') }}"> Assign Equipment </a>
-                            </li>
-                        </ul>
-                    </li>
-
-                <!-- bill and payment menu  -->
-
-                    <li class="menu">
-                        <a href="#claim" data-toggle="collapse"
-                         aria-expanded="false"  class="dropdown-toggle">
-                            <div class="">
-                            <i class="fa fa-file-text" aria-hidden="true"></i>
-                                <span>Bill & Payments</span>
-                            </div>
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" 
-                                width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none" stroke="currentColor" 
-                                 stroke-width="2" stroke-linecap="round"
-                                  stroke-linejoin="round" class="feather feather-chevron-right">
-                                  <polyline points="9 18 15 12 9 6"></polyline>
-                                  </svg>
-                            </div>
-                        </a>
-                        <ul class="collapse submenu list-unstyled"
-                         id="claim" data-parent="#accordionExample">
-                            <li class="@if(Route::is('bill.index')){{ 'active' }}@else{{ '' }}@endif">
-                                <a href="{{ route('bill.index') }}" > Bill </a>
-                            </li>
-                            <li  class="@if(Route::is('billing.payment')){{ 'active' }}@else{{ '' }}@endif">
-                                <a href="{{ route('billing.payment') }}"> Manage & Payment </a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <!-- expense Head  -->
-
-                    <li class="menu">
-                        <a href="#expense-head" data-toggle="collapse"
-                         aria-expanded="false"  class="dropdown-toggle">
-                            <div class="">
-                            <i class="fa fa-bars" aria-hidden="true"></i>
-                                <span>Expense Heads</span>
-                            </div>
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" 
-                                width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none" stroke="currentColor" 
-                                 stroke-width="2" stroke-linecap="round"
-                                  stroke-linejoin="round" class="feather feather-chevron-right">
-                                  <polyline points="9 18 15 12 9 6"></polyline>
-                                  </svg>
-                            </div>
-                        </a>
-                        <ul class="collapse submenu list-unstyled"
-                         id="expense-head" data-parent="#accordionExample">
-                            <li class="@if(Route::is('equipment-expense-head.index')){{ 'active' }}@else{{ '' }}@endif">
-                                <a href="{{ route('equipment-expense-head.index') }}" >Equipment Expense </a>
-                            </li>
-                            <li  class="@if(Route::is('project-expense-head.index')){{ 'active' }}@else{{ '' }}@endif">
-                                <a href="{{ route('project-expense-head.index') }}">Project Expense </a>
-                            </li>
-                            <li class="@if(Route::is('office-expense-head.index')){{ 'active' }}@else{{ '' }}@endif">
-                                <a href="{{ route('office-expense-head.index') }}">Office Expense </a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <!-- /expense Head  -->
-
-                    <!-- expense -->
-
-                    <li class="menu">
-                        <a href="#expense" data-toggle="collapse"
-                         aria-expanded="false"  class="dropdown-toggle">
-                            <div class="">
-                            <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                                <span>Expense</span>
-                            </div>
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" 
-                                width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none" stroke="currentColor" 
-                                 stroke-width="2" stroke-linecap="round"
-                                  stroke-linejoin="round" class="feather feather-chevron-right">
-                                  <polyline points="9 18 15 12 9 6"></polyline>
-                                  </svg>
-                            </div>
-                        </a>
-                        <ul class="collapse submenu list-unstyled"
-                         id="expense" data-parent="#accordionExample">
-                            <li  class="@if(Route::is('project-expense.index')){{ 'active' }}@else{{ '' }}@endif">
-                                <a href="{{ route('project-expense.index') }}">Project Expense </a>
-                            </li>
-                            <li class="@if(Route::is('equipment-expense.index')){{ 'active' }}@else{{ '' }}@endif">
-                                <a href="{{ route('equipment-expense.index') }}" >Equipment Expense </a>
-                            </li>
-                            <li class="@if(Route::is('office-expense.index')){{ 'active' }}@else{{ '' }}@endif">
-                                <a href="{{ route('office-expense.index') }}">Office Expense </a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <!-- /expense  -->
-
-                    <!-- Operator -->
-
-                    <li class="menu">
-                        <a href="#operator" data-toggle="collapse"
-                         aria-expanded="false"  class="dropdown-toggle">
-                            <div class="">
-                            <i class="fa fa-male" aria-hidden="true"></i>
-                                <span>Operator</span>
-                            </div>
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" 
-                                width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none" stroke="currentColor" 
-                                 stroke-width="2" stroke-linecap="round"
-                                  stroke-linejoin="round" class="feather feather-chevron-right">
-                                  <polyline points="9 18 15 12 9 6"></polyline>
-                                  </svg>
-                            </div>
-                        </a>
-                        <ul class="collapse submenu list-unstyled"
-                         id="operator" data-parent="#accordionExample">
-                            <li  class="@if(Route::is('operator.index')){{ 'active' }}@else{{ '' }}@endif">
-                                <a href="{{ route('operator.index') }}">Operator </a>
-                            </li>
-                            <li class="@if(Route::is('operator-fooding.index')){{ 'active' }}@else{{ '' }}@endif">
-                                <a href="{{ route('operator-fooding.index') }}" >Operator Fooding </a>
-                            </li>
-                            <li class="@if(Route::is('operator-salary.index')){{ 'active' }}@else{{ '' }}@endif">
-                                <a href="{{ route('operator-salary.index') }}">Operator Salary </a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <!-- /Operator  -->
-                    <!-- Operator -->
-
-                    <li class="menu">
-                        <a href="#Sales" data-toggle="collapse"
-                         aria-expanded="false"  class="dropdown-toggle">
-                            <div class="">
-                            <i class="fa fa-money" aria-hidden="true"></i>
-                                <span>Sales & Mob</span>
-                            </div>
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" 
-                                width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none" stroke="currentColor" 
-                                 stroke-width="2" stroke-linecap="round"
-                                  stroke-linejoin="round" class="feather feather-chevron-right">
-                                  <polyline points="9 18 15 12 9 6"></polyline>
-                                  </svg>
-                            </div>
-                        </a>
-                        <ul class="collapse submenu list-unstyled"
-                         id="Sales" data-parent="#accordionExample">
-                            <li  class="@if(Route::is('equipment-sales.index')){{ 'active' }}@else{{ '' }}@endif">
-                                <a href="{{ route('equipment-sales.index') }}"> Equipment Sales</a>
-                            </li> 
-
-                            <li  class="@if(Route::is('mobilization.index')){{ 'active' }}@else{{ '' }}@endif">
-                                <a href="{{ route('mobilization.index') }}"> Mobilization</a>
-                            </li> 
-                    </li>
-
-                    <!-- /Operator  -->
                 </ul>
                 <!-- <div class="shadow-bottom"></div> -->
             </nav>

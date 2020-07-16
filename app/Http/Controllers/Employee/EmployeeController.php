@@ -362,6 +362,35 @@ class EmployeeController extends Controller
           }
     }
 
+    // employee password change
+
+    public function changePassword(Request $request)
+    {
+        $request->validate(
+            [
+                'password' => 'required|confirmed'
+            ]
+            );
+       try
+       {
+        $password =  Hash::make($request->password);
+
+        User::where('employee_id','=',$request->employee_id)->update(
+            [
+                'password' => $password,
+            ]
+            );
+
+            return response()->json(['status'=>'success','message'=>'Password Changed']);
+
+       }
+       catch(\Exception $e)
+       {
+            return response()->json(['status'=>'error','message'=>$e->getMessage()]);
+       }
+           
+    }
+
     /**
      * Remove the specified resource from storage.
      *

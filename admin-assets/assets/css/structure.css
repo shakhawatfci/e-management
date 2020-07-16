@@ -12,7 +12,9 @@ html {
   min-height: 100%; }
 
 body {
-  color: #888ea8;
+  /* color: #888ea8;
+   */
+  color: #fff; 
   height: 100%;
   font-size: 0.875rem;
   background: #060818;
