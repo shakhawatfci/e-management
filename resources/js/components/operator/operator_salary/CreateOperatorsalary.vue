@@ -130,10 +130,10 @@ import Mixin from '../../../mixin';
 import VueMonthlyPicker from 'vue-monthly-picker'
 export default {
    mixins : [Mixin],
+   props : ['operators'],
    components: {
       VueMonthlyPicker
     },
-   props : ['operators'],
    data()
    {
         

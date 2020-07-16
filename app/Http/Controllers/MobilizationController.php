@@ -114,15 +114,13 @@ class MobilizationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'month'               => 'required:date_format:Y-m',
+            'month'               => 'required',
             'date'                => 'required',
             'destination_from'    => 'required',
             'destination_to'      => 'required',
             'project_given_amount'=> 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
             'lobaid_cost'         => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'profit'              => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-        ],[
-            'month.date_format'   => 'Month Format Must Be yyyy-mm as like 2020-02'
+            'profit'              => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/'
         ]);
 
         try
@@ -133,7 +131,7 @@ class MobilizationController extends Controller
           $mob->equipment_type_id        =      $request->equipment_type;
           $mob->equipment_id             =      $request->equipment;
           $mob->date                     =      $request->date;
-          $mob->month                    =      $request->month;
+          $mob->month                    =      date('Y-m',strtotime($request->month));
           $mob->destination_from         =      $request->destination_from;
           $mob->destination_to           =      $request->destination_to;
           $mob->project_given_amount     =      $request->project_given_amount;
@@ -187,16 +185,13 @@ class MobilizationController extends Controller
     {
 
         $request->validate([
-            'month'                      =>     'required:date_format:Y-m',
+            'month'                      =>     'required',
             'date'                       =>     'required',
             'destination_from'           =>     'required',
             'destination_to'             =>     'required',
             'project_given_amount'       =>     'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
             'lobaid_cost'                =>     'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'profit'                     =>     'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-        ],
-        [
-            'month.date_format'          =>     'Month Format Must Be yyyy-mm as like 2020-02'
+            'profit'                     =>     'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/'
         ]);
         
         try
@@ -207,7 +202,7 @@ class MobilizationController extends Controller
           $mob->equipment_type_id        =      $request->equipment_type;
           $mob->equipment_id             =      $request->equipment;
           $mob->date                     =      $request->date;
-          $mob->month                    =      $request->month;
+          $mob->month                    =      date('Y-m',strtotime($request->month));
           $mob->destination_from         =      $request->destination_from;
           $mob->destination_to           =      $request->destination_to;
           $mob->project_given_amount     =      $request->project_given_amount;

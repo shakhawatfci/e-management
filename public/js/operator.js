@@ -4373,10 +4373,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
+  props: ['operators'],
   components: {
     VueMonthlyPicker: vue_monthly_picker__WEBPACK_IMPORTED_MODULE_2___default.a
   },
-  props: ['operators'],
   data: function data() {
     return {
       salary: {
