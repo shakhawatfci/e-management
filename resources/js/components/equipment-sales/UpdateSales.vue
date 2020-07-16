@@ -13,14 +13,11 @@
                         <div class="add-contact-content text-left">
 
                                 <div class="row">
-                                     
-                                    
                                  <div class="col-md-6">
                                         <div class="contact-phone">
                                             <i class="flaticon-telephone"></i>
                                             <span>Month</span>
-                                            <input type="text" id="c-phone" class="form-control"
-                                             v-model="sales.month" placeholder="Month eg 2020-06">
+                                             <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="pickermonth.text" v-model="sales.month" dateFormt="YYYY-MM"></vue-monthly-picker>
                                                  <span
                                                  v-if="validation_error.hasOwnProperty('month')" 
                                                 class="text-danger">
@@ -30,7 +27,6 @@
                                         </div>
                                     </div>
                                     
-
                                  <div class="col-md-6">
                                         <div class="contact-phone">
                                             <i class="flaticon-telephone"></i>
@@ -122,9 +118,13 @@
 <script>
 import { EventBus  } from '../../vue-assets';
 import Mixin from '../../mixin';
+import VueMonthlyPicker from 'vue-monthly-picker'
 export default {
    mixins : [Mixin],
    props : ['equipment_types'],
+   components: {
+      VueMonthlyPicker
+    },
    data()
    {  
        return {
@@ -137,6 +137,10 @@ export default {
           equipment_type : '',
           note : '',            
          },
+         pickermonth : {
+          lebel : ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
+          text : "Month"
+        },
          validation_error : {},
          button_name : 'Save'
        }

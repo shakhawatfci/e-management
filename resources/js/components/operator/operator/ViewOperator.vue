@@ -15,7 +15,6 @@
           </select>
       </div>
 
-
       <div class="col-md-3" style="margin-bottom:10px;">
          <select class="form-control" id="equipment-type" @change="getOperator()" v-model="equipment_type_id">
               <option value="">All Equipment Type</option>
@@ -23,7 +22,6 @@
               :key="equipment.id" :value="equipment.id">{{ equipment.name }}</option>
           </select>
       </div>
-
 
       <div class="col-md-3" style="margin-bottom:10px;">
          <select class="form-control" id="equipment-type" @change="getVendorEquipments()" v-model="vendor_id">
@@ -40,8 +38,6 @@
               :key="eq.id" :value="eq.id">{{ eq.eq_name  }} ({{ eq.eq_model }})</option>
           </select>
       </div>
-
-
 
     </div>
     
@@ -167,8 +163,6 @@ export default {
 
     getVendorEquipments()
      {
-
-       
        axios.get(`${base_url}equipment-by-vendor/0/${this.vendor_id}`)
             .then(response => {
               this.equipments = response.data;

@@ -91,8 +91,7 @@
                                         <div class="contact-name">
                                             <i class="flaticon-user-11"></i>
                                             <span>Month</span>
-                                            <input type="text" v-model="mobilization.month"
-                                             id="c-name" class="form-control" placeholder="Enter Month Of Mobilization">
+                                             <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="pickermonth.text" v-model="mobilization.month" dateFormt="YYYY-MM"></vue-monthly-picker>
                                             <span v-if="validation_error.hasOwnProperty('month')" class="text-danger">
                                                 {{ validation_error.month[0] }}
                                             </span>
@@ -205,8 +204,12 @@
 <script>
 import { EventBus  } from '../../vue-assets';
 import Mixin from '../../mixin';
+import VueMonthlyPicker from 'vue-monthly-picker'
 export default {
    mixins : [Mixin],
+   components: {
+      VueMonthlyPicker
+    },
    props : ['vendors','equipment_types','operators','projects'],
    data()
    {  
@@ -226,6 +229,10 @@ export default {
           destination_to : '',
             
          },
+         pickermonth : {
+          lebel : ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
+          text : "Month"
+        },
          validation_error : {},
          equipments : [],
          button_name : 'Save'

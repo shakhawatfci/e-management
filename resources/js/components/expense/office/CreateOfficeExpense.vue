@@ -46,8 +46,8 @@
                             <div class="col-md-6">
                                 <div class="contact-name">
                                     <i class="flaticon-user-11"></i>
-                                    <label for="basicFlatpickr2">Month</label>
-                                    <month-picker @change="showDate" :input-pre-filled="false" :no-default="true" :show-year="true"></month-picker>
+                                    <label>Month</label>
+                                    <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="pickermonth.text" v-model="office.month" dateFormt="YYYY-MM"></vue-monthly-picker>
                                     <span v-if="validation_error.hasOwnProperty('month')" class="text-danger">
                                         {{ validation_error.month[0] }}
                                     </span>
@@ -112,11 +112,11 @@
 <script>
 import { EventBus  } from '../../../vue-assets';
 import Mixin from '../../../mixin';
-import { MonthPicker } from 'vue-month-picker'
+import VueMonthlyPicker from 'vue-monthly-picker'
 export default {
    mixins : [Mixin],
    components: {
-      MonthPicker
+      VueMonthlyPicker
     },
 
    data()
@@ -131,6 +131,10 @@ export default {
           document_link : '',
           note : ''
         },
+        pickermonth : {
+          lebel : ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
+          text : "Month"
+        },
         office_expense_head : [],
         button_name : 'Save',
         validation_error : {}
@@ -143,10 +147,6 @@ export default {
    },
    
  methods : {
-
-      showDate(date){
-          this.office.month = date.year+'-'+date.monthIndex
-       },
 
      save()
      {

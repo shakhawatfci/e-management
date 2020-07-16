@@ -45,7 +45,12 @@ class User extends Authenticatable
 
     public function employee()
     {
-        return $this->belongsTo('App\Employee');
+        return $this->belongsTo('App\Employee')->withDefault([
+            'id' => 0,
+            'name' => 'N/A',
+            'image' => '',
+
+        ]);
     }
 
     // relation with role 

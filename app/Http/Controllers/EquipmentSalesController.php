@@ -70,11 +70,9 @@ class EquipmentSalesController extends Controller
         $request->validate([
             'equipment_type'      => 'required',
             'customer_name'       => 'required',
-            'month'               => 'required|date_format:Y-m',
+            'month'               => 'required',
             'date'                => 'required',
-            'profit'              => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-        ],[
-            'month.date_format' => 'Month Format Must Be yyyy-mm as like 2020-02'
+            'profit'              => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/'
         ]);
 
         try
@@ -82,7 +80,7 @@ class EquipmentSalesController extends Controller
           $sales = new EquipmentSales;
           $sales->equipment_type_id = $request->equipment_type;
           $sales->customer_name = $request->customer_name;
-          $sales->month = $request->month;
+          $sales->month = date('Y-m',strtotime($request->month));
           $sales->date = $request->date;
           $sales->profit = $request->profit;
           $sales->note = $request->note;
@@ -127,24 +125,22 @@ class EquipmentSalesController extends Controller
      * @param  \App\EquipmentSales  $equipmentSales
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, EquipmentSales $sales)
+    public function update(Request $request, EquipmentSales $sales,$id)
     {
         $request->validate([
             'equipment_type'      => 'required',
             'customer_name'       => 'required',
-            'month'               => 'required|date_format:Y-m',
+            'month'               => 'required',
             'date'                => 'required',
-            'profit'              => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-        ],[
-            'month.date_format' => 'Month Format Must Be yyyy-mm as like 2020-02'
+            'profit'              => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/'
         ]);
 
         try
         { 
-
+          $sales = EquipmentSales::find($id);
           $sales->equipment_type_id = $request->equipment_type;
           $sales->customer_name = $request->customer_name;
-          $sales->month = $request->month;
+          $sales->month = date('Y-m',strtotime($request->month));
           $sales->date = $request->date;
           $sales->profit = $request->profit;
           $sales->note = $request->note;

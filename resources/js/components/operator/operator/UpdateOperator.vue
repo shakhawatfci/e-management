@@ -192,7 +192,7 @@
                               </div>
                             </div>
 
-                            <div class="col-md-8">
+                            <div class="col-md-4">
                               <div class="contact-phone">
                                   <i class="flaticon-telephone"></i>
                                   <label for="up-document-link">Document Link</label>

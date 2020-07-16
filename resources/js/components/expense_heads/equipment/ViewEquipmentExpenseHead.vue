@@ -21,8 +21,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="value in equipments.data" :key="value.id">
-                <td>{{ value.id }}</td>
+            <tr v-for="(value,index) in equipments.data" :key="value.id">
+                <td>{{ index+1 }}</td>
                 <td>{{ value.head_name }}</td>
                 <td class="text-center">
                     <span class="text-success" v-if="value.status == 1">Active</span>

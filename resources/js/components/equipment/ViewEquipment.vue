@@ -40,7 +40,6 @@
                 <th>Model</th>
                 <th>Capacity</th>
                 <th>Note</th>
-                <th class="text-center">Status</th>
                 <th class="text-center">action</th>
               </tr>
             </thead>
@@ -52,10 +51,6 @@
                 <td>{{ value.eq_model }}</td>
                 <td>{{ value.eq_capacity }}</td>
                 <td>{{ value.note }}</td>
-                <td class="text-center">
-                  <span class="text-success" v-if="value.eq_status == 1">Active</span>
-                  <span class="text-danger" v-else>Inactive</span>
-                </td>
                 <td class="text-center">
                   <button @click="edit(value)" class="btn btn-dark mb-2 mr-2 rounded-circle">
                     <i class="far fa-edit"></i>
