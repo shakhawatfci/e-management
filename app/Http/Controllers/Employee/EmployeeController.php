@@ -49,6 +49,11 @@ class EmployeeController extends Controller
        return $employee;
     }
 
+    public function allEmployee()
+    {
+        return Employee::orderBy('name','desc')->get();
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -264,19 +269,19 @@ class EmployeeController extends Controller
               DB::beginTransaction();
               
               // add employee 
-              $employee                     =   Employee::find($id);
-              $employee->name               =   $request->name;
-              $employee->email              =   $request->email;
-              $employee->phone              =   $request->phone;
-              $employee->designation        =   $request->designation;
-              $employee->date_of_birth      =   $request->date_of_birth;
-              $employee->date_of_joining    =   $request->date_of_joining;
-              $employee->salary             =   $request->salary;
-              $employee->address            =   $request->address;
-              $employee->emargency_contact  =   $request->emargency_contact;
-              $employee->status             =   $request->status;
+              $employee                            =     Employee::find($id);
+              $employee->name                      =     $request->name;
+              $employee->email                     =     $request->email;
+              $employee->phone                     =     $request->phone;
+              $employee->designation               =     $request->designation;
+              $employee->date_of_birth             =     $request->date_of_birth;
+              $employee->date_of_joining           =     $request->date_of_joining;
+              $employee->salary                    =     $request->salary;
+              $employee->address                   =     $request->address;
+              $employee->emargency_contact         =     $request->emargency_contact;
+              $employee->status                    =     $request->status;
   
-              $imageData = $request->get('photo');
+              $imageData                           =     $request->get('photo');
            
               if($imageData)
               {

@@ -4,6 +4,10 @@
 
 Route::resource('employee','Employee\EmployeeController');
 Route::get('employee-list','Employee\EmployeeController@employeeList');
-Route::get('employee-salary','Employee\EmployeeController@employeeSalary')->name('employee-salary.index');
+Route::get('all-employee','Employee\EmployeeController@allEmployee');
+
+Route::resource('employee-salary','Employee\EmployeeSalaryController');
+
+Route::get('employee-salary-list','Employee\EmployeeSalaryController@salaryList');
 
 Route::post('employee-password','Employee\EmployeeController@changePassword');
