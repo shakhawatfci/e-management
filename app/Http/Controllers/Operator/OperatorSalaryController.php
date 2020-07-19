@@ -37,6 +37,40 @@ class OperatorSalaryController extends Controller
         return $salary->paginate(10);
     }
 
+    public function operatorSalaryPrint(Request $request)
+    {
+        $salary = OperatorSalary::with('operator:id,name')->orderBy('id','desc');
+        if($request->operator != '') {
+            $salary->where('operator_id','=',$request->operator);
+        }
+        if($request->month_filter != '') {
+            $filter_month = date('Y-m',strtotime(str_replace('/','-',$request->month_filter)));
+            $salary->where('month','=',$filter_month);
+        }
+        if($request->mode != '') {
+            $salary->where('mode','=',$request->mode);
+        }
+        if($request->keyword != '') {
+            $salary->where('payment_date','LIKE','%'.$request->keyword.'%');
+            $salary->orWhere('payment_amount','LIKE','%'.$request->keyword.'%');
+        }
+        
+        $salary = $salary->get();
+
+        if($request->action == 'print')
+        {
+            return view('operator.print.operator_salary_print',['salaries' => $salary]);
+        } else {
+            return view('operator.pdf.operator_salary_pdf', [
+            // $pdf = \PDF::loadView('operator.pdf.operator_salary_pdf', [
+                'salaries' => $salary]);
+
+            $pdf->setPaper('A4', 'landscape');
+            $pdf_name = "operator_salary.pdf";
+            return $pdf->download($pdf_name);
+        }
+    }
+
 /**
  * Store a newly created resource in storage.
  *

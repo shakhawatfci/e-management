@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ExpenseHeads;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\OfficeExpenseHead;
+use PDF;
 
 class OfficeExpenseController extends Controller
 {
@@ -30,6 +31,28 @@ class OfficeExpenseController extends Controller
             $office->where('head_name','LIKE','%'.$request->keyword.'%');
         }
         return $office->paginate(10);
+    }
+
+    public function officeHeadListPrint(Request $request)
+    {
+        $office = OfficeExpenseHead::orderBy('id','desc');
+        if($request->keyword != '') {
+            $office->where('head_name','LIKE','%'.$request->keyword.'%');
+        }
+        $office = $office->get();
+
+        if($request->action == 'print')
+        {
+            return view('expense_heads.print.office_expense_head_print',['office_heads' => $office]);
+        } else {
+            $pdf = \PDF::loadView('expense_heads.pdf.office_expense_head_pdf', [
+            // return view('expense_heads.pdf.office_expense_head_pdf', [
+                'office_heads' => $office]);
+
+            $pdf->setPaper('A4', 'landscape');
+            $pdf_name = "office-expense-category.pdf";
+            return $pdf->download($pdf_name);
+        }
     }
 
     public function officeHeadData(Request $request)

@@ -67,6 +67,46 @@ class OperatorFoodingController extends Controller
         return $foodings->paginate(10);
     }
 
+    public function operatorFoodingPrint(Request $request)
+    {
+        $foodings = OperatorFooding::with(['project:id,project_name','vendor:id,vendor_name','equipment_type:id,name','equipement:id,eq_name','operator:id,name'])->orderBy('id','desc');
+        if($request->project != '') {
+            $foodings->where('project_id','=',$request->project);
+        }
+        if($request->vendor != '') {
+            $foodings->where('vendor_id','=',$request->vendor);
+        }
+        if($request->equipment_type != '') {
+            $foodings->where('equipment_type_id','=',$request->equipment_type);
+        }
+        if($request->equipement != '') {
+            $foodings->where('equipement_id','=',$request->equipement);
+        }
+        if($request->operator != '') {
+            $foodings->where('operator_id','=',$request->operator);
+        }
+        if($request->month_filter != '') {
+            // return  $request->month_filter;
+            $filter_month = date('Y-m',strtotime(str_replace('/','-',$request->month_filter)));
+            // return $filter_month;
+            $foodings->where('month','=',$filter_month);
+        }
+        $fooding = $foodings->get();
+
+        if($request->action == 'print')
+        {
+            return view('operator.print.operator_fooding_print',['foodings' => $fooding]);
+        } else {
+            // return view('operator.pdf.operator_fooding_pdf', [
+            $pdf = \PDF::loadView('operator.pdf.operator_fooding_pdf', [
+                'foodings' => $fooding]);
+
+            $pdf->setPaper('A4', 'landscape');
+            $pdf_name = "operator_fooding.pdf";
+            return $pdf->download($pdf_name);
+        }
+    }
+
     /**
      * Store a newly created resource in storage.
      *

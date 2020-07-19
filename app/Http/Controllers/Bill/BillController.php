@@ -135,7 +135,7 @@ class BillController extends Controller
             $assign = CarAssign::find($request->assign_id);
 
             $bill                           =       new ProjectClaim;
-            $bill_no                        =       generateBillNo($request->month);
+            $bill_no                        =       generateBillNo(date('Y-m',strtotime($request->month)));
             $bill->bill_no                  =       $bill_no;
             $bill->assign_id                =       $request->assign_id;
             $bill->project_id               =       $assign->project_id;
@@ -213,6 +213,12 @@ class BillController extends Controller
 
         if ($request->equipment_type_id != '') {
             $bill->where('equipment_type_id', '=', $request->equipment_type_id);
+        }
+
+        if ($request->end_month != '') {
+            $start = date('Y-m',strtotime(str_replace('/','-',$request->start_month)));
+            $end = date('Y-m',strtotime(str_replace('/','-',$request->end_month)));
+            $bill->whereBetween('month', [$start,$end]);
         }
 
         $bill = $bill->paginate($per_page);
@@ -395,5 +401,91 @@ class BillController extends Controller
             return $pdf->download($pdf_name);
         }
 
+    }
+
+    public function billListPdfPrint(Request $request)
+    {
+        $bill_no = null;
+        $poject = null;
+        $month = null;
+        $vendor = null;
+        $equipment = null;
+        $equipment_type = null;
+
+        $bill = ProjectClaim::with([
+            'user:id,name',
+            'equipement',
+            'equipment_type',
+            'vendor',
+            'project'
+        ])->orderBy('updated_at', 'desc');
+
+        if ($request->bill_no != '') {
+            $bill->where('bill_no', 'LIKE', '%' . $request->bill_no . '%');
+            $bill_no += $request->bill_no;
+        }
+
+        if ($request->project_id != '') {
+            $bill->where('project_id', '=', $request->project_id);
+            $poject += $request->project_id;
+        }
+
+        if ($request->month != '') {
+            $bill->where('month', '=', $request->month);
+            $month +=  $request->month;
+        }
+
+        if ($request->vendor_id != '') {
+            $bill->where('vendor_id', '=', $request->vendor_id);
+            $vendor += $request->vendor_id;
+        }
+
+        if ($request->equipment_id != '') {
+            $bill->where('equipement_id', '=', $request->equipment_id);
+            $equipment +=  $request->equipment_id;
+        }
+
+        if ($request->equipment_type_id != '') {
+            $bill->where('equipment_type_id', '=', $request->equipment_type_id);
+            $equipment_type += $request->equipment_type_id;
+        }
+
+        if ($request->end_month != '' && $request->end_month != 'undefined') {
+            $start = date('Y-m',strtotime(str_replace('/','-',$request->start_month)));
+            $end = date('Y-m',strtotime(str_replace('/','-',$request->end_month)));
+
+            $bill->whereBetween('month', [$start,$end]);
+            
+            $month .= 'From ' .$start. ' to ' .$end;
+        }
+
+        $bill = $bill->get();
+        if($request->action == 'print')
+        {
+            return view('bill.print.bill_list_print', [
+                'bill' => $bill,
+                'bill_no' => $bill_no,
+                'poject' => $poject,
+                'month' => $month,
+                'vendor' => $vendor,
+                'equipment' => $equipment,
+                'equipment_type' => $equipment_type
+            ]);
+        } else {
+            $pdf = PDF::loadView('bill.pdf.bill_list_pdf', [
+            // return view('bill.pdf.bill_list_pdf', [
+                'bill' => $bill,
+                'bill_no' => $bill_no,
+                'poject' => $poject,
+                'month' => $month,
+                'vendor' => $vendor,
+                'equipment' => $equipment,
+                'equipment_type' => $equipment_type
+            ]);
+
+            $pdf->setPaper('A4', 'landscape');
+            $pdf_name = "bill-list.pdf";
+            return $pdf->download($pdf_name);
+        }
     }
 }

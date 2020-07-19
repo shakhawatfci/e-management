@@ -44,6 +44,34 @@ class ProjectExpenseController extends Controller
         return $projects->paginate(10);
     }
 
+    public function projectExpenseListPrint(Request $request)
+    {
+        $projects = ProjectExpense::with(['project_expense_head:id,head_name','project:id,project_name'])->orderBy('id','desc');
+        if($request->project != '') {
+            $projects->where('project_id','=',$request->project);
+        }
+        if($request->project_head != '') {
+            $projects->where('project_expense_head_id','=',$request->project_head);
+        }
+        if($request->keyword != '') {
+            $projects->where('project_id','LIKE','%'.$request->keyword.'%');
+        }
+        $project = $projects->get();
+
+        if($request->action == 'print')
+        {
+            return view('expense.print.project_expense_print',['projects' => $project]);
+        } else {
+            // return view('expense.pdf.project_expense_pdf', [
+            $pdf = PDF::loadView('expense.pdf.project_expense_pdf', [
+                'projects' => $project]);
+
+            $pdf->setPaper('A4', 'landscape');
+            $pdf_name = "project_expense.pdf";
+            return $pdf->download($pdf_name);
+        }
+    }
+
     public function store(Request $request)
     {
 

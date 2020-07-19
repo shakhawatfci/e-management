@@ -82,6 +82,44 @@ class EquipmentExpenseController extends Controller
         return $equipment->paginate(10);
     }
 
+    public function equipmentExpensePrint(Request $request)
+    {
+        $equipment = EquipementExpense::with(['project:id,project_name','vendor:id,vendor_name','equipement:id,eq_name','equipment_type:id,name','equipment_expense_head:id,head_name'])
+            ->orderBy('id','desc');
+        if($request->project != '') {
+            $equipment->where('project_id','=',$request->project);
+        }
+        if($request->vendor != '') {
+            $equipment->where('vendor_id','=',$request->vendor);
+        }
+        if($request->equipment_type != '') {
+            $equipment->where('equipment_type_id','=',$request->equipment_type);
+        }
+        if($request->equipement != '') {
+            $equipment->where('equipement_id','=',$request->equipement);
+        }
+        if($request->equipment_head != '') {
+            $equipment->where('equipment_expense_head_id','=',$request->equipment_head);
+        }
+        if($request->keyword != '') {
+            $equipment->where('project_id','LIKE','%'.$request->keyword.'%');
+        }
+        $equipment = $equipment->get();
+
+        if($request->action == 'print')
+        {
+            return view('expense.print.equipment_expense_print',['equipments' => $equipment]);
+        } else {
+            // return view('expense.pdf.equipment_expense_pdf', [
+            $pdf = \PDF::loadView('expense.pdf.equipment_expense_pdf', [
+                'equipments' => $equipment]);
+
+            $pdf->setPaper('A4', 'landscape');
+            $pdf_name = "equipment_expense.pdf";
+            return $pdf->download($pdf_name);
+        }
+    }
+
     /**
      * Store a newly created resource in storage.
      *

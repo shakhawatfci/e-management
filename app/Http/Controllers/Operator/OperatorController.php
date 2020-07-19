@@ -8,6 +8,7 @@ use App\Operator;
 use App\Vendor;
 use App\EquipmentType;
 use App\Equipement;
+use PDF;
 
 class OperatorController extends Controller
 {
@@ -58,6 +59,57 @@ class OperatorController extends Controller
             });
         }
         return $operator->paginate(10);
+    }
+
+    public function operatorListPrint(Request $request)
+    {
+        $operator = Operator::with(['vendor','equipment_type','equipement'])
+                              ->orderBy('id','desc');
+        $keyword = $request->keyword;
+
+        if($request->operator_type != '')
+        {
+            $operator->where('operator_type','=',$request->operator_type);
+        }
+
+        if($request->equipment_type_id != '')
+        {
+            $operator->where('equipment_type_id','=',$request->equipment_type_id);
+        }
+
+        if($request->vendor_id != '')
+        {
+            $operator->where('vendor_id','=',$request->vendor_id);
+        }
+
+        if($request->equipment_id != '')
+        {
+            $operator->where('equipement_id','=',$request->equipment_id);
+        }
+
+        if($keyword != '') {
+            $operator->where(function($query) use($keyword) {
+                $query->where('name','LIKE','%'.$request->keyword.'%');
+                $query->orWhere('mobile','LIKE','%'.$request->keyword.'%');
+                $query->orWhere('email','LIKE','%'.$request->keyword.'%');
+                $query->orWhere('salary','LIKE','%'.$request->keyword.'%');
+                $query->orWhere('nid','LIKE','%'.$request->keyword.'%');
+            });
+        }
+        $operator = $operator->get();
+
+        if($request->action == 'print')
+        {
+            return view('operator.print.operatorlistprint',['operators' => $operator]);
+        } else {
+            $pdf = PDF::loadView('operator.pdf.operatorlistpdf', [
+            // return view('operator.pdf.operatorlistpdf', [
+                'operators' => $operator]);
+
+            $pdf->setPaper('A4', 'landscape');
+            $pdf_name = "operator-list.pdf";
+            return $pdf->download($pdf_name);
+        }
     }
 
 /**

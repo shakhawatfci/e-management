@@ -164,8 +164,12 @@ export default {
    
  methods : {
     setSalary(){
-      var amount  = this.operators.filter(operator => operator.id === this.salary.operator_id)
-      this.salary.payment_amount = amount[0].salary
+      var amount  = this.operators.find(operator => operator.id === this.salary.operator_id)
+      if(amount){
+        this.salary.payment_amount = amount.salary
+      }else{
+        this.salary.payment_amount = 0
+      }
     },
 
     setNote(){

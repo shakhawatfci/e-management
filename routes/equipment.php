@@ -8,9 +8,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('equipment-type','Equipment\EquipmentTypeController');
 Route::get('equipment-category-list','Equipment\EquipmentTypeController@equipmentTypeList');
+Route::get('equipment-type-list-print-pdf','Equipment\EquipmentTypeController@equipmentTypeListPrint');
 
 Route::resource('equipment','Equipment\EquipmentController');
 Route::get('equipment-list','Equipment\EquipmentController@equipmentList');
+Route::get('equipment-list-print-pdf','Equipment\EquipmentController@equipmentListPrint');
 
 Route::get('equipment-by-vendor/{type}/{id}','Equipment\EquipmentController@vendroEquipment');
 

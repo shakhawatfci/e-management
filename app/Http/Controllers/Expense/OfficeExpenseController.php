@@ -42,6 +42,32 @@ class OfficeExpenseController extends Controller
         return $office->paginate(10);
     }
 
+    public function officeExpensePrint(Request $request)
+    {
+        // 
+        $office = OfficeExpense::with(['office_expense_head:id,head_name'])->orderBy('id','desc');
+        if($request->office_head != '') {
+            $office->where('office_expense_head_id','=',$request->office_head);
+        }
+        if($request->keyword != '') {
+            $office->where('project_id','LIKE','%'.$request->keyword.'%');
+        }
+        $office = $office->get();
+
+        if($request->action == 'print')
+        {
+            return view('expense.print.office_expense_print',['offices' => $office]);
+        } else {
+            // return view('expense.pdf.office_expense_pdf', [
+            $pdf = \PDF::loadView('expense.pdf.office_expense_pdf', [
+                'offices' => $office]);
+
+            $pdf->setPaper('A4', 'landscape');
+            $pdf_name = "equipment_expense.pdf";
+            return $pdf->download($pdf_name);
+        }
+    }
+
     /**
      * Store a newly created resource in storage.
      *

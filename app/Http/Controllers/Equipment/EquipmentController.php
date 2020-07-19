@@ -8,6 +8,7 @@ use App\Equipement;
 use App\EquipmentType;
 use App\Vendor;
 use App\CarAssign;
+use PDF;
 
 class EquipmentController extends Controller
 {
@@ -57,6 +58,48 @@ class EquipmentController extends Controller
         $equipment = $equipment->paginate(10);
 
         return $equipment;
+
+    }
+
+    public function equipmentListPrint(Request $request)
+    {
+        $equipment = Equipement::with(['vendor:id,vendor_name','equipment_type:id,name'])
+                                 ->orderBy('eq_name','asc');
+        $search_keyword = $request->keyword;
+
+        if($request->vendor_id != '')
+        {
+           $equipment->where('vendor_id','=',$request->vendor_id);
+        }
+
+        if($request->equipment_type_id != '')
+        {
+           $equipment->where('equipment_type_id','=',$request->equipment_type_id);
+        }
+
+        if($search_keyword != '')
+        {
+            $equipment->where(function ($query) use ($search_keyword) {
+                $query->where('eq_name','LIKE','%'.$search_keyword.'%')
+                      ->orWhere('eq_model', 'LIKE','%'.$search_keyword.'%')
+                      ->orWhere('eq_capacity','LIKE','%'.$search_keyword.'%');
+                });
+        }
+
+        $equipment = $equipment->get();
+
+        if($request->action == 'print')
+        {
+            return view('equipment.print.equipment_print',['equipments' => $equipment]);
+        } else {
+            $pdf = PDF::loadView('equipment.pdf.equipment_pdf', [
+            // return view('equipment.pdf.equipment_pdf', [
+                'equipments' => $equipment]);
+
+            $pdf->setPaper('A4', 'landscape');
+            $pdf_name = "equipment-list.pdf";
+            return $pdf->download($pdf_name);
+        }
 
     }
 

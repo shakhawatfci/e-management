@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Validator;
 use App\Vendor;
 use App\Equipement;
+use PDF;
 
 class VendorController extends Controller
 {
@@ -88,6 +89,32 @@ class VendorController extends Controller
         }
         $vendor = $vendor->paginate(10);
         return $vendor;
+    }
+
+    public function supplierListPrintPdf(Request $request)
+    {
+        $vendor = Vendor::orderBy('id','desc');
+        if($request->keyword != '')
+        {
+           $vendor->where('vendor_name','LIKE','%'.$request->keyword.'%');
+           $vendor->orWhere('vendor_address','LIKE','%'.$request->keyword.'%');
+           $vendor->orWhere('vendor_phone','LIKE','%'.$request->keyword.'%');
+           $vendor->orWhere('concerned_person','LIKE','%'.$request->keyword.'%');
+        }
+        $vendor = $vendor->get();
+        
+        if($request->action == 'print')
+        {
+            return view('supplier.print.vendorlist',['vendors' => $vendor]);
+        } else {
+            // return view('supplier.pdf.vendorlist', [
+            $pdf = PDF::loadView('supplier.pdf.vendorlist', [
+                'vendors' => $vendor]);
+
+            $pdf->setPaper('A4', 'landscape');
+            $pdf_name = "vendor-list.pdf";
+            return $pdf->download($pdf_name);
+        }
     }
 
     /**

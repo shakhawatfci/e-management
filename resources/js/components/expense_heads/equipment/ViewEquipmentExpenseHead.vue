@@ -33,6 +33,12 @@
                     <button class="btn btn-danger mb-2 mr-2 rounded-circle" @click.prevent="deleteEquipmentHead(value.id)"><i class="far fa-trash-alt"></i></button>
                 </td>
             </tr>
+            <tr v-if="equipments.data.length > 0">
+                <td colspan="6">
+                  <a :href="url+'equipment-category-list-print-pdf?action=pdf'" class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i> PDF</a>
+                  <a :href="url+'equipment-category-list-print-pdf?action=print'" class="btn btn-danger btn-sm" target="_blank"><i class="fa fa-file-pdf-o"></i> Print</a>
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>
@@ -71,6 +77,7 @@ export default {
     return {
      equipments : [],
      keyword   : '',
+     url : base_url,
      isLoading : false,
     }
   },
