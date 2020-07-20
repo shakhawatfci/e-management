@@ -66,7 +66,7 @@ class VendorPaymentController extends Controller
           $payment->save();
 
 
-          $bill->vendor_payment += $request->vendor_amount;
+          $bill->vendor_payment += $request->payment_amount;
           $bill->vendor_adjustment_payment += $request->adjustment;
 
           if($request->current_outstanding <= 0 )

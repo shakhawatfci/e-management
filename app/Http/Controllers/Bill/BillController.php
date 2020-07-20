@@ -125,7 +125,7 @@ class BillController extends Controller
             DB::beginTransaction();
             //   checking this equipment already having bill in this month
             $count_bill = ProjectClaim::where('assign_id', '=', $request->id)
-                ->where('month', '=', $request->month)
+                ->where('month', '=', date('Y-m',strtotime($request->month)))
                 ->count();
 
             if ($count_bill) {
@@ -135,7 +135,7 @@ class BillController extends Controller
             $assign = CarAssign::find($request->assign_id);
 
             $bill                           =       new ProjectClaim;
-            $bill_no                        =       generateBillNo($request->month);
+            $bill_no                        =       generateBillNo(date('Y-m',strtotime($request->month)));
             $bill->bill_no                  =       $bill_no;
             $bill->assign_id                =       $request->assign_id;
             $bill->project_id               =       $assign->project_id;
