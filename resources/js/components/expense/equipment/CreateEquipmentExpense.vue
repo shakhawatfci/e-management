@@ -108,7 +108,7 @@
                             <div class="contact-name">
                                 <i class="flaticon-user-11"></i>
                                 <label>Month</label>
-                                <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="pickermonth.text" v-model="euqipment.month" dateFormt="YYYY-MM"></vue-monthly-picker>
+                                <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="pickermonth.text" v-model="month" dateFormat="YYYY-MM" @input="setMonth"></vue-monthly-picker>
                                 <span v-if="validation_error.hasOwnProperty('month')" class="text-danger">
                                     {{ validation_error.month[0] }}
                                 </span>
@@ -209,7 +209,7 @@ export default {
           documents_link : '',
           note : ''
         },
-
+        month : '',
         pickermonth : {
           lebel : ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
           text : "Month"
@@ -232,7 +232,9 @@ export default {
 
    
  methods : {
-
+    setMonth(){
+      this.euqipment.month = this.month._i
+    },
     getVendorWiseEquipment()
     {
        axios.get(`${base_url}equipment-by-vendor/0/${this.euqipment.vendor_id}`)
@@ -302,6 +304,7 @@ export default {
           documents_link : '',
           note : ''
         };
+        this.month = '';
         this.validation_error = {};
      }
  } 

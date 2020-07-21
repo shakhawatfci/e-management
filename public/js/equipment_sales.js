@@ -2051,6 +2051,7 @@ __webpack_require__.r(__webpack_exports__);
         equipment_type: '',
         note: ''
       },
+      month: '',
       pickermonth: {
         lebel: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
         text: "Month"
@@ -2063,6 +2064,9 @@ __webpack_require__.r(__webpack_exports__);
     var f1 = flatpickr(document.getElementById('basicFlatpickr3'));
   },
   methods: {
+    setMonth: function setMonth() {
+      this.sales.month = this.month._i;
+    },
     save: function save() {
       var _this = this;
 
@@ -2105,6 +2109,7 @@ __webpack_require__.r(__webpack_exports__);
         equipment_type: '',
         note: ''
       };
+      this.month = '';
       this.validation_error = {};
     }
   }
@@ -2262,6 +2267,7 @@ __webpack_require__.r(__webpack_exports__);
         equipment_type: '',
         note: ''
       },
+      month: '',
       pickermonth: {
         lebel: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
         text: "Month"
@@ -2277,7 +2283,7 @@ __webpack_require__.r(__webpack_exports__);
       _this.sales.id = sales.id;
       _this.sales.customer_name = sales.customer_name;
       _this.sales.date = sales.date;
-      _this.sales.month = sales.month;
+      _this.month = sales.month;
       _this.sales.profit = sales.profit;
       _this.sales.note = sales.note;
       _this.sales.equipment_type = sales.equipment_type_id;
@@ -2286,6 +2292,9 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
+    setMonth: function setMonth() {
+      this.sales.month = this.month._i;
+    },
     save: function save() {
       var _this2 = this;
 
@@ -2329,6 +2338,7 @@ __webpack_require__.r(__webpack_exports__);
         equipment_type: '',
         note: ''
       };
+      this.month = '';
       this.validation_error = {};
     }
   }
@@ -28149,14 +28159,15 @@ var render = function() {
                                   attrs: {
                                     monthLabels: _vm.pickermonth.lebel,
                                     placeHolder: _vm.pickermonth.text,
-                                    dateFormt: "YYYY-MM"
+                                    dateFormat: "YYYY-MM"
                                   },
+                                  on: { input: _vm.setMonth },
                                   model: {
-                                    value: _vm.sales.month,
+                                    value: _vm.month,
                                     callback: function($$v) {
-                                      _vm.$set(_vm.sales, "month", $$v)
+                                      _vm.month = $$v
                                     },
-                                    expression: "sales.month"
+                                    expression: "month"
                                   }
                                 }),
                                 _vm._v(" "),
@@ -28580,12 +28591,13 @@ var render = function() {
                                     placeHolder: _vm.pickermonth.text,
                                     dateFormt: "YYYY-MM"
                                   },
+                                  on: { input: _vm.setMonth },
                                   model: {
-                                    value: _vm.sales.month,
+                                    value: _vm.month,
                                     callback: function($$v) {
-                                      _vm.$set(_vm.sales, "month", $$v)
+                                      _vm.month = $$v
                                     },
-                                    expression: "sales.month"
+                                    expression: "month"
                                   }
                                 }),
                                 _vm._v(" "),

@@ -133,6 +133,7 @@ export default {
           {
             this.projects = response.data;
             this.isLoading = false;
+            // console.log(this.projects.data.length)
          });
      },
 

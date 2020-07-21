@@ -61,8 +61,8 @@ class OperatorSalaryController extends Controller
         {
             return view('operator.print.operator_salary_print',['salaries' => $salary]);
         } else {
-            return view('operator.pdf.operator_salary_pdf', [
-            // $pdf = \PDF::loadView('operator.pdf.operator_salary_pdf', [
+            // return view('operator.pdf.operator_salary_pdf', [
+            $pdf = \PDF::loadView('operator.pdf.operator_salary_pdf', [
                 'salaries' => $salary]);
 
             $pdf->setPaper('A4', 'landscape');
@@ -88,6 +88,7 @@ class OperatorSalaryController extends Controller
         ]);
 
         try {
+            $fmonth = date('Y-m',strtotime(str_replace('/','-',$request->month)));
            $status = $request->status ? 1 : 0;
            $bank_note = $request->mode == 2 ? $request->bank_bkash_note : NULL;
            $bkah_note = $request->mode == 3 ? $request->bank_bkash_note : NULL;
@@ -96,7 +97,7 @@ class OperatorSalaryController extends Controller
 
         //    check operator already have payment 
 
-            $count_salary = OperatorSalary::where('month','=',$request->month)
+            $count_salary = OperatorSalary::where('month','=',$fmonth)
                                             ->where('operator_id','=',$request->operator_id)
                                             ->count();
 
@@ -110,7 +111,7 @@ class OperatorSalaryController extends Controller
         	$insert->equipement_id	      =    $operator->equipement_id;
         	$insert->equipment_type_id	  =    $request->equipment_type_id;
         	$insert->vendor_id	          =    $request->vendor_id;
-	        $insert->month 		          =    date('Y-m',strtotime($request->month));
+	        $insert->month 		          =    $fmonth;
 	        $insert->payment_date 	      =    $request->payment_date;
 	        $insert->payment_amount       =    $request->payment_amount;
 	        $insert->mode 			      =    $request->mode;
@@ -146,6 +147,7 @@ class OperatorSalaryController extends Controller
         ]);
 
         try {
+            $fmonth = date('Y-m',strtotime(str_replace('/','-',$request->month)));
            $status = $request->status ? 1 : 0;
            $bank_note = $request->mode == 2 ? $request->bank_bkash_note : NULL;
            $bkash_note = $request->mode == 3 ? $request->bank_bkash_note : NULL;
@@ -153,7 +155,7 @@ class OperatorSalaryController extends Controller
             $update = OperatorSalary::find($id);
 
                 $update->operator_id	= $request->operator_id;
-		        $update->month 			= date('Y-m',strtotime($request->month));
+		        $update->month 			= $fmonth;
 		        $update->payment_date 	= $request->payment_date;
 		        $update->payment_amount	= $request->payment_amount;
 		        $update->mode 			= $request->mode;

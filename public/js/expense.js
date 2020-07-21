@@ -2119,6 +2119,7 @@ __webpack_require__.r(__webpack_exports__);
         documents_link: '',
         note: ''
       },
+      month: '',
       pickermonth: {
         lebel: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
         text: "Month"
@@ -2138,6 +2139,9 @@ __webpack_require__.r(__webpack_exports__);
     this.getEquipmentData();
   },
   methods: {
+    setMonth: function setMonth() {
+      this.euqipment.month = this.month._i;
+    },
     getVendorWiseEquipment: function getVendorWiseEquipment() {
       var _this = this;
 
@@ -2200,6 +2204,7 @@ __webpack_require__.r(__webpack_exports__);
         documents_link: '',
         note: ''
       };
+      this.month = '';
       this.validation_error = {};
     }
   }
@@ -2696,6 +2701,7 @@ __webpack_require__.r(__webpack_exports__);
         lebel: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
         text: "Month"
       },
+      month: '',
       projects: [],
       vendors: [],
       equipment_types: [],
@@ -2714,9 +2720,13 @@ __webpack_require__.r(__webpack_exports__);
     _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('equipmentexpense-update', function (value) {
       $('#updateEquipmentExpense').modal('show');
       _this.euqipment = value;
+      _this.month = value.month;
     });
   },
   methods: {
+    setMonth: function setMonth() {
+      this.euqipment.month = this.month._i;
+    },
     getVendorWiseEquipment: function getVendorWiseEquipment() {
       var _this2 = this;
 
@@ -2780,6 +2790,7 @@ __webpack_require__.r(__webpack_exports__);
         documents_link: '',
         note: ''
       };
+      this.month = '';
       this.projects = [];
       this.vendors = [];
       this.equipment_types = [];
@@ -3162,6 +3173,7 @@ __webpack_require__.r(__webpack_exports__);
         lebel: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
         text: "Month"
       },
+      month: '',
       office_expense_head: [],
       button_name: 'Save',
       validation_error: {}
@@ -3172,6 +3184,9 @@ __webpack_require__.r(__webpack_exports__);
     this.getOfficeHead();
   },
   methods: {
+    setMonth: function setMonth() {
+      this.office.month = this.month._i;
+    },
     save: function save() {
       var _this = this;
 
@@ -3222,6 +3237,7 @@ __webpack_require__.r(__webpack_exports__);
         doucment_link: '',
         note: ''
       };
+      this.month = '';
       this.validation_error = {};
     }
   }
@@ -3376,6 +3392,7 @@ __webpack_require__.r(__webpack_exports__);
         lebel: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
         text: "Month"
       },
+      month: '',
       office_expense_head: [],
       button_name: 'Update',
       validation_error: {}
@@ -3390,9 +3407,13 @@ __webpack_require__.r(__webpack_exports__);
     _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('officeexpense-update', function (value) {
       $('#UpdateOfficeExpense').modal('show');
       _this.office = value;
+      _this.month = value.month;
     });
   },
   methods: {
+    setMonth: function setMonth() {
+      this.office.month = this.month._i;
+    },
     update: function update() {
       var _this2 = this;
 
@@ -3444,6 +3465,7 @@ __webpack_require__.r(__webpack_exports__);
         doucment_link: '',
         note: ''
       };
+      this.month = '';
       this.office_expense_head = [];
       this.validation_error = {};
     }
@@ -3784,14 +3806,18 @@ __webpack_require__.r(__webpack_exports__);
         lebel: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
         text: "Month"
       },
+      month: '',
       button_name: 'Save',
       validation_error: {}
     };
   },
   mounted: function mounted() {
-    var f1 = flatpickr(document.getElementById('basicFlatpickr')); // var f2 = flatpickr(document.getElementById('basicFlatpickr2'));
+    var f1 = flatpickr(document.getElementById('basicFlatpickr'));
   },
   methods: {
+    setMonth: function setMonth() {
+      this.project.month = this.month._i;
+    },
     save: function save() {
       var _this = this;
 
@@ -3836,7 +3862,7 @@ __webpack_require__.r(__webpack_exports__);
         doucment_link: '',
         note: ''
       };
-      this.users = [];
+      this.month = '';
       this.validation_error = {};
     }
   }
@@ -4212,6 +4238,7 @@ __webpack_require__.r(__webpack_exports__);
         lebel: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
         text: "Month"
       },
+      month: '',
       button_name: 'Update',
       validation_error: {}
     };
@@ -4224,11 +4251,13 @@ __webpack_require__.r(__webpack_exports__);
     _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('projectexpense-update', function (value) {
       $('#UpdateProjectExpense').modal('show');
       _this.project = value;
-      console.log(_this.project_expense_head);
+      _this.month = value.month;
     });
-    console.log(this.project_data);
   },
   methods: {
+    setMonth: function setMonth() {
+      this.project.month = this.month._i;
+    },
     update: function update() {
       var _this2 = this;
 
@@ -4272,6 +4301,7 @@ __webpack_require__.r(__webpack_exports__);
         document_link: '',
         note: ''
       };
+      this.month = '';
       this.validation_error = {};
     }
   }
@@ -4421,7 +4451,7 @@ __webpack_require__.r(__webpack_exports__);
       this.isLoading = true;
       axios.get(base_url + "project-expense-list?page=".concat(page, "&keyword=").concat(this.keyword, "&project=").concat(this.project_id, "&project_head=").concat(this.project_head_id)).then(function (response) {
         _this2.projects = response.data;
-        _this2.isLoading = false;
+        _this2.isLoading = false; // console.log(this.projects.data.length)
       });
     },
     editProjectExpense: function editProjectExpense(value) {
@@ -32285,14 +32315,15 @@ var render = function() {
                               attrs: {
                                 monthLabels: _vm.pickermonth.lebel,
                                 placeHolder: _vm.pickermonth.text,
-                                dateFormt: "YYYY-MM"
+                                dateFormat: "YYYY-MM"
                               },
+                              on: { input: _vm.setMonth },
                               model: {
-                                value: _vm.euqipment.month,
+                                value: _vm.month,
                                 callback: function($$v) {
-                                  _vm.$set(_vm.euqipment, "month", $$v)
+                                  _vm.month = $$v
                                 },
-                                expression: "euqipment.month"
+                                expression: "month"
                               }
                             }),
                             _vm._v(" "),
@@ -33483,14 +33514,15 @@ var render = function() {
                               attrs: {
                                 monthLabels: _vm.pickermonth.lebel,
                                 placeHolder: _vm.pickermonth.text,
-                                dateFormt: "YYYY-MM"
+                                dateFormat: "YYYY-MM"
                               },
+                              on: { input: _vm.setMonth },
                               model: {
-                                value: _vm.euqipment.month,
+                                value: _vm.month,
                                 callback: function($$v) {
-                                  _vm.$set(_vm.euqipment, "month", $$v)
+                                  _vm.month = $$v
                                 },
-                                expression: "euqipment.month"
+                                expression: "month"
                               }
                             }),
                             _vm._v(" "),
@@ -34495,14 +34527,15 @@ var render = function() {
                               attrs: {
                                 monthLabels: _vm.pickermonth.lebel,
                                 placeHolder: _vm.pickermonth.text,
-                                dateFormt: "YYYY-MM"
+                                dateFormat: "YYYY-MM"
                               },
+                              on: { input: _vm.setMonth },
                               model: {
-                                value: _vm.office.month,
+                                value: _vm.month,
                                 callback: function($$v) {
-                                  _vm.$set(_vm.office, "month", $$v)
+                                  _vm.month = $$v
                                 },
-                                expression: "office.month"
+                                expression: "month"
                               }
                             }),
                             _vm._v(" "),
@@ -34922,14 +34955,15 @@ var render = function() {
                               attrs: {
                                 monthLabels: _vm.pickermonth.lebel,
                                 placeHolder: _vm.pickermonth.text,
-                                dateFormt: "YYYY-MM"
+                                dateFormat: "YYYY-MM"
                               },
+                              on: { input: _vm.setMonth },
                               model: {
-                                value: _vm.office.month,
+                                value: _vm.month,
                                 callback: function($$v) {
-                                  _vm.$set(_vm.office, "month", $$v)
+                                  _vm.month = $$v
                                 },
-                                expression: "office.month"
+                                expression: "month"
                               }
                             }),
                             _vm._v(" "),
@@ -35727,14 +35761,15 @@ var render = function() {
                               attrs: {
                                 monthLabels: _vm.pickermonth.lebel,
                                 placeHolder: _vm.pickermonth.text,
-                                dateFormt: "YYYY-MM"
+                                dateFormat: "YYYY-MM"
                               },
+                              on: { input: _vm.setMonth },
                               model: {
-                                value: _vm.project.month,
+                                value: _vm.month,
                                 callback: function($$v) {
-                                  _vm.$set(_vm.project, "month", $$v)
+                                  _vm.month = $$v
                                 },
-                                expression: "project.month"
+                                expression: "month"
                               }
                             }),
                             _vm._v(" "),
@@ -36566,14 +36601,15 @@ var render = function() {
                               attrs: {
                                 monthLabels: _vm.pickermonth.lebel,
                                 placeHolder: _vm.pickermonth.text,
-                                dateFormt: "YYYY-MM"
+                                dateFormat: "YYYY-MM"
                               },
+                              on: { input: _vm.setMonth },
                               model: {
-                                value: _vm.project.month,
+                                value: _vm.month,
                                 callback: function($$v) {
-                                  _vm.$set(_vm.project, "month", $$v)
+                                  _vm.month = $$v
                                 },
-                                expression: "project.month"
+                                expression: "month"
                               }
                             }),
                             _vm._v(" "),

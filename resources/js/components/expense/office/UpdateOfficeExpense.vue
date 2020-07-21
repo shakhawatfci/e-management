@@ -47,7 +47,7 @@
                                 <div class="contact-name">
                                     <i class="flaticon-user-11"></i>
                                     <label>Month</label>
-                                    <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="pickermonth.text" v-model="office.month" dateFormt="YYYY-MM"></vue-monthly-picker>
+                                    <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="pickermonth.text" v-model="month" dateFormat="YYYY-MM" @input="setMonth"></vue-monthly-picker>
                                     <span v-if="validation_error.hasOwnProperty('month')" class="text-danger">
                                         {{ validation_error.month[0] }}
                                     </span>
@@ -135,6 +135,7 @@ export default {
           lebel : ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
           text : "Month"
         },
+        month : '',
         office_expense_head : [],
         button_name : 'Update',
         validation_error : {}
@@ -148,11 +149,14 @@ export default {
       EventBus.$on('officeexpense-update', function(value){
         $('#UpdateOfficeExpense').modal('show')
           _this.office = value;
+          _this.month = value.month
       })
    },
 
  methods : {
- 
+    setMonth(){
+      this.office.month = this.month._i
+    },
      update()
      {
         this.button_name = "Updating...";
@@ -208,6 +212,7 @@ export default {
           doucment_link : '',
           note : ''
         };
+        this.month = '';
         this.office_expense_head = [];
         this.validation_error = {};
      }

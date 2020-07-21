@@ -115,6 +115,7 @@ class OperatorFoodingController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'month' => 'required',
             'date' => 'required',
@@ -132,7 +133,7 @@ class OperatorFoodingController extends Controller
                 'equipement_id' => $request->equipement_id,
                 'operator_id'  => $request->operator_id,
                 'fooding_amount' => $request->fooding_amount,
-                'month' => date('Y-m',strtotime($request->month)),
+                'month' => date('Y-m',strtotime(str_replace('/','-',$request->month))),
                 'date' => $request->date,
                 'status'       => $status
             ]);
@@ -196,7 +197,7 @@ class OperatorFoodingController extends Controller
             $update->operator_id  = $request->operator_id;
             $update->fooding_amount = $request->fooding_amount;
             $update->date = $request->date;
-            $update->month = date('Y-m',strtotime($request->month));
+            $update->month = date('Y-m',strtotime(str_replace('/','-',$request->month)));
             $update->status       = $status;
 
             if($update->update()) {

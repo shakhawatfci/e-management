@@ -27,4 +27,11 @@ class Employee extends Model
     {
         return $this->hasOne('App\User');
     }
+
+    // relation with employee salary 
+
+    public function employee_salary()
+    {
+        return $this->hasMany('App\EmployeeSalary');
+    }
 }

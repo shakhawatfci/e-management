@@ -3455,6 +3455,7 @@ __webpack_require__.r(__webpack_exports__);
         lebel: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
         text: "Month"
       },
+      month: '',
       button_name: 'Save',
       validation_error: {},
       equipments: []
@@ -3464,6 +3465,9 @@ __webpack_require__.r(__webpack_exports__);
     var f1 = flatpickr(document.getElementById('foodingDatePicker'));
   },
   methods: {
+    setMonth: function setMonth() {
+      this.fooding.month = this.month._i;
+    },
     save: function save() {
       var _this = this;
 
@@ -3515,6 +3519,7 @@ __webpack_require__.r(__webpack_exports__);
         fooding_amount: '',
         status: ''
       };
+      this.month = '';
       this.button_name = "Save";
       this.validation_error = {};
       this.equipments = [];
@@ -3535,6 +3540,42 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vue_assets__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../vue-assets */ "./resources/js/vue-assets.js");
 /* harmony import */ var _mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../mixin */ "./resources/js/mixin.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3697,6 +3738,7 @@ __webpack_require__.r(__webpack_exports__);
           id: '',
           eq_name: ''
         },
+        date: '',
         operator: {
           id: '',
           name: ''
@@ -3921,6 +3963,7 @@ __webpack_require__.r(__webpack_exports__);
         fooding_amount: '',
         status: ''
       },
+      month: '',
       pickermonth: {
         lebel: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
         text: "Month"
@@ -3936,12 +3979,16 @@ __webpack_require__.r(__webpack_exports__);
     _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('operator-fooding-update', function (value) {
       $("#UpdateOperatorFooding").modal('show');
       _this.fooding = value;
+      _this.month = value.month;
 
       _this.getVendorEquipments();
     });
-    var f1 = flatpickr(document.getElementById('foodingDatePicker'));
+    var f1 = flatpickr(document.getElementById('upfoodingDatePicker'));
   },
   methods: {
+    setMonth: function setMonth() {
+      this.fooding.month = this.month._i;
+    },
     update: function update() {
       var _this2 = this;
 
@@ -3993,6 +4040,7 @@ __webpack_require__.r(__webpack_exports__);
         fooding_amount: '',
         status: ''
       };
+      this.month = '';
       this.button_name = "Update";
       this.validation_error = {};
       this.equipments = [];
@@ -4405,6 +4453,7 @@ __webpack_require__.r(__webpack_exports__);
         lebel: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
         text: "Month"
       },
+      month: '',
       bank_bkash_note: '',
       button_name: 'Save',
       validation_error: {}
@@ -4430,6 +4479,9 @@ __webpack_require__.r(__webpack_exports__);
     setNote: function setNote() {
       var field = this.salary.mode == 2 ? 'Enter Bank Note' : this.salary.mode == 1 ? 'N/A' : 'Enter Bkash Note';
       this.bank_bkash_note = field;
+    },
+    setMonth: function setMonth() {
+      this.salary.month = this.month._i;
     },
     save: function save() {
       var _this2 = this;
@@ -4476,6 +4528,7 @@ __webpack_require__.r(__webpack_exports__);
         status: ''
       };
       this.button_name = "Save";
+      this.month = '';
       this.validation_error = {};
     }
   }
@@ -4494,24 +4547,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vue_assets__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../vue-assets */ "./resources/js/vue-assets.js");
 /* harmony import */ var _mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../mixin */ "./resources/js/mixin.js");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -4893,6 +4928,7 @@ __webpack_require__.r(__webpack_exports__);
         lebel: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
         text: "Month"
       },
+      month: '',
       button_name: 'Update',
       validation_error: {}
     };
@@ -4905,6 +4941,7 @@ __webpack_require__.r(__webpack_exports__);
     _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('operator-salary-update', function (value) {
       $("#UpdateOperatorSalary").modal('show');
       _this.salary = value;
+      _this.month = value.month;
       _this.bank_bkash_note = value.bank_note != '' ? value.bank_note : value.bkash_note;
     });
   },
@@ -4912,10 +4949,18 @@ __webpack_require__.r(__webpack_exports__);
     setSalary: function setSalary() {
       var _this2 = this;
 
-      var amount = this.operators.filter(function (operator) {
+      var amount = this.operators.find(function (operator) {
         return operator.id === _this2.salary.operator_id;
       });
-      this.salary.payment_amount = amount[0].salary;
+
+      if (amount) {
+        this.salary.payment_amount = amount.salary;
+      } else {
+        this.salary.payment_amount = 0;
+      }
+    },
+    setMonth: function setMonth() {
+      this.salary.month = this.month._i;
     },
     update: function update() {
       var _this3 = this;
@@ -4964,7 +5009,7 @@ __webpack_require__.r(__webpack_exports__);
         salary: '',
         status: ''
       };
-      this.dataform = new FormData();
+      this.month = '';
       this.button_name = "Update";
       this.validation_error = {};
     }
@@ -33906,12 +33951,13 @@ var render = function() {
                                 placeHolder: _vm.pickermonth.text,
                                 dateFormt: "YYYY-MM"
                               },
+                              on: { input: _vm.setMonth },
                               model: {
-                                value: _vm.fooding.month,
+                                value: _vm.month,
                                 callback: function($$v) {
-                                  _vm.$set(_vm.fooding, "month", $$v)
+                                  _vm.month = $$v
                                 },
-                                expression: "fooding.month"
+                                expression: "month"
                               }
                             }),
                             _vm._v(" "),
@@ -33933,7 +33979,7 @@ var render = function() {
                         _c("div", { staticClass: "contact-email" }, [
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
-                          _c("label", { attrs: { for: "project-name" } }, [
+                          _c("label", { attrs: { for: "foodingDatePicker" } }, [
                             _vm._v("Date")
                           ]),
                           _vm._v(" "),
@@ -34677,6 +34723,46 @@ var render = function() {
                                   _vm._m(5),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "t-name" }, [
+                                    _c("h4", [_vm._v("Date")]),
+                                    _vm._v(" "),
+                                    _c("p", { staticClass: "meta-date" }, [
+                                      _vm._v(_vm._s(_vm.fooding.date))
+                                    ])
+                                  ])
+                                ])
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "col-6 transactions-list" },
+                            [
+                              _c("div", { staticClass: "t-item" }, [
+                                _c("div", { staticClass: "t-company-name" }, [
+                                  _vm._m(6),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "t-name" }, [
+                                    _c("h4", [_vm._v("Fooding Amount")]),
+                                    _vm._v(" "),
+                                    _c("p", { staticClass: "meta-date" }, [
+                                      _vm._v(_vm._s(_vm.fooding.fooding_amount))
+                                    ])
+                                  ])
+                                ])
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "col-6 transactions-list" },
+                            [
+                              _c("div", { staticClass: "t-item" }, [
+                                _c("div", { staticClass: "t-company-name" }, [
+                                  _vm._m(7),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "t-name" }, [
                                     _c("h4", [_vm._v("Operator")]),
                                     _vm._v(" "),
                                     _c("p", { staticClass: "meta-date" }, [
@@ -34694,7 +34780,7 @@ var render = function() {
                             [
                               _c("div", { staticClass: "t-item" }, [
                                 _c("div", { staticClass: "t-company-name" }, [
-                                  _vm._m(6),
+                                  _vm._m(8),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "t-name" }, [
                                     _c("h4", [_vm._v("Status")]),
@@ -34719,7 +34805,7 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._m(7)
+            _vm._m(9)
           ])
         ]
       )
@@ -34779,6 +34865,30 @@ var staticRenderFns = [
       _c("div", { staticClass: "avatar avatar-xl" }, [
         _c("span", { staticClass: "avatar-title rounded-circle" }, [
           _vm._v("EQ")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "t-icon" }, [
+      _c("div", { staticClass: "avatar avatar-xl" }, [
+        _c("span", { staticClass: "avatar-title rounded-circle" }, [
+          _vm._v("DT")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "t-icon" }, [
+      _c("div", { staticClass: "avatar avatar-xl" }, [
+        _c("span", { staticClass: "avatar-title rounded-circle" }, [
+          _vm._v("FA")
         ])
       ])
     ])
@@ -34884,14 +34994,15 @@ var render = function() {
                               attrs: {
                                 monthLabels: _vm.pickermonth.lebel,
                                 placeHolder: _vm.pickermonth.text,
-                                dateFormt: "YYYY-MM"
+                                dateFormat: "YYYY-MM"
                               },
+                              on: { input: _vm.setMonth },
                               model: {
-                                value: _vm.fooding.month,
+                                value: _vm.month,
                                 callback: function($$v) {
-                                  _vm.$set(_vm.fooding, "month", $$v)
+                                  _vm.month = $$v
                                 },
-                                expression: "fooding.month"
+                                expression: "month"
                               }
                             }),
                             _vm._v(" "),
@@ -34913,9 +35024,11 @@ var render = function() {
                         _c("div", { staticClass: "contact-email" }, [
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
-                          _c("label", { attrs: { for: "project-name" } }, [
-                            _vm._v("Date")
-                          ]),
+                          _c(
+                            "label",
+                            { attrs: { for: "upfoodingDatePicker" } },
+                            [_vm._v("Date")]
+                          ),
                           _vm._v(" "),
                           _c("input", {
                             directives: [
@@ -34929,7 +35042,7 @@ var render = function() {
                             staticClass: "form-control",
                             attrs: {
                               type: "text",
-                              id: "foodingDatePicker",
+                              id: "upfoodingDatePicker",
                               placeholder: "Date"
                             },
                             domProps: { value: _vm.fooding.date },
@@ -36219,14 +36332,15 @@ var render = function() {
                               attrs: {
                                 monthLabels: _vm.pickermonth.lebel,
                                 placeHolder: _vm.pickermonth.text,
-                                dateFormt: "YYYY-MM"
+                                dateFormat: "YYYY-MM"
                               },
+                              on: { input: _vm.setMonth },
                               model: {
-                                value: _vm.salary.month,
+                                value: _vm.month,
                                 callback: function($$v) {
-                                  _vm.$set(_vm.salary, "month", $$v)
+                                  _vm.month = $$v
                                 },
-                                expression: "salary.month"
+                                expression: "month"
                               }
                             }),
                             _vm._v(" "),
@@ -36751,26 +36865,6 @@ var render = function() {
                                   _vm._m(8),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "t-name" }, [
-                                    _c("h4", [_vm._v("Salary Type")]),
-                                    _vm._v(" "),
-                                    _c("p", { staticClass: "meta-date" }, [
-                                      _vm._v(_vm._s(_vm.salary.salary_type))
-                                    ])
-                                  ])
-                                ])
-                              ])
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "col-4 transactions-list" },
-                            [
-                              _c("div", { staticClass: "t-item" }, [
-                                _c("div", { staticClass: "t-company-name" }, [
-                                  _vm._m(9),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "t-name" }, [
                                     _c("h4", [_vm._v("Status")]),
                                     _vm._v(" "),
                                     _vm.salary.status == 1
@@ -36793,7 +36887,7 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._m(10)
+            _vm._m(9)
           ])
         ]
       )
@@ -36900,18 +36994,6 @@ var staticRenderFns = [
     return _c("div", { staticClass: "t-icon" }, [
       _c("div", { staticClass: "avatar avatar-xl" }, [
         _c("span", { staticClass: "avatar-title rounded-circle" }, [
-          _vm._v("SA")
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "t-icon" }, [
-      _c("div", { staticClass: "avatar avatar-xl" }, [
-        _c("span", { staticClass: "avatar-title rounded-circle" }, [
           _vm._v("ST")
         ])
       ])
@@ -37003,24 +37085,29 @@ var render = function() {
                               staticClass: "form-control",
                               attrs: { id: "operator-name" },
                               on: {
-                                change: function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.$set(
-                                    _vm.salary,
-                                    "operator_id",
-                                    $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  )
-                                }
+                                change: [
+                                  function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.salary,
+                                      "operator_id",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  },
+                                  function($event) {
+                                    return _vm.setSalary()
+                                  }
+                                ]
                               }
                             },
                             [
@@ -37121,14 +37208,15 @@ var render = function() {
                               attrs: {
                                 monthLabels: _vm.pickermonth.lebel,
                                 placeHolder: _vm.pickermonth.text,
-                                dateFormt: "YYYY-MM"
+                                dateFormat: "YYYY-MM"
                               },
+                              on: { input: _vm.setMonth },
                               model: {
-                                value: _vm.salary.month,
+                                value: _vm.month,
                                 callback: function($$v) {
-                                  _vm.$set(_vm.salary, "month", $$v)
+                                  _vm.month = $$v
                                 },
-                                expression: "salary.month"
+                                expression: "month"
                               }
                             }),
                             _vm._v(" "),

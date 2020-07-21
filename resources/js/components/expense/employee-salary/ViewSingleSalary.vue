@@ -1,6 +1,6 @@
 <template>
 <!-- Modal -->
-    <div id="ShowOperatorFooding" class="modal animated fadeInRight custo-fadeInRight show" tabindex="-1" role="dialog" aria-labelledby="addContactModalTitle" aria-hidden="true">
+    <div id="ShowSalary" class="modal animated fadeInRight custo-fadeInRight show" tabindex="-1" role="dialog" aria-labelledby="addContactModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-body">
@@ -10,7 +10,7 @@
                          <div class="layout-spacing">
                         <div class="widget widget-table-one">
                           <div class="widget-heading">
-                                <h5 class="">View Operator Fooding</h5>
+                                <h5 class="">View {{ salary.employee.name }}</h5>
                             </div>
                             <div class="widget-content">
                           <div class="row">
@@ -19,12 +19,12 @@
                                         <div class="t-company-name">
                                             <div class="t-icon">
                                                 <div class="avatar avatar-xl">
-                                                    <span class="avatar-title rounded-circle">PT</span>
+                                                    <span class="avatar-title rounded-circle">EN</span>
                                                 </div>
                                             </div>
                                             <div class="t-name">
-                                                <h4>Project</h4>
-                                                <p class="meta-date">{{ fooding.project.project_name }}</p>
+                                                <h4>Employee Name</h4>
+                                                <p class="meta-date">{{ salary.employee.name }}</p>
                                             </div>
 
                                         </div>
@@ -37,49 +37,13 @@
                                         <div class="t-company-name">
                                             <div class="t-icon">
                                                 <div class="avatar avatar-xl">
-                                                    <span class="avatar-title rounded-circle">VN</span>
+                                                    <span class="avatar-title rounded-circle">MN</span>
                                                 </div>
                                             </div>
                                             <div class="t-name">
-                                                <h4>Vendor</h4>
-                                                <p class="meta-date">{{ fooding.vendor.vendor_name }}</p>
+                                                <h4>Month</h4>
+                                                <p class="meta-date">{{ salary.month | monthToString }}</p>
                                             </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-
-                                <div class="col-6 transactions-list">
-                                    <div class="t-item">
-                                        <div class="t-company-name">
-                                            <div class="t-icon">
-                                                <div class="avatar avatar-xl">
-                                                    <span class="avatar-title rounded-circle">ET</span>
-                                                </div>
-                                            </div>
-                                            <div class="t-name">
-                                                <h4>Equipment Type</h4>
-                                                <p class="meta-date">{{ fooding.equipment_type.name }}</p>
-                                            </div>
-
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-
-                                <div class="col-6 transactions-list">
-                                    <div class="t-item">
-                                        <div class="t-company-name">
-                                            <div class="t-icon">
-                                                <div class="avatar avatar-xl">
-                                                    <span class="avatar-title rounded-circle">EQ</span>
-                                                </div>
-                                            </div>
-                                            <div class="t-name">
-                                                <h4>Equipment</h4>
-                                                <p class="meta-date">{{ fooding.equipement.eq_name }}</p>
-                                            </div>
-
                                         </div>
                                         
                                     </div>
@@ -95,7 +59,7 @@
                                             </div>
                                             <div class="t-name">
                                                 <h4>Date</h4>
-                                                <p class="meta-date">{{ fooding.date }}</p>
+                                                <p class="meta-date">{{ salary.date | dateToString }}</p>
                                             </div>
 
                                         </div>
@@ -108,12 +72,12 @@
                                         <div class="t-company-name">
                                             <div class="t-icon">
                                                 <div class="avatar avatar-xl">
-                                                    <span class="avatar-title rounded-circle">FA</span>
+                                                    <span class="avatar-title rounded-circle">MN</span>
                                                 </div>
                                             </div>
                                             <div class="t-name">
-                                                <h4>Fooding Amount</h4>
-                                                <p class="meta-date">{{ fooding.fooding_amount }}</p>
+                                                <h4>Salary Amount</h4>
+                                                <p class="meta-date">{{ salary.salary_amount }}</p>
                                             </div>
 
                                         </div>
@@ -126,12 +90,12 @@
                                         <div class="t-company-name">
                                             <div class="t-icon">
                                                 <div class="avatar avatar-xl">
-                                                    <span class="avatar-title rounded-circle">OP</span>
+                                                    <span class="avatar-title rounded-circle">BS</span>
                                                 </div>
                                             </div>
                                             <div class="t-name">
-                                                <h4>Operator</h4>
-                                                <p class="meta-date">{{ fooding.operator.name }}</p>
+                                                <h4>Bonus</h4>
+                                                <p class="meta-date">{{ salary.bonus }}</p>
                                             </div>
 
                                         </div>
@@ -144,24 +108,79 @@
                                         <div class="t-company-name">
                                             <div class="t-icon">
                                                 <div class="avatar avatar-xl">
-                                                    <span class="avatar-title rounded-circle">ST</span>
+                                                    <span class="avatar-title rounded-circle">DC</span>
                                                 </div>
                                             </div>
                                             <div class="t-name">
-                                                <h4>Status</h4>
-                                                <p class="meta-date" v-if="fooding.status == 1">Active</p>
-                                                <p class="meta-date" v-else>Inactive</p>
+                                                <h4>Deduction</h4>
+                                                <p class="meta-date">{{ salary.deduction }}</p>
                                             </div>
 
                                         </div>
                                         
                                     </div>
-                                </div>  
+                                </div>
+
+                                <div class="col-6 transactions-list">
+                                    <div class="t-item">
+                                        <div class="t-company-name">
+                                            <div class="t-icon">
+                                                <div class="avatar avatar-xl">
+                                                    <span class="avatar-title rounded-circle">BR</span>
+                                                </div>
+                                            </div>
+                                            <div class="t-name">
+                                                <h4>Bonus Reason</h4>
+                                                <p class="meta-date">{{ salary.bonus_reason }}</p>
+                                            </div>
+
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+
+                                <div class="col-6 transactions-list">
+                                    <div class="t-item">
+                                        <div class="t-company-name">
+                                            <div class="t-icon">
+                                                <div class="avatar avatar-xl">
+                                                    <span class="avatar-title rounded-circle">TS</span>
+                                                </div>
+                                            </div>
+                                            <div class="t-name">
+                                                <h4>Total Salary</h4>
+                                                <p class="meta-date">{{ salary.total_salary_amount }}</p>
+                                            </div>
+
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+
+                                
                             </div>
+                            <div class="row">
+                              <div class="col-12 transactions-list">
+                                  <div class="t-item">
+                                      <div class="t-company-name">
+                                          <div class="t-icon">
+                                              <div class="avatar avatar-xl">
+                                                    <span class="avatar-title rounded-circle">NT</span>
+                                                </div>
+                                          </div>
+                                          <div class="t-name">
+                                              <h4>Salary Note</h4>
+                                              <p class="meta-date">{{ salary.salary_note }}</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+      
                         </div>
                     </div>
 	                    </div>      
-                    </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -182,25 +201,26 @@ export default {
    {
         
        return {
-        fooding : {
-          project : {id : '', project_name : ''},
-          vendor : {id : '', vendor_name : ''},
-          equipment_type : {id : '', name : ''},
-          equipement : {id : '', eq_name : ''},
-          date : '',
-          operator : {id : '', name : ''},
-          fooding_amount : '',
-          status : ''
-        },
-            url : base_url
+         salary : {  
+           employee : {id:'',name:''},
+           month: '',
+           date: '',
+           salary_amount: 0,
+           bonus: 0,
+           deduction: 0,
+           bonus_reason: '',
+           deduction_reason: '',
+           total_salary_amount : 0,  
+           salary_note: ''      
+         },
        }
    },
 
    mounted() {
       var _this = this;
-      EventBus.$on('operator-fooding-show', function(value){
-        $('#ShowOperatorFooding').modal('show')
-          _this.fooding = value;
+      EventBus.$on('view-salary', function(salary){
+        $('#ShowSalary').modal('show')
+          _this.salary = salary;
       })
    },
    

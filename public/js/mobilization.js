@@ -2144,6 +2144,7 @@ __webpack_require__.r(__webpack_exports__);
         lebel: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
         text: "Month"
       },
+      month: '',
       validation_error: {},
       equipments: [],
       button_name: 'Save'
@@ -2153,6 +2154,9 @@ __webpack_require__.r(__webpack_exports__);
     var f1 = flatpickr(document.getElementById('basicFlatpickr3'));
   },
   methods: {
+    setMonth: function setMonth() {
+      this.mobilization.month = this.month._i;
+    },
     save: function save() {
       var _this = this;
 
@@ -2217,6 +2221,7 @@ __webpack_require__.r(__webpack_exports__);
         destination_from: '',
         destination_to: ''
       };
+      this.month = '';
       this.validation_error = {};
       this.equipments = [];
     }
@@ -2471,6 +2476,7 @@ __webpack_require__.r(__webpack_exports__);
         lebel: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
         text: "Month"
       },
+      month: '',
       validation_error: {},
       equipments: [],
       button_name: 'Update'
@@ -2489,7 +2495,7 @@ __webpack_require__.r(__webpack_exports__);
       _this.mobilization.lobaid_cost = mobilization.lobaid_cost;
       _this.mobilization.profit = mobilization.profit;
       _this.mobilization.date = mobilization.date;
-      _this.mobilization.month = mobilization.month;
+      _this.month = mobilization.month;
       _this.mobilization.destination_from = mobilization.destination_from;
       _this.mobilization.destination_to = mobilization.destination_to; //  get equipments by vendor 
 
@@ -2501,6 +2507,9 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
+    setMonth: function setMonth() {
+      this.mobilization.month = this.month._i;
+    },
     save: function save() {
       var _this2 = this;
 
@@ -2556,6 +2565,7 @@ __webpack_require__.r(__webpack_exports__);
         destination_from: '',
         destination_to: ''
       };
+      this.month = '';
       this.validation_error = {};
       this.equipments = [];
     }
@@ -28752,14 +28762,15 @@ var render = function() {
                                   attrs: {
                                     monthLabels: _vm.pickermonth.lebel,
                                     placeHolder: _vm.pickermonth.text,
-                                    dateFormt: "YYYY-MM"
+                                    dateFormat: "YYYY-MM"
                                   },
+                                  on: { input: _vm.setMonth },
                                   model: {
-                                    value: _vm.mobilization.month,
+                                    value: _vm.month,
                                     callback: function($$v) {
-                                      _vm.$set(_vm.mobilization, "month", $$v)
+                                      _vm.month = $$v
                                     },
-                                    expression: "mobilization.month"
+                                    expression: "month"
                                   }
                                 }),
                                 _vm._v(" "),
@@ -29549,14 +29560,15 @@ var render = function() {
                                   attrs: {
                                     monthLabels: _vm.pickermonth.lebel,
                                     placeHolder: _vm.pickermonth.text,
-                                    dateFormt: "YYYY-MM"
+                                    dateFormat: "YYYY-MM"
                                   },
+                                  on: { input: _vm.setMonth },
                                   model: {
-                                    value: _vm.mobilization.month,
+                                    value: _vm.month,
                                     callback: function($$v) {
-                                      _vm.$set(_vm.mobilization, "month", $$v)
+                                      _vm.month = $$v
                                     },
-                                    expression: "mobilization.month"
+                                    expression: "month"
                                   }
                                 }),
                                 _vm._v(" "),

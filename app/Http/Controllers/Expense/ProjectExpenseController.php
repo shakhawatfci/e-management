@@ -97,7 +97,7 @@ class ProjectExpenseController extends Controller
                 'project_expense_head_id' => $request->project_expense_head_id,
                 'project_id' => $request->project_id,
                 'user_id' => Auth::id(),
-                'month' => date('Y-m',strtotime($request->month)),
+                'month' => date('Y-m',strtotime(str_replace('/','-',$request->month))),
                 'date' => $request->date,
                 'amount' => $request->amount,
                 'document' => $filename,
@@ -164,7 +164,7 @@ class ProjectExpenseController extends Controller
             $update->project_expense_head_id = $request->project_expense_head_id;
             $update->project_id = $request->project_id;
             $update->user_id = Auth::id();
-            $update->month = date('Y-m',strtotime($request->month));
+            $update->month = date('Y-m',strtotime(str_replace('/','-',$request->month)));
             $update->date = $request->date;
             $update->amount = $request->amount;
             $update->document_link = $request->document_link;

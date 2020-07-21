@@ -2686,7 +2686,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.end_month != '') {
         if (this.start_month === '') this.successMessage({
           status: 'error',
-          message: 'fillup the start Month'
+          message: 'Select start Month'
         });
         st_mo = this.start_month._i;
         lt_mo = this.end_month._i;
@@ -3088,6 +3088,7 @@ __webpack_require__.r(__webpack_exports__);
         documents_link: '',
         print_status: 0
       },
+      month: '',
       pickermonth: {
         lebel: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
         text: "Month"
@@ -3111,6 +3112,9 @@ __webpack_require__.r(__webpack_exports__);
     var f1 = flatpickr(document.getElementById('basicFlatpickr4'));
   },
   methods: {
+    setMonth: function setMonth() {
+      this.bill.month = this.month._i;
+    },
     save: function save() {
       var _this2 = this;
 
@@ -3169,6 +3173,7 @@ __webpack_require__.r(__webpack_exports__);
         documents_link: '',
         print_status: 0
       };
+      this.month = '';
       this.validation_error = {};
       this.equipments = [];
     }
@@ -3529,6 +3534,7 @@ __webpack_require__.r(__webpack_exports__);
         lebel: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
         text: "Month"
       },
+      month: '',
       validation_error: {},
       equipments: [],
       button_name: 'Update'
@@ -3539,12 +3545,16 @@ __webpack_require__.r(__webpack_exports__);
 
     _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('edit-bill', function (bill) {
       _this.bill = bill;
+      _this.month = bill.month;
       _this.bill.print_status = 0;
       $('#EditBill').modal('show');
     });
     var f1 = flatpickr(document.getElementById('basicFlatpickr6'));
   },
   methods: {
+    setMonth: function setMonth() {
+      this.bill.month = this.month._i;
+    },
     Update: function Update() {
       var _this2 = this;
 
@@ -3603,6 +3613,7 @@ __webpack_require__.r(__webpack_exports__);
         documents_link: '',
         print_status: 0
       };
+      this.month = '';
       this.validation_error = {};
       this.equipments = [];
     }
@@ -33181,12 +33192,13 @@ var render = function() {
                                     placeHolder: _vm.pickermonth.text,
                                     dateFormt: "YYYY-MM"
                                   },
+                                  on: { input: _vm.setMonth },
                                   model: {
-                                    value: _vm.bill.month,
+                                    value: _vm.month,
                                     callback: function($$v) {
-                                      _vm.$set(_vm.bill, "month", $$v)
+                                      _vm.month = $$v
                                     },
-                                    expression: "bill.month"
+                                    expression: "month"
                                   }
                                 }),
                                 _vm._v(" "),
@@ -34215,12 +34227,13 @@ var render = function() {
                                     placeHolder: _vm.pickermonth.text,
                                     dateFormt: "YYYY-MM"
                                   },
+                                  on: { input: _vm.setMonth },
                                   model: {
-                                    value: _vm.bill.month,
+                                    value: _vm.month,
                                     callback: function($$v) {
-                                      _vm.$set(_vm.bill, "month", $$v)
+                                      _vm.month = $$v
                                     },
-                                    expression: "bill.month"
+                                    expression: "month"
                                   }
                                 }),
                                 _vm._v(" "),

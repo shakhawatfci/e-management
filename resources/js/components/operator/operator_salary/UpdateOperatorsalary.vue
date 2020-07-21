@@ -15,7 +15,7 @@
                               <div class="contact-email">
                                   <i class="flaticon-mail-26"></i>
                                   <label for="operator-name">Operator Name</label>
-                                    <select class="form-control" id="operator-name" v-model="salary.operator_id">
+                                    <select class="form-control" id="operator-name" v-model="salary.operator_id" @change="setSalary()">
                                         <option value="">Select Operator</option>
                                         <option v-for="operator in operators" :key="operator.id" :value="operator.id">{{ operator.name }}</option>
                                     </select>
@@ -44,7 +44,7 @@
                               <div class="contact-email">
                                   <i class="flaticon-mail-26"></i>
                                   <label>Month</label>
-                                      <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="pickermonth.text" v-model="salary.month" dateFormt="YYYY-MM"></vue-monthly-picker>
+                                      <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="pickermonth.text" v-model="month" dateFormat="YYYY-MM" @input="setMonth"></vue-monthly-picker>
                                        <span
                                        v-if="validation_error.hasOwnProperty('month')" 
                                       class="text-danger">
@@ -156,6 +156,7 @@ export default {
           lebel : ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
           text : "Month"
         },
+        month : '',
         button_name : 'Update',
         validation_error : {}
        }
@@ -167,16 +168,24 @@ export default {
       EventBus.$on('operator-salary-update',function(value){
         $("#UpdateOperatorSalary").modal('show')
         _this.salary = value;
+        _this.month = value.month;
         _this.bank_bkash_note = value.bank_note != '' ? value.bank_note : value.bkash_note;
       })
    },
    
  methods : {
     setSalary(){
-      var amount  = this.operators.filter(operator => operator.id === this.salary.operator_id)
-      this.salary.payment_amount = amount[0].salary
+      var amount  = this.operators.find(operator => operator.id === this.salary.operator_id)
+      if(amount){
+        this.salary.payment_amount = amount.salary
+      }else{
+        this.salary.payment_amount = 0
+      }
     },
 
+    setMonth(){
+      this.salary.month = this.month._i
+    },
      update()
      {
         this.button_name = "Updating...";
@@ -228,7 +237,7 @@ export default {
           salary : '',
           status : ''
         };
-        this.dataform = new FormData();
+        this.month = '';
         this.button_name = "Update";
         this.validation_error = {};
      }

@@ -16,7 +16,7 @@
                                   <div class="contact-email">
                                       <i class="flaticon-mail-26"></i>
                                       <label>Month</label>
-                                            <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="pickermonth.text" v-model="fooding.month" dateFormt="YYYY-MM"></vue-monthly-picker>
+                                            <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="pickermonth.text" v-model="month" dateFormt="YYYY-MM" @input="setMonth"></vue-monthly-picker>
                                            <span
                                            v-if="validation_error.hasOwnProperty('month')" 
                                           class="text-danger">
@@ -27,7 +27,7 @@
                               <div class="col-md-4">
                                   <div class="contact-email">
                                       <i class="flaticon-mail-26"></i>
-                                      <label for="project-name">Date</label>
+                                      <label for="foodingDatePicker">Date</label>
                                            <input type="text" class="form-control"
                                            v-model="fooding.date"
                                            id="foodingDatePicker"
@@ -193,6 +193,7 @@ export default {
           lebel : ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
           text : "Month"
         },
+        month : '',
         button_name : 'Save',
         validation_error : {},
         equipments : []
@@ -204,6 +205,9 @@ export default {
    },
    
  methods : {
+  setMonth(){
+    this.fooding.month = this.month._i
+  },
 
      save()
      {
@@ -260,6 +264,7 @@ export default {
           fooding_amount : '',
           status : ''
         };
+        this.month = '';
         this.button_name = "Save";
         this.validation_error = {};
         this.equipments = [];

@@ -1,0 +1,35 @@
+@extends('master.master')
+@section('title','EMS | Employee Salary')
+
+@section('page_header')
+<li class="breadcrumb-item"><a href="javascript:void(0);">Expense</a></li>
+<li class="breadcrumb-item active" aria-current="page"><span>Employee Salary</span></li>
+@endsection
+@section('create-button')
+<button  data-toggle="modal"  data-target="#CreateEmployeeSalary"
+                                         class="btn btn-primary"  data-placement="top" title="Create New employee">
+                                        <i class="far fa-plus-square"></i> Create New
+                                        </button>
+@endsection
+@section('content')
+<div class="layout-px-spacing">                
+                <div class="row layout-spacing layout-top-spacing" id="cancel-row">
+                    <div class="col-lg-12">
+                        <div class="widget-content searchable-container list">
+
+                            <div class="row">
+                        <create-employee-salary></create-employee-salary>                           
+                            </div>
+                         <view-employee-salary></view-employee-salary>
+                        </div>
+                    </div>
+                </div>
+</div>
+@endsection
+
+<!-- push the script which you need only this page  -->
+@push('script')
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+<script src="{{ asset('public/js/employee.js') }}"></script>
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+@endpush

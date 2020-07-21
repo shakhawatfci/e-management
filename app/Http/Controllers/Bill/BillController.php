@@ -121,11 +121,11 @@ class BillController extends Controller
 
         try
         {
-
+            $fmonth = date('Y-m',strtotime(str_replace('/','-',$request->month)))
             DB::beginTransaction();
             //   checking this equipment already having bill in this month
             $count_bill = ProjectClaim::where('assign_id', '=', $request->id)
-                ->where('month', '=', $request->month)
+                ->where('month', '=',$fmonth)
                 ->count();
 
             if ($count_bill) {
@@ -135,7 +135,7 @@ class BillController extends Controller
             $assign = CarAssign::find($request->assign_id);
 
             $bill                           =       new ProjectClaim;
-            $bill_no                        =       generateBillNo(date('Y-m',strtotime($request->month)));
+            $bill_no                        =       generateBillNo($fmonth);
             $bill->bill_no                  =       $bill_no;
             $bill->assign_id                =       $request->assign_id;
             $bill->project_id               =       $assign->project_id;
@@ -143,7 +143,7 @@ class BillController extends Controller
             $bill->equipment_type_id        =       $assign->equipment_type_id;
             $bill->equipement_id            =       $assign->equipement_id;
             $bill->user_id                  =       Auth::user()->id;
-            $bill->month                    =       date('Y-m',strtotime($request->month));
+            $bill->month                    =       $fmonth;
             $bill->date                     =       $request->date;
             $bill->total_hour               =       $request->total_hour;
             $bill->project_rate_per_hour    =       $request->project_rate_per_hour;
@@ -284,7 +284,7 @@ class BillController extends Controller
 
             $bill = ProjectClaim::find($id);
             $bill->user_id = Auth::user()->id;
-            $bill->month = date('Y-m',strtotime($request->month));
+            $bill->month = date('Y-m',strtotime(str_replace('/', '-', $request->month)));
             $bill->date = $request->date;
             $bill->total_hour = $request->total_hour;
             $bill->project_rate_per_hour = $request->project_rate_per_hour;
