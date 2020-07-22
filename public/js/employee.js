@@ -4558,6 +4558,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -39377,6 +39379,10 @@ var render = function() {
                             _vm._v(_vm._s(_vm._f("monthToString")(value.month)))
                           ]),
                           _vm._v(" "),
+                          _c("td", [
+                            _vm._v(_vm._s(_vm._f("dateToString")(value.date)))
+                          ]),
+                          _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(value.employee.name))]),
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(value.salary_amount))]),
@@ -39526,6 +39532,8 @@ var staticRenderFns = [
     return _c("thead", [
       _c("tr", [
         _c("th", [_vm._v("Month")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Date")]),
         _vm._v(" "),
         _c("th", [_vm._v("Employee Name")]),
         _vm._v(" "),

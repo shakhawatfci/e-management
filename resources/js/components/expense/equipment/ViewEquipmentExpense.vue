@@ -71,6 +71,7 @@
                 <th>Name</th>
                 <th>Expense</th>
                 <th>Equipment</th>
+                <th>Month</th>
                 <th>Payment Date</th>
                 <th>Amount</th>
                 <th class="text-center">action</th>
@@ -81,6 +82,7 @@
                 <td>{{ value.project.project_name }}</td>
                 <td>{{ value.vendor.vendor_name }}</td>
                 <td>{{ value.equipement.eq_name }}</td>
+                <td>{{ value.month | monthToString }}</td>
                 <td>{{ value.payment_date | dateToString }}</td>
                 <td>{{ value.amount }}</td>
                 <td class="text-center">

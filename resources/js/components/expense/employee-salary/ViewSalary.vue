@@ -29,6 +29,7 @@
             <thead>
               <tr>
                 <th>Month</th>
+                <th>Date</th>
                 <th>Employee Name</th>
                 <th>Salary</th>
                 <th>Bonus</th>
@@ -40,6 +41,7 @@
             <tbody>
               <tr v-for="value in salaries.data" :key="value.id">
                 <td>{{ value.month | monthToString }}</td>
+                <td>{{ value.date | dateToString }}</td>
                 <td>{{ value.employee.name  }}</td>
                 <td>{{ value.salary_amount  }}</td>
                 <td>{{ value.bonus  }}</td>

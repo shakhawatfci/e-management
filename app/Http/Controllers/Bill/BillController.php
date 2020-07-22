@@ -121,7 +121,7 @@ class BillController extends Controller
 
         try
         {
-            $fmonth = date('Y-m',strtotime(str_replace('/','-',$request->month)))
+            $fmonth = date('Y-m',strtotime(str_replace('/','-',$request->month)));
             DB::beginTransaction();
             //   checking this equipment already having bill in this month
             $count_bill = ProjectClaim::where('assign_id', '=', $request->id)
