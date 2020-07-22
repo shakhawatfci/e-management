@@ -40,8 +40,9 @@
             <tr>
                 <th>Project Name</th>
                 <th>Project Expense</th>
-                <th>Amount</th>
+                <th>Month</th>
                 <th>Date</th>
+                <th>Amount</th>
                 <th class="text-center">action</th>
             </tr>
         </thead>
@@ -49,8 +50,9 @@
             <tr v-for="value in projects.data" :key="value.id">
                 <td>{{ value.project.project_name }}</td>
                 <td>{{ value.project_expense_head.head_name }}</td>
-                <td>{{ value.amount }}</td>
+                <td>{{ value.month | monthToString }}</td>
                 <td>{{ value.date | dateToString }}</td>
+                <td>{{ value.amount }}</td>
                 <td class="text-center">
                     <button class="btn btn-warning mb-2 mr-2 rounded-circle" title="View" @click="viewProjectExpense(value)"><i class="far fa-eye"></i></button>
                     <button class="btn btn-dark mb-2 mr-2 rounded-circle" title="Edit" @click.prevent="editProjectExpense(value)"><i class="far fa-edit"></i></button>

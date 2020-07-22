@@ -2938,6 +2938,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -4323,6 +4325,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../pagination/Pagination */ "./resources/js/components/pagination/Pagination.vue");
 /* harmony import */ var _SingleViewProjectexpense__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SingleViewProjectexpense */ "./resources/js/components/expense/project/SingleViewProjectexpense.vue");
 /* harmony import */ var _UpdateProjectexpense__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./UpdateProjectexpense */ "./resources/js/components/expense/project/UpdateProjectexpense.vue");
+//
+//
 //
 //
 //
@@ -34184,6 +34188,12 @@ var render = function() {
                             _vm._v(" "),
                             _c("td", [
                               _vm._v(
+                                _vm._s(_vm._f("monthToString")(value.month))
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
                                 _vm._s(
                                   _vm._f("dateToString")(value.payment_date)
                                 )
@@ -34336,6 +34346,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Expense")]),
         _vm._v(" "),
         _c("th", [_vm._v("Equipment")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Month")]),
         _vm._v(" "),
         _c("th", [_vm._v("Payment Date")]),
         _vm._v(" "),
@@ -37077,11 +37089,17 @@ var render = function() {
                               )
                             ]),
                             _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(value.amount))]),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(_vm._f("monthToString")(value.month))
+                              )
+                            ]),
                             _vm._v(" "),
                             _c("td", [
                               _vm._v(_vm._s(_vm._f("dateToString")(value.date)))
                             ]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(value.amount))]),
                             _vm._v(" "),
                             _c("td", { staticClass: "text-center" }, [
                               _c(
@@ -37229,9 +37247,11 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Project Expense")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Amount")]),
+        _c("th", [_vm._v("Month")]),
         _vm._v(" "),
         _c("th", [_vm._v("Date")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Amount")]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [_vm._v("action")])
       ])
@@ -37743,100 +37763,55 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "tbody",
-                      [
-                        _vm._l(_vm.equipments.data, function(value, index) {
-                          return _c("tr", { key: value.id }, [
-                            _c("td", [_vm._v(_vm._s(index + 1))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(value.head_name))]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "text-center" }, [
-                              value.status == 1
-                                ? _c("span", { staticClass: "text-success" }, [
-                                    _vm._v("Active")
-                                  ])
-                                : _c("span", { staticClass: "text-danger" }, [
-                                    _vm._v("Inactive")
-                                  ])
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "text-center" }, [
-                              _c(
-                                "button",
-                                {
-                                  staticClass:
-                                    "btn btn-dark mb-2 mr-2 rounded-circle",
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.editEquipmentHead(value)
-                                    }
+                      _vm._l(_vm.equipments.data, function(value, index) {
+                        return _c("tr", { key: value.id }, [
+                          _c("td", [_vm._v(_vm._s(index + 1))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(value.head_name))]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            value.status == 1
+                              ? _c("span", { staticClass: "text-success" }, [
+                                  _vm._v("Active")
+                                ])
+                              : _c("span", { staticClass: "text-danger" }, [
+                                  _vm._v("Inactive")
+                                ])
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "btn btn-dark mb-2 mr-2 rounded-circle",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.editEquipmentHead(value)
                                   }
-                                },
-                                [_c("i", { staticClass: "far fa-edit" })]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "button",
-                                {
-                                  staticClass:
-                                    "btn btn-danger mb-2 mr-2 rounded-circle",
-                                  on: {
-                                    click: function($event) {
-                                      $event.preventDefault()
-                                      return _vm.deleteEquipmentHead(value.id)
-                                    }
+                                }
+                              },
+                              [_c("i", { staticClass: "far fa-edit" })]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "btn btn-danger mb-2 mr-2 rounded-circle",
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.deleteEquipmentHead(value.id)
                                   }
-                                },
-                                [_c("i", { staticClass: "far fa-trash-alt" })]
-                              )
-                            ])
+                                }
+                              },
+                              [_c("i", { staticClass: "far fa-trash-alt" })]
+                            )
                           ])
-                        }),
-                        _vm._v(" "),
-                        _vm.equipments.data.length > 0
-                          ? _c("tr", [
-                              _c("td", { attrs: { colspan: "6" } }, [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "btn btn-primary btn-sm",
-                                    attrs: {
-                                      href:
-                                        _vm.url +
-                                        "equipment-category-list-print-pdf?action=pdf"
-                                    }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "fa fa-file-pdf-o"
-                                    }),
-                                    _vm._v(" PDF")
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "btn btn-danger btn-sm",
-                                    attrs: {
-                                      href:
-                                        _vm.url +
-                                        "equipment-category-list-print-pdf?action=print",
-                                      target: "_blank"
-                                    }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "fa fa-file-pdf-o"
-                                    }),
-                                    _vm._v(" Print")
-                                  ]
-                                )
-                              ])
-                            ])
-                          : _vm._e()
-                      ],
-                      2
+                        ])
+                      }),
+                      0
                     )
                   ]
                 )
@@ -38393,100 +38368,55 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "tbody",
-                      [
-                        _vm._l(_vm.offices.data, function(value, key) {
-                          return _c("tr", { key: value.id }, [
-                            _c("td", [_vm._v(_vm._s(key + 1))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(value.head_name))]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "text-center" }, [
-                              value.status == 1
-                                ? _c("span", { staticClass: "text-success" }, [
-                                    _vm._v("Active")
-                                  ])
-                                : _c("span", { staticClass: "text-danger" }, [
-                                    _vm._v("Inactive")
-                                  ])
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "text-center" }, [
-                              _c(
-                                "button",
-                                {
-                                  staticClass:
-                                    "btn btn-dark mb-2 mr-2 rounded-circle",
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.editOfficeHead(value)
-                                    }
+                      _vm._l(_vm.offices.data, function(value, key) {
+                        return _c("tr", { key: value.id }, [
+                          _c("td", [_vm._v(_vm._s(key + 1))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(value.head_name))]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            value.status == 1
+                              ? _c("span", { staticClass: "text-success" }, [
+                                  _vm._v("Active")
+                                ])
+                              : _c("span", { staticClass: "text-danger" }, [
+                                  _vm._v("Inactive")
+                                ])
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "btn btn-dark mb-2 mr-2 rounded-circle",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.editOfficeHead(value)
                                   }
-                                },
-                                [_c("i", { staticClass: "far fa-edit" })]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "button",
-                                {
-                                  staticClass:
-                                    "btn btn-danger mb-2 mr-2 rounded-circle",
-                                  on: {
-                                    click: function($event) {
-                                      $event.preventDefault()
-                                      return _vm.deleteOfficeHead(value.id)
-                                    }
+                                }
+                              },
+                              [_c("i", { staticClass: "far fa-edit" })]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "btn btn-danger mb-2 mr-2 rounded-circle",
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.deleteOfficeHead(value.id)
                                   }
-                                },
-                                [_c("i", { staticClass: "far fa-trash-alt" })]
-                              )
-                            ])
+                                }
+                              },
+                              [_c("i", { staticClass: "far fa-trash-alt" })]
+                            )
                           ])
-                        }),
-                        _vm._v(" "),
-                        _vm.offices.data.length > 0
-                          ? _c("tr", [
-                              _c("td", { attrs: { colspan: "6" } }, [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "btn btn-primary btn-sm",
-                                    attrs: {
-                                      href:
-                                        _vm.url +
-                                        "office-expense-category-print-pdf?action=pdf"
-                                    }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "fa fa-file-pdf-o"
-                                    }),
-                                    _vm._v(" PDF")
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "btn btn-danger btn-sm",
-                                    attrs: {
-                                      href:
-                                        _vm.url +
-                                        "office-expense-category-print-pdf?action=print",
-                                      target: "_blank"
-                                    }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "fa fa-file-pdf-o"
-                                    }),
-                                    _vm._v(" Print")
-                                  ]
-                                )
-                              ])
-                            ])
-                          : _vm._e()
-                      ],
-                      2
+                        ])
+                      }),
+                      0
                     )
                   ]
                 )
@@ -39043,100 +38973,55 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "tbody",
-                      [
-                        _vm._l(_vm.projects.data, function(value, key) {
-                          return _c("tr", { key: value.id }, [
-                            _c("td", [_vm._v(_vm._s(key + 1))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(value.head_name))]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "text-center" }, [
-                              value.status == 1
-                                ? _c("span", { staticClass: "text-success" }, [
-                                    _vm._v("Active")
-                                  ])
-                                : _c("span", { staticClass: "text-danger" }, [
-                                    _vm._v("Inactive")
-                                  ])
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "text-center" }, [
-                              _c(
-                                "button",
-                                {
-                                  staticClass:
-                                    "btn btn-dark mb-2 mr-2 rounded-circle",
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.editProjectHead(value)
-                                    }
+                      _vm._l(_vm.projects.data, function(value, key) {
+                        return _c("tr", { key: value.id }, [
+                          _c("td", [_vm._v(_vm._s(key + 1))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(value.head_name))]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            value.status == 1
+                              ? _c("span", { staticClass: "text-success" }, [
+                                  _vm._v("Active")
+                                ])
+                              : _c("span", { staticClass: "text-danger" }, [
+                                  _vm._v("Inactive")
+                                ])
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "btn btn-dark mb-2 mr-2 rounded-circle",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.editProjectHead(value)
                                   }
-                                },
-                                [_c("i", { staticClass: "far fa-edit" })]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "button",
-                                {
-                                  staticClass:
-                                    "btn btn-danger mb-2 mr-2 rounded-circle",
-                                  on: {
-                                    click: function($event) {
-                                      $event.preventDefault()
-                                      return _vm.deleteProjectHead(value.id)
-                                    }
+                                }
+                              },
+                              [_c("i", { staticClass: "far fa-edit" })]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "btn btn-danger mb-2 mr-2 rounded-circle",
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.deleteProjectHead(value.id)
                                   }
-                                },
-                                [_c("i", { staticClass: "far fa-trash-alt" })]
-                              )
-                            ])
+                                }
+                              },
+                              [_c("i", { staticClass: "far fa-trash-alt" })]
+                            )
                           ])
-                        }),
-                        _vm._v(" "),
-                        _vm.projects.data.length > 0
-                          ? _c("tr", [
-                              _c("td", { attrs: { colspan: "6" } }, [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "btn btn-primary btn-sm",
-                                    attrs: {
-                                      href:
-                                        _vm.url +
-                                        "project-expense-category-print-pdf?action=pdf"
-                                    }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "fa fa-file-pdf-o"
-                                    }),
-                                    _vm._v(" PDF")
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "btn btn-danger btn-sm",
-                                    attrs: {
-                                      href:
-                                        _vm.url +
-                                        "project-expense-category-print-pdf?action=print",
-                                      target: "_blank"
-                                    }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "fa fa-file-pdf-o"
-                                    }),
-                                    _vm._v(" Print")
-                                  ]
-                                )
-                              ])
-                            ])
-                          : _vm._e()
-                      ],
-                      2
+                        ])
+                      }),
+                      0
                     )
                   ]
                 )
