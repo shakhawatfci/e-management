@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ExpenseHeads;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\ProjectExpenseHead;
+use PDF;
 
 class ProjectExpenseController extends Controller
 {
@@ -30,6 +31,28 @@ class ProjectExpenseController extends Controller
             $projects->where('head_name','LIKE','%'.$request->keyword.'%');
         }
         return $projects->paginate(10);
+    }
+
+    public function projectHeadListPrint(Request $request)
+    {
+        $projects = ProjectExpenseHead::orderBy('id','desc');
+        if($request->keyword != '') {
+            $projects->where('head_name','LIKE','%'.$request->keyword.'%');
+        }
+        $projects = $projects->get();
+
+        if($request->action == 'print')
+        {
+            return view('expense_heads.print.project_expense_head_print',['project_heads' => $projects]);
+        } else {
+            $pdf = \PDF::loadView('expense_heads.pdf.project_expense_head_pdf', [
+            // return view('expense_heads.pdf.project_expense_head_pdf', [
+                'project_heads' => $projects]);
+
+            $pdf->setPaper('A4', 'landscape');
+            $pdf_name = "project-expense-category.pdf";
+            return $pdf->download($pdf_name);
+        }
     }
 
     /**

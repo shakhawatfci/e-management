@@ -41,7 +41,7 @@
                                   <div class="contact-email">
                                       <i class="flaticon-mail-26"></i>
                                       <label>Month</label>
-                                      <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="pickermonth.text" v-model="salary.month" dateFormt="YYYY-MM"></vue-monthly-picker>
+                                      <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="pickermonth.text" v-model="month" dateFormat="YYYY-MM" @input="setMonth"></vue-monthly-picker>
                                            <span
                                            v-if="validation_error.hasOwnProperty('month')" 
                                           class="text-danger">
@@ -152,6 +152,7 @@ export default {
           lebel : ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
           text : "Month"
         },
+        month : '',
         bank_bkash_note : '',
         button_name : 'Save',
         validation_error : {}
@@ -164,13 +165,21 @@ export default {
    
  methods : {
     setSalary(){
-      var amount  = this.operators.filter(operator => operator.id === this.salary.operator_id)
-      this.salary.payment_amount = amount[0].salary
+      var amount  = this.operators.find(operator => operator.id === this.salary.operator_id)
+      if(amount){
+        this.salary.payment_amount = amount.salary
+      }else{
+        this.salary.payment_amount = 0
+      }
     },
 
     setNote(){
       var field = this.salary.mode == 2 ? 'Enter Bank Note' : this.salary.mode == 1 ? 'N/A' : 'Enter Bkash Note'
       this.bank_bkash_note = field
+    },
+
+    setMonth(){
+      this.salary.month = this.month._i
     },
 
      save()
@@ -221,6 +230,7 @@ export default {
           status : ''
         };
         this.button_name = "Save";
+        this.month = '';
         this.validation_error = {};
      }
  } 

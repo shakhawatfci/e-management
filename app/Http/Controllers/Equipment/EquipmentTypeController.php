@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\EquipmentType;
 use App\Equipement;
 use Illuminate\Http\Request;
+use PDF;
 
 class EquipmentTypeController extends Controller
 {
@@ -31,6 +32,31 @@ class EquipmentTypeController extends Controller
         $equipment_type = $equipment_type->paginate(10);
 
         return $equipment_type;
+    }
+
+    public function equipmentTypeListPrint(Request $request)
+    {
+        $equipment_type = EquipmentType::orderBy('name','asc');
+
+        if($request->keyword != '')
+        {
+          $equipment_type->where('name','LIKE','%'.$request->keyword.'%');
+        }
+
+        $equipment_type = $equipment_type->get();
+
+        if($request->action == 'print')
+        {
+            return view('equipment.print.equipment_type_print',['equipment_types' => $equipment_type]);
+        } else {
+            $pdf = PDF::loadView('equipment.pdf.equipment_type_pdf', [
+            // return view('equipment.pdf.equipment_type_pdf', [
+                'equipment_types' => $equipment_type]);
+
+            $pdf->setPaper('A4', 'landscape');
+            $pdf_name = "equipment-category-list.pdf";
+            return $pdf->download($pdf_name);
+        }
     }
 
     /**

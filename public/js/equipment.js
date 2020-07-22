@@ -2276,6 +2276,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2794,6 +2800,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixin */ "./resources/js/mixin.js");
 /* harmony import */ var _pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pagination/Pagination */ "./resources/js/components/pagination/Pagination.vue");
 /* harmony import */ var _UpdateEquipment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./UpdateEquipment */ "./resources/js/components/equipment/UpdateEquipment.vue");
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -7923,54 +7935,95 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    _vm._l(_vm.equipment_types.data, function(value) {
-                      return _c("tr", { key: value.id }, [
-                        _c("td", [_vm._v(_vm._s(value.name))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(value.note))]),
-                        _vm._v(" "),
-                        _c("td", { staticClass: "text-center" }, [
-                          value.status == 1
-                            ? _c("span", { staticClass: "text-success" }, [
-                                _vm._v("Active")
-                              ])
-                            : _c("span", { staticClass: "text-danger" }, [
-                                _vm._v("Inactive")
-                              ])
-                        ]),
-                        _vm._v(" "),
-                        _c("td", { staticClass: "text-center" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass:
-                                "btn btn-dark mb-2 mr-2 rounded-circle",
-                              on: {
-                                click: function($event) {
-                                  return _vm.edit(value)
-                                }
-                              }
-                            },
-                            [_c("i", { staticClass: "far fa-edit" })]
-                          ),
+                    [
+                      _vm._l(_vm.equipment_types.data, function(value) {
+                        return _c("tr", { key: value.id }, [
+                          _c("td", [_vm._v(_vm._s(value.name))]),
                           _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass:
-                                "btn btn-danger mb-2 mr-2 rounded-circle",
-                              on: {
-                                click: function($event) {
-                                  return _vm.deleteEquipmentType(value.id)
+                          _c("td", [_vm._v(_vm._s(value.note))]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            value.status == 1
+                              ? _c("span", { staticClass: "text-success" }, [
+                                  _vm._v("Active")
+                                ])
+                              : _c("span", { staticClass: "text-danger" }, [
+                                  _vm._v("Inactive")
+                                ])
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "btn btn-dark mb-2 mr-2 rounded-circle",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.edit(value)
+                                  }
                                 }
-                              }
-                            },
-                            [_c("i", { staticClass: "far fa-trash-alt" })]
-                          )
+                              },
+                              [_c("i", { staticClass: "far fa-edit" })]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "btn btn-danger mb-2 mr-2 rounded-circle",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.deleteEquipmentType(value.id)
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "far fa-trash-alt" })]
+                            )
+                          ])
                         ])
-                      ])
-                    }),
-                    0
+                      }),
+                      _vm._v(" "),
+                      _vm.equipment_types.data.length > 0
+                        ? _c("tr", [
+                            _c("td", { attrs: { colspan: "6" } }, [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "btn btn-primary btn-sm",
+                                  attrs: {
+                                    href:
+                                      _vm.url +
+                                      "equipment-type-list-print-pdf?action=pdf"
+                                  }
+                                },
+                                [
+                                  _c("i", { staticClass: "fa fa-file-pdf-o" }),
+                                  _vm._v(" PDF")
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "btn btn-danger btn-sm",
+                                  attrs: {
+                                    href:
+                                      _vm.url +
+                                      "equipment-type-list-print-pdf?action=print",
+                                    target: "_blank"
+                                  }
+                                },
+                                [
+                                  _c("i", { staticClass: "fa fa-file-pdf-o" }),
+                                  _vm._v(" Print")
+                                ]
+                              )
+                            ])
+                          ])
+                        : _vm._e()
+                    ],
+                    2
                   )
                 ]
               )
@@ -9251,52 +9304,93 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    _vm._l(_vm.equipments.data, function(value) {
-                      return _c("tr", { key: value.id }, [
-                        _c("td", [_vm._v(_vm._s(value.eq_name))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(value.equipment_type.name))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(value.vendor.vendor_name))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(value.eq_model))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(value.eq_capacity))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(value.note))]),
-                        _vm._v(" "),
-                        _c("td", { staticClass: "text-center" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass:
-                                "btn btn-dark mb-2 mr-2 rounded-circle",
-                              on: {
-                                click: function($event) {
-                                  return _vm.edit(value)
-                                }
-                              }
-                            },
-                            [_c("i", { staticClass: "far fa-edit" })]
-                          ),
+                    [
+                      _vm._l(_vm.equipments.data, function(value) {
+                        return _c("tr", { key: value.id }, [
+                          _c("td", [_vm._v(_vm._s(value.eq_name))]),
                           _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass:
-                                "btn btn-danger mb-2 mr-2 rounded-circle",
-                              on: {
-                                click: function($event) {
-                                  return _vm.deleteEquipment(value.id)
+                          _c("td", [_vm._v(_vm._s(value.equipment_type.name))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(value.vendor.vendor_name))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(value.eq_model))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(value.eq_capacity))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(value.note))]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "btn btn-dark mb-2 mr-2 rounded-circle",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.edit(value)
+                                  }
                                 }
-                              }
-                            },
-                            [_c("i", { staticClass: "far fa-trash-alt" })]
-                          )
+                              },
+                              [_c("i", { staticClass: "far fa-edit" })]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "btn btn-danger mb-2 mr-2 rounded-circle",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.deleteEquipment(value.id)
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "far fa-trash-alt" })]
+                            )
+                          ])
                         ])
-                      ])
-                    }),
-                    0
+                      }),
+                      _vm._v(" "),
+                      _vm.equipments.data.length > 0
+                        ? _c("tr", [
+                            _c("td", { attrs: { colspan: "6" } }, [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "btn btn-primary btn-sm",
+                                  attrs: {
+                                    href:
+                                      _vm.url +
+                                      "equipment-list-print-pdf?action=pdf"
+                                  }
+                                },
+                                [
+                                  _c("i", { staticClass: "fa fa-file-pdf-o" }),
+                                  _vm._v(" PDF")
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "btn btn-danger btn-sm",
+                                  attrs: {
+                                    href:
+                                      _vm.url +
+                                      "equipment-list-print-pdf?action=print",
+                                    target: "_blank"
+                                  }
+                                },
+                                [
+                                  _c("i", { staticClass: "fa fa-file-pdf-o" }),
+                                  _vm._v(" Print")
+                                ]
+                              )
+                            ])
+                          ])
+                        : _vm._e()
+                    ],
+                    2
                   )
                 ]
               )
@@ -22257,7 +22351,7 @@ var EventBus = new Vue();
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! E:\server\htdocs\e-management\resources\js\equipment.js */"./resources/js/equipment.js");
+module.exports = __webpack_require__(/*! I:\xampp\htdocs\e-management\resources\js\equipment.js */"./resources/js/equipment.js");
 
 
 /***/ })

@@ -8,6 +8,8 @@ Route::get('bill-print/{bill_no}','Bill\BillController@printForm')->name('bill-p
 
 Route::get('bill-print','Bill\BillController@billPrint')->name('bill.print');
 
+Route::get('bill-list-pdf/print','Bill\BillController@billListPdfPrint');
+
 // project payment 
 
 Route::resource('project-payment','ProjectPaymentController');

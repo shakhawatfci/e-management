@@ -19,7 +19,7 @@
                                         <div class="contact-phone">
                                             <i class="flaticon-telephone"></i>
                                             <span>Month</span>
-                                            <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="pickermonth.text" v-model="salary.month" dateFormt="YYYY-MM"></vue-monthly-picker>
+                                            <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="pickermonth.text" v-model="month" dateFormat="YYYY-MM" @input="setMonth"></vue-monthly-picker>
                                                  <span
                                                  v-if="validation_error.hasOwnProperty('month')" 
                                                 class="text-danger">
@@ -206,6 +206,7 @@ export default {
            total_salary_amount : 0,  
            salary_note: ''      
          },
+         month : '',
          pickermonth : {
           lebel : ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
           text : "Month"
@@ -224,7 +225,9 @@ export default {
    },
 
  methods : {
-
+    setMonth(){
+      this.salary.month = this.month._i
+    },
      getEmployee()
      {
        axios.get(base_url+'all-employee')
@@ -295,6 +298,7 @@ export default {
            total_salary_amount : 0,  
            salary_note: ''      
          };
+         this.month = '';
          this.validation_error = {};
      }
  } 

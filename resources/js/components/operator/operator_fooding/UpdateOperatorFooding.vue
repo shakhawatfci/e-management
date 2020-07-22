@@ -16,7 +16,7 @@
                                   <div class="contact-email">
                                       <i class="flaticon-mail-26"></i>
                                       <label>Month</label>
-                                            <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="pickermonth.text" v-model="fooding.month" dateFormt="YYYY-MM"></vue-monthly-picker>
+                                            <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="pickermonth.text" v-model="month" dateFormat="YYYY-MM" @input="setMonth"></vue-monthly-picker>
                                            <span
                                            v-if="validation_error.hasOwnProperty('month')" 
                                           class="text-danger">
@@ -28,10 +28,10 @@
                               <div class="col-md-4">
                                   <div class="contact-email">
                                       <i class="flaticon-mail-26"></i>
-                                      <label for="project-name">Date</label>
+                                      <label for="upfoodingDatePicker">Date</label>
                                            <input type="text" class="form-control"
                                            v-model="fooding.date"
-                                           id="foodingDatePicker"
+                                           id="upfoodingDatePicker"
                                             placeholder="Date">
                                            <span
                                            v-if="validation_error.hasOwnProperty('date')" 
@@ -190,6 +190,7 @@ export default {
           fooding_amount : '',
           status : ''
         },
+        month : '',
         pickermonth : {
           lebel : ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
           text : "Month"
@@ -205,13 +206,16 @@ export default {
       EventBus.$on('operator-fooding-update',function(value){
         $("#UpdateOperatorFooding").modal('show')
         _this.fooding = value;
+        _this.month = value.month;
         _this.getVendorEquipments();
       });
-       var f1 = flatpickr(document.getElementById('foodingDatePicker'));
+       var f1 = flatpickr(document.getElementById('upfoodingDatePicker'));
    },
    
  methods : {
-
+    setMonth(){
+      this.fooding.month = this.month._i
+    },
      update()
      {
         this.button_name = "Updating...";
@@ -268,6 +272,7 @@ export default {
           fooding_amount : '',
           status : ''
         };
+        this.month = '';
         this.button_name = "Update";
         this.validation_error = {};
         this.equipments = [];

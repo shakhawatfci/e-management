@@ -40,6 +40,10 @@
       border: none !important;
       width: 100%;
     }
+
+    .vue-monthly-picker .date-popover {
+      background: #0e1726 !important;
+    }
   </style>
 </head>
 <body>

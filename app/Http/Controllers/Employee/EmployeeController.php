@@ -49,6 +49,7 @@ class EmployeeController extends Controller
        return $employee;
     }
 
+
     public function allEmployee()
     {
         return Employee::orderBy('name','desc')->get();

@@ -19,7 +19,7 @@
                                         <div class="contact-phone">
                                             <i class="flaticon-telephone"></i>
                                             <span>Month</span>
-                                            <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="pickermonth.text" v-model="sales.month" dateFormt="YYYY-MM"></vue-monthly-picker>
+                                            <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="pickermonth.text" v-model="month" dateFormat="YYYY-MM" @input="setMonth"></vue-monthly-picker>
                                                  <span
                                                  v-if="validation_error.hasOwnProperty('month')" 
                                                 class="text-danger">
@@ -139,6 +139,7 @@ export default {
           equipment_type : '',
           note : '',            
          },
+         month : '',
          pickermonth : {
           lebel : ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
           text : "Month"
@@ -153,6 +154,10 @@ export default {
    },
 
  methods : {
+    setMonth(){
+      this.sales.month = this.month._i
+    },
+    
      save()
      {
 
@@ -197,9 +202,9 @@ export default {
           month : '',
           profit : '',
           equipment_type : '',
-          note : ''
-            
+          note : '' 
           };
+          this.month = '';
          this.validation_error = {};
      }
  } 

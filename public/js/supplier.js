@@ -2753,6 +2753,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2769,6 +2775,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       suppliers: [],
       keyword: '',
+      url: base_url,
       isLoading: false
     };
   },
@@ -9015,65 +9022,110 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "tbody",
-                      _vm._l(_vm.suppliers.data, function(value) {
-                        return _c("tr", { key: value.id }, [
-                          _c("td", [_vm._v(_vm._s(value.vendor_name))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(value.vendor_address))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(value.vendor_email))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(value.vendor_phone))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(value.concerned_person))]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "text-center" }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass:
-                                  "btn btn-dark mb-2 mr-2 rounded-circle",
-                                on: {
-                                  click: function($event) {
-                                    return _vm.viewDetails(value)
-                                  }
-                                }
-                              },
-                              [_c("i", { staticClass: "far fa-eye" })]
-                            ),
+                      [
+                        _vm._l(_vm.suppliers.data, function(value) {
+                          return _c("tr", { key: value.id }, [
+                            _c("td", [_vm._v(_vm._s(value.vendor_name))]),
                             _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass:
-                                  "btn btn-dark mb-2 mr-2 rounded-circle",
-                                on: {
-                                  click: function($event) {
-                                    return _vm.editSupplier(value)
-                                  }
-                                }
-                              },
-                              [_c("i", { staticClass: "far fa-edit" })]
-                            ),
+                            _c("td", [_vm._v(_vm._s(value.vendor_address))]),
                             _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass:
-                                  "btn btn-danger mb-2 mr-2 rounded-circle",
-                                on: {
-                                  click: function($event) {
-                                    $event.preventDefault()
-                                    return _vm.deleteSupplier(value.id)
+                            _c("td", [_vm._v(_vm._s(value.vendor_email))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(value.vendor_phone))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(value.concerned_person))]),
+                            _vm._v(" "),
+                            _c("td", { staticClass: "text-center" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-dark mb-2 mr-2 rounded-circle",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.viewDetails(value)
+                                    }
                                   }
-                                }
-                              },
-                              [_c("i", { staticClass: "far fa-trash-alt" })]
-                            )
+                                },
+                                [_c("i", { staticClass: "far fa-eye" })]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-dark mb-2 mr-2 rounded-circle",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.editSupplier(value)
+                                    }
+                                  }
+                                },
+                                [_c("i", { staticClass: "far fa-edit" })]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-danger mb-2 mr-2 rounded-circle",
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      return _vm.deleteSupplier(value.id)
+                                    }
+                                  }
+                                },
+                                [_c("i", { staticClass: "far fa-trash-alt" })]
+                              )
+                            ])
                           ])
-                        ])
-                      }),
-                      0
+                        }),
+                        _vm._v(" "),
+                        _vm.suppliers.data.length > 0
+                          ? _c("tr", [
+                              _c("td", { attrs: { colspan: "6" } }, [
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "btn btn-primary btn-sm",
+                                    attrs: {
+                                      href:
+                                        _vm.url +
+                                        "supplier-list-print-pdf?action=pdf"
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fa fa-file-pdf-o"
+                                    }),
+                                    _vm._v(" PDF")
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "btn btn-danger btn-sm",
+                                    attrs: {
+                                      href:
+                                        _vm.url +
+                                        "supplier-list-print-pdf?action=print",
+                                      target: "_blank"
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fa fa-file-pdf-o"
+                                    }),
+                                    _vm._v(" Print")
+                                  ]
+                                )
+                              ])
+                            ])
+                          : _vm._e()
+                      ],
+                      2
                     )
                   ]
                 )
@@ -21764,7 +21816,7 @@ var EventBus = new Vue();
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! E:\server\htdocs\e-management\resources\js\supplier.js */"./resources/js/supplier.js");
+module.exports = __webpack_require__(/*! I:\xampp\htdocs\e-management\resources\js\supplier.js */"./resources/js/supplier.js");
 
 
 /***/ })

@@ -42,7 +42,7 @@
                                             </div>
                                             <div class="t-name">
                                                 <h4>Month</h4>
-                                                <p class="meta-date">{{ salary.month }}</p>
+                                                <p class="meta-date">{{ salary.month | monthToString }}</p>
                                             </div>
                                         </div>
                                         
@@ -59,7 +59,7 @@
                                             </div>
                                             <div class="t-name">
                                                 <h4>Payment Date</h4>
-                                                <p class="meta-date">{{ salary.payment_date }}</p>
+                                                <p class="meta-date">{{ salary.payment_date | dateToString }}</p>
                                             </div>
 
                                         </div>
@@ -135,24 +135,6 @@
                                             <div class="t-name">
                                                 <h4>Bkash Note</h4>
                                                 <p class="meta-date">{{ salary.bkash_note }}</p>
-                                            </div>
-
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-
-                                <div class="col-4 transactions-list">
-                                    <div class="t-item">
-                                        <div class="t-company-name">
-                                            <div class="t-icon">
-                                                <div class="avatar avatar-xl">
-                                                    <span class="avatar-title rounded-circle">SA</span>
-                                                </div>
-                                            </div>
-                                            <div class="t-name">
-                                                <h4>Salary Type</h4>
-                                                <p class="meta-date">{{ salary.salary_type }}</p>
                                             </div>
 
                                         </div>

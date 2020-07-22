@@ -59,7 +59,7 @@
                                             </div>
                                             <div class="t-name">
                                                 <h4>Date</h4>
-                                                <p class="meta-date">{{ project.date }}</p>
+                                                <p class="meta-date">{{ project.date | dateToString  }}</p>
                                             </div>
 
                                         </div>
@@ -77,7 +77,7 @@
                                             </div>
                                             <div class="t-name">
                                                 <h4>Month</h4>
-                                                <p class="meta-date">{{ project.month }}</p>
+                                                <p class="meta-date">{{ project.month | monthToString }}</p>
                                             </div>
 
                                         </div>

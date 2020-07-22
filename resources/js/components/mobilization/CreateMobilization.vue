@@ -91,7 +91,7 @@
                                         <div class="contact-name">
                                             <i class="flaticon-user-11"></i>
                                             <span>Month</span>
-                                             <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="pickermonth.text" v-model="mobilization.month" dateFormt="YYYY-MM"></vue-monthly-picker>
+                                             <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="pickermonth.text" v-model="month" dateFormat="YYYY-MM" @input="setMonth"></vue-monthly-picker>
                                             <span v-if="validation_error.hasOwnProperty('month')" class="text-danger">
                                                 {{ validation_error.month[0] }}
                                             </span>
@@ -233,6 +233,7 @@ export default {
           lebel : ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
           text : "Month"
         },
+        month : '',
          validation_error : {},
          equipments : [],
          button_name : 'Save'
@@ -244,6 +245,9 @@ export default {
    },
 
  methods : {
+    setMonth(){
+      this.mobilization.month = this.month._i
+    },
      save()
      {
 
@@ -314,6 +318,7 @@ export default {
           destination_to : '',
             
           };
+         this.month = '';
          this.validation_error = {};
          this.equipments = [];
      }

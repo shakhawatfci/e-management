@@ -65,7 +65,7 @@
                                 <div class="contact-name">
                                     <i class="flaticon-user-11"></i>
                                     <label>Month</label>
-                                    <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="pickermonth.text" v-model="project.month" dateFormt="YYYY-MM"></vue-monthly-picker>
+                                    <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="pickermonth.text" v-model="month" dateFormat="YYYY-MM" @input="setMonth"></vue-monthly-picker>
                                     <span v-if="validation_error.hasOwnProperty('month')" class="text-danger">
                                         {{ validation_error.month[0] }}
                                     </span>
@@ -151,6 +151,7 @@ export default {
             lebel : ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
             text : "Month",
           },
+         month : '',
          button_name : 'Update',
          validation_error : {}
        }
@@ -162,13 +163,14 @@ export default {
       EventBus.$on('projectexpense-update', function(value){
         $('#UpdateProjectExpense').modal('show')
           _this.project = value;
-      console.log(_this.project_expense_head)
+          _this.month = value.month;
       })
-      console.log(this.project_data)
    },
 
  methods : {
-
+    setMonth(){
+      this.project.month = this.month._i
+    },
      update()
      {
         this.button_name = "Updating...";
@@ -215,6 +217,7 @@ export default {
             document_link : '',
             note : ''
           };
+          this.month = '';
          this.validation_error = {};
      }
  } 

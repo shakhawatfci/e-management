@@ -34,9 +34,56 @@ class EmployeeSalaryController extends Controller
         $salary->where('employee_id','=',$request->employee_id);
       }
 
+      if($request->end_month != '')
+      {
+        $start = date('Y-m',strtotime(str_replace('/','-',$request->start_month)));
+        $end = date('Y-m',strtotime(str_replace('/','-',$request->end_month)));
+        $salary->whereBetween('month', [$start,$end]);
+      }
+
       $salary = $salary->paginate($per_page);
 
       return $salary;
+    }
+
+    public function salaryListPrint(Request $request)
+    {
+        $month = '';
+        $employee = EmployeeSalary::with('employee')
+                             ->orderBy('employee_id','asc');
+       
+       if($request->employee_id != '')
+       {
+           $employee->where('employee_id','=',$request->employee_id);
+       }
+
+       if($request->end_month != '' && $request->end_month != 'undefined')
+       {
+            $start = date('Y-m',strtotime(str_replace('/','-',$request->start_month)));
+            $end = date('Y-m',strtotime(str_replace('/','-',$request->end_month)));
+            $employee->whereBetween('month', [$start,$end]);
+            $month .= 'From '.$start.' to '.$end;
+       }
+
+        $employee = $employee->get();
+
+       if($request->action == 'print')
+        {
+            return view('employee.print.employee_salary_print',[
+              'employees' => $employee,
+              'month' => $month
+            ]);
+        } else {
+            // return view('employee.pdf.employee_salary_pdf', [
+            $pdf = \PDF::loadView('employee.pdf.employee_salary_pdf', [
+                'employees' => $employee,
+                'month' => $month
+            ]);
+
+            $pdf->setPaper('A4', 'landscape');
+            $pdf_name = "employee_salary.pdf";
+            return $pdf->download($pdf_name);
+        }
     }
 
     /**
@@ -69,7 +116,7 @@ class EmployeeSalaryController extends Controller
 
         try
         {
-            $month = date('Y-m',strtotime($request->month));
+            $month = date('Y-m',strtotime(str_replace('/','-',$request->month)));
 
            $count_double_salary = EmployeeSalary::where('employee_id','=',$request->employee_id)
                                                   ->where('month','=',$month)
@@ -148,8 +195,7 @@ class EmployeeSalaryController extends Controller
 
         try
         {     
-            $month = date('Y-m',strtotime($request->month));                          
-         
+            $month = date('Y-m',strtotime(str_replace('/','-',$request->month)));
             $salary =  EmployeeSalary::find($id);
             $salary->employee_id           =      $request->employee_id;
             $salary->month                 =      $month;

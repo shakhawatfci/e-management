@@ -54,6 +54,14 @@
           <option value="0">Unpaid</option>
         </select>
       </div>
+
+      <div class="col-md-3" style="margin-bottom:10px;">
+         <vue-monthly-picker :monthLabels="pickermonth.lebel" placeHolder="Start Month" v-model="start_month"></vue-monthly-picker>
+      </div>
+
+      <div class="col-md-3" style="margin-bottom:10px;">
+         <vue-monthly-picker :monthLabels="pickermonth.lebel" placeHolder="End Month" v-model="end_month" @input="getBillList()"></vue-monthly-picker>
+      </div>
     </div>
 
     <div class="row" style="margin-top:20px">
@@ -171,10 +179,17 @@
                   </div>
                 </td>
               </tr>
+              <tr v-if="bill_list.data.length > 0" class="float-rigth">
+                <td colspan="7">
+                  <a :href="url+`bill-list-pdf/print?action=''&vendor_id=${vendor_id}&equipment_type_id=${equipment_type_id}&project_id=${project_id}&equipment_id=${equipment_id}&payment_status=${payment_status}&bill_no=${bill_no}&start_month=${start_month._i}&end_month=${end_month._i}`" class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i> PDF</a>
+
+                <a :href="url+`bill-list-pdf/print?action=print&vendor_id=${vendor_id}&equipment_type_id=${equipment_type_id}&project_id=${project_id}&equipment_id=${equipment_id}&payment_status=${payment_status}&bill_no=${bill_no}&start_month=${start_month._i}&end_month=${end_month._i}`" class="btn btn-danger btn-sm"><i class="fa fa-print" target="_blank"></i> Print</a></td>
+              </tr>
             </tbody>
           </table>
         </div>
       </div>
+      
       <div class="col-md-12 text-center" style="margin-top:30px;" v-else>
         <!-- <img :src="url+'images/logo/loading.gif'" class="img-fluid"> -->
         <div class="loader multi-loader mx-auto loader-xl"></div>
@@ -200,6 +215,7 @@
 <script>
 import { EventBus } from "../../vue-assets";
 import Mixin from "../../mixin";
+import VueMonthlyPicker from 'vue-monthly-picker'
 import Pagination from "../pagination/Pagination";
 import CreateProjectPayment from "./payment/CreateProjectPayment";
 import ViewProjectPayment from "./payment/ViewProjectPayment";
@@ -211,6 +227,7 @@ export default {
   mixins: [Mixin],
   props: ["vendors", "equipment_types", "projects"],
   components: {
+    VueMonthlyPicker,
     pagination: Pagination,
     "crate-project-payment"  : CreateProjectPayment,
     "crate-vendor-payment"   : CreateVendortPayment,
@@ -230,6 +247,12 @@ export default {
       payment_status: "",
       keyword: "",
       bill_no: "",
+      pickermonth : {
+        lebel : ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
+        text : "Search By Month",
+      },
+      start_month : '',
+      end_month : '',
       isLoading: false,
       url: base_url
     };
@@ -248,6 +271,13 @@ export default {
   methods: {
     getBillList(page = 1) {
       this.isLoading = true;
+      var st_mo = ''
+      var lt_mo = ''
+      if(this.end_month != ''){
+        if(this.start_month === '') this.successMessage({status : 'error',message :'Select start Month'})
+          st_mo = this.start_month._i
+          lt_mo = this.end_month._i
+      }
       axios
         .get(
           base_url +
@@ -257,7 +287,9 @@ export default {
             &project_id=${this.project_id}
             &equipment_id=${this.equipment_id}
             &payment_status=${this.payment_status}
-            &bill_no=${this.bill_no}`
+            &bill_no=${this.bill_no}
+            &start_month=${st_mo}
+            &end_month=${lt_mo}`
         )
         .then(response => {
           this.bill_list = response.data;
@@ -296,6 +328,7 @@ export default {
         }
       });
     },
+
 
     makeProjectPayment(bill) {
       EventBus.$emit("make-project-payment", bill);

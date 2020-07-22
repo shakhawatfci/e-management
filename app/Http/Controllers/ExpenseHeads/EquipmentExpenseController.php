@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ExpenseHeads;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\EquipmentExpenseHead;
+use PDF;
 
 class EquipmentExpenseController extends Controller
 {
@@ -30,6 +31,28 @@ class EquipmentExpenseController extends Controller
             $equipments->where('head_name','LIKE','%'.$request->keyword.'%');
         }
         return $equipments->paginate(10);
+    }
+
+    public function EquipmentHeadListPrint(Request $request)
+    {
+        $equipments = EquipmentExpenseHead::orderBy('id','desc');
+        if ($request->keyword != '') {
+            $equipments->where('head_name','LIKE','%'.$request->keyword.'%');
+        }
+        $equipment = $equipments->get();
+
+        if($request->action == 'print')
+        {
+            return view('expense_heads.print.equipment_expense_head_print',['equipment_heads' => $equipment]);
+        } else {
+            // $pdf = PDF::loadView('expense_heads.pdf.equipment_expense_head_pdf', [
+            return view('expense_heads.pdf.equipment_expense_head_pdf', [
+                'equipment_heads' => $equipment]);
+
+            $pdf->setPaper('A4', 'landscape');
+            $pdf_name = "equipment-expense-category.pdf";
+            return $pdf->download($pdf_name);
+        }
     }
 
     /**

@@ -81,12 +81,18 @@
                 <td>{{ value.project.project_name }}</td>
                 <td>{{ value.vendor.vendor_name }}</td>
                 <td>{{ value.equipement.eq_name }}</td>
-                <td>{{ value.payment_date }}</td>
+                <td>{{ value.payment_date | dateToString }}</td>
                 <td>{{ value.amount }}</td>
                 <td class="text-center">
                     <button class="btn btn-warning mb-2 mr-2 rounded-circle" title="View" @click="viewEquipmentExpense(value)"><i class="far fa-eye"></i></button>
                     <button class="btn btn-dark mb-2 mr-2 rounded-circle" title="Edit" @click.prevent="editEquipmentExpense(value)"><i class="far fa-edit"></i></button>
                     <button class="btn btn-danger mb-2 mr-2 rounded-circle" title="Delete" @click.prevent="deleteEquipmentExpense(value.id)"><i class="far fa-trash-alt"></i></button>
+                </td>
+            </tr>
+            <tr v-if="equipments.data.length > 0">
+                <td colspan="6">
+                  <a :href="url+'equipment-expense-print-pdf?action=pdf'" class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i> PDF</a>
+                  <a :href="url+'equipment-expense-print-pdf?action=print'" class="btn btn-danger btn-sm" target="_blank"><i class="fa fa-file-pdf-o"></i> Print</a>
                 </td>
             </tr>
         </tbody>
@@ -135,6 +141,7 @@ export default {
      equipement_id   : '',
      equipment_expense_head_id   : '',
      keyword   : '',
+     url : base_url,
      isLoading : false,
     }
   },

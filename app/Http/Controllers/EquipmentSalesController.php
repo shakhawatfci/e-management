@@ -80,7 +80,7 @@ class EquipmentSalesController extends Controller
           $sales = new EquipmentSales;
           $sales->equipment_type_id = $request->equipment_type;
           $sales->customer_name = $request->customer_name;
-          $sales->month = date('Y-m',strtotime($request->month));
+          $sales->month = date('Y-m',strtotime(str_replace('/','-',$request->month)));
           $sales->date = $request->date;
           $sales->profit = $request->profit;
           $sales->note = $request->note;
@@ -140,7 +140,7 @@ class EquipmentSalesController extends Controller
           $sales = EquipmentSales::find($id);
           $sales->equipment_type_id = $request->equipment_type;
           $sales->customer_name = $request->customer_name;
-          $sales->month = date('Y-m',strtotime($request->month));
+          $sales->month = date('Y-m',strtotime(str_replace('/','-',$request->month)));
           $sales->date = $request->date;
           $sales->profit = $request->profit;
           $sales->note = $request->note;

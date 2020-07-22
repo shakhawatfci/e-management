@@ -39,13 +39,19 @@
         <tbody>
             <tr v-for="value in offices.data" :key="value.id">
                 <td>{{ value.office_expense_head.head_name }}</td>
-                <td>{{ value.month }}</td>
-                <td>{{ value.date }}</td>
+                <td>{{ value.month | monthToString }}</td>
+                <td>{{ value.date | dateToString }}</td>
                 <td>{{ value.amount }}</td>
                 <td>{{ value.document_link }}</td>
                 <td class="text-center">
                     <button class="btn btn-dark mb-2 mr-2 rounded-circle" title="Edit" @click.prevent="editOfficeExpense(value)"><i class="far fa-edit"></i></button>
                     <button class="btn btn-danger mb-2 mr-2 rounded-circle" title="Delete" @click.prevent="deleteOfficeExpense(value.id)"><i class="far fa-trash-alt"></i></button>
+                </td>
+            </tr>
+            <tr v-if="offices.data.length > 0">
+                <td colspan="6">
+                  <a :href="url+'office-expense-print-pdf?action=pdf'" class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i> PDF</a>
+                  <a :href="url+'office-expense-print-pdf?action=print'" class="btn btn-danger btn-sm" target="_blank"><i class="fa fa-file-pdf-o"></i> Print</a>
                 </td>
             </tr>
         </tbody>
@@ -88,6 +94,7 @@ export default {
      offices : [],
      office_expense_head_id : '',
      keyword   : '',
+     url : base_url,
      isLoading : false,
     }
   },

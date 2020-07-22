@@ -44,6 +44,34 @@ class ProjectExpenseController extends Controller
         return $projects->paginate(10);
     }
 
+    public function projectExpenseListPrint(Request $request)
+    {
+        $projects = ProjectExpense::with(['project_expense_head:id,head_name','project:id,project_name'])->orderBy('id','desc');
+        if($request->project != '') {
+            $projects->where('project_id','=',$request->project);
+        }
+        if($request->project_head != '') {
+            $projects->where('project_expense_head_id','=',$request->project_head);
+        }
+        if($request->keyword != '') {
+            $projects->where('project_id','LIKE','%'.$request->keyword.'%');
+        }
+        $project = $projects->get();
+
+        if($request->action == 'print')
+        {
+            return view('expense.print.project_expense_print',['projects' => $project]);
+        } else {
+            // return view('expense.pdf.project_expense_pdf', [
+            $pdf = PDF::loadView('expense.pdf.project_expense_pdf', [
+                'projects' => $project]);
+
+            $pdf->setPaper('A4', 'landscape');
+            $pdf_name = "project_expense.pdf";
+            return $pdf->download($pdf_name);
+        }
+    }
+
     public function store(Request $request)
     {
 
@@ -69,7 +97,7 @@ class ProjectExpenseController extends Controller
                 'project_expense_head_id' => $request->project_expense_head_id,
                 'project_id' => $request->project_id,
                 'user_id' => Auth::id(),
-                'month' => date('Y-m',strtotime($request->month)),
+                'month' => date('Y-m',strtotime(str_replace('/','-',$request->month))),
                 'date' => $request->date,
                 'amount' => $request->amount,
                 'document' => $filename,
@@ -136,7 +164,7 @@ class ProjectExpenseController extends Controller
             $update->project_expense_head_id = $request->project_expense_head_id;
             $update->project_id = $request->project_id;
             $update->user_id = Auth::id();
-            $update->month = date('Y-m',strtotime($request->month));
+            $update->month = date('Y-m',strtotime(str_replace('/','-',$request->month)));
             $update->date = $request->date;
             $update->amount = $request->amount;
             $update->document_link = $request->document_link;

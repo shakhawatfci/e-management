@@ -90,6 +90,42 @@
                                         <div class="t-company-name">
                                             <div class="t-icon">
                                                 <div class="avatar avatar-xl">
+                                                    <span class="avatar-title rounded-circle">DT</span>
+                                                </div>
+                                            </div>
+                                            <div class="t-name">
+                                                <h4>Date</h4>
+                                                <p class="meta-date">{{ fooding.date | dateToString }}</p>
+                                            </div>
+
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+
+                                <div class="col-6 transactions-list">
+                                    <div class="t-item">
+                                        <div class="t-company-name">
+                                            <div class="t-icon">
+                                                <div class="avatar avatar-xl">
+                                                    <span class="avatar-title rounded-circle">FA</span>
+                                                </div>
+                                            </div>
+                                            <div class="t-name">
+                                                <h4>Fooding Amount</h4>
+                                                <p class="meta-date">{{ fooding.fooding_amount }}</p>
+                                            </div>
+
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+
+                                <div class="col-6 transactions-list">
+                                    <div class="t-item">
+                                        <div class="t-company-name">
+                                            <div class="t-icon">
+                                                <div class="avatar avatar-xl">
                                                     <span class="avatar-title rounded-circle">OP</span>
                                                 </div>
                                             </div>
@@ -151,6 +187,7 @@ export default {
           vendor : {id : '', vendor_name : ''},
           equipment_type : {id : '', name : ''},
           equipement : {id : '', eq_name : ''},
+          date : '',
           operator : {id : '', name : ''},
           fooding_amount : '',
           status : ''

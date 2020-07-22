@@ -125,13 +125,14 @@ class MobilizationController extends Controller
 
         try
         {
+          $fmonth = date('Y-m',strtotime(str_replace('/','-',$request->month)));
           $mob = new Mobilization;
           $mob->project_id               =      $request->project;
           $mob->vendor_id                =      $request->vendor;
           $mob->equipment_type_id        =      $request->equipment_type;
           $mob->equipment_id             =      $request->equipment;
           $mob->date                     =      $request->date;
-          $mob->month                    =      date('Y-m',strtotime($request->month));
+          $mob->month                    =      $fmonth;
           $mob->destination_from         =      $request->destination_from;
           $mob->destination_to           =      $request->destination_to;
           $mob->project_given_amount     =      $request->project_given_amount;
@@ -196,13 +197,14 @@ class MobilizationController extends Controller
         
         try
         {
+          $fmonth = date('Y-m',strtotime(str_replace('/','-',$request->month)));
           $mob = Mobilization::find($id);
           $mob->project_id               =      $request->project;
           $mob->vendor_id                =      $request->vendor;
           $mob->equipment_type_id        =      $request->equipment_type;
           $mob->equipment_id             =      $request->equipment;
           $mob->date                     =      $request->date;
-          $mob->month                    =      date('Y-m',strtotime($request->month));
+          $mob->month                    =      $fmonth;
           $mob->destination_from         =      $request->destination_from;
           $mob->destination_to           =      $request->destination_to;
           $mob->project_given_amount     =      $request->project_given_amount;
