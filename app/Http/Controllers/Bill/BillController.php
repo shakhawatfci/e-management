@@ -126,6 +126,7 @@ class BillController extends Controller
             //   checking this equipment already having bill in this month
             $count_bill = ProjectClaim::where('assign_id', '=', $request->id)
                 ->where('month', '=',$fmonth)
+
                 ->count();
 
             if ($count_bill) {

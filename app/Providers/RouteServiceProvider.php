@@ -95,6 +95,11 @@ class RouteServiceProvider extends ServiceProvider
          Route::middleware(['web','auth','permission'])
             ->namespace($this->namespace)
             ->group(base_path('routes/employee.php'));
+
+
+         Route::middleware(['web','auth','permission'])
+            ->namespace($this->namespace)
+            ->group(base_path('routes/report.php'));
     }
 
     /**
