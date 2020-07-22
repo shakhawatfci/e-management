@@ -34,8 +34,8 @@ class ReportController extends Controller
     public function monthlyReportResult(Request $request)
     {
 
-        $month_from    =   $request->month_from ? $request->month_from : '2020-03';
-        $month_to      =   $request->month_to ? $request->month_to : date('Y-m');
+        $month_from    =   date('Y-m',strtotime(str_replace('/','-',$request->month_from)));
+        $month_to      =   date('Y-m',strtotime(str_replace('/','-',$request->month_to)));
         
         return $this->report->getMonthlyReport($month_from,$month_to); 
 

@@ -2,15 +2,13 @@
   <div>
     <div class="row">
       <div class="col-md-3" style="margin-bottom:10px;">
-        <input type="text" v-model="month_from" 
-        class="form-control"
-         placeholder="From Month" />
+        <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="'Month From'" v-model="month_from"
+          dateFormat="YYYY-MM"></vue-monthly-picker>
       </div>
 
       <div class="col-md-3" style="margin-bottom:10px;">
-        <input type="text" v-model="month_to" 
-        class="form-control"
-         placeholder="From Month" />
+        <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="'Month To'" v-model="month_to"
+          dateFormat="YYYY-MM"></vue-monthly-picker>
       </div>
 
 
@@ -126,10 +124,12 @@
 import { EventBus } from "../../vue-assets";
 import Mixin from "../../mixin";
 import MonthlyChart from './chart/MonthlyChart';
+import VueMonthlyPicker from 'vue-monthly-picker'
 export default {
   mixins: [Mixin],
   components : {
-   'monthly-chart' : MonthlyChart
+   'monthly-chart' : MonthlyChart,
+    VueMonthlyPicker
   },
   data() {
     return {
@@ -140,6 +140,10 @@ export default {
      chart_month : [],
      isLoading : false,
      isFiltered : false,
+      pickermonth : {
+          lebel : ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
+          text : "Month"
+        },
     }
   },
 
@@ -151,16 +155,24 @@ export default {
   methods: {
      
      getReport() 
-     {   
+     {  
+       
+        if(this.month_from === '' || this.month_to === '')
+        {
+          this.successMessage({status:'error',message: 'Please Select Both Month'});
+        }
+        else{
          this.isFiltered  = true;
          this.isLoading = true;
-         axios.get(base_url+`monthly-report-result?month_from=${this.month_from}&month_to=${this.month_to}`)
+         axios.get(base_url+`monthly-report-result?month_from=${this.month_from._i}&month_to=${this.month_to._i}`)
          .then(response =>
           {
             this.report_data = response.data.report_data;
             this.total_sum = response.data.total_sum;
             this.isLoading = false;
          });
+        }
+
      },
 
 
