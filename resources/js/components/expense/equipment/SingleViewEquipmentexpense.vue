@@ -109,7 +109,7 @@
                                             </div>
                                             <div class="t-name">
                                                 <h4>Payment Date</h4>
-                                                <p class="meta-date">{{ equipment.payment_date }}</p>
+                                                <p class="meta-date">{{ equipment.payment_date | dateToString }}</p>
                                             </div>
 
                                         </div>
@@ -127,7 +127,7 @@
                                             </div>
                                             <div class="t-name">
                                                 <h4>Month</h4>
-                                                <p class="meta-date">{{ equipment.month }}</p>
+                                                <p class="meta-date">{{ equipment.month | monthToString }}</p>
                                             </div>
 
                                         </div>

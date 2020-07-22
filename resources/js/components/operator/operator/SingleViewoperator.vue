@@ -155,7 +155,7 @@
                                             </div>
                                             <div class="t-name">
                                                 <h4>Join Date</h4>
-                                                <p class="meta-date">{{ operator.join_date }}</p>
+                                                <p class="meta-date">{{ operator.join_date | dateToString }}</p>
                                             </div>
 
                                         </div>
@@ -191,7 +191,7 @@
                                             </div>
                                             <div class="t-name">
                                                 <h4>Date of Birth</h4>
-                                                <p class="meta-date">{{ operator.date_of_birth }}</p>
+                                                <p class="meta-date">{{ operator.date_of_birth | dateToString }}</p>
                                             </div>
 
                                         </div>

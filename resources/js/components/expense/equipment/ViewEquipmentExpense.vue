@@ -81,7 +81,7 @@
                 <td>{{ value.project.project_name }}</td>
                 <td>{{ value.vendor.vendor_name }}</td>
                 <td>{{ value.equipement.eq_name }}</td>
-                <td>{{ value.payment_date }}</td>
+                <td>{{ value.payment_date | dateToString }}</td>
                 <td>{{ value.amount }}</td>
                 <td class="text-center">
                     <button class="btn btn-warning mb-2 mr-2 rounded-circle" title="View" @click="viewEquipmentExpense(value)"><i class="far fa-eye"></i></button>

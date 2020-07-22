@@ -95,7 +95,7 @@
                                             </div>
                                             <div class="t-name">
                                                 <h4>Date</h4>
-                                                <p class="meta-date">{{ fooding.date }}</p>
+                                                <p class="meta-date">{{ fooding.date | dateToString }}</p>
                                             </div>
 
                                         </div>

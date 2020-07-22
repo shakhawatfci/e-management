@@ -32039,7 +32039,13 @@ var render = function() {
                                     _c("h4", [_vm._v("Join Date")]),
                                     _vm._v(" "),
                                     _c("p", { staticClass: "meta-date" }, [
-                                      _vm._v(_vm._s(_vm.operator.join_date))
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm._f("dateToString")(
+                                            _vm.operator.join_date
+                                          )
+                                        )
+                                      )
                                     ])
                                   ])
                                 ])
@@ -32079,7 +32085,13 @@ var render = function() {
                                     _c("h4", [_vm._v("Date of Birth")]),
                                     _vm._v(" "),
                                     _c("p", { staticClass: "meta-date" }, [
-                                      _vm._v(_vm._s(_vm.operator.date_of_birth))
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm._f("dateToString")(
+                                            _vm.operator.date_of_birth
+                                          )
+                                        )
+                                      )
                                     ])
                                   ])
                                 ])
@@ -34726,7 +34738,13 @@ var render = function() {
                                     _c("h4", [_vm._v("Date")]),
                                     _vm._v(" "),
                                     _c("p", { staticClass: "meta-date" }, [
-                                      _vm._v(_vm._s(_vm.fooding.date))
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm._f("dateToString")(
+                                            _vm.fooding.date
+                                          )
+                                        )
+                                      )
                                     ])
                                   ])
                                 ])
@@ -36744,7 +36762,13 @@ var render = function() {
                                     _c("h4", [_vm._v("Month")]),
                                     _vm._v(" "),
                                     _c("p", { staticClass: "meta-date" }, [
-                                      _vm._v(_vm._s(_vm.salary.month))
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm._f("monthToString")(
+                                            _vm.salary.month
+                                          )
+                                        )
+                                      )
                                     ])
                                   ])
                                 ])
@@ -36764,7 +36788,13 @@ var render = function() {
                                     _c("h4", [_vm._v("Payment Date")]),
                                     _vm._v(" "),
                                     _c("p", { staticClass: "meta-date" }, [
-                                      _vm._v(_vm._s(_vm.salary.payment_date))
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm._f("dateToString")(
+                                            _vm.salary.payment_date
+                                          )
+                                        )
+                                      )
                                     ])
                                   ])
                                 ])

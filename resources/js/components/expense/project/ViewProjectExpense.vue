@@ -50,7 +50,7 @@
                 <td>{{ value.project.project_name }}</td>
                 <td>{{ value.project_expense_head.head_name }}</td>
                 <td>{{ value.amount }}</td>
-                <td>{{ value.date }}</td>
+                <td>{{ value.date | dateToString }}</td>
                 <td class="text-center">
                     <button class="btn btn-warning mb-2 mr-2 rounded-circle" title="View" @click="viewProjectExpense(value)"><i class="far fa-eye"></i></button>
                     <button class="btn btn-dark mb-2 mr-2 rounded-circle" title="Edit" @click.prevent="editProjectExpense(value)"><i class="far fa-edit"></i></button>

@@ -32771,7 +32771,13 @@ var render = function() {
                                     _c("h4", [_vm._v("Payment Date")]),
                                     _vm._v(" "),
                                     _c("p", { staticClass: "meta-date" }, [
-                                      _vm._v(_vm._s(_vm.equipment.payment_date))
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm._f("dateToString")(
+                                            _vm.equipment.payment_date
+                                          )
+                                        )
+                                      )
                                     ])
                                   ])
                                 ])
@@ -32791,7 +32797,13 @@ var render = function() {
                                     _c("h4", [_vm._v("Month")]),
                                     _vm._v(" "),
                                     _c("p", { staticClass: "meta-date" }, [
-                                      _vm._v(_vm._s(_vm.equipment.month))
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm._f("monthToString")(
+                                            _vm.equipment.month
+                                          )
+                                        )
+                                      )
                                     ])
                                   ])
                                 ])
@@ -34170,7 +34182,13 @@ var render = function() {
                               _vm._v(_vm._s(value.equipement.eq_name))
                             ]),
                             _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(value.payment_date))]),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(
+                                  _vm._f("dateToString")(value.payment_date)
+                                )
+                              )
+                            ]),
                             _vm._v(" "),
                             _c("td", [_vm._v(_vm._s(value.amount))]),
                             _vm._v(" "),
@@ -35338,9 +35356,15 @@ var render = function() {
                               )
                             ]),
                             _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(value.month))]),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(_vm._f("monthToString")(value.month))
+                              )
+                            ]),
                             _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(value.date))]),
+                            _c("td", [
+                              _vm._v(_vm._s(_vm._f("dateToString")(value.date)))
+                            ]),
                             _vm._v(" "),
                             _c("td", [_vm._v(_vm._s(value.amount))]),
                             _vm._v(" "),
@@ -36098,7 +36122,13 @@ var render = function() {
                                     _c("h4", [_vm._v("Date")]),
                                     _vm._v(" "),
                                     _c("p", { staticClass: "meta-date" }, [
-                                      _vm._v(_vm._s(_vm.project.date))
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm._f("dateToString")(
+                                            _vm.project.date
+                                          )
+                                        )
+                                      )
                                     ])
                                   ])
                                 ])
@@ -36118,7 +36148,13 @@ var render = function() {
                                     _c("h4", [_vm._v("Month")]),
                                     _vm._v(" "),
                                     _c("p", { staticClass: "meta-date" }, [
-                                      _vm._v(_vm._s(_vm.project.month))
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm._f("monthToString")(
+                                            _vm.project.month
+                                          )
+                                        )
+                                      )
                                     ])
                                   ])
                                 ])
@@ -37043,7 +37079,9 @@ var render = function() {
                             _vm._v(" "),
                             _c("td", [_vm._v(_vm._s(value.amount))]),
                             _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(value.date))]),
+                            _c("td", [
+                              _vm._v(_vm._s(_vm._f("dateToString")(value.date)))
+                            ]),
                             _vm._v(" "),
                             _c("td", { staticClass: "text-center" }, [
                               _c(

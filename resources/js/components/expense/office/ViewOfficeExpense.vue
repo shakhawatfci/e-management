@@ -39,8 +39,8 @@
         <tbody>
             <tr v-for="value in offices.data" :key="value.id">
                 <td>{{ value.office_expense_head.head_name }}</td>
-                <td>{{ value.month }}</td>
-                <td>{{ value.date }}</td>
+                <td>{{ value.month | monthToString }}</td>
+                <td>{{ value.date | dateToString }}</td>
                 <td>{{ value.amount }}</td>
                 <td>{{ value.document_link }}</td>
                 <td class="text-center">
