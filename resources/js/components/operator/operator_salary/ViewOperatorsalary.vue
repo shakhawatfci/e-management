@@ -13,11 +13,15 @@
           </select>
       </div>
 
-      <div class="col-md-2" style="margin-bottom:10px;">
-         <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="pickermonth.text" v-model="filtermonth" @input="getOperatorSalary()"></vue-monthly-picker>
+      <div class="col-md-3" style="margin-bottom:10px;">
+         <vue-monthly-picker :monthLabels="pickermonth.lebel" placeHolder="Start Month" v-model="start_month"></vue-monthly-picker>
       </div>
 
-      <div class="col-md-2" style="margin-bottom:10px;">
+      <div class="col-md-3" style="margin-bottom:10px;">
+         <vue-monthly-picker :monthLabels="pickermonth.lebel" placeHolder="End Month" v-model="end_month" @input="getOperatorSalary()"></vue-monthly-picker>
+      </div>
+
+      <div class="col-md-3" style="margin-bottom:10px;">
           <select class="form-control" v-model="by_mode" @change="getOperatorSalary()">
             <option value="">All Mode</option>
             <option value="1">Cash</option>
@@ -37,9 +41,9 @@
     <table class="table table-bordered table-hover  mb-4">
         <thead>
             <tr>
-                <th>Operator</th>
-                <th>Month</th>
                 <th>Payment Date</th>
+                <th>Month</th>
+                <th>Operator</th>
                 <th>Payment Amount</th>
                 <th>Mode</th>
                 <th class="text-center">Action</th>
@@ -47,9 +51,9 @@
         </thead>
         <tbody>
             <tr v-for="value in salaries.data" :key="value.id">
-                <td>{{ value.operator.name }}</td>
-                <td>{{ value.month | monthToString }}</td>
                 <td>{{ value.payment_date | dateToString }}</td>
+                <td>{{ value.month | monthToString }}</td>
+                <td>{{ value.operator.name }}</td>
                 <td>{{ value.payment_amount }}</td>
                 <td>
                   <span v-if="value.mode == 1">Cash</span>
@@ -64,8 +68,8 @@
             </tr>
             <tr v-if="salaries.data.length > 0">
                 <td colspan="6">
-                  <a :href="url+'operator-salary-print-pdf?action=pdf'" class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i> PDF</a>
-                  <a :href="url+'operator-salary-print-pdf?action=print'" class="btn btn-danger btn-sm" target="_blank"><i class="fa fa-file-pdf-o"></i> Print</a>
+                  <a :href="url+`operator-salary-print-pdf?action=pdf&keyword=${keyword}&operator=${operator_id}&start_month=${start_month._i}&end_month=${end_month._i}&mode=${by_mode}`" class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i> PDF</a>
+                  <a :href="url+`operator-salary-print-pdf?action=print&keyword=${keyword}&operator=${operator_id}&start_month=${start_month._i}&end_month=${end_month._i}&mode=${by_mode}`" class="btn btn-danger btn-sm" target="_blank"><i class="fa fa-file-pdf-o"></i> Print</a>
                 </td>
             </tr>
         </tbody>
@@ -111,12 +115,13 @@ export default {
     return {
      salaries : [],
      operator_id : '',
-     filtermonth : '',
      pickermonth : {
         lebel : ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
         text : "Search By Month",
      },
      by_mode : '',
+     start_month : '',
+     end_month : '',
      url : base_url,
      keyword   : '',
      isLoading : false,
@@ -140,12 +145,14 @@ export default {
      getOperatorSalary(page = 1) 
      {
          this.isLoading = true;
-         var mo = '';
-         if(this.filtermonth.hasOwnProperty('_i') && this.filtermonth != null)
-         {
-          mo = this.filtermonth._i;
-         }
-         axios.get(base_url+`operator-salary-list?page=${page}&keyword=${this.keyword}&operator=${this.operator_id}&month_filter=${mo}&mode=${this.by_mode}`)
+         var st_mo = ''
+          var lt_mo = ''
+          if(this.end_month != ''){
+            if(this.start_month === '') this.successMessage({status : 'error',message :'Select start Month'})
+              st_mo = this.start_month._i
+              lt_mo = this.end_month._i
+          }
+         axios.get(base_url+`operator-salary-list?page=${page}&keyword=${this.keyword}&operator=${this.operator_id}&start_month=${st_mo}&end_month=${lt_mo}&mode=${this.by_mode}`)
          .then(response =>
           {
             this.salaries = response.data;
@@ -165,7 +172,8 @@ export default {
 
      filterClear(){
         this.operator_id = '';
-        this.filtermonth = '';
+        this.start_month = '';
+        this.end_month = '';
         this.by_mode = '';
         this.getOperatorSalary();
      },

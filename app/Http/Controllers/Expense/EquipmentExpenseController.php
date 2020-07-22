@@ -77,13 +77,22 @@ class EquipmentExpenseController extends Controller
             $equipment->where('equipment_expense_head_id','=',$request->equipment_head);
         }
         if($request->keyword != '') {
-            $equipment->where('project_id','LIKE','%'.$request->keyword.'%');
+            $equipment->where('month','=',$request->keyword);
+            $equipment->orWhere('payment_date','=',$request->keyword);
+            $equipment->orWhere('amount','=',$request->keyword);
+        }
+        if ($request->end_month != '' && $request->end_month != 'undefined') {
+            $start = date('Y-m',strtotime(str_replace('/','-',$request->start_month)));
+            $end = date('Y-m',strtotime(str_replace('/','-',$request->end_month)));
+
+            $equipment->whereBetween('month', [$start,$end]);   
         }
         return $equipment->paginate(10);
     }
 
     public function equipmentExpensePrint(Request $request)
     {
+        $month = null;
         $equipment = EquipementExpense::with(['project:id,project_name','vendor:id,vendor_name','equipement:id,eq_name','equipment_type:id,name','equipment_expense_head:id,head_name'])
             ->orderBy('id','desc');
         if($request->project != '') {
@@ -102,17 +111,31 @@ class EquipmentExpenseController extends Controller
             $equipment->where('equipment_expense_head_id','=',$request->equipment_head);
         }
         if($request->keyword != '') {
-            $equipment->where('project_id','LIKE','%'.$request->keyword.'%');
+            $equipment->where('month','=',$request->keyword);
+            $equipment->orWhere('payment_date','=',$request->keyword);
+            $equipment->orWhere('amount','=',$request->keyword);
+        }
+        if ($request->end_month != '' && $request->end_month != 'undefined') {
+            $start = date('Y-m',strtotime(str_replace('/','-',$request->start_month)));
+            $end = date('Y-m',strtotime(str_replace('/','-',$request->end_month)));
+
+            $equipment->whereBetween('month', [$start,$end]);
+            $month .= 'From ' .$start. ' to ' .$end;  
         }
         $equipment = $equipment->get();
 
         if($request->action == 'print')
         {
-            return view('expense.print.equipment_expense_print',['equipments' => $equipment]);
+            return view('expense.print.equipment_expense_print',[
+                'equipments' => $equipment,
+                'month' => $month
+            ]);
         } else {
-            // return view('expense.pdf.equipment_expense_pdf', [
-            $pdf = \PDF::loadView('expense.pdf.equipment_expense_pdf', [
-                'equipments' => $equipment]);
+            return view('expense.pdf.equipment_expense_pdf', [
+            // $pdf = \PDF::loadView('expense.pdf.equipment_expense_pdf', [
+                'equipments' => $equipment,
+                'month' => $month
+            ]);
 
             $pdf->setPaper('A4', 'landscape');
             $pdf_name = "equipment_expense.pdf";

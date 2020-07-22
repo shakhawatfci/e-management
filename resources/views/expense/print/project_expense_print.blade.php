@@ -16,6 +16,9 @@
 	<div class="container-fluid"> 
     <div class="text-center">
         <h3>Project Expense List</h3>
+        <p>
+            @if($month != '') {{$month}} @else All time @endif
+        </p>
     </div>
         <div class="row">
         	<div class="col-md-12 col-xs-12">
@@ -43,7 +46,7 @@
             @endforeach
             	<tr>
             		<td colspan="4"></td>
-            		<td>Total Amount : {{ $total_amount }}</td>
+            		<td><strong>Total Amount : {{ $total_amount }}</strong></td>
             	</tr>
             </tbody>
         	   </table>

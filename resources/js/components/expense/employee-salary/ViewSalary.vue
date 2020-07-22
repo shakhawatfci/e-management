@@ -60,7 +60,7 @@
                 </td>
               </tr>
               <tr v-if="salaries.data.length > 0">
-                <td colspan="7">
+                <td colspan="8">
                   <a :href="url+`employee-salary-print-pdf?action=pdf&employee_id=${employee_id}&start_month=${start_month._i}&end_month=${end_month._i}`" class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i> PDF</a>
                   <a :href="url+`employee-salary-print-pdf?action=print&employee_id=${employee_id}&start_month=${start_month._i}&end_month=${end_month._i}`" class="btn btn-danger btn-sm" target="_blank"><i class="fa fa-file-pdf-o"></i> Print</a>
                 </td>

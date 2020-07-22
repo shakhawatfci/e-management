@@ -58,17 +58,24 @@ class OperatorFoodingController extends Controller
         if($request->operator != '') {
             $foodings->where('operator_id','=',$request->operator);
         }
-        if($request->month_filter != '') {
-            // return  $request->month_filter;
-            $filter_month = date('Y-m',strtotime(str_replace('/','-',$request->month_filter)));
-            // return $filter_month;
-            $foodings->where('month','=',$filter_month);
+        if($request->keyword != '') {
+            $foodings->where('month','LIKE','%'.$request->keyword.'%');
+            $foodings->orWhere('date','LIKE','%'.$request->keyword.'%');
+            $foodings->orWhere('fooding_amount','LIKE','%'.$request->keyword.'%');
+        }
+        if ($request->end_month != '' && $request->end_month != 'undefined') {
+            $start = date('Y-m',strtotime(str_replace('/','-',$request->start_month)));
+            $end = date('Y-m',strtotime(str_replace('/','-',$request->end_month)));
+
+            $foodings->whereBetween('month', [$start,$end]);
+            
         }
         return $foodings->paginate(10);
     }
 
     public function operatorFoodingPrint(Request $request)
     {
+        $month = null;
         $foodings = OperatorFooding::with(['project:id,project_name','vendor:id,vendor_name','equipment_type:id,name','equipement:id,eq_name','operator:id,name'])->orderBy('id','desc');
         if($request->project != '') {
             $foodings->where('project_id','=',$request->project);
@@ -85,21 +92,32 @@ class OperatorFoodingController extends Controller
         if($request->operator != '') {
             $foodings->where('operator_id','=',$request->operator);
         }
-        if($request->month_filter != '') {
-            // return  $request->month_filter;
-            $filter_month = date('Y-m',strtotime(str_replace('/','-',$request->month_filter)));
-            // return $filter_month;
-            $foodings->where('month','=',$filter_month);
+        if($request->keyword != '') {
+            $foodings->where('month','LIKE','%'.$request->keyword.'%');
+            $foodings->orWhere('date','LIKE','%'.$request->keyword.'%');
+            $foodings->orWhere('fooding_amount','LIKE','%'.$request->keyword.'%');
+        }
+        if ($request->end_month != '' && $request->end_month != 'undefined') {
+            $start = date('Y-m',strtotime(str_replace('/','-',$request->start_month)));
+            $end = date('Y-m',strtotime(str_replace('/','-',$request->end_month)));
+
+            $foodings->whereBetween('month', [$start,$end]);
+            $month .= 'From ' .$start. ' to ' .$end;
         }
         $fooding = $foodings->get();
 
         if($request->action == 'print')
         {
-            return view('operator.print.operator_fooding_print',['foodings' => $fooding]);
+            return view('operator.print.operator_fooding_print',[
+                'foodings' => $fooding,
+                'month' => $month
+            ]);
         } else {
             // return view('operator.pdf.operator_fooding_pdf', [
             $pdf = \PDF::loadView('operator.pdf.operator_fooding_pdf', [
-                'foodings' => $fooding]);
+                'foodings' => $fooding,
+                'month' => $month
+            ]);
 
             $pdf->setPaper('A4', 'landscape');
             $pdf_name = "operator_fooding.pdf";

@@ -17,7 +17,7 @@
     <div class="text-center">
         <h3>Bill Summary</h3>
         <p>
-            @if($month != '') date('M, Y',strtotime($month)) @else All time @endif
+            @if($month != '') {{$month}} @else All time @endif
         </p>
     </div>
         <div class="row">
@@ -39,6 +39,7 @@
                         $project_paid_almost = 0;
                         $vendor_amount_almost = 0;
                         $vendor_paid_almost = 0;
+                        $hour_almost = 0;
                     @endphp
                  @foreach($bill as $value)
                   <tr>
@@ -83,21 +84,24 @@
                     $project_paid_almost += $value->project_payment + $value->project_adjustment_payment;
                     $vendor_amount_almost += $value->total_vendor_amount;
                     $vendor_paid_almost += $value->vendor_payment + $value->vendor_adjustment_payment;
+                    $hour_almost += $value->total_hour;
                 @endphp
             @endforeach
                 <tr>
-                    <td colspan="3">Total Project Amount : {{$project_amount_almost}}
+                    <td colspan="3"></td>
+                    <td><strong>Total Hours: {{ $hour_almost }}</strong></td>
+                    <td><strong>Total Project Amount : {{$project_amount_almost}}</strong>
                         <br/>
-                        Project Paid : {{ $project_paid_almost }}
+                        <strong>Project Paid : {{ $project_paid_almost }}</strong>
                         <br/>
-                        OutStanding : {{ $project_amount_almost - $project_paid_almost }}
+                        <strong>OutStanding : {{ $project_amount_almost - $project_paid_almost }}</strong>
                     </td>
-                    <td colspan="3">
-                        Total Vendor Amount : {{ $vendor_amount_almost }}
+                    <td><strong>
+                        Total Vendor Amount : {{ $vendor_amount_almost }}</strong>
                         <br/>
-                        Vendor Paid : {{ $vendor_paid_almost }}
+                        <strong>Vendor Paid : {{ $vendor_paid_almost }}</strong>
                         <br/>
-                        OutStanding : {{ $vendor_amount_almost - $vendor_paid_almost }}
+                        <strong>OutStanding : {{ $vendor_amount_almost - $vendor_paid_almost }}</strong>
                     </td>
                 </tr>
             </tbody>

@@ -406,12 +406,12 @@ class BillController extends Controller
 
     public function billListPdfPrint(Request $request)
     {
-        $bill_no = null;
-        $poject = null;
         $month = null;
-        $vendor = null;
-        $equipment = null;
-        $equipment_type = null;
+        // $bill_no = null;
+        // $poject = null;
+        // $vendor = null;
+        // $equipment = null;
+        // $equipment_type = null;
 
         $bill = ProjectClaim::with([
             'user:id,name',
@@ -423,32 +423,32 @@ class BillController extends Controller
 
         if ($request->bill_no != '') {
             $bill->where('bill_no', 'LIKE', '%' . $request->bill_no . '%');
-            $bill_no += $request->bill_no;
+            // $bill_no += $request->bill_no;
         }
 
         if ($request->project_id != '') {
             $bill->where('project_id', '=', $request->project_id);
-            $poject += $request->project_id;
+            // $poject += $request->project_id;
         }
 
         if ($request->month != '') {
             $bill->where('month', '=', $request->month);
-            $month +=  $request->month;
+            // $month +=  $request->month;
         }
 
         if ($request->vendor_id != '') {
             $bill->where('vendor_id', '=', $request->vendor_id);
-            $vendor += $request->vendor_id;
+            // $vendor += $request->vendor_id;
         }
 
         if ($request->equipment_id != '') {
             $bill->where('equipement_id', '=', $request->equipment_id);
-            $equipment +=  $request->equipment_id;
+            // $equipment +=  $request->equipment_id;
         }
 
         if ($request->equipment_type_id != '') {
             $bill->where('equipment_type_id', '=', $request->equipment_type_id);
-            $equipment_type += $request->equipment_type_id;
+            // $equipment_type += $request->equipment_type_id;
         }
 
         if ($request->end_month != '' && $request->end_month != 'undefined') {
@@ -465,23 +465,23 @@ class BillController extends Controller
         {
             return view('bill.print.bill_list_print', [
                 'bill' => $bill,
-                'bill_no' => $bill_no,
-                'poject' => $poject,
                 'month' => $month,
-                'vendor' => $vendor,
-                'equipment' => $equipment,
-                'equipment_type' => $equipment_type
+                // 'bill_no' => $bill_no,
+                // 'poject' => $poject,
+                // 'vendor' => $vendor,
+                // 'equipment' => $equipment,
+                // 'equipment_type' => $equipment_type
             ]);
         } else {
-            $pdf = PDF::loadView('bill.pdf.bill_list_pdf', [
+            $pdf = \PDF::loadView('bill.pdf.bill_list_pdf', [
             // return view('bill.pdf.bill_list_pdf', [
                 'bill' => $bill,
-                'bill_no' => $bill_no,
-                'poject' => $poject,
                 'month' => $month,
-                'vendor' => $vendor,
-                'equipment' => $equipment,
-                'equipment_type' => $equipment_type
+                // 'bill_no' => $bill_no,
+                // 'poject' => $poject,
+                // 'vendor' => $vendor,
+                // 'equipment' => $equipment,
+                // 'equipment_type' => $equipment_type
             ]);
 
             $pdf->setPaper('A4', 'landscape');

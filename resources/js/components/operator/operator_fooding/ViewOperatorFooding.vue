@@ -40,7 +40,11 @@
       </div>
 
       <div class="col-md-3" style="margin-bottom:10px;">
-         <vue-monthly-picker :monthLabels="pickermonth.lebel" :placeHolder="pickermonth.text" v-model="filtermonth" @input="getOperatorFooding()"></vue-monthly-picker>
+         <vue-monthly-picker :monthLabels="pickermonth.lebel" placeHolder="Start Month" v-model="start_month"></vue-monthly-picker>
+      </div>
+
+      <div class="col-md-3" style="margin-bottom:10px;">
+         <vue-monthly-picker :monthLabels="pickermonth.lebel" placeHolder="End Month" v-model="end_month" @input="getOperatorFooding()"></vue-monthly-picker>
       </div>
 
       <div class="col-md-3" style="margin-bottom:10px;">
@@ -54,6 +58,8 @@
     <table class="table table-bordered table-hover  mb-4">
         <thead>
             <tr>
+                <th>DATE</th>
+                <th>MONTH</th>
                 <th>Project</th>
                 <th>Vendor</th>
                 <th>Equipment Type</th>
@@ -65,6 +71,8 @@
         </thead>
         <tbody>
             <tr v-for="value in foodings.data" :key="value.id">
+                <td>{{ value.date | dateToString }}</td>
+                <td>{{ value.month | monthToString }}</td>
                 <td>{{ value.project.project_name }}</td>
                 <td>{{ value.vendor.vendor_name }}</td>
                 <td>{{ value.equipment_type.name }}</td>
@@ -78,9 +86,9 @@
                 </td>
             </tr>
             <tr v-if="foodings.data.length > 0">
-                <td colspan="7">
-                  <a :href="url+'operator-fooding-print-pdf?action=pdf'" class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i> PDF</a>
-                  <a :href="url+'operator-fooding-print-pdf?action=print'" class="btn btn-danger btn-sm" target="_blank"><i class="fa fa-file-pdf-o"></i> Print</a>
+                <td colspan="9">
+                  <a :href="url+`operator-fooding-print-pdf?action=pdf&keyword=${keyword}&project=${project_id}&vendor=${vendor_id}&equipment_type=${equipment_type_id}&equipement=${equipement_id}&operator=${operator_id}&start_month=${start_month._i}&end_month=${end_month._i}`" class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i> PDF</a>
+                  <a :href="url+`operator-fooding-print-pdf?action=print&keyword=${keyword}&project=${project_id}&vendor=${vendor_id}&equipment_type=${equipment_type_id}&equipement=${equipement_id}&operator=${operator_id}&start_month=${start_month._i}&end_month=${end_month._i}`" class="btn btn-danger btn-sm" target="_blank"><i class="fa fa-file-pdf-o"></i> Print</a>
                 </td>
             </tr>
         </tbody>
@@ -131,13 +139,12 @@ export default {
      equipement_id : '',
      operator_id : '',
      equipments : [],
-     filtermonth : '',
      pickermonth : {
         lebel : ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
-        text : "Search By Month",
-        // bgcolor : "#142159",
-        // format : "YYYY-MM"
+        text : "Search By Month"
      },
+     start_month : '',
+     end_month : '',
      url : base_url,
      keyword   : '',
      isLoading : false,
@@ -161,12 +168,14 @@ export default {
      getOperatorFooding(page = 1) 
      {
          this.isLoading = true;
-         var mo = '';
-         if(this.filtermonth.hasOwnProperty('_i') && this.filtermonth != null)
-         {
-          mo = this.filtermonth._i;
-         }
-         axios.get(base_url+`operator-fooding-list?page=${page}&keyword=${this.keyword}&project=${this.project_id}&vendor=${this.vendor_id}&equipment_type=${this.equipment_type_id}&equipement=${this.equipement_id}&operator=${this.operator_id}&month_filter=${mo}`)
+         var st_mo = ''
+          var lt_mo = ''
+          if(this.end_month != ''){
+            if(this.start_month === '') this.successMessage({status : 'error',message :'Select start Month'})
+              st_mo = this.start_month._i
+              lt_mo = this.end_month._i
+          }
+         axios.get(base_url+`operator-fooding-list?page=${page}&keyword=${this.keyword}&project=${this.project_id}&vendor=${this.vendor_id}&equipment_type=${this.equipment_type_id}&equipement=${this.equipement_id}&operator=${this.operator_id}&start_month=${st_mo}&end_month=${lt_mo}`)
          .then(response =>
           {
             this.foodings = response.data;
@@ -223,7 +232,8 @@ export default {
         this.equipement_id = '';
         this.operator_id = '';
         this.equipments = [];
-        this.filtermonth = '';
+        this.start_month = '';
+        this.end_month = '';
         this.getOperatorFooding();
      },
 

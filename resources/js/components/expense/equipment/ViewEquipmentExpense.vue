@@ -53,6 +53,13 @@
         </select>
       </div>
       <div class="col-md-3" style="margin-bottom:10px;">
+         <vue-monthly-picker :monthLabels="pickermonth.lebel" placeHolder="Start Month" v-model="start_month"></vue-monthly-picker>
+      </div>
+
+      <div class="col-md-3" style="margin-bottom:10px;">
+         <vue-monthly-picker :monthLabels="pickermonth.lebel" placeHolder="End Month" v-model="end_month" @input="getEquipmentExpense()"></vue-monthly-picker>
+      </div>
+      <div class="col-md-3" style="margin-bottom:10px;">
         <input type="text" v-model="keyword" 
         class="form-control"
          placeholder="Search Equipment Expense" @keyup="getEquipmentExpense()" />
@@ -68,22 +75,22 @@
     <table class="table table-bordered table-hover  mb-4">
         <thead>
             <tr>
+                <th>Month</th>
+                <th>Payment Date</th>
                 <th>Name</th>
                 <th>Expense</th>
                 <th>Equipment</th>
-                <th>Month</th>
-                <th>Payment Date</th>
                 <th>Amount</th>
                 <th class="text-center">action</th>
             </tr>
         </thead>
         <tbody>
             <tr v-for="value in equipments.data" :key="value.id">
+                <td>{{ value.month | monthToString }}</td>
+                <td>{{ value.payment_date | dateToString }}</td>
                 <td>{{ value.project.project_name }}</td>
                 <td>{{ value.vendor.vendor_name }}</td>
                 <td>{{ value.equipement.eq_name }}</td>
-                <td>{{ value.month | monthToString }}</td>
-                <td>{{ value.payment_date | dateToString }}</td>
                 <td>{{ value.amount }}</td>
                 <td class="text-center">
                     <button class="btn btn-warning mb-2 mr-2 rounded-circle" title="View" @click="viewEquipmentExpense(value)"><i class="far fa-eye"></i></button>
@@ -92,9 +99,9 @@
                 </td>
             </tr>
             <tr v-if="equipments.data.length > 0">
-                <td colspan="6">
-                  <a :href="url+'equipment-expense-print-pdf?action=pdf'" class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i> PDF</a>
-                  <a :href="url+'equipment-expense-print-pdf?action=print'" class="btn btn-danger btn-sm" target="_blank"><i class="fa fa-file-pdf-o"></i> Print</a>
+                <td colspan="7">
+                  <a :href="url+`equipment-expense-print-pdf?action=pdf&page=${page}&keyword=${keyword}&project=${project_id}&vendor=${vendor_id}&equipment_type=${equipment_type_id}&equipement=${equipement_id}&equipment_head=${equipment_expense_head_id}&start_month=${start_month._i}&end_month=${end_month._i}`" class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i> PDF</a>
+                  <a :href="url+`equipment-expense-print-pdf?action=print&page=${page}&keyword=${keyword}&project=${project_id}&vendor=${vendor_id}&equipment_type=${equipment_type_id}&equipement=${equipement_id}&equipment_head=${equipment_expense_head_id}&start_month=${start_month._i}&end_month=${end_month._i}`" class="btn btn-danger btn-sm" target="_blank"><i class="fa fa-file-pdf-o"></i> Print</a>
                 </td>
             </tr>
         </tbody>
@@ -124,6 +131,7 @@
 <script>
 import { EventBus } from "../../../vue-assets";
 import Mixin from "../../../mixin";
+import VueMonthlyPicker from 'vue-monthly-picker'
 import Pagination from '../../pagination/Pagination';
 import ShowEquipmentexpense from './SingleViewEquipmentexpense';
 import UpdateEquipmentexpense from './UpdateEquipmentexpense';
@@ -132,7 +140,7 @@ export default {
   props: ['projects','equipment_types','vendors','equipements','equipment_heads'],
   components : {
    'pagination' : Pagination,
-   UpdateEquipmentexpense,ShowEquipmentexpense
+   UpdateEquipmentexpense,ShowEquipmentexpense,VueMonthlyPicker
   },
   data() {
     return {
@@ -142,6 +150,12 @@ export default {
      equipment_type_id   : '',
      equipement_id   : '',
      equipment_expense_head_id   : '',
+     pickermonth : {
+        lebel : ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
+        text : "Search By Month",
+      },
+      start_month : '',
+      end_month : '',
      keyword   : '',
      url : base_url,
      isLoading : false,
@@ -165,7 +179,14 @@ export default {
      getEquipmentExpense(page = 1) 
      {
          this.isLoading = true;
-         axios.get(base_url+`equipment-expense-list?page=${page}&keyword=${this.keyword}&project=${this.project_id}&vendor=${this.vendor_id}&equipment_type=${this.equipment_type_id}&equipement=${this.equipement_id}&equipment_head=${this.equipment_expense_head_id}`)
+         var st_mo = ''
+          var lt_mo = ''
+          if(this.end_month != ''){
+            if(this.start_month === '') this.successMessage({status : 'error',message :'Select start Month'})
+              st_mo = this.start_month._i
+              lt_mo = this.end_month._i
+          }
+         axios.get(base_url+`equipment-expense-list?page=${page}&keyword=${this.keyword}&project=${this.project_id}&vendor=${this.vendor_id}&equipment_type=${this.equipment_type_id}&equipement=${this.equipement_id}&equipment_head=${this.equipment_expense_head_id}&start_month=${st_mo}&end_month=${lt_mo}`)
          .then(response =>
           {
             this.equipments = response.data;
@@ -213,6 +234,8 @@ export default {
        this.equipement_id   = '';
        this.equipment_expense_head_id   = '';
        this.keyword   = '';
+       this.start_month = '';
+       this.end_month = '';
        this.getEquipmentExpense();
      },
 

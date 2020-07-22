@@ -22,16 +22,21 @@ class OperatorSalaryController extends Controller
         if($request->operator != '') {
             $salary->where('operator_id','=',$request->operator);
         }
-        if($request->month_filter != '') {
-            $filter_month = date('Y-m',strtotime(str_replace('/','-',$request->month_filter)));
-            $salary->where('month','=',$filter_month);
-        }
         if($request->mode != '') {
             $salary->where('mode','=',$request->mode);
         }
         if($request->keyword != '') {
-            $salary->where('payment_date','LIKE','%'.$request->keyword.'%');
+            $salary->where('month','LIKE','%'.$request->keyword.'%');
+            $salary->orWhere('payment_date','LIKE','%'.$request->keyword.'%');
             $salary->orWhere('payment_amount','LIKE','%'.$request->keyword.'%');
+            $salary->orWhere('bank_note','LIKE','%'.$request->keyword.'%');
+            $salary->orWhere('bkash_note','LIKE','%'.$request->keyword.'%');
+        }
+        if ($request->end_month != '' && $request->end_month != 'undefined') {
+            $start = date('Y-m',strtotime(str_replace('/','-',$request->start_month)));
+            $end = date('Y-m',strtotime(str_replace('/','-',$request->end_month)));
+
+            $salary->whereBetween('month', [$start,$end]);
         }
         
         return $salary->paginate(10);
@@ -39,31 +44,43 @@ class OperatorSalaryController extends Controller
 
     public function operatorSalaryPrint(Request $request)
     {
+        $month = null;
         $salary = OperatorSalary::with('operator:id,name')->orderBy('id','desc');
         if($request->operator != '') {
             $salary->where('operator_id','=',$request->operator);
-        }
-        if($request->month_filter != '') {
-            $filter_month = date('Y-m',strtotime(str_replace('/','-',$request->month_filter)));
-            $salary->where('month','=',$filter_month);
         }
         if($request->mode != '') {
             $salary->where('mode','=',$request->mode);
         }
         if($request->keyword != '') {
-            $salary->where('payment_date','LIKE','%'.$request->keyword.'%');
+            $salary->where('month','LIKE','%'.$request->keyword.'%');
+            $salary->orWhere('payment_date','LIKE','%'.$request->keyword.'%');
             $salary->orWhere('payment_amount','LIKE','%'.$request->keyword.'%');
+            $salary->orWhere('bank_note','LIKE','%'.$request->keyword.'%');
+            $salary->orWhere('bkash_note','LIKE','%'.$request->keyword.'%');
+        }
+        if ($request->end_month != '' && $request->end_month != 'undefined') {
+            $start = date('Y-m',strtotime(str_replace('/','-',$request->start_month)));
+            $end = date('Y-m',strtotime(str_replace('/','-',$request->end_month)));
+
+            $salary->whereBetween('month', [$start,$end]);
+            $month .= 'From ' .$start. ' to ' .$end;
         }
         
         $salary = $salary->get();
 
         if($request->action == 'print')
         {
-            return view('operator.print.operator_salary_print',['salaries' => $salary]);
+            return view('operator.print.operator_salary_print',[
+                'salaries' => $salary,
+                'month' => $month
+            ]);
         } else {
             // return view('operator.pdf.operator_salary_pdf', [
             $pdf = \PDF::loadView('operator.pdf.operator_salary_pdf', [
-                'salaries' => $salary]);
+                'salaries' => $salary,
+                'month' => $month
+            ]);
 
             $pdf->setPaper('A4', 'landscape');
             $pdf_name = "operator_salary.pdf";
