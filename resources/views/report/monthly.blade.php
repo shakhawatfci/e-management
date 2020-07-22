@@ -14,7 +14,7 @@
                         <div class="widget-content searchable-container list">
 
                          <monthly-report></monthly-report>
-
+                         
                         </div>
                     </div>
                 </div>
