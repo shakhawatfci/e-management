@@ -1899,6 +1899,227 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/report/EquipmentWiseReport.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/report/EquipmentWiseReport.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_assets__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../vue-assets */ "./resources/js/vue-assets.js");
+/* harmony import */ var _mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixin */ "./resources/js/mixin.js");
+/* harmony import */ var _chart_EquipmentChart__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./chart/EquipmentChart */ "./resources/js/components/report/chart/EquipmentChart.vue");
+/* harmony import */ var vue_monthly_picker__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-monthly-picker */ "./node_modules/vue-monthly-picker/dist/lib/vue-monthly-picker.min.js");
+/* harmony import */ var vue_monthly_picker__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_monthly_picker__WEBPACK_IMPORTED_MODULE_3__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
+  props: ['vendors', 'equipment_types'],
+  components: {
+    'equipment-chart': _chart_EquipmentChart__WEBPACK_IMPORTED_MODULE_2__["default"],
+    VueMonthlyPicker: vue_monthly_picker__WEBPACK_IMPORTED_MODULE_3___default.a
+  },
+  data: function data() {
+    return {
+      report_data: [],
+      total_sum: null,
+      month_from: '',
+      month_to: '',
+      equipment_type_id: '',
+      vendor_id: '',
+      equipment_id: '',
+      equipments: [],
+      isLoading: false,
+      isFiltered: false,
+      pickermonth: {
+        lebel: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
+        text: "Month"
+      }
+    };
+  },
+  mounted: function mounted() {},
+  methods: {
+    getReport: function getReport() {
+      var _this = this;
+
+      if (this.month_from === '' || this.month_to === '' || this.equipment_type_id === '' || this.vendor_id === '' || this.equipment_id === '') {
+        this.successMessage({
+          status: 'error',
+          message: 'All Field are Required!'
+        });
+      } else {
+        this.isFiltered = true;
+        this.isLoading = true;
+        axios.get(base_url + "equpmently-report-result?month_from=".concat(this.month_from._i, "&month_to=").concat(this.month_to._i, "&equipment_type_id=").concat(this.equipment_type_id, "&vendor_id=").concat(this.vendor_id, "&equipment_id=").concat(this.equipment_id)).then(function (response) {
+          _this.report_data = response.data.report_data;
+          _this.total_sum = response.data.total_sum;
+          _this.isLoading = false;
+        });
+      }
+    },
+    eTypeChanged: function eTypeChanged() {
+      this.equipments = [];
+      this.equipment_id = '';
+    },
+    getVendorEquipments: function getVendorEquipments() {
+      var _this2 = this;
+
+      axios.get("".concat(base_url, "equipment-by-vendor/").concat(this.equipment_type_id, "/").concat(this.vendor_id)).then(function (response) {
+        _this2.equipments = response.data;
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/report/MonthlyReport.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/report/MonthlyReport.vue?vue&type=script&lang=js& ***!
@@ -2085,6 +2306,376 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/report/ProjectWiseReport.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/report/ProjectWiseReport.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_assets__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../vue-assets */ "./resources/js/vue-assets.js");
+/* harmony import */ var _mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixin */ "./resources/js/mixin.js");
+/* harmony import */ var _chart_ProjectChart__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./chart/ProjectChart */ "./resources/js/components/report/chart/ProjectChart.vue");
+/* harmony import */ var vue_monthly_picker__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-monthly-picker */ "./node_modules/vue-monthly-picker/dist/lib/vue-monthly-picker.min.js");
+/* harmony import */ var vue_monthly_picker__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_monthly_picker__WEBPACK_IMPORTED_MODULE_3__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
+  props: ['projects'],
+  components: {
+    'project-chart': _chart_ProjectChart__WEBPACK_IMPORTED_MODULE_2__["default"],
+    VueMonthlyPicker: vue_monthly_picker__WEBPACK_IMPORTED_MODULE_3___default.a
+  },
+  data: function data() {
+    return {
+      report_data: [],
+      total_sum: null,
+      month_from: '',
+      month_to: '',
+      project_id: '',
+      isLoading: false,
+      isFiltered: false,
+      pickermonth: {
+        lebel: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
+        text: "Month"
+      }
+    };
+  },
+  mounted: function mounted() {},
+  methods: {
+    getReport: function getReport() {
+      var _this = this;
+
+      if (this.month_from === '' || this.month_to === '' || this.project_id === '') {
+        this.successMessage({
+          status: 'error',
+          message: 'All Field are Required!'
+        });
+      } else {
+        this.isFiltered = true;
+        this.isLoading = true;
+        axios.get(base_url + "projectly-report-result?month_from=".concat(this.month_from._i, "&month_to=").concat(this.month_to._i, "&project_id=").concat(this.project_id)).then(function (response) {
+          _this.report_data = response.data.report_data;
+          _this.total_sum = response.data.total_sum;
+          _this.isLoading = false;
+        });
+      }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/report/chart/EquipmentChart.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/report/chart/EquipmentChart.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_assets__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../vue-assets */ "./resources/js/vue-assets.js");
+/* harmony import */ var _mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../mixin */ "./resources/js/mixin.js");
+/* harmony import */ var vue_chartjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-chartjs */ "./node_modules/vue-chartjs/es/index.js");
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['chart_data'],
+  "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_2__["Line"],
+  data: function data() {
+    return {
+      month: [],
+      project_claim: [],
+      vendor_claim: [],
+      bill_profit: [],
+      project_payment: [],
+      vendor_payment: [],
+      total_expense: [],
+      net_profit: [],
+      gradient1: null,
+      gradient2: null,
+      gradient3: null,
+      gradient4: null,
+      gradient5: null,
+      gradient6: null,
+      gradient7: null
+    };
+  },
+  mounted: function mounted() {
+    this.setupStyle();
+    this.buildChartData();
+  },
+  methods: {
+    setupStyle: function setupStyle() {
+      this.gradient1 = this.$refs.canvas.getContext("2d").createLinearGradient(0, 0, 0, 450);
+      this.gradient1.addColorStop(0, "rgba(5, 203, 225, 0.7)");
+      this.gradient1.addColorStop(0.5, "rgba(130,229, 240, 0.25)");
+      this.gradient1.addColorStop(1, "rgba(130, 229, 	240, 0)");
+      this.gradient2 = this.$refs.canvas.getContext("2d").createLinearGradient(0, 0, 0, 250);
+      this.gradient2.addColorStop(0, "rgba(255, 23, 127, 0.7)");
+      this.gradient2.addColorStop(0.5, "rgba(229, 39, 124, 0.25)");
+      this.gradient2.addColorStop(1, "rgba(234, 82, 150, 0)");
+      this.gradient3 = this.$refs.canvas.getContext("2d").createLinearGradient(0, 0, 0, 350);
+      this.gradient3.addColorStop(0, "rgba(241, 84, 4, 0.7)");
+      this.gradient3.addColorStop(0.5, "rgba(255, 114, 42, 0.25)");
+      this.gradient3.addColorStop(1, "rgba(255, 142, 84, 0)");
+      this.gradient4 = this.$refs.canvas.getContext("2d").createLinearGradient(0, 0, 0, 340);
+      this.gradient4.addColorStop(0, "rgba(255, 255, 0, 0.7)");
+      this.gradient4.addColorStop(0.5, "rgba(255, 255, 25, 0.25)");
+      this.gradient4.addColorStop(1, "rgba(255, 255, 117, 0)");
+      this.gradient5 = this.$refs.canvas.getContext("2d").createLinearGradient(0, 0, 0, 350);
+      this.gradient5.addColorStop(0, "rgba(255,0, 0, 0.7)");
+      this.gradient5.addColorStop(0.5, "rgba(255, 0, 0, 0.25)");
+      this.gradient5.addColorStop(1, "rgba(255, 0, 0, 0)");
+      this.gradient6 = this.$refs.canvas.getContext("2d").createLinearGradient(0, 0, 0, 350);
+      this.gradient6.addColorStop(0, "rgba(0, 255, 0, 0.7)");
+      this.gradient6.addColorStop(0.5, "rgba(0, 255, 0, 0.25)");
+      this.gradient6.addColorStop(1, "rgba(0, 255, 0, 0)");
+      this.gradient7 = this.$refs.canvas.getContext("2d").createLinearGradient(0, 0, 0, 350);
+      this.gradient7.addColorStop(0, "rgba(217, 215, 250, 0.7)");
+      this.gradient7.addColorStop(0.5, "rgba(217, 215, 250, 0.25)");
+      this.gradient7.addColorStop(1, "rgba(217, 215 , 250, 0)");
+    },
+    generateChart: function generateChart() {
+      this.renderChart({
+        labels: this.month,
+        datasets: [{
+          label: "Project Bill",
+          borderColor: "#E3106E",
+          pointBackgroundColor: "white",
+          pointBorderColor: "#E3106E",
+          pointBorderWidth: 5,
+          borderWidth: 2,
+          backgroundColor: this.gradient2,
+          data: this.project_claim
+        }, {
+          label: "Vendor Bill",
+          borderColor: "#05CBE1",
+          pointBackgroundColor: "white",
+          pointBorderColor: "#05CBE1",
+          pointBorderWidth: 5,
+          borderWidth: 2,
+          backgroundColor: this.gradient1,
+          data: this.vendor_claim
+        }, {
+          label: "Bil Profit",
+          borderColor: "#F15404",
+          pointBackgroundColor: "white",
+          pointBorderColor: "#F15404",
+          pointBorderWidth: 5,
+          borderWidth: 2,
+          backgroundColor: this.gradient3,
+          data: this.bill_profit
+        }, {
+          label: "Project Payment",
+          borderColor: "#FFFF00",
+          pointBackgroundColor: "#FFFF00",
+          pointBorderColor: "#FFFF00",
+          pointBorderWidth: 5,
+          borderWidth: 2,
+          backgroundColor: this.gradient4,
+          data: this.project_payment
+        }, {
+          label: "Vendor Payment",
+          borderColor: "#D9D7FA",
+          pointBackgroundColor: "#D9D7FA",
+          pointBorderColor: "#D9D7FA",
+          pointBorderWidth: 5,
+          borderWidth: 2,
+          backgroundColor: this.gradient7,
+          data: this.vendor_payment
+        }, {
+          label: "Total Expense",
+          borderColor: "red",
+          pointBackgroundColor: "red",
+          pointBorderColor: "red",
+          pointBorderWidth: 5,
+          borderWidth: 2,
+          backgroundColor: this.gradient5,
+          data: this.total_expense
+        }, {
+          label: "Net Profit",
+          borderColor: "#00CD00",
+          pointBackgroundColor: "#00CD00",
+          pointBorderColor: "#00CD00",
+          borderWidth: 2,
+          backgroundColor: this.gradient6,
+          data: this.net_profit
+        }]
+      }, {
+        responsive: true,
+        maintainAspectRatio: false
+      });
+    },
+    buildChartData: function buildChartData() {
+      var month_level = this.chart_data.map(function (m) {
+        return m.month;
+      });
+      var project_bill = this.chart_data.map(function (p_claim) {
+        return p_claim.project_bill_amount;
+      });
+      var vendor_bill = this.chart_data.map(function (v_claim) {
+        return v_claim.vendor_bill_amount;
+      });
+      var bill_profit = this.chart_data.map(function (data) {
+        return data.bill_profit;
+      });
+      var project_payment = this.chart_data.map(function (data) {
+        return data.project_payment;
+      });
+      var vendor_payment = this.chart_data.map(function (data) {
+        return data.vendor_payment;
+      });
+      var total_expense = this.chart_data.map(function (data) {
+        return data.total_expense;
+      });
+      var net_profit = this.chart_data.map(function (data) {
+        return data.bill_profit;
+      });
+      this.month = month_level;
+      this.project_claim = project_bill;
+      this.vendor_claim = vendor_bill;
+      this.bill_profit = bill_profit;
+      this.project_payment = project_payment;
+      this.vendor_payment = vendor_payment;
+      this.total_expense = total_expense;
+      this.net_profit = net_profit;
+      this.generateChart();
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/report/chart/MonthlyChart.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/report/chart/MonthlyChart.vue?vue&type=script&lang=js& ***!
@@ -2240,6 +2831,189 @@ __webpack_require__.r(__webpack_exports__);
       this.vendor_claim = vendor_bill;
       this.bill_profit = bill_profit;
       this.total_profit = total_profit;
+      this.total_expense = total_expense;
+      this.net_profit = net_profit;
+      this.generateChart();
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/report/chart/ProjectChart.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/report/chart/ProjectChart.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_assets__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../vue-assets */ "./resources/js/vue-assets.js");
+/* harmony import */ var _mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../mixin */ "./resources/js/mixin.js");
+/* harmony import */ var vue_chartjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-chartjs */ "./node_modules/vue-chartjs/es/index.js");
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['chart_data'],
+  "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_2__["Line"],
+  data: function data() {
+    return {
+      month: [],
+      project_claim: [],
+      vendor_claim: [],
+      bill_profit: [],
+      project_payment: [],
+      vendor_payment: [],
+      total_expense: [],
+      net_profit: [],
+      gradient1: null,
+      gradient2: null,
+      gradient3: null,
+      gradient4: null,
+      gradient5: null,
+      gradient6: null,
+      gradient7: null
+    };
+  },
+  mounted: function mounted() {
+    this.setupStyle();
+    this.buildChartData();
+  },
+  methods: {
+    setupStyle: function setupStyle() {
+      this.gradient1 = this.$refs.canvas.getContext("2d").createLinearGradient(0, 0, 0, 450);
+      this.gradient1.addColorStop(0, "rgba(5, 203, 225, 0.7)");
+      this.gradient1.addColorStop(0.5, "rgba(130,229, 240, 0.25)");
+      this.gradient1.addColorStop(1, "rgba(130, 229, 	240, 0)");
+      this.gradient2 = this.$refs.canvas.getContext("2d").createLinearGradient(0, 0, 0, 250);
+      this.gradient2.addColorStop(0, "rgba(255, 23, 127, 0.7)");
+      this.gradient2.addColorStop(0.5, "rgba(229, 39, 124, 0.25)");
+      this.gradient2.addColorStop(1, "rgba(234, 82, 150, 0)");
+      this.gradient3 = this.$refs.canvas.getContext("2d").createLinearGradient(0, 0, 0, 350);
+      this.gradient3.addColorStop(0, "rgba(241, 84, 4, 0.7)");
+      this.gradient3.addColorStop(0.5, "rgba(255, 114, 42, 0.25)");
+      this.gradient3.addColorStop(1, "rgba(255, 142, 84, 0)");
+      this.gradient4 = this.$refs.canvas.getContext("2d").createLinearGradient(0, 0, 0, 340);
+      this.gradient4.addColorStop(0, "rgba(255, 255, 0, 0.7)");
+      this.gradient4.addColorStop(0.5, "rgba(255, 255, 25, 0.25)");
+      this.gradient4.addColorStop(1, "rgba(255, 255, 117, 0)");
+      this.gradient5 = this.$refs.canvas.getContext("2d").createLinearGradient(0, 0, 0, 350);
+      this.gradient5.addColorStop(0, "rgba(255,0, 0, 0.7)");
+      this.gradient5.addColorStop(0.5, "rgba(255, 0, 0, 0.25)");
+      this.gradient5.addColorStop(1, "rgba(255, 0, 0, 0)");
+      this.gradient6 = this.$refs.canvas.getContext("2d").createLinearGradient(0, 0, 0, 350);
+      this.gradient6.addColorStop(0, "rgba(0, 255, 0, 0.7)");
+      this.gradient6.addColorStop(0.5, "rgba(0, 255, 0, 0.25)");
+      this.gradient6.addColorStop(1, "rgba(0, 255, 0, 0)");
+      this.gradient7 = this.$refs.canvas.getContext("2d").createLinearGradient(0, 0, 0, 350);
+      this.gradient7.addColorStop(0, "rgba(217, 215, 250, 0.7)");
+      this.gradient7.addColorStop(0.5, "rgba(217, 215, 250, 0.25)");
+      this.gradient7.addColorStop(1, "rgba(217, 215 , 250, 0)");
+    },
+    generateChart: function generateChart() {
+      this.renderChart({
+        labels: this.month,
+        datasets: [{
+          label: "Project Bill",
+          borderColor: "#E3106E",
+          pointBackgroundColor: "white",
+          pointBorderColor: "#E3106E",
+          pointBorderWidth: 5,
+          borderWidth: 2,
+          backgroundColor: this.gradient2,
+          data: this.project_claim
+        }, {
+          label: "Vendor Bill",
+          borderColor: "#05CBE1",
+          pointBackgroundColor: "white",
+          pointBorderColor: "#05CBE1",
+          pointBorderWidth: 5,
+          borderWidth: 2,
+          backgroundColor: this.gradient1,
+          data: this.vendor_claim
+        }, {
+          label: "Bil Profit",
+          borderColor: "#F15404",
+          pointBackgroundColor: "white",
+          pointBorderColor: "#F15404",
+          pointBorderWidth: 5,
+          borderWidth: 2,
+          backgroundColor: this.gradient3,
+          data: this.bill_profit
+        }, {
+          label: "Project Payment",
+          borderColor: "#FFFF00",
+          pointBackgroundColor: "#FFFF00",
+          pointBorderColor: "#FFFF00",
+          pointBorderWidth: 5,
+          borderWidth: 2,
+          backgroundColor: this.gradient4,
+          data: this.project_payment
+        }, {
+          label: "Vendor Payment",
+          borderColor: "#D9D7FA",
+          pointBackgroundColor: "#D9D7FA",
+          pointBorderColor: "#D9D7FA",
+          pointBorderWidth: 5,
+          borderWidth: 2,
+          backgroundColor: this.gradient7,
+          data: this.vendor_payment
+        }, {
+          label: "Total Expense",
+          borderColor: "red",
+          pointBackgroundColor: "red",
+          pointBorderColor: "red",
+          pointBorderWidth: 5,
+          borderWidth: 2,
+          backgroundColor: this.gradient5,
+          data: this.total_expense
+        }, {
+          label: "Net Profit",
+          borderColor: "#00CD00",
+          pointBackgroundColor: "#00CD00",
+          pointBorderColor: "#00CD00",
+          borderWidth: 2,
+          backgroundColor: this.gradient6,
+          data: this.net_profit
+        }]
+      }, {
+        responsive: true,
+        maintainAspectRatio: false
+      });
+    },
+    buildChartData: function buildChartData() {
+      var month_level = this.chart_data.map(function (m) {
+        return m.month;
+      });
+      var project_bill = this.chart_data.map(function (p_claim) {
+        return p_claim.project_bill_amount;
+      });
+      var vendor_bill = this.chart_data.map(function (v_claim) {
+        return v_claim.vendor_bill_amount;
+      });
+      var bill_profit = this.chart_data.map(function (data) {
+        return data.bill_profit;
+      });
+      var project_payment = this.chart_data.map(function (data) {
+        return data.project_payment;
+      });
+      var vendor_payment = this.chart_data.map(function (data) {
+        return data.vendor_payment;
+      });
+      var total_expense = this.chart_data.map(function (data) {
+        return data.total_expense;
+      });
+      var net_profit = this.chart_data.map(function (data) {
+        return data.bill_profit;
+      });
+      this.month = month_level;
+      this.project_claim = project_bill;
+      this.vendor_claim = vendor_bill;
+      this.bill_profit = bill_profit;
+      this.project_payment = project_payment;
+      this.vendor_payment = vendor_payment;
       this.total_expense = total_expense;
       this.net_profit = net_profit;
       this.generateChart();
@@ -43542,6 +44316,518 @@ var reactiveProp = {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/report/EquipmentWiseReport.vue?vue&type=template&id=b9c19a94&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/report/EquipmentWiseReport.vue?vue&type=template&id=b9c19a94& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
+        [
+          _c("vue-monthly-picker", {
+            attrs: {
+              monthLabels: _vm.pickermonth.lebel,
+              placeHolder: "Month From",
+              dateFormat: "YYYY-MM"
+            },
+            model: {
+              value: _vm.month_from,
+              callback: function($$v) {
+                _vm.month_from = $$v
+              },
+              expression: "month_from"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
+        [
+          _c("vue-monthly-picker", {
+            attrs: {
+              monthLabels: _vm.pickermonth.lebel,
+              placeHolder: "Month To",
+              dateFormat: "YYYY-MM"
+            },
+            model: {
+              value: _vm.month_to,
+              callback: function($$v) {
+                _vm.month_to = $$v
+              },
+              expression: "month_to"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-3" }, [
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.equipment_type_id,
+                expression: "equipment_type_id"
+              }
+            ],
+            staticClass: "form-control",
+            on: {
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.equipment_type_id = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                },
+                function($event) {
+                  return _vm.eTypeChanged()
+                }
+              ]
+            }
+          },
+          [
+            _c("option", { attrs: { value: "" } }, [
+              _vm._v("Chose a Equipment Type")
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.equipment_types, function(eq_type) {
+              return _c(
+                "option",
+                { key: eq_type.id, domProps: { value: eq_type.id } },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(eq_type.name) +
+                      "\n                "
+                  )
+                ]
+              )
+            })
+          ],
+          2
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-3" }, [
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.vendor_id,
+                expression: "vendor_id"
+              }
+            ],
+            staticClass: "form-control",
+            on: {
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.vendor_id = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                },
+                function($event) {
+                  return _vm.getVendorEquipments()
+                }
+              ]
+            }
+          },
+          [
+            _c("option", { attrs: { value: "" } }, [_vm._v("Chose a vendor")]),
+            _vm._v(" "),
+            _vm._l(_vm.vendors, function(vendor) {
+              return _c(
+                "option",
+                { key: vendor.id, domProps: { value: vendor.id } },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(vendor.vendor_name) +
+                      "\n                "
+                  )
+                ]
+              )
+            })
+          ],
+          2
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-3" }, [
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.equipment_id,
+                expression: "equipment_id"
+              }
+            ],
+            staticClass: "form-control",
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.equipment_id = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              }
+            }
+          },
+          [
+            _c("option", { attrs: { value: "" } }, [
+              _vm._v("Chose a Equipment")
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.equipments, function(eq) {
+              return _c("option", { key: eq.id, domProps: { value: eq.id } }, [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(eq.eq_name) +
+                    "\n                "
+                )
+              ])
+            })
+          ],
+          2
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary",
+              on: {
+                click: function($event) {
+                  return _vm.getReport()
+                }
+              }
+            },
+            [
+              _vm.isLoading
+                ? _c(
+                    "div",
+                    {
+                      staticClass:
+                        "spinner-grow text-white mr-2 align-self-center loader-sm"
+                    },
+                    [_vm._v(".")]
+                  )
+                : _vm._e(),
+              _vm._v("\n                        Get Report")
+            ]
+          )
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _vm.isFiltered
+      ? _c("div", { staticClass: "row" }, [
+          !_vm.isLoading
+            ? _c("div", { staticClass: "col-md-12" }, [
+                _vm.report_data.length > 0
+                  ? _c("div", { staticClass: "table-responsive" }, [
+                      _c(
+                        "table",
+                        {
+                          staticClass: "table table-bordered table-hover  mb-4"
+                        },
+                        [
+                          _vm._m(0),
+                          _vm._v(" "),
+                          _c(
+                            "tbody",
+                            _vm._l(_vm.report_data, function(value) {
+                              return _c("tr", { key: value.id }, [
+                                _c("td", [_vm._v(_vm._s(value.month))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(value.project_bill_amount))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(value.vendor_bill_amount))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(value.bill_profit))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(value.project_payment))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(value.project_outstanding))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(value.vendor_payment))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(value.vendor_outstanding))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(value.operator_salary))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(value.equipment_expense))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(value.total_expense))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(value.net_profit))])
+                              ])
+                            }),
+                            0
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "tfoot",
+                            { staticStyle: { "border-top": "2px solid #ccc" } },
+                            [
+                              _vm._m(1),
+                              _vm._v(" "),
+                              _c("tr", [
+                                _c("th", [_vm._v("----")]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.total_sum.total_project_bill_amount
+                                    )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.total_sum.total_vendor_bill_amount
+                                    )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(
+                                    _vm._s(_vm.total_sum.total_bill_profit)
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(
+                                    _vm._s(_vm.total_sum.total_project_payment)
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.total_sum.total_project_outstanding
+                                    )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(
+                                    _vm._s(_vm.total_sum.total_vendor_payment)
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.total_sum.total_vendor_outstanding
+                                    )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(
+                                    _vm._s(_vm.total_sum.total_operator_salary)
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.total_sum.total_equipment_expense
+                                    )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(_vm._s(_vm.total_sum.total_expense))
+                                ]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(_vm._s(_vm.total_sum.total_net_profit))
+                                ])
+                              ])
+                            ]
+                          )
+                        ]
+                      )
+                    ])
+                  : _c("div", { staticClass: "text-center" }, [
+                      _c("h3", [
+                        _vm._v("Opps ! No Result Found in this month range")
+                      ])
+                    ])
+              ])
+            : _c(
+                "div",
+                {
+                  staticClass: "col-md-12 text-center",
+                  staticStyle: { "margin-top": "30px" }
+                },
+                [_vm._m(2)]
+              ),
+          _vm._v(" "),
+          !_vm.isLoading
+            ? _c(
+                "div",
+                { staticClass: "col-md-12 text-center" },
+                [
+                  _c("h4", [_vm._v("Chart View")]),
+                  _vm._v(" "),
+                  _c("equipment-chart", {
+                    attrs: { chart_data: _vm.report_data }
+                  })
+                ],
+                1
+              )
+            : _vm._e()
+        ])
+      : _vm._e()
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Month")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Project Bill")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Vendor  Bill")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Bill Profit")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("P Payment")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("P Outstanding")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("V Payment")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("V Outstanding")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Op Salary")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Eq Expense")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("TT Expense")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Net Profit")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("Total = ")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Project Bill")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Vendor  Bill")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Bill Profit")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("P Payment")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("P Outstanding")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("V Payment")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("V Outstanding")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Op Salary")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Eq Expense")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("TT Expense")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Net Profit")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "loader multi-loader mx-auto loader-xl" }, [
+      _c("h1", [_vm._v("Proccessing...")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/report/MonthlyReport.vue?vue&type=template&id=ab55c89e&":
 /*!***********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/report/MonthlyReport.vue?vue&type=template&id=ab55c89e& ***!
@@ -43897,6 +45183,410 @@ var staticRenderFns = [
       _c("th", [_vm._v("Pr Expense")]),
       _vm._v(" "),
       _c("th", [_vm._v("Off Expense")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("TT Expense")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Net Profit")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "loader multi-loader mx-auto loader-xl" }, [
+      _c("h1", [_vm._v("Proccessing...")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/report/ProjectWiseReport.vue?vue&type=template&id=499bb1fe&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/report/ProjectWiseReport.vue?vue&type=template&id=499bb1fe& ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
+        [
+          _c("vue-monthly-picker", {
+            attrs: {
+              monthLabels: _vm.pickermonth.lebel,
+              placeHolder: "Month From",
+              dateFormat: "YYYY-MM"
+            },
+            model: {
+              value: _vm.month_from,
+              callback: function($$v) {
+                _vm.month_from = $$v
+              },
+              expression: "month_from"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
+        [
+          _c("vue-monthly-picker", {
+            attrs: {
+              monthLabels: _vm.pickermonth.lebel,
+              placeHolder: "Month To",
+              dateFormat: "YYYY-MM"
+            },
+            model: {
+              value: _vm.month_to,
+              callback: function($$v) {
+                _vm.month_to = $$v
+              },
+              expression: "month_to"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-3" }, [
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.project_id,
+                expression: "project_id"
+              }
+            ],
+            staticClass: "form-control",
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.project_id = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              }
+            }
+          },
+          [
+            _c("option", { attrs: { value: "" } }, [
+              _vm._v("Chose a Equipment Type")
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.projects, function(project) {
+              return _c(
+                "option",
+                { key: project.id, domProps: { value: project.id } },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(project.project_name) +
+                      "\n                "
+                  )
+                ]
+              )
+            })
+          ],
+          2
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary",
+              on: {
+                click: function($event) {
+                  return _vm.getReport()
+                }
+              }
+            },
+            [
+              _vm.isLoading
+                ? _c(
+                    "div",
+                    {
+                      staticClass:
+                        "spinner-grow text-white mr-2 align-self-center loader-sm"
+                    },
+                    [_vm._v(".")]
+                  )
+                : _vm._e(),
+              _vm._v("\n                        Get Report")
+            ]
+          )
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _vm.isFiltered
+      ? _c("div", { staticClass: "row" }, [
+          !_vm.isLoading
+            ? _c("div", { staticClass: "col-md-12" }, [
+                _vm.report_data.length > 0
+                  ? _c("div", { staticClass: "table-responsive" }, [
+                      _c(
+                        "table",
+                        {
+                          staticClass: "table table-bordered table-hover  mb-4"
+                        },
+                        [
+                          _vm._m(0),
+                          _vm._v(" "),
+                          _c(
+                            "tbody",
+                            _vm._l(_vm.report_data, function(value) {
+                              return _c("tr", { key: value.id }, [
+                                _c("td", [_vm._v(_vm._s(value.month))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(value.project_bill_amount))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(value.vendor_bill_amount))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(value.bill_profit))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(value.project_payment))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(value.project_outstanding))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(value.vendor_payment))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(value.vendor_outstanding))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(value.project_expense))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(value.equipment_expense))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(value.total_expense))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(value.net_profit))])
+                              ])
+                            }),
+                            0
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "tfoot",
+                            { staticStyle: { "border-top": "2px solid #ccc" } },
+                            [
+                              _vm._m(1),
+                              _vm._v(" "),
+                              _c("tr", [
+                                _c("th", [_vm._v("----")]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.total_sum.total_project_bill_amount
+                                    )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.total_sum.total_vendor_bill_amount
+                                    )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(
+                                    _vm._s(_vm.total_sum.total_bill_profit)
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(
+                                    _vm._s(_vm.total_sum.total_project_payment)
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.total_sum.total_project_outstanding
+                                    )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(
+                                    _vm._s(_vm.total_sum.total_vendor_payment)
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.total_sum.total_vendor_outstanding
+                                    )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(
+                                    _vm._s(_vm.total_sum.total_project_expense)
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.total_sum.total_equipment_expense
+                                    )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(_vm._s(_vm.total_sum.total_expense))
+                                ]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(_vm._s(_vm.total_sum.total_net_profit))
+                                ])
+                              ])
+                            ]
+                          )
+                        ]
+                      )
+                    ])
+                  : _c("div", { staticClass: "text-center" }, [
+                      _c("h3", [
+                        _vm._v("Opps ! No Result Found in this month range")
+                      ])
+                    ])
+              ])
+            : _c(
+                "div",
+                {
+                  staticClass: "col-md-12 text-center",
+                  staticStyle: { "margin-top": "30px" }
+                },
+                [_vm._m(2)]
+              ),
+          _vm._v(" "),
+          !_vm.isLoading
+            ? _c(
+                "div",
+                { staticClass: "col-md-12 text-center" },
+                [
+                  _c("h4", [_vm._v("Chart View")]),
+                  _vm._v(" "),
+                  _c("project-chart", {
+                    attrs: { chart_data: _vm.report_data }
+                  })
+                ],
+                1
+              )
+            : _vm._e()
+        ])
+      : _vm._e()
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Month")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Project Bill")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Vendor  Bill")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Bill Profit")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("P Payment")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("P Outstanding")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("V Payment")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("V Outstanding")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Pr Expense")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Eq Expense")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("TT Expense")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Net Profit")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("Total = ")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Project Bill")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Vendor  Bill")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Bill Profit")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("P Payment")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("P Outstanding")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("V Payment")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("V Outstanding")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Pr Expense")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Eq Expense")]),
       _vm._v(" "),
       _c("th", [_vm._v("TT Expense")]),
       _vm._v(" "),
@@ -56092,6 +57782,75 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/components/report/EquipmentWiseReport.vue":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/report/EquipmentWiseReport.vue ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _EquipmentWiseReport_vue_vue_type_template_id_b9c19a94___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EquipmentWiseReport.vue?vue&type=template&id=b9c19a94& */ "./resources/js/components/report/EquipmentWiseReport.vue?vue&type=template&id=b9c19a94&");
+/* harmony import */ var _EquipmentWiseReport_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EquipmentWiseReport.vue?vue&type=script&lang=js& */ "./resources/js/components/report/EquipmentWiseReport.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _EquipmentWiseReport_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EquipmentWiseReport_vue_vue_type_template_id_b9c19a94___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _EquipmentWiseReport_vue_vue_type_template_id_b9c19a94___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/report/EquipmentWiseReport.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/report/EquipmentWiseReport.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/report/EquipmentWiseReport.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EquipmentWiseReport_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./EquipmentWiseReport.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/report/EquipmentWiseReport.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EquipmentWiseReport_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/report/EquipmentWiseReport.vue?vue&type=template&id=b9c19a94&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/report/EquipmentWiseReport.vue?vue&type=template&id=b9c19a94& ***!
+  \***********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EquipmentWiseReport_vue_vue_type_template_id_b9c19a94___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./EquipmentWiseReport.vue?vue&type=template&id=b9c19a94& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/report/EquipmentWiseReport.vue?vue&type=template&id=b9c19a94&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EquipmentWiseReport_vue_vue_type_template_id_b9c19a94___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EquipmentWiseReport_vue_vue_type_template_id_b9c19a94___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/report/MonthlyReport.vue":
 /*!**********************************************************!*\
   !*** ./resources/js/components/report/MonthlyReport.vue ***!
@@ -56161,6 +57920,125 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/report/ProjectWiseReport.vue":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/report/ProjectWiseReport.vue ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ProjectWiseReport_vue_vue_type_template_id_499bb1fe___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProjectWiseReport.vue?vue&type=template&id=499bb1fe& */ "./resources/js/components/report/ProjectWiseReport.vue?vue&type=template&id=499bb1fe&");
+/* harmony import */ var _ProjectWiseReport_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProjectWiseReport.vue?vue&type=script&lang=js& */ "./resources/js/components/report/ProjectWiseReport.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ProjectWiseReport_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ProjectWiseReport_vue_vue_type_template_id_499bb1fe___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ProjectWiseReport_vue_vue_type_template_id_499bb1fe___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/report/ProjectWiseReport.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/report/ProjectWiseReport.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/report/ProjectWiseReport.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectWiseReport_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ProjectWiseReport.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/report/ProjectWiseReport.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectWiseReport_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/report/ProjectWiseReport.vue?vue&type=template&id=499bb1fe&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/report/ProjectWiseReport.vue?vue&type=template&id=499bb1fe& ***!
+  \*********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectWiseReport_vue_vue_type_template_id_499bb1fe___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./ProjectWiseReport.vue?vue&type=template&id=499bb1fe& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/report/ProjectWiseReport.vue?vue&type=template&id=499bb1fe&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectWiseReport_vue_vue_type_template_id_499bb1fe___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectWiseReport_vue_vue_type_template_id_499bb1fe___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/report/chart/EquipmentChart.vue":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/report/chart/EquipmentChart.vue ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _EquipmentChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EquipmentChart.vue?vue&type=script&lang=js& */ "./resources/js/components/report/chart/EquipmentChart.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  _EquipmentChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/report/chart/EquipmentChart.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/report/chart/EquipmentChart.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/report/chart/EquipmentChart.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EquipmentChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./EquipmentChart.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/report/chart/EquipmentChart.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EquipmentChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/report/chart/MonthlyChart.vue":
 /*!***************************************************************!*\
   !*** ./resources/js/components/report/chart/MonthlyChart.vue ***!
@@ -56208,6 +58086,56 @@ component.options.__file = "resources/js/components/report/chart/MonthlyChart.vu
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MonthlyChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./MonthlyChart.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/report/chart/MonthlyChart.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MonthlyChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/report/chart/ProjectChart.vue":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/report/chart/ProjectChart.vue ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ProjectChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProjectChart.vue?vue&type=script&lang=js& */ "./resources/js/components/report/chart/ProjectChart.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  _ProjectChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/report/chart/ProjectChart.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/report/chart/ProjectChart.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/report/chart/ProjectChart.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ProjectChart.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/report/chart/ProjectChart.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -56299,13 +58227,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_report_MonthlyReport__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/report/MonthlyReport */ "./resources/js/components/report/MonthlyReport.vue");
+/* harmony import */ var _components_report_EquipmentWiseReport__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/report/EquipmentWiseReport */ "./resources/js/components/report/EquipmentWiseReport.vue");
+/* harmony import */ var _components_report_ProjectWiseReport__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/report/ProjectWiseReport */ "./resources/js/components/report/ProjectWiseReport.vue");
 __webpack_require__(/*! ./vue-assets */ "./resources/js/vue-assets.js");
+
+
 
 
 app = new Vue({
   el: '#content',
   components: {
-    'monthly-report': _components_report_MonthlyReport__WEBPACK_IMPORTED_MODULE_0__["default"]
+    'monthly-report': _components_report_MonthlyReport__WEBPACK_IMPORTED_MODULE_0__["default"],
+    'equipment-wise-report': _components_report_EquipmentWiseReport__WEBPACK_IMPORTED_MODULE_1__["default"],
+    'project-wise-report': _components_report_ProjectWiseReport__WEBPACK_IMPORTED_MODULE_2__["default"]
   }
 });
 
@@ -56351,7 +58285,7 @@ var EventBus = new Vue();
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! I:\xampp\htdocs\e-management\resources\js\report.js */"./resources/js/report.js");
+module.exports = __webpack_require__(/*! E:\server\htdocs\e-management\resources\js\report.js */"./resources/js/report.js");
 
 
 /***/ })
