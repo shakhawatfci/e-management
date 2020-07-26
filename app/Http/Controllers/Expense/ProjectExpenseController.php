@@ -39,13 +39,23 @@ class ProjectExpenseController extends Controller
             $projects->where('project_expense_head_id','=',$request->project_head);
         }
         if($request->keyword != '') {
-            $projects->where('project_id','LIKE','%'.$request->keyword.'%');
+            $projects->where('month','LIKE','%'.$request->keyword.'%');
+            $projects->orWhere('date','LIKE','%'.$request->keyword.'%');
+            $projects->orWhere('amount','LIKE','%'.$request->keyword.'%');
+        }
+        if ($request->end_month != '' && $request->end_month != 'undefined') {
+            $start = date('Y-m',strtotime(str_replace('/','-',$request->start_month)));
+            $end = date('Y-m',strtotime(str_replace('/','-',$request->end_month)));
+
+            $projects->whereBetween('month', [$start,$end]);
+            
         }
         return $projects->paginate(10);
     }
 
     public function projectExpenseListPrint(Request $request)
     {
+        $month = null; 
         $projects = ProjectExpense::with(['project_expense_head:id,head_name','project:id,project_name'])->orderBy('id','desc');
         if($request->project != '') {
             $projects->where('project_id','=',$request->project);
@@ -54,17 +64,32 @@ class ProjectExpenseController extends Controller
             $projects->where('project_expense_head_id','=',$request->project_head);
         }
         if($request->keyword != '') {
-            $projects->where('project_id','LIKE','%'.$request->keyword.'%');
+            $projects->where('month','LIKE','%'.$request->keyword.'%');
+            $projects->orWhere('date','LIKE','%'.$request->keyword.'%');
+            $projects->orWhere('amount','LIKE','%'.$request->keyword.'%');
+        }
+        if ($request->end_month != '' && $request->end_month != 'undefined') {
+            $start = date('Y-m',strtotime(str_replace('/','-',$request->start_month)));
+            $end = date('Y-m',strtotime(str_replace('/','-',$request->end_month)));
+
+            $projects->whereBetween('month', [$start,$end]);
+            $month .= 'From ' .$start. ' to ' .$end;
+            
         }
         $project = $projects->get();
 
         if($request->action == 'print')
         {
-            return view('expense.print.project_expense_print',['projects' => $project]);
+            return view('expense.print.project_expense_print',[
+                'projects' => $project,
+                'month' => $month
+            ]);
         } else {
             // return view('expense.pdf.project_expense_pdf', [
-            $pdf = PDF::loadView('expense.pdf.project_expense_pdf', [
-                'projects' => $project]);
+            $pdf = \PDF::loadView('expense.pdf.project_expense_pdf', [
+                'projects' => $project,
+                'month' => $month
+            ]);
 
             $pdf->setPaper('A4', 'landscape');
             $pdf_name = "project_expense.pdf";

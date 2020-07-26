@@ -74,7 +74,7 @@
                 </td>
             </tr>
             <tr v-if="operators.data.length > 0">
-                <td colspan="6">
+                <td colspan="7">
                   <a :href="url+'operator-list-print-pdf?action=pdf'" class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i> PDF</a>
                   <a :href="url+'operator-list-print-pdf?action=print'" class="btn btn-danger btn-sm" target="_blank"><i class="fa fa-file-pdf-o"></i> Print</a>
                 </td>

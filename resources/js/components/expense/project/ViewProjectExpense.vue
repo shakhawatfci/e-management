@@ -22,6 +22,15 @@
           >{{ project_expense.head_name }}</option>
         </select>
       </div>
+
+      <div class="col-md-3" style="margin-bottom:10px;">
+         <vue-monthly-picker :monthLabels="pickermonth.lebel" placeHolder="Start Month" v-model="start_month"></vue-monthly-picker>
+      </div>
+
+      <div class="col-md-3" style="margin-bottom:10px;">
+         <vue-monthly-picker :monthLabels="pickermonth.lebel" placeHolder="End Month" v-model="end_month" @input="getProjectExpense()"></vue-monthly-picker>
+      </div>
+
       <div class="col-md-3" style="margin-bottom:10px;">
         <input type="text" v-model="keyword" 
         class="form-control"
@@ -38,20 +47,20 @@
     <table class="table table-bordered table-hover  mb-4">
         <thead>
             <tr>
+                <th>Date</th>
+                <th>Month</th>
                 <th>Project Name</th>
                 <th>Project Expense</th>
-                <th>Month</th>
-                <th>Date</th>
                 <th>Amount</th>
                 <th class="text-center">action</th>
             </tr>
         </thead>
         <tbody>
             <tr v-for="value in projects.data" :key="value.id">
+                <td>{{ value.date | dateToString }}</td>
+                <td>{{ value.month | monthToString }}</td>
                 <td>{{ value.project.project_name }}</td>
                 <td>{{ value.project_expense_head.head_name }}</td>
-                <td>{{ value.month | monthToString }}</td>
-                <td>{{ value.date | dateToString }}</td>
                 <td>{{ value.amount }}</td>
                 <td class="text-center">
                     <button class="btn btn-warning mb-2 mr-2 rounded-circle" title="View" @click="viewProjectExpense(value)"><i class="far fa-eye"></i></button>
@@ -61,8 +70,8 @@
             </tr>
             <tr v-if="projects.data.length > 0">
                 <td colspan="6">
-                  <a :href="url+'project-expense-print-pdf?action=pdf'" class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i> PDF</a>
-                  <a :href="url+'project-expense-print-pdf?action=print'" class="btn btn-danger btn-sm" target="_blank"><i class="fa fa-file-pdf-o"></i> Print</a>
+                  <a :href="url+`project-expense-print-pdf?action=pdf&keyword=${keyword}&project=${project_id}&project_head=${project_head_id}&start_month=${start_month._i}&end_month=${end_month._i}`" class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i> PDF</a>
+                  <a :href="url+`project-expense-print-pdf?action=print&keyword=${keyword}&project=${project_id}&project_head=${project_head_id}&start_month=${start_month._i}&end_month=${end_month._i}`" class="btn btn-danger btn-sm" target="_blank"><i class="fa fa-file-pdf-o"></i> Print</a>
                 </td>
             </tr>
         </tbody>
@@ -92,6 +101,7 @@
 <script>
 import { EventBus } from "../../../vue-assets";
 import Mixin from "../../../mixin";
+import VueMonthlyPicker from 'vue-monthly-picker'
 import Pagination from '../../pagination/Pagination';
 import ShowProjectexpense from './SingleViewProjectexpense';
 import UpdateProjectexpense from './UpdateProjectexpense';
@@ -100,13 +110,19 @@ export default {
   props : ['project_expense_head','projects_data'],
   components : {
    'pagination' : Pagination,
-   UpdateProjectexpense,ShowProjectexpense
+   UpdateProjectexpense,ShowProjectexpense,VueMonthlyPicker
   },
   data() {
     return {
      projects : [],
      project_id : '',
      project_head_id : '',
+     pickermonth : {
+        lebel : ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
+        text : "Search By Month",
+      },
+      start_month : '',
+      end_month : '',
      url : base_url,
      keyword   : '',
      isLoading : false,
@@ -130,7 +146,14 @@ export default {
      getProjectExpense(page = 1) 
      {
          this.isLoading = true;
-         axios.get(base_url+`project-expense-list?page=${page}&keyword=${this.keyword}&project=${this.project_id}&project_head=${this.project_head_id}`)
+         var st_mo = ''
+          var lt_mo = ''
+          if(this.end_month != ''){
+            if(this.start_month === '') this.successMessage({status : 'error',message :'Select start Month'})
+              st_mo = this.start_month._i
+              lt_mo = this.end_month._i
+          }
+         axios.get(base_url+`project-expense-list?page=${page}&keyword=${this.keyword}&project=${this.project_id}&project_head=${this.project_head_id}&start_month=${st_mo}&end_month=${lt_mo}`)
          .then(response =>
           {
             this.projects = response.data;
@@ -176,6 +199,8 @@ export default {
      {
         this.project_id = '';
         this.project_head_id = '';
+        this.start_month = '';
+        this.end_month = '';
         this.keyword  = '';
         this.getProjectExpense();
      },

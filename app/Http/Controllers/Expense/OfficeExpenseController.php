@@ -37,33 +37,58 @@ class OfficeExpenseController extends Controller
             $office->where('office_expense_head_id','=',$request->office_head);
         }
         if($request->keyword != '') {
-            $office->where('project_id','LIKE','%'.$request->keyword.'%');
+            // $office->where('project_id','LIKE','%'.$request->keyword.'%');
+            $office->where('month','LIKE','%'.$request->keyword.'%');
+            $office->orWhere('date','LIKE','%'.$request->keyword.'%');
+            $office->orWhere('amount','LIKE','%'.$request->keyword.'%');
+        }
+        if ($request->end_month != '' && $request->end_month != 'undefined') {
+            $start = date('Y-m',strtotime(str_replace('/','-',$request->start_month)));
+            $end = date('Y-m',strtotime(str_replace('/','-',$request->end_month)));
+
+            $office->whereBetween('month', [$start,$end]);
+            
         }
         return $office->paginate(10);
     }
 
     public function officeExpensePrint(Request $request)
     {
-        // 
+        $month = null; 
         $office = OfficeExpense::with(['office_expense_head:id,head_name'])->orderBy('id','desc');
         if($request->office_head != '') {
             $office->where('office_expense_head_id','=',$request->office_head);
         }
         if($request->keyword != '') {
-            $office->where('project_id','LIKE','%'.$request->keyword.'%');
+            $office->where('month','LIKE','%'.$request->keyword.'%');
+            $office->orWhere('date','LIKE','%'.$request->keyword.'%');
+            $office->orWhere('amount','LIKE','%'.$request->keyword.'%');
+        }
+        if ($request->end_month != '' && $request->end_month != 'undefined') {
+            $start = date('Y-m',strtotime(str_replace('/','-',$request->start_month)));
+            $end = date('Y-m',strtotime(str_replace('/','-',$request->end_month)));
+
+            $office->whereBetween('month', [$start,$end]);
+            
+            $month .= 'From ' .$start. ' to ' .$end;
         }
         $office = $office->get();
 
         if($request->action == 'print')
         {
-            return view('expense.print.office_expense_print',['offices' => $office]);
+            return view('expense.print.office_expense_print',[
+                'offices' => $office,
+                'month' => $month
+            ]);
         } else {
             // return view('expense.pdf.office_expense_pdf', [
             $pdf = \PDF::loadView('expense.pdf.office_expense_pdf', [
-                'offices' => $office]);
+                'offices' => $office,
+                'month' => $month
+            ]);
 
             $pdf->setPaper('A4', 'landscape');
-            $pdf_name = "equipment_expense.pdf";
+            $pdf_name = "office_expense.pdf";
             return $pdf->download($pdf_name);
         }
     }
