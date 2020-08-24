@@ -17,71 +17,31 @@
     <div class="widget widget-table-two">
 
         <div class="widget-heading">
-            <h5 class="">Recent Orders</h5>
+            <h5 class="">Last Month Bill Yet Not Done</h5>
         </div>
 
         <div class="widget-content">
             <div class="table-responsive">
                 <table class="table">
-                    <thead>
+                    <thead style="display:table;width:100%;table-layout:fixed;width: calc( 100% - 1em );">
                         <tr>
-                            <th><div class="th-content">Customer</div></th>
-                            <th><div class="th-content">Product</div></th>
-                            <th><div class="th-content">Invoice</div></th>
-                            <th><div class="th-content th-heading">Price</div></th>
-                            <th><div class="th-content">Status</div></th>
+                            <th><div class="th-content">Project</div></th>
+                            <th><div class="th-content">Equipment</div></th>
+                            <!-- <th><div class="th-content">Type</div></th> -->
+                            <th><div class="th-content th-heading">Amount</div></th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td><div class="td-content customer-name"><img src="assets/img/90x90.jpg" alt="avatar">Andy King</div></td>
-                            <td><div class="td-content product-brand">Nike Sport</div></td>
-                            <td><div class="td-content">#76894</div></td>
-                            <td><div class="td-content pricing"><span class="">$88.00</span></div></td>
-                            <td><div class="td-content"><span class="badge outline-badge-primary">Shipped</span></div></td>
-                        </tr>
-                        <tr>
-                            <td><div class="td-content customer-name"><img src="assets/img/90x90.jpg" alt="avatar">Irene Collins</div></td>
-                            <td><div class="td-content product-brand">Speakers</div></td>
-                            <td><div class="td-content">#75844</div></td>
-                            <td><div class="td-content pricing"><span class="">$84.00</span></div></td>
-                            <td><div class="td-content"><span class="badge outline-badge-success">Paid</span></div></td>
-                        </tr>
-                        <tr>
-                            <td><div class="td-content customer-name"><img src="assets/img/90x90.jpg" alt="avatar">Laurie Fox</div></td>
-                            <td><div class="td-content product-brand">Camera</div></td>
-                            <td><div class="td-content">#66894</div></td>
-                            <td><div class="td-content pricing"><span class="">$126.04</span></div></td>
-                            <td><div class="td-content"><span class="badge outline-badge-danger">Pending</span></div></td>
-                        </tr>
-                        <tr>
-                            <td><div class="td-content customer-name"><img src="assets/img/90x90.jpg" alt="avatar">Luke Ivory</div></td>
-                            <td><div class="td-content product-brand">Headphone</div></td>
-                            <td><div class="td-content">#46894</div></td>
-                            <td><div class="td-content pricing"><span class="">$56.07</span></div></td>
-                            <td><div class="td-content"><span class="badge outline-badge-success">Paid</span></div></td>
-                        </tr>
-                        <tr>
-                            <td><div class="td-content customer-name"><img src="assets/img/90x90.jpg" alt="avatar">Ryan Collins</div></td>
-                            <td><div class="td-content product-brand">Sport</div></td>
-                            <td><div class="td-content">#89891</div></td>
-                            <td><div class="td-content pricing"><span class="">$108.09</span></div></td>
-                            <td><div class="td-content"><span class="badge outline-badge-primary">Shipped</span></div></td>
-                        </tr>
-                        <tr>
-                            <td><div class="td-content customer-name"><img src="assets/img/90x90.jpg" alt="avatar">Nia Hillyer</div></td>
-                            <td><div class="td-content product-brand">Sunglasses</div></td>
-                            <td><div class="td-content">#26974</div></td>
-                            <td><div class="td-content pricing"><span class="">$168.09</span></div></td>
-                            <td><div class="td-content"><span class="badge outline-badge-primary">Shipped</span></div></td>
-                        </tr>
-                        <tr>
-                            <td><div class="td-content customer-name"><img src="assets/img/90x90.jpg" alt="avatar">Sonia Shaw</div></td>
-                            <td><div class="td-content product-brand">Watch</div></td>
-                            <td><div class="td-content">#76844</div></td>
-                            <td><div class="td-content pricing"><span class="">$110.00</span></div></td>
-                            <td><div class="td-content"><span class="badge outline-badge-success">Paid</span></div></td>
-                        </tr>
+                    <tbody style="display:block;height:400px;overflow-y:auto;width:100%;">
+                    @if($last_month_due_bill->count() > 0)
+                        @foreach($last_month_due_bill as $due_bill)
+                            <tr style="display:table;width:100%;table-layout:fixed;">
+                                <td><div class="td-content customer-name">{{ $due_bill->project->project_name }}</div></td>
+                                <td><div class="td-content product-brand">{{ $due_bill->equipement->eq_name }}</div></td>
+                                <!-- <td><div class="td-content">{{ $due_bill->equipment_type->name }}</div></td> -->
+                                <td><div class="td-content pricing">{{ $due_bill->total_project_amount }}</div></td>
+                            </tr>
+                        @endforeach
+                    @endif
                     </tbody>
                 </table>
             </div>
@@ -115,48 +75,6 @@
                             <td><div class="td-content"><span class="discount-pricing">$10.00</span></div></td>
                             <td><div class="td-content">240</div></td>
                             <td><div class="td-content"><a href="javascript:void(0);" class="">Direct</a></div></td>
-                        </tr>
-                        <tr>
-                            <td><div class="td-content product-name"><img src="assets/img/90x90.jpg" alt="product">Sunglasses</div></td>
-                            <td><div class="td-content"><span class="pricing">$56.07</span></div></td>
-                            <td><div class="td-content"><span class="discount-pricing">$5.07</span></div></td>
-                            <td><div class="td-content">190</div></td>
-                            <td><div class="td-content"><a href="javascript:void(0);" class="">Google</a></div></td>
-                        </tr>
-                        <tr>
-                            <td><div class="td-content product-name"><img src="assets/img/90x90.jpg" alt="product">Watch</div></td>
-                            <td><div class="td-content"><span class="pricing">$88.00</span></div></td>
-                            <td><div class="td-content"><span class="discount-pricing">$20.00</span></div></td>
-                            <td><div class="td-content">66</div></td>
-                            <td><div class="td-content"><a href="javascript:void(0);" class="">Ads</a></div></td>
-                        </tr>
-                        <tr>
-                            <td><div class="td-content product-name"><img src="assets/img/90x90.jpg" alt="product">Laptop</div></td>
-                            <td><div class="td-content"><span class="pricing">$110.00</span></div></td>
-                            <td><div class="td-content"><span class="discount-pricing">$33.00</span></div></td>
-                            <td><div class="td-content">35</div></td>
-                            <td><div class="td-content"><a href="javascript:void(0);" class="">Email</a></div></td>
-                        </tr>
-                        <tr>
-                            <td><div class="td-content product-name"><img src="assets/img/90x90.jpg" alt="product">Camera</div></td>
-                            <td><div class="td-content"><span class="pricing">$126.04</span></div></td>
-                            <td><div class="td-content"><span class="discount-pricing">$26.04</span></div></td>
-                            <td><div class="td-content">30</div></td>
-                            <td><div class="td-content"><a href="javascript:void(0);" class="">Referral</a></div></td>
-                        </tr>
-                        <tr>
-                            <td><div class="td-content product-name"><img src="assets/img/90x90.jpg" alt="product">Shoes</div></td>
-                            <td><div class="td-content"><span class="pricing">$108.09</span></div></td>
-                            <td><div class="td-content"><span class="discount-pricing">$47.09</span></div></td>
-                            <td><div class="td-content">130</div></td>
-                            <td><div class="td-content"><a href="javascript:void(0);" class="">Google</a></div></td>
-                        </tr>
-                        <tr>
-                            <td><div class="td-content product-name"><img src="assets/img/90x90.jpg" alt="product">Headphone</div></td>
-                            <td><div class="td-content"><span class="pricing">$168.09</span></div></td>
-                            <td><div class="td-content"><span class="discount-pricing">$60.09</span></div></td>
-                            <td><div class="td-content">170</div></td>
-                            <td><div class="td-content"><a href="javascript:void(0);" class="">Ads</a></div></td>
                         </tr>
                     </tbody>
                 </table>
