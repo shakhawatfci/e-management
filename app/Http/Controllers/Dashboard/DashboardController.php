@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\CarAssign;
+use App\ProjectClaim;
 
 class DashboardController extends Controller
 {
@@ -14,9 +16,18 @@ class DashboardController extends Controller
      */
     public function index()
     {
-
-       
-        return view('dashboard.dashboard');
+        $last_month = date('Y-m',strtotime('-1 month'));
+        $last_month_due_bill = CarAssign::with(
+            [
+                'equipement',
+                'equipment_type:id,name',
+                'vendor:id,vendor_name',
+                'project:id,project_name'
+            ])->whereNotIn('id',ProjectClaim::where('month','!=',$last_month)->distinct('assign_id')->pluck('assign_id'))
+            ->orderBy('updated_at','desc')->get(); 
+            
+            // return $last_month_due_bill;
+        return view('dashboard.dashboard',['last_month_due_bill' => $last_month_due_bill]);
     }
 
     /**
