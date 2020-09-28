@@ -138,7 +138,7 @@ class EquipmentTypeController extends Controller
         try
         {
         
-            $equipmentType               = new EquipmentType;
+            $equipmentType               = EquipmentType::find($equipmentType->id);
 
             $equipmentType->name         =  $request->name;
             $equipmentType->note         =  $request->note;

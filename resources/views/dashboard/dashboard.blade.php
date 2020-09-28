@@ -27,8 +27,8 @@
                         <tr>
                             <th><div class="th-content">Project</div></th>
                             <th><div class="th-content">Equipment</div></th>
-                            <!-- <th><div class="th-content">Type</div></th> -->
-                            <th><div class="th-content th-heading">Amount</div></th>
+                            <th><div class="th-content">Type</div></th>
+                            <!-- <th><div class="th-content th-heading">Amount</div></th> -->
                         </tr>
                     </thead>
                     <tbody style="display:block;height:400px;overflow-y:auto;width:100%;">
@@ -37,8 +37,8 @@
                             <tr style="display:table;width:100%;table-layout:fixed;">
                                 <td><div class="td-content customer-name">{{ $due_bill->project->project_name }}</div></td>
                                 <td><div class="td-content product-brand">{{ $due_bill->equipement->eq_name }}</div></td>
-                                <!-- <td><div class="td-content">{{ $due_bill->equipment_type->name }}</div></td> -->
-                                <td><div class="td-content pricing">{{ $due_bill->total_project_amount }}</div></td>
+                                <td><div class="td-content">{{ $due_bill->equipment_type->name }}</div></td>
+                                <!-- <td><div class="td-content pricing">{{ $due_bill->total_project_amount }}</div></td> -->
                             </tr>
                         @endforeach
                     @endif
