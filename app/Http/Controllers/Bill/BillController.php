@@ -135,12 +135,15 @@ class BillController extends Controller
 
             $assign = CarAssign::find($request->assign_id);
 
+            // return $assign->operator_id;
+
             $bill                           =       new ProjectClaim;
             $bill_no                        =       generateBillNo($fmonth);
             $bill->bill_no                  =       $bill_no;
             $bill->assign_id                =       $request->assign_id;
             $bill->project_id               =       $assign->project_id;
             $bill->vendor_id                =       $assign->vendor_id;
+            $bill->operator_id              =       $assign->operator_id;
             $bill->equipment_type_id        =       $assign->equipment_type_id;
             $bill->equipement_id            =       $assign->equipement_id;
             $bill->user_id                  =       Auth::user()->id;
@@ -297,6 +300,7 @@ class BillController extends Controller
             $bill->project_sup = $request->project_sup;
             $bill->vendor_vat = $request->vendor_vat;
             $bill->vendor_ait = $request->vendor_ait;
+            // $bill->operator_id = $request->vendor_ait;
             $bill->vendor_sup = $request->vendor_sup;
             $bill->total_project_amount = $request->total_project_amount;
             $bill->total_vendor_amount = $request->total_vendor_amount;
@@ -360,12 +364,13 @@ class BillController extends Controller
     public function printForm($bill_no)
     {
 
-        $bill = ProjectClaim::with(
+         $bill = ProjectClaim::with(
             [
                 'equipement',
                 'equipment_type',
                 'vendor',
                 'project',
+                'operator:id,name',
             ]
         )
             ->where('bill_no', '=', $bill_no)

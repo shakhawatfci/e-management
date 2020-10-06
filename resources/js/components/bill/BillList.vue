@@ -66,7 +66,7 @@
 
     <div class="row" style="margin-top:20px">
       <div class="col-md-12" v-if="!isLoading">
-        <div class="table-responsive">
+        <div class="table-responsive" style="min-height : 60vh !important;">
           <table class="table table-bordered table-hover mb-4">
             <thead>
               <tr>

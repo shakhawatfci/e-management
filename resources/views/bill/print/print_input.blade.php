@@ -41,7 +41,7 @@
         	   <p style=""><input type="text" value="{{ $bill->project->project_location }}" name="project_location" class="form-control"></p>
         	   <p style="margin-top: 20px;">
         	   	<strong style="word-spacing: 1px;">Subject:
-                    <input type="text" value="Bill of {{ $bill->equipment_type->name }} ( {{ $bill->equipement->eq_model }} )  {{ $bill->equipement->eq_capacity }}  for The Month Of {{ date('F Y', strtotime($bill->month)) }}" class="form-control" name="subject" required="">
+                    <input type="text" value="Bill of {{ $bill->equipment_type->name }} ( {{ $bill->equipement->eq_model }} )  {{ $bill->equipement->eq_capacity }}  for The Month Of {{ date('F Y', strtotime($bill->month)) }} / Operator - ({{ $bill->operator->name }})" class="form-control" name="subject" required="">
                  </strong>
         	   </p>
 
@@ -124,8 +124,8 @@
         <div class="row">
             <div class="col-md-6 col-xs-6">
                 <p style="margin-top: 20px;">Thanks & Regards</p>
-                <p style="margin-top: 60px;"><input type="text" name="bill_by" value="Mizanur Rahman" class="form-control"></p>
-                <p><input type="text" name="designation" value="Project Coordinator" class="form-control" required=""></p>
+                <p style="margin-top: 60px;"><input type="text" name="bill_by" value="Md Rafiqul Islam" class="form-control"></p>
+                <p><input type="text" name="designation" value="Proprietor" class="form-control" required=""></p>
                 <p><input type="text" name="company" value="Limmex Construction" class="form-control" required=""></p>
             </div>  
 

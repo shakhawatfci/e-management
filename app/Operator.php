@@ -57,4 +57,9 @@ class Operator extends Model
          ]
       );
     }
+
+    public function project_claim()
+    {
+      return $this->hasMany('App\ProjectClaim');
+    }
 }

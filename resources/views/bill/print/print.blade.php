@@ -15,13 +15,13 @@
         <div class="row">
         	<div class="col-md-12 col-xs-12">
         	   <p>Date: {{ date('d F , Y', strtotime(date('d-m-Y'))) }}</p>
-        	   <p> <strong>Bill NO: {{ $bill->bill_no }}</strong></p>
-        	   <p style="margin-top:20px;">To,</p>
+        	   <!-- <p> <strong>Bill NO: </strong></p> -->
+        	   <p style="margin-top:15px;">To,</p>
         	   <p style="">{{ $form_data['to'] }}</p>
         	   <p style="">{{ $form_data['company'] }}</p>
         	   <p style="">{{ $form_data['project_name'] }}</p>
         	   <p style="">{{ $form_data['project_location'] }}</p>
-        	   <p style="margin-top: 20px;">
+        	   <p style="margin-top: 15px;">
         	   	<strong style="word-spacing: 1px;">Subject:
                      {{ $form_data['subject'] }}
                  </strong>
@@ -106,7 +106,7 @@
         <div class="row">
             <div class="col-md-6 col-xs-6">
                 <p style="margin-top: 20px;">Thanks & Regards</p>
-                <p style="margin-top: 60px;">{{ $form_data['bill_by'] }}</p>
+                <p style="margin-top: 40px;">{{ $form_data['bill_by'] }}</p>
                 <p>{{ $form_data['designation'] }}</p>
                 <p>{{ $form_data['company'] }}</p>
             </div>  

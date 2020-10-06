@@ -64,4 +64,14 @@ class ProjectClaim extends Model
         'name' => 'Deleted User',
       ]);
     }
+
+    // relation with Operator table 
+
+    public function operator()
+    {
+      return $this->belongsTo('App\Operator')->withDefault([
+        'id' => 0,
+        'name' => 'None',
+      ]);
+    }
 }
