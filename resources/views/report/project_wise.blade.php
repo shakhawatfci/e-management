@@ -1,10 +1,10 @@
 @extends('master.master')
-@section('title','EMS | Month to Month Report')
+@section('title','EMS |Report Project Wise')
 
 @section('page_header')
 
         <li class="breadcrumb-item"><a href="javascript:void(0);">Report</a></li>
-        <li class="breadcrumb-item active" aria-current="page"><span>Month to Month Report</span></li>
+        <li class="breadcrumb-item active" aria-current="page"><span>Project Wise Report</span></li>
 @endsection
 
 @section('content')
@@ -12,7 +12,9 @@
                 <div class="row layout-spacing layout-top-spacing" id="cancel-row">
                     <div class="col-lg-12">
                         <div class="widget-content searchable-container list">
-                         <project-wise-report></project-wise-report>
+
+                         <project-wise-report :projects='@json($projects)'></project-wise-report>
+                         
                         </div>
                     </div>
                 </div>
