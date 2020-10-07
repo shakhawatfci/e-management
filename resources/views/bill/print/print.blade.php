@@ -39,7 +39,7 @@
         	   <p>{{ $form_data['company'] }}</p>
         	   <p>{{ $form_data['project_name'] }}</p>
         	   <p>{{ $form_data['project_location'] }}</p>
-        	   <p style="margin-top:15px">
+        	   <p style="margin-top:15px;line-height:25px">
         	   	<strong style="word-spacing: 1px;">Subject:
                      {{ $form_data['subject'] }}
                  </strong>
