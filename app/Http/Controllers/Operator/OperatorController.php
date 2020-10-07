@@ -2,60 +2,56 @@
 
 namespace App\Http\Controllers\Operator;
 
+use App\Equipement;
+use App\EquipmentType;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Operator;
 use App\Vendor;
-use App\EquipmentType;
-use App\Equipement;
+use Illuminate\Http\Request;
 use PDF;
 
 class OperatorController extends Controller
 {
     public function index()
     {
-        $vendor = Vendor::all();
+        $vendor         = Vendor::all();
         $equipment_type = EquipmentType::all();
-        $equipement = Equipement::all();
-    	return view('operator.operator',[
-            'vendors' => $vendor,
-            'equipment_types' => $equipment_type
+        $equipement     = Equipement::all();
+        return view('operator.operator', [
+            'vendors'         => $vendor,
+            'equipment_types' => $equipment_type,
         ]);
     }
 
     public function operatorList(Request $request)
     {
-        $operator = Operator::with(['vendor','equipment_type','equipement'])
-                              ->orderBy('id','desc');
+        $operator = Operator::with(['vendor', 'equipment_type', 'equipement'])
+            ->orderBy('id', 'desc');
         $keyword = $request->keyword;
 
-        if($request->operator_type != '')
-        {
-            $operator->where('operator_type','=',$request->operator_type);
+        if ($request->operator_type != '') {
+            $operator->where('operator_type', '=', $request->operator_type);
         }
 
-        if($request->equipment_type_id != '')
-        {
-            $operator->where('equipment_type_id','=',$request->equipment_type_id);
+        if ($request->equipment_type_id != '') {
+            $operator->where('equipment_type_id', '=', $request->equipment_type_id);
         }
 
-        if($request->vendor_id != '')
-        {
-            $operator->where('vendor_id','=',$request->vendor_id);
+        if ($request->vendor_id != '') {
+            $operator->where('vendor_id', '=', $request->vendor_id);
         }
 
-        if($request->equipment_id != '')
-        {
-            $operator->where('equipement_id','=',$request->equipment_id);
+        if ($request->equipment_id != '') {
+            $operator->where('equipement_id', '=', $request->equipment_id);
         }
 
-        if($keyword != '') {
-            $operator->where(function($query) use($keyword) {
-                $query->where('name','LIKE','%'.$request->keyword.'%');
-                $query->orWhere('mobile','LIKE','%'.$request->keyword.'%');
-                $query->orWhere('email','LIKE','%'.$request->keyword.'%');
-                $query->orWhere('salary','LIKE','%'.$request->keyword.'%');
-                $query->orWhere('nid','LIKE','%'.$request->keyword.'%');
+        if ($keyword != '') {
+            $operator->where(function ($query) use ($keyword) {
+                $query->where('name', 'LIKE', '%' . $keyword . '%');
+                $query->orWhere('mobile', 'LIKE', '%' . $keyword . '%');
+                $query->orWhere('email', 'LIKE', '%' . $keyword . '%');
+                $query->orWhere('salary', 'LIKE', '%' . $keyword . '%');
+                $query->orWhere('nid', 'LIKE', '%' . $keyword . '%');
             });
         }
         return $operator->paginate(10);
@@ -63,47 +59,42 @@ class OperatorController extends Controller
 
     public function operatorListPrint(Request $request)
     {
-        $operator = Operator::with(['vendor','equipment_type','equipement'])
-                              ->orderBy('id','desc');
+        $operator = Operator::with(['vendor', 'equipment_type', 'equipement'])
+            ->orderBy('id', 'desc');
         $keyword = $request->keyword;
 
-        if($request->operator_type != '')
-        {
-            $operator->where('operator_type','=',$request->operator_type);
+        if ($request->operator_type != '') {
+            $operator->where('operator_type', '=', $request->operator_type);
         }
 
-        if($request->equipment_type_id != '')
-        {
-            $operator->where('equipment_type_id','=',$request->equipment_type_id);
+        if ($request->equipment_type_id != '') {
+            $operator->where('equipment_type_id', '=', $request->equipment_type_id);
         }
 
-        if($request->vendor_id != '')
-        {
-            $operator->where('vendor_id','=',$request->vendor_id);
+        if ($request->vendor_id != '') {
+            $operator->where('vendor_id', '=', $request->vendor_id);
         }
 
-        if($request->equipment_id != '')
-        {
-            $operator->where('equipement_id','=',$request->equipment_id);
+        if ($request->equipment_id != '') {
+            $operator->where('equipement_id', '=', $request->equipment_id);
         }
 
-        if($keyword != '') {
-            $operator->where(function($query) use($keyword) {
-                $query->where('name','LIKE','%'.$request->keyword.'%');
-                $query->orWhere('mobile','LIKE','%'.$request->keyword.'%');
-                $query->orWhere('email','LIKE','%'.$request->keyword.'%');
-                $query->orWhere('salary','LIKE','%'.$request->keyword.'%');
-                $query->orWhere('nid','LIKE','%'.$request->keyword.'%');
+        if ($keyword != '') {
+            $operator->where(function ($query) use ($keyword) {
+                $query->where('name', 'LIKE', '%' . $request->keyword . '%');
+                $query->orWhere('mobile', 'LIKE', '%' . $request->keyword . '%');
+                $query->orWhere('email', 'LIKE', '%' . $request->keyword . '%');
+                $query->orWhere('salary', 'LIKE', '%' . $request->keyword . '%');
+                $query->orWhere('nid', 'LIKE', '%' . $request->keyword . '%');
             });
         }
         $operator = $operator->get();
 
-        if($request->action == 'print')
-        {
-            return view('operator.print.operatorlistprint',['operators' => $operator]);
+        if ($request->action == 'print') {
+            return view('operator.print.operatorlistprint', ['operators' => $operator]);
         } else {
             $pdf = PDF::loadView('operator.pdf.operatorlistpdf', [
-            // return view('operator.pdf.operatorlistpdf', [
+                // return view('operator.pdf.operatorlistpdf', [
                 'operators' => $operator]);
 
             $pdf->setPaper('A4', 'landscape');
@@ -123,39 +114,39 @@ class OperatorController extends Controller
         $request->validate([
             'operator_name' => 'required',
             'salary'        => 'required',
-	        'picture' 		=> 'image|nullable'
+            'picture'       => 'image|nullable',
         ]);
 
         try {
-           $status = $request->status ? 1 : 0;
-           $filename = NULL;
-            if($request->file('picture')){
-                $data = $request->file('picture');
-                $ext = $data->getClientOriginalExtension();
-                $filename = time().'.'.$ext;
-                $data->move('images/operator/',$filename);
+            $status   = $request->status ? 1 : 0;
+            $filename = null;
+            if ($request->file('picture')) {
+                $data     = $request->file('picture');
+                $ext      = $data->getClientOriginalExtension();
+                $filename = time() . '.' . $ext;
+                $data->move('images/operator/', $filename);
             }
             $insert = Operator::insert([
-            	'name'			    =>    $request->operator_name,
-                'equipment_type_id' =>    $request->equipment_type_id,
-                'vendor_id'         =>    $request->vendor_id,
-                'equipement_id'     =>    $request->equipement_id,
-                'operator_type'     =>    $request->operator_type,
-		        'mobile' 		    =>    $request->mobile,
-		        'address' 		    =>    $request->address,
-		        'email' 		    =>    $request->email,
-		        'bkash_number' 	    =>    $request->bkash,
-		        'join_date' 	    =>    $request->join_date,
-		        'nid' 			    =>    $request->nid,
-		        'date_of_birth'     =>    $request->date_of_birth,
-		        'file' 			    =>    $filename,
-		        'documents_link'    =>    $request->documents_link,
-		        'salary' 		    =>    $request->salary,
-		        'status' 		    =>        $status
+                'name'              => $request->operator_name,
+                'equipment_type_id' => $request->equipment_type_id,
+                'vendor_id'         => $request->vendor_id,
+                'equipement_id'     => $request->equipement_id,
+                'operator_type'     => $request->operator_type,
+                'mobile'            => $request->mobile,
+                'address'           => $request->address,
+                'email'             => $request->email,
+                'bkash_number'      => $request->bkash,
+                'join_date'         => $request->join_date,
+                'nid'               => $request->nid,
+                'date_of_birth'     => $request->date_of_birth,
+                'file'              => $filename,
+                'documents_link'    => $request->documents_link,
+                'salary'            => $request->salary,
+                'status'            => $status,
             ]);
             if ($insert) {
                 return response()->json(['status' => 'success', 'message' => 'New Operator Created !']);
-            }else{
+            } else {
                 return response()->json(['status' => 'error', 'message' => 'Something went wrong !']);
 
             }
@@ -170,49 +161,49 @@ class OperatorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         // return $request->all();
         $request->validate([
-            'name'          => 'required'
+            'name' => 'required',
         ]);
 
         try {
-           $status = $request->status ? 1 : 0;
+            $status = $request->status ? 1 : 0;
 
-            $update = Operator::find($id);
-                $update->name           = $request->name;
-                $update->vendor_id = $request->vendor_id;
-                $update->equipment_type_id = $request->equipment_type_id;
-                $update->equipement_id   = $request->equipement_id;
-                $update->operator_type  = $request->operator_type;
-                $update->mobile         = $request->mobile;
-                $update->address        = $request->address;
-                $update->email          = $request->email;
-                $update->bkash_number   = $request->bkash_number;
-                $update->join_date      = $request->join_date;
-                $update->nid            = $request->nid;
-                $update->date_of_birth  = $request->date_of_birth;
-                $update->documents_link = $request->documents_link;
-                $update->salary         = $request->salary;
-                $update->status         = $status;
-            
+            $update                    = Operator::find($id);
+            $update->name              = $request->name;
+            $update->vendor_id         = $request->vendor_id;
+            $update->equipment_type_id = $request->equipment_type_id;
+            $update->equipement_id     = $request->equipement_id;
+            $update->operator_type     = $request->operator_type;
+            $update->mobile            = $request->mobile;
+            $update->address           = $request->address;
+            $update->email             = $request->email;
+            $update->bkash_number      = $request->bkash_number;
+            $update->join_date         = $request->join_date;
+            $update->nid               = $request->nid;
+            $update->date_of_birth     = $request->date_of_birth;
+            $update->documents_link    = $request->documents_link;
+            $update->salary            = $request->salary;
+            $update->status            = $status;
+
             // $imageData = $request->file('file');
-            if($request->file('file')){
-                if (file_exists('images/operator/'.$update->file) && !empty($update->file)) {
-                   
-                   unlink('images/operator/'.$update->file);
+            if ($request->file('file')) {
+                if (file_exists('images/operator/' . $update->file) && !empty($update->file)) {
+
+                    unlink('images/operator/' . $update->file);
                 }
-                $data = $request->file('file');
-                $ext = $data->getClientOriginalExtension();
-                $filename = time().'.'.$ext;
-                $data->move('images/operator/',$filename);
+                $data     = $request->file('file');
+                $ext      = $data->getClientOriginalExtension();
+                $filename = time() . '.' . $ext;
+                $data->move('images/operator/', $filename);
                 $update->file = $filename;
             }
 
             if ($update->update()) {
                 return response()->json(['status' => 'success', 'message' => 'Operator Updated !']);
-            }else{
+            } else {
                 return response()->json(['status' => 'error', 'message' => 'Something went wrong !']);
 
             }
@@ -221,17 +212,16 @@ class OperatorController extends Controller
         }
     }
 
-
     public function destroy($id)
     {
         try {
             $delete = Operator::find($id);
-            if (file_exists('images/operator/'.$delete->file) && !empty($delete->file)) {   
-               unlink('images/operator/'.$delete->file);
+            if (file_exists('images/operator/' . $delete->file) && !empty($delete->file)) {
+                unlink('images/operator/' . $delete->file);
             }
-        if ($delete->delete()) {
+            if ($delete->delete()) {
                 return response()->json(['status' => 'success', 'message' => 'Operator Deleted !']);
-            }else{
+            } else {
                 return response()->json(['status' => 'error', 'message' => 'Something went wrong !']);
             }
         } catch (\Exception $e) {
