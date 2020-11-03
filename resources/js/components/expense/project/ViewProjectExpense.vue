@@ -90,7 +90,7 @@
     <div class="row">
       <div class="col-md-12 text-center mb-10 mt-10">
        <!-- import pagination here  -->
-       <pagination :pageData="this.projects"></pagination>
+       <pagination :pageData="projects"></pagination>
 
       </div>
     </div>

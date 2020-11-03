@@ -20,7 +20,7 @@
 
         <div class="row">
         	<div class="col-md-12 col-xs-12">
-        	   <p>Date: {{ date('d F , Y', strtotime(date('d-m-Y'))) }}</p>
+        	   <p>Date: {{ date('d F , Y', strtotime($bill->date)) }}</p>
         	   <p> <strong>Bill NO: {{ $bill->bill_no }}</strong></p>
         	   <p style="margin-top:20px;">To,</p>
         	   <p style="">{{ $form_data['to'] }}</p>
