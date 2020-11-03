@@ -76,8 +76,7 @@ export default {
 
     },
 
-    monthToString(month)
-    {
+    monthToString(month) {
 
       // pass  2020
       const newYears = new Date(month);

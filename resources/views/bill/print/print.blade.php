@@ -46,7 +46,7 @@
         	   </p>
 
         	  <p style="margin-top: 5px;">Dear Sir,</p>
-        	  <p style="">Please find the bill and kindly take necessary action for payment</p>
+        	  <p>Please find the bill and kindly take necessary action for payment</p>
         	</div>
         </div>
 
