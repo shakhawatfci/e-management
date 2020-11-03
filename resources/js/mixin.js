@@ -57,7 +57,7 @@ export default {
 
   filters: {
     formatPrice: function (value) {
-      return Number(value).toFixed(3);
+      return parseFloat(value).toFixed(3);
     },
     strippedContent: function (string) {
       return string.replace(/<\/?[^>]+>/ig, " ");
