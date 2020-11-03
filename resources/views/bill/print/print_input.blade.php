@@ -32,11 +32,11 @@
 
         <div class="row">
         	<div class="col-md-12 col-xs-12">
-        	   <p>Date: {{ date('d F , Y', strtotime(date('d-m-Y'))) }}</p>
+        	   <p>Date: {{ date('d F , Y', strtotime($bill->date)) }}</p>
         	   <p> <strong>Bill NO: <input type="text"  value="{{ $bill->bill_no }}" name="bill_no" readonly></strong></p>
         	   <p style="margin-top:20px;">To,</p>
         	   <p style=""><input type="text" value="Managing Director" name="to" class="form-control" required=""></p>
-        	   <p style=""><input type="text" value="{{ $bill->project->project_argument_with }}" name="company" class="form-control" required=""></p>
+        	   <p style=""><input type="text" value="{{ $bill->project->project_argument_with }}" name="company_bill_to" class="form-control" required=""></p>
         	   <p style=""><input type="text" value="{{ $bill->project->project_name }}" name="project_name" class="form-control"></p>
         	   <p style=""><input type="text" value="{{ $bill->project->project_location }}" name="project_location" class="form-control"></p>
         	   <p style="margin-top: 20px;">
@@ -161,7 +161,7 @@
 
                      <tr>
                         <td>Bank Routing Number</td>
-                        <td><input class="form-control" type="text" name="bank_routing" value="175263619" required=""></td>
+                        <td><input class="form-control" type="text" name="bank_routing" value="070276343" required=""></td>
                        
                     </tr>
 

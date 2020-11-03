@@ -32,12 +32,12 @@
 
 			</div>
         	<div class="col-md-12 col-xs-12">
-        	   <p>Date: {{ date('d F , Y', strtotime(date('d-m-Y'))) }}</p>
+        	   <p>Date: {{ date('d F , Y', strtotime($bill->date)) }}</p>
         	   <p> <strong>Bill NO: {{ $bill->bill_no }}</strong></p>
         	   <p style="margin-top:15px;">To,</p>
         	   <p>{{ $form_data['to'] }}</p>
-        	   <p>{{ $form_data['company'] }}</p>
-        	   <p>{{ $form_data['project_name'] }}</p>
+        	   <p>{{ $form_data['company_bill_to'] }}</p>
+               <p><strong>{{ $form_data['project_name'] }}</strong></p>
         	   <p>{{ $form_data['project_location'] }}</p>
         	   <p style="margin-top:15px;line-height:25px">
         	   	<strong style="word-spacing: 1px;">Subject:
