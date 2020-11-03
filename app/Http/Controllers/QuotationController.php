@@ -14,7 +14,7 @@ class QuotationController extends Controller
      */
     public function index()
     {
-        //
+        return view('quotation.quotation');
     }
 
     /**

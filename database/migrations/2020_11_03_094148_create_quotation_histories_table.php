@@ -28,7 +28,7 @@ class CreateQuotationHistoriesTable extends Migration
             $table->double('total_operator_amount')->nullable()->default(0);
             $table->string('mobilization_description')->nullable()->default('');
             $table->string('demobilization_description')->nullable()->default('');
-            $table->string('demobilization_amount')->nullable()->default('');
+            $table->string('mobilization_amount')->nullable()->default('');
             $table->string('demobilization_amount')->nullable()->default('');
             $table->tinyInteger('status')->nullable()->default(1);
             $table->timestamps();

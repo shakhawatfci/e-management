@@ -14,7 +14,7 @@ class CreateQuotationsTable extends Migration
     public function up()
     {
         Schema::create('quotations', function (Blueprint $table) {
-            $table->id()->from(1000);
+            $table->id();
             $table->string('date');
             $table->string('to');
             $table->string('company');
