@@ -20,7 +20,7 @@ class CreateQuotationsTable extends Migration
             $table->string('company');
             $table->text('address');
             $table->text('subject');
-            $table->text('request');
+            $table->text('request_text');
             $table->text('terms');
             $table->text('name');
             $table->text('designation');
