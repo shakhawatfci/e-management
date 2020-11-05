@@ -18,6 +18,7 @@ Route::get('equipment-by-vendor/{type}/{id}', 'Equipment\EquipmentController@ven
 // Qoutation
 Route::resource('quotation', 'QuotationController');
 Route::get('qoutation-list', 'QuotationController@quotationList');
+Route::get('qoutation/print/{id}', 'QuotationController@printQoutation');
 
 Route::resource('assign-equipment', 'Equipment\EquipmentAssignController');
 Route::resource('assigned-equipment-list', 'Equipment\EquipmenAssignController@equipmentList');

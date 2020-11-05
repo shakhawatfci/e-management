@@ -126,7 +126,7 @@
                   <div class="col-md-12">
                     <div
                       class="table-responsive mt-4 mb-4"
-                      v-for="(value, index) in quotation.history"
+                      v-for="(value, index) in quotation.quotation_history"
                       :key="index"
                     >
                       <table
@@ -135,7 +135,7 @@
                         <tr>
                           <th>
                             <a
-                              v-if="quotation.history.length > 1"
+                              v-if="quotation.quotation_history.length > 1"
                               @click.prevent="removeEquipment(index)"
                               class="btn btn-danger mb-2 mr-2 rounded-circle"
                               >X</a
@@ -160,14 +160,18 @@
                             <span
                               v-if="
                                 validation_error.hasOwnProperty(
-                                  'history.' + index + '.equipment_description'
+                                  'quotation_history.' +
+                                    index +
+                                    '.equipment_description'
                                 )
                               "
                               class="text-danger"
                             >
                               {{
                                 validation_error[
-                                  "history." + index + ".equipment_description"
+                                  "quotation_history." +
+                                    index +
+                                    ".equipment_description"
                                 ][0]
                               }}
                             </span>
@@ -182,14 +186,18 @@
                             <span
                               v-if="
                                 validation_error.hasOwnProperty(
-                                  'history.' + index + '.equipment_rate'
+                                  'quotation_history.' +
+                                    index +
+                                    '.equipment_rate'
                                 )
                               "
                               class="text-danger"
                             >
                               {{
                                 validation_error[
-                                  "history." + index + ".equipment_rate"
+                                  "quotation_history." +
+                                    index +
+                                    ".equipment_rate"
                                 ][0]
                               }}
                             </span>
@@ -204,14 +212,18 @@
                             <span
                               v-if="
                                 validation_error.hasOwnProperty(
-                                  'history.' + index + '.equipment_unit'
+                                  'quotation_history.' +
+                                    index +
+                                    '.equipment_unit'
                                 )
                               "
                               class="text-danger"
                             >
                               {{
                                 validation_error[
-                                  "history." + index + ".equipment_unit"
+                                  "quotation_history." +
+                                    index +
+                                    ".equipment_unit"
                                 ][0]
                               }}
                             </span>
@@ -226,14 +238,18 @@
                             <span
                               v-if="
                                 validation_error.hasOwnProperty(
-                                  'history.' + index + '.equipment_qty'
+                                  'quotation_history.' +
+                                    index +
+                                    '.equipment_qty'
                                 )
                               "
                               class="text-danger"
                             >
                               {{
                                 validation_error[
-                                  "history." + index + ".equipment_qty"
+                                  "quotation_history." +
+                                    index +
+                                    ".equipment_qty"
                                 ][0]
                               }}
                             </span>
@@ -261,14 +277,18 @@
                             <span
                               v-if="
                                 validation_error.hasOwnProperty(
-                                  'history.' + index + '.operator_description'
+                                  'quotation_history.' +
+                                    index +
+                                    '.operator_description'
                                 )
                               "
                               class="text-danger"
                             >
                               {{
                                 validation_error[
-                                  "history." + index + ".operator_description"
+                                  "quotation_history." +
+                                    index +
+                                    ".operator_description"
                                 ][0]
                               }}
                             </span>
@@ -283,14 +303,18 @@
                             <span
                               v-if="
                                 validation_error.hasOwnProperty(
-                                  'history.' + index + '.operator_rate'
+                                  'quotation_history.' +
+                                    index +
+                                    '.operator_rate'
                                 )
                               "
                               class="text-danger"
                             >
                               {{
                                 validation_error[
-                                  "history." + index + ".operator_rate"
+                                  "quotation_history." +
+                                    index +
+                                    ".operator_rate"
                                 ][0]
                               }}
                             </span>
@@ -305,14 +329,18 @@
                             <span
                               v-if="
                                 validation_error.hasOwnProperty(
-                                  'history.' + index + '.operator_unit'
+                                  'quotation_history.' +
+                                    index +
+                                    '.operator_unit'
                                 )
                               "
                               class="text-danger"
                             >
                               {{
                                 validation_error[
-                                  "history." + index + ".operator_unit"
+                                  "quotation_history." +
+                                    index +
+                                    ".operator_unit"
                                 ][0]
                               }}
                             </span>
@@ -327,14 +355,14 @@
                             <span
                               v-if="
                                 validation_error.hasOwnProperty(
-                                  'history.' + index + '.operator_qty'
+                                  'quotation_history.' + index + '.operator_qty'
                                 )
                               "
                               class="text-danger"
                             >
                               {{
                                 validation_error[
-                                  "history." + index + ".operator_qty"
+                                  "quotation_history." + index + ".operator_qty"
                                 ][0]
                               }}
                             </span>
@@ -362,7 +390,7 @@
                             <span
                               v-if="
                                 validation_error.hasOwnProperty(
-                                  'history.' +
+                                  'quotation_history.' +
                                     index +
                                     '.mobilization_description'
                                 )
@@ -371,7 +399,7 @@
                             >
                               {{
                                 validation_error[
-                                  "history." +
+                                  "quotation_history." +
                                     index +
                                     ".mobilization_description"
                                 ][0]
@@ -388,14 +416,18 @@
                             <span
                               v-if="
                                 validation_error.hasOwnProperty(
-                                  'history.' + index + '.mobilization_amount'
+                                  'quotation_history.' +
+                                    index +
+                                    '.mobilization_amount'
                                 )
                               "
                               class="text-danger"
                             >
                               {{
                                 validation_error[
-                                  "history." + index + ".mobilization_amount"
+                                  "quotation_history." +
+                                    index +
+                                    ".mobilization_amount"
                                 ][0]
                               }}
                             </span>
@@ -413,7 +445,7 @@
                             <span
                               v-if="
                                 validation_error.hasOwnProperty(
-                                  'history.' +
+                                  'quotation_history.' +
                                     index +
                                     '.demobilization_description'
                                 )
@@ -422,7 +454,7 @@
                             >
                               {{
                                 validation_error[
-                                  "history." +
+                                  "quotation_history." +
                                     index +
                                     ".demobilization_description"
                                 ][0]
@@ -439,14 +471,18 @@
                             <span
                               v-if="
                                 validation_error.hasOwnProperty(
-                                  'history.' + index + '.demobilization_amount'
+                                  'quotation_history.' +
+                                    index +
+                                    '.demobilization_amount'
                                 )
                               "
                               class="text-danger"
                             >
                               {{
                                 validation_error[
-                                  "history." + index + ".demobilization_amount"
+                                  "quotation_history." +
+                                    index +
+                                    ".demobilization_amount"
                                 ][0]
                               }}
                             </span>
@@ -553,14 +589,14 @@ export default {
         to: "",
         company: "",
         address: "",
-        subject: "Qoutation for ",
+        subject: "Quotation for ",
         request_text:
-          "Sir, <br> Please find the quotation herewith and seek your valuable approval to send the equipment(s):",
+          "Sir,  Please find the quotation herewith and seek your valuable approval to send the equipment(s):",
         terms:
-          "<p><br></p><ol><li>&nbsp;&nbsp;&nbsp;One (1) Excavator-0.9m3, monthly rent (For 240 hour monthly and 08 hours Daily) Tk 2,85, 000.00 (Two Lac &amp; Eighty Five Thousand Taka Only).</li><li>&nbsp;&nbsp;&nbsp;Equipment working time: 8 AM-5 PM (Including 01 hour lunch break).</li><li>&nbsp;&nbsp;&nbsp;After 5 PM, any working will be counted as over time and over time working hour(s) rate will be counted as per regular hourly rate. </li><li>&nbsp;&nbsp;Operator and helper fooding Tk1,500.00 (For daily 8 hours).</li><li>&nbsp;&nbsp;&nbsp;If operator and helper work more than 08 hours or work after 5 PM, overtime will be counted as per ratio. </li><li>&nbsp;&nbsp;&nbsp;Operator’s accommodation will be provided by 2nd party.</li><li>&nbsp;&nbsp;&nbsp;Agreement period is for Six month.</li><li>&nbsp;&nbsp;&nbsp;2nd party will pay Mobilization payment.</li><li>&nbsp;&nbsp;If equipment works less than 720 hours, 2nd party will pay demobilization also.</li><li>&nbsp;&nbsp;&nbsp;Due to any kind of machinery’s problem, if the job stopped, 2nd party doesn’t pay any payment for those days or moments.</li><li>&nbsp;&nbsp;&nbsp;2nd party will bear all machinery’s security.</li><li>&nbsp;&nbsp;&nbsp;2nd party has to arrange Fuel, Equipment safety and working environment.</li><li>&nbsp;&nbsp;&nbsp;If 2nd party does any illegal job, 1st party will not be responsible for that type of job.</li><li>&nbsp;&nbsp;&nbsp;1st Party holds the right to bring the equipment back anytime if 2nd party doesn’t comply with the agreement properly.</li><li>&nbsp;&nbsp;&nbsp;After getting invoice, 2nd party will pay monthly bill within 10 days.</li><li>&nbsp;&nbsp;&nbsp;This rate is excluding VAT and AIT.</li></ol>",
+          "<p><br></p><ul><li>&nbsp;&nbsp;&nbsp;One (1) Excavator-0.9m3, monthly rent (For 240 hour monthly and 08 hours Daily) Tk 2,85, 000.00 (Two Lac &amp; Eighty Five Thousand Taka Only).</li><li>&nbsp;&nbsp;&nbsp;Equipment working time: 8 AM-5 PM (Including 01 hour lunch break).</li><li>&nbsp;&nbsp;&nbsp;After 5 PM, any working will be counted as over time and over time working hour(s) rate will be counted as per regular hourly rate. </li><li>&nbsp;&nbsp;Operator and helper fooding Tk1,500.00 (For daily 8 hours).</li><li>&nbsp;&nbsp;&nbsp;If operator and helper work more than 08 hours or work after 5 PM, overtime will be counted as per ratio. </li><li>&nbsp;&nbsp;&nbsp;Operator’s accommodation will be provided by 2nd party.</li><li>&nbsp;&nbsp;&nbsp;Agreement period is for Six month.</li><li>&nbsp;&nbsp;&nbsp;2nd party will pay Mobilization payment.</li><li>&nbsp;&nbsp;If equipment works less than 720 hours, 2nd party will pay demobilization also.</li><li>&nbsp;&nbsp;&nbsp;Due to any kind of machinery’s problem, if the job stopped, 2nd party doesn’t pay any payment for those days or moments.</li><li>&nbsp;&nbsp;&nbsp;2nd party will bear all machinery’s security.</li><li>&nbsp;&nbsp;&nbsp;2nd party has to arrange Fuel, Equipment safety and working environment.</li><li>&nbsp;&nbsp;&nbsp;If 2nd party does any illegal job, 1st party will not be responsible for that type of job.</li><li>&nbsp;&nbsp;&nbsp;1st Party holds the right to bring the equipment back anytime if 2nd party doesn’t comply with the agreement properly.</li><li>&nbsp;&nbsp;&nbsp;After getting invoice, 2nd party will pay monthly bill within 10 days.</li><li>&nbsp;&nbsp;&nbsp;This rate is excluding VAT and AIT.</li></ul>",
         name: "Md Rafiqul Islam",
         designation: "Proprietor",
-        history: [
+        quotation_history: [
           {
             equipment_description: "",
             equipment_rate: 0,
@@ -616,7 +652,7 @@ export default {
     },
 
     addMore() {
-      this.quotation.history.push({
+      this.quotation.quotation_history.push({
         equipment_description: "",
         equipment_rate: 0,
         equipment_unit: "Month",
@@ -648,7 +684,7 @@ export default {
         () => {}
       ).then((result) => {
         if (result.value) {
-          this.quotation.history.splice(index, 1);
+          this.quotation.quotation_history.splice(index, 1);
         }
       });
     },
@@ -658,14 +694,14 @@ export default {
         to: "",
         company: "",
         address: "",
-        subject: "Qoutation for ",
+        subject: "Quotation for ",
         request_text:
-          "Sir, <br> Please find the quotation herewith and seek your valuable approval to send the equipment(s):",
+          "Sir,  Please find the quotation herewith and seek your valuable approval to send the equipment(s):",
         terms:
-          "<p><br></p><ol><li>&nbsp;&nbsp;&nbsp;One (1) Excavator-0.9m3, monthly rent (For 240 hour monthly and 08 hours Daily) Tk 2,85, 000.00 (Two Lac &amp; Eighty Five Thousand Taka Only).</li><li>&nbsp;&nbsp;&nbsp;Equipment working time: 8 AM-5 PM (Including 01 hour lunch break).</li><li>&nbsp;&nbsp;&nbsp;After 5 PM, any working will be counted as over time and over time working hour(s) rate will be counted as per regular hourly rate. </li><li>&nbsp;&nbsp;Operator and helper fooding Tk1,500.00 (For daily 8 hours).</li><li>&nbsp;&nbsp;&nbsp;If operator and helper work more than 08 hours or work after 5 PM, overtime will be counted as per ratio. </li><li>&nbsp;&nbsp;&nbsp;Operator’s accommodation will be provided by 2nd party.</li><li>&nbsp;&nbsp;&nbsp;Agreement period is for Six month.</li><li>&nbsp;&nbsp;&nbsp;2nd party will pay Mobilization payment.</li><li>&nbsp;&nbsp;If equipment works less than 720 hours, 2nd party will pay demobilization also.</li><li>&nbsp;&nbsp;&nbsp;Due to any kind of machinery’s problem, if the job stopped, 2nd party doesn’t pay any payment for those days or moments.</li><li>&nbsp;&nbsp;&nbsp;2nd party will bear all machinery’s security.</li><li>&nbsp;&nbsp;&nbsp;2nd party has to arrange Fuel, Equipment safety and working environment.</li><li>&nbsp;&nbsp;&nbsp;If 2nd party does any illegal job, 1st party will not be responsible for that type of job.</li><li>&nbsp;&nbsp;&nbsp;1st Party holds the right to bring the equipment back anytime if 2nd party doesn’t comply with the agreement properly.</li><li>&nbsp;&nbsp;&nbsp;After getting invoice, 2nd party will pay monthly bill within 10 days.</li><li>&nbsp;&nbsp;&nbsp;This rate is excluding VAT and AIT.</li></ol>",
+          "<p><br></p><ul><li>&nbsp;&nbsp;&nbsp;One (1) Excavator-0.9m3, monthly rent (For 240 hour monthly and 08 hours Daily) Tk 2,85, 000.00 (Two Lac &amp; Eighty Five Thousand Taka Only).</li><li>&nbsp;&nbsp;&nbsp;Equipment working time: 8 AM-5 PM (Including 01 hour lunch break).</li><li>&nbsp;&nbsp;&nbsp;After 5 PM, any working will be counted as over time and over time working hour(s) rate will be counted as per regular hourly rate. </li><li>&nbsp;&nbsp;Operator and helper fooding Tk1,500.00 (For daily 8 hours).</li><li>&nbsp;&nbsp;&nbsp;If operator and helper work more than 08 hours or work after 5 PM, overtime will be counted as per ratio. </li><li>&nbsp;&nbsp;&nbsp;Operator’s accommodation will be provided by 2nd party.</li><li>&nbsp;&nbsp;&nbsp;Agreement period is for Six month.</li><li>&nbsp;&nbsp;&nbsp;2nd party will pay Mobilization payment.</li><li>&nbsp;&nbsp;If equipment works less than 720 hours, 2nd party will pay demobilization also.</li><li>&nbsp;&nbsp;&nbsp;Due to any kind of machinery’s problem, if the job stopped, 2nd party doesn’t pay any payment for those days or moments.</li><li>&nbsp;&nbsp;&nbsp;2nd party will bear all machinery’s security.</li><li>&nbsp;&nbsp;&nbsp;2nd party has to arrange Fuel, Equipment safety and working environment.</li><li>&nbsp;&nbsp;&nbsp;If 2nd party does any illegal job, 1st party will not be responsible for that type of job.</li><li>&nbsp;&nbsp;&nbsp;1st Party holds the right to bring the equipment back anytime if 2nd party doesn’t comply with the agreement properly.</li><li>&nbsp;&nbsp;&nbsp;After getting invoice, 2nd party will pay monthly bill within 10 days.</li><li>&nbsp;&nbsp;&nbsp;This rate is excluding VAT and AIT.</li></ul>",
         name: "Md Rafiqul Islam",
         designation: "Proprietor",
-        history: [
+        quotation_history: [
           {
             equipment_description: "",
             equipment_rate: 0,

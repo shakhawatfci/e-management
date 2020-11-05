@@ -6,6 +6,7 @@ use App\Quotation;
 use App\QuotationHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class QuotationController extends Controller
 {
@@ -64,40 +65,40 @@ class QuotationController extends Controller
     {
         //
         $request->validate([
-            'to'                                   => 'required',
-            'company'                              => 'required',
-            'address'                              => 'required',
-            'subject'                              => 'required',
-            'request_text'                         => 'required',
-            'terms'                                => 'required',
-            'name'                                 => 'required',
-            'designation'                          => 'required',
-            'history.*.equipment_description'      => 'required',
-            'history.*.equipment_rate'             => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'history.*.equipment_unit'             => 'required',
-            'history.*.equipment_qty'              => 'required|gt:0|integer',
-            'history.*.operator_description'       => 'required',
-            'history.*.operator_rate'              => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'history.*.operator_unit'              => 'required',
-            'history.*.operator_qty'               => 'required|gt:0|integer',
-            'history.*.mobilization_description'   => 'required',
-            'history.*.demobilization_description' => 'required',
-            'history.*.mobilization_amount'        => 'required',
-            'history.*.demobilization_amount'      => 'required',
+            'to'                                             => 'required',
+            'company'                                        => 'required',
+            'address'                                        => 'required',
+            'subject'                                        => 'required',
+            'request_text'                                   => 'required',
+            'terms'                                          => 'required',
+            'name'                                           => 'required',
+            'designation'                                    => 'required',
+            'quotation_history.*.equipment_description'      => 'required',
+            'quotation_history.*.equipment_rate'             => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'quotation_history.*.equipment_unit'             => 'required',
+            'quotation_history.*.equipment_qty'              => 'required|gt:0|integer',
+            'quotation_history.*.operator_description'       => 'required',
+            'quotation_history.*.operator_rate'              => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'quotation_history.*.operator_unit'              => 'required',
+            'quotation_history.*.operator_qty'               => 'required|gt:0|integer',
+            'quotation_history.*.mobilization_description'   => 'required',
+            'quotation_history.*.demobilization_description' => 'required',
+            'quotation_history.*.mobilization_amount'        => 'required',
+            'quotation_history.*.demobilization_amount'      => 'required',
         ], [
-            'to.required'                              => 'required',
-            'history.*.equipment_description.required' => 'Required',
-            'history.*.equipment_rate.required'        => 'Required',
-            'history.*.equipment_rate.gt'              => 'Provide Non Zero',
-            'history.*.equipment_rate.regex'           => 'Invalid',
-            'history.*.equipment_qty.required'         => 'Reuired',
-            'history.*.equipment_qty.integer'          => 'Invalid',
-            'history.*.operator_description.required'  => 'Required',
-            'history.*.operator_rate.required'         => 'Required',
-            'history.*.operator_rate.gt'               => 'Provide Non Zero',
-            'history.*.operator_rate.regex'            => 'Invalid',
-            'history.*.operator_qty.required'          => 'Reuired',
-            'history.*.operator_qty.integer'           => 'Invalid',
+            'to.required'                                        => 'required',
+            'quotation_history.*.equipment_description.required' => 'Required',
+            'quotation_history.*.equipment_rate.required'        => 'Required',
+            'quotation_history.*.equipment_rate.gt'              => 'Provide Non Zero',
+            'quotation_history.*.equipment_rate.regex'           => 'Invalid',
+            'quotation_history.*.equipment_qty.required'         => 'Reuired',
+            'quotation_history.*.equipment_qty.integer'          => 'Invalid',
+            'quotation_history.*.operator_description.required'  => 'Required',
+            'quotation_history.*.operator_rate.required'         => 'Required',
+            'quotation_history.*.operator_rate.gt'               => 'Provide Non Zero',
+            'quotation_history.*.operator_rate.regex'            => 'Invalid',
+            'quotation_history.*.operator_qty.required'          => 'Reuired',
+            'quotation_history.*.operator_qty.integer'           => 'Invalid',
         ]);
 
         try {
@@ -114,7 +115,7 @@ class QuotationController extends Controller
             $quotation->designation  = $request->designation;
             $quotation->save();
 
-            foreach ($request->history as $value) {
+            foreach ($request->quotation_history as $value) {
                 $history                             = new QuotationHistory;
                 $history->equipment_description      = $value['equipment_description'];
                 $history->equipment_rate             = $value['equipment_rate'];
@@ -175,6 +176,18 @@ class QuotationController extends Controller
     public function update(Request $request, Quotation $quotation)
     {
         //
+    }
+
+    public function printQoutation($id)
+    {
+        $qoutation = Quotation::with(['quotation_history'])->find($id);
+
+        $pdf = PDF::loadView('quotation.pdf', ['qoutation' => $qoutation]);
+
+        $pdf->setPaper('A4', 'potrait');
+        $pdf_name = "LIMMEX-" . date('y') . '-' . $qoutation->id;
+        return $pdf->download($pdf_name);
+        return view('quotation.print', ['qoutation' => $qoutation]);
     }
 
     /**

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Supplier;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Validator;
-use App\Vendor;
 use App\Equipement;
+use App\Http\Controllers\Controller;
+use App\Vendor;
+use Illuminate\Http\Request;
 use PDF;
 
 class VendorController extends Controller
@@ -40,27 +39,27 @@ class VendorController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'vendor_name'=>'required',
-            'vendor_email'=>'email|nullable',
-            'vendor_address'=>'required',
-            'vendor_phone'=>'required'
+            'vendor_name'    => 'required',
+            'vendor_email'   => 'email|nullable',
+            'vendor_address' => 'required',
+            'vendor_phone'   => 'required',
         ]);
         try {
 
-          $vendor = new Vendor;
+            $vendor = new Vendor;
 
-          $vendor->vendor_name = $request->vendor_name;
-          $vendor->vendor_email = $request->vendor_email;
-          $vendor->vendor_address = $request->vendor_address;
-          $vendor->vendor_phone = $request->vendor_phone;
-          $vendor->concerned_person = $request->concerned_person;
-          $vendor->phone_number_2 = $request->phone_number_2;
-          $vendor->bkash_number = $request->bkash_number;
-          $vendor->bank_details = $request->bank_details;
-          $vendor->save();
+            $vendor->vendor_name      = $request->vendor_name;
+            $vendor->vendor_email     = $request->vendor_email;
+            $vendor->vendor_address   = $request->vendor_address;
+            $vendor->vendor_phone     = $request->vendor_phone;
+            $vendor->concerned_person = $request->concerned_person;
+            $vendor->phone_number_2   = $request->phone_number_2;
+            $vendor->bkash_number     = $request->bkash_number;
+            $vendor->bank_details     = $request->bank_details;
+            $vendor->save();
 
-          return response()->json(['status' => 'success', 'message' => 'Vendor Created Successfully !']);
-            
+            return response()->json(['status' => 'success', 'message' => 'Vendor Created Successfully !']);
+
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
         }
@@ -79,13 +78,12 @@ class VendorController extends Controller
 
     public function supplierList(Request $request)
     {
-        $vendor = Vendor::orderBy('id','desc');
-        if($request->keyword != '')
-        {
-           $vendor->where('vendor_name','LIKE','%'.$request->keyword.'%');
-           $vendor->orWhere('vendor_address','LIKE','%'.$request->keyword.'%');
-           $vendor->orWhere('vendor_phone','LIKE','%'.$request->keyword.'%');
-           $vendor->orWhere('concerned_person','LIKE','%'.$request->keyword.'%');
+        $vendor = Vendor::orderBy('id', 'desc');
+        if ($request->keyword != '') {
+            $vendor->where('vendor_name', 'LIKE', '%' . $request->keyword . '%');
+            $vendor->orWhere('vendor_address', 'LIKE', '%' . $request->keyword . '%');
+            $vendor->orWhere('vendor_phone', 'LIKE', '%' . $request->keyword . '%');
+            $vendor->orWhere('concerned_person', 'LIKE', '%' . $request->keyword . '%');
         }
         $vendor = $vendor->paginate(10);
         return $vendor;
@@ -93,19 +91,17 @@ class VendorController extends Controller
 
     public function supplierListPrintPdf(Request $request)
     {
-        $vendor = Vendor::orderBy('id','desc');
-        if($request->keyword != '')
-        {
-           $vendor->where('vendor_name','LIKE','%'.$request->keyword.'%');
-           $vendor->orWhere('vendor_address','LIKE','%'.$request->keyword.'%');
-           $vendor->orWhere('vendor_phone','LIKE','%'.$request->keyword.'%');
-           $vendor->orWhere('concerned_person','LIKE','%'.$request->keyword.'%');
+        $vendor = Vendor::orderBy('id', 'desc');
+        if ($request->keyword != '') {
+            $vendor->where('vendor_name', 'LIKE', '%' . $request->keyword . '%');
+            $vendor->orWhere('vendor_address', 'LIKE', '%' . $request->keyword . '%');
+            $vendor->orWhere('vendor_phone', 'LIKE', '%' . $request->keyword . '%');
+            $vendor->orWhere('concerned_person', 'LIKE', '%' . $request->keyword . '%');
         }
         $vendor = $vendor->get();
-        
-        if($request->action == 'print')
-        {
-            return view('supplier.print.vendorlist',['vendors' => $vendor]);
+
+        if ($request->action == 'print') {
+            return view('supplier.print.vendorlist', ['vendors' => $vendor]);
         } else {
             // return view('supplier.pdf.vendorlist', [
             $pdf = PDF::loadView('supplier.pdf.vendorlist', [
@@ -137,29 +133,29 @@ class VendorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $request->validate([
-            'vendor_name'=>'required',
-            'vendor_email'=>'email|nullable',
-            'vendor_address'=>'required',
-            'vendor_phone'=>'required'
+            'vendor_name'    => 'required',
+            'vendor_email'   => 'email|nullable',
+            'vendor_address' => 'required',
+            'vendor_phone'   => 'required',
         ]);
         try {
 
-            $vendor = Vendor::find($request->id);
-            $vendor->vendor_name = $request->vendor_name;
-            $vendor->vendor_address = $request->vendor_address;
-            $vendor->vendor_email = $request->vendor_email;
-            $vendor->vendor_phone = $request->vendor_phone;
+            $vendor                   = Vendor::find($request->id);
+            $vendor->vendor_name      = $request->vendor_name;
+            $vendor->vendor_address   = $request->vendor_address;
+            $vendor->vendor_email     = $request->vendor_email;
+            $vendor->vendor_phone     = $request->vendor_phone;
             $vendor->concerned_person = $request->concerned_person;
-            $vendor->phone_number_2 = $request->phone_number_2;
-            $vendor->bkash_number = $request->bkash_number;
-            $vendor->bank_details = $request->bank_details;
-            $vendor->status = $request->status;
+            $vendor->phone_number_2   = $request->phone_number_2;
+            $vendor->bkash_number     = $request->bkash_number;
+            $vendor->bank_details     = $request->bank_details;
+            $vendor->status           = $request->status;
             $vendor->update();
 
-          return response()->json(['status' => 'success', 'message' => 'Vendor Updated Successfully !']);
-            
+            return response()->json(['status' => 'success', 'message' => 'Vendor Updated Successfully !']);
+
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
         }
@@ -173,18 +169,15 @@ class VendorController extends Controller
      */
     public function destroy($id)
     {
-        $count = Equipement::where('vendor_id','=',$id)->count();
- 
-        if($count > 0 ) 
-        {
-          return response()->json(['status' => 'error' , 'message' => 'Vendor Having Equipments. You Have to delete thos Equipment First.']);
-        }
-        else
-        {
+        $count = Equipement::where('vendor_id', '=', $id)->count();
+
+        if ($count > 0) {
+            return response()->json(['status' => 'error', 'message' => 'Vendor Having Equipments. You Have to delete thos Equipment First.']);
+        } else {
             $vendor = Vendor::find($id);
             $vendor->delete();
 
-            return response()->json(['status' => 'success' , 'message' => 'Vendor Deleted']);
+            return response()->json(['status' => 'success', 'message' => 'Vendor Deleted']);
         }
     }
 }

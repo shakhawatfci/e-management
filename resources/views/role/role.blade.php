@@ -12,7 +12,7 @@
 </button>
 @endsection
 @section('content')
-<div class="layout-px-spacing">                
+<div class="layout-px-spacing">
                 <div class="row layout-spacing layout-top-spacing" id="cancel-row">
                     <div class="col-lg-12">
                         <div class="widget-content searchable-container list">
