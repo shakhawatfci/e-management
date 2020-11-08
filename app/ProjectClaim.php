@@ -6,72 +6,78 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProjectClaim extends Model
 {
-    protected $table='project_claim';
+    protected $table = 'project_claim';
 
-    
-    // relation with project 
+    // relation with project
 
-    public function project(){
+    public function project()
+    {
 
-    	return $this->belongsTo('App\Project');
+        return $this->belongsTo('App\Project');
     }
 
-    // relation with vendor 
+    // relation with vendor
 
-    public function vendor(){
-      
-      return $this->belongsTo('App\Vendor');
+    public function vendor()
+    {
 
-    }   
-
-    // relation with equipement 
-
-    public function equipement(){
-      
-      return $this->belongsTo('App\Equipement');
+        return $this->belongsTo('App\Vendor')->withDefault([
+            'id'   => '',
+            'name' => 'N/A',
+        ]);
 
     }
 
+    // relation with equipement
 
-    // relation with equipement 
+    public function equipement()
+    {
 
-    public function equipment_type(){
-      
-      return $this->belongsTo('App\EquipmentType');
+        return $this->belongsTo('App\Equipement');
 
     }
 
-    // relation with bill 
+    // relation with equipement
 
-    public function car_assign(){
+    public function equipment_type()
+    {
 
-        return $this->belongsTo('App\CarAssign','assign_id')->withDefault([
-          'id' => 0,
-          'equipment_id' => 0,
-          'project_id' => 0,
-          'vendor_id' => 0, 
-          'equipment_type_id' => 0, 
+        return $this->belongsTo('App\EquipmentType');
+
+    }
+
+    // relation with bill
+
+    public function car_assign()
+    {
+
+        return $this->belongsTo('App\CarAssign', 'assign_id')->withDefault([
+            'id'                => 0,
+            'equipment_id'      => 0,
+            'project_id'        => 0,
+            'vendor_id'         => 0,
+            'equipment_type_id' => 0,
         ]
         );
     }
 
-    // relation with user table 
+    // relation with user table
 
     public function user()
     {
-      return $this->belongsTo('App\User')->withDefault([
-        'id' => 0,
-        'name' => 'Deleted User',
-      ]);
+        return $this->belongsTo('App\User')->withDefault([
+            'id'   => 0,
+            'name' => 'Deleted User',
+        ]);
     }
 
-    // relation with Operator table 
+    // relation with Operator table
 
     public function operator()
     {
-      return $this->belongsTo('App\Operator')->withDefault([
-        'id' => 0,
-        'name' => 'None',
-      ]);
+        return $this->belongsTo('App\Operator')->withDefault([
+            'id'   => 0,
+            'name' => 'None',
+        ]);
     }
 }

@@ -6,7 +6,9 @@ use App\Quotation;
 use App\QuotationHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use PDF;
+use Throwable;
 
 class QuotationController extends Controller
 {
@@ -180,14 +182,68 @@ class QuotationController extends Controller
 
     public function printQoutation($id)
     {
+
         $qoutation = Quotation::with(['quotation_history'])->find($id);
 
         $pdf = PDF::loadView('quotation.pdf', ['qoutation' => $qoutation]);
 
         $pdf->setPaper('A4', 'potrait');
-        $pdf_name = "LIMMEX-" . date('y') . '-' . $qoutation->id;
+        $pdf_name = "LIMMEX-" . date('y') . '-' . $qoutation->id . '.pdf';
         return $pdf->download($pdf_name);
+
         return view('quotation.print', ['qoutation' => $qoutation]);
+    }
+
+    public function sendEmail(Request $request, $id)
+    {
+        $request->validate([
+            'to'         => 'required|email',
+            'subject'    => 'required',
+            'email_body' => 'required',
+        ]);
+
+        $qoutation = Quotation::with(['quotation_history'])->find($id);
+
+        $data["to"]          = $request->to;
+        $data["from"]        = "limmexbd@gmail.com";
+        $data["client_name"] = $qoutation->company;
+        $data["subject"]     = $request->subject;
+        $data["email_body"]  = $request->email_body;
+        $data["cc"]          = [];
+
+        if ($request->cc != '') {
+            $data["cc"] = explode(',', $request->cc);
+        }
+
+        $pdf = PDF::loadView('quotation.pdf', ['qoutation' => $qoutation]);
+        $pdf->setPaper('A4', 'potrait');
+
+        $data["pdf_name"] = "LIMMEX-" . date('y') . '-' . $qoutation->id . '.pdf';
+
+        try {
+            Mail::send('email.quotation', ['data' => $data], function ($message) use ($data, $pdf) {
+                $message->to($data["to"], $data["client_name"])
+                    ->subject($data["subject"])
+                    ->from($data["from"]);
+                if (count($data['cc'])) {
+
+                    $message->cc($data['cc']);
+                }
+                $message->attachData($pdf->output(), $data['pdf_name']);
+            });
+        } catch (Throwable $exception) {
+            return $exception;
+            return response()->json(['status' => 'error', 'message' => $exception->getMessage()]);
+        }
+        if (Mail::failures()) {
+
+            return response()->json(['status' => 'error', 'message' => 'Mail Failed']);
+
+        } else {
+
+            return response()->json(['status' => 'success', 'message' => 'Mail Sended']);
+        }
+        return response()->json(compact('this'));
     }
 
     /**

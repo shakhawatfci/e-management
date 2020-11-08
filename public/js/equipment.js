@@ -3657,7 +3657,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         address: "",
         subject: "Quotation for ",
         request_text: "Sir,  Please find the quotation herewith and seek your valuable approval to send the equipment(s):",
-        terms: "<p><br></p><ul><li>&nbsp;&nbsp;&nbsp;One (1) Excavator-0.9m3, monthly rent (For 240 hour monthly and 08 hours Daily) Tk 2,85, 000.00 (Two Lac &amp; Eighty Five Thousand Taka Only).</li><li>&nbsp;&nbsp;&nbsp;Equipment working time: 8 AM-5 PM (Including 01 hour lunch break).</li><li>&nbsp;&nbsp;&nbsp;After 5 PM, any working will be counted as over time and over time working hour(s) rate will be counted as per regular hourly rate. </li><li>&nbsp;&nbsp;Operator and helper fooding Tk1,500.00 (For daily 8 hours).</li><li>&nbsp;&nbsp;&nbsp;If operator and helper work more than 08 hours or work after 5 PM, overtime will be counted as per ratio. </li><li>&nbsp;&nbsp;&nbsp;Operator’s accommodation will be provided by 2nd party.</li><li>&nbsp;&nbsp;&nbsp;Agreement period is for Six month.</li><li>&nbsp;&nbsp;&nbsp;2nd party will pay Mobilization payment.</li><li>&nbsp;&nbsp;If equipment works less than 720 hours, 2nd party will pay demobilization also.</li><li>&nbsp;&nbsp;&nbsp;Due to any kind of machinery’s problem, if the job stopped, 2nd party doesn’t pay any payment for those days or moments.</li><li>&nbsp;&nbsp;&nbsp;2nd party will bear all machinery’s security.</li><li>&nbsp;&nbsp;&nbsp;2nd party has to arrange Fuel, Equipment safety and working environment.</li><li>&nbsp;&nbsp;&nbsp;If 2nd party does any illegal job, 1st party will not be responsible for that type of job.</li><li>&nbsp;&nbsp;&nbsp;1st Party holds the right to bring the equipment back anytime if 2nd party doesn’t comply with the agreement properly.</li><li>&nbsp;&nbsp;&nbsp;After getting invoice, 2nd party will pay monthly bill within 10 days.</li><li>&nbsp;&nbsp;&nbsp;This rate is excluding VAT and AIT.</li></ul>",
+        terms: "<p><br></p><ul><li>&nbsp;&nbsp;&nbsp;Equipment working time: 8 AM-5 PM (Including 01 hour lunch break).</li><li>&nbsp;&nbsp;&nbsp;After 5 PM, any working will be counted as over time and over time working hour(s) rate will be counted as per regular hourly rate. </li><li>&nbsp;&nbsp;Operator and helper fooding Tk1,500.00 (For daily 8 hours).</li><li>&nbsp;&nbsp;&nbsp;If operator and helper work more than 08 hours or work after 5 PM, overtime will be counted as per ratio. </li><li>&nbsp;&nbsp;&nbsp;Operator’s accommodation will be provided by 2nd party.</li><li>&nbsp;&nbsp;&nbsp;Agreement period is for Six month.</li><li>&nbsp;&nbsp;&nbsp;2nd party will pay Mobilization payment.</li><li>&nbsp;&nbsp;If equipment works less than 720 hours, 2nd party will pay demobilization also.</li><li>&nbsp;&nbsp;&nbsp;Due to any kind of machinery’s problem, if the job stopped, 2nd party doesn’t pay any payment for those days or moments.</li><li>&nbsp;&nbsp;&nbsp;2nd party will bear all machinery’s security.</li><li>&nbsp;&nbsp;&nbsp;2nd party has to arrange Fuel, Equipment safety and working environment.</li><li>&nbsp;&nbsp;&nbsp;If 2nd party does any illegal job, 1st party will not be responsible for that type of job.</li><li>&nbsp;&nbsp;&nbsp;1st Party holds the right to bring the equipment back anytime if 2nd party doesn’t comply with the agreement properly.</li><li>&nbsp;&nbsp;&nbsp;After getting invoice, 2nd party will pay monthly bill within 10 days.</li><li>&nbsp;&nbsp;&nbsp;This rate is excluding VAT and AIT.</li></ul>",
         name: "Md Rafiqul Islam",
         designation: "Proprietor",
         quotation_history: [{
@@ -3760,7 +3760,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         address: "",
         subject: "Quotation for ",
         request_text: "Sir,  Please find the quotation herewith and seek your valuable approval to send the equipment(s):",
-        terms: "<p><br></p><ul><li>&nbsp;&nbsp;&nbsp;One (1) Excavator-0.9m3, monthly rent (For 240 hour monthly and 08 hours Daily) Tk 2,85, 000.00 (Two Lac &amp; Eighty Five Thousand Taka Only).</li><li>&nbsp;&nbsp;&nbsp;Equipment working time: 8 AM-5 PM (Including 01 hour lunch break).</li><li>&nbsp;&nbsp;&nbsp;After 5 PM, any working will be counted as over time and over time working hour(s) rate will be counted as per regular hourly rate. </li><li>&nbsp;&nbsp;Operator and helper fooding Tk1,500.00 (For daily 8 hours).</li><li>&nbsp;&nbsp;&nbsp;If operator and helper work more than 08 hours or work after 5 PM, overtime will be counted as per ratio. </li><li>&nbsp;&nbsp;&nbsp;Operator’s accommodation will be provided by 2nd party.</li><li>&nbsp;&nbsp;&nbsp;Agreement period is for Six month.</li><li>&nbsp;&nbsp;&nbsp;2nd party will pay Mobilization payment.</li><li>&nbsp;&nbsp;If equipment works less than 720 hours, 2nd party will pay demobilization also.</li><li>&nbsp;&nbsp;&nbsp;Due to any kind of machinery’s problem, if the job stopped, 2nd party doesn’t pay any payment for those days or moments.</li><li>&nbsp;&nbsp;&nbsp;2nd party will bear all machinery’s security.</li><li>&nbsp;&nbsp;&nbsp;2nd party has to arrange Fuel, Equipment safety and working environment.</li><li>&nbsp;&nbsp;&nbsp;If 2nd party does any illegal job, 1st party will not be responsible for that type of job.</li><li>&nbsp;&nbsp;&nbsp;1st Party holds the right to bring the equipment back anytime if 2nd party doesn’t comply with the agreement properly.</li><li>&nbsp;&nbsp;&nbsp;After getting invoice, 2nd party will pay monthly bill within 10 days.</li><li>&nbsp;&nbsp;&nbsp;This rate is excluding VAT and AIT.</li></ul>",
+        terms: "<p><br></p><ul><li>&nbsp;&nbsp;&nbsp;Equipment working time: 8 AM-5 PM (Including 01 hour lunch break).</li><li>&nbsp;&nbsp;&nbsp;After 5 PM, any working will be counted as over time and over time working hour(s) rate will be counted as per regular hourly rate. </li><li>&nbsp;&nbsp;Operator and helper fooding Tk1,500.00 (For daily 8 hours).</li><li>&nbsp;&nbsp;&nbsp;If operator and helper work more than 08 hours or work after 5 PM, overtime will be counted as per ratio. </li><li>&nbsp;&nbsp;&nbsp;Operator’s accommodation will be provided by 2nd party.</li><li>&nbsp;&nbsp;&nbsp;Agreement period is for Six month.</li><li>&nbsp;&nbsp;&nbsp;2nd party will pay Mobilization payment.</li><li>&nbsp;&nbsp;If equipment works less than 720 hours, 2nd party will pay demobilization also.</li><li>&nbsp;&nbsp;&nbsp;Due to any kind of machinery’s problem, if the job stopped, 2nd party doesn’t pay any payment for those days or moments.</li><li>&nbsp;&nbsp;&nbsp;2nd party will bear all machinery’s security.</li><li>&nbsp;&nbsp;&nbsp;2nd party has to arrange Fuel, Equipment safety and working environment.</li><li>&nbsp;&nbsp;&nbsp;If 2nd party does any illegal job, 1st party will not be responsible for that type of job.</li><li>&nbsp;&nbsp;&nbsp;1st Party holds the right to bring the equipment back anytime if 2nd party doesn’t comply with the agreement properly.</li><li>&nbsp;&nbsp;&nbsp;After getting invoice, 2nd party will pay monthly bill within 10 days.</li><li>&nbsp;&nbsp;&nbsp;This rate is excluding VAT and AIT.</li></ul>",
         name: "Md Rafiqul Islam",
         designation: "Proprietor",
         quotation_history: [(_ref = {
@@ -3783,6 +3783,226 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/quotation/SendQutation.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/quotation/SendQutation.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_assets__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../vue-assets */ "./resources/js/vue-assets.js");
+/* harmony import */ var _mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixin */ "./resources/js/mixin.js");
+/* harmony import */ var vue2_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue2-editor */ "./node_modules/vue2-editor/dist/vue2-editor.esm.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
+  components: {
+    VueEditor: vue2_editor__WEBPACK_IMPORTED_MODULE_2__["VueEditor"]
+  },
+  data: function data() {
+    return {
+      quotation: {},
+      form_data: {
+        id: "",
+        subject: "",
+        to: "",
+        cc: "",
+        email_body: "",
+        status: ""
+      },
+      validation_error: {},
+      button_name: "Send"
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on("send-quotation", function (value) {
+      _this.form_data.id = value.id;
+      _this.form_data.subject = value.subject;
+      _this.form_data.id = value.id;
+      _this.quotation = value;
+      $("#SendQuotation").modal("show");
+    });
+  },
+  methods: {
+    save: function save() {
+      var _this2 = this;
+
+      this.button_name = "Sending...";
+      axios.post(base_url + "quotation/send/" + this.form_data.id, this.form_data).then(function (response) {
+        if (response.data.status === "success") {
+          $("#SendQuotation").modal("hide");
+
+          _this2.successMessage(response.data);
+
+          _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit("quotation-crated");
+          _this2.button_name = "Send";
+
+          _this2.resetForm();
+        } else {
+          _this2.successMessage(response.data);
+
+          _this2.button_name = "Send";
+        }
+      })["catch"](function (err) {
+        if (err.response.status == 422) {
+          _this2.validation_error = err.response.data.errors;
+
+          _this2.validationError();
+
+          _this2.button_name = "Send";
+        } else {
+          _this2.successMessage(err);
+
+          _this2.button_name = "Send";
+        }
+      });
+    },
+    resetForm: function resetForm() {
+      this.form_data = {
+        id: "",
+        subject: "",
+        to: "",
+        cc: "",
+        message: "",
+        status: ""
+      };
+      this.validation_error = {};
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/quotation/ViewQuotation.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/quotation/ViewQuotation.vue?vue&type=script&lang=js& ***!
@@ -3795,19 +4015,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vue_assets__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../vue-assets */ "./resources/js/vue-assets.js");
 /* harmony import */ var _mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixin */ "./resources/js/mixin.js");
 /* harmony import */ var _pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pagination/Pagination */ "./resources/js/components/pagination/Pagination.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var _SendQutation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SendQutation */ "./resources/js/components/quotation/SendQutation.vue");
 //
 //
 //
@@ -3896,10 +4104,12 @@ __webpack_require__.r(__webpack_exports__);
 
  // import UpdateEquipmentType from "./UpdateEquipmentType";
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
   components: {
-    pagination: _pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"] // "edit-equipment-type": UpdateEquipmentType,
+    pagination: _pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"],
+    SendQuotation: _SendQutation__WEBPACK_IMPORTED_MODULE_3__["default"] // "edit-equipment-type": UpdateEquipmentType,
 
   },
   data: function data() {
@@ -3931,6 +4141,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     edit: function edit(quotation) {
       _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit("edit-quotation", quotation);
+    },
+    sendQuotation: function sendQuotation(quote) {
+      _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit("send-quotation", quote);
     },
     deleteQuotation: function deleteQuotation(id) {
       var _this3 = this;
@@ -25537,6 +25750,369 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/quotation/SendQutation.vue?vue&type=template&id=657f099b&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/quotation/SendQutation.vue?vue&type=template&id=657f099b& ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "modal fade",
+      attrs: {
+        id: "SendQuotation",
+        tabindex: "-1",
+        role: "dialog",
+        "aria-labelledby": "addContactModalTitle",
+        "aria-hidden": "true"
+      }
+    },
+    [
+      _vm.quotation
+        ? _c(
+            "div",
+            {
+              staticClass: "modal-dialog modal-xl",
+              attrs: { role: "document" }
+            },
+            [
+              _c(
+                "form",
+                {
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.save()
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "modal-content" }, [
+                    _c("div", { staticClass: "modal-header" }, [
+                      _c("h4", { staticClass: "modal-title" }, [
+                        _vm._v(
+                          "\n            Send Quotation To " +
+                            _vm._s(_vm.quotation.to) +
+                            " (" +
+                            _vm._s(_vm.quotation.company) +
+                            ")\n          "
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "modal-body" }, [
+                      _c("i", {
+                        staticClass: "flaticon-cancel-12 close",
+                        attrs: { "data-dismiss": "modal" }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "add-contact-box" }, [
+                        _c("div", { staticClass: "add-contact-content" }, [
+                          _c("div", { staticClass: "row" }, [
+                            _c("div", { staticClass: "col-md-12" }, [
+                              _c(
+                                "div",
+                                { staticClass: "contact-name text-left" },
+                                [
+                                  _c("i", { staticClass: "flaticon-user-11" }),
+                                  _vm._v(" "),
+                                  _c("span", [_vm._v("To Email *")]),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form_data.to,
+                                        expression: "form_data.to"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      type: "email",
+                                      id: "c-to",
+                                      placeholder:
+                                        "to: eg, limmexbd@gmail.com ..."
+                                    },
+                                    domProps: { value: _vm.form_data.to },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form_data,
+                                          "to",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm.validation_error.hasOwnProperty("to")
+                                    ? _c(
+                                        "span",
+                                        { staticClass: "text-danger" },
+                                        [
+                                          _vm._v(
+                                            "\n                      " +
+                                              _vm._s(
+                                                _vm.validation_error.to[0]
+                                              ) +
+                                              "\n                    "
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e()
+                                ]
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "row" }, [
+                            _c("div", { staticClass: "col-md-12" }, [
+                              _c(
+                                "div",
+                                { staticClass: "contact-name text-left" },
+                                [
+                                  _c("i", { staticClass: "flaticon-user-11" }),
+                                  _vm._v(" "),
+                                  _c("span", [
+                                    _vm._v(
+                                      "CC (Separate Each Email with comma ,)"
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form_data.cc,
+                                        expression: "form_data.cc"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      type: "text",
+                                      id: "c-to",
+                                      placeholder:
+                                        "to: eg, limmexbd@gmail.com,business@limmexbd.com"
+                                    },
+                                    domProps: { value: _vm.form_data.cc },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form_data,
+                                          "cc",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm.validation_error.hasOwnProperty("cc")
+                                    ? _c(
+                                        "span",
+                                        { staticClass: "text-danger" },
+                                        [
+                                          _vm._v(
+                                            "\n                      " +
+                                              _vm._s(
+                                                _vm.validation_error.cc[0]
+                                              ) +
+                                              "\n                    "
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e()
+                                ]
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "row" }, [
+                            _c("div", { staticClass: "col-md-12" }, [
+                              _c(
+                                "div",
+                                { staticClass: "contact-name text-left" },
+                                [
+                                  _c("i", { staticClass: "flaticon-user-11" }),
+                                  _vm._v(" "),
+                                  _c("span", [_vm._v("Subject")]),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form_data.subject,
+                                        expression: "form_data.subject"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      type: "text",
+                                      id: "c-to",
+                                      placeholder: "Write Your Subject"
+                                    },
+                                    domProps: { value: _vm.form_data.subject },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form_data,
+                                          "subject",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm.validation_error.hasOwnProperty("subject")
+                                    ? _c(
+                                        "span",
+                                        { staticClass: "text-danger" },
+                                        [
+                                          _vm._v(
+                                            "\n                      " +
+                                              _vm._s(
+                                                _vm.validation_error.subject[0]
+                                              ) +
+                                              "\n                    "
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e()
+                                ]
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "row" }, [
+                            _c("div", { staticClass: "col-md-12" }, [
+                              _c(
+                                "div",
+                                { staticClass: "contact-name text-left" },
+                                [
+                                  _c("i", { staticClass: "flaticon-user-11" }),
+                                  _vm._v(" "),
+                                  _c("span", [_vm._v("Message Or Email Body")]),
+                                  _vm._v(" "),
+                                  _c("vue-editor", {
+                                    model: {
+                                      value: _vm.form_data.email_body,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.form_data,
+                                          "email_body",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "form_data.email_body"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm.validation_error.hasOwnProperty(
+                                    "email_body"
+                                  )
+                                    ? _c(
+                                        "span",
+                                        { staticClass: "text-danger" },
+                                        [
+                                          _vm._v(
+                                            "\n                      " +
+                                              _vm._s(
+                                                _vm.validation_error
+                                                  .email_body[0]
+                                              ) +
+                                              "\n                    "
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e()
+                                ],
+                                1
+                              )
+                            ])
+                          ])
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "modal-footer" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { type: "submit" }
+                        },
+                        [
+                          _vm.button_name != "Send"
+                            ? _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "spinner-grow text-white mr-2 align-self-center loader-sm"
+                                },
+                                [_vm._v("\n              .\n            ")]
+                              )
+                            : _vm._e(),
+                          _vm._v(
+                            "\n            " +
+                              _vm._s(_vm.button_name) +
+                              "\n          "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm._m(0)
+                    ])
+                  ])
+                ]
+              )
+            ]
+          )
+        : _vm._e()
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      { staticClass: "btn btn-default", attrs: { "data-dismiss": "modal" } },
+      [
+        _c("i", { staticClass: "flaticon-delete-1" }),
+        _vm._v(" Discard\n          ")
+      ]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/quotation/ViewQuotation.vue?vue&type=template&id=58a0a2ee&":
 /*!**************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/quotation/ViewQuotation.vue?vue&type=template&id=58a0a2ee& ***!
@@ -25601,123 +26177,81 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    [
-                      _vm._l(_vm.quotations.data, function(value) {
-                        return _c("tr", { key: value.id }, [
-                          _c("td", [
-                            _vm._v(
-                              "\n                " +
-                                _vm._s(value.id) +
-                                "\n              "
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _vm._v(
-                              "\n                " + _vm._s(value.to) + " "
-                            ),
-                            _c("br"),
-                            _vm._v(
-                              "\n                " + _vm._s(value.company) + " "
-                            ),
-                            _c("br"),
-                            _vm._v(
-                              "\n                " +
-                                _vm._s(value.address) +
-                                "\n              "
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(value.subject))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(value.total_equipment))]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "text-center" }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass:
-                                  "btn btn-dark mb-2 mr-2 rounded-circle",
-                                on: {
-                                  click: function($event) {
-                                    return _vm.edit(value)
-                                  }
+                    _vm._l(_vm.quotations.data, function(value) {
+                      return _c("tr", { key: value.id }, [
+                        _c("td", [
+                          _vm._v(
+                            "\n                " +
+                              _vm._s(value.id) +
+                              "\n              "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v("\n                " + _vm._s(value.to) + " "),
+                          _c("br"),
+                          _vm._v(
+                            "\n                " + _vm._s(value.company) + " "
+                          ),
+                          _c("br"),
+                          _vm._v(
+                            "\n                " +
+                              _vm._s(value.address) +
+                              "\n              "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(value.subject))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(value.total_equipment))]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "btn btn-danger mb-2 mr-2 rounded-circle",
+                              attrs: { title: "Send Quotation in Email" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.sendQuotation(value)
                                 }
-                              },
-                              [_c("i", { staticClass: "far fa-edit" })]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass:
-                                  "btn btn-danger mb-2 mr-2 rounded-circle",
-                                on: {
-                                  click: function($event) {
-                                    return _vm.deleteQuotation(value.id)
-                                  }
+                              }
+                            },
+                            [_c("i", { staticClass: "far fa-envelope-open" })]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "btn btn-dark mb-2 mr-2 rounded-circle",
+                              on: {
+                                click: function($event) {
+                                  return _vm.edit(value)
                                 }
-                              },
-                              [_c("i", { staticClass: "far fa-trash-alt" })]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass:
-                                  "btn btn-danger mb-2 mr-2 rounded-circle",
-                                on: {
-                                  click: function($event) {
-                                    return _vm.deleteQuotation(value.id)
-                                  }
+                              }
+                            },
+                            [_c("i", { staticClass: "far fa-edit" })]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "btn btn-danger mb-2 mr-2 rounded-circle",
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteQuotation(value.id)
                                 }
-                              },
-                              [_c("i", { staticClass: "far fa-trash-alt" })]
-                            )
-                          ])
+                              }
+                            },
+                            [_c("i", { staticClass: "far fa-trash-alt" })]
+                          )
                         ])
-                      }),
-                      _vm._v(" "),
-                      _vm.quotations.data.length > 0
-                        ? _c("tr", [
-                            _c("td", { attrs: { colspan: "6" } }, [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "btn btn-primary btn-sm",
-                                  attrs: {
-                                    href:
-                                      _vm.url +
-                                      "equipment-type-list-print-pdf?action=pdf"
-                                  }
-                                },
-                                [
-                                  _c("i", { staticClass: "fa fa-file-pdf-o" }),
-                                  _vm._v(" PDF")
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "btn btn-danger btn-sm",
-                                  attrs: {
-                                    href:
-                                      _vm.url +
-                                      "equipment-type-list-print-pdf?action=print",
-                                    target: "_blank"
-                                  }
-                                },
-                                [
-                                  _c("i", { staticClass: "fa fa-file-pdf-o" }),
-                                  _vm._v(" Print")
-                                ]
-                              )
-                            ])
-                          ])
-                        : _vm._e()
-                    ],
-                    2
+                      ])
+                    }),
+                    0
                   )
                 ]
               )
@@ -25741,7 +26275,11 @@ var render = function() {
       _c(
         "div",
         { staticClass: "col-md-12 text-center mb-10 mt-10" },
-        [_c("pagination", { attrs: { pageData: _vm.quotations } })],
+        [
+          _c("pagination", { attrs: { pageData: _vm.quotations } }),
+          _vm._v(" "),
+          _c("SendQuotation")
+        ],
         1
       )
     ])
@@ -39442,6 +39980,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateQuotation_vue_vue_type_template_id_1889f312_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateQuotation_vue_vue_type_template_id_1889f312_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/quotation/SendQutation.vue":
+/*!************************************************************!*\
+  !*** ./resources/js/components/quotation/SendQutation.vue ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SendQutation_vue_vue_type_template_id_657f099b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SendQutation.vue?vue&type=template&id=657f099b& */ "./resources/js/components/quotation/SendQutation.vue?vue&type=template&id=657f099b&");
+/* harmony import */ var _SendQutation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SendQutation.vue?vue&type=script&lang=js& */ "./resources/js/components/quotation/SendQutation.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _SendQutation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _SendQutation_vue_vue_type_template_id_657f099b___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _SendQutation_vue_vue_type_template_id_657f099b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/quotation/SendQutation.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/quotation/SendQutation.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/quotation/SendQutation.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SendQutation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./SendQutation.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/quotation/SendQutation.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SendQutation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/quotation/SendQutation.vue?vue&type=template&id=657f099b&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/quotation/SendQutation.vue?vue&type=template&id=657f099b& ***!
+  \*******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SendQutation_vue_vue_type_template_id_657f099b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./SendQutation.vue?vue&type=template&id=657f099b& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/quotation/SendQutation.vue?vue&type=template&id=657f099b&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SendQutation_vue_vue_type_template_id_657f099b___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SendQutation_vue_vue_type_template_id_657f099b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

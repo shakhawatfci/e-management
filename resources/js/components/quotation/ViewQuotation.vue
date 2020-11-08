@@ -40,6 +40,13 @@
 
                 <td class="text-center">
                   <button
+                    @click="sendQuotation(value)"
+                    class="btn btn-danger mb-2 mr-2 rounded-circle"
+                    title="Send Quotation in Email"
+                  >
+                    <i class="far fa-envelope-open"></i>
+                  </button>
+                  <button
                     @click="edit(value)"
                     class="btn btn-dark mb-2 mr-2 rounded-circle"
                   >
@@ -51,27 +58,6 @@
                   >
                     <i class="far fa-trash-alt"></i>
                   </button>
-                  <button
-                    @click="deleteQuotation(value.id)"
-                    class="btn btn-danger mb-2 mr-2 rounded-circle"
-                  >
-                    <i class="far fa-trash-alt"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr v-if="quotations.data.length > 0">
-                <td colspan="6">
-                  <a
-                    :href="url + 'equipment-type-list-print-pdf?action=pdf'"
-                    class="btn btn-primary btn-sm"
-                    ><i class="fa fa-file-pdf-o"></i> PDF</a
-                  >
-                  <a
-                    :href="url + 'equipment-type-list-print-pdf?action=print'"
-                    class="btn btn-danger btn-sm"
-                    target="_blank"
-                    ><i class="fa fa-file-pdf-o"></i> Print</a
-                  >
                 </td>
               </tr>
             </tbody>
@@ -89,6 +75,7 @@
         <!-- import pagination here  -->
         <pagination :pageData="quotations"></pagination>
         <!-- <edit-equipment-type></edit-equipment-type> -->
+        <SendQuotation />
       </div>
     </div>
   </div>
@@ -100,10 +87,12 @@ import { EventBus } from "../../vue-assets";
 import Mixin from "../../mixin";
 import Pagination from "../pagination/Pagination";
 // import UpdateEquipmentType from "./UpdateEquipmentType";
+import SendQuotation from "./SendQutation";
 export default {
   mixins: [Mixin],
   components: {
     pagination: Pagination,
+    SendQuotation,
     // "edit-equipment-type": UpdateEquipmentType,
   },
   data() {
@@ -138,6 +127,10 @@ export default {
 
     edit(quotation) {
       EventBus.$emit("edit-quotation", quotation);
+    },
+
+    sendQuotation(quote) {
+      EventBus.$emit("send-quotation", quote);
     },
 
     deleteQuotation(id) {

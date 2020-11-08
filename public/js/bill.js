@@ -2622,6 +2622,96 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2657,11 +2747,11 @@ __webpack_require__.r(__webpack_exports__);
       keyword: "",
       bill_no: "",
       pickermonth: {
-        lebel: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
+        lebel: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOM", "DEC"],
         text: "Search By Month"
       },
-      start_month: '',
-      end_month: '',
+      start_month: "",
+      end_month: "",
       isLoading: false,
       url: base_url
     };
@@ -2680,13 +2770,13 @@ __webpack_require__.r(__webpack_exports__);
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       this.isLoading = true;
-      var st_mo = '';
-      var lt_mo = '';
+      var st_mo = "";
+      var lt_mo = "";
 
-      if (this.end_month != '') {
-        if (this.start_month === '') this.successMessage({
-          status: 'error',
-          message: 'Select start Month'
+      if (this.end_month != "") {
+        if (this.start_month === "") this.successMessage({
+          status: "error",
+          message: "Select start Month"
         });
         st_mo = this.start_month._i;
         lt_mo = this.end_month._i;
@@ -2698,8 +2788,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     edit: function edit(value) {
-      // passing bill by event bus 
-      _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('edit-bill', value);
+      // passing bill by event bus
+      _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit("edit-bill", value);
     },
     viewMore: function viewMore(id) {
       _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit("bill-details", id);
@@ -2729,13 +2819,13 @@ __webpack_require__.r(__webpack_exports__);
       _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit("make-project-payment", bill);
     },
     projectPaymentHistory: function projectPaymentHistory(bill) {
-      _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('view-project-payment', bill);
+      _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit("view-project-payment", bill);
     },
     makeVendorPayment: function makeVendorPayment(bill) {
       _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit("make-vendor-payment", bill);
     },
     vendorPaymentHistory: function vendorPaymentHistory(bill) {
-      _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('view-vendor-payment', bill);
+      _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit("view-vendor-payment", bill);
     },
     getVendorEquipments: function getVendorEquipments() {
       var _this4 = this;
@@ -5108,7 +5198,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* .bg-green {\r\n  background-color : green;\r\n } */\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* .bg-green {\r\n  background-color : green;\r\n } */\r\n", ""]);
 
 // exports
 
@@ -32704,7 +32794,13 @@ var render = function() {
                 return _c(
                   "option",
                   { key: project.id, domProps: { value: project.id } },
-                  [_vm._v(_vm._s(project.project_name))]
+                  [
+                    _vm._v(
+                      "\n          " +
+                        _vm._s(project.project_name) +
+                        "\n        "
+                    )
+                  ]
                 )
               })
             ],
@@ -32759,7 +32855,7 @@ var render = function() {
                 return _c(
                   "option",
                   { key: eq_type.id, domProps: { value: eq_type.id } },
-                  [_vm._v(_vm._s(eq_type.name))]
+                  [_vm._v("\n          " + _vm._s(eq_type.name) + "\n        ")]
                 )
               })
             ],
@@ -32812,7 +32908,11 @@ var render = function() {
                 return _c(
                   "option",
                   { key: vd.id, domProps: { value: vd.id } },
-                  [_vm._v(_vm._s(vd.vendor_name))]
+                  [
+                    _vm._v(
+                      "\n          " + _vm._s(vd.vendor_name) + "\n        "
+                    )
+                  ]
                 )
               })
             ],
@@ -32865,7 +32965,7 @@ var render = function() {
                 return _c(
                   "option",
                   { key: eq.id, domProps: { value: eq.id } },
-                  [_vm._v(_vm._s(eq.eq_name))]
+                  [_vm._v("\n          " + _vm._s(eq.eq_name) + "\n        ")]
                 )
               })
             ],
@@ -33048,13 +33148,13 @@ var render = function() {
                             _vm._v(" "),
                             _c("td", [
                               _vm._v(
-                                "\n\n                Total Amount : " +
+                                "\n                Total Amount : " +
                                   _vm._s(value.total_project_amount) +
                                   "\n                "
                               ),
                               _c("br"),
                               _vm._v(
-                                "\n                Paid Amount : " +
+                                "\n                Paid Amount :\n                " +
                                   _vm._s(
                                     Number(value.project_payment) +
                                       Number(value.project_adjustment_payment)
@@ -33063,7 +33163,7 @@ var render = function() {
                               ),
                               _c("br"),
                               _vm._v(
-                                "\n                OutStanding : " +
+                                "\n                OutStanding :\n                " +
                                   _vm._s(
                                     value.total_project_amount -
                                       (Number(value.project_payment) +
@@ -33074,7 +33174,9 @@ var render = function() {
                                   "\n                "
                               ),
                               _c("br"),
-                              _vm._v("\n                Status :    "),
+                              _vm._v(
+                                "\n                Status :\n                "
+                              ),
                               value.payment_status == 1
                                 ? _c(
                                     "span",
@@ -33096,7 +33198,7 @@ var render = function() {
                               ),
                               _c("br"),
                               _vm._v(
-                                "\n                Paid Amount : " +
+                                "\n                Paid Amount :\n                " +
                                   _vm._s(
                                     Number(value.vendor_payment) +
                                       Number(value.vendor_adjustment_payment)
@@ -33105,7 +33207,7 @@ var render = function() {
                               ),
                               _c("br"),
                               _vm._v(
-                                "\n                OutStanding : " +
+                                "\n                OutStanding :\n                " +
                                   _vm._s(
                                     value.total_vendor_amount -
                                       (Number(value.vendor_payment) +
@@ -33114,7 +33216,9 @@ var render = function() {
                                   "\n                "
                               ),
                               _c("br"),
-                              _vm._v("\n                Status :   "),
+                              _vm._v(
+                                "\n                Status :\n                "
+                              ),
                               value.vendor_payment_status == 1
                                 ? _c(
                                     "span",
@@ -33222,7 +33326,7 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "\n                    Project Paymetn History\n                    "
+                                            "\n                      Project Paymetn History\n                    "
                                           )
                                         ]
                                       ),
@@ -33283,7 +33387,7 @@ var render = function() {
                           ])
                         }),
                         _vm._v(" "),
-                        _vm.bill_list.data.length > 0
+                        _vm.bill_list.length > 0
                           ? _c("tr", { staticClass: "float-rigth" }, [
                               _c("td", { attrs: { colspan: "7" } }, [
                                 _c(
