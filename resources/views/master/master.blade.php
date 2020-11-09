@@ -11,11 +11,11 @@
      }
 
      .menu-categories  i{
-         
+
          font-size: 25px;
          margin-right: 10px;
          vertical-align: middle;
-         
+
      }
 
      .custom-modal {
@@ -31,7 +31,25 @@
     box-shadow: 0px 5px 15px aqua !important;
        }
 
-    .vue-monthly-picker .input {
+
+  </style>
+  @if(Session::has('theme'))
+  <style>
+          .vue-monthly-picker .input {
+
+      height: calc(1.4em + 1.4rem + 2px) !important;
+      padding-left: 10px;
+      /*margin-left: 10px;*/
+      color : #007c63 !important;
+      border: none !important;
+      width: 100%;
+    }
+
+
+  </style>
+  @else
+  <style>
+          .vue-monthly-picker .input {
       background-color : #1b2e4b !important;
       height: calc(1.4em + 1.4rem + 2px) !important;
       padding-left: 10px;
@@ -45,18 +63,19 @@
       background: #0e1726 !important;
     }
   </style>
+  @endif
 </head>
 <body>
     <!-- BEGIN LOADER -->
-    <!-- <div id="load_screen"> 
-    <div class="loader"> 
+    <!-- <div id="load_screen">
+    <div class="loader">
     <div class="loader-content">
         <div class="spinner-grow align-self-center"></div>
     </div>
     </div>
     </div> -->
     <!--  END LOADER -->
-    
+
      <!-- topbar header  -->
      @include('include.topbar')
      <!-- topbar header  -->
@@ -99,11 +118,11 @@
       <!-- sidebar  -->
       @include('include.sidebar')
       <!-- sidebar  -->
-        
+
         <!--  BEGIN CONTENT AREA  -->
         <div id="content" class="main-content">
             <div class="layout-px-spacing">
-             
+
              @yield('content')
 
             </div>

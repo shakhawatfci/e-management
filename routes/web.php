@@ -11,11 +11,22 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
-Route::group(['middleware' => 'auth'],function(){
-    
+Route::group(['middleware' => 'auth'], function () {
+
     Route::get('/', 'Dashboard\DashboardController@index');
+    Route::get('change-theme/{theme}', function ($theme) {
+
+        if ($theme == 'dark') {
+            session()->forget('theme');
+        } else {
+            session(['theme' => $theme]);
+        }
+
+        return redirect()->back();
+
+    })->name('admin.theme');
 });
 
 Auth::routes();

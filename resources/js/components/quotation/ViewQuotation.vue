@@ -14,7 +14,7 @@
 
     <div class="row">
       <div class="col-md-12" v-if="!isLoading">
-        <div class="table-responsive">
+        <div class="table-responsive" style="min-height: 320px">
           <table class="table table-bordered table-hover mb-4">
             <thead>
               <tr>
@@ -39,25 +39,54 @@
                 <td>{{ value.total_equipment }}</td>
 
                 <td class="text-center">
-                  <button
-                    @click="sendQuotation(value)"
-                    class="btn btn-danger mb-2 mr-2 rounded-circle"
-                    title="Send Quotation in Email"
-                  >
-                    <i class="far fa-envelope-open"></i>
-                  </button>
-                  <button
-                    @click="edit(value)"
-                    class="btn btn-dark mb-2 mr-2 rounded-circle"
-                  >
-                    <i class="far fa-edit"></i>
-                  </button>
-                  <button
-                    @click="deleteQuotation(value.id)"
-                    class="btn btn-danger mb-2 mr-2 rounded-circle"
-                  >
-                    <i class="far fa-trash-alt"></i>
-                  </button>
+                  <div class="dropdown custom-dropdown">
+                    <a
+                      class="dropdown-toggle"
+                      href="#"
+                      role="button"
+                      id="dropdownMenuLink2"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <i class="fa fa-cogs fa-2x"></i>
+                    </a>
+
+                    <div
+                      class="dropdown-menu"
+                      aria-labelledby="dropdownMenuLink2"
+                    >
+                      <a
+                        class="dropdown-item"
+                        href=""
+                        @click.prevent="sendQuotation(value)"
+                        >Send Email</a
+                      >
+                      <a
+                        class="dropdown-item"
+                        :href="url + 'quotation/' + value.id"
+                        target="_blank"
+                        >View Details</a
+                      >
+                      <a
+                        class="dropdown-item"
+                        :href="url + 'quotation/print/' + value.id"
+                        >Download PDF</a
+                      >
+                      <a
+                        class="dropdown-item"
+                        href=""
+                        @click.prevent="edit(value)"
+                        >Edit or Regenerate</a
+                      >
+                      <a
+                        class="dropdown-item"
+                        href=""
+                        @click.prevent="deleteQuotation(value.id)"
+                        >Delete</a
+                      >
+                    </div>
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -74,7 +103,7 @@
       <div class="col-md-12 text-center mb-10 mt-10">
         <!-- import pagination here  -->
         <pagination :pageData="quotations"></pagination>
-        <!-- <edit-equipment-type></edit-equipment-type> -->
+        <edit-quotation></edit-quotation>
         <SendQuotation />
       </div>
     </div>
@@ -86,14 +115,14 @@
 import { EventBus } from "../../vue-assets";
 import Mixin from "../../mixin";
 import Pagination from "../pagination/Pagination";
-// import UpdateEquipmentType from "./UpdateEquipmentType";
+import UpdateQuotation from "./EditQuotation";
 import SendQuotation from "./SendQutation";
 export default {
   mixins: [Mixin],
   components: {
     pagination: Pagination,
     SendQuotation,
-    // "edit-equipment-type": UpdateEquipmentType,
+    "edit-quotation": UpdateQuotation,
   },
   data() {
     return {
@@ -147,7 +176,7 @@ export default {
         () => {}
       ).then((result) => {
         if (result.value) {
-          axios.delete(`${base_url}qoutation/${id}`).then((response) => {
+          axios.delete(`${base_url}quotation/${id}`).then((response) => {
             this.successMessage(response.data);
             this.getQuotation();
           });

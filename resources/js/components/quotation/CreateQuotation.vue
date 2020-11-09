@@ -713,7 +713,6 @@ export default {
             operator_unit: "Day",
             operator_qty: 30,
             total_operator_amount: 0,
-            total_operator_amount: 0,
             mobilization_description: "Mobilization",
             demobilization_description: "Demobilization",
             mobilization_amount: "As per actual",

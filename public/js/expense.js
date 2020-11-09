@@ -2949,6 +2949,78 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2957,9 +3029,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
-  props: ['projects', 'equipment_types', 'vendors', 'equipements', 'equipment_heads'],
+  props: ["projects", "equipment_types", "vendors", "equipements", "equipment_heads"],
   components: {
-    'pagination': _pagination_Pagination__WEBPACK_IMPORTED_MODULE_3__["default"],
+    pagination: _pagination_Pagination__WEBPACK_IMPORTED_MODULE_3__["default"],
     UpdateEquipmentexpense: _UpdateEquipmentexpense__WEBPACK_IMPORTED_MODULE_5__["default"],
     ShowEquipmentexpense: _SingleViewEquipmentexpense__WEBPACK_IMPORTED_MODULE_4__["default"],
     VueMonthlyPicker: vue_monthly_picker__WEBPACK_IMPORTED_MODULE_2___default.a
@@ -2967,18 +3039,18 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       equipments: [],
-      project_id: '',
-      vendor_id: '',
-      equipment_type_id: '',
-      equipement_id: '',
-      equipment_expense_head_id: '',
+      project_id: "",
+      vendor_id: "",
+      equipment_type_id: "",
+      equipement_id: "",
+      equipment_expense_head_id: "",
       pickermonth: {
-        lebel: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
+        lebel: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOM", "DEC"],
         text: "Search By Month"
       },
-      start_month: '',
-      end_month: '',
-      keyword: '',
+      start_month: "",
+      end_month: "",
+      keyword: "",
       url: base_url,
       isLoading: false
     };
@@ -2986,7 +3058,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('EquipmentExpense-created', function () {
+    _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on("EquipmentExpense-created", function () {
       _this.getEquipmentExpense();
     });
     this.getEquipmentExpense();
@@ -2997,13 +3069,13 @@ __webpack_require__.r(__webpack_exports__);
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       this.isLoading = true;
-      var st_mo = '';
-      var lt_mo = '';
+      var st_mo = "";
+      var lt_mo = "";
 
-      if (this.end_month != '') {
-        if (this.start_month === '') this.successMessage({
-          status: 'error',
-          message: 'Select start Month'
+      if (this.end_month != "") {
+        if (this.start_month === "") this.successMessage({
+          status: "error",
+          message: "Select start Month"
         });
         st_mo = this.start_month._i;
         lt_mo = this.end_month._i;
@@ -3015,22 +3087,22 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     editEquipmentExpense: function editEquipmentExpense(value) {
-      _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('equipmentexpense-update', value);
+      _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit("equipmentexpense-update", value);
     },
     viewEquipmentExpense: function viewEquipmentExpense(value) {
-      _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('equipmentexpense-view', value);
+      _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit("equipmentexpense-view", value);
     },
     deleteEquipmentExpense: function deleteEquipmentExpense(id) {
       var _this3 = this;
 
       Swal.fire({
-        title: 'Are you sure ?',
+        title: "Are you sure ?",
         text: "You won't be able to revert this!",
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
       }, function () {}).then(function (result) {
         if (result.value) {
           axios["delete"]("".concat(base_url, "equipment-expense/").concat(id)).then(function (response) {
@@ -3042,14 +3114,14 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     filterClear: function filterClear() {
-      this.project_id = '';
-      this.vendor_id = '';
-      this.equipment_type_id = '';
-      this.equipement_id = '';
-      this.equipment_expense_head_id = '';
-      this.keyword = '';
-      this.start_month = '';
-      this.end_month = '';
+      this.project_id = "";
+      this.vendor_id = "";
+      this.equipment_type_id = "";
+      this.equipement_id = "";
+      this.equipment_expense_head_id = "";
+      this.keyword = "";
+      this.start_month = "";
+      this.end_month = "";
       this.getEquipmentExpense();
     },
     pageClicked: function pageClicked(page) {
@@ -3608,6 +3680,52 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3615,23 +3733,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
-  props: ['office_heads'],
+  props: ["office_heads"],
   components: {
-    'pagination': _pagination_Pagination__WEBPACK_IMPORTED_MODULE_3__["default"],
+    pagination: _pagination_Pagination__WEBPACK_IMPORTED_MODULE_3__["default"],
     UpdateOfficeexpense: _UpdateOfficeExpense__WEBPACK_IMPORTED_MODULE_4__["default"],
     VueMonthlyPicker: vue_monthly_picker__WEBPACK_IMPORTED_MODULE_2___default.a
   },
   data: function data() {
     return {
       offices: [],
-      office_expense_head_id: '',
-      keyword: '',
+      office_expense_head_id: "",
+      keyword: "",
       pickermonth: {
-        lebel: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
+        lebel: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOM", "DEC"],
         text: "Search By Month"
       },
-      start_month: '',
-      end_month: '',
+      start_month: "",
+      end_month: "",
       url: base_url,
       isLoading: false
     };
@@ -3639,7 +3757,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('OfficeExpense-created', function () {
+    _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on("OfficeExpense-created", function () {
       _this.getOfficeExpense();
     });
     this.getOfficeExpense();
@@ -3650,13 +3768,13 @@ __webpack_require__.r(__webpack_exports__);
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       this.isLoading = true;
-      var st_mo = '';
-      var lt_mo = '';
+      var st_mo = "";
+      var lt_mo = "";
 
-      if (this.end_month != '') {
-        if (this.start_month === '') this.successMessage({
-          status: 'error',
-          message: 'Select start Month'
+      if (this.end_month != "") {
+        if (this.start_month === "") this.successMessage({
+          status: "error",
+          message: "Select start Month"
         });
         st_mo = this.start_month._i;
         lt_mo = this.end_month._i;
@@ -3668,19 +3786,19 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     editOfficeExpense: function editOfficeExpense(value) {
-      _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('officeexpense-update', value);
+      _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit("officeexpense-update", value);
     },
     deleteOfficeExpense: function deleteOfficeExpense(id) {
       var _this3 = this;
 
       Swal.fire({
-        title: 'Are you sure ?',
+        title: "Are you sure ?",
         text: "You won't be able to revert this!",
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
       }, function () {}).then(function (result) {
         if (result.value) {
           axios["delete"]("".concat(base_url, "office-expense/").concat(id)).then(function (response) {
@@ -3692,10 +3810,10 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     filterClear: function filterClear() {
-      this.office_expense_head_id = '';
-      this.start_month = '';
-      this.end_month = '';
-      this.keyword = '';
+      this.office_expense_head_id = "";
+      this.start_month = "";
+      this.end_month = "";
+      this.keyword = "";
       this.getOfficeExpense();
     },
     pageClicked: function pageClicked(page) {
@@ -33973,7 +34091,13 @@ var render = function() {
                   return _c(
                     "option",
                     { key: project.id, domProps: { value: project.id } },
-                    [_vm._v(_vm._s(project.project_name))]
+                    [
+                      _vm._v(
+                        "\n          " +
+                          _vm._s(project.project_name) +
+                          "\n        "
+                      )
+                    ]
                   )
                 })
               ],
@@ -34028,7 +34152,11 @@ var render = function() {
                   return _c(
                     "option",
                     { key: equip_type.id, domProps: { value: equip_type.id } },
-                    [_vm._v(_vm._s(equip_type.name))]
+                    [
+                      _vm._v(
+                        "\n          " + _vm._s(equip_type.name) + "\n        "
+                      )
+                    ]
                   )
                 })
               ],
@@ -34081,7 +34209,13 @@ var render = function() {
                   return _c(
                     "option",
                     { key: vendor.id, domProps: { value: vendor.id } },
-                    [_vm._v(_vm._s(vendor.vendor_name))]
+                    [
+                      _vm._v(
+                        "\n          " +
+                          _vm._s(vendor.vendor_name) +
+                          "\n        "
+                      )
+                    ]
                   )
                 })
               ],
@@ -34136,7 +34270,13 @@ var render = function() {
                   return _c(
                     "option",
                     { key: equipment.id, domProps: { value: equipment.id } },
-                    [_vm._v(_vm._s(equipment.eq_name))]
+                    [
+                      _vm._v(
+                        "\n          " +
+                          _vm._s(equipment.eq_name) +
+                          "\n        "
+                      )
+                    ]
                   )
                 })
               ],
@@ -34194,7 +34334,13 @@ var render = function() {
                       key: equipment_head.id,
                       domProps: { value: equipment_head.id }
                     },
-                    [_vm._v(_vm._s(equipment_head.head_name))]
+                    [
+                      _vm._v(
+                        "\n          " +
+                          _vm._s(equipment_head.head_name) +
+                          "\n        "
+                      )
+                    ]
                   )
                 })
               ],
@@ -34296,7 +34442,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("Clear")]
+              [_vm._v("\n        Clear\n      ")]
             )
           ]
         )
@@ -34308,7 +34454,7 @@ var render = function() {
               _c("div", { staticClass: "table-responsive" }, [
                 _c(
                   "table",
-                  { staticClass: "table table-bordered table-hover  mb-4" },
+                  { staticClass: "table table-bordered table-hover mb-4" },
                   [
                     _vm._m(0),
                     _vm._v(" "),
@@ -34398,7 +34544,7 @@ var render = function() {
                           ])
                         }),
                         _vm._v(" "),
-                        _vm.equipments.data.length > 0
+                        _vm.equipments.length > 0
                           ? _c("tr", [
                               _c("td", { attrs: { colspan: "7" } }, [
                                 _c(
@@ -35463,7 +35609,13 @@ var render = function() {
                       key: office_head.id,
                       domProps: { value: office_head.id }
                     },
-                    [_vm._v(_vm._s(office_head.head_name))]
+                    [
+                      _vm._v(
+                        "\n          " +
+                          _vm._s(office_head.head_name) +
+                          "\n        "
+                      )
+                    ]
                   )
                 })
               ],
@@ -35565,7 +35717,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("Clear")]
+              [_vm._v("\n        Clear\n      ")]
             )
           ]
         )
@@ -35577,7 +35729,7 @@ var render = function() {
               _c("div", { staticClass: "table-responsive" }, [
                 _c(
                   "table",
-                  { staticClass: "table table-bordered table-hover  mb-4" },
+                  { staticClass: "table table-bordered table-hover mb-4" },
                   [
                     _vm._m(0),
                     _vm._v(" "),
@@ -35642,7 +35794,7 @@ var render = function() {
                           ])
                         }),
                         _vm._v(" "),
-                        _vm.offices.data.length > 0
+                        _vm.offices.length > 0
                           ? _c("tr", [
                               _c("td", { attrs: { colspan: "6" } }, [
                                 _c(

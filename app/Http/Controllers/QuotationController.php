@@ -26,7 +26,9 @@ class QuotationController extends Controller
     {
 
         $keyword   = $request->keyword;
-        $quotation = Quotation::with(['quotation_history'])->withCount('quotation_history as total_equipment')->orderBy('updated_at', 'desc');
+        $quotation = Quotation::with(['quotation_history'])
+            ->withCount('quotation_history as total_equipment')
+            ->orderBy('updated_at', 'desc');
 
         if ($keyword) {
             $quotation->where(function ($query) use ($keyword) {
@@ -152,9 +154,11 @@ class QuotationController extends Controller
      * @param  \App\Quotation  $quotation
      * @return \Illuminate\Http\Response
      */
-    public function show(Quotation $quotation)
+    public function show($id)
     {
-        //
+        $qoutation = Quotation::with(['quotation_history'])->find($id);
+
+        return view('quotation.print', ['qoutation' => $qoutation]);
     }
 
     /**
@@ -163,9 +167,10 @@ class QuotationController extends Controller
      * @param  \App\Quotation  $quotation
      * @return \Illuminate\Http\Response
      */
-    public function edit(Quotation $quotation)
+    public function edit($id)
     {
-        //
+        $qoutation = Quotation::with('quotation_history')->find($id);
+        return $qoutation;
     }
 
     /**
@@ -175,9 +180,99 @@ class QuotationController extends Controller
      * @param  \App\Quotation  $quotation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Quotation $quotation)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'to'                                             => 'required',
+            'company'                                        => 'required',
+            'address'                                        => 'required',
+            'subject'                                        => 'required',
+            'request_text'                                   => 'required',
+            'terms'                                          => 'required',
+            'name'                                           => 'required',
+            'designation'                                    => 'required',
+            'quotation_history.*.equipment_description'      => 'required',
+            'quotation_history.*.equipment_rate'             => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'quotation_history.*.equipment_unit'             => 'required',
+            'quotation_history.*.equipment_qty'              => 'required|gt:0|integer',
+            'quotation_history.*.operator_description'       => 'required',
+            'quotation_history.*.operator_rate'              => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'quotation_history.*.operator_unit'              => 'required',
+            'quotation_history.*.operator_qty'               => 'required|gt:0|integer',
+            'quotation_history.*.mobilization_description'   => 'required',
+            'quotation_history.*.demobilization_description' => 'required',
+            'quotation_history.*.mobilization_amount'        => 'required',
+            'quotation_history.*.demobilization_amount'      => 'required',
+        ], [
+            'to.required'                                        => 'required',
+            'quotation_history.*.equipment_description.required' => 'Required',
+            'quotation_history.*.equipment_rate.required'        => 'Required',
+            'quotation_history.*.equipment_rate.gt'              => 'Provide Non Zero',
+            'quotation_history.*.equipment_rate.regex'           => 'Invalid',
+            'quotation_history.*.equipment_qty.required'         => 'Reuired',
+            'quotation_history.*.equipment_qty.integer'          => 'Invalid',
+            'quotation_history.*.operator_description.required'  => 'Required',
+            'quotation_history.*.operator_rate.required'         => 'Required',
+            'quotation_history.*.operator_rate.gt'               => 'Provide Non Zero',
+            'quotation_history.*.operator_rate.regex'            => 'Invalid',
+            'quotation_history.*.operator_qty.required'          => 'Reuired',
+            'quotation_history.*.operator_qty.integer'           => 'Invalid',
+        ]);
+
+        try {
+            DB::beginTransaction();
+            if ($request->update_status == 1) {
+                $quotation = Quotation::find($id);
+                $message   = "Quotation Updated";
+            } else {
+                $quotation = new Quotation;
+                $message   = "Quotation Newly Created";
+            }
+
+            $quotation->to           = $request->to;
+            $quotation->date         = date('Y-m-d');
+            $quotation->company      = $request->company;
+            $quotation->address      = $request->address;
+            $quotation->subject      = $request->subject;
+            $quotation->request_text = $request->request_text;
+            $quotation->terms        = $request->terms;
+            $quotation->name         = $request->name;
+            $quotation->designation  = $request->designation;
+            // newly generated
+            if ($request->update_status == 2) {
+                $quotation->save();
+            } else {
+                $quotation->update();
+                QuotationHistory::where('quotation_id', $id)->delete();
+            }
+
+            foreach ($request->quotation_history as $value) {
+                $history                             = new QuotationHistory;
+                $history->equipment_description      = $value['equipment_description'];
+                $history->equipment_rate             = $value['equipment_rate'];
+                $history->equipment_unit             = $value['equipment_unit'];
+                $history->equipment_qty              = $value['equipment_qty'];
+                $history->total_equipment_amount     = $value['total_equipment_amount'];
+                $history->operator_description       = $value['operator_description'];
+                $history->operator_rate              = $value['operator_rate'];
+                $history->operator_unit              = $value['operator_unit'];
+                $history->operator_qty               = $value['operator_qty'];
+                $history->total_operator_amount      = $value['total_operator_amount'];
+                $history->mobilization_description   = $value['mobilization_description'];
+                $history->demobilization_description = $value['demobilization_description'];
+                $history->mobilization_amount        = $value['mobilization_amount'];
+                $history->demobilization_amount      = $value['demobilization_amount'];
+                $history->quotation_id               = $quotation->id;
+                $history->save();
+            }
+            DB::commit();
+            return response()->json(['status' => 'success', 'message' => $message]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return $th;
+            return response()->json(['status' => 'error', 'message' => $th->getMessage()]);
+        }
+
     }
 
     public function printQoutation($id)
@@ -191,7 +286,7 @@ class QuotationController extends Controller
         $pdf_name = "LIMMEX-" . date('y') . '-' . $qoutation->id . '.pdf';
         return $pdf->download($pdf_name);
 
-        return view('quotation.print', ['qoutation' => $qoutation]);
+        // return view('quotation.print', ['qoutation' => $qoutation]);
     }
 
     public function sendEmail(Request $request, $id)
@@ -232,7 +327,6 @@ class QuotationController extends Controller
                 $message->attachData($pdf->output(), $data['pdf_name']);
             });
         } catch (Throwable $exception) {
-            return $exception;
             return response()->json(['status' => 'error', 'message' => $exception->getMessage()]);
         }
         if (Mail::failures()) {
@@ -243,7 +337,6 @@ class QuotationController extends Controller
 
             return response()->json(['status' => 'success', 'message' => 'Mail Sended']);
         }
-        return response()->json(compact('this'));
     }
 
     /**

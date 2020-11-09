@@ -14,12 +14,12 @@
                 </li>
             </ul>
 
-            
+
 
             <ul class="navbar-item flex-row ml-md-auto">
                 <li class="nav-item dropdown user-profile-dropdown">
-                    <a href="javascript:void(0);" class="nav-link dropdown-toggle user" 
-                    id="userProfileDropdown" 
+                    <a href="javascript:void(0);" class="nav-link dropdown-toggle user"
+                    id="userProfileDropdown"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                        @if(Auth::user()->employee->image)
                         <img title="{{ Auth::user()->name }}" src="{{ asset('images/employee/'.Auth::user()->employee->image) }}" alt="{{ Auth::user()->name }}" />
@@ -29,14 +29,17 @@
                     </a>
                     <div class="dropdown-menu position-absolute" aria-labelledby="userProfileDropdown">
                         <div class="">
-                            <!-- <div class="dropdown-item">
-                                <a href="user_profile.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> My Profile</a>
+                            @if(Session::has('theme'))
+                            <div class="dropdown-item">
+                            <a href="{{ route('admin.theme',['theme' => 'dark']) }}"><i class="fa fa-lightbulb fa-2x"></i>  Dark Theme</a>
                             </div>
+                            @else
                             <div class="dropdown-item">
-                                <a href="apps_mailbox.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-inbox"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path></svg> Inbox</a>
-                            </div> -->
+                                <a href="{{ route('admin.theme',['theme' => 'light']) }}"><i class="fa fa-lightbulb fa-2x"></i>  Light theme</a>
+                            </div>
+                            @endif
                             <div class="dropdown-item">
-                                <a href="{{ route('password.change') }}"><svg xmlns="http://www.w3.org/2000/svg" 
+                                <a href="{{ route('password.change') }}"><svg xmlns="http://www.w3.org/2000/svg"
                                 width="24" height="24" viewBox="0 0 24 24" fill="none"
                                  stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                  stroke-linejoin="round" class="feather feather-lock">
@@ -47,10 +50,10 @@
                             <div class="dropdown-item">
                                 <a href="{{ url('logout') }}">
                                     <svg xmlns="http://www.w3.org/2000/svg"
-                                     width="24" height="24" 
-                                     viewBox="0 0 24 24" 
+                                     width="24" height="24"
+                                     viewBox="0 0 24 24"
                                      fill="none" stroke="currentColor"
-                                      stroke-width="2" 
+                                      stroke-width="2"
                                       stroke-linecap="round"
                                        stroke-linejoin="round"
                                         class="feather feather-log-out">

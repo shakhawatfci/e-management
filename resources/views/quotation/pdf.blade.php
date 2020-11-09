@@ -71,7 +71,7 @@
       <tbody>
           <tr>
            <td colspan="4">
-               <span>Date : {{ date('j M Y') }}</span>
+               <p>Date : {{ date('j M Y') }}</p>
                <p><strong>Ref:LIMMEX/{{ date('y') }}/{{ $qoutation->id  }}</strong></p>
                <p style="margin-top: 15px;">{{ $qoutation->to }}</p>
                <p>{{ $qoutation->company }}</p>
