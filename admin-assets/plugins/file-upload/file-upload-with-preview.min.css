@@ -12,7 +12,7 @@
   box-sizing: border-box;
   position: relative;
   display: block; }
-  .custom-file-container label {
+  .custom-file-container label { margin-top:.6em;
     color: #009688; }
     .custom-file-container label .custom-file-container__image-clear {
       color: #e0e6ed; }
@@ -77,9 +77,9 @@
 .custom-file-container__image-preview {
   box-sizing: border-box;
   transition: all 0.2s ease;
-  margin-top: 54px;
-  margin-bottom: 40px;
-  height: 250px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 200px;
   width: 100%;
   border-radius: 4px;
   background-size: contain;
