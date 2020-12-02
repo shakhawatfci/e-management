@@ -5,7 +5,7 @@
         <input
           type="text"
           class="form-control"
-          placeholder="Search By Bill No: eg 2020-06-1"
+          placeholder="Search By Bill No: eg 101"
           v-model="bill_no"
           @keyup="getBillList()"
         />
@@ -119,7 +119,9 @@
             <tbody>
               <tr v-for="value in bill_list.data" :key="value.id">
                 <td>
-                  No : {{ value.bill_no }}
+                  No : {{ value.id }}
+                  <br />
+                  Previous No : {{ value.bill_no }}
                   <br />
                   Month : {{ value.month | monthToString }}
                 </td>
@@ -211,7 +213,7 @@
                       >
                       <a
                         class="dropdown-item"
-                        :href="url + 'bill-print/' + value.bill_no"
+                        :href="url + 'bill-print/' + value.id"
                         target="_blank"
                         >Print & PDF</a
                       >
@@ -254,7 +256,7 @@
                   </div>
                 </td>
               </tr>
-              <tr v-if="bill_list.length > 0" class="float-rigth">
+              <tr class="float-rigth">
                 <td colspan="7">
                   <a
                     :href="

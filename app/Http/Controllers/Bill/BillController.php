@@ -44,10 +44,10 @@ class BillController extends Controller
             ->get();
 
         return view('bill.bill', [
-            'projects' => $project,
-            'vendors' => $vendor,
+            'projects'        => $project,
+            'vendors'         => $vendor,
             'equipment_types' => $equipment_type,
-            'operators' => $operator,
+            'operators'       => $operator,
         ]);
 
     }
@@ -72,10 +72,10 @@ class BillController extends Controller
             ->get();
 
         return view('bill.bill_payment', [
-            'projects' => $project,
-            'vendors' => $vendor,
+            'projects'        => $project,
+            'vendors'         => $vendor,
             'equipment_types' => $equipment_type,
-            'operators' => $operator,
+            'operators'       => $operator,
         ]);
 
     }
@@ -102,30 +102,30 @@ class BillController extends Controller
         // validate bill before submiting
 
         $request->validate([
-            'month' => 'required',
-            'date' => 'required',
-            'total_hour' => 'required',
+            'month'                 => 'required',
+            'date'                  => 'required',
+            'total_hour'            => 'required',
             'project_rate_per_hour' => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'vendor_rate_per_hour' => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'project_amount' => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'vendor_amount' => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'total_project_amount' => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'total_vendor_amount' => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'project_vat' => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'project_ait' => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'project_sup' => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'vendor_vat' => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'vendor_ait' => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'vendor_sup' => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/'
+            'vendor_rate_per_hour'  => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'project_amount'        => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'vendor_amount'         => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'total_project_amount'  => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'total_vendor_amount'   => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'project_vat'           => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'project_ait'           => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'project_sup'           => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'vendor_vat'            => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'vendor_ait'            => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'vendor_sup'            => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
         ]);
 
         try
         {
-            $fmonth = date('Y-m',strtotime(str_replace('/','-',$request->month)));
+            $fmonth = date('Y-m', strtotime(str_replace('/', '-', $request->month)));
             DB::beginTransaction();
             //   checking this equipment already having bill in this month
             $count_bill = ProjectClaim::where('assign_id', '=', $request->id)
-                ->where('month', '=',$fmonth)
+                ->where('month', '=', $fmonth)
 
                 ->count();
 
@@ -137,41 +137,41 @@ class BillController extends Controller
 
             // return $assign->operator_id;
 
-            $bill                           =       new ProjectClaim;
-            $bill_no                        =       generateBillNo($fmonth);
-            $bill->bill_no                  =       $bill_no;
-            $bill->assign_id                =       $request->assign_id;
-            $bill->project_id               =       $assign->project_id;
-            $bill->vendor_id                =       $assign->vendor_id;
-            $bill->operator_id              =       $assign->operator_id;
-            $bill->equipment_type_id        =       $assign->equipment_type_id;
-            $bill->equipement_id            =       $assign->equipement_id;
-            $bill->user_id                  =       Auth::user()->id;
-            $bill->month                    =       $fmonth;
-            $bill->date                     =       $request->date;
-            $bill->total_hour               =       $request->total_hour;
-            $bill->project_rate_per_hour    =       $request->project_rate_per_hour;
-            $bill->vendor_rate_per_hour     =       $request->vendor_rate_per_hour;
-            $bill->project_amount           =       $request->project_amount;
-            $bill->vendor_amount            =       $request->vendor_amount;
-            $bill->project_vat              =       $request->project_vat;
-            $bill->project_ait              =       $request->project_ait;
-            $bill->project_sup              =       $request->project_sup;
-            $bill->vendor_vat               =       $request->vendor_vat;
-            $bill->vendor_ait               =       $request->vendor_ait;
-            $bill->vendor_sup               =       $request->vendor_sup;
-            $bill->total_project_amount     =       $request->total_project_amount;
-            $bill->total_vendor_amount      =       $request->total_vendor_amount;
-            $bill->documents_link           =       $request->documents_link;
+            $bill                        = new ProjectClaim;
+            $bill_no                     = generateBillNo($fmonth);
+            $bill->bill_no               = $bill_no;
+            $bill->assign_id             = $request->assign_id;
+            $bill->project_id            = $assign->project_id;
+            $bill->vendor_id             = $assign->vendor_id;
+            $bill->operator_id           = $assign->operator_id;
+            $bill->equipment_type_id     = $assign->equipment_type_id;
+            $bill->equipement_id         = $assign->equipement_id;
+            $bill->user_id               = Auth::user()->id;
+            $bill->month                 = $fmonth;
+            $bill->date                  = $request->date;
+            $bill->total_hour            = $request->total_hour;
+            $bill->project_rate_per_hour = $request->project_rate_per_hour;
+            $bill->vendor_rate_per_hour  = $request->vendor_rate_per_hour;
+            $bill->project_amount        = $request->project_amount;
+            $bill->vendor_amount         = $request->vendor_amount;
+            $bill->project_vat           = $request->project_vat;
+            $bill->project_ait           = $request->project_ait;
+            $bill->project_sup           = $request->project_sup;
+            $bill->vendor_vat            = $request->vendor_vat;
+            $bill->vendor_ait            = $request->vendor_ait;
+            $bill->vendor_sup            = $request->vendor_sup;
+            $bill->total_project_amount  = $request->total_project_amount;
+            $bill->total_vendor_amount   = $request->total_vendor_amount;
+            $bill->documents_link        = $request->documents_link;
             $bill->save();
 
             DB::commit();
 
             return response()->json([
-                'status' => 'success',
+                'status'       => 'success',
                 'print_status' => $request->print_status,
-                'bill_no' => $bill_no,
-                'message' => 'Bill Generated',
+                'bill_no'      => $bill->id,
+                'message'      => 'Bill Generated',
             ]);
 
         } catch (\Exception $e) {
@@ -192,11 +192,15 @@ class BillController extends Controller
             'equipement',
             'equipment_type',
             'vendor',
-            'project'
+            'project',
         ])->orderBy('updated_at', 'desc');
 
-        if ($request->bill_no != '') {
-            $bill->where('bill_no', 'LIKE', '%' . $request->bill_no . '%');
+        $bill_no = $request->bill_no;
+        if ($bill_no != '') {
+            $bill->where(function ($query) use ($bill_no) {
+                $query->where('bill_no', 'LIKE', '%' . $bill_no . '%')
+                    ->orWhere('id', 'LIKE', '%' . $bill_no . '%');
+            });
         }
 
         if ($request->project_id != '') {
@@ -220,9 +224,9 @@ class BillController extends Controller
         }
 
         if ($request->end_month != '') {
-            $start = date('Y-m',strtotime(str_replace('/','-',$request->start_month)));
-            $end = date('Y-m',strtotime(str_replace('/','-',$request->end_month)));
-            $bill->whereBetween('month', [$start,$end]);
+            $start = date('Y-m', strtotime(str_replace('/', '-', $request->start_month)));
+            $end   = date('Y-m', strtotime(str_replace('/', '-', $request->end_month)));
+            $bill->whereBetween('month', [$start, $end]);
         }
 
         $bill = $bill->paginate($per_page);
@@ -264,21 +268,21 @@ class BillController extends Controller
         // validate bill before submiting
 
         $request->validate([
-            'month' => 'required',
-            'date' => 'required',
-            'total_hour' => 'required',
+            'month'                 => 'required',
+            'date'                  => 'required',
+            'total_hour'            => 'required',
             'project_rate_per_hour' => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'vendor_rate_per_hour' => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'project_amount' => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'vendor_amount' => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'total_project_amount' => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'total_vendor_amount' => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'project_vat' => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'project_ait' => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'project_sup' => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'vendor_vat' => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'vendor_ait' => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'vendor_sup' => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'vendor_rate_per_hour'  => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'project_amount'        => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'vendor_amount'         => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'total_project_amount'  => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'total_vendor_amount'   => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'project_vat'           => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'project_ait'           => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'project_sup'           => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'vendor_vat'            => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'vendor_ait'            => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'vendor_sup'            => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
         ]);
 
         try
@@ -287,23 +291,31 @@ class BillController extends Controller
             DB::beginTransaction();
 
             $bill = ProjectClaim::find($id);
-            $bill->user_id = Auth::user()->id;
-            $bill->month = date('Y-m',strtotime(str_replace('/', '-', $request->month)));
-            $bill->date = $request->date;
-            $bill->total_hour = $request->total_hour;
+
+            $fmonth  = date('Y-m', strtotime(str_replace('/', '-', $request->month)));
+            $bill_no = $bill->bill_no;
+            if ($bill->month != $fmonth) {
+                $bill_no = generateBillNo($fmonth);
+            }
+
+            $bill->user_id               = Auth::user()->id;
+            $bill->bill_no               = $bill_no;
+            $bill->month                 = $fmonth;
+            $bill->date                  = $request->date;
+            $bill->total_hour            = $request->total_hour;
             $bill->project_rate_per_hour = $request->project_rate_per_hour;
-            $bill->vendor_rate_per_hour = $request->vendor_rate_per_hour;
-            $bill->project_amount = $request->project_amount;
-            $bill->vendor_amount = $request->vendor_amount;
-            $bill->project_vat = $request->project_vat;
-            $bill->project_ait = $request->project_ait;
-            $bill->project_sup = $request->project_sup;
-            $bill->vendor_vat = $request->vendor_vat;
-            $bill->vendor_ait = $request->vendor_ait;
+            $bill->vendor_rate_per_hour  = $request->vendor_rate_per_hour;
+            $bill->project_amount        = $request->project_amount;
+            $bill->vendor_amount         = $request->vendor_amount;
+            $bill->project_vat           = $request->project_vat;
+            $bill->project_ait           = $request->project_ait;
+            $bill->project_sup           = $request->project_sup;
+            $bill->vendor_vat            = $request->vendor_vat;
+            $bill->vendor_ait            = $request->vendor_ait;
             // $bill->operator_id = $request->vendor_ait;
-            $bill->vendor_sup = $request->vendor_sup;
+            $bill->vendor_sup           = $request->vendor_sup;
             $bill->total_project_amount = $request->total_project_amount;
-            $bill->total_vendor_amount = $request->total_vendor_amount;
+            $bill->total_vendor_amount  = $request->total_vendor_amount;
             if ($request->total_project_amount > $bill->project_payment + $bill->project_adjustment_amount) {
                 $bill->payment_status = 0;
             }
@@ -316,10 +328,10 @@ class BillController extends Controller
             DB::commit();
 
             return response()->json([
-                'status' => 'success',
+                'status'       => 'success',
                 'print_status' => $request->print_status,
-                'bill_no' => $bill->bill_no,
-                'message' => 'Bill Updated',
+                'bill_no'      => $bill->id,
+                'message'      => 'Bill Updated',
             ]);
 
         } catch (\Exception $e) {
@@ -338,11 +350,11 @@ class BillController extends Controller
         try
         {
             $project_payment = ProjectPayment::where('project_claim_id', '=', $id)->count();
-            $vendor_payment = VendorPayment::where('project_claim_id', '=', $id)->count();
+            $vendor_payment  = VendorPayment::where('project_claim_id', '=', $id)->count();
 
             //   if there is any payment rearding this claim admin should have to delete those payment first
             if ($project_payment > 0 || $vendor_payment > 0) {
-                return response()->json(['status' => 'error', 'message' => 'Unable to delete due to it\'s 
+                return response()->json(['status' => 'error', 'message' => 'Unable to delete due to it\'s
                 having payment please delete those payment first']);
             }
 
@@ -364,7 +376,7 @@ class BillController extends Controller
     public function printForm($bill_no)
     {
 
-         $bill = ProjectClaim::with(
+        $bill = ProjectClaim::with(
             [
                 'equipement',
                 'equipment_type',
@@ -373,7 +385,7 @@ class BillController extends Controller
                 'operator:id,name',
             ]
         )
-            ->where('bill_no', '=', $bill_no)
+            ->where('id', '=', $bill_no)
             ->first();
 
         if ($bill) {
@@ -389,16 +401,16 @@ class BillController extends Controller
     public function billPrint(Request $request)
     {
 
-        $bill = ProjectClaim::where('bill_no', '=', $request->bill_no)->first();
+        $bill = ProjectClaim::where('id', '=', $request->id)->first();
 
         if ($request->action == 'print') {
             return view('bill.print.print', [
-                'bill' => $bill,
+                'bill'      => $bill,
                 'form_data' => $request->all(),
             ]);
         } else {
             $pdf = PDF::loadView('bill.pdf.bill_pdf', [
-                'bill' => $bill,
+                'bill'      => $bill,
                 'form_data' => $request->all(),
             ]);
 
@@ -423,7 +435,7 @@ class BillController extends Controller
             'equipement',
             'equipment_type',
             'vendor',
-            'project'
+            'project',
         ])->orderBy('updated_at', 'desc');
 
         if ($request->bill_no != '') {
@@ -457,19 +469,18 @@ class BillController extends Controller
         }
 
         if ($request->end_month != '' && $request->end_month != 'undefined') {
-            $start = date('Y-m',strtotime(str_replace('/','-',$request->start_month)));
-            $end = date('Y-m',strtotime(str_replace('/','-',$request->end_month)));
+            $start = date('Y-m', strtotime(str_replace('/', '-', $request->start_month)));
+            $end   = date('Y-m', strtotime(str_replace('/', '-', $request->end_month)));
 
-            $bill->whereBetween('month', [$start,$end]);
-            
-            $month .= 'From ' .$start. ' to ' .$end;
+            $bill->whereBetween('month', [$start, $end]);
+
+            $month .= 'From ' . $start . ' to ' . $end;
         }
 
         $bill = $bill->get();
-        if($request->action == 'print')
-        {
+        if ($request->action == 'print') {
             return view('bill.print.bill_list_print', [
-                'bill' => $bill,
+                'bill'  => $bill,
                 'month' => $month,
                 // 'bill_no' => $bill_no,
                 // 'poject' => $poject,
@@ -479,8 +490,8 @@ class BillController extends Controller
             ]);
         } else {
             $pdf = \PDF::loadView('bill.pdf.bill_list_pdf', [
-            // return view('bill.pdf.bill_list_pdf', [
-                'bill' => $bill,
+                // return view('bill.pdf.bill_list_pdf', [
+                'bill'  => $bill,
                 'month' => $month,
                 // 'bill_no' => $bill_no,
                 // 'poject' => $poject,

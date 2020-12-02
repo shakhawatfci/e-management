@@ -11,29 +11,30 @@
 
 	<div class="container">
 
-        <form action="{{ route('bill.print') }}" method="GET"> 
-<!-- 
+        <form action="{{ route('bill.print') }}" method="GET">
+<!--
             {{ csrf_field() }} -->
 
         <div class="row" style="text-align: center;margin-top: 30px;">
         	<div class="col-md-12 col-xs-12">
-                <div  class="btn btn-default" style="font-size: 20px;">INVOICE PREVIEW</div>    
+                <div  class="btn btn-default" style="font-size: 20px;">INVOICE PREVIEW</div>
             </div>
 @if(Session::has('warning'))
 
 <div class="col-md-12 col-xs-12">
-                <div  class="btn btn-danger" style="font-size: 20px;">{{ Session::get('warning') }}</div>    
+                <div  class="btn btn-danger" style="font-size: 20px;">{{ Session::get('warning') }}</div>
             </div>
 
   @endif
 
 
-        </div>     
+        </div>
 
         <div class="row">
         	<div class="col-md-12 col-xs-12">
         	   <p>Date: {{ date('d F , Y', strtotime($bill->date)) }}</p>
-        	   <p> <strong>Bill NO: <input type="text"  value="{{ $bill->bill_no }}" name="bill_no" readonly></strong></p>
+        	    <input type="hidden"  value="{{ $bill->id }}" name="id" readonly>
+        	   <p> <strong>Bill NO: <input type="text"  value="LIMMEX-{{ $bill->bill_no }}" name="bill_no" readonly></strong></p>
         	   <p style="margin-top:20px;">To,</p>
         	   <p style=""><input type="text" value="Managing Director" name="to" class="form-control" required=""></p>
         	   <p style=""><input type="text" value="{{ $bill->project->project_argument_with }}" name="company_bill_to" class="form-control" required=""></p>
@@ -45,12 +46,12 @@
                  </strong>
         	   </p>
 
-        	  <p style="margin-top: 25px;">Dear Sir,</p> 
-        	  <p style="">We do here & submit the bill for kind consideration & necessary action please</p> 
+        	  <p style="margin-top: 25px;">Dear Sir,</p>
+        	  <p style="">We do here & submit the bill for kind consideration & necessary action please</p>
         	</div>
-        </div>   
+        </div>
 
-        
+
         <div class="row">
         	<div class="col-md-12 col-xs-12">
         	   <table class="table table-bordered text-center">
@@ -61,7 +62,7 @@
         	   	  	<th class="text-center">Hour</th>
         	   	  	<th class="text-center">Per Hour Rate in BDT</th>
         	   	  	<th class="text-center">Amount in BDT</th>
-        	   	  </tr>  
+        	   	  </tr>
 
         	   	  <tr>
         	   	    <td>1</td>
@@ -70,7 +71,7 @@
         	   	    <td>{{ $bill->total_hour }}</td>
         	   	    <td>{{ round($bill->project_rate_per_hour,2) }}</td>
         	   	    <td>{{ round($bill->project_amount,2) }}</td>
-        	   	  </tr>   
+        	   	  </tr>
 
         	   	  <tr>
         	   	    <td>2</td>
@@ -79,7 +80,7 @@
         	   	    <td>-</td>
         	   	    <td>-</td>
         	   	    <td>{{ round((($bill->project_amount*$bill->project_vat)/100),2) }}</td>
-        	   	  </tr>  
+        	   	  </tr>
 
         	   	  <tr>
         	   	    <td>3</td>
@@ -88,7 +89,7 @@
         	   	    <td>-</td>
         	   	    <td>-</td>
         	   	    <td>{{ round((($bill->project_amount*$bill->project_ait)/100),2) }}</td>
-        	   	  </tr>   
+        	   	  </tr>
 
         	   	  <tr>
         	   	    <td>4</td>
@@ -97,10 +98,10 @@
         	   	    <td>-</td>
         	   	    <td>-</td>
         	   	    <td>{{ round((($bill->project_amount*$bill->project_sup)/100),2) }}</td>
-        	   	  </tr>   	  
+        	   	  </tr>
 
                   @php
-                    
+
                     $vat = $bill->project_vat+$bill->project_ait+$bill->project_sup;
                    @endphp
 
@@ -112,12 +113,12 @@
 
 
         	   </table>
-               @php 
-                
+               @php
+
                 $taka = new App\Helper\AmountConverter();
 
                @endphp
-        	   <p>Amount In Words {{ $taka->get_bd_amount_in_text(round($bill->total_project_amount,2)) }}</p> 
+        	   <p>Amount In Words {{ $taka->get_bd_amount_in_text(round($bill->total_project_amount,2)) }}</p>
         	</div>
         </div>
 
@@ -127,46 +128,46 @@
                 <p style="margin-top: 60px;"><input type="text" name="bill_by" value="Md Rafiqul Islam" class="form-control"></p>
                 <p><input type="text" name="designation" value="Proprietor" class="form-control" required=""></p>
                 <p><input type="text" name="company" value="Limmex Construction" class="form-control" required=""></p>
-            </div>  
+            </div>
 
 
             <div class="col-md-6 col-xs-6">
 			<input class="form-control" type="hidden" name="tin_no" value="" required="">
 			<input class="form-control" type="hidden" name="reg_no" value="" required="">
-                <table class="table table-bordered">  
+                <table class="table table-bordered">
 
                     <tr>
                         <td>Bank Name</td>
                         <td><input class="form-control" type="text" name="bank_name" value="Banks Asia Ltd." required=""></td>
-                       
-                    </tr> 
+
+                    </tr>
 
                      <tr>
                         <td>Bank Account Name</td>
                         <td><input class="form-control" type="text" name="bank_ac_name" value="Limmex Construction" required=""></td>
-                       
-                    </tr> 
+
+                    </tr>
 
                     <tr>
                         <td>Bank Account No</td>
                         <td><input class="form-control" type="text" name="bank_ac" value="50201000543" required=""></td>
-                       
-                    </tr>  
+
+                    </tr>
 
                     <tr>
                         <td>Branch Name</td>
                         <td><input class="form-control" type="text" name="bank_branch" value="Shantinagar, Dhaka." required=""></td>
-                       
-                    </tr> 
+
+                    </tr>
 
                      <tr>
                         <td>Bank Routing Number</td>
                         <td><input class="form-control" type="text" name="bank_routing" value="070276343" required=""></td>
-                       
+
                     </tr>
 
                 </table>
-                
+
                 <button style="margin-bottom: 30px;width: 45%;"  type="submit" name="action" value="print"
 				 class="btn btn-primary"><i class="fa fa-print"></i> Print</button>
                 <button style="margin-bottom: 30px;width: 45%;"  type="submit"
