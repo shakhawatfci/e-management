@@ -33,7 +33,7 @@
 			</div>
         	<div class="col-md-12 col-xs-12">
         	   <p>Date: {{ date('d F , Y', strtotime($bill->date)) }}</p>
-        	   <p> <strong>Bill NO: {{ $bill->bill_no }}</strong></p>
+        	   <p> <strong>Bill NO: {{ $form_data['bill_no'] }}</strong></p>
         	   <p style="margin-top:15px;">To,</p>
         	   <p>{{ $form_data['to'] }}</p>
         	   <p>{{ $form_data['company_bill_to'] }}</p>
@@ -124,7 +124,8 @@
         <div class="row">
             <div class="col-md-6 col-xs-6">
                 <p style="margin-top: 20px;"><strong>Thanks & Regards</strong></p>
-                <p style="margin-top: 40px;">{{ $form_data['bill_by'] }}</p>
+                <p><img src="{{ url('images/sign.png') }}" style="height: 50px;"></p>
+                <p style="margin-top: 5px;">{{ $form_data['bill_by'] }}</p>
                 <p>{{ $form_data['designation'] }}</p>
                 <p>{{ $form_data['company'] }}</p>
             </div>

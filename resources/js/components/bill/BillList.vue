@@ -1,72 +1,109 @@
 <template>
   <div>
     <div class="row">
-      <div class="col-md-3" style="margin-bottom:10px;">
+      <div class="col-md-3" style="margin-bottom: 10px">
         <input
           type="text"
           class="form-control"
-          placeholder="Search By Bill No: eg 2020-06-1"
+          placeholder="Search By Bill No: eg 101"
           v-model="bill_no"
           @keyup="getBillList()"
         />
       </div>
 
-      <div class="col-md-3" style="margin-bottom:10px;">
-        <select class="form-control" v-model="project_id" @change="getBillList()">
+      <div class="col-md-3" style="margin-bottom: 10px">
+        <select
+          class="form-control"
+          v-model="project_id"
+          @change="getBillList()"
+        >
           <option value>All Projects</option>
           <option
             v-for="project in projects"
             :key="project.id"
             :value="project.id"
-          >{{ project.project_name }}</option>
+          >
+            {{ project.project_name }}
+          </option>
         </select>
       </div>
 
-      <div class="col-md-3" style="margin-bottom:10px;">
-        <select class="form-control" v-model="equipment_type_id" @change="getBillList()">
+      <div class="col-md-3" style="margin-bottom: 10px">
+        <select
+          class="form-control"
+          v-model="equipment_type_id"
+          @change="getBillList()"
+        >
           <option value>All Equipment Type</option>
           <option
             v-for="eq_type in equipment_types"
             :key="eq_type.id"
             :value="eq_type.id"
-          >{{ eq_type.name }}</option>
+          >
+            {{ eq_type.name }}
+          </option>
         </select>
       </div>
 
-      <div class="col-md-3" style="margin-bottom:10px;">
-        <select class="form-control" v-model="vendor_id" @change="getVendorEquipments()">
+      <div class="col-md-3" style="margin-bottom: 10px">
+        <select
+          class="form-control"
+          v-model="vendor_id"
+          @change="getVendorEquipments()"
+        >
           <option value>All Vendor</option>
-          <option v-for="vd in vendors" :key="vd.id" :value="vd.id">{{ vd.vendor_name }}</option>
+          <option v-for="vd in vendors" :key="vd.id" :value="vd.id">
+            {{ vd.vendor_name }}
+          </option>
         </select>
       </div>
 
-      <div class="col-md-3" style="margin-bottom:10px;">
-        <select class="form-control" v-model="equipment_id" @change="getBillList()">
+      <div class="col-md-3" style="margin-bottom: 10px">
+        <select
+          class="form-control"
+          v-model="equipment_id"
+          @change="getBillList()"
+        >
           <option value>All Equipment</option>
-          <option v-for="eq in equipments" :key="eq.id" :value="eq.id">{{ eq.eq_name }}</option>
+          <option v-for="eq in equipments" :key="eq.id" :value="eq.id">
+            {{ eq.eq_name }}
+          </option>
         </select>
       </div>
 
-      <div class="col-md-3" style="margin-bottom:10px;">
-        <select class="form-control" v-model="payment_status" @change="getBillList()">
+      <div class="col-md-3" style="margin-bottom: 10px">
+        <select
+          class="form-control"
+          v-model="payment_status"
+          @change="getBillList()"
+        >
           <option value>Project Payment Status</option>
           <option value="1">Paid</option>
           <option value="0">Unpaid</option>
         </select>
       </div>
 
-      <div class="col-md-3" style="margin-bottom:10px;">
-         <vue-monthly-picker :monthLabels="pickermonth.lebel" placeHolder="Start Month" v-model="start_month"></vue-monthly-picker>
+      <div class="col-md-3" style="margin-bottom: 10px">
+        <vue-monthly-picker
+          :monthLabels="pickermonth.lebel"
+          placeHolder="Start Month"
+          v-model="start_month"
+        ></vue-monthly-picker>
       </div>
 
-      <div class="col-md-3" style="margin-bottom:10px;">
-         <vue-monthly-picker :monthLabels="pickermonth.lebel" placeHolder="End Month" v-model="end_month" @input="getBillList()"></vue-monthly-picker>
+      <div class="col-md-3" style="margin-bottom: 10px">
+        <vue-monthly-picker
+          :monthLabels="pickermonth.lebel"
+          placeHolder="End Month"
+          v-model="end_month"
+          @input="getBillList()"
+        ></vue-monthly-picker>
       </div>
     </div>
 
-    <div class="row" style="margin-top:20px">
+    <div class="row" style="margin-top: 20px">
       <div class="col-md-12" v-if="!isLoading">
-        <div class="table-responsive" style="min-height : 60vh !important;">
+        <div class="table-responsive" style="min-height: 60vh !important">
           <table class="table table-bordered table-hover mb-4">
             <thead>
               <tr>
@@ -82,7 +119,9 @@
             <tbody>
               <tr v-for="value in bill_list.data" :key="value.id">
                 <td>
-                  No : {{ value.bill_no }}
+                  No : {{ value.id }}
+                  <br />
+                  Previous No : {{ value.bill_no }}
                   <br />
                   Month : {{ value.month | monthToString }}
                 </td>
@@ -100,25 +139,52 @@
                 </td>
                 <td>{{ value.total_hour }}</td>
                 <td>
-
                   Total Amount : {{ value.total_project_amount }}
                   <br />
-                  Paid Amount : {{ Number(value.project_payment)+Number(value.project_adjustment_payment) }}
+                  Paid Amount :
+                  {{
+                    Number(value.project_payment) +
+                    Number(value.project_adjustment_payment)
+                  }}
                   <br />
-                  OutStanding : {{ value.total_project_amount - (Number(value.project_payment)+Number(value.project_adjustment_payment)) }}
+                  OutStanding :
+                  {{
+                    value.total_project_amount -
+                    (Number(value.project_payment) +
+                      Number(value.project_adjustment_payment))
+                  }}
                   <br />
-                  Status :    <span class="badge badge-success" v-if="value.payment_status == 1">Paid</span>
-                                      <span class="badge badge-danger" v-else>Unpaid</span>
+                  Status :
+                  <span
+                    class="badge badge-success"
+                    v-if="value.payment_status == 1"
+                    >Paid</span
+                  >
+                  <span class="badge badge-danger" v-else>Unpaid</span>
                 </td>
                 <td>
                   Total Amount : {{ value.total_vendor_amount }}
                   <br />
-                  Paid Amount : {{ Number(value.vendor_payment)+Number(value.vendor_adjustment_payment) }}
+                  Paid Amount :
+                  {{
+                    Number(value.vendor_payment) +
+                    Number(value.vendor_adjustment_payment)
+                  }}
                   <br />
-                  OutStanding : {{ value.total_vendor_amount - (Number(value.vendor_payment)+Number(value.vendor_adjustment_payment)) }}
+                  OutStanding :
+                  {{
+                    value.total_vendor_amount -
+                    (Number(value.vendor_payment) +
+                      Number(value.vendor_adjustment_payment))
+                  }}
                   <br />
-                  Status :   <span class="badge badge-success" v-if="value.vendor_payment_status == 1">Paid</span>
-                                      <span class="badge badge-danger" v-else>Unpaid</span>
+                  Status :
+                  <span
+                    class="badge badge-success"
+                    v-if="value.vendor_payment_status == 1"
+                    >Paid</span
+                  >
+                  <span class="badge badge-danger" v-else>Unpaid</span>
                 </td>
 
                 <td class="text-center">
@@ -135,62 +201,88 @@
                       <i class="fa fa-cogs fa-2x"></i>
                     </a>
 
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
+                    <div
+                      class="dropdown-menu"
+                      aria-labelledby="dropdownMenuLink2"
+                    >
                       <a
                         class="dropdown-item"
                         href
                         @click.prevent="viewMore(value)"
-                      >View Bill Details</a>
+                        >View Bill Details</a
+                      >
                       <a
                         class="dropdown-item"
-                        :href="url+'bill-print/'+value.bill_no"
+                        :href="url + 'bill-print/' + value.id"
                         target="_blank"
-                      >Print & PDF</a>
-                      <a class="dropdown-item" href @click.prevent="edit(value)">Edit</a>
+                        >Print & PDF</a
+                      >
+                      <a class="dropdown-item" href @click.prevent="edit(value)"
+                        >Edit</a
+                      >
                       <a
                         class="dropdown-item"
                         href
                         @click.prevent="makeProjectPayment(value)"
-                      >Make Project Payment</a>
+                        >Make Project Payment</a
+                      >
                       <a
                         class="dropdown-item"
                         href
                         @click.prevent="projectPaymentHistory(value)"
                       >
-                      Project Paymetn History
+                        Project Paymetn History
                       </a>
                       <a
                         class="dropdown-item"
                         href
                         @click.prevent="makeVendorPayment(value)"
-                      >Make Vendor Payment</a>
+                        >Make Vendor Payment</a
+                      >
 
                       <a
                         class="dropdown-item"
                         href
                         @click.prevent="vendorPaymentHistory(value)"
-                      >Vendor Payment History</a>
+                        >Vendor Payment History</a
+                      >
                       <a
                         class="dropdown-item"
                         href
                         @click.prevent="deleteBill(value.id)"
-                      >Delete Bill</a>
+                        >Delete Bill</a
+                      >
                     </div>
                   </div>
                 </td>
               </tr>
-              <tr v-if="bill_list.data.length > 0" class="float-rigth">
+              <tr class="float-rigth">
                 <td colspan="7">
-                  <a :href="url+`bill-list-pdf/print?action='pdf'&vendor_id=${vendor_id}&equipment_type_id=${equipment_type_id}&project_id=${project_id}&equipment_id=${equipment_id}&payment_status=${payment_status}&bill_no=${bill_no}&start_month=${start_month._i}&end_month=${end_month._i}`" class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i> PDF</a>
+                  <a
+                    :href="
+                      url +
+                      `bill-list-pdf/print?action='pdf'&vendor_id=${vendor_id}&equipment_type_id=${equipment_type_id}&project_id=${project_id}&equipment_id=${equipment_id}&payment_status=${payment_status}&bill_no=${bill_no}&start_month=${start_month._i}&end_month=${end_month._i}`
+                    "
+                    class="btn btn-primary btn-sm"
+                    ><i class="fa fa-file-pdf-o"></i> PDF</a
+                  >
 
-                <a :href="url+`bill-list-pdf/print?action=print&vendor_id=${vendor_id}&equipment_type_id=${equipment_type_id}&project_id=${project_id}&equipment_id=${equipment_id}&payment_status=${payment_status}&bill_no=${bill_no}&start_month=${start_month._i}&end_month=${end_month._i}`" class="btn btn-danger btn-sm"><i class="fa fa-print" target="_blank"></i> Print</a></td>
+                  <a
+                    :href="
+                      url +
+                      `bill-list-pdf/print?action=print&vendor_id=${vendor_id}&equipment_type_id=${equipment_type_id}&project_id=${project_id}&equipment_id=${equipment_id}&payment_status=${payment_status}&bill_no=${bill_no}&start_month=${start_month._i}&end_month=${end_month._i}`
+                    "
+                    class="btn btn-danger btn-sm"
+                    ><i class="fa fa-print" target="_blank"></i> Print</a
+                  >
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
-      
-      <div class="col-md-12 text-center" style="margin-top:30px;" v-else>
+
+      <div class="col-md-12 text-center" style="margin-top: 30px" v-else>
         <!-- <img :src="url+'images/logo/loading.gif'" class="img-fluid"> -->
         <div class="loader multi-loader mx-auto loader-xl"></div>
       </div>
@@ -215,7 +307,7 @@
 <script>
 import { EventBus } from "../../vue-assets";
 import Mixin from "../../mixin";
-import VueMonthlyPicker from 'vue-monthly-picker'
+import VueMonthlyPicker from "vue-monthly-picker";
 import Pagination from "../pagination/Pagination";
 import CreateProjectPayment from "./payment/CreateProjectPayment";
 import ViewProjectPayment from "./payment/ViewProjectPayment";
@@ -229,12 +321,12 @@ export default {
   components: {
     VueMonthlyPicker,
     pagination: Pagination,
-    "crate-project-payment"  : CreateProjectPayment,
-    "crate-vendor-payment"   : CreateVendortPayment,
-    "view-project-payment"   : ViewProjectPayment,
-    "view-vendor-payment"    : ViewVendorPayment,
-    "bill-details"           : BillDetails,
-    "edit-bill"              : EditBill
+    "crate-project-payment": CreateProjectPayment,
+    "crate-vendor-payment": CreateVendortPayment,
+    "view-project-payment": ViewProjectPayment,
+    "view-vendor-payment": ViewVendorPayment,
+    "bill-details": BillDetails,
+    "edit-bill": EditBill,
   },
   data() {
     return {
@@ -247,21 +339,34 @@ export default {
       payment_status: "",
       keyword: "",
       bill_no: "",
-      pickermonth : {
-        lebel : ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
-        text : "Search By Month",
+      pickermonth: {
+        lebel: [
+          "JAN",
+          "FEB",
+          "MAR",
+          "APR",
+          "MAY",
+          "JUN",
+          "JUL",
+          "AUG",
+          "SEP",
+          "OCT",
+          "NOM",
+          "DEC",
+        ],
+        text: "Search By Month",
       },
-      start_month : '',
-      end_month : '',
+      start_month: "",
+      end_month: "",
       isLoading: false,
-      url: base_url
+      url: base_url,
     };
   },
 
   mounted() {
     var _this = this;
 
-    EventBus.$on("bill-changed", function() {
+    EventBus.$on("bill-changed", function () {
       _this.getBillList();
     });
 
@@ -271,12 +376,16 @@ export default {
   methods: {
     getBillList(page = 1) {
       this.isLoading = true;
-      var st_mo = ''
-      var lt_mo = ''
-      if(this.end_month != ''){
-        if(this.start_month === '') this.successMessage({status : 'error',message :'Select start Month'})
-          st_mo = this.start_month._i
-          lt_mo = this.end_month._i
+      var st_mo = "";
+      var lt_mo = "";
+      if (this.end_month != "") {
+        if (this.start_month === "")
+          this.successMessage({
+            status: "error",
+            message: "Select start Month",
+          });
+        st_mo = this.start_month._i;
+        lt_mo = this.end_month._i;
       }
       axios
         .get(
@@ -291,16 +400,15 @@ export default {
             &start_month=${st_mo}
             &end_month=${lt_mo}`
         )
-        .then(response => {
+        .then((response) => {
           this.bill_list = response.data;
           this.isLoading = false;
         });
     },
 
-    edit(value)
-    {
-      // passing bill by event bus 
-       EventBus.$emit('edit-bill',value);
+    edit(value) {
+      // passing bill by event bus
+      EventBus.$emit("edit-bill", value);
     },
 
     viewMore(id) {
@@ -316,12 +424,12 @@ export default {
           showCancelButton: true,
           confirmButtonColor: "#3085d6",
           cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, delete it!"
+          confirmButtonText: "Yes, delete it!",
         },
         () => {}
-      ).then(result => {
+      ).then((result) => {
         if (result.value) {
-          axios.delete(`${base_url}bill/${id}`).then(response => {
+          axios.delete(`${base_url}bill/${id}`).then((response) => {
             this.successMessage(response.data);
             this.getBillList();
           });
@@ -329,28 +437,25 @@ export default {
       });
     },
 
-
     makeProjectPayment(bill) {
       EventBus.$emit("make-project-payment", bill);
     },
 
-    projectPaymentHistory(bill)
-    {
-      EventBus.$emit('view-project-payment',bill);
+    projectPaymentHistory(bill) {
+      EventBus.$emit("view-project-payment", bill);
     },
 
     makeVendorPayment(bill) {
       EventBus.$emit("make-vendor-payment", bill);
     },
 
-    vendorPaymentHistory(bill)
-    {
-      EventBus.$emit('view-vendor-payment',bill);
+    vendorPaymentHistory(bill) {
+      EventBus.$emit("view-vendor-payment", bill);
     },
     getVendorEquipments() {
       axios
         .get(`${base_url}equipment-by-vendor/0/${this.vendor_id}`)
-        .then(response => {
+        .then((response) => {
           this.equipments = response.data;
         });
       this.getBillList();
@@ -364,8 +469,8 @@ export default {
         return 0;
       }
       return (total_amount * percentage) / 100;
-    }
-  }
+    },
+  },
 };
 </script>
 

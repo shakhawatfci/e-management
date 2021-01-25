@@ -13,7 +13,7 @@
 
 <div class="row layout-top-spacing">
 
-<div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+<div class="col-md-8 mx-auto layout-spacing">
     <div class="widget widget-table-two">
 
         <div class="widget-heading">
@@ -49,47 +49,6 @@
     </div>
 </div>
 
-<div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-    <div class="widget widget-table-three">
-
-        <div class="widget-heading">
-            <h5 class="">Top Selling Product</h5>
-        </div>
-
-        <div class="widget-content">
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th><div class="th-content">Product</div></th>
-                            <th><div class="th-content th-heading">Price</div></th>
-                            <th><div class="th-content th-heading">Discount</div></th>
-                            <th><div class="th-content">Sold</div></th>
-                            <th><div class="th-content">Source</div></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><div class="td-content product-name"><img src="assets/img/90x90.jpg" alt="product">Speakers</div></td>
-                            <td><div class="td-content"><span class="pricing">$84.00</span></div></td>
-                            <td><div class="td-content"><span class="discount-pricing">$10.00</span></div></td>
-                            <td><div class="td-content">240</div></td>
-                            <td><div class="td-content"><a href="javascript:void(0);" class="">Direct</a></div></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
 
 </div>
 @endsection
-
-<!-- push the script which you need only this page  -->
-@push('script')
-    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-    <script src="{{ asset('admin-assets/plugins/apex/apexcharts.min.js') }}"></script>
-    <!-- <script src="{{ asset('admin-assets/assets/js/dashboard/dash_1.js') }}"></script> -->
-    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-@endpush

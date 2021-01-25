@@ -1,6 +1,5 @@
 @extends('master.master')
 @section('title','EMS | Role and Permission')
-
 @section('page_header')
 <li class="breadcrumb-item"><a href="javascript:void(0);">Adminstration</a></li>
 <li class="breadcrumb-item active" aria-current="page"><span>Role & Permission</span></li>
@@ -12,7 +11,7 @@
 </button>
 @endsection
 @section('content')
-<div class="layout-px-spacing">                
+<div class="layout-px-spacing">
                 <div class="row layout-spacing layout-top-spacing" id="cancel-row">
                     <div class="col-lg-12">
                         <div class="widget-content searchable-container list">

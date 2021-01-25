@@ -19,38 +19,5 @@
     <script src="{{ asset('admin-assets/assets/js/apps/contact.js') }}"></script>
     <!-- BEGIN THEME GLOBAL STYLES -->
     <script src="{{ asset('admin-assets/plugins/apex/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('admin-assets/assets/js/dashboard/dash_1.js') }}"></script>
-    
+
     <script src="{{ asset('admin-assets/plugins/flatpickr/flatpickr.js') }}"></script>
-    <script src="{{ asset('admin-assets/plugins/monthpicker/jquery.ui.monthpicker.js') }}"></script>
-    
-    <script>
-        jQuery(document).ready(function() {
-            jQuery("#month1").monthpicker({
-    changeYear: true,
-    stepYears: 2,
-                showOn:     "both",
-                buttonImage: "images/calendar.png",
-                buttonImageOnly: true
-            });
-            jQuery("#month2").monthpicker({
-                monthNames: ['January','February','March','April','May','June', 'July','August','September','October', 'November','December'], 
-monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                showOn:     "both",
-                buttonImage: "images/calendar.png",
-                buttonImageOnly: true,
-    showButtonPanel: true,
-                changeYear: false,
-                yearRange: 'c-2:c+2',
-                dateFormat: 'MM y'
-            });
-            jQuery("#date1").datepicker({
-                showOn:     "both",
-                buttonImage: "images/calendar.png",
-                buttonImageOnly: true
-            });
-        });
-    </script>
-<script>
-    jQuery('input.monthpicker').monthpicker({changeYear:true,dateFormat:'yy-mm'});
-</script>

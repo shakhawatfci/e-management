@@ -4,8 +4,8 @@ Vue.component('view-role', require('./components/role/ViewRole.vue').default);
 
 
 var app = new Vue({
-
     el: '#content'
+
 });
 
 

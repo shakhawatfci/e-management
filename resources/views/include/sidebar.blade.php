@@ -1,12 +1,12 @@
         <!--  BEGIN SIDEBAR  -->
         <div class="sidebar-wrapper sidebar-theme">
-            
+
             <nav id="sidebar">
                 <div class="shadow-bottom"></div>
                 <ul class="list-unstyled menu-categories" id="accordionExample">
 
                    <li class="menu">
-                        <a href="{{ url('/') }}" aria-expanded="false" 
+                        <a href="{{ url('/') }}" aria-expanded="false"
                         data-active="@if(request()->is('/')){{ 'true' }}@else{{ 'false' }}@endif" class="dropdown-toggle">
                             <div class="menu_heading">
                                <i class="fa fa-home"></i>
@@ -16,9 +16,9 @@
                     </li>
 
                     @php
-                    $side_menu = sideMenu(Auth::user()->role_id) 
+                    $side_menu = sideMenu(Auth::user()->role_id)
                     @endphp
-                    @foreach($side_menu as $value) 
+                    @foreach($side_menu as $value)
                     @if(count($value['sub_menu'])>0)
                     <li class="menu">
                         <a href="#{{ str_replace('&','',str_replace(' ','',$value['name'])) }}" data-toggle="collapse"
@@ -28,9 +28,9 @@
                                 <span>{{ $value['name'] }}</span>
                             </div>
                             <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" 
+                                <svg xmlns="http://www.w3.org/2000/svg"
                                 width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none" stroke="currentColor" 
+                                 fill="none" stroke="currentColor"
                                  stroke-width="2" stroke-linecap="round"
                                   stroke-linejoin="round" class="feather feather-chevron-right">
                                   <polyline points="9 18 15 12 9 6"></polyline>
@@ -43,19 +43,19 @@
                             <li @if(Route::currentRouteName() == $sub->menu_url) class="active" @endif>
                                 <a href="{{ $sub->menu_url ? route($sub->menu_url) : '' }}" >{{ $sub->name }}</a>
                             </li>
-                         @endforeach   
+                         @endforeach
                         </ul>
                     </li>
 
-                
+
 
 
                 <!-- adminstration  -->
                     @else
                     <!-- Vendor menu  -->
                     <li class="menu @if(Route::currentRouteName() == $value['url']) active active_url @endif">
-                        <a href="{{ $value['url'] ? route($value['url']) : '' }}" 
-                        data-active="@if(Route::currentRouteName() == $value['url']){{ 'true' }}@else{{ 'false' }}@endif" 
+                        <a href="{{ $value['url'] ? route($value['url']) : '' }}"
+                        data-active="@if(Route::currentRouteName() == $value['url']){{ 'true' }}@else{{ 'false' }}@endif"
                         class="dropdown-toggle">
                             <div class="menu_heading">
                             <i class="{{ $value['icon'] }}"></i>
@@ -65,7 +65,7 @@
                     </li>
                     @endif
                     @endforeach
-                    
+
                 </ul>
                 <!-- <div class="shadow-bottom"></div> -->
             </nav>

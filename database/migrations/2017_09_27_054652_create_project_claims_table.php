@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateProjectClaimsTable extends Migration
 {
@@ -22,6 +22,7 @@ class CreateProjectClaimsTable extends Migration
             $table->foreignId('equipment_type_id');
             $table->foreignId('equipement_id');
             $table->foreignId('user_id');
+            $table->foreignId('operator_id')->nullable()->default(0);
             $table->string('month');
             $table->string('date');
             $table->double('total_hour');
