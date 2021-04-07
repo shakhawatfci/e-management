@@ -61,7 +61,7 @@
         	   <p> <strong>Bill NO: {{ $form_data['bill_no'] }}</strong></p>
         	   <p style="margin-top:15px;">To,</p>
         	   <p style="">{{ $form_data['to'] }}</p>
-        	   <p style="">{{ $form_data['company'] }}</p>
+        	   <p style="">{{ $form_data['company_bill_to'] }}</p>
         	   <p style="">{{ $form_data['project_name'] }}</p>
         	   <p style="">{{ $form_data['project_location'] }}</p>
         	   <p style="margin-top: 12px;">
