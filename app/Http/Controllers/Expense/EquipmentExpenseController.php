@@ -151,16 +151,19 @@ class EquipmentExpenseController extends Controller
      */
     public function store(Request $request)
     {
+        return $request->all();
+        
         $request->validate([
             'project_id' => 'required',
             'vendor_id' => 'required',
             'equipment_type_id' => 'required',
             'equipement_id' => 'required',
-            'expense_category_id' => 'required',
+            'expense_category' => 'required',
             'month' => 'required',
             'payment_date' => 'required',
             'amount' => 'required'
         ]);
+
         try {
             $status = $request->status ? 1 : 0;
             $insert = EquipementExpense::insert([

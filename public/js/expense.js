@@ -2097,6 +2097,63 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2113,9 +2170,14 @@ __webpack_require__.r(__webpack_exports__);
         equipment_type_id: '',
         equipement_id: '',
         expense_category_id: '',
+        expense_category: [{
+          category_id: "",
+          amount: ""
+        }],
         month: '',
         payment_date: '',
         amount: '',
+        payment_method: '',
         documents_link: '',
         note: ''
       },
@@ -2129,6 +2191,7 @@ __webpack_require__.r(__webpack_exports__);
       equipment_types: [],
       equipments: [],
       expense_categories: [],
+      isCategoryLoading: false,
       button_name: 'Save',
       validation_error: {}
     };
@@ -2148,6 +2211,20 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("".concat(base_url, "equipment-by-vendor/0/").concat(this.euqipment.vendor_id)).then(function (response) {
         _this.equipments = response.data;
       });
+    },
+    // checkDuplicate(id) {
+    //   let ob = Object.values( this.euqipment.expense_category);
+    //   return ob.find((category) => category.id == id);
+    // },
+    addCategory: function addCategory() {
+      //   if(this.checkDuplicate({category_id})) return ;
+      this.euqipment.expense_category.push({
+        category_id: "",
+        amount: ""
+      });
+    },
+    removeCategory: function removeCategory(index) {
+      this.euqipment.expense_category.splice(index, 1);
     },
     save: function save() {
       var _this2 = this;
@@ -2197,7 +2274,7 @@ __webpack_require__.r(__webpack_exports__);
         vendor_id: '',
         equipment_type_id: '',
         equipement_id: '',
-        expense_category_id: '',
+        expense_category: null,
         month: '',
         payment_date: '',
         amount: '',
@@ -32437,90 +32514,6 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-4" }, [
-                        _c("div", { staticClass: "contact-email" }, [
-                          _c("i", { staticClass: "flaticon-mail-26" }),
-                          _vm._v(" "),
-                          _c("label", { attrs: { for: "equipement-name" } }, [
-                            _vm._v("Expense Category")
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "select",
-                            {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.euqipment.expense_category_id,
-                                  expression: "euqipment.expense_category_id"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: { id: "equipement-name" },
-                              on: {
-                                change: function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.$set(
-                                    _vm.euqipment,
-                                    "expense_category_id",
-                                    $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  )
-                                }
-                              }
-                            },
-                            [
-                              _c("option", { attrs: { value: "" } }, [
-                                _vm._v("Chose Expense Category")
-                              ]),
-                              _vm._v(" "),
-                              _vm._l(_vm.expense_categories, function(value) {
-                                return _c(
-                                  "option",
-                                  {
-                                    key: value.id,
-                                    domProps: { value: value.id }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\r\n                                          " +
-                                        _vm._s(value.head_name) +
-                                        "\r\n                                      "
-                                    )
-                                  ]
-                                )
-                              })
-                            ],
-                            2
-                          ),
-                          _vm._v(" "),
-                          _vm.validation_error.hasOwnProperty(
-                            "expense_category_id"
-                          )
-                            ? _c("span", { staticClass: "text-danger" }, [
-                                _vm._v(
-                                  "\r\n                                      " +
-                                    _vm._s(
-                                      _vm.validation_error
-                                        .expense_category_id[0]
-                                    ) +
-                                    "\r\n                                     "
-                                )
-                              ])
-                            : _vm._e()
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-4" }, [
                         _c(
                           "div",
                           { staticClass: "contact-name" },
@@ -32616,45 +32609,74 @@ var render = function() {
                         _c("div", { staticClass: "contact-phone" }, [
                           _c("i", { staticClass: "flaticon-telephone" }),
                           _vm._v(" "),
-                          _c("label", { attrs: { for: "amount" } }, [
-                            _vm._v("Amount")
+                          _c("label", { attrs: { for: "payment_method" } }, [
+                            _vm._v("Payment Method")
                           ]),
                           _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.euqipment.amount,
-                                expression: "euqipment.amount"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              id: "amount",
-                              placeholder: "amount"
-                            },
-                            domProps: { value: _vm.euqipment.amount },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.euqipment.payment_method,
+                                  expression: "euqipment.payment_method"
                                 }
-                                _vm.$set(
-                                  _vm.euqipment,
-                                  "amount",
-                                  $event.target.value
-                                )
+                              ],
+                              staticClass: "form-control",
+                              attrs: { id: "payment_method" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.euqipment,
+                                    "payment_method",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
                               }
-                            }
-                          }),
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("Chose Payment Method")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "Bank" } }, [
+                                _vm._v("Bank")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "Cash" } }, [
+                                _vm._v("Cash")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "Bkash" } }, [
+                                _vm._v("Bkash")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "Other" } }, [
+                                _vm._v("Other")
+                              ])
+                            ]
+                          ),
                           _vm._v(" "),
-                          _vm.validation_error.hasOwnProperty("amount")
+                          _vm.validation_error.hasOwnProperty("payment_method")
                             ? _c("span", { staticClass: "text-danger" }, [
                                 _vm._v(
                                   "\r\n                                  " +
-                                    _vm._s(_vm.validation_error.amount[0]) +
+                                    _vm._s(
+                                      _vm.validation_error.payment_method[0]
+                                    ) +
                                     "\r\n                                 "
                                 )
                               ])
@@ -32709,6 +32731,207 @@ var render = function() {
                             : _vm._e()
                         ])
                       ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-12" }, [
+                      _c("i", { staticClass: "flaticon-mail-26" }),
+                      _vm._v(" "),
+                      _c("label", { attrs: { for: "equipement-name" } }, [
+                        _vm._v("Expense Category")
+                      ]),
+                      _vm._v(" "),
+                      _vm.euqipment.expense_category &&
+                      _vm.euqipment.expense_category.length > 0
+                        ? _c("div", { staticClass: "table-responsive" }, [
+                            _c(
+                              "table",
+                              { staticClass: "table table-bordered" },
+                              [
+                                _vm._m(1),
+                                _vm._v(" "),
+                                _c(
+                                  "tbody",
+                                  _vm._l(
+                                    _vm.euqipment.expense_category,
+                                    function(cat, index) {
+                                      return _c(
+                                        "tr",
+                                        {
+                                          key: "category" + index,
+                                          staticClass: "text-center"
+                                        },
+                                        [
+                                          _c("td", [
+                                            _c(
+                                              "select",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value: cat.category_id,
+                                                    expression:
+                                                      "cat.category_id"
+                                                  }
+                                                ],
+                                                staticClass: "form-control",
+                                                attrs: {
+                                                  id: "equipement-name"
+                                                },
+                                                on: {
+                                                  change: function($event) {
+                                                    var $$selectedVal = Array.prototype.filter
+                                                      .call(
+                                                        $event.target.options,
+                                                        function(o) {
+                                                          return o.selected
+                                                        }
+                                                      )
+                                                      .map(function(o) {
+                                                        var val =
+                                                          "_value" in o
+                                                            ? o._value
+                                                            : o.value
+                                                        return val
+                                                      })
+                                                    _vm.$set(
+                                                      cat,
+                                                      "category_id",
+                                                      $event.target.multiple
+                                                        ? $$selectedVal
+                                                        : $$selectedVal[0]
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "" } },
+                                                  [_vm._v("Chose Expense Head")]
+                                                ),
+                                                _vm._v(" "),
+                                                _vm._l(
+                                                  _vm.expense_categories,
+                                                  function(value) {
+                                                    return _c(
+                                                      "option",
+                                                      {
+                                                        key: value.id + "sub",
+                                                        domProps: {
+                                                          value: value.id
+                                                        }
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "\r\n                                        " +
+                                                            _vm._s(
+                                                              value.head_name
+                                                            ) +
+                                                            "\r\n                                    "
+                                                        )
+                                                      ]
+                                                    )
+                                                  }
+                                                )
+                                              ],
+                                              2
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: cat.amount,
+                                                  expression: "cat.amount"
+                                                }
+                                              ],
+                                              staticClass: "form-control",
+                                              attrs: {
+                                                type: "number",
+                                                name: "",
+                                                placeholder: "Amount",
+                                                id: ""
+                                              },
+                                              domProps: { value: cat.amount },
+                                              on: {
+                                                input: function($event) {
+                                                  if ($event.target.composing) {
+                                                    return
+                                                  }
+                                                  _vm.$set(
+                                                    cat,
+                                                    "amount",
+                                                    $event.target.value
+                                                  )
+                                                }
+                                              }
+                                            })
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", {}, [
+                                            _c(
+                                              "a",
+                                              {
+                                                staticClass:
+                                                  "btn btn-danger btn-sm mt-2",
+                                                attrs: { href: "" },
+                                                on: {
+                                                  click: function($event) {
+                                                    $event.preventDefault()
+                                                    return _vm.removeCategory(
+                                                      index
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass: "fa fa-trash"
+                                                })
+                                              ]
+                                            )
+                                          ])
+                                        ]
+                                      )
+                                    }
+                                  ),
+                                  0
+                                )
+                              ]
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-success",
+                          attrs: { href: "" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.addCategory()
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "fa fa-plus" })]
+                      ),
+                      _vm._v(" "),
+                      _vm.validation_error.hasOwnProperty("expense_category")
+                        ? _c("span", { staticClass: "text-danger" }, [
+                            _vm._v(
+                              "\r\n                        " +
+                                _vm._s(
+                                  _vm.validation_error.expense_category[0]
+                                ) +
+                                "\r\n                        "
+                            )
+                          ])
+                        : _vm._e()
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "row" }, [
@@ -32775,7 +32998,7 @@ var render = function() {
                         ]
                       ),
                       _vm._v(" "),
-                      _vm._m(1)
+                      _vm._m(2)
                     ])
                   ])
                 ])
@@ -32794,6 +33017,20 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
       _c("h5", { staticClass: "modal-title" }, [_vm._v("Create New")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", { staticClass: "text-center" }, [
+        _c("th", [_vm._v("Category")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Amount")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("#")])
+      ])
     ])
   },
   function() {

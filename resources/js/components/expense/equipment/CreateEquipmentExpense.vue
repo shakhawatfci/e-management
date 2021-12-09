@@ -86,24 +86,6 @@
                               </div>
                           </div>
 
-                          <div class="col-md-4">
-                              <div class="contact-email">
-                                  <i class="flaticon-mail-26"></i>
-                                  <label for="equipement-name">Expense Category</label>
-                                  <select class="form-control" id="equipement-name" v-model="euqipment.expense_category_id">
-                                      <option value="">Chose Expense Category</option>
-                                      <option v-for="value in expense_categories" :key="value.id" :value="value.id">
-                                          {{ value.head_name }}
-                                      </option>
-                                  </select>
-                                       <span
-                                       v-if="validation_error.hasOwnProperty('expense_category_id')" 
-                                      class="text-danger">
-                                      {{ validation_error.expense_category_id[0] }}
-                                     </span>
-                              </div>
-                          </div>
-
                         <div class="col-md-4">
                             <div class="contact-name">
                                 <i class="flaticon-user-11"></i>
@@ -131,12 +113,19 @@
                          <div class="col-md-4">
                             <div class="contact-phone">
                                 <i class="flaticon-telephone"></i>
-                                <label for="amount">Amount</label>
-                                <input type="text" id="amount" class="form-control" v-model="euqipment.amount" placeholder="amount">
+                                <label for="payment_method">Payment Method</label>
+                                <!-- <input type="text" id="payment_method" class="form-control" v-model="euqipment.payment_mathod" placeholder="Payment Method"> -->
+                                <select id="payment_method" v-model="euqipment.payment_method" class="form-control">
+                                    <option value="">Chose Payment Method</option>
+                                    <option value="Bank">Bank</option>
+                                    <option value="Cash">Cash</option>
+                                    <option value="Bkash">Bkash</option>
+                                    <option value="Other">Other</option>
+                                </select>
                                 <span
-                                   v-if="validation_error.hasOwnProperty('amount')" 
+                                   v-if="validation_error.hasOwnProperty('payment_method')" 
                                   class="text-danger">
-                                  {{ validation_error.amount[0] }}
+                                  {{ validation_error.payment_method[0] }}
                                  </span>
                             </div>
                           </div>
@@ -154,6 +143,74 @@
                         </div>
                       </div>
                 </div>
+
+
+                <div class="col-md-12">
+                    <i class="flaticon-mail-26"></i>
+                    <label for="equipement-name">Expense Category</label>
+
+                    <div
+                        class="table-responsive"
+                        v-if="euqipment.expense_category && euqipment.expense_category.length > 0"
+                    >
+                        <table class="table table-bordered">
+                        <thead>
+                            <tr class="text-center">
+                            <th>Category</th>
+                            <th>Amount</th>
+                            <th>#</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                            v-for="(cat, index) in euqipment.expense_category"
+                            :key="'category' + index"
+                            class="text-center"
+                            >
+                            <td>
+                                <select class="form-control" id="equipement-name" v-model="cat.category_id">
+                                    <option value="">Chose Expense Head</option>
+                                    <option v-for="value in expense_categories" :key="value.id+'sub'" :value="value.id">
+                                        {{ value.head_name }}
+                                    </option>
+                                </select>
+                            </td>
+                            <td>
+                                <input
+                                type="number"
+                                name=""
+                                placeholder="Amount"
+                                id=""
+                                class="form-control"
+                                v-model="cat.amount"
+                                />
+                            </td>
+                            <td class="">
+                                <a
+                                href=""
+                                @click.prevent="removeCategory(index)"
+                                class="btn btn-danger btn-sm mt-2"
+                                ><i class="fa fa-trash"></i></a
+                                >
+                            </td>
+                            </tr>
+                        </tbody>
+                        </table>
+                    </div>
+                    <a
+                        href=""
+                        @click.prevent="addCategory()"
+                        class="btn btn-success"
+                    >
+                        <i class="fa fa-plus"></i></a
+                    >
+                        <span
+                        v-if="validation_error.hasOwnProperty('expense_category')" 
+                        class="text-danger">
+                        {{ validation_error.expense_category[0] }}
+                        </span>
+                
+            </div>
            
                 <div class="row">
                     <div class="col-md-12">
@@ -202,10 +259,14 @@ export default {
           vendor_id : '',
           equipment_type_id : '',
           equipement_id : '',
-          expense_category_id : '',
+          expense_category_id: '',
+          expense_category : [
+              { category_id: "", amount: ""}
+              ],
           month : '',
           payment_date : '',
           amount : '',
+          payment_method : '',
           documents_link : '',
           note : ''
         },
@@ -219,6 +280,7 @@ export default {
         equipment_types : [],
         equipments : [],
         expense_categories : [],
+        isCategoryLoading: false,
         button_name : 'Save',
         validation_error : {}
        }
@@ -242,7 +304,22 @@ export default {
           this.equipments = response.data;
         });
     },
-  
+
+    // checkDuplicate(id) {
+    //   let ob = Object.values( this.euqipment.expense_category);
+
+    //   return ob.find((category) => category.id == id);
+    // },
+
+    addCategory() {
+    //   if(this.checkDuplicate({category_id})) return ;
+      this.euqipment.expense_category.push({ category_id: "", amount: ""});
+    },
+
+    removeCategory(index) {
+      this.euqipment.expense_category.splice(index, 1);
+    },
+
      save()
      {
         this.button_name = "Saving...";
@@ -276,6 +353,7 @@ export default {
               }
           );
      },
+    
 
      getEquipmentData()
      {
@@ -297,7 +375,7 @@ export default {
           vendor_id : '',
           equipment_type_id : '',
           equipement_id : '',
-          expense_category_id : '',
+          expense_category : null,
           month : '',
           payment_date : '',
           amount : '',

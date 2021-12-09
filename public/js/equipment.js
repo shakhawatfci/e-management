@@ -25010,7 +25010,7 @@ var render = function() {
                       _vm._v(" "),
                       _vm.equipments.data.length > 0
                         ? _c("tr", [
-                            _c("td", { attrs: { colspan: "6" } }, [
+                            _c("td", { attrs: { colspan: "7" } }, [
                               _c(
                                 "a",
                                 {
