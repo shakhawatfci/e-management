@@ -1,7 +1,7 @@
 <template>
 <!-- Modal -->
     <div id="ShowEquipmentExpense" class="modal animated fadeInRight custo-fadeInRight show" tabindex="-1" role="dialog" aria-labelledby="addContactModalTitle" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-body">
                     <i class="flaticon-cancel-12 close" data-dismiss="modal"></i>
@@ -10,7 +10,7 @@
                          <div class="layout-spacing">
                         <div class="widget widget-table-one">
                           <div class="widget-heading">
-                                <h5 class="">View Equipment Expense</h5>
+                                <h5 class="">View Equipment Expense Invoice : {{ equipment.invoice_no }}</h5>
                             </div>
                             <div class="widget-content">
                           <div class="row">
@@ -214,11 +214,12 @@ export default {
         
        return {
          equipment : {
-            project : {id:'',head_name:''},
+            project : {id:'',project_name:''},
             vendor : {id:'',vendor_name:''},
             equipment_type : {id:'',name:''},
             equipement : {id:'',eq_name:''},
             equipment_expense_head : {id:'',head_name:''},
+            equipment_expense : {},
             month : '',
             payment_date : '',
             amount : '',
@@ -230,9 +231,9 @@ export default {
 
    mounted() {
       var _this = this;
-      EventBus.$on('equipmentexpense-view', function(value){
-        $('#ShowEquipmentExpense').modal('show')
+      EventBus.$on('equipmentexpense-invoice', function(value){
           _this.equipment = value;
+        $('#ShowEquipmentExpense').modal('show')
       })
    },
    

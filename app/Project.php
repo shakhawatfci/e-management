@@ -57,4 +57,9 @@ class Project extends Model
 
         return $this->hasMany('App\ProjectExpense');
     }
+
+    public function equipment_expense_invoice(){
+
+        return $this->hasMany('App\EquipmentExpenseInvoice');
+    }
 }

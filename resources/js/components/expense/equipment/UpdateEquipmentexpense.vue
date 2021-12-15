@@ -258,7 +258,7 @@ export default {
                   this.successMessage(response.data);
                   this.resetForm();
                   $('#updateEquipmentExpense').modal('hide');
-                  EventBus.$emit('EquipmentExpense-created');
+                  EventBus.$emit('EquipmentExpenseInvoice-created');
                   this.button_name = "Update";
               }
              else

@@ -63,22 +63,6 @@
         </select>
       </div>
       <div class="col-md-3" style="margin-bottom: 10px">
-        <select
-          class="form-control"
-          v-model="equipment_expense_head_id"
-          @change="getEquipmentExpense()"
-        >
-          <option value>All Equipment Head</option>
-          <option
-            v-for="equipment_head in equipment_heads"
-            :key="equipment_head.id"
-            :value="equipment_head.id"
-          >
-            {{ equipment_head.head_name }}
-          </option>
-        </select>
-      </div>
-      <div class="col-md-3" style="margin-bottom: 10px">
         <vue-monthly-picker
           :monthLabels="pickermonth.lebel"
           placeHolder="Start Month"
@@ -116,37 +100,39 @@
           <table class="table table-bordered table-hover mb-4">
             <thead>
               <tr>
+                <th>Invoice</th>
                 <th>Month</th>
                 <th>Payment Date</th>
-                <th>Name</th>
-                <th>Expense</th>
-                <th>Expense Category</th>
+                <th>Project Name</th>
+                <th>Vendor</th>
                 <th>Equipment</th>
+                <th>Pay Method</th>
                 <th>Amount</th>
-                <!-- <th class="text-center">action</th> -->
+                <th class="text-center">action</th>
               </tr>
             </thead>
-            <tbody>
-              <tr v-for="value in equipments.data" :key="value.id">
-                <td>{{ value.month | monthToString }}</td>
+            <tbody v-if="invoices.data.length > 0">
+              <tr v-for="value in invoices.data" :key="value.id">
+                <td>{{ value.invoice_no }}</td>
+                <td>{{ value.month }}</td>
                 <td>{{ value.payment_date | dateToString }}</td>
                 <td>{{ value.project.project_name }}</td>
                 <td>{{ value.vendor.vendor_name }}</td>
-                <td>{{ value.equipment_expense_head.head_name }}</td>
                 <td>{{ value.equipement.eq_name }}</td>
-                <td>{{ value.amount }}</td>
-                <!-- <td class="text-center">
+                <td>{{ value.payment_method }}</td>
+                <td>{{ value.total_amount }}</td>
+                <td class="text-center">
                   <button
                     class="btn btn-warning mb-2 mr-2 rounded-circle"
                     title="View"
-                    @click="viewEquipmentExpense(value)"
+                    @click="viewEqExpInvoiceDetails(value)"
                   >
                     <i class="far fa-eye"></i>
                   </button>
                   <button
                     class="btn btn-dark mb-2 mr-2 rounded-circle"
                     title="Edit"
-                    @click.prevent="editEquipmentExpense(value)"
+                    @click.prevent="editEqExpInvoiceDetails(value)"
                   >
                     <i class="far fa-edit"></i>
                   </button>
@@ -157,14 +143,14 @@
                   >
                     <i class="far fa-trash-alt"></i>
                   </button>
-                </td> -->
+                </td>
               </tr>
-              <tr v-if="equipments.length > 0">
+              <tr v-if="invoices.length > 0">
                 <td colspan="7">
                   <a
                     :href="
                       url +
-                      `equipment-expense-print-pdf?action=pdf&page=${page}&keyword=${keyword}&project=${project_id}&vendor=${vendor_id}&equipment_type=${equipment_type_id}&equipement=${equipement_id}&equipment_head=${equipment_expense_head_id}&start_month=${start_month._i}&end_month=${end_month._i}`
+                      `equipment-expense-invoice-print-pdf?action=pdf&page=${page}&keyword=${keyword}&project=${project_id}&vendor=${vendor_id}&equipment_type=${equipment_type_id}&equipement=${equipement_id}&equipment_head=${equipment_expense_head_id}&start_month=${start_month._i}&end_month=${end_month._i}`
                     "
                     class="btn btn-primary btn-sm"
                     ><i class="fa fa-file-pdf-o"></i> PDF</a
@@ -172,7 +158,7 @@
                   <a
                     :href="
                       url +
-                      `equipment-expense-print-pdf?action=print&page=${page}&keyword=${keyword}&project=${project_id}&vendor=${vendor_id}&equipment_type=${equipment_type_id}&equipement=${equipement_id}&equipment_head=${equipment_expense_head_id}&start_month=${start_month._i}&end_month=${end_month._i}`
+                      `equipment-expense-invoice-print-pdf?action=print&page=${page}&keyword=${keyword}&project=${project_id}&vendor=${vendor_id}&equipment_type=${equipment_type_id}&equipement=${equipement_id}&equipment_head=${equipment_expense_head_id}&start_month=${start_month._i}&end_month=${end_month._i}`
                     "
                     class="btn btn-danger btn-sm"
                     target="_blank"
@@ -190,12 +176,12 @@
       </div>
     </div>
 
-    <!-- <update-equipmentexpense> </update-equipmentexpense> -->
-    <!-- <show-equipmentexpense> </show-equipmentexpense> -->
+    <update-equipmentexpenseinvoice> </update-equipmentexpenseinvoice>
+    <show-equipmentexpense> </show-equipmentexpense>
     <div class="row">
       <div class="col-md-12 text-center mb-10 mt-10">
         <!-- import pagination here  -->
-        <pagination :pageData="this.equipments"> </pagination>
+        <pagination :pageData="this.invoices"> </pagination>
       </div>
     </div>
   </div>
@@ -207,8 +193,8 @@ import { EventBus } from "../../../vue-assets";
 import Mixin from "../../../mixin";
 import VueMonthlyPicker from "vue-monthly-picker";
 import Pagination from "../../pagination/Pagination";
-// import ShowEquipmentexpense from "./SingleViewEquipmentexpense";
-// import UpdateEquipmentexpense from "./UpdateEquipmentexpense";
+import ShowEquipmentexpense from "./SingleViewEquipmentexpense";
+import UpdateEquipmentexpenseinvoice from "./UpdateEquipmentexpenseInvoice";
 export default {
   mixins: [Mixin],
   props: [
@@ -220,13 +206,13 @@ export default {
   ],
   components: {
     pagination: Pagination,
-    // UpdateEquipmentexpense,
-    // ShowEquipmentexpense,
+    UpdateEquipmentexpenseinvoice,
+    ShowEquipmentexpense,
     VueMonthlyPicker,
   },
   data() {
     return {
-      equipments: [],
+      invoices: [],
       project_id: "",
       vendor_id: "",
       equipment_type_id: "",
@@ -258,17 +244,17 @@ export default {
   },
 
   mounted() {
-    this.getEquipmentExpense();
     var _this = this;
 
-    EventBus.$on("EquipmentExpense-created", function () {
-      _this.getEquipmentExpense();
+    EventBus.$on("EquipmentExpenseInvoice-created", function () {
+      _this.getEquipmentExpenseInvoice();
     });
 
+    this.getEquipmentExpenseInvoice();
   },
 
   methods: {
-    getEquipmentExpense(page = 1) {
+    getEquipmentExpenseInvoice(page = 1) {
       this.isLoading = true;
       var st_mo = "";
       var lt_mo = "";
@@ -284,13 +270,22 @@ export default {
       axios
         .get(
           base_url +
-            `equipment-expense-list?page=${page}&keyword=${this.keyword}&project=${this.project_id}&vendor=${this.vendor_id}&equipment_type=${this.equipment_type_id}&equipement=${this.equipement_id}&equipment_head=${this.equipment_expense_head_id}&start_month=${st_mo}&end_month=${lt_mo}`
+            `equipment-expense-invoice-list?page=${page}&keyword=${this.keyword}&project=${this.project_id}&vendor=${this.vendor_id}&equipment_type=${this.equipment_type_id}&equipement=${this.equipement_id}&equipment_head=${this.equipment_expense_head_id}&start_month=${st_mo}&end_month=${lt_mo}`
         )
         .then((response) => {
-          this.equipments = response.data;
+          this.invoices = response.data;
           this.isLoading = false;
         });
     },
+
+    editEqExpInvoiceDetails(value) {
+      EventBus.$emit("equipmentexpense-invoice-update", value);
+    },
+
+    viewEqExpInvoiceDetails(value) {
+      EventBus.$emit("equipmentexpense-invoice", value);
+    },
+    
 
     deleteEquipmentExpense(id) {
       Swal.fire(
@@ -310,7 +305,7 @@ export default {
             .delete(`${base_url}equipment-expense/${id}`)
             .then((response) => {
               this.successMessage(response.data);
-              this.getEquipmentExpense();
+              this.getEquipmentExpenseInvoice();
             });
         }
       });
@@ -325,11 +320,11 @@ export default {
       this.keyword = "";
       this.start_month = "";
       this.end_month = "";
-      this.getEquipmentExpense();
+      this.getEquipmentExpenseInvoice();
     },
 
     pageClicked(page) {
-      this.getEquipmentExpense(page);
+      this.getEquipmentExpenseInvoice(page);
     },
   },
 };

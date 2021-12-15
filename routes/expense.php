@@ -26,3 +26,8 @@ Route::resource('equipment-expense','Expense\EquipmentExpenseController');
 Route::get('equipment-data','Expense\EquipmentExpenseController@equipmentExpenseData');
 Route::get('equipment-expense-list','Expense\EquipmentExpenseController@equipmentExpenseList');
 Route::get('equipment-expense-print-pdf','Expense\EquipmentExpenseController@equipmentExpensePrint');
+
+
+Route::get('expense-invoice','Expense\EquipmentExpenseController@ExpenseInvoice')->name('expense-invoice');
+Route::get('equipment-expense-invoice-list','Expense\EquipmentExpenseController@ExpenseInvoiceList');
+Route::get('get-single-invoice/{id}','Expense\EquipmentExpenseController@ExpenseInvoiceData');

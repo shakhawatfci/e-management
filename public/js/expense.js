@@ -2154,6 +2154,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2165,6 +2182,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       euqipment: {
+        invoice_no: '',
         project_id: '',
         vendor_id: '',
         equipment_type_id: '',
@@ -2200,6 +2218,15 @@ __webpack_require__.r(__webpack_exports__);
     var f1 = flatpickr(document.getElementById('basicFlatpickr')); // var f2 = flatpickr(document.getElementById('basicFlatpickr2'));
 
     this.getEquipmentData();
+  },
+  computed: {
+    getTotalExpense: function getTotalExpense() {
+      return this.euqipment.expense_category.map(function (o) {
+        return o.amount;
+      }).reduce(function (a, c) {
+        return Number(a) + Number(c);
+      }, 0);
+    }
   },
   methods: {
     setMonth: function setMonth() {
@@ -2237,7 +2264,7 @@ __webpack_require__.r(__webpack_exports__);
           _this2.resetForm();
 
           $('#createEquipmentExpense').modal('hide');
-          _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('EquipmentExpense-created');
+          _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('EquipmentExpenseInvoice-created');
           _this2.button_name = "Save";
         } else {
           _this2.successMessage(response.data);
@@ -2270,11 +2297,16 @@ __webpack_require__.r(__webpack_exports__);
     },
     resetForm: function resetForm() {
       this.euqipment = {
+        invoice_no: '',
         project_id: '',
         vendor_id: '',
         equipment_type_id: '',
         equipement_id: '',
-        expense_category: null,
+        expense_category_id: '',
+        expense_category: [{
+          category_id: "",
+          amount: ""
+        }],
         month: '',
         payment_date: '',
         amount: '',
@@ -2515,7 +2547,7 @@ __webpack_require__.r(__webpack_exports__);
       equipment: {
         project: {
           id: '',
-          head_name: ''
+          project_name: ''
         },
         vendor: {
           id: '',
@@ -2533,6 +2565,7 @@ __webpack_require__.r(__webpack_exports__);
           id: '',
           head_name: ''
         },
+        equipment_expense: {},
         month: '',
         payment_date: '',
         amount: '',
@@ -2544,19 +2577,19 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('equipmentexpense-view', function (value) {
-      $('#ShowEquipmentExpense').modal('show');
+    _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('equipmentexpense-invoice', function (value) {
       _this.equipment = value;
+      $('#ShowEquipmentExpense').modal('show');
     });
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/expense/equipment/UpdateEquipmentexpense.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/expense/equipment/UpdateEquipmentexpense.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/expense/equipment/UpdateEquipmentexpenseInvoice.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/expense/equipment/UpdateEquipmentexpenseInvoice.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2566,6 +2599,80 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../mixin */ "./resources/js/mixin.js");
 /* harmony import */ var vue_monthly_picker__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-monthly-picker */ "./node_modules/vue-monthly-picker/dist/lib/vue-monthly-picker.min.js");
 /* harmony import */ var vue_monthly_picker__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_monthly_picker__WEBPACK_IMPORTED_MODULE_2__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2761,106 +2868,170 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      euqipment: {
-        id: '',
+      invoice: {
+        id: null,
+        invoice_no: '',
         project_id: '',
         vendor_id: '',
         equipment_type_id: '',
         equipement_id: '',
-        equipment_expense_head_id: '',
+        expense_category: [],
         month: '',
         payment_date: '',
         amount: '',
+        payment_method: '',
         documents_link: '',
         note: ''
       },
+      month: '',
       pickermonth: {
         lebel: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
         text: "Month"
       },
-      month: '',
       projects: [],
       vendors: [],
       equipment_types: [],
       equipments: [],
       expense_categories: [],
+      isCategoryLoading: false,
       button_name: 'Update',
       validation_error: {}
     };
   },
   mounted: function mounted() {
-    var f1 = flatpickr(document.getElementById('up-basicFlatpickr'));
+    var f1 = flatpickr(document.getElementById('basicFlatpickr')); // var f2 = flatpickr(document.getElementById('basicFlatpickr2'));
+
     this.getEquipmentData();
 
     var _this = this;
 
-    _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('equipmentexpense-update', function (value) {
-      $('#updateEquipmentExpense').modal('show');
-      _this.euqipment = value;
+    _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('equipmentexpense-invoice-update', function (value) {
+      _this.resetForm();
+
+      _this.invoice.id = value.id;
       _this.month = value.month;
+
+      _this.getInvoiceData();
+
+      $('#UpdateEquipmentExpenseInvoice').modal('show');
     });
+  },
+  computed: {
+    getTotalExpense: function getTotalExpense() {
+      return this.invoice.expense_category.map(function (o) {
+        return o.amount;
+      }).reduce(function (a, c) {
+        return Number(a) + Number(c);
+      }, 0);
+    }
   },
   methods: {
     setMonth: function setMonth() {
-      this.euqipment.month = this.month._i;
+      this.invoice.month = this.month._i;
     },
     getVendorWiseEquipment: function getVendorWiseEquipment() {
       var _this2 = this;
 
-      axios.get("".concat(base_url, "equipment-by-vendor/0/").concat(this.euqipment.vendor_id)).then(function (response) {
+      axios.get("".concat(base_url, "equipment-by-vendor/0/").concat(this.invoice.vendor_id)).then(function (response) {
         _this2.equipments = response.data;
       });
     },
-    update: function update() {
+    getInvoiceData: function getInvoiceData() {
       var _this3 = this;
 
+      axios.get("".concat(base_url, "get-single-invoice/").concat(this.invoice.id)).then(function (response) {
+        var _this3$invoice$expens;
+
+        _this3.invoice.id = response.data.id;
+        _this3.invoice.invoice_no = response.data.invoice_no;
+        _this3.invoice.project_id = response.data.project_id;
+        _this3.invoice.project = response.data.project;
+        _this3.invoice.vendor_id = response.data.vendor_id;
+        _this3.invoice.vendor = response.data.vendor;
+        _this3.invoice.equipment_type_id = response.data.equipment_type_id;
+        _this3.invoice.equipment_type = response.data.equipment_type;
+        _this3.invoice.equipement_id = response.data.equipement_id;
+        _this3.invoice.month = response.data.month;
+        _this3.invoice.payment_date = response.data.payment_date;
+        _this3.invoice.amount = response.data.amount;
+        _this3.invoice.payment_method = response.data.payment_method;
+        _this3.invoice.documents_link = response.data.documents_link;
+        _this3.invoice.note = response.data.note;
+
+        _this3.getVendorWiseEquipment();
+
+        var exp_cat = [];
+        response.data.equipment_expense.forEach(function (element) {
+          exp_cat.push({
+            'category_id': element.equipment_expense_head_id,
+            'amount': element.amount
+          });
+        });
+
+        (_this3$invoice$expens = _this3.invoice.expense_category).push.apply(_this3$invoice$expens, exp_cat);
+      });
+    },
+    addCategory: function addCategory() {
+      //   if(this.checkDuplicate({category_id})) return ;
+      this.invoice.expense_category.push({
+        category_id: "",
+        amount: ""
+      });
+    },
+    removeCategory: function removeCategory(index) {
+      this.invoice.expense_category.splice(index, 1);
+    },
+    Update: function Update() {
+      var _this4 = this;
+
       this.button_name = "Updating...";
-      axios.put(base_url + 'equipment-expense/' + this.euqipment.id, this.euqipment).then(function (response) {
+      axios.put(base_url + 'equipment-expense/' + this.invoice.id, this.invoice).then(function (response) {
         if (response.data.status === 'success') {
-          _this3.successMessage(response.data);
+          _this4.successMessage(response.data);
 
-          _this3.resetForm();
+          _this4.resetForm();
 
-          $('#updateEquipmentExpense').modal('hide');
+          $('#UpdateEquipmentExpenseInvoice').modal('hide');
           _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('EquipmentExpense-created');
-          _this3.button_name = "Update";
+          _this4.button_name = "Update";
         } else {
-          _this3.successMessage(response.data);
+          _this4.successMessage(response.data);
 
-          _this3.button_name = "Update";
+          _this4.button_name = "Update";
         }
       })["catch"](function (err) {
         if (err.response.status == 422) {
-          _this3.validation_error = err.response.data.errors;
+          _this4.validation_error = err.response.data.errors;
 
-          _this3.validationError();
+          _this4.validationError();
 
-          _this3.button_name = "Update";
+          _this4.button_name = "Update";
         } else {
-          _this3.successMessage(err);
+          _this4.successMessage(err);
 
-          _this3.button_name = "Update";
+          _this4.button_name = "Save";
         }
       });
     },
     getEquipmentData: function getEquipmentData() {
-      var _this4 = this;
+      var _this5 = this;
 
       axios.get(base_url + 'equipment-data').then(function (response) {
-        _this4.projects = response.data.project;
-        _this4.vendors = response.data.vendor;
-        _this4.equipments = response.data.equipment;
-        _this4.expense_categories = response.data.expense_category;
-        _this4.equipment_types = response.data.eq_type;
+        _this5.projects = response.data.project;
+        _this5.vendors = response.data.vendor;
+        _this5.expense_categories = response.data.expense_category;
+        _this5.equipment_types = response.data.eq_type;
       });
     },
     resetForm: function resetForm() {
-      this.euqipment = {
+      this.invoice = {
+        invoice_no: '',
         project_id: '',
         vendor_id: '',
         equipment_type_id: '',
         equipement_id: '',
         expense_category_id: '',
+        expense_category: [],
         month: '',
         payment_date: '',
         amount: '',
@@ -2868,11 +3039,6 @@ __webpack_require__.r(__webpack_exports__);
         note: ''
       };
       this.month = '';
-      this.projects = [];
-      this.vendors = [];
-      this.equipment_types = [];
-      this.equipments = [];
-      this.expense_categories = [];
       this.validation_error = {};
     }
   }
@@ -2894,20 +3060,332 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_monthly_picker__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-monthly-picker */ "./node_modules/vue-monthly-picker/dist/lib/vue-monthly-picker.min.js");
 /* harmony import */ var vue_monthly_picker__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_monthly_picker__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _pagination_Pagination__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../pagination/Pagination */ "./resources/js/components/pagination/Pagination.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+ // import ShowEquipmentexpense from "./SingleViewEquipmentexpense";
+// import UpdateEquipmentexpense from "./UpdateEquipmentexpense";
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
+  props: ["projects", "equipment_types", "vendors", "equipements", "equipment_heads"],
+  components: {
+    pagination: _pagination_Pagination__WEBPACK_IMPORTED_MODULE_3__["default"],
+    // UpdateEquipmentexpense,
+    // ShowEquipmentexpense,
+    VueMonthlyPicker: vue_monthly_picker__WEBPACK_IMPORTED_MODULE_2___default.a
+  },
+  data: function data() {
+    return {
+      equipments: [],
+      project_id: "",
+      vendor_id: "",
+      equipment_type_id: "",
+      equipement_id: "",
+      equipment_expense_head_id: "",
+      pickermonth: {
+        lebel: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOM", "DEC"],
+        text: "Search By Month"
+      },
+      start_month: "",
+      end_month: "",
+      keyword: "",
+      url: base_url,
+      isLoading: false
+    };
+  },
+  mounted: function mounted() {
+    this.getEquipmentExpense();
+
+    var _this = this;
+
+    _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on("EquipmentExpense-created", function () {
+      _this.getEquipmentExpense();
+    });
+  },
+  methods: {
+    getEquipmentExpense: function getEquipmentExpense() {
+      var _this2 = this;
+
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      this.isLoading = true;
+      var st_mo = "";
+      var lt_mo = "";
+
+      if (this.end_month != "") {
+        if (this.start_month === "") this.successMessage({
+          status: "error",
+          message: "Select start Month"
+        });
+        st_mo = this.start_month._i;
+        lt_mo = this.end_month._i;
+      }
+
+      axios.get(base_url + "equipment-expense-list?page=".concat(page, "&keyword=").concat(this.keyword, "&project=").concat(this.project_id, "&vendor=").concat(this.vendor_id, "&equipment_type=").concat(this.equipment_type_id, "&equipement=").concat(this.equipement_id, "&equipment_head=").concat(this.equipment_expense_head_id, "&start_month=").concat(st_mo, "&end_month=").concat(lt_mo)).then(function (response) {
+        _this2.equipments = response.data;
+        _this2.isLoading = false;
+      });
+    },
+    deleteEquipmentExpense: function deleteEquipmentExpense(id) {
+      var _this3 = this;
+
+      Swal.fire({
+        title: "Are you sure ?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }, function () {}).then(function (result) {
+        if (result.value) {
+          axios["delete"]("".concat(base_url, "equipment-expense/").concat(id)).then(function (response) {
+            _this3.successMessage(response.data);
+
+            _this3.getEquipmentExpense();
+          });
+        }
+      });
+    },
+    filterClear: function filterClear() {
+      this.project_id = "";
+      this.vendor_id = "";
+      this.equipment_type_id = "";
+      this.equipement_id = "";
+      this.equipment_expense_head_id = "";
+      this.keyword = "";
+      this.start_month = "";
+      this.end_month = "";
+      this.getEquipmentExpense();
+    },
+    pageClicked: function pageClicked(page) {
+      this.getEquipmentExpense(page);
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/expense/equipment/ViewExpenseInvoice.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/expense/equipment/ViewExpenseInvoice.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_assets__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../vue-assets */ "./resources/js/vue-assets.js");
+/* harmony import */ var _mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../mixin */ "./resources/js/mixin.js");
+/* harmony import */ var vue_monthly_picker__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-monthly-picker */ "./node_modules/vue-monthly-picker/dist/lib/vue-monthly-picker.min.js");
+/* harmony import */ var vue_monthly_picker__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_monthly_picker__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _pagination_Pagination__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../pagination/Pagination */ "./resources/js/components/pagination/Pagination.vue");
 /* harmony import */ var _SingleViewEquipmentexpense__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./SingleViewEquipmentexpense */ "./resources/js/components/expense/equipment/SingleViewEquipmentexpense.vue");
-/* harmony import */ var _UpdateEquipmentexpense__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./UpdateEquipmentexpense */ "./resources/js/components/expense/equipment/UpdateEquipmentexpense.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var _UpdateEquipmentexpenseInvoice__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./UpdateEquipmentexpenseInvoice */ "./resources/js/components/expense/equipment/UpdateEquipmentexpenseInvoice.vue");
 //
 //
 //
@@ -3109,13 +3587,13 @@ __webpack_require__.r(__webpack_exports__);
   props: ["projects", "equipment_types", "vendors", "equipements", "equipment_heads"],
   components: {
     pagination: _pagination_Pagination__WEBPACK_IMPORTED_MODULE_3__["default"],
-    UpdateEquipmentexpense: _UpdateEquipmentexpense__WEBPACK_IMPORTED_MODULE_5__["default"],
+    UpdateEquipmentexpenseinvoice: _UpdateEquipmentexpenseInvoice__WEBPACK_IMPORTED_MODULE_5__["default"],
     ShowEquipmentexpense: _SingleViewEquipmentexpense__WEBPACK_IMPORTED_MODULE_4__["default"],
     VueMonthlyPicker: vue_monthly_picker__WEBPACK_IMPORTED_MODULE_2___default.a
   },
   data: function data() {
     return {
-      equipments: [],
+      invoices: [],
       project_id: "",
       vendor_id: "",
       equipment_type_id: "",
@@ -3135,13 +3613,13 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on("EquipmentExpense-created", function () {
-      _this.getEquipmentExpense();
+    _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on("EquipmentExpenseInvoice-created", function () {
+      _this.getEquipmentExpenseInvoice();
     });
-    this.getEquipmentExpense();
+    this.getEquipmentExpenseInvoice();
   },
   methods: {
-    getEquipmentExpense: function getEquipmentExpense() {
+    getEquipmentExpenseInvoice: function getEquipmentExpenseInvoice() {
       var _this2 = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
@@ -3158,16 +3636,16 @@ __webpack_require__.r(__webpack_exports__);
         lt_mo = this.end_month._i;
       }
 
-      axios.get(base_url + "equipment-expense-list?page=".concat(page, "&keyword=").concat(this.keyword, "&project=").concat(this.project_id, "&vendor=").concat(this.vendor_id, "&equipment_type=").concat(this.equipment_type_id, "&equipement=").concat(this.equipement_id, "&equipment_head=").concat(this.equipment_expense_head_id, "&start_month=").concat(st_mo, "&end_month=").concat(lt_mo)).then(function (response) {
-        _this2.equipments = response.data;
+      axios.get(base_url + "equipment-expense-invoice-list?page=".concat(page, "&keyword=").concat(this.keyword, "&project=").concat(this.project_id, "&vendor=").concat(this.vendor_id, "&equipment_type=").concat(this.equipment_type_id, "&equipement=").concat(this.equipement_id, "&equipment_head=").concat(this.equipment_expense_head_id, "&start_month=").concat(st_mo, "&end_month=").concat(lt_mo)).then(function (response) {
+        _this2.invoices = response.data;
         _this2.isLoading = false;
       });
     },
-    editEquipmentExpense: function editEquipmentExpense(value) {
-      _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit("equipmentexpense-update", value);
+    editEqExpInvoiceDetails: function editEqExpInvoiceDetails(value) {
+      _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit("equipmentexpense-invoice-update", value);
     },
-    viewEquipmentExpense: function viewEquipmentExpense(value) {
-      _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit("equipmentexpense-view", value);
+    viewEqExpInvoiceDetails: function viewEqExpInvoiceDetails(value) {
+      _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit("equipmentexpense-invoice", value);
     },
     deleteEquipmentExpense: function deleteEquipmentExpense(id) {
       var _this3 = this;
@@ -3185,7 +3663,7 @@ __webpack_require__.r(__webpack_exports__);
           axios["delete"]("".concat(base_url, "equipment-expense/").concat(id)).then(function (response) {
             _this3.successMessage(response.data);
 
-            _this3.getEquipmentExpense();
+            _this3.getEquipmentExpenseInvoice();
           });
         }
       });
@@ -3199,10 +3677,10 @@ __webpack_require__.r(__webpack_exports__);
       this.keyword = "";
       this.start_month = "";
       this.end_month = "";
-      this.getEquipmentExpense();
+      this.getEquipmentExpenseInvoice();
     },
     pageClicked: function pageClicked(page) {
-      this.getEquipmentExpense(page);
+      this.getEquipmentExpenseInvoice(page);
     }
   }
 });
@@ -32191,6 +32669,56 @@ var render = function() {
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
                           _c("label", { attrs: { for: "project" } }, [
+                            _vm._v("Invoice No:")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.euqipment.invoice_no,
+                                expression: "euqipment.invoice_no"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              id: "invoice",
+                              placeholder: "Invoice Number"
+                            },
+                            domProps: { value: _vm.euqipment.invoice_no },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.euqipment,
+                                  "invoice_no",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm.validation_error.hasOwnProperty("invoice_no")
+                            ? _c("span", { staticClass: "text-danger" }, [
+                                _vm._v(
+                                  "\r\n                                          " +
+                                    _vm._s(_vm.validation_error.project_id[0]) +
+                                    "\r\n                                         "
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c("div", { staticClass: "contact-email" }, [
+                          _c("i", { staticClass: "flaticon-mail-26" }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "project" } }, [
                             _vm._v("Project")
                           ]),
                           _vm._v(" "),
@@ -32702,7 +33230,11 @@ var render = function() {
                               }
                             ],
                             staticClass: "form-control",
-                            attrs: { type: "text", id: "documents-link" },
+                            attrs: {
+                              type: "text",
+                              placeholder: "Documents Link",
+                              id: "documents-link"
+                            },
                             domProps: { value: _vm.euqipment.documents_link },
                             on: {
                               input: function($event) {
@@ -32751,155 +33283,174 @@ var render = function() {
                                 _vm._v(" "),
                                 _c(
                                   "tbody",
-                                  _vm._l(
-                                    _vm.euqipment.expense_category,
-                                    function(cat, index) {
-                                      return _c(
-                                        "tr",
-                                        {
-                                          key: "category" + index,
-                                          staticClass: "text-center"
-                                        },
-                                        [
-                                          _c("td", [
-                                            _c(
-                                              "select",
-                                              {
+                                  [
+                                    _vm._l(
+                                      _vm.euqipment.expense_category,
+                                      function(cat, index) {
+                                        return _c(
+                                          "tr",
+                                          {
+                                            key: "category" + index,
+                                            staticClass: "text-center"
+                                          },
+                                          [
+                                            _c("td", [
+                                              _c(
+                                                "select",
+                                                {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value: cat.category_id,
+                                                      expression:
+                                                        "cat.category_id"
+                                                    }
+                                                  ],
+                                                  staticClass: "form-control",
+                                                  attrs: {
+                                                    id: "equipement-name"
+                                                  },
+                                                  on: {
+                                                    change: function($event) {
+                                                      var $$selectedVal = Array.prototype.filter
+                                                        .call(
+                                                          $event.target.options,
+                                                          function(o) {
+                                                            return o.selected
+                                                          }
+                                                        )
+                                                        .map(function(o) {
+                                                          var val =
+                                                            "_value" in o
+                                                              ? o._value
+                                                              : o.value
+                                                          return val
+                                                        })
+                                                      _vm.$set(
+                                                        cat,
+                                                        "category_id",
+                                                        $event.target.multiple
+                                                          ? $$selectedVal
+                                                          : $$selectedVal[0]
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "option",
+                                                    { attrs: { value: "" } },
+                                                    [
+                                                      _vm._v(
+                                                        "Chose Expense Head"
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _vm._l(
+                                                    _vm.expense_categories,
+                                                    function(value) {
+                                                      return _c(
+                                                        "option",
+                                                        {
+                                                          key: value.id + "sub",
+                                                          domProps: {
+                                                            value: value.id
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\r\n                                        " +
+                                                              _vm._s(
+                                                                value.head_name
+                                                              ) +
+                                                              "\r\n                                    "
+                                                          )
+                                                        ]
+                                                      )
+                                                    }
+                                                  )
+                                                ],
+                                                2
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _c("input", {
                                                 directives: [
                                                   {
                                                     name: "model",
                                                     rawName: "v-model",
-                                                    value: cat.category_id,
-                                                    expression:
-                                                      "cat.category_id"
+                                                    value: cat.amount,
+                                                    expression: "cat.amount"
                                                   }
                                                 ],
                                                 staticClass: "form-control",
                                                 attrs: {
-                                                  id: "equipement-name"
+                                                  type: "number",
+                                                  name: "",
+                                                  placeholder: "Amount",
+                                                  id: ""
                                                 },
+                                                domProps: { value: cat.amount },
                                                 on: {
-                                                  change: function($event) {
-                                                    var $$selectedVal = Array.prototype.filter
-                                                      .call(
-                                                        $event.target.options,
-                                                        function(o) {
-                                                          return o.selected
-                                                        }
-                                                      )
-                                                      .map(function(o) {
-                                                        var val =
-                                                          "_value" in o
-                                                            ? o._value
-                                                            : o.value
-                                                        return val
-                                                      })
+                                                  input: function($event) {
+                                                    if (
+                                                      $event.target.composing
+                                                    ) {
+                                                      return
+                                                    }
                                                     _vm.$set(
                                                       cat,
-                                                      "category_id",
-                                                      $event.target.multiple
-                                                        ? $$selectedVal
-                                                        : $$selectedVal[0]
+                                                      "amount",
+                                                      $event.target.value
                                                     )
                                                   }
                                                 }
-                                              },
-                                              [
-                                                _c(
-                                                  "option",
-                                                  { attrs: { value: "" } },
-                                                  [_vm._v("Chose Expense Head")]
-                                                ),
-                                                _vm._v(" "),
-                                                _vm._l(
-                                                  _vm.expense_categories,
-                                                  function(value) {
-                                                    return _c(
-                                                      "option",
-                                                      {
-                                                        key: value.id + "sub",
-                                                        domProps: {
-                                                          value: value.id
-                                                        }
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          "\r\n                                        " +
-                                                            _vm._s(
-                                                              value.head_name
-                                                            ) +
-                                                            "\r\n                                    "
-                                                        )
-                                                      ]
-                                                    )
-                                                  }
-                                                )
-                                              ],
-                                              2
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("td", [
-                                            _c("input", {
-                                              directives: [
+                                              })
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", {}, [
+                                              _c(
+                                                "a",
                                                 {
-                                                  name: "model",
-                                                  rawName: "v-model",
-                                                  value: cat.amount,
-                                                  expression: "cat.amount"
-                                                }
-                                              ],
-                                              staticClass: "form-control",
-                                              attrs: {
-                                                type: "number",
-                                                name: "",
-                                                placeholder: "Amount",
-                                                id: ""
-                                              },
-                                              domProps: { value: cat.amount },
-                                              on: {
-                                                input: function($event) {
-                                                  if ($event.target.composing) {
-                                                    return
+                                                  staticClass:
+                                                    "btn btn-danger btn-sm mt-2",
+                                                  attrs: { href: "" },
+                                                  on: {
+                                                    click: function($event) {
+                                                      $event.preventDefault()
+                                                      return _vm.removeCategory(
+                                                        index
+                                                      )
+                                                    }
                                                   }
-                                                  _vm.$set(
-                                                    cat,
-                                                    "amount",
-                                                    $event.target.value
-                                                  )
-                                                }
-                                              }
-                                            })
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("td", {}, [
-                                            _c(
-                                              "a",
-                                              {
-                                                staticClass:
-                                                  "btn btn-danger btn-sm mt-2",
-                                                attrs: { href: "" },
-                                                on: {
-                                                  click: function($event) {
-                                                    $event.preventDefault()
-                                                    return _vm.removeCategory(
-                                                      index
-                                                    )
-                                                  }
-                                                }
-                                              },
-                                              [
-                                                _c("i", {
-                                                  staticClass: "fa fa-trash"
-                                                })
-                                              ]
-                                            )
-                                          ])
-                                        ]
-                                      )
-                                    }
-                                  ),
-                                  0
+                                                },
+                                                [
+                                                  _c("i", {
+                                                    staticClass: "fa fa-trash"
+                                                  })
+                                                ]
+                                              )
+                                            ])
+                                          ]
+                                        )
+                                      }
+                                    ),
+                                    _vm._v(" "),
+                                    _c("tr", { staticClass: "text-center" }, [
+                                      _c("td", { attrs: { colspan: "3" } }, [
+                                        _c("b", [
+                                          _vm._v(
+                                            "Total: " +
+                                              _vm._s(_vm.getTotalExpense)
+                                          )
+                                        ])
+                                      ])
+                                    ])
+                                  ],
+                                  2
                                 )
                               ]
                             )
@@ -33080,7 +33631,7 @@ var render = function() {
     [
       _c(
         "div",
-        { staticClass: "modal-dialog modal-lg", attrs: { role: "document" } },
+        { staticClass: "modal-dialog modal-xl", attrs: { role: "document" } },
         [
           _c("div", { staticClass: "modal-content" }, [
             _c("div", { staticClass: "modal-body" }, [
@@ -33093,7 +33644,14 @@ var render = function() {
                 _c("div", { staticClass: "add-contact-content" }, [
                   _c("div", { staticClass: "layout-spacing" }, [
                     _c("div", { staticClass: "widget widget-table-one" }, [
-                      _vm._m(0),
+                      _c("div", { staticClass: "widget-heading" }, [
+                        _c("h5", {}, [
+                          _vm._v(
+                            "View Equipment Expense Invoice : " +
+                              _vm._s(_vm.equipment.invoice_no)
+                          )
+                        ])
+                      ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "widget-content" }, [
                         _c("div", { staticClass: "row" }, [
@@ -33103,7 +33661,7 @@ var render = function() {
                             [
                               _c("div", { staticClass: "t-item" }, [
                                 _c("div", { staticClass: "t-company-name" }, [
-                                  _vm._m(1),
+                                  _vm._m(0),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "t-name" }, [
                                     _c("h4", [_vm._v("Project")]),
@@ -33127,7 +33685,7 @@ var render = function() {
                             [
                               _c("div", { staticClass: "t-item" }, [
                                 _c("div", { staticClass: "t-company-name" }, [
-                                  _vm._m(2),
+                                  _vm._m(1),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "t-name" }, [
                                     _c("h4", [_vm._v("Equipment Type")]),
@@ -33151,7 +33709,7 @@ var render = function() {
                             [
                               _c("div", { staticClass: "t-item" }, [
                                 _c("div", { staticClass: "t-company-name" }, [
-                                  _vm._m(3),
+                                  _vm._m(2),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "t-name" }, [
                                     _c("h4", [_vm._v("Vendor")]),
@@ -33173,7 +33731,7 @@ var render = function() {
                             [
                               _c("div", { staticClass: "t-item" }, [
                                 _c("div", { staticClass: "t-company-name" }, [
-                                  _vm._m(4),
+                                  _vm._m(3),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "t-name" }, [
                                     _c("h4", [_vm._v("Equipement")]),
@@ -33195,7 +33753,7 @@ var render = function() {
                             [
                               _c("div", { staticClass: "t-item" }, [
                                 _c("div", { staticClass: "t-company-name" }, [
-                                  _vm._m(5),
+                                  _vm._m(4),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "t-name" }, [
                                     _c("h4", [_vm._v("Expense Category")]),
@@ -33220,7 +33778,7 @@ var render = function() {
                             [
                               _c("div", { staticClass: "t-item" }, [
                                 _c("div", { staticClass: "t-company-name" }, [
-                                  _vm._m(6),
+                                  _vm._m(5),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "t-name" }, [
                                     _c("h4", [_vm._v("Payment Date")]),
@@ -33246,7 +33804,7 @@ var render = function() {
                             [
                               _c("div", { staticClass: "t-item" }, [
                                 _c("div", { staticClass: "t-company-name" }, [
-                                  _vm._m(7),
+                                  _vm._m(6),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "t-name" }, [
                                     _c("h4", [_vm._v("Month")]),
@@ -33272,7 +33830,7 @@ var render = function() {
                             [
                               _c("div", { staticClass: "t-item" }, [
                                 _c("div", { staticClass: "t-company-name" }, [
-                                  _vm._m(8),
+                                  _vm._m(7),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "t-name" }, [
                                     _c("h4", [_vm._v("Amount")]),
@@ -33294,7 +33852,7 @@ var render = function() {
                             [
                               _c("div", { staticClass: "t-item" }, [
                                 _c("div", { staticClass: "t-company-name" }, [
-                                  _vm._m(9),
+                                  _vm._m(8),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "t-name" }, [
                                     _c("h4", [_vm._v("Document Link")]),
@@ -33327,7 +33885,7 @@ var render = function() {
                             [
                               _c("div", { staticClass: "t-item" }, [
                                 _c("div", { staticClass: "t-company-name" }, [
-                                  _vm._m(10),
+                                  _vm._m(9),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "t-name" }, [
                                     _c("h4", [_vm._v("Expense Note")]),
@@ -33348,7 +33906,7 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._m(11)
+            _vm._m(10)
           ])
         ]
       )
@@ -33356,14 +33914,6 @@ var render = function() {
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "widget-heading" }, [
-      _c("h5", {}, [_vm._v("View Equipment Expense")])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -33503,10 +34053,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/expense/equipment/UpdateEquipmentexpense.vue?vue&type=template&id=43309a56&":
-/*!*******************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/expense/equipment/UpdateEquipmentexpense.vue?vue&type=template&id=43309a56& ***!
-  \*******************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/expense/equipment/UpdateEquipmentexpenseInvoice.vue?vue&type=template&id=375ac5a7&":
+/*!**************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/expense/equipment/UpdateEquipmentexpenseInvoice.vue?vue&type=template&id=375ac5a7& ***!
+  \**************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -33521,9 +34071,9 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: "modal animated fadeInLeft custo-fadeInLeft show",
+      staticClass: "modal animated fadeInRight custo-fadeInRight show",
       attrs: {
-        id: "updateEquipmentExpense",
+        id: "UpdateEquipmentExpenseInvoice",
         tabindex: "-1",
         role: "dialog",
         "aria-labelledby": "addContactModalTitle",
@@ -33540,7 +34090,11 @@ var render = function() {
         [
           _c("form", { attrs: { role: "form" } }, [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(0),
+              _c("div", { staticClass: "modal-header" }, [
+                _c("h5", { staticClass: "modal-title" }, [
+                  _vm._v("Update Invoice : " + _vm._s(_vm.invoice.invoice_no))
+                ])
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("i", {
@@ -33555,7 +34109,57 @@ var render = function() {
                         _c("div", { staticClass: "contact-email" }, [
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
-                          _c("label", { attrs: { for: "up-project" } }, [
+                          _c("label", { attrs: { for: "project" } }, [
+                            _vm._v("Invoice No:")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.invoice.invoice_no,
+                                expression: "invoice.invoice_no"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              id: "invoice",
+                              placeholder: "Invoice Number"
+                            },
+                            domProps: { value: _vm.invoice.invoice_no },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.invoice,
+                                  "invoice_no",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm.validation_error.hasOwnProperty("invoice_no")
+                            ? _c("span", { staticClass: "text-danger" }, [
+                                _vm._v(
+                                  "\r\n                                          " +
+                                    _vm._s(_vm.validation_error.project_id[0]) +
+                                    "\r\n                                         "
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c("div", { staticClass: "contact-email" }, [
+                          _c("i", { staticClass: "flaticon-mail-26" }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: "project" } }, [
                             _vm._v("Project")
                           ]),
                           _vm._v(" "),
@@ -33566,12 +34170,12 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.euqipment.project_id,
-                                  expression: "euqipment.project_id"
+                                  value: _vm.invoice.project_id,
+                                  expression: "invoice.project_id"
                                 }
                               ],
                               staticClass: "form-control",
-                              attrs: { id: "up-project" },
+                              attrs: { id: "project" },
                               on: {
                                 change: function($event) {
                                   var $$selectedVal = Array.prototype.filter
@@ -33584,7 +34188,7 @@ var render = function() {
                                       return val
                                     })
                                   _vm.$set(
-                                    _vm.euqipment,
+                                    _vm.invoice,
                                     "project_id",
                                     $event.target.multiple
                                       ? $$selectedVal
@@ -33634,7 +34238,7 @@ var render = function() {
                         _c("div", { staticClass: "contact-email" }, [
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
-                          _c("label", { attrs: { for: "up-euqipment-type" } }, [
+                          _c("label", { attrs: { for: "euqipment-type" } }, [
                             _vm._v("Equipment Type")
                           ]),
                           _vm._v(" "),
@@ -33645,12 +34249,12 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.euqipment.equipment_type_id,
-                                  expression: "euqipment.equipment_type_id"
+                                  value: _vm.invoice.equipment_type_id,
+                                  expression: "invoice.equipment_type_id"
                                 }
                               ],
                               staticClass: "form-control",
-                              attrs: { id: "up-euqipment-type" },
+                              attrs: { id: "euqipment-type" },
                               on: {
                                 change: function($event) {
                                   var $$selectedVal = Array.prototype.filter
@@ -33663,7 +34267,7 @@ var render = function() {
                                       return val
                                     })
                                   _vm.$set(
-                                    _vm.euqipment,
+                                    _vm.invoice,
                                     "equipment_type_id",
                                     $event.target.multiple
                                       ? $$selectedVal
@@ -33717,7 +34321,7 @@ var render = function() {
                         _c("div", { staticClass: "contact-email" }, [
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
-                          _c("label", { attrs: { for: "up-vendor" } }, [
+                          _c("label", { attrs: { for: "vendor" } }, [
                             _vm._v("Vendor")
                           ]),
                           _vm._v(" "),
@@ -33728,12 +34332,12 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.euqipment.vendor_id,
-                                  expression: "euqipment.vendor_id"
+                                  value: _vm.invoice.vendor_id,
+                                  expression: "invoice.vendor_id"
                                 }
                               ],
                               staticClass: "form-control",
-                              attrs: { id: "up-vendor" },
+                              attrs: { id: "vendor" },
                               on: {
                                 change: [
                                   function($event) {
@@ -33747,7 +34351,7 @@ var render = function() {
                                         return val
                                       })
                                     _vm.$set(
-                                      _vm.euqipment,
+                                      _vm.invoice,
                                       "vendor_id",
                                       $event.target.multiple
                                         ? $$selectedVal
@@ -33801,11 +34405,9 @@ var render = function() {
                         _c("div", { staticClass: "contact-email" }, [
                           _c("i", { staticClass: "flaticon-mail-26" }),
                           _vm._v(" "),
-                          _c(
-                            "label",
-                            { attrs: { for: "up-equipement-name" } },
-                            [_vm._v("Equipment Name")]
-                          ),
+                          _c("label", { attrs: { for: "equipement-name" } }, [
+                            _vm._v("Equipment Name")
+                          ]),
                           _vm._v(" "),
                           _c(
                             "select",
@@ -33814,12 +34416,12 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.euqipment.equipement_id,
-                                  expression: "euqipment.equipement_id"
+                                  value: _vm.invoice.equipement_id,
+                                  expression: "invoice.equipement_id"
                                 }
                               ],
                               staticClass: "form-control",
-                              attrs: { id: "up-equipement-name" },
+                              attrs: { id: "equipement-name" },
                               on: {
                                 change: function($event) {
                                   var $$selectedVal = Array.prototype.filter
@@ -33832,7 +34434,7 @@ var render = function() {
                                       return val
                                     })
                                   _vm.$set(
-                                    _vm.euqipment,
+                                    _vm.invoice,
                                     "equipement_id",
                                     $event.target.multiple
                                       ? $$selectedVal
@@ -33872,94 +34474,6 @@ var render = function() {
                                   "\r\n                                      " +
                                     _vm._s(
                                       _vm.validation_error.equipement_id[0]
-                                    ) +
-                                    "\r\n                                     "
-                                )
-                              ])
-                            : _vm._e()
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-4" }, [
-                        _c("div", { staticClass: "contact-email" }, [
-                          _c("i", { staticClass: "flaticon-mail-26" }),
-                          _vm._v(" "),
-                          _c(
-                            "label",
-                            { attrs: { for: "up-equipement-name" } },
-                            [_vm._v("Expense Category")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "select",
-                            {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value:
-                                    _vm.euqipment.equipment_expense_head_id,
-                                  expression:
-                                    "euqipment.equipment_expense_head_id"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: { id: "up-equipement-name" },
-                              on: {
-                                change: function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.$set(
-                                    _vm.euqipment,
-                                    "equipment_expense_head_id",
-                                    $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  )
-                                }
-                              }
-                            },
-                            [
-                              _c("option", { attrs: { value: "" } }, [
-                                _vm._v("Chose Expense Category")
-                              ]),
-                              _vm._v(" "),
-                              _vm._l(_vm.expense_categories, function(value) {
-                                return _c(
-                                  "option",
-                                  {
-                                    key: value.id,
-                                    domProps: { value: value.id }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\r\n                                          " +
-                                        _vm._s(value.head_name) +
-                                        "\r\n                                      "
-                                    )
-                                  ]
-                                )
-                              })
-                            ],
-                            2
-                          ),
-                          _vm._v(" "),
-                          _vm.validation_error.hasOwnProperty(
-                            "expense_category_id"
-                          )
-                            ? _c("span", { staticClass: "text-danger" }, [
-                                _vm._v(
-                                  "\r\n                                      " +
-                                    _vm._s(
-                                      _vm.validation_error
-                                        .expense_category_id[0]
                                     ) +
                                     "\r\n                                     "
                                 )
@@ -34011,7 +34525,7 @@ var render = function() {
                         _c("div", { staticClass: "contact-name" }, [
                           _c("i", { staticClass: "flaticon-mail-11" }),
                           _vm._v(" "),
-                          _c("label", { attrs: { for: "up-basicFlatpickr" } }, [
+                          _c("label", { attrs: { for: "basicFlatpickr" } }, [
                             _vm._v("Payment Date")
                           ]),
                           _vm._v(" "),
@@ -34020,25 +34534,25 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.euqipment.payment_date,
-                                expression: "euqipment.payment_date"
+                                value: _vm.invoice.payment_date,
+                                expression: "invoice.payment_date"
                               }
                             ],
                             staticClass:
                               "form-control flatpickr flatpickr-input active",
                             attrs: {
-                              id: "up-basicFlatpickr",
+                              id: "basicFlatpickr",
                               type: "text",
                               placeholder: "Select Payment Date"
                             },
-                            domProps: { value: _vm.euqipment.payment_date },
+                            domProps: { value: _vm.invoice.payment_date },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
                                 }
                                 _vm.$set(
-                                  _vm.euqipment,
+                                  _vm.invoice,
                                   "payment_date",
                                   $event.target.value
                                 )
@@ -34064,45 +34578,74 @@ var render = function() {
                         _c("div", { staticClass: "contact-phone" }, [
                           _c("i", { staticClass: "flaticon-telephone" }),
                           _vm._v(" "),
-                          _c("label", { attrs: { for: "up-amount" } }, [
-                            _vm._v("Amount")
+                          _c("label", { attrs: { for: "payment_method" } }, [
+                            _vm._v("Payment Method")
                           ]),
                           _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.euqipment.amount,
-                                expression: "euqipment.amount"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              id: "up-amount",
-                              placeholder: "amount"
-                            },
-                            domProps: { value: _vm.euqipment.amount },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.invoice.payment_method,
+                                  expression: "invoice.payment_method"
                                 }
-                                _vm.$set(
-                                  _vm.euqipment,
-                                  "amount",
-                                  $event.target.value
-                                )
+                              ],
+                              staticClass: "form-control",
+                              attrs: { id: "payment_method" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.invoice,
+                                    "payment_method",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
                               }
-                            }
-                          }),
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("Chose Payment Method")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "Bank" } }, [
+                                _vm._v("Bank")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "Cash" } }, [
+                                _vm._v("Cash")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "Bkash" } }, [
+                                _vm._v("Bkash")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "Other" } }, [
+                                _vm._v("Other")
+                              ])
+                            ]
+                          ),
                           _vm._v(" "),
-                          _vm.validation_error.hasOwnProperty("amount")
+                          _vm.validation_error.hasOwnProperty("payment_method")
                             ? _c("span", { staticClass: "text-danger" }, [
                                 _vm._v(
                                   "\r\n                                  " +
-                                    _vm._s(_vm.validation_error.amount[0]) +
+                                    _vm._s(
+                                      _vm.validation_error.payment_method[0]
+                                    ) +
                                     "\r\n                                 "
                                 )
                               ])
@@ -34114,7 +34657,7 @@ var render = function() {
                         _c("div", { staticClass: "contact-phone" }, [
                           _c("i", { staticClass: "flaticon-telephone" }),
                           _vm._v(" "),
-                          _c("label", { attrs: { for: "up-documents-link" } }, [
+                          _c("label", { attrs: { for: "documents-link" } }, [
                             _vm._v("Document Link")
                           ]),
                           _vm._v(" "),
@@ -34123,20 +34666,24 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.euqipment.documents_link,
-                                expression: "euqipment.documents_link"
+                                value: _vm.invoice.documents_link,
+                                expression: "invoice.documents_link"
                               }
                             ],
                             staticClass: "form-control",
-                            attrs: { type: "text", id: "up-documents-link" },
-                            domProps: { value: _vm.euqipment.documents_link },
+                            attrs: {
+                              type: "text",
+                              placeholder: "Documents Link",
+                              id: "documents-link"
+                            },
+                            domProps: { value: _vm.invoice.documents_link },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
                                 }
                                 _vm.$set(
-                                  _vm.euqipment,
+                                  _vm.invoice,
                                   "documents_link",
                                   $event.target.value
                                 )
@@ -34159,12 +34706,232 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
+                    _c("div", { staticClass: "col-md-12" }, [
+                      _c("i", { staticClass: "flaticon-mail-26" }),
+                      _vm._v(" "),
+                      _c("label", { attrs: { for: "equipement-name" } }, [
+                        _vm._v("Expense Category")
+                      ]),
+                      _vm._v(" "),
+                      _vm.expense_categories &&
+                      _vm.expense_categories.length > 0
+                        ? _c("div", { staticClass: "table-responsive" }, [
+                            _c(
+                              "table",
+                              { staticClass: "table table-bordered" },
+                              [
+                                _vm._m(0),
+                                _vm._v(" "),
+                                _c(
+                                  "tbody",
+                                  [
+                                    _vm._l(
+                                      _vm.invoice.expense_category,
+                                      function(cat, index) {
+                                        return _c(
+                                          "tr",
+                                          {
+                                            key: "category" + index,
+                                            staticClass: "text-center"
+                                          },
+                                          [
+                                            _c("td", [
+                                              _c(
+                                                "select",
+                                                {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value: cat.category_id,
+                                                      expression:
+                                                        "cat.category_id"
+                                                    }
+                                                  ],
+                                                  staticClass: "form-control",
+                                                  attrs: {
+                                                    id: "equipement-name"
+                                                  },
+                                                  on: {
+                                                    change: function($event) {
+                                                      var $$selectedVal = Array.prototype.filter
+                                                        .call(
+                                                          $event.target.options,
+                                                          function(o) {
+                                                            return o.selected
+                                                          }
+                                                        )
+                                                        .map(function(o) {
+                                                          var val =
+                                                            "_value" in o
+                                                              ? o._value
+                                                              : o.value
+                                                          return val
+                                                        })
+                                                      _vm.$set(
+                                                        cat,
+                                                        "category_id",
+                                                        $event.target.multiple
+                                                          ? $$selectedVal
+                                                          : $$selectedVal[0]
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "option",
+                                                    { attrs: { value: "" } },
+                                                    [
+                                                      _vm._v(
+                                                        "Chose Expense Head"
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _vm._l(
+                                                    _vm.expense_categories,
+                                                    function(value) {
+                                                      return _c(
+                                                        "option",
+                                                        {
+                                                          key: value.id + "sub",
+                                                          domProps: {
+                                                            value: value.id
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\r\n                                        " +
+                                                              _vm._s(
+                                                                value.head_name
+                                                              ) +
+                                                              "\r\n                                    "
+                                                          )
+                                                        ]
+                                                      )
+                                                    }
+                                                  )
+                                                ],
+                                                2
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value: cat.amount,
+                                                    expression: "cat.amount"
+                                                  }
+                                                ],
+                                                staticClass: "form-control",
+                                                attrs: {
+                                                  type: "number",
+                                                  name: "",
+                                                  placeholder: "Amount",
+                                                  id: ""
+                                                },
+                                                domProps: { value: cat.amount },
+                                                on: {
+                                                  input: function($event) {
+                                                    if (
+                                                      $event.target.composing
+                                                    ) {
+                                                      return
+                                                    }
+                                                    _vm.$set(
+                                                      cat,
+                                                      "amount",
+                                                      $event.target.value
+                                                    )
+                                                  }
+                                                }
+                                              })
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", {}, [
+                                              _c(
+                                                "a",
+                                                {
+                                                  staticClass:
+                                                    "btn btn-danger btn-sm mt-2",
+                                                  attrs: { href: "" },
+                                                  on: {
+                                                    click: function($event) {
+                                                      $event.preventDefault()
+                                                      return _vm.removeCategory(
+                                                        index
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c("i", {
+                                                    staticClass: "fa fa-trash"
+                                                  })
+                                                ]
+                                              )
+                                            ])
+                                          ]
+                                        )
+                                      }
+                                    ),
+                                    _vm._v(" "),
+                                    _c("tr", { staticClass: "text-center" }, [
+                                      _c("td", { attrs: { colspan: "3" } }, [
+                                        _c("b", [
+                                          _vm._v(
+                                            "Total: " +
+                                              _vm._s(_vm.getTotalExpense)
+                                          )
+                                        ])
+                                      ])
+                                    ])
+                                  ],
+                                  2
+                                )
+                              ]
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-success",
+                          attrs: { href: "" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.addCategory()
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "fa fa-plus" })]
+                      ),
+                      _vm._v(" "),
+                      _vm.validation_error.hasOwnProperty("expense_category")
+                        ? _c("span", { staticClass: "text-danger" }, [
+                            _vm._v(
+                              "\r\n                        " +
+                                _vm._s(
+                                  _vm.validation_error.expense_category[0]
+                                ) +
+                                "\r\n                        "
+                            )
+                          ])
+                        : _vm._e()
+                    ]),
+                    _vm._v(" "),
                     _c("div", { staticClass: "row" }, [
                       _c("div", { staticClass: "col-md-12" }, [
                         _c("div", { staticClass: "contact-location" }, [
                           _c("i", { staticClass: "flaticon-location-1" }),
                           _vm._v(" "),
-                          _c("label", { attrs: { for: "up-note" } }, [
+                          _c("label", { attrs: { for: "note" } }, [
                             _vm._v("Note")
                           ]),
                           _vm._v(" "),
@@ -34173,20 +34940,20 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.euqipment.note,
-                                expression: "euqipment.note"
+                                value: _vm.invoice.note,
+                                expression: "invoice.note"
                               }
                             ],
                             staticClass: "form-control",
-                            attrs: { id: "up-note", placeholder: "Note" },
-                            domProps: { value: _vm.euqipment.note },
+                            attrs: { id: "note", placeholder: "Note" },
+                            domProps: { value: _vm.invoice.note },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
                                 }
                                 _vm.$set(
-                                  _vm.euqipment,
+                                  _vm.invoice,
                                   "note",
                                   $event.target.value
                                 )
@@ -34206,7 +34973,7 @@ var render = function() {
                           on: {
                             click: function($event) {
                               $event.preventDefault()
-                              return _vm.update()
+                              return _vm.Update()
                             }
                           }
                         },
@@ -34240,9 +35007,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c("h5", { staticClass: "modal-title" }, [
-        _vm._v("Update Equipment Expense")
+    return _c("thead", [
+      _c("tr", { staticClass: "text-center" }, [
+        _c("th", [_vm._v("Category")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Amount")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("#")])
       ])
     ])
   },
@@ -34267,6 +35038,594 @@ render._withStripped = true
 /*!*****************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/expense/equipment/ViewEquipmentExpense.vue?vue&type=template&id=39bdd65c& ***!
   \*****************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
+        [
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.project_id,
+                  expression: "project_id"
+                }
+              ],
+              staticClass: "form-control",
+              on: {
+                change: [
+                  function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.project_id = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  },
+                  function($event) {
+                    return _vm.getEquipmentExpense()
+                  }
+                ]
+              }
+            },
+            [
+              _c("option", { attrs: { value: "" } }, [_vm._v("All Projects")]),
+              _vm._v(" "),
+              _vm._l(_vm.projects, function(project) {
+                return _c(
+                  "option",
+                  { key: project.id, domProps: { value: project.id } },
+                  [
+                    _vm._v(
+                      "\n          " +
+                        _vm._s(project.project_name) +
+                        "\n        "
+                    )
+                  ]
+                )
+              })
+            ],
+            2
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
+        [
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.equipment_type_id,
+                  expression: "equipment_type_id"
+                }
+              ],
+              staticClass: "form-control",
+              on: {
+                change: [
+                  function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.equipment_type_id = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  },
+                  function($event) {
+                    return _vm.getEquipmentExpense()
+                  }
+                ]
+              }
+            },
+            [
+              _c("option", { attrs: { value: "" } }, [
+                _vm._v("All Equipment Type")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.equipment_types, function(equip_type) {
+                return _c(
+                  "option",
+                  { key: equip_type.id, domProps: { value: equip_type.id } },
+                  [
+                    _vm._v(
+                      "\n          " + _vm._s(equip_type.name) + "\n        "
+                    )
+                  ]
+                )
+              })
+            ],
+            2
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
+        [
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.vendor_id,
+                  expression: "vendor_id"
+                }
+              ],
+              staticClass: "form-control",
+              on: {
+                change: [
+                  function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.vendor_id = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  },
+                  function($event) {
+                    return _vm.getEquipmentExpense()
+                  }
+                ]
+              }
+            },
+            [
+              _c("option", { attrs: { value: "" } }, [_vm._v("All Vendor")]),
+              _vm._v(" "),
+              _vm._l(_vm.vendors, function(vendor) {
+                return _c(
+                  "option",
+                  { key: vendor.id, domProps: { value: vendor.id } },
+                  [
+                    _vm._v(
+                      "\n          " + _vm._s(vendor.vendor_name) + "\n        "
+                    )
+                  ]
+                )
+              })
+            ],
+            2
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
+        [
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.equipement_id,
+                  expression: "equipement_id"
+                }
+              ],
+              staticClass: "form-control",
+              on: {
+                change: [
+                  function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.equipement_id = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  },
+                  function($event) {
+                    return _vm.getEquipmentExpense()
+                  }
+                ]
+              }
+            },
+            [
+              _c("option", { attrs: { value: "" } }, [_vm._v("All Equipment")]),
+              _vm._v(" "),
+              _vm._l(_vm.equipements, function(equipment) {
+                return _c(
+                  "option",
+                  { key: equipment.id, domProps: { value: equipment.id } },
+                  [
+                    _vm._v(
+                      "\n          " + _vm._s(equipment.eq_name) + "\n        "
+                    )
+                  ]
+                )
+              })
+            ],
+            2
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
+        [
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.equipment_expense_head_id,
+                  expression: "equipment_expense_head_id"
+                }
+              ],
+              staticClass: "form-control",
+              on: {
+                change: [
+                  function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.equipment_expense_head_id = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  },
+                  function($event) {
+                    return _vm.getEquipmentExpense()
+                  }
+                ]
+              }
+            },
+            [
+              _c("option", { attrs: { value: "" } }, [
+                _vm._v("All Equipment Head")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.equipment_heads, function(equipment_head) {
+                return _c(
+                  "option",
+                  {
+                    key: equipment_head.id,
+                    domProps: { value: equipment_head.id }
+                  },
+                  [
+                    _vm._v(
+                      "\n          " +
+                        _vm._s(equipment_head.head_name) +
+                        "\n        "
+                    )
+                  ]
+                )
+              })
+            ],
+            2
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
+        [
+          _c("vue-monthly-picker", {
+            attrs: {
+              monthLabels: _vm.pickermonth.lebel,
+              placeHolder: "Start Month"
+            },
+            model: {
+              value: _vm.start_month,
+              callback: function($$v) {
+                _vm.start_month = $$v
+              },
+              expression: "start_month"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
+        [
+          _c("vue-monthly-picker", {
+            attrs: {
+              monthLabels: _vm.pickermonth.lebel,
+              placeHolder: "End Month"
+            },
+            on: {
+              input: function($event) {
+                return _vm.getEquipmentExpense()
+              }
+            },
+            model: {
+              value: _vm.end_month,
+              callback: function($$v) {
+                _vm.end_month = $$v
+              },
+              expression: "end_month"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
+        [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.keyword,
+                expression: "keyword"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", placeholder: "Search Equipment Expense" },
+            domProps: { value: _vm.keyword },
+            on: {
+              keyup: function($event) {
+                return _vm.getEquipmentExpense()
+              },
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.keyword = $event.target.value
+              }
+            }
+          })
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-md-2", staticStyle: { "margin-bottom": "15px" } },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-danger",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  return _vm.filterClear()
+                }
+              }
+            },
+            [_vm._v("\n        Clear\n      ")]
+          )
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      !_vm.isLoading
+        ? _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "table-responsive" }, [
+              _c(
+                "table",
+                { staticClass: "table table-bordered table-hover mb-4" },
+                [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    [
+                      _vm._l(_vm.equipments.data, function(value) {
+                        return _c("tr", { key: value.id }, [
+                          _c("td", [
+                            _vm._v(_vm._s(_vm._f("monthToString")(value.month)))
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(
+                              _vm._s(_vm._f("dateToString")(value.payment_date))
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(_vm._s(value.project.project_name))
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(value.vendor.vendor_name))]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(
+                              _vm._s(value.equipment_expense_head.head_name)
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(value.equipement.eq_name))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(value.amount))])
+                        ])
+                      }),
+                      _vm._v(" "),
+                      _vm.equipments.length > 0
+                        ? _c("tr", [
+                            _c("td", { attrs: { colspan: "7" } }, [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "btn btn-primary btn-sm",
+                                  attrs: {
+                                    href:
+                                      _vm.url +
+                                      "equipment-expense-print-pdf?action=pdf&page=" +
+                                      _vm.page +
+                                      "&keyword=" +
+                                      _vm.keyword +
+                                      "&project=" +
+                                      _vm.project_id +
+                                      "&vendor=" +
+                                      _vm.vendor_id +
+                                      "&equipment_type=" +
+                                      _vm.equipment_type_id +
+                                      "&equipement=" +
+                                      _vm.equipement_id +
+                                      "&equipment_head=" +
+                                      _vm.equipment_expense_head_id +
+                                      "&start_month=" +
+                                      _vm.start_month._i +
+                                      "&end_month=" +
+                                      _vm.end_month._i
+                                  }
+                                },
+                                [
+                                  _c("i", { staticClass: "fa fa-file-pdf-o" }),
+                                  _vm._v(" PDF")
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "btn btn-danger btn-sm",
+                                  attrs: {
+                                    href:
+                                      _vm.url +
+                                      "equipment-expense-print-pdf?action=print&page=" +
+                                      _vm.page +
+                                      "&keyword=" +
+                                      _vm.keyword +
+                                      "&project=" +
+                                      _vm.project_id +
+                                      "&vendor=" +
+                                      _vm.vendor_id +
+                                      "&equipment_type=" +
+                                      _vm.equipment_type_id +
+                                      "&equipement=" +
+                                      _vm.equipement_id +
+                                      "&equipment_head=" +
+                                      _vm.equipment_expense_head_id +
+                                      "&start_month=" +
+                                      _vm.start_month._i +
+                                      "&end_month=" +
+                                      _vm.end_month._i,
+                                    target: "_blank"
+                                  }
+                                },
+                                [
+                                  _c("i", { staticClass: "fa fa-file-pdf-o" }),
+                                  _vm._v(" Print")
+                                ]
+                              )
+                            ])
+                          ])
+                        : _vm._e()
+                    ],
+                    2
+                  )
+                ]
+              )
+            ])
+          ])
+        : _c(
+            "div",
+            {
+              staticClass: "col-md-12 text-center",
+              staticStyle: { "margin-top": "30px" }
+            },
+            [
+              _c("div", {
+                staticClass: "loader multi-loader mx-auto loader-xl"
+              })
+            ]
+          )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-md-12 text-center mb-10 mt-10" },
+        [_c("pagination", { attrs: { pageData: this.equipments } })],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Month")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Payment Date")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Expense")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Expense Category")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Equipment")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Amount")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/expense/equipment/ViewExpenseInvoice.vue?vue&type=template&id=0e9b4c1d&":
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/expense/equipment/ViewExpenseInvoice.vue?vue&type=template&id=0e9b4c1d& ***!
+  \***************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -34526,70 +35885,6 @@ var render = function() {
           "div",
           { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
           [
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.equipment_expense_head_id,
-                    expression: "equipment_expense_head_id"
-                  }
-                ],
-                staticClass: "form-control",
-                on: {
-                  change: [
-                    function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.equipment_expense_head_id = $event.target.multiple
-                        ? $$selectedVal
-                        : $$selectedVal[0]
-                    },
-                    function($event) {
-                      return _vm.getEquipmentExpense()
-                    }
-                  ]
-                }
-              },
-              [
-                _c("option", { attrs: { value: "" } }, [
-                  _vm._v("All Equipment Head")
-                ]),
-                _vm._v(" "),
-                _vm._l(_vm.equipment_heads, function(equipment_head) {
-                  return _c(
-                    "option",
-                    {
-                      key: equipment_head.id,
-                      domProps: { value: equipment_head.id }
-                    },
-                    [
-                      _vm._v(
-                        "\n          " +
-                          _vm._s(equipment_head.head_name) +
-                          "\n        "
-                      )
-                    ]
-                  )
-                })
-              ],
-              2
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
-          [
             _c("vue-monthly-picker", {
               attrs: {
                 monthLabels: _vm.pickermonth.lebel,
@@ -34695,171 +35990,183 @@ var render = function() {
                   [
                     _vm._m(0),
                     _vm._v(" "),
-                    _c(
-                      "tbody",
-                      [
-                        _vm._l(_vm.equipments.data, function(value) {
-                          return _c("tr", { key: value.id }, [
-                            _c("td", [
-                              _vm._v(
-                                _vm._s(_vm._f("monthToString")(value.month))
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _vm._v(
-                                _vm._s(
-                                  _vm._f("dateToString")(value.payment_date)
-                                )
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _vm._v(_vm._s(value.project.project_name))
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _vm._v(_vm._s(value.vendor.vendor_name))
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _vm._v(_vm._s(value.equipement.eq_name))
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(value.amount))]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "text-center" }, [
-                              _c(
-                                "button",
-                                {
-                                  staticClass:
-                                    "btn btn-warning mb-2 mr-2 rounded-circle",
-                                  attrs: { title: "View" },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.viewEquipmentExpense(value)
-                                    }
-                                  }
-                                },
-                                [_c("i", { staticClass: "far fa-eye" })]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "button",
-                                {
-                                  staticClass:
-                                    "btn btn-dark mb-2 mr-2 rounded-circle",
-                                  attrs: { title: "Edit" },
-                                  on: {
-                                    click: function($event) {
-                                      $event.preventDefault()
-                                      return _vm.editEquipmentExpense(value)
-                                    }
-                                  }
-                                },
-                                [_c("i", { staticClass: "far fa-edit" })]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "button",
-                                {
-                                  staticClass:
-                                    "btn btn-danger mb-2 mr-2 rounded-circle",
-                                  attrs: { title: "Delete" },
-                                  on: {
-                                    click: function($event) {
-                                      $event.preventDefault()
-                                      return _vm.deleteEquipmentExpense(
-                                        value.id
-                                      )
-                                    }
-                                  }
-                                },
-                                [_c("i", { staticClass: "far fa-trash-alt" })]
-                              )
-                            ])
-                          ])
-                        }),
-                        _vm._v(" "),
-                        _vm.equipments.length > 0
-                          ? _c("tr", [
-                              _c("td", { attrs: { colspan: "7" } }, [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "btn btn-primary btn-sm",
-                                    attrs: {
-                                      href:
-                                        _vm.url +
-                                        "equipment-expense-print-pdf?action=pdf&page=" +
-                                        _vm.page +
-                                        "&keyword=" +
-                                        _vm.keyword +
-                                        "&project=" +
-                                        _vm.project_id +
-                                        "&vendor=" +
-                                        _vm.vendor_id +
-                                        "&equipment_type=" +
-                                        _vm.equipment_type_id +
-                                        "&equipement=" +
-                                        _vm.equipement_id +
-                                        "&equipment_head=" +
-                                        _vm.equipment_expense_head_id +
-                                        "&start_month=" +
-                                        _vm.start_month._i +
-                                        "&end_month=" +
-                                        _vm.end_month._i
-                                    }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "fa fa-file-pdf-o"
-                                    }),
-                                    _vm._v(" PDF")
-                                  ]
-                                ),
+                    _vm.invoices.data.length > 0
+                      ? _c(
+                          "tbody",
+                          [
+                            _vm._l(_vm.invoices.data, function(value) {
+                              return _c("tr", { key: value.id }, [
+                                _c("td", [_vm._v(_vm._s(value.invoice_no))]),
                                 _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "btn btn-danger btn-sm",
-                                    attrs: {
-                                      href:
-                                        _vm.url +
-                                        "equipment-expense-print-pdf?action=print&page=" +
-                                        _vm.page +
-                                        "&keyword=" +
-                                        _vm.keyword +
-                                        "&project=" +
-                                        _vm.project_id +
-                                        "&vendor=" +
-                                        _vm.vendor_id +
-                                        "&equipment_type=" +
-                                        _vm.equipment_type_id +
-                                        "&equipement=" +
-                                        _vm.equipement_id +
-                                        "&equipment_head=" +
-                                        _vm.equipment_expense_head_id +
-                                        "&start_month=" +
-                                        _vm.start_month._i +
-                                        "&end_month=" +
-                                        _vm.end_month._i,
-                                      target: "_blank"
-                                    }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "fa fa-file-pdf-o"
-                                    }),
-                                    _vm._v(" Print")
-                                  ]
-                                )
+                                _c("td", [_vm._v(_vm._s(value.month))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm._f("dateToString")(value.payment_date)
+                                    )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(value.project.project_name))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(value.vendor.vendor_name))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(value.equipement.eq_name))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(value.payment_method))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(value.total_amount))]),
+                                _vm._v(" "),
+                                _c("td", { staticClass: "text-center" }, [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "btn btn-warning mb-2 mr-2 rounded-circle",
+                                      attrs: { title: "View" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.viewEqExpInvoiceDetails(
+                                            value
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [_c("i", { staticClass: "far fa-eye" })]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "btn btn-dark mb-2 mr-2 rounded-circle",
+                                      attrs: { title: "Edit" },
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          return _vm.editEqExpInvoiceDetails(
+                                            value
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [_c("i", { staticClass: "far fa-edit" })]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "btn btn-danger mb-2 mr-2 rounded-circle",
+                                      attrs: { title: "Delete" },
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          return _vm.deleteEquipmentExpense(
+                                            value.id
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "far fa-trash-alt"
+                                      })
+                                    ]
+                                  )
+                                ])
                               ])
-                            ])
-                          : _vm._e()
-                      ],
-                      2
-                    )
+                            }),
+                            _vm._v(" "),
+                            _vm.invoices.length > 0
+                              ? _c("tr", [
+                                  _c("td", { attrs: { colspan: "7" } }, [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "btn btn-primary btn-sm",
+                                        attrs: {
+                                          href:
+                                            _vm.url +
+                                            "equipment-expense-invoice-print-pdf?action=pdf&page=" +
+                                            _vm.page +
+                                            "&keyword=" +
+                                            _vm.keyword +
+                                            "&project=" +
+                                            _vm.project_id +
+                                            "&vendor=" +
+                                            _vm.vendor_id +
+                                            "&equipment_type=" +
+                                            _vm.equipment_type_id +
+                                            "&equipement=" +
+                                            _vm.equipement_id +
+                                            "&equipment_head=" +
+                                            _vm.equipment_expense_head_id +
+                                            "&start_month=" +
+                                            _vm.start_month._i +
+                                            "&end_month=" +
+                                            _vm.end_month._i
+                                        }
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "fa fa-file-pdf-o"
+                                        }),
+                                        _vm._v(" PDF")
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "btn btn-danger btn-sm",
+                                        attrs: {
+                                          href:
+                                            _vm.url +
+                                            "equipment-expense-invoice-print-pdf?action=print&page=" +
+                                            _vm.page +
+                                            "&keyword=" +
+                                            _vm.keyword +
+                                            "&project=" +
+                                            _vm.project_id +
+                                            "&vendor=" +
+                                            _vm.vendor_id +
+                                            "&equipment_type=" +
+                                            _vm.equipment_type_id +
+                                            "&equipement=" +
+                                            _vm.equipement_id +
+                                            "&equipment_head=" +
+                                            _vm.equipment_expense_head_id +
+                                            "&start_month=" +
+                                            _vm.start_month._i +
+                                            "&end_month=" +
+                                            _vm.end_month._i,
+                                          target: "_blank"
+                                        }
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "fa fa-file-pdf-o"
+                                        }),
+                                        _vm._v(" Print")
+                                      ]
+                                    )
+                                  ])
+                                ])
+                              : _vm._e()
+                          ],
+                          2
+                        )
+                      : _vm._e()
                   ]
                 )
               ])
@@ -34878,7 +36185,7 @@ var render = function() {
             )
       ]),
       _vm._v(" "),
-      _c("update-equipmentexpense"),
+      _c("update-equipmentexpenseinvoice"),
       _vm._v(" "),
       _c("show-equipmentexpense"),
       _vm._v(" "),
@@ -34886,7 +36193,7 @@ var render = function() {
         _c(
           "div",
           { staticClass: "col-md-12 text-center mb-10 mt-10" },
-          [_c("pagination", { attrs: { pageData: this.equipments } })],
+          [_c("pagination", { attrs: { pageData: this.invoices } })],
           1
         )
       ])
@@ -34901,15 +36208,19 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
+        _c("th", [_vm._v("Invoice")]),
+        _vm._v(" "),
         _c("th", [_vm._v("Month")]),
         _vm._v(" "),
         _c("th", [_vm._v("Payment Date")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Name")]),
+        _c("th", [_vm._v("Project Name")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Expense")]),
+        _c("th", [_vm._v("Vendor")]),
         _vm._v(" "),
         _c("th", [_vm._v("Equipment")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Pay Method")]),
         _vm._v(" "),
         _c("th", [_vm._v("Amount")]),
         _vm._v(" "),
@@ -52564,17 +53875,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/expense/equipment/UpdateEquipmentexpense.vue":
-/*!******************************************************************************!*\
-  !*** ./resources/js/components/expense/equipment/UpdateEquipmentexpense.vue ***!
-  \******************************************************************************/
+/***/ "./resources/js/components/expense/equipment/UpdateEquipmentexpenseInvoice.vue":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/expense/equipment/UpdateEquipmentexpenseInvoice.vue ***!
+  \*************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _UpdateEquipmentexpense_vue_vue_type_template_id_43309a56___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UpdateEquipmentexpense.vue?vue&type=template&id=43309a56& */ "./resources/js/components/expense/equipment/UpdateEquipmentexpense.vue?vue&type=template&id=43309a56&");
-/* harmony import */ var _UpdateEquipmentexpense_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UpdateEquipmentexpense.vue?vue&type=script&lang=js& */ "./resources/js/components/expense/equipment/UpdateEquipmentexpense.vue?vue&type=script&lang=js&");
+/* harmony import */ var _UpdateEquipmentexpenseInvoice_vue_vue_type_template_id_375ac5a7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UpdateEquipmentexpenseInvoice.vue?vue&type=template&id=375ac5a7& */ "./resources/js/components/expense/equipment/UpdateEquipmentexpenseInvoice.vue?vue&type=template&id=375ac5a7&");
+/* harmony import */ var _UpdateEquipmentexpenseInvoice_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UpdateEquipmentexpenseInvoice.vue?vue&type=script&lang=js& */ "./resources/js/components/expense/equipment/UpdateEquipmentexpenseInvoice.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -52584,9 +53895,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _UpdateEquipmentexpense_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _UpdateEquipmentexpense_vue_vue_type_template_id_43309a56___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _UpdateEquipmentexpense_vue_vue_type_template_id_43309a56___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _UpdateEquipmentexpenseInvoice_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _UpdateEquipmentexpenseInvoice_vue_vue_type_template_id_375ac5a7___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _UpdateEquipmentexpenseInvoice_vue_vue_type_template_id_375ac5a7___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -52596,38 +53907,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/expense/equipment/UpdateEquipmentexpense.vue"
+component.options.__file = "resources/js/components/expense/equipment/UpdateEquipmentexpenseInvoice.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/expense/equipment/UpdateEquipmentexpense.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************************!*\
-  !*** ./resources/js/components/expense/equipment/UpdateEquipmentexpense.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************************/
+/***/ "./resources/js/components/expense/equipment/UpdateEquipmentexpenseInvoice.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************!*\
+  !*** ./resources/js/components/expense/equipment/UpdateEquipmentexpenseInvoice.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateEquipmentexpense_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./UpdateEquipmentexpense.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/expense/equipment/UpdateEquipmentexpense.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateEquipmentexpense_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateEquipmentexpenseInvoice_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./UpdateEquipmentexpenseInvoice.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/expense/equipment/UpdateEquipmentexpenseInvoice.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateEquipmentexpenseInvoice_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/expense/equipment/UpdateEquipmentexpense.vue?vue&type=template&id=43309a56&":
-/*!*************************************************************************************************************!*\
-  !*** ./resources/js/components/expense/equipment/UpdateEquipmentexpense.vue?vue&type=template&id=43309a56& ***!
-  \*************************************************************************************************************/
+/***/ "./resources/js/components/expense/equipment/UpdateEquipmentexpenseInvoice.vue?vue&type=template&id=375ac5a7&":
+/*!********************************************************************************************************************!*\
+  !*** ./resources/js/components/expense/equipment/UpdateEquipmentexpenseInvoice.vue?vue&type=template&id=375ac5a7& ***!
+  \********************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateEquipmentexpense_vue_vue_type_template_id_43309a56___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./UpdateEquipmentexpense.vue?vue&type=template&id=43309a56& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/expense/equipment/UpdateEquipmentexpense.vue?vue&type=template&id=43309a56&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateEquipmentexpense_vue_vue_type_template_id_43309a56___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateEquipmentexpenseInvoice_vue_vue_type_template_id_375ac5a7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./UpdateEquipmentexpenseInvoice.vue?vue&type=template&id=375ac5a7& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/expense/equipment/UpdateEquipmentexpenseInvoice.vue?vue&type=template&id=375ac5a7&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateEquipmentexpenseInvoice_vue_vue_type_template_id_375ac5a7___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateEquipmentexpense_vue_vue_type_template_id_43309a56___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateEquipmentexpenseInvoice_vue_vue_type_template_id_375ac5a7___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -52697,6 +54008,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewEquipmentExpense_vue_vue_type_template_id_39bdd65c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewEquipmentExpense_vue_vue_type_template_id_39bdd65c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/expense/equipment/ViewExpenseInvoice.vue":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/expense/equipment/ViewExpenseInvoice.vue ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ViewExpenseInvoice_vue_vue_type_template_id_0e9b4c1d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ViewExpenseInvoice.vue?vue&type=template&id=0e9b4c1d& */ "./resources/js/components/expense/equipment/ViewExpenseInvoice.vue?vue&type=template&id=0e9b4c1d&");
+/* harmony import */ var _ViewExpenseInvoice_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ViewExpenseInvoice.vue?vue&type=script&lang=js& */ "./resources/js/components/expense/equipment/ViewExpenseInvoice.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ViewExpenseInvoice_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ViewExpenseInvoice_vue_vue_type_template_id_0e9b4c1d___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ViewExpenseInvoice_vue_vue_type_template_id_0e9b4c1d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/expense/equipment/ViewExpenseInvoice.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/expense/equipment/ViewExpenseInvoice.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/components/expense/equipment/ViewExpenseInvoice.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewExpenseInvoice_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ViewExpenseInvoice.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/expense/equipment/ViewExpenseInvoice.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewExpenseInvoice_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/expense/equipment/ViewExpenseInvoice.vue?vue&type=template&id=0e9b4c1d&":
+/*!*********************************************************************************************************!*\
+  !*** ./resources/js/components/expense/equipment/ViewExpenseInvoice.vue?vue&type=template&id=0e9b4c1d& ***!
+  \*********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewExpenseInvoice_vue_vue_type_template_id_0e9b4c1d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ViewExpenseInvoice.vue?vue&type=template&id=0e9b4c1d& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/expense/equipment/ViewExpenseInvoice.vue?vue&type=template&id=0e9b4c1d&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewExpenseInvoice_vue_vue_type_template_id_0e9b4c1d___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewExpenseInvoice_vue_vue_type_template_id_0e9b4c1d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -53910,7 +55290,9 @@ __webpack_require__(/*! ./vue-assets */ "./resources/js/vue-assets.js");
 Vue.use(vue_month_picker__WEBPACK_IMPORTED_MODULE_0__["MonthPicker"]);
 Vue.use(vue_month_picker__WEBPACK_IMPORTED_MODULE_0__["MonthPickerInput"]);
 Vue.component('create-equipmentexpenseheads', __webpack_require__(/*! ./components/expense_heads/equipment/CreateEquipmentExpenseHead.vue */ "./resources/js/components/expense_heads/equipment/CreateEquipmentExpenseHead.vue")["default"]);
-Vue.component('view-equipmentexpenseheads', __webpack_require__(/*! ./components/expense_heads/equipment/ViewEquipmentExpenseHead.vue */ "./resources/js/components/expense_heads/equipment/ViewEquipmentExpenseHead.vue")["default"]);
+Vue.component('view-equipmentexpenseheads', __webpack_require__(/*! ./components/expense_heads/equipment/ViewEquipmentExpenseHead.vue */ "./resources/js/components/expense_heads/equipment/ViewEquipmentExpenseHead.vue")["default"]); // equipment Expense Invoice
+
+Vue.component('view-equipmentexpenseinvoice', __webpack_require__(/*! ./components/expense/equipment/ViewExpenseInvoice.vue */ "./resources/js/components/expense/equipment/ViewExpenseInvoice.vue")["default"]);
 Vue.component('create-projectexpenseheads', __webpack_require__(/*! ./components/expense_heads/project/CreateProjectExpenseHead.vue */ "./resources/js/components/expense_heads/project/CreateProjectExpenseHead.vue")["default"]);
 Vue.component('view-projectexpenseheads', __webpack_require__(/*! ./components/expense_heads/project/ViewProjectExpenseHead.vue */ "./resources/js/components/expense_heads/project/ViewProjectExpenseHead.vue")["default"]);
 Vue.component('create-officeexpenseheads', __webpack_require__(/*! ./components/expense_heads/office_expense/CreateOfficeExpenseHead.vue */ "./resources/js/components/expense_heads/office_expense/CreateOfficeExpenseHead.vue")["default"]);

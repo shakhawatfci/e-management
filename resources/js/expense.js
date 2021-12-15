@@ -5,6 +5,8 @@ Vue.use(MonthPicker)
 Vue.use(MonthPickerInput)
 Vue.component('create-equipmentexpenseheads', require('./components/expense_heads/equipment/CreateEquipmentExpenseHead.vue').default);
 Vue.component('view-equipmentexpenseheads', require('./components/expense_heads/equipment/ViewEquipmentExpenseHead.vue').default);
+// equipment Expense Invoice
+Vue.component('view-equipmentexpenseinvoice', require('./components/expense/equipment/ViewExpenseInvoice.vue').default);
 
 Vue.component('create-projectexpenseheads', require('./components/expense_heads/project/CreateProjectExpenseHead.vue').default);
 Vue.component('view-projectexpenseheads', require('./components/expense_heads/project/ViewProjectExpenseHead.vue').default);

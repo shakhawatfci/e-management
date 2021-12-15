@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class EquipementExpense extends Model
 {
     protected $table = 'equipement_expense';
-
+    protected $fillable = ['invoice_no'];
     // relation with project
     public function project()
     {
@@ -59,5 +59,9 @@ class EquipementExpense extends Model
         return $this->belongsTo('App\EquipmentExpenseHead');
 
     }
+    // public function equipment_expense_invoice()
+    // {
+    // 	return $this->belongsTo('App\EquipmentExpenseInvoice');
+    // }
 
 }

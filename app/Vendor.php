@@ -67,4 +67,9 @@ class Vendor extends Model
     {
         return $this->hasMany('App\Operator');
     }
+    
+    public function equipment_expense_invoice(){
+
+        return $this->hasMany('App\EquipmentExpenseInvoice');
+    }
 }
