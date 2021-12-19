@@ -393,6 +393,55 @@
                   <div class="col-md-3">
                     <div class="contact-name">
                       <i class="flaticon-user-11"></i>
+                      <span>Oprator Rate Hourly</span>
+                      <input
+                        type="text"
+                        v-model="bill.operator_rate_per_hour"
+                        id="c-name"
+                        class="form-control"
+                        placeholder="Oprator Rate Per Hour"
+                      />
+                      <span
+                        v-if="
+                          validation_error.hasOwnProperty(
+                            'operator_rate_per_hour'
+                          )
+                        "
+                        class="text-danger"
+                      >
+                        {{ validation_error.operator_rate_per_hour[0] }}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3">
+                    <div class="contact-name">
+                      <i class="flaticon-user-11"></i>
+                      <span>Oprator Amount</span>
+                      <input
+                        type="text"
+                        :value="
+                          (bill.operator_total_amount =
+                            bill.total_hour *
+                            bill.operator_rate_per_hour).toFixed(3)
+                        "
+                        id="c-name"
+                        class="form-control"
+                        placeholder="Oprator Amount"
+                        readonly
+                      />
+                      <span
+                        v-if="validation_error.hasOwnProperty('operator_total_amount')"
+                        class="text-danger"
+                      >
+                        {{ validation_error.operator_total_amount[0] }}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3">
+                    <div class="contact-name">
+                      <i class="flaticon-user-11"></i>
                       <span>Took Me to Print Page After Saving the bill ?</span>
                       <select v-model="bill.print_status" class="form-control">
                         <option value="0">No</option>
@@ -465,6 +514,7 @@ export default {
         total_hour: 0,
         project_rate_per_hour: 0,
         vendor_rate_per_hour: 0,
+        operator_rate_per_hour: 0,
         project_amount: 0,
         vendor_amount: 0,
         project_vat: 0,
@@ -475,6 +525,7 @@ export default {
         vendor_sup: 0,
         total_project_amount: 0,
         total_vendor_amount: 0,
+        operator_total_amount: 0,
         date: "",
         month: "",
         documents_link: "",
@@ -512,6 +563,8 @@ export default {
       _this.bill.total_hour = equipment.total_hour;
       _this.bill.project_rate_per_hour = equipment.project_rate_per_hour;
       _this.bill.vendor_rate_per_hour = equipment.vendor_rate_per_hour;
+      _this.bill.operator_rate_per_hour = equipment.operator_rate_per_hour;
+      _this.bill.operator_total_amount = equipment.operator_total_amount;
       $("#CreateBill").modal("show");
     });
     var f1 = flatpickr(document.getElementById("basicFlatpickr4"));

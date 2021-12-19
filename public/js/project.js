@@ -3065,6 +3065,58 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3083,6 +3135,8 @@ __webpack_require__.r(__webpack_exports__);
         total_vendor_amount: 0,
         project_rate_per_hour: 0,
         vendor_rate_per_hour: 0,
+        operator_rate_per_hour: 0,
+        operator_total_amount: 0,
         assign_date: "",
         document_links: ""
       },
@@ -11126,6 +11180,100 @@ var render = function() {
                             _c("div", { staticClass: "contact-name" }, [
                               _c("i", { staticClass: "flaticon-user-11" }),
                               _vm._v(" "),
+                              _c("span", [_vm._v("Operator Total Amount")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.equipment.operator_total_amount,
+                                    expression:
+                                      "equipment.operator_total_amount"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "c-name",
+                                  placeholder: "Total Amount of Operator"
+                                },
+                                domProps: {
+                                  value: _vm.equipment.operator_total_amount
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.equipment,
+                                      "operator_total_amount",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "operator_total_amount"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\n                      " +
+                                        _vm._s(
+                                          _vm.validation_error
+                                            .operator_total_amount[0]
+                                        ) +
+                                        "\n                    "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-4" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Operator Rate Per Hour")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "c-name",
+                                  placeholder: "Operator Rate Per Hour",
+                                  readonly: ""
+                                },
+                                domProps: {
+                                  value: (_vm.equipment.operator_rate_per_hour =
+                                    _vm.equipment.operator_total_amount /
+                                    _vm.equipment.total_hour).toFixed(3)
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "operator_rate_per_hour"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\n                      " +
+                                        _vm._s(
+                                          _vm.validation_error
+                                            .operator_rate_per_hour[0]
+                                        ) +
+                                        "\n                    "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-4" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
                               _c("span", [_vm._v("Assign Date")]),
                               _vm._v(" "),
                               _c("input", {
@@ -13616,11 +13764,15 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(value.total_project_amount))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(value.project_rate_per_hour))]),
+                        _c("td", [
+                          _vm._v(_vm._s(value.project_rate_per_hour.toFixed(3)))
+                        ]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(value.total_vendor_amount))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(value.vendor_rate_per_hour))]),
+                        _c("td", [
+                          _vm._v(_vm._s(value.vendor_rate_per_hour.toFixed(3)))
+                        ]),
                         _vm._v(" "),
                         _c("td", { staticClass: "text-center" }, [
                           value.release_status == 1

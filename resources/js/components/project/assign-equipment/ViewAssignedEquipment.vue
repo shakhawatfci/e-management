@@ -72,9 +72,9 @@
                 </td>
                 <td>{{ value.total_hour }}</td>
                 <td>{{ value.total_project_amount }}</td>
-                <td>{{ value.project_rate_per_hour }}</td>
+                <td>{{ value.project_rate_per_hour.toFixed(3) }}</td>
                 <td>{{ value.total_vendor_amount }}</td>
-                <td>{{ value.vendor_rate_per_hour }}</td>
+                <td>{{ value.vendor_rate_per_hour.toFixed(3) }}</td>
 
                 <!-- <td>{{ value.note }}</td> -->
                 <td class="text-center">

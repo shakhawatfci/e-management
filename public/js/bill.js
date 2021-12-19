@@ -3314,6 +3314,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3330,6 +3379,7 @@ __webpack_require__.r(__webpack_exports__);
         total_hour: 0,
         project_rate_per_hour: 0,
         vendor_rate_per_hour: 0,
+        operator_rate_per_hour: 0,
         project_amount: 0,
         vendor_amount: 0,
         project_vat: 0,
@@ -3340,6 +3390,7 @@ __webpack_require__.r(__webpack_exports__);
         vendor_sup: 0,
         total_project_amount: 0,
         total_vendor_amount: 0,
+        operator_total_amount: 0,
         date: "",
         month: "",
         documents_link: "",
@@ -3364,6 +3415,8 @@ __webpack_require__.r(__webpack_exports__);
       _this.bill.total_hour = equipment.total_hour;
       _this.bill.project_rate_per_hour = equipment.project_rate_per_hour;
       _this.bill.vendor_rate_per_hour = equipment.vendor_rate_per_hour;
+      _this.bill.operator_rate_per_hour = equipment.operator_rate_per_hour;
+      _this.bill.operator_total_amount = equipment.operator_total_amount;
       $("#CreateBill").modal("show");
     });
     var f1 = flatpickr(document.getElementById("basicFlatpickr4"));
@@ -34439,6 +34492,99 @@ var render = function() {
                                         _vm._s(
                                           _vm.validation_error
                                             .total_vendor_amount[0]
+                                        ) +
+                                        "\n                    "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-3" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Oprator Rate Hourly")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.bill.operator_rate_per_hour,
+                                    expression: "bill.operator_rate_per_hour"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "c-name",
+                                  placeholder: "Oprator Rate Per Hour"
+                                },
+                                domProps: {
+                                  value: _vm.bill.operator_rate_per_hour
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.bill,
+                                      "operator_rate_per_hour",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "operator_rate_per_hour"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\n                      " +
+                                        _vm._s(
+                                          _vm.validation_error
+                                            .operator_rate_per_hour[0]
+                                        ) +
+                                        "\n                    "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-3" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Oprator Amount")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "c-name",
+                                  placeholder: "Oprator Amount",
+                                  readonly: ""
+                                },
+                                domProps: {
+                                  value: (_vm.bill.operator_total_amount =
+                                    _vm.bill.total_hour *
+                                    _vm.bill.operator_rate_per_hour).toFixed(3)
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "operator_total_amount"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\n                      " +
+                                        _vm._s(
+                                          _vm.validation_error
+                                            .operator_total_amount[0]
                                         ) +
                                         "\n                    "
                                     )

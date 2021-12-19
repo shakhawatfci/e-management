@@ -266,6 +266,58 @@
                       </span>
                     </div>
                   </div>
+                  <div class="col-md-4">
+                    <div class="contact-name">
+                      <i class="flaticon-user-11"></i>
+                      <span>Operator Total Amount</span>
+                      <input
+                        type="text"
+                        v-model="equipment.operator_total_amount"
+                        id="c-name"
+                        class="form-control"
+                        placeholder="Total Amount of Operator"
+                      />
+                      <span
+                        v-if="
+                          validation_error.hasOwnProperty(
+                            'operator_total_amount'
+                          )
+                        "
+                        class="text-danger"
+                      >
+                        {{ validation_error.operator_total_amount[0] }}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="contact-name">
+                      <i class="flaticon-user-11"></i>
+                      <span>Operator Rate Per Hour</span>
+                      <input
+                        type="text"
+                        :value="
+                          (equipment.operator_rate_per_hour =
+                            equipment.operator_total_amount /
+                            equipment.total_hour).toFixed(3)
+                        "
+                        id="c-name"
+                        class="form-control"
+                        placeholder="Operator Rate Per Hour"
+                        readonly
+                      />
+                      <span
+                        v-if="
+                          validation_error.hasOwnProperty(
+                            'operator_rate_per_hour'
+                          )
+                        "
+                        class="text-danger"
+                      >
+                        {{ validation_error.operator_rate_per_hour[0] }}
+                      </span>
+                    </div>
+                  </div>
 
                   <div class="col-md-4">
                     <div class="contact-name">
@@ -344,6 +396,8 @@ export default {
         total_vendor_amount: 0,
         project_rate_per_hour: 0,
         vendor_rate_per_hour: 0,
+        operator_rate_per_hour: 0,
+        operator_total_amount: 0,
         assign_date: "",
         document_links: "",
       },

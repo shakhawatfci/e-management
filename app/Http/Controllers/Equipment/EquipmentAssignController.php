@@ -155,6 +155,8 @@ class EquipmentAssignController extends Controller
             $equipment_assign->total_vendor_amount   = $request->total_vendor_amount;
             $equipment_assign->project_rate_per_hour = $request->project_rate_per_hour;
             $equipment_assign->vendor_rate_per_hour  = $request->vendor_rate_per_hour;
+            $equipment_assign->operator_total_amount = $request->operator_total_amount;
+            $equipment_assign->operator_rate_per_hour = $request->operator_rate_per_hour;
             $equipment_assign->documents_link        = $request->document_links;
             $equipment_assign->assign_date           = $request->assign_date;
             $equipment_assign->release_status        = 1;

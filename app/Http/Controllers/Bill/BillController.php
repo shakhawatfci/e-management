@@ -113,6 +113,8 @@ class BillController extends Controller
             'vendor_amount'         => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
             'total_project_amount'  => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
             'total_vendor_amount'   => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'operator_rate_per_hour' => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'operator_total_amount'  => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
             'project_vat'           => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
             'project_ait'           => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
             'project_sup'           => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
@@ -155,6 +157,7 @@ class BillController extends Controller
             $bill->total_hour            = $request->total_hour;
             $bill->project_rate_per_hour = $request->project_rate_per_hour;
             $bill->vendor_rate_per_hour  = $request->vendor_rate_per_hour;
+            $bill->operator_rate_per_hour = $request->operator_rate_per_hour;
             $bill->project_amount        = $request->project_amount;
             $bill->vendor_amount         = $request->vendor_amount;
             $bill->project_vat           = $request->project_vat;
@@ -165,6 +168,7 @@ class BillController extends Controller
             $bill->vendor_sup            = $request->vendor_sup;
             $bill->total_project_amount  = $request->total_project_amount;
             $bill->total_vendor_amount   = $request->total_vendor_amount;
+            $bill->operator_total_amount = $request->operator_total_amount;
             $bill->documents_link        = $request->documents_link;
             $bill->save();
 
