@@ -2366,6 +2366,65 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2406,8 +2465,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _payment_ViewProjectPayment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./payment/ViewProjectPayment */ "./resources/js/components/bill/payment/ViewProjectPayment.vue");
 /* harmony import */ var _payment_CreateVendorPayment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./payment/CreateVendorPayment */ "./resources/js/components/bill/payment/CreateVendorPayment.vue");
 /* harmony import */ var _payment_ViewVendorPayment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./payment/ViewVendorPayment */ "./resources/js/components/bill/payment/ViewVendorPayment.vue");
-/* harmony import */ var _EditBill__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./EditBill */ "./resources/js/components/bill/EditBill.vue");
-/* harmony import */ var _BillDetails__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./BillDetails */ "./resources/js/components/bill/BillDetails.vue");
+/* harmony import */ var _payment_CreateOperatorPayment__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./payment/CreateOperatorPayment */ "./resources/js/components/bill/payment/CreateOperatorPayment.vue");
+/* harmony import */ var _payment_ViewOperatorPayment__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./payment/ViewOperatorPayment */ "./resources/js/components/bill/payment/ViewOperatorPayment.vue");
+/* harmony import */ var _EditBill__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./EditBill */ "./resources/js/components/bill/EditBill.vue");
+/* harmony import */ var _BillDetails__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./BillDetails */ "./resources/js/components/bill/BillDetails.vue");
 //
 //
 //
@@ -2714,6 +2775,48 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 
 
@@ -2732,10 +2835,12 @@ __webpack_require__.r(__webpack_exports__);
     pagination: _pagination_Pagination__WEBPACK_IMPORTED_MODULE_3__["default"],
     "crate-project-payment": _payment_CreateProjectPayment__WEBPACK_IMPORTED_MODULE_4__["default"],
     "crate-vendor-payment": _payment_CreateVendorPayment__WEBPACK_IMPORTED_MODULE_6__["default"],
+    "create-operator-payment": _payment_CreateOperatorPayment__WEBPACK_IMPORTED_MODULE_8__["default"],
     "view-project-payment": _payment_ViewProjectPayment__WEBPACK_IMPORTED_MODULE_5__["default"],
     "view-vendor-payment": _payment_ViewVendorPayment__WEBPACK_IMPORTED_MODULE_7__["default"],
-    "bill-details": _BillDetails__WEBPACK_IMPORTED_MODULE_9__["default"],
-    "edit-bill": _EditBill__WEBPACK_IMPORTED_MODULE_8__["default"]
+    "view-operator-payment": _payment_ViewOperatorPayment__WEBPACK_IMPORTED_MODULE_9__["default"],
+    "bill-details": _BillDetails__WEBPACK_IMPORTED_MODULE_11__["default"],
+    "edit-bill": _EditBill__WEBPACK_IMPORTED_MODULE_10__["default"]
   },
   data: function data() {
     return {
@@ -2828,6 +2933,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     vendorPaymentHistory: function vendorPaymentHistory(bill) {
       _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit("view-vendor-payment", bill);
+    },
+    makeOperatorPayment: function makeOperatorPayment(bill) {
+      _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit("make-operator-payment", bill);
+    },
+    operatorPaymentHistory: function operatorPaymentHistory(bill) {
+      _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit("view-operator-payment", bill);
     },
     getVendorEquipments: function getVendorEquipments() {
       var _this4 = this;
@@ -3396,6 +3507,7 @@ __webpack_require__.r(__webpack_exports__);
         documents_link: "",
         print_status: 0
       },
+      // prepared_bill : new FormData(),
       month: "",
       pickermonth: {
         lebel: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOM", "DEC"],
@@ -3425,10 +3537,32 @@ __webpack_require__.r(__webpack_exports__);
     setMonth: function setMonth() {
       this.bill.month = this.month._i;
     },
+    //   billPrepare(){
+    //   this.prepared_bill.append('assign_id', this.bill.assign_id);
+    //   this.prepared_bill.append('total_hour', this.bill.total_hour);
+    //   this.prepared_bill.append('project_rate_per_hour', this.bill.project_rate_per_hour.toFixed(6));
+    //   this.prepared_bill.append('vendor_rate_per_hour', this.bill.vendor_rate_per_hour.toFixed(6));
+    //   this.prepared_bill.append('operator_rate_per_hour', this.bill.operator_rate_per_hour.toFixed(6));
+    //   this.prepared_bill.append('project_amount', this.bill.project_amount.toFixed(6));
+    //   this.prepared_bill.append('vendor_amount', this.bill.vendor_amount.toFixed(6));
+    //   this.prepared_bill.append('project_vat', this.bill.project_vat.toFixed(6));
+    //   this.prepared_bill.append('project_ait', this.bill.project_ait.toFixed(6));
+    //   this.prepared_bill.append('project_sup', this.bill.project_sup.toFixed(6));
+    //   this.prepared_bill.append('vendor_ait', this.bill.vendor_ait.toFixed(6));
+    //   this.prepared_bill.append('vendor_vat', this.bill.vendor_vat.toFixed(6));
+    //   this.prepared_bill.append('vendor_sup', this.bill.vendor_sup.toFixed(6));
+    //   this.prepared_bill.append('total_project_amount', this.bill.total_project_amount.toFixed(6));
+    //   this.prepared_bill.append('total_vendor_amount', this.bill.total_vendor_amount.toFixed(6));
+    //   this.prepared_bill.append('date', this.bill.date);
+    //   this.prepared_bill.append('month', this.bill.month);
+    //   this.prepared_bill.append('documents_link', this.bill.documents_link);
+    //   this.prepared_bill.append('print_status', this.bill.print_status);
+    // },
     save: function save() {
       var _this2 = this;
 
-      this.button_name = "Saving...";
+      this.button_name = "Saving..."; // this.billPrepare()
+
       axios.post(base_url + "bill", this.bill).then(function (response) {
         if (response.data.status === "success") {
           $("#CreateBill").modal("hide");
@@ -3977,6 +4111,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3993,6 +4176,7 @@ __webpack_require__.r(__webpack_exports__);
         total_hour: 0,
         project_rate_per_hour: 0,
         vendor_rate_per_hour: 0,
+        operator_rate_per_hour: 0,
         project_amount: 0,
         vendor_amount: 0,
         project_vat: 0,
@@ -4003,6 +4187,7 @@ __webpack_require__.r(__webpack_exports__);
         vendor_sup: 0,
         total_project_amount: 0,
         total_vendor_amount: 0,
+        operator_total_amount: 0,
         date: "",
         month: "",
         documents_link: "",
@@ -4116,6 +4301,264 @@ __webpack_require__.r(__webpack_exports__);
       return this.bill.vendor_amount * this.bill.vendor_sup / 100;
     }
   }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bill/payment/CreateOperatorPayment.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/bill/payment/CreateOperatorPayment.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_assets__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../vue-assets */ "./resources/js/vue-assets.js");
+/* harmony import */ var _mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../mixin */ "./resources/js/mixin.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
+  data: function data() {
+    return {
+      bill: null,
+      payment: {
+        id: '',
+        operator_adjustment_payment: 0,
+        operator_total_amount: 0,
+        operator_payment: 0,
+        outstanding_amount: 0,
+        payment_amount: 0,
+        adjustment: 0,
+        current_outstanding: 0,
+        date: '',
+        month: '',
+        notes: ''
+      },
+      validation_error: {},
+      button_name: 'Save'
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('make-operator-payment', function (bill) {
+      _this.bill = bill;
+      _this.payment.id = bill.id;
+      _this.payment.operator_total_amount = bill.operator_total_amount;
+      _this.payment.operator_adjustment_payment = bill.operator_adjustment_payment;
+      _this.payment.operator_payment = bill.operator_payment; // _this.payment.project_adjustment = bill.project_adjustment_payment;
+
+      _this.payment.month = bill.month;
+      $('#CreateOperatorPayment').modal('show');
+    });
+    var f1 = flatpickr(document.getElementById('basicFlatpickr5'));
+  },
+  methods: {
+    save: function save() {
+      var _this2 = this;
+
+      this.button_name = 'Saving...';
+      axios.post(base_url + 'operator-payment', this.payment).then(function (response) {
+        if (response.data.status === 'success') {
+          $('#CreateOperatorPayment').modal('hide');
+
+          _this2.successMessage(response.data);
+
+          _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('bill-changed');
+          _this2.button_name = 'Save';
+
+          _this2.resetForm();
+        } else {
+          _this2.successMessage(response.data);
+
+          _this2.button_name = 'Save';
+        }
+      })["catch"](function (err) {
+        if (err.response.status == 422) {
+          _this2.validation_error = err.response.data.errors;
+
+          _this2.validationError();
+
+          _this2.button_name = 'Save';
+        } else {
+          _this2.successMessage(err);
+
+          _this2.button_name = 'Save';
+        }
+      });
+    },
+    resetForm: function resetForm() {
+      this.payment = {
+        id: '',
+        project_adjustment_payment: 0,
+        total_project_amount: 0,
+        project_payment: 0,
+        outstanding_amount: 0,
+        payment_amount: 0,
+        adjustment: 0,
+        current_outstanding: 0,
+        date: '',
+        month: '',
+        notes: ''
+      };
+      this.validation_error = {};
+    }
+  },
+  computed: {}
 });
 
 /***/ }),
@@ -4632,6 +5075,162 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   computed: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bill/payment/ViewOperatorPayment.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/bill/payment/ViewOperatorPayment.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_assets__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../vue-assets */ "./resources/js/vue-assets.js");
+/* harmony import */ var _mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../mixin */ "./resources/js/mixin.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
+  data: function data() {
+    return {
+      bill: null,
+      payments: [],
+      isLoading: true
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('view-operator-payment', function (bill) {
+      _this.bill = bill;
+
+      _this.getOperatorPayment(bill.id);
+
+      $('#ViewOperatorPayment').modal('show');
+    });
+  },
+  methods: {
+    getOperatorPayment: function getOperatorPayment(id) {
+      var _this2 = this;
+
+      this.isLoading = true;
+      axios.get(base_url + 'operator-payment/' + id).then(function (response) {
+        _this2.payments = response.data;
+        _this2.isLoading = false;
+      });
+    },
+    deletePayment: function deletePayment(id, index) {
+      var _this3 = this;
+
+      Swal.fire({
+        title: "Are you sure ?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }, function () {}).then(function (result) {
+        if (result.value) {
+          axios["delete"]("".concat(base_url, "operator-payment/").concat(id)).then(function (response) {
+            _this3.successMessage(response.data);
+
+            if (response.data.status === 'success') {
+              _this3.payments.splice(index, 1);
+
+              _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('bill-changed');
+            }
+          });
+        }
+      });
+    }
+  },
+  computed: {
+    totalPayment: function totalPayment() {
+      var total = 0;
+      this.payments.forEach(function (payment) {
+        total += Number(payment.amount);
+      });
+      return total;
+    }
+  }
 });
 
 /***/ }),
@@ -5253,7 +5852,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* .bg-green {\r\n  background-color : green;\r\n } */\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* .bg-green {\r\n  background-color : green;\r\n } */\r\n", ""]);
 
 // exports
 
@@ -5273,6 +5872,25 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 // module
 exports.push([module.i, "\n.custom-modal[data-v-3e2b319e] {\r\n  min-width: 95% !important;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bill/payment/CreateOperatorPayment.vue?vue&type=style&index=0&id=469671c0&scoped=true&lang=css&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/bill/payment/CreateOperatorPayment.vue?vue&type=style&index=0&id=469671c0&scoped=true&lang=css& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.custom-modal[data-v-469671c0] {\r\n min-width: 95% !important;\n}\r\n", ""]);
 
 // exports
 
@@ -5311,6 +5929,25 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 // module
 exports.push([module.i, "\n.custom-modal[data-v-ed59efc8] {\r\n min-width: 95% !important;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bill/payment/ViewOperatorPayment.vue?vue&type=style&index=0&id=a6215412&scoped=true&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/bill/payment/ViewOperatorPayment.vue?vue&type=style&index=0&id=a6215412&scoped=true&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.custom-modal[data-v-a6215412] {\r\n min-width: 95% !important;\n}\r\n", ""]);
 
 // exports
 
@@ -27136,6 +27773,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bill/payment/CreateOperatorPayment.vue?vue&type=style&index=0&id=469671c0&scoped=true&lang=css&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/bill/payment/CreateOperatorPayment.vue?vue&type=style&index=0&id=469671c0&scoped=true&lang=css& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../../node_modules/css-loader??ref--6-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CreateOperatorPayment.vue?vue&type=style&index=0&id=469671c0&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bill/payment/CreateOperatorPayment.vue?vue&type=style&index=0&id=469671c0&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bill/payment/CreateProjectPayment.vue?vue&type=style&index=0&id=2da3fec2&scoped=true&lang=css&":
 /*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/bill/payment/CreateProjectPayment.vue?vue&type=style&index=0&id=2da3fec2&scoped=true&lang=css& ***!
@@ -27175,6 +27842,36 @@ if(false) {}
 
 
 var content = __webpack_require__(/*! !../../../../../node_modules/css-loader??ref--6-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CreateVendorPayment.vue?vue&type=style&index=0&id=ed59efc8&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bill/payment/CreateVendorPayment.vue?vue&type=style&index=0&id=ed59efc8&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bill/payment/ViewOperatorPayment.vue?vue&type=style&index=0&id=a6215412&scoped=true&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/bill/payment/ViewOperatorPayment.vue?vue&type=style&index=0&id=a6215412&scoped=true&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../../node_modules/css-loader??ref--6-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ViewOperatorPayment.vue?vue&type=style&index=0&id=a6215412&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bill/payment/ViewOperatorPayment.vue?vue&type=style&index=0&id=a6215412&scoped=true&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -31865,7 +32562,7 @@ var render = function() {
                               _vm._v(" "),
                               _c(
                                 "div",
-                                { staticClass: "col-6 transactions-list" },
+                                { staticClass: "col-4 transactions-list" },
                                 [
                                   _c("div", { staticClass: "t-item" }, [
                                     _c(
@@ -32275,7 +32972,7 @@ var render = function() {
                               _vm._v(" "),
                               _c(
                                 "div",
-                                { staticClass: "col-6 transactions-list" },
+                                { staticClass: "col-4 transactions-list" },
                                 [
                                   _c("div", { staticClass: "t-item" }, [
                                     _c(
@@ -32295,7 +32992,8 @@ var render = function() {
                                                 },
                                                 [
                                                   _vm.bill
-                                                    .vendor_payment_status == 1
+                                                    .operator_payment_status ==
+                                                  1
                                                     ? _c("i", {
                                                         staticClass:
                                                           "fa fa-check"
@@ -32656,6 +33354,282 @@ var render = function() {
                                                     ),
                                                     _vm.bill
                                                       .vendor_payment_status ==
+                                                    1
+                                                      ? _c(
+                                                          "span",
+                                                          {
+                                                            staticClass:
+                                                              "badge badge-success"
+                                                          },
+                                                          [_vm._v("Paid")]
+                                                        )
+                                                      : _c(
+                                                          "span",
+                                                          {
+                                                            staticClass:
+                                                              "badge badge-danger"
+                                                          },
+                                                          [_vm._v("Unpaid")]
+                                                        )
+                                                  ])
+                                                ])
+                                              ])
+                                            ]
+                                          )
+                                        ])
+                                      ]
+                                    )
+                                  ])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "col-4 transactions-list" },
+                                [
+                                  _c("div", { staticClass: "t-item" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "t-company-name" },
+                                      [
+                                        _c("div", { staticClass: "t-icon" }, [
+                                          _c(
+                                            "div",
+                                            { staticClass: "avatar avatar-xl" },
+                                            [
+                                              _c(
+                                                "span",
+                                                {
+                                                  staticClass:
+                                                    "avatar-title rounded-circle"
+                                                },
+                                                [
+                                                  _vm.bill
+                                                    .vendor_payment_status == 1
+                                                    ? _c("i", {
+                                                        staticClass:
+                                                          "fa fa-check"
+                                                      })
+                                                    : _c("i", {
+                                                        staticClass:
+                                                          "fa fa-close"
+                                                      })
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("div", [
+                                          _c("h3", [_vm._v("Operator Bill")]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "table",
+                                            {
+                                              staticStyle: {
+                                                width: "100%",
+                                                "font-size": "15px",
+                                                color: "white"
+                                              }
+                                            },
+                                            [
+                                              _c("tbody", [
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [_vm._v("Hour")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= " +
+                                                        _vm._s(
+                                                          _vm.bill.total_hour
+                                                        )
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [_vm._v("Rate Per Hour")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= " +
+                                                        _vm._s(
+                                                          _vm.bill
+                                                            .operator_rate_per_hour
+                                                        )
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [_vm._v("Amount (R*H)")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= " +
+                                                        _vm._s(
+                                                          _vm.bill
+                                                            .operator_total_amount
+                                                        )
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [_vm._v("Paid Amount")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= " +
+                                                        _vm._s(
+                                                          _vm._f("formatPrice")(
+                                                            _vm.bill
+                                                              .operator_payment
+                                                          )
+                                                        )
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [_vm._v("Adjustment")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= " +
+                                                        _vm._s(
+                                                          _vm._f("formatPrice")(
+                                                            _vm.bill
+                                                              .operator_adjustment_payment
+                                                          )
+                                                        )
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [_vm._v("Total Paid")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= " +
+                                                        _vm._s(
+                                                          Number(
+                                                            _vm.bill
+                                                              .operator_payment
+                                                          ) +
+                                                            Number(
+                                                              _vm.bill
+                                                                .operator_adjustment_payment
+                                                            )
+                                                        )
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [_vm._v("OutStanding")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= " +
+                                                        _vm._s(
+                                                          _vm.bill
+                                                            .operator_total_amount -
+                                                            (Number(
+                                                              _vm.bill
+                                                                .operator_payment
+                                                            ) +
+                                                              Number(
+                                                                _vm.bill
+                                                                  .operator_adjustment_payment
+                                                              ))
+                                                        )
+                                                    )
+                                                  ])
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("tr", [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "amount",
+                                                      staticStyle: {
+                                                        "text-align": "right"
+                                                      }
+                                                    },
+                                                    [_vm._v("Status")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      "= \n                                                     "
+                                                    ),
+                                                    _vm.bill
+                                                      .operator_payment_status ==
                                                     1
                                                       ? _c(
                                                           "span",
@@ -33290,6 +34264,50 @@ var render = function() {
                                   )
                             ]),
                             _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                "\n                Total Amount : " +
+                                  _vm._s(value.operator_total_amount) +
+                                  "\n                "
+                              ),
+                              _c("br"),
+                              _vm._v(
+                                "\n                Paid Amount :\n                " +
+                                  _vm._s(
+                                    Number(value.operator_payment) +
+                                      Number(value.operator_adjustment_payment)
+                                  ) +
+                                  "\n                "
+                              ),
+                              _c("br"),
+                              _vm._v(
+                                "\n                OutStanding :\n                " +
+                                  _vm._s(
+                                    value.operator_total_amount -
+                                      (Number(value.operator_payment) +
+                                        Number(
+                                          value.operator_adjustment_payment
+                                        ))
+                                  ) +
+                                  "\n                "
+                              ),
+                              _c("br"),
+                              _vm._v(
+                                "\n                Status :\n                "
+                              ),
+                              value.operator_payment_status == 1
+                                ? _c(
+                                    "span",
+                                    { staticClass: "badge badge-success" },
+                                    [_vm._v("Paid")]
+                                  )
+                                : _c(
+                                    "span",
+                                    { staticClass: "badge badge-danger" },
+                                    [_vm._v("Unpaid")]
+                                  )
+                            ]),
+                            _vm._v(" "),
                             _c("td", { staticClass: "text-center" }, [
                               _c(
                                 "div",
@@ -33431,6 +34449,40 @@ var render = function() {
                                           on: {
                                             click: function($event) {
                                               $event.preventDefault()
+                                              return _vm.makeOperatorPayment(
+                                                value
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Make Operator Payment")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "dropdown-item",
+                                          attrs: { href: "" },
+                                          on: {
+                                            click: function($event) {
+                                              $event.preventDefault()
+                                              return _vm.operatorPaymentHistory(
+                                                value
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Operator Payment History")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "dropdown-item",
+                                          attrs: { href: "" },
+                                          on: {
+                                            click: function($event) {
+                                              $event.preventDefault()
                                               return _vm.deleteBill(value.id)
                                             }
                                           }
@@ -33550,6 +34602,10 @@ var render = function() {
           _vm._v(" "),
           _c("view-vendor-payment"),
           _vm._v(" "),
+          _c("create-operator-payment"),
+          _vm._v(" "),
+          _c("view-operator-payment"),
+          _vm._v(" "),
           _c("bill-details"),
           _vm._v(" "),
           _c("pagination", { attrs: { pageData: _vm.bill_list } })
@@ -33577,6 +34633,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Project Amount")]),
         _vm._v(" "),
         _c("th", [_vm._v("Vendor Amount")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Operator Amount")]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [_vm._v("action")])
       ])
@@ -35663,6 +36721,99 @@ var render = function() {
                             _c("div", { staticClass: "contact-name" }, [
                               _c("i", { staticClass: "flaticon-user-11" }),
                               _vm._v(" "),
+                              _c("span", [_vm._v("Oprator Rate Hourly")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.bill.operator_rate_per_hour,
+                                    expression: "bill.operator_rate_per_hour"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "c-name",
+                                  placeholder: "Oprator Rate Per Hour"
+                                },
+                                domProps: {
+                                  value: _vm.bill.operator_rate_per_hour
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.bill,
+                                      "operator_rate_per_hour",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "operator_rate_per_hour"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\n                      " +
+                                        _vm._s(
+                                          _vm.validation_error
+                                            .operator_rate_per_hour[0]
+                                        ) +
+                                        "\n                    "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-3" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Oprator Amount")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "c-name",
+                                  placeholder: "Oprator Amount",
+                                  readonly: ""
+                                },
+                                domProps: {
+                                  value: (_vm.bill.operator_total_amount =
+                                    _vm.bill.total_hour *
+                                    _vm.bill.operator_rate_per_hour).toFixed(3)
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "operator_total_amount"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\n                      " +
+                                        _vm._s(
+                                          _vm.validation_error
+                                            .operator_total_amount[0]
+                                        ) +
+                                        "\n                    "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-3" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
                               _c("span", [
                                 _vm._v(
                                   "Took Me to Print Page After Saving the bill ?"
@@ -35823,6 +36974,499 @@ var staticRenderFns = [
         _c("i", { staticClass: "flaticon-delete-1" }),
         _vm._v(" Discard\n          ")
       ]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bill/payment/CreateOperatorPayment.vue?vue&type=template&id=469671c0&scoped=true&":
+/*!*************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/bill/payment/CreateOperatorPayment.vue?vue&type=template&id=469671c0&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "modal animated rotateInDownLeft custo-rotateInDownLeft",
+      attrs: {
+        id: "CreateOperatorPayment",
+        tabindex: "-1",
+        role: "dialog",
+        "aria-labelledby": "addContactModalTitle",
+        "aria-hidden": "true"
+      }
+    },
+    [
+      _c(
+        "div",
+        {
+          staticClass: "modal-dialog modal-xl custom-modal",
+          attrs: { role: "document" }
+        },
+        [
+          _c(
+            "form",
+            {
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.save()
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "modal-content" }, [
+                _c("div", { staticClass: "modal-header" }, [
+                  _vm.bill
+                    ? _c("h4", { staticClass: "modal-title" }, [
+                        _vm._v(
+                          "Pyament  For " +
+                            _vm._s(_vm.bill.operator.name) +
+                            " " +
+                            _vm._s(_vm.bill.equipement.eq_name) +
+                            " in\n                     " +
+                            _vm._s(_vm.bill.project.project_name) +
+                            " Bill No " +
+                            _vm._s(_vm.bill.bill_no)
+                        )
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("i", {
+                    staticClass: "flaticon-cancel-12 close",
+                    attrs: { "data-dismiss": "modal" }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "add-contact-box" }, [
+                    _c(
+                      "div",
+                      { staticClass: "add-contact-content text-left" },
+                      [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-3" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c("span", [
+                                _vm._v("Paying for bill of the Month")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.payment.month,
+                                    expression: "payment.month"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "",
+                                  readonly: ""
+                                },
+                                domProps: { value: _vm.payment.month },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.payment,
+                                      "month",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-3" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Payment   Date")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.payment.date,
+                                    expression: "payment.date"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  id: "basicFlatpickr5",
+                                  placeholder: "Payment Date"
+                                },
+                                domProps: { value: _vm.payment.date },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.payment,
+                                      "date",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty("date")
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\n                                        " +
+                                        _vm._s(_vm.validation_error.date[0]) +
+                                        "\n                                    "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-3" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Total Bill Amount")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.payment.operator_total_amount,
+                                    expression: "payment.operator_total_amount"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Bill Amount",
+                                  readonly: ""
+                                },
+                                domProps: {
+                                  value: _vm.payment.operator_total_amount
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.payment,
+                                      "operator_total_amount",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-3" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Paid Amount Till Now")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Paid Amount",
+                                  readonly: ""
+                                },
+                                domProps: {
+                                  value:
+                                    _vm.payment.operator_payment +
+                                    _vm.payment.operator_adjustment_payment
+                                }
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-3" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Outstanding")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Bill Amount",
+                                  readonly: ""
+                                },
+                                domProps: {
+                                  value: (_vm.payment.outstanding_amount =
+                                    _vm.payment.operator_total_amount -
+                                    _vm.payment.operator_payment +
+                                    _vm.payment.operator_adjustment_payment)
+                                }
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-3" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Enter Payment Amount")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.payment.payment_amount,
+                                    expression: "payment.payment_amount"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Enter Payment Amount"
+                                },
+                                domProps: { value: _vm.payment.payment_amount },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.payment,
+                                      "payment_amount",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "payment_amount"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\n                                            " +
+                                        _vm._s(
+                                          _vm.validation_error.payment_amount[0]
+                                        ) +
+                                        "\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-3" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c("span", [
+                                _vm._v(
+                                  "Enter Adjustment amount if u want to adust"
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.payment.adjustment,
+                                    expression: "payment.adjustment"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Adjustment Amount"
+                                },
+                                domProps: { value: _vm.payment.adjustment },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.payment,
+                                      "adjustment",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty("adjustment")
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\n                                            " +
+                                        _vm._s(
+                                          _vm.validation_error.adjustment[0]
+                                        ) +
+                                        "\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-3" }, [
+                            _c("div", { staticClass: "contact-name" }, [
+                              _c("i", { staticClass: "flaticon-user-11" }),
+                              _vm._v(" "),
+                              _c("span", [
+                                _vm._v(
+                                  "Current Outstanding (if it is 0 then payment is clear)"
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Adjustment Amount",
+                                  readonly: ""
+                                },
+                                domProps: {
+                                  value: (_vm.payment.current_outstanding =
+                                    _vm.payment.outstanding_amount -
+                                    (Number(_vm.payment.payment_amount) +
+                                      Number(_vm.payment.adjustment)))
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.validation_error.hasOwnProperty(
+                                "current_outstanding"
+                              )
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v(
+                                      "\n                                            " +
+                                        _vm._s(
+                                          _vm.validation_error
+                                            .current_outstanding[0]
+                                        ) +
+                                        "\n                                        "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-12" }, [
+                            _c("div", { staticClass: "contact-location" }, [
+                              _c("i", { staticClass: "flaticon-location-1" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Notes")]),
+                              _vm._v(" "),
+                              _c("textarea", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.payment.notes,
+                                    expression: "payment.notes"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  placeholder:
+                                    "Docs or payment method related note"
+                                },
+                                domProps: { value: _vm.payment.notes },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.payment,
+                                      "notes",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          ])
+                        ])
+                      ]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary ",
+                      attrs: { type: "submit" }
+                    },
+                    [
+                      _vm.button_name != "Save"
+                        ? _c(
+                            "div",
+                            {
+                              staticClass:
+                                "spinner-grow text-white mr-2 align-self-center loader-sm"
+                            },
+                            [_vm._v(".")]
+                          )
+                        : _vm._e(),
+                      _vm._v(
+                        "\n                     " +
+                          _vm._s(_vm.button_name) +
+                          " "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm._m(0)
+                ])
+              ])
+            ]
+          )
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      { staticClass: "btn btn-default", attrs: { "data-dismiss": "modal" } },
+      [_c("i", { staticClass: "flaticon-delete-1" }), _vm._v(" Discard")]
     )
   }
 ]
@@ -36900,6 +38544,207 @@ var staticRenderFns = [
       { staticClass: "btn btn-default", attrs: { "data-dismiss": "modal" } },
       [_c("i", { staticClass: "flaticon-delete-1" }), _vm._v(" Discard")]
     )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bill/payment/ViewOperatorPayment.vue?vue&type=template&id=a6215412&scoped=true&":
+/*!***********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/bill/payment/ViewOperatorPayment.vue?vue&type=template&id=a6215412&scoped=true& ***!
+  \***********************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "modal animated rotateInDownLeft custo-rotateInDownLeft",
+      attrs: {
+        id: "ViewOperatorPayment",
+        tabindex: "-1",
+        role: "dialog",
+        "aria-labelledby": "addContactModalTitle",
+        "aria-hidden": "true"
+      }
+    },
+    [
+      _c(
+        "div",
+        {
+          staticClass: "modal-dialog modal-xl custom-modal",
+          attrs: { role: "document" }
+        },
+        [
+          _c("div", { staticClass: "modal-content" }, [
+            _c("div", { staticClass: "modal-header" }, [
+              _vm.bill
+                ? _c("h4", { staticClass: "modal-title" }, [
+                    _vm._v(
+                      "Payment History  For " +
+                        _vm._s(_vm.bill.operator.name) +
+                        " for " +
+                        _vm._s(_vm.bill.equipement.eq_name) +
+                        " in\n                      " +
+                        _vm._s(_vm.bill.project.project_name) +
+                        " Bill No " +
+                        _vm._s(_vm.bill.bill_no)
+                    )
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c("i", {
+                staticClass: "flaticon-cancel-12 close",
+                attrs: { "data-dismiss": "modal" }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "add-contact-box" }, [
+                _c("div", { staticClass: "add-contact-content text-left" }, [
+                  _c("div", { staticClass: "row" }, [
+                    !_vm.isLoading
+                      ? _c("div", { staticClass: "col-md-12" }, [
+                          _vm.payments.length > 0
+                            ? _c("div", { staticClass: "table-responsive" }, [
+                                _c(
+                                  "table",
+                                  {
+                                    staticClass:
+                                      "table table-bordered table-hover mb-4 text-white"
+                                  },
+                                  [
+                                    _vm._m(0),
+                                    _vm._v(" "),
+                                    _vm._l(_vm.payments, function(
+                                      value,
+                                      index
+                                    ) {
+                                      return _c("tr", { key: value.id }, [
+                                        _c("th", [
+                                          _vm._v(
+                                            _vm._s(
+                                              _vm._f("dateToString")(value.date)
+                                            )
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("th", [
+                                          _vm._v(_vm._s(value.user.name))
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("th", [
+                                          _vm._v(_vm._s(value.amount))
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("th", [_vm._v(_vm._s(value.note))]),
+                                        _vm._v(" "),
+                                        _c("th", [
+                                          _c(
+                                            "a",
+                                            {
+                                              staticClass: "btn btn-danger",
+                                              attrs: { href: "" },
+                                              on: {
+                                                click: function($event) {
+                                                  $event.preventDefault()
+                                                  return _vm.deletePayment(
+                                                    value.id,
+                                                    index
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass: "fa fa-trash"
+                                              })
+                                            ]
+                                          )
+                                        ])
+                                      ])
+                                    }),
+                                    _vm._v(" "),
+                                    _c("tr", [
+                                      _c(
+                                        "td",
+                                        {
+                                          staticClass: "text-right",
+                                          attrs: { colspan: "2" }
+                                        },
+                                        [_vm._v("Total Paid Amount")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(_vm.totalPayment))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td"),
+                                      _vm._v(" "),
+                                      _c("td")
+                                    ])
+                                  ],
+                                  2
+                                )
+                              ])
+                            : _c("div", { staticClass: "text-center" }, [
+                                _c("h3", [_vm._v("No Payment Yet")])
+                              ])
+                        ])
+                      : _c("div", { staticClass: "col-dm-12 text-center" }, [
+                          _c("h3", [_vm._v("Loading....")])
+                        ])
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._m(1)
+          ])
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("Date")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Entry By")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Amount")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Note")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Action")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-default", attrs: { "data-dismiss": "modal" } },
+        [_c("i", { staticClass: "flaticon-delete-1" }), _vm._v(" close")]
+      )
+    ])
   }
 ]
 render._withStripped = true
@@ -50703,6 +52548,93 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/bill/payment/CreateOperatorPayment.vue":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/bill/payment/CreateOperatorPayment.vue ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CreateOperatorPayment_vue_vue_type_template_id_469671c0_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreateOperatorPayment.vue?vue&type=template&id=469671c0&scoped=true& */ "./resources/js/components/bill/payment/CreateOperatorPayment.vue?vue&type=template&id=469671c0&scoped=true&");
+/* harmony import */ var _CreateOperatorPayment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateOperatorPayment.vue?vue&type=script&lang=js& */ "./resources/js/components/bill/payment/CreateOperatorPayment.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _CreateOperatorPayment_vue_vue_type_style_index_0_id_469671c0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CreateOperatorPayment.vue?vue&type=style&index=0&id=469671c0&scoped=true&lang=css& */ "./resources/js/components/bill/payment/CreateOperatorPayment.vue?vue&type=style&index=0&id=469671c0&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _CreateOperatorPayment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CreateOperatorPayment_vue_vue_type_template_id_469671c0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CreateOperatorPayment_vue_vue_type_template_id_469671c0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "469671c0",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/bill/payment/CreateOperatorPayment.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/bill/payment/CreateOperatorPayment.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/components/bill/payment/CreateOperatorPayment.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateOperatorPayment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CreateOperatorPayment.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bill/payment/CreateOperatorPayment.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateOperatorPayment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/bill/payment/CreateOperatorPayment.vue?vue&type=style&index=0&id=469671c0&scoped=true&lang=css&":
+/*!*********************************************************************************************************************************!*\
+  !*** ./resources/js/components/bill/payment/CreateOperatorPayment.vue?vue&type=style&index=0&id=469671c0&scoped=true&lang=css& ***!
+  \*********************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateOperatorPayment_vue_vue_type_style_index_0_id_469671c0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader!../../../../../node_modules/css-loader??ref--6-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CreateOperatorPayment.vue?vue&type=style&index=0&id=469671c0&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bill/payment/CreateOperatorPayment.vue?vue&type=style&index=0&id=469671c0&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateOperatorPayment_vue_vue_type_style_index_0_id_469671c0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateOperatorPayment_vue_vue_type_style_index_0_id_469671c0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateOperatorPayment_vue_vue_type_style_index_0_id_469671c0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateOperatorPayment_vue_vue_type_style_index_0_id_469671c0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateOperatorPayment_vue_vue_type_style_index_0_id_469671c0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/bill/payment/CreateOperatorPayment.vue?vue&type=template&id=469671c0&scoped=true&":
+/*!*******************************************************************************************************************!*\
+  !*** ./resources/js/components/bill/payment/CreateOperatorPayment.vue?vue&type=template&id=469671c0&scoped=true& ***!
+  \*******************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateOperatorPayment_vue_vue_type_template_id_469671c0_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CreateOperatorPayment.vue?vue&type=template&id=469671c0&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bill/payment/CreateOperatorPayment.vue?vue&type=template&id=469671c0&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateOperatorPayment_vue_vue_type_template_id_469671c0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateOperatorPayment_vue_vue_type_template_id_469671c0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/bill/payment/CreateProjectPayment.vue":
 /*!***********************************************************************!*\
   !*** ./resources/js/components/bill/payment/CreateProjectPayment.vue ***!
@@ -50872,6 +52804,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateVendorPayment_vue_vue_type_template_id_ed59efc8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateVendorPayment_vue_vue_type_template_id_ed59efc8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/bill/payment/ViewOperatorPayment.vue":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/bill/payment/ViewOperatorPayment.vue ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ViewOperatorPayment_vue_vue_type_template_id_a6215412_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ViewOperatorPayment.vue?vue&type=template&id=a6215412&scoped=true& */ "./resources/js/components/bill/payment/ViewOperatorPayment.vue?vue&type=template&id=a6215412&scoped=true&");
+/* harmony import */ var _ViewOperatorPayment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ViewOperatorPayment.vue?vue&type=script&lang=js& */ "./resources/js/components/bill/payment/ViewOperatorPayment.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _ViewOperatorPayment_vue_vue_type_style_index_0_id_a6215412_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ViewOperatorPayment.vue?vue&type=style&index=0&id=a6215412&scoped=true&lang=css& */ "./resources/js/components/bill/payment/ViewOperatorPayment.vue?vue&type=style&index=0&id=a6215412&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _ViewOperatorPayment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ViewOperatorPayment_vue_vue_type_template_id_a6215412_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ViewOperatorPayment_vue_vue_type_template_id_a6215412_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "a6215412",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/bill/payment/ViewOperatorPayment.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/bill/payment/ViewOperatorPayment.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/bill/payment/ViewOperatorPayment.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewOperatorPayment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ViewOperatorPayment.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bill/payment/ViewOperatorPayment.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewOperatorPayment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/bill/payment/ViewOperatorPayment.vue?vue&type=style&index=0&id=a6215412&scoped=true&lang=css&":
+/*!*******************************************************************************************************************************!*\
+  !*** ./resources/js/components/bill/payment/ViewOperatorPayment.vue?vue&type=style&index=0&id=a6215412&scoped=true&lang=css& ***!
+  \*******************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewOperatorPayment_vue_vue_type_style_index_0_id_a6215412_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader!../../../../../node_modules/css-loader??ref--6-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ViewOperatorPayment.vue?vue&type=style&index=0&id=a6215412&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bill/payment/ViewOperatorPayment.vue?vue&type=style&index=0&id=a6215412&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewOperatorPayment_vue_vue_type_style_index_0_id_a6215412_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewOperatorPayment_vue_vue_type_style_index_0_id_a6215412_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewOperatorPayment_vue_vue_type_style_index_0_id_a6215412_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewOperatorPayment_vue_vue_type_style_index_0_id_a6215412_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewOperatorPayment_vue_vue_type_style_index_0_id_a6215412_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/bill/payment/ViewOperatorPayment.vue?vue&type=template&id=a6215412&scoped=true&":
+/*!*****************************************************************************************************************!*\
+  !*** ./resources/js/components/bill/payment/ViewOperatorPayment.vue?vue&type=template&id=a6215412&scoped=true& ***!
+  \*****************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewOperatorPayment_vue_vue_type_template_id_a6215412_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ViewOperatorPayment.vue?vue&type=template&id=a6215412&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bill/payment/ViewOperatorPayment.vue?vue&type=template&id=a6215412&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewOperatorPayment_vue_vue_type_template_id_a6215412_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewOperatorPayment_vue_vue_type_template_id_a6215412_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

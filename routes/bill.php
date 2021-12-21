@@ -14,6 +14,7 @@ Route::get('bill-list-pdf/print','Bill\BillController@billListPdfPrint');
 
 Route::resource('project-payment','ProjectPaymentController');
 Route::resource('vendor-payment','VendorPaymentController');
+Route::resource('operator-payment','OperatorPaymentController');
 
 // equipment  sales
 

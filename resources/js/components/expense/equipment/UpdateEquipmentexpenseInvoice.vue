@@ -360,6 +360,7 @@ export default {
               exp_cat.push({'category_id':element.equipment_expense_head_id,'amount':element.amount})
           });
           this.invoice.expense_category.push(...exp_cat)
+          console.log(this.invoice.expense_category)
         });
     },
 

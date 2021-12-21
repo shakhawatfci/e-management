@@ -100,21 +100,21 @@ class BillController extends Controller
     {
 
 
-
+        // return $request->all();
         // validate bill before submiting
 
         $request->validate([
             'month'                 => 'required',
             'date'                  => 'required',
             'total_hour'            => 'required',
-            'project_rate_per_hour' => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'vendor_rate_per_hour'  => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'project_amount'        => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'project_rate_per_hour' => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,20})?$/',
+            'vendor_rate_per_hour'  => 'nullable|regex:/^[0-9]+(\.[0-9]{1,20})?$/',
+            'project_amount'        => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,20})?$/',
             'vendor_amount'         => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
             'total_project_amount'  => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'total_vendor_amount'   => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'operator_rate_per_hour' => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'operator_total_amount'  => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'total_vendor_amount'   => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,20})?$/',
+            'operator_rate_per_hour' => 'nullable|regex:/^[0-9]+(\.[0-9]{1,20})?$/',
+            'operator_total_amount'  => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
             'project_vat'           => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
             'project_ait'           => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
             'project_sup'           => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
@@ -155,20 +155,20 @@ class BillController extends Controller
             $bill->month                 = $fmonth;
             $bill->date                  = $request->date;
             $bill->total_hour            = $request->total_hour;
-            $bill->project_rate_per_hour = $request->project_rate_per_hour;
-            $bill->vendor_rate_per_hour  = $request->vendor_rate_per_hour;
-            $bill->operator_rate_per_hour = $request->operator_rate_per_hour;
-            $bill->project_amount        = $request->project_amount;
-            $bill->vendor_amount         = $request->vendor_amount;
-            $bill->project_vat           = $request->project_vat;
-            $bill->project_ait           = $request->project_ait;
-            $bill->project_sup           = $request->project_sup;
-            $bill->vendor_vat            = $request->vendor_vat;
-            $bill->vendor_ait            = $request->vendor_ait;
-            $bill->vendor_sup            = $request->vendor_sup;
-            $bill->total_project_amount  = $request->total_project_amount;
-            $bill->total_vendor_amount   = $request->total_vendor_amount;
-            $bill->operator_total_amount = $request->operator_total_amount;
+            $bill->project_rate_per_hour = number_format($request->project_rate_per_hour, 6, '.', '');
+            $bill->vendor_rate_per_hour  = number_format($request->vendor_rate_per_hour, 6, '.', '');
+            $bill->operator_rate_per_hour = number_format($request->operator_rate_per_hour, 6, '.', '');
+            $bill->project_amount        = number_format($request->project_amount, 6, '.', '');
+            $bill->vendor_amount         = number_format($request->operator_rate_per_hour, 6, '.', '');
+            $bill->project_vat           = number_format($request->project_vat, 6, '.', '');
+            $bill->project_ait           = number_format($request->project_ait, 6, '.', '');
+            $bill->project_sup           = number_format($request->project_sup, 6, '.', '');
+            $bill->vendor_vat            = number_format($request->vendor_vat, 6, '.', '');
+            $bill->vendor_ait            = number_format($request->vendor_ait, 6, '.', '');
+            $bill->vendor_sup            = number_format($request->vendor_sup, 6, '.', '');
+            $bill->total_project_amount  = number_format($request->total_project_amount, 6, '.', '');
+            $bill->total_vendor_amount   = number_format($request->total_vendor_amount, 6, '.', '');
+            $bill->operator_total_amount = number_format($request->operator_total_amount, 6, '.', '');
             $bill->documents_link        = $request->documents_link;
             $bill->save();
 
@@ -200,6 +200,7 @@ class BillController extends Controller
             'equipment_type',
             'vendor',
             'project',
+            'operator'
         ])->orderBy('updated_at', 'desc');
 
         $bill_no = $request->bill_no;
@@ -278,12 +279,14 @@ class BillController extends Controller
             'month'                 => 'required',
             'date'                  => 'required',
             'total_hour'            => 'required',
-            'project_rate_per_hour' => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'vendor_rate_per_hour'  => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'project_rate_per_hour' => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,20})?$/',
+            'vendor_rate_per_hour'  => 'nullable|regex:/^[0-9]+(\.[0-9]{1,20})?$/',
             'project_amount'        => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
             'vendor_amount'         => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
             'total_project_amount'  => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
             'total_vendor_amount'   => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'operator_rate_per_hour' => 'nullable|regex:/^[0-9]+(\.[0-9]{1,20})?$/',
+            'operator_total_amount'  => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
             'project_vat'           => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
             'project_ait'           => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
             'project_sup'           => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
@@ -310,25 +313,31 @@ class BillController extends Controller
             $bill->month                 = $fmonth;
             $bill->date                  = $request->date;
             $bill->total_hour            = $request->total_hour;
-            $bill->project_rate_per_hour = $request->project_rate_per_hour;
-            $bill->vendor_rate_per_hour  = $request->vendor_rate_per_hour;
-            $bill->project_amount        = $request->project_amount;
-            $bill->vendor_amount         = $request->vendor_amount;
-            $bill->project_vat           = $request->project_vat;
-            $bill->project_ait           = $request->project_ait;
-            $bill->project_sup           = $request->project_sup;
-            $bill->vendor_vat            = $request->vendor_vat;
-            $bill->vendor_ait            = $request->vendor_ait;
+            $bill->project_rate_per_hour =  number_format($request->project_rate_per_hour, 6, '.', '');
+            $bill->vendor_rate_per_hour  = number_format($request->vendor_rate_per_hour, 6, '.', '');
+            $bill->project_amount        = number_format($request->project_amount, 6, '.', '');
+            $bill->operator_rate_per_hour = number_format($request->operator_rate_per_hour, 6, '.', '');
+            $bill->operator_total_amount = number_format($request->operator_total_amount, 6, '.', '');
+            $bill->vendor_amount         = number_format($request->vendor_amount, 6, '.', '');
+            $bill->project_vat           = number_format($request->project_vat, 6, '.', '');
+            $bill->project_ait           = number_format($request->project_ait, 6, '.', '');
+            $bill->project_sup           = number_format($request->project_sup, 6, '.', '');
+            $bill->vendor_vat            = number_format($request->vendor_vat, 6, '.', '');
+            $bill->vendor_ait            = number_format($request->vendor_ait, 6, '.', '');
             // $bill->operator_id = $request->vendor_ait;
-            $bill->vendor_sup           = $request->vendor_sup;
-            $bill->total_project_amount = $request->total_project_amount;
-            $bill->total_vendor_amount  = $request->total_vendor_amount;
+            $bill->vendor_sup           = number_format($request->vendor_sup, 6, '.', '');
+            $bill->total_project_amount = number_format($request->total_project_amount, 6, '.', '');
+            $bill->total_vendor_amount  = number_format($request->total_vendor_amount, 6, '.', '');
             if ($request->total_project_amount > $bill->project_payment + $bill->project_adjustment_amount) {
                 $bill->payment_status = 0;
             }
-            if ($request->total_vendor_amount > $bill->project_payment + $bill->project_adjustment_amount) {
+            if ($request->total_vendor_amount > $bill->vendor_payment + $bill->vendor_adjustment_payment) {
                 $bill->vendor_payment_status = 0;
             }
+            if ($request->operator_total_amount > $bill->operator_payment + $bill->operator_adjustment_payment) {
+                $bill->operator_payment_status = 0;
+            }
+
             $bill->documents_link = $request->documents_link;
             $bill->update();
 

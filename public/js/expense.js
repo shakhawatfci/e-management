@@ -2969,6 +2969,8 @@ __webpack_require__.r(__webpack_exports__);
         });
 
         (_this3$invoice$expens = _this3.invoice.expense_category).push.apply(_this3$invoice$expens, exp_cat);
+
+        console.log(_this3.invoice.expense_category);
       });
     },
     addCategory: function addCategory() {
@@ -3060,6 +3062,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_monthly_picker__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-monthly-picker */ "./node_modules/vue-monthly-picker/dist/lib/vue-monthly-picker.min.js");
 /* harmony import */ var vue_monthly_picker__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_monthly_picker__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _pagination_Pagination__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../pagination/Pagination */ "./resources/js/components/pagination/Pagination.vue");
+//
+//
 //
 //
 //
@@ -35461,6 +35465,8 @@ var render = function() {
                     [
                       _vm._l(_vm.equipments.data, function(value) {
                         return _c("tr", { key: value.id }, [
+                          _c("td", [_vm._v(_vm._s(value.invoice_no))]),
+                          _vm._v(" "),
                           _c("td", [
                             _vm._v(_vm._s(_vm._f("monthToString")(value.month)))
                           ]),
@@ -35599,15 +35605,17 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
+        _c("th", [_vm._v("Invoice No")]),
+        _vm._v(" "),
         _c("th", [_vm._v("Month")]),
         _vm._v(" "),
         _c("th", [_vm._v("Payment Date")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Name")]),
+        _c("th", [_vm._v("Project Name")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Expense")]),
+        _c("th", [_vm._v("Vendor")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Expense Category")]),
+        _c("th", [_vm._v("Category")]),
         _vm._v(" "),
         _c("th", [_vm._v("Equipment")]),
         _vm._v(" "),

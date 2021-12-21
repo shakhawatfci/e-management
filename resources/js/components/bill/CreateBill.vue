@@ -531,6 +531,7 @@ export default {
         documents_link: "",
         print_status: 0,
       },
+      // prepared_bill : new FormData(),
       month: "",
       pickermonth: {
         lebel: [
@@ -574,8 +575,30 @@ export default {
     setMonth() {
       this.bill.month = this.month._i;
     },
+  //   billPrepare(){
+  //   this.prepared_bill.append('assign_id', this.bill.assign_id);
+  //   this.prepared_bill.append('total_hour', this.bill.total_hour);
+  //   this.prepared_bill.append('project_rate_per_hour', this.bill.project_rate_per_hour.toFixed(6));
+  //   this.prepared_bill.append('vendor_rate_per_hour', this.bill.vendor_rate_per_hour.toFixed(6));
+  //   this.prepared_bill.append('operator_rate_per_hour', this.bill.operator_rate_per_hour.toFixed(6));
+  //   this.prepared_bill.append('project_amount', this.bill.project_amount.toFixed(6));
+  //   this.prepared_bill.append('vendor_amount', this.bill.vendor_amount.toFixed(6));
+  //   this.prepared_bill.append('project_vat', this.bill.project_vat.toFixed(6));
+  //   this.prepared_bill.append('project_ait', this.bill.project_ait.toFixed(6));
+  //   this.prepared_bill.append('project_sup', this.bill.project_sup.toFixed(6));
+  //   this.prepared_bill.append('vendor_ait', this.bill.vendor_ait.toFixed(6));
+  //   this.prepared_bill.append('vendor_vat', this.bill.vendor_vat.toFixed(6));
+  //   this.prepared_bill.append('vendor_sup', this.bill.vendor_sup.toFixed(6));
+  //   this.prepared_bill.append('total_project_amount', this.bill.total_project_amount.toFixed(6));
+  //   this.prepared_bill.append('total_vendor_amount', this.bill.total_vendor_amount.toFixed(6));
+  //   this.prepared_bill.append('date', this.bill.date);
+  //   this.prepared_bill.append('month', this.bill.month);
+  //   this.prepared_bill.append('documents_link', this.bill.documents_link);
+  //   this.prepared_bill.append('print_status', this.bill.print_status);
+  // },
     save() {
       this.button_name = "Saving...";
+      // this.billPrepare()
       axios
         .post(base_url + "bill", this.bill)
         .then((response) => {

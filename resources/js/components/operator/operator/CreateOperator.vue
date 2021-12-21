@@ -270,8 +270,8 @@ export default {
           date_of_birth : '',
           picture : '',
           documents_link : '',
-          salary : '',
-          status : ''
+          salary : 0,
+          status : 1
         },
         data : new FormData(),
         button_name : 'Save',
@@ -384,8 +384,8 @@ export default {
           date_of_birth : '',
           picture : '',
           documents_link : '',
-          salary : '',
-          status : ''
+          salary : 0,
+          status : 1
         };
         this.data = new FormData();
         this.button_name = "Save";

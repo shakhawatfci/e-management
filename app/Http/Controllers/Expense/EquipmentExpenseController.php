@@ -399,14 +399,18 @@ class EquipmentExpenseController extends Controller
     public function destroy($id)
     {
         try {
-            $delete = EquipementExpense::find($id);
+            DB::beginTransaction();
+            EquipementExpense::where('equipment_expense_invoice_id',$id)->delete();
+            $delete = EquipmentExpenseInvoice::find($id)->delete();
             
-        if ($delete->delete()) {
-                return response()->json(['status' => 'success', 'message' => 'Equipment Expense Deleted !']);
+        if ($delete) {
+            DB::commit();
+                return response()->json(['status' => 'success', 'message' => 'Equipment Expense Invoice Deleted !']);
             }else{
                 return response()->json(['status' => 'error', 'message' => 'Something went wrong !']);
             }
         } catch (\Exception $e) {
+            DB::rollback();
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
         }
     }

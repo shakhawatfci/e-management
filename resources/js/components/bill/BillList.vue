@@ -113,6 +113,7 @@
                 <th>Total Hour</th>
                 <th>Project Amount</th>
                 <th>Vendor Amount</th>
+                <th>Operator Amount</th>
                 <th class="text-center">action</th>
               </tr>
             </thead>
@@ -186,6 +187,30 @@
                   >
                   <span class="badge badge-danger" v-else>Unpaid</span>
                 </td>
+                <td>
+                  Total Amount : {{ value.operator_total_amount }}
+                  <br />
+                  Paid Amount :
+                  {{
+                    Number(value.operator_payment) +
+                    Number(value.operator_adjustment_payment)
+                  }}
+                  <br />
+                  OutStanding :
+                  {{
+                    value.operator_total_amount -
+                    (Number(value.operator_payment) +
+                      Number(value.operator_adjustment_payment))
+                  }}
+                  <br />
+                  Status :
+                  <span
+                    class="badge badge-success"
+                    v-if="value.operator_payment_status == 1"
+                    >Paid</span
+                  >
+                  <span class="badge badge-danger" v-else>Unpaid</span>
+                </td>
 
                 <td class="text-center">
                   <div class="dropdown custom-dropdown">
@@ -200,7 +225,7 @@
                     >
                       <i class="fa fa-cogs fa-2x"></i>
                     </a>
-
+                   
                     <div
                       class="dropdown-menu"
                       aria-labelledby="dropdownMenuLink2"
@@ -245,6 +270,19 @@
                         href
                         @click.prevent="vendorPaymentHistory(value)"
                         >Vendor Payment History</a
+                      >
+                      <a
+                        class="dropdown-item"
+                        href
+                        @click.prevent="makeOperatorPayment(value)"
+                        >Make Operator Payment</a
+                      >
+
+                      <a
+                        class="dropdown-item"
+                        href
+                        @click.prevent="operatorPaymentHistory(value)"
+                        >Operator Payment History</a
                       >
                       <a
                         class="dropdown-item"
@@ -296,6 +334,8 @@
         <view-project-payment></view-project-payment>
         <crate-vendor-payment></crate-vendor-payment>
         <view-vendor-payment></view-vendor-payment>
+        <create-operator-payment></create-operator-payment>
+        <view-operator-payment></view-operator-payment>
         <bill-details></bill-details>
         <pagination :pageData="bill_list"></pagination>
       </div>
@@ -313,6 +353,8 @@ import CreateProjectPayment from "./payment/CreateProjectPayment";
 import ViewProjectPayment from "./payment/ViewProjectPayment";
 import CreateVendortPayment from "./payment/CreateVendorPayment";
 import ViewVendorPayment from "./payment/ViewVendorPayment";
+import CreateOperatorPayment from "./payment/CreateOperatorPayment";
+import ViewOperatorPayment from "./payment/ViewOperatorPayment";
 import EditBill from "./EditBill";
 import BillDetails from "./BillDetails";
 export default {
@@ -323,8 +365,10 @@ export default {
     pagination: Pagination,
     "crate-project-payment": CreateProjectPayment,
     "crate-vendor-payment": CreateVendortPayment,
+    "create-operator-payment": CreateOperatorPayment,
     "view-project-payment": ViewProjectPayment,
     "view-vendor-payment": ViewVendorPayment,
+    "view-operator-payment": ViewOperatorPayment,
     "bill-details": BillDetails,
     "edit-bill": EditBill,
   },
@@ -452,6 +496,15 @@ export default {
     vendorPaymentHistory(bill) {
       EventBus.$emit("view-vendor-payment", bill);
     },
+
+    makeOperatorPayment(bill) {
+      EventBus.$emit("make-operator-payment", bill);
+    },
+
+    operatorPaymentHistory(bill) {
+      EventBus.$emit("view-operator-payment", bill);
+    },
+
     getVendorEquipments() {
       axios
         .get(`${base_url}equipment-by-vendor/0/${this.vendor_id}`)

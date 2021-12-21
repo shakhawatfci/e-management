@@ -84,7 +84,7 @@
                               </div>
 
 
-                              <div class="col-6 transactions-list">
+                              <div class="col-4 transactions-list">
                                   <div class="t-item">
                                       <div class="t-company-name">
                                           <div class="t-icon">
@@ -160,13 +160,13 @@
 
                               <!-- vendor bill  -->
 
-                              <div class="col-6 transactions-list">
+                              <div class="col-4 transactions-list">
                                   <div class="t-item">
                                       <div class="t-company-name">
                                           <div class="t-icon">
                                               <div class="avatar avatar-xl">
                                                     <span class="avatar-title rounded-circle">
-                                                        <i class="fa fa-check" v-if="bill.vendor_payment_status==1"></i>
+                                                        <i class="fa fa-check" v-if="bill.operator_payment_status==1"></i>
                                                         <i class="fa fa-close" v-else></i>
                                                         </span>
                                                 </div>
@@ -223,6 +223,65 @@
                                                      <th class="amount" style="text-align:right">Status</th>
                                                      <td >= 
                                                          <span class="badge badge-success" v-if="bill.vendor_payment_status == 1">Paid</span>
+                                                         <span class="badge badge-danger" v-else>Unpaid</span>
+                                                     </td>
+                                                 </tr>
+                                                 </tbody>
+
+                                             </table>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div class="col-4 transactions-list">
+                                  <div class="t-item">
+                                      <div class="t-company-name">
+                                          <div class="t-icon">
+                                              <div class="avatar avatar-xl">
+                                                    <span class="avatar-title rounded-circle">
+                                                        <i class="fa fa-check" v-if="bill.vendor_payment_status==1"></i>
+                                                        <i class="fa fa-close" v-else></i>
+                                                        </span>
+                                                </div>
+                                          </div>
+                                          <div >
+                                              <h3>Operator Bill</h3>
+                                             <table style="width:100%;font-size:15px;color:white">
+                                                 <tbody>
+                                                 <tr>
+                                                     <th class="amount" style="text-align:right">Hour</th>
+                                                     <td >= {{ bill.total_hour }}</td>
+                                                 </tr>
+                                                 <tr>
+                                                     <th class="amount" style="text-align:right">Rate Per Hour</th>
+                                                     <td >= {{ bill.operator_rate_per_hour }}</td>
+                                                 </tr>
+                                                 <tr>
+                                                     <th class="amount" style="text-align:right">Amount (R*H)</th>
+                                                     <td >= {{ bill.operator_total_amount }}</td>
+                                                 </tr>
+                                                
+                                                 <tr>
+                                                     <th class="amount" style="text-align:right">Paid Amount</th>
+                                                     <td >= {{ bill.operator_payment |  formatPrice }}</td>
+                                                 </tr>
+                                                 <tr>
+                                                     <th class="amount" style="text-align:right">Adjustment</th>
+                                                     <td >= {{ bill.operator_adjustment_payment |  formatPrice }}</td>
+                                                 </tr>
+                                                 <tr>
+                                                     <th class="amount" style="text-align:right">Total Paid</th>
+                                                     <td >= {{ Number(bill.operator_payment)+Number(bill.operator_adjustment_payment) }}</td>
+                                                 </tr>
+                                                 <tr>
+                                                     <th class="amount" style="text-align:right">OutStanding</th>
+                                                     <td >= {{ bill.operator_total_amount - (Number(bill.operator_payment)+Number(bill.operator_adjustment_payment)) }}</td>
+                                                 </tr>
+                                                 <tr>
+                                                     <th class="amount" style="text-align:right">Status</th>
+                                                     <td >= 
+                                                         <span class="badge badge-success" v-if="bill.operator_payment_status == 1">Paid</span>
                                                          <span class="badge badge-danger" v-else>Unpaid</span>
                                                      </td>
                                                  </tr>

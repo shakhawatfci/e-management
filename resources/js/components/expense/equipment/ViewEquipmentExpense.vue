@@ -116,11 +116,12 @@
           <table class="table table-bordered table-hover mb-4">
             <thead>
               <tr>
+                <th>Invoice No</th>
                 <th>Month</th>
                 <th>Payment Date</th>
-                <th>Name</th>
-                <th>Expense</th>
-                <th>Expense Category</th>
+                <th>Project Name</th>
+                <th>Vendor</th>
+                <th>Category</th>
                 <th>Equipment</th>
                 <th>Amount</th>
                 <!-- <th class="text-center">action</th> -->
@@ -128,6 +129,7 @@
             </thead>
             <tbody>
               <tr v-for="value in equipments.data" :key="value.id">
+                <td>{{ value.invoice_no }}</td>
                 <td>{{ value.month | monthToString }}</td>
                 <td>{{ value.payment_date | dateToString }}</td>
                 <td>{{ value.project.project_name }}</td>
