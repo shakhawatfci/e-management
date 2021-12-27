@@ -166,7 +166,7 @@
                         class="table-responsive"
                         v-if="expense_categories && expense_categories.length > 0"
                     >
-                        <table class="table table-bordered">
+                        <table class="table">
                         <thead>
                             <tr class="text-center">
                             <th>Category</th>
@@ -360,7 +360,6 @@ export default {
               exp_cat.push({'category_id':element.equipment_expense_head_id,'amount':element.amount})
           });
           this.invoice.expense_category.push(...exp_cat)
-          console.log(this.invoice.expense_category)
         });
     },
 
@@ -444,3 +443,8 @@ export default {
    
 }
 </script>
+<style scoped>
+    .table {
+        background-color: transparent !important;
+    }
+</style>

@@ -5,8 +5,6 @@ Vue.use(MonthPicker)
 Vue.use(MonthPickerInput)
 Vue.component('create-equipmentexpenseheads', require('./components/expense_heads/equipment/CreateEquipmentExpenseHead.vue').default);
 Vue.component('view-equipmentexpenseheads', require('./components/expense_heads/equipment/ViewEquipmentExpenseHead.vue').default);
-// equipment Expense Invoice
-Vue.component('view-equipmentexpenseinvoice', require('./components/expense/equipment/ViewExpenseInvoice.vue').default);
 
 Vue.component('create-projectexpenseheads', require('./components/expense_heads/project/CreateProjectExpenseHead.vue').default);
 Vue.component('view-projectexpenseheads', require('./components/expense_heads/project/ViewProjectExpenseHead.vue').default);
@@ -19,9 +17,13 @@ Vue.component('view-projectexpense', require('./components/expense/project/ViewP
 
 Vue.component('create-equipmentexpense', require('./components/expense/equipment/CreateEquipmentExpense.vue').default);
 Vue.component('view-equipmentexpense', require('./components/expense/equipment/ViewEquipmentExpense.vue').default);
+// equipment Expense Invoice
+Vue.component('view-equipmentexpenseinvoice', require('./components/expense/equipment/ViewExpenseInvoice.vue').default);
 
-Vue.component('create-officeexpense', require('./components/expense/office/CreateOfficeExpense.vue').default);
+Vue.component('create-officeexpenseinvoice', require('./components/expense/office/CreateOfficeExpense.vue').default);
 Vue.component('view-officeexpense', require('./components/expense/office/ViewOfficeExpense.vue').default);
+// office Expense Invoice
+Vue.component('view-officeexpenseinvoice', require('./components/expense/office/ViewOfficeExpenseInvoice.vue').default);
 
 var app = new Vue({
 

@@ -13,23 +13,17 @@
                         <div class="add-contact-content text-left">
                            <div class="row">
                               <div class="col-md-6">
-                                  <div class="contact-email">
-                                      <i class="flaticon-mail-26"></i>
-                                      <label for="project-head">Office Expense Head</label>
-                                      <select class="form-control" id="project-head" v-model="office.office_expense_head_id">
-                                          <option value="">Chose Office Expense Head</option>
-                                          <option v-for="office_exp in office_expense_head" :key="office_exp.id" :value="office_exp.id">
-                                              {{ office_exp.head_name }}
-                                          </option>
-                                      </select>
-                                           <span
-                                           v-if="validation_error.hasOwnProperty('office_expense_head_id')" 
-                                          class="text-danger">
-                                          {{ validation_error.office_expense_head_id[0] }}
-                                         </span>
-                                  </div>
-                              </div>
-
+                                <div class="contact-name">
+                                    <i class="flaticon-mail-11"></i>
+                                     <label for="invoice">Invoice No</label>
+                                      <input id="invoice" v-model="office.invoice_no" class="form-control" type="text" placeholder="Invoice No">
+                                        <span
+                                         v-if="validation_error.hasOwnProperty('invoice_no')" 
+                                        class="text-danger">
+                                        {{ validation_error.invoice_no[0] }}
+                                       </span>
+                                </div>
+                            </div>
                               <div class="col-md-6">
                                 <div class="contact-name">
                                     <i class="flaticon-mail-11"></i>
@@ -42,7 +36,79 @@
                                        </span>
                                 </div>
                             </div>
-             
+
+                            </div>
+                             <div class="col-md-12 mt-2">
+                                <i class="flaticon-mail-26"></i>
+                                <label for="equipement-name">Expense Category</label>
+
+                                <div
+                                    class="table-responsive"
+                                    v-if="office.expense_category && office.expense_category.length > 0"
+                                >
+                                    <table class="table">
+                                    <thead>
+                                        <tr class="text-center">
+                                        <th>Category</th>
+                                        <th>Amount</th>
+                                        <th>#</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr
+                                        v-for="(cat, index) in office.expense_category"
+                                        :key="'category' + index"
+                                        class="text-center"
+                                        >
+                                        <td>
+                                            <select class="form-control" id="equipement-name" v-model="cat.category_id">
+                                                <option value="">Chose Expense Head</option>
+                                                <option v-for="value in office_expense_head" :key="value.id+'sub'" :value="value.id">
+                                                    {{ value.head_name }}
+                                                </option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input
+                                            type="number"
+                                            name=""
+                                            placeholder="Amount"
+                                            id=""
+                                            class="form-control"
+                                            v-model="cat.amount"
+                                            />
+                                        </td>
+                                        <td class="">
+                                            <a
+                                            href=""
+                                            @click.prevent="removeCategory(index)"
+                                            class="btn btn-danger btn-sm mt-2"
+                                            ><i class="fa fa-trash"></i></a
+                                            >
+                                        </td>
+                                        </tr>
+                                        <tr class="text-center">
+                                            <!-- <td>Total</td> -->
+                                            <td colspan="3"><b>Total: {{ getTotalExpense }}</b></td>
+                                        </tr>
+                                    </tbody>
+                                    </table>
+                                </div>
+                                <a
+                                    href=""
+                                    @click.prevent="addCategory()"
+                                    class="btn btn-success"
+                                >
+                                    <i class="fa fa-plus"></i></a
+                                >
+                                    <span
+                                    v-if="validation_error.hasOwnProperty('expense_category')" 
+                                    class="text-danger">
+                                    {{ validation_error.expense_category[0] }}
+                                    </span>
+                            
+                        </div>
+                            <div class="row">
                             <div class="col-md-6">
                                 <div class="contact-name">
                                     <i class="flaticon-user-11"></i>
@@ -53,23 +119,7 @@
                                     </span>
                                 </div>
                             </div>
-
-                             <div class="col-md-6">
-                                <div class="contact-phone">
-                                    <i class="flaticon-telephone"></i>
-                                    <label for="amount">Amount</label>
-                                    <input type="text" id="amount" class="form-control" v-model="office.amount" placeholder="amount">
-                                    <span
-                                       v-if="validation_error.hasOwnProperty('amount')" 
-                                      class="text-danger">
-                                      {{ validation_error.amount[0] }}
-                                     </span>
-                                </div>
-                              </div>
-                               
-                            </div>
-                            <div class="row">
-                              <div class="col-md-12">
+                              <div class="col-md-6">
                                 <div class="contact-phone">
                                     <i class="flaticon-telephone"></i>
                                     <label for="document-link">Document Link</label>
@@ -123,11 +173,11 @@ export default {
         
        return {
         office : {
-          id : '',
-          office_expense_head_id : '',
+          id: null,
+          invoice_no : '',
           month : '',
           date : '',
-          amount : '',
+          expense_category : [],
           document_link : '',
           note : ''
         },
@@ -144,14 +194,20 @@ export default {
 
    mounted() {
     var f1 = flatpickr(document.getElementById('up-basicFlatpickr'));
-      this.getOfficeHead()
       var _this = this;
       EventBus.$on('officeexpense-update', function(value){
-        $('#UpdateOfficeExpense').modal('show')
-          _this.office = value;
+          _this.office.id = value.id;
           _this.month = value.month
+         _this.getOfficeInvoice()
+        $('#UpdateOfficeExpense').modal('show')
       })
    },
+
+   computed: {
+        getTotalExpense(){
+            return this.office.expense_category.map(o => o.amount).reduce((a, c) => Number(a) + Number(c),0);
+        }
+    },
 
  methods : {
     setMonth(){
@@ -190,28 +246,54 @@ export default {
               }
           );
      },
+     addCategory() {
+    //   if(this.checkDuplicate({category_id})) return ;
+      this.office.expense_category.push({ category_id: "", amount: ""});
+    },
+
+    removeCategory(index) {
+      this.office.expense_category.splice(index, 1);
+    },
 
      getOfficeHead()
      {
         axios.get(base_url+'office-head-data')
         .then(response => {
           this.office_expense_head = response.data
-          console.log(response.data)
+        })
+     },
+
+     getOfficeInvoice()
+     {
+        axios.get(base_url+'office-expense/'+this.office.id+'/edit')
+        .then(response => {
+          // this.office = response.data
+          this.office.invoice_no = response.data.invoice_no
+          this.office.month = response.data.month
+          this.office.date = response.data.date
+          this.office.document_link = response.data.document_link
+          this.office.note = response.data.note
+          this.office.invoice_no = response.data.invoice_no
+          this.getOfficeHead()
+          var exp_cat = []
+          response.data.office_expense.forEach(element => {
+              exp_cat.push({'category_id':element.office_expense_head_id,'amount':element.amount})
+          });
+          this.office.expense_category.push(...exp_cat)
+          
         })
      },
 
      resetForm()
      {
-          this.office = {
-          id : '',
-          office_expense_head_id : '',
+        this.office = {
+          invoice_no : '',
           month : '',
           date : '',
-          amount : '',
-          document : '',
-          doucment_link : '',
+          expense_category : [],
+          document_link : '',
           note : ''
-        };
+        },
         this.month = '';
         this.office_expense_head = [];
         this.validation_error = {};
@@ -220,3 +302,8 @@ export default {
    
 }
 </script>
+<style scoped>
+    .table {
+        background-color: transparent !important;
+    }
+</style>

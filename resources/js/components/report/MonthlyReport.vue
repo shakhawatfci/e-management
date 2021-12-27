@@ -37,6 +37,8 @@
                 <th>TT Profit</th>
                 <th>Emp salary</th>
                 <th>Op Salary</th>
+                <th>FD Bill</th>
+                <th>FD Paid</th>
                 <th>Eq Expense</th>
                 <th>Pr Expense</th>
                 <th>Off Expense</th>
@@ -46,14 +48,17 @@
         </thead>
         <tbody>
             <tr v-for="value in report_data" :key="value.id">
-                <td>{{ value.month   }}</td>
+                <td>{{ value.month }}</td>
                 <td>{{ value.project_bill_amount }}</td>
                 <td>{{ value.vendor_bill_amount }}</td>
                 <td>{{ value.bill_profit  }}</td>
                 <td>{{ value.equipment_sales_profit }}</td>
                 <td>{{ value.mobilization_profit }}</td>
                 <td>{{ value.total_profit }}</td>
+                <td>{{ value.employee_salary }}</td>
                 <td>{{ value.operator_salary }}</td>
+                <td>{{ value.fooding_bill_amount }}</td>
+                <td>{{ value.fooding_paid_amount }}</td>
                 <td>{{ value.employee_salary }}</td>
                 <td>{{ value.equipment_expense }}</td>
                 <td>{{ value.project_expense }}</td>
@@ -74,6 +79,8 @@
                 <th>TT Profit</th>
                 <th>Emp salary</th>
                 <th>Op Salary</th>
+                <th>TT FD Bill</th>
+                <th>TT FD Paid</th>
                 <th>Eq Expense</th>
                 <th>Pr Expense</th>
                 <th>Off Expense</th>
@@ -88,7 +95,10 @@
               <th>{{ total_sum.total_equipment_sales_profit }}</th>
               <th>{{ total_sum.total_mobilization_profit }}</th>
               <th>{{ total_sum.total_profit }}</th>
+              <th>{{ total_sum.total_employee_salary }}</th>
               <th>{{ total_sum.total_operator_salary }}</th>
+              <th>{{ total_sum.total_fooding_bill_amount }}</th>
+              <th>{{ total_sum.total_fooding_paid_amount }}</th>
               <th>{{ total_sum.total_employee_salary }}</th>
               <th>{{ total_sum.total_equipment_expense }}</th>
               <th>{{ total_sum.total_project_expense }}</th>

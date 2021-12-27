@@ -17,6 +17,10 @@ Route::resource('office-expense','Expense\OfficeExpenseController');
 Route::get('office-expense-list','Expense\OfficeExpenseController@officeExpenseList');
 Route::get('office-head-data','ExpenseHeads\OfficeExpenseController@officeHeadData');
 Route::get('office-expense-print-pdf','Expense\OfficeExpenseController@officeExpensePrint');
+Route::get('office-invoice','Expense\OfficeExpenseController@officeExpenseInvoice')->name('office-expense-invoice');
+Route::get('office-expense-invoice-list','Expense\OfficeExpenseController@officeExpenseInvoiceList');
+Route::get('get-office-expense-data/{id}','Expense\OfficeExpenseController@officeExpense');
+Route::get('office-invoice-list-print-pdf','Expense\OfficeExpenseController@printExpenseInvoice');
 
 Route::resource('project-expense','Expense\ProjectExpenseController');
 Route::get('project-expense-list','Expense\ProjectExpenseController@projectExpenseList');
@@ -31,3 +35,5 @@ Route::get('equipment-expense-print-pdf','Expense\EquipmentExpenseController@equ
 Route::get('expense-invoice','Expense\EquipmentExpenseController@ExpenseInvoice')->name('expense-invoice');
 Route::get('equipment-expense-invoice-list','Expense\EquipmentExpenseController@ExpenseInvoiceList');
 Route::get('get-single-invoice/{id}','Expense\EquipmentExpenseController@ExpenseInvoiceData');
+Route::get('get-single-invoice-expense/{id}','Expense\EquipmentExpenseController@expenseData');
+Route::get('invoice-list-print-pdf','Expense\EquipmentExpenseController@printExpenseInvoice');

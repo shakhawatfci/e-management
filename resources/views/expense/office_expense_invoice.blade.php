@@ -1,8 +1,8 @@
 @extends('master.master')
-@section('title','EMS | Office Expense')
+@section('title','EMS | Office Expense Invoice')
 
 @section('page_header')
-<li class="breadcrumb-item"><a href="javascript:void(0);">Office Expense</a></li>
+<li class="breadcrumb-item"><a href="javascript:void(0);">Office Expense Invoice</a></li>
 <li class="breadcrumb-item active" aria-current="page"><span>Manage</span></li>
 @endsection
 @section('content')
@@ -15,9 +15,19 @@
                     <div class="col-xl-4 col-lg-5 col-md-5 col-sm-7 filtered-list-search layout-spacing align-self-center">
                       <h6 style="margin-top : 20px">Manage Office Expense</h6>
                     </div>
+
+                    <div class="col-xl-8 col-lg-7 col-md-7 col-sm-5 text-sm-right text-center layout-spacing align-self-center">
+                        <div class="d-flex justify-content-sm-end justify-content-center">
+                            <button  data-toggle="modal"  data-target="#createOfficeExpense"
+                             class="btn btn-primary"  data-placement="top" title="Create Office Expense">
+                            <i class="far fa-plus-square"></i> Create New
+                            </button>
+                        </div>
+                        <create-officeexpenseinvoice></create-officeexpenseinvoice>
+                    </div>
                 </div>
 
-             <view-officeexpense :office_heads="{{ $office_head }}"></view-officeexpense>
+             <view-officeexpenseinvoice></view-officeexpenseinvoice>
 
             </div>
         </div>

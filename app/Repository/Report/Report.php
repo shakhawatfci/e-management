@@ -9,6 +9,7 @@ use App\OfficeExpense;
 use App\ProjectExpense;
 use App\EquipmentSales;
 use App\Mobilization;
+use App\OperatorPayment;
 use DB;
 
 Class Report {
@@ -35,6 +36,8 @@ public function getMonthlyReport($month_from,$month_to)
     $total_office_expense           = 0;
     $total_expense                  = 0;
     $total_net_profit               = 0;
+    $total_fooding_bill_amount     = 0;
+    $total_fooding_paid_amount     = 0;
 
     // loop month and query 
     
@@ -42,7 +45,7 @@ public function getMonthlyReport($month_from,$month_to)
     {
      
     // project bill     
-    $bill = ProjectClaim::selectRaw('SUM(total_project_amount) as project_bill_amount,SUM(total_vendor_amount) as vendor_bill_amount')
+    $bill = ProjectClaim::selectRaw('SUM(total_project_amount) as project_bill_amount,SUM(total_vendor_amount) as vendor_bill_amount,SUM(operator_total_amount) as operator_bill_amount')
                           ->where('month','=',$value)
                           ->first();
 
@@ -54,25 +57,30 @@ public function getMonthlyReport($month_from,$month_to)
     $operator_salary        = OperatorSalary::where('month','=',$value)->sum('payment_amount');                      
     $project_expense        = ProjectExpense::where('month','=',$value)->sum('amount');                      
     $equipment_expense      = EquipementExpense::where('month','=',$value)->sum('amount');                      
-    $office_expense         = OfficeExpense::where('month','=',$value)->sum('amount');                      
+    $office_expense         = OfficeExpense::where('month','=',$value)->sum('amount');                     
+    $fooding_payment        = OperatorPayment::where('month','=',$value)->sum('amount');                     
     
                           
 
      $project_bill_amount = 0;
      $vendor_bill_amount =  0;
+     $fooding_bill_amount =  0;
+     $fooding_paid_amount =  0;
      $bill_profit        =  0;
      
      if($bill)
      {
        $project_bill_amount = $bill->project_bill_amount ? $bill->project_bill_amount : 0;
        $vendor_bill_amount  = $bill->vendor_bill_amount  ? $bill->vendor_bill_amount  : 0;
+       $fooding_bill_amount  = $bill->operator_bill_amount  ? $bill->operator_bill_amount  : 0;
+      //  $operator_paid_amount  = $bill->fooding_payment  ? $bill->fooding_payment  : 0;
        $bill_profit         = $project_bill_amount - $vendor_bill_amount;
 
      }
 
      $t_profit = $bill_profit+$mobilization_profit+$equipment_sales_profit;
      
-     $t_expense = $employee_salary+$operator_salary+$project_expense+$equipment_expense+$office_expense;
+     $t_expense = $employee_salary+$operator_salary+$project_expense+$equipment_expense+$office_expense+$fooding_bill_amount;
      
      $net_profit = $t_profit - $t_expense;
      
@@ -90,6 +98,9 @@ public function getMonthlyReport($month_from,$month_to)
     $total_office_expense           += $office_expense;
     $total_expense                  += $t_expense;
     $total_net_profit               += $net_profit;
+    $total_fooding_bill_amount     += $fooding_bill_amount;
+    $total_fooding_paid_amount     += $fooding_payment;
+    // $fooding_paid_amount           += $fooding_payment;
 
     //  getting redy report data  if any data in db then wwill push and count total 
 
@@ -109,7 +120,9 @@ public function getMonthlyReport($month_from,$month_to)
       'equipment_expense'      => round($equipment_expense),
       'office_expense'         => round($office_expense),
       'total_expense'          => round($t_expense),
-      'net_profit'             => round($net_profit)
+      'net_profit'             => round($net_profit),
+      'fooding_bill_amount'   => round($fooding_bill_amount),
+      'fooding_paid_amount'   => round($fooding_payment),
      ];
 
 
@@ -129,7 +142,9 @@ public function getMonthlyReport($month_from,$month_to)
         'total_equipment_expense'             => round($total_equipment_expense),      
         'total_office_expense'                => round($total_office_expense),     
         'total_expense'                       => round($total_expense),      
-        'total_net_profit'                    => round($total_net_profit)  
+        'total_net_profit'                    => round($total_net_profit),
+        'total_fooding_bill_amount'          => round($total_fooding_bill_amount),  
+        'total_fooding_paid_amount'          => round($total_fooding_paid_amount)  
     ];
     return ['report_data' => $report_data,'total_sum' => $total_sum];
 
@@ -157,6 +172,9 @@ public function getEquipmentWiseReport($month_from,$month_to,$equipment_type_id,
       $total_equipment_expense        = 0;
       $total_expense                  = 0;
       $total_net_profit               = 0;
+      $total_fooding_bill_amount      = 0;
+      $total_fooding_paid_amount      = 0;
+      $total_fooding_outstanding      = 0;
   
       // loop month and query 
       
@@ -168,8 +186,10 @@ public function getEquipmentWiseReport($month_from,$month_to,$equipment_type_id,
                             SUM(total_vendor_amount) as vendor_bill_amount,
                             SUM(project_payment) as project_payment,
                             SUM(vendor_payment) as vendor_payment,
+                            SUM(operator_total_amount) as total_fooding_amount,
                             SUM(project_adjustment_payment) as project_adjustment_payment,
-                            SUM(vendor_adjustment_payment) as vendor_adjustment_payment')
+                            SUM(vendor_adjustment_payment) as vendor_adjustment_payment,
+                            SUM(operator_adjustment_payment) as operator_adjustment_payment')
                             ->where('month','=',$value)
                             ->where('vendor_id','=',$vendor_id)
                             ->where('equipment_type_id','=',$equipment_type_id)
@@ -188,33 +208,46 @@ public function getEquipmentWiseReport($month_from,$month_to,$equipment_type_id,
                                 ->where('vendor_id','=',$vendor_id)
                                 ->where('equipment_type_id','=',$equipment_type_id)
                                 ->where('equipement_id','=',$equipment_id)
-                                ->sum('amount');                      
+                                ->sum('amount');
+
+      $fooding_paid_amount    = OperatorPayment::where('month','=',$value)
+                                ->where('vendor_id','=',$vendor_id)
+                                ->where('equipment_type_id','=',$equipment_type_id)
+                                ->where('equipement_id','=',$equipment_id)
+                                ->sum('amount');                   
                                                   
        $project_bill_amount   =  0;
        $vendor_bill_amount    =  0;
+       $fooding_bill_amount    =  0;
        $project_payment       =  0;
        $vendor_payment        =  0;
+       $fooding_payment       =  0;
        $project_outstanding   =  0;
        $vendor_outstanding    =  0;
        $bill_profit           =  0;
+       $fooding_outstanding   =  0;
        
        if($bill)
        {
          $project_bill_amount = $bill->project_bill_amount ? $bill->project_bill_amount : 0;
          $vendor_bill_amount  = $bill->vendor_bill_amount  ? $bill->vendor_bill_amount  : 0;
+         $fooding_bill_amount  = $bill->total_fooding_amount  ? $bill->total_fooding_amount  : 0;
          $bill_profit         = $project_bill_amount - $vendor_bill_amount;
 
          $project_payment     = $bill->project_payment+$bill->project_adjustment_payment;
          $vendor_payment      = $bill->vendor_payment+$bill->vendor_adjustment_payment;
+         
+         $fooding_payment     = $bill->total_fooding_amount+$bill->operator_adjustment_payment;
 
          $project_outstanding = $project_bill_amount-$project_payment;
          $vendor_outstanding  = $vendor_bill_amount-$vendor_payment;
+         $fooding_outstanding  = $fooding_bill_amount-$fooding_payment;
   
        }
 
     //    inside loop total income and expense 
 
-     $t_expense = $operator_salary+$equipment_expense;     
+     $t_expense = $operator_salary+$equipment_expense+$fooding_paid_amount;     
      $net_profit = $bill_profit - $t_expense;
        
            // total counting 
@@ -227,6 +260,9 @@ public function getEquipmentWiseReport($month_from,$month_to,$equipment_type_id,
       $total_vendor_outstanding       += $vendor_outstanding;
       $total_operator_salary          += $operator_salary;
       $total_equipment_expense        += $equipment_expense;
+      $total_fooding_bill_amount      += $fooding_bill_amount;
+      $total_fooding_paid_amount      += $fooding_payment;
+      $total_fooding_outstanding      += $fooding_outstanding;
       $total_expense                  += $t_expense;
       $total_net_profit               += $net_profit;
   
@@ -244,7 +280,9 @@ public function getEquipmentWiseReport($month_from,$month_to,$equipment_type_id,
         'operator_salary'              => round($operator_salary),
         'equipment_expense'            => round($equipment_expense),
         'total_expense'                => round($t_expense),
-        'net_profit'                   => round($net_profit)
+        'fooding_bill_amount'          => round($fooding_bill_amount),
+        'fooding_paid_amount'          => round($fooding_payment),
+        'fooding_outstanding'          => round($fooding_outstanding),
        ];
       }
 
@@ -258,6 +296,9 @@ public function getEquipmentWiseReport($month_from,$month_to,$equipment_type_id,
           'total_vendor_outstanding'            => round($total_vendor_outstanding) ,            
           'total_operator_salary'               => round($total_operator_salary) ,        
           'total_equipment_expense'             => round($total_equipment_expense),         
+          'total_fooding_bill_amount'             => round($total_fooding_bill_amount),         
+          'total_fooding_paid_amount'             => round($total_fooding_paid_amount),         
+          'total_fooding_outstanding'             => round($total_fooding_outstanding),         
           'total_expense'                       => round($total_expense),      
           'total_net_profit'                    => round($total_net_profit)  
       ];
@@ -287,6 +328,11 @@ public function getProjectWiseReport($month_from,$month_to,$project_id)
          $total_project_expense          = 0;
          $total_expense                  = 0;
          $total_net_profit               = 0;
+
+        $total_fooding_bill_amount      = 0;
+        $total_fooding_paid_amount      = 0;
+        $total_fooding_outstanding      = 0;
+    
      
          // loop month and query 
          
@@ -298,47 +344,59 @@ public function getProjectWiseReport($month_from,$month_to,$project_id)
                                SUM(total_vendor_amount) as vendor_bill_amount,
                                SUM(project_payment) as project_payment,
                                SUM(vendor_payment) as vendor_payment,
+                               SUM(operator_total_amount) as total_fooding_amount,
                                SUM(project_adjustment_payment) as project_adjustment_payment,
-                               SUM(vendor_adjustment_payment) as vendor_adjustment_payment')
+                               SUM(vendor_adjustment_payment) as vendor_adjustment_payment,
+                               SUM(operator_adjustment_payment) as fooding_adjustment_payment')
                                ->where('month','=',$value)
                                ->where('project_id','=',$project_id)
                                ->first();
                   
                         
-         $project_expense      =  ProjectExpense::where('month','=',$value)
+        $project_expense      =  ProjectExpense::where('month','=',$value)
                                   ->where('project_id','=',$project_id)
                                   ->sum('amount'); 
                                   
                                   
         $equipment_expense      = EquipementExpense::where('month','=',$value)
                                   ->where('project_id','=',$project_id)
-                                  ->sum('amount');                          
+                                  ->sum('amount');
+
+        $fooding_paid_amount    = OperatorPayment::where('month','=',$value)
+                                  ->where('project_id','=',$project_id)
+                                  ->sum('amount');                              
                                                      
           $project_bill_amount   =  0;
           $vendor_bill_amount    =  0;
+          $fooding_bill_amount    =  0;
           $project_payment       =  0;
           $vendor_payment        =  0;
+          $fooding_payment       =  0;
           $project_outstanding   =  0;
           $vendor_outstanding    =  0;
           $bill_profit           =  0;
+          $fooding_outstanding   =  0;
           
           if($bill)
           {
             $project_bill_amount = $bill->project_bill_amount ? $bill->project_bill_amount : 0;
             $vendor_bill_amount  = $bill->vendor_bill_amount  ? $bill->vendor_bill_amount  : 0;
+            $fooding_bill_amount  = $bill->total_fooding_amount  ? $bill->total_fooding_amount  : 0;
             $bill_profit         = $project_bill_amount - $vendor_bill_amount;
    
             $project_payment     = $bill->project_payment+$bill->project_adjustment_payment;
             $vendor_payment      = $bill->vendor_payment+$bill->vendor_adjustment_payment;
-   
+            $fooding_payment     = $bill->total_fooding_amount + $bill->fooding_adjustment_payment;
+
             $project_outstanding = $project_bill_amount-$project_payment;
             $vendor_outstanding  = $vendor_bill_amount-$vendor_payment;
+            $fooding_outstanding  = ($fooding_bill_amount - $fooding_payment);
      
           }
-   
+          // dd($bill);
        //    inside loop total income and expense 
    
-        $t_expense = $equipment_expense+$project_expense;     
+        $t_expense = $equipment_expense+$project_expense+$fooding_paid_amount;    
         $net_profit = $bill_profit - $t_expense;
           
               // total counting 
@@ -351,6 +409,9 @@ public function getProjectWiseReport($month_from,$month_to,$project_id)
          $total_vendor_outstanding       += $vendor_outstanding;
          $total_equipment_expense        += $equipment_expense;
          $total_project_expense          += $project_expense;
+         $total_fooding_bill_amount      += $fooding_bill_amount;
+         $total_fooding_paid_amount      += $fooding_paid_amount;
+         $total_fooding_outstanding      += $fooding_outstanding;
          $total_expense                  += $t_expense;
          $total_net_profit               += $net_profit;
      
@@ -368,7 +429,10 @@ public function getProjectWiseReport($month_from,$month_to,$project_id)
            'equipment_expense'            => round($equipment_expense),
            'project_expense'              => round($project_expense),
            'total_expense'                => round($t_expense),
-           'net_profit'                   => round($net_profit)
+           'net_profit'                   => round($net_profit),
+           'fooding_bill_amount'          => round($fooding_bill_amount),
+           'fooding_paid_amount'          => round($fooding_payment),
+           'fooding_outstanding'          => round($fooding_outstanding),
           ];
          }
    
@@ -381,7 +445,10 @@ public function getProjectWiseReport($month_from,$month_to,$project_id)
              'total_vendor_payment'                => round($total_vendor_payment) ,            
              'total_vendor_outstanding'            => round($total_vendor_outstanding) ,            
              'total_equipment_expense'             => round($total_equipment_expense) ,        
-             'total_project_expense'               => round($total_project_expense),         
+             'total_project_expense'               => round($total_project_expense),  
+             'total_fooding_bill_amount'           => round($total_fooding_bill_amount),         
+             'total_fooding_paid_amount'           => round($total_fooding_paid_amount),         
+             'total_fooding_outstanding'           => round($total_fooding_outstanding),           
              'total_expense'                       => round($total_expense),      
              'total_net_profit'                    => round($total_net_profit)  
          ];

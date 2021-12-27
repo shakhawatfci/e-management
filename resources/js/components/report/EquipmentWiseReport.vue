@@ -58,12 +58,15 @@
             <tr>
                 <th>Month</th>
                 <th>Project Bill</th>
-                <th>Vendor  Bill</th>
+                <th>Vendor Bill</th>
+                <th>Fooding Bill</th>
                 <th>Bill Profit</th>
                 <th>P Payment</th>
                 <th>P Outstanding</th>
                 <th>V Payment</th>
                 <th>V Outstanding</th>
+                <th>FD Payment</th>
+                <th>FD Outstanding</th>
                 <th>Op Salary</th>
                 <th>Eq Expense</th>
                 <th>TT Expense</th>
@@ -75,11 +78,14 @@
                 <td>{{ value.month   }}</td>
                 <td>{{ value.project_bill_amount }}</td>
                 <td>{{ value.vendor_bill_amount }}</td>
+                <td>{{ value.fooding_bill_amount }}</td>
                 <td>{{ value.bill_profit  }}</td>
                 <td>{{ value.project_payment }}</td>
                 <td>{{ value.project_outstanding }}</td>
                 <td>{{ value.vendor_payment }}</td>
                 <td>{{ value.vendor_outstanding }}</td>
+                <td>{{ value.fooding_paid_amount }}</td>
+                <td>{{ value.fooding_outstanding }}</td>
                 <td>{{ value.operator_salary }}</td>
                 <td>{{ value.equipment_expense }}</td>
                 <td>{{ value.total_expense }}</td>
@@ -91,12 +97,15 @@
             <tr>
                 <th>Total = </th>
                 <th>Project Bill</th>
-                <th>Vendor  Bill</th>
+                <th>Vendor Bill</th>
+                <th>Fooding Bill</th>
                 <th>Bill Profit</th>
                 <th>P Payment</th>
                 <th>P Outstanding</th>
                 <th>V Payment</th>
                 <th>V Outstanding</th>
+                <th>FD Payment</th>
+                <th>FD Outstanding</th>
                 <th>Op Salary</th>
                 <th>Eq Expense</th>
                 <th>TT Expense</th>
@@ -106,11 +115,14 @@
               <th>----</th>
               <th>{{ total_sum.total_project_bill_amount }}</th>
               <th>{{ total_sum.total_vendor_bill_amount }}</th>
+              <th>{{ total_sum.total_fooding_bill_amount }}</th>
               <th>{{ total_sum.total_bill_profit }}</th>
               <th>{{ total_sum.total_project_payment }}</th>
               <th>{{ total_sum.total_project_outstanding }}</th>
               <th>{{ total_sum.total_vendor_payment }}</th>
               <th>{{ total_sum.total_vendor_outstanding }}</th>
+              <th>{{ total_sum.total_fooding_paid_amount }}</th>
+              <th>{{ total_sum.total_fooding_outstanding }}</th>
               <th>{{ total_sum.total_operator_salary }}</th>
               <th>{{ total_sum.total_equipment_expense }}</th>
               <th>{{ total_sum.total_expense }}</th>

@@ -166,7 +166,7 @@
                         class="table-responsive"
                         v-if="euqipment.expense_category && euqipment.expense_category.length > 0"
                     >
-                        <table class="table table-bordered">
+                        <table class="table">
                         <thead>
                             <tr class="text-center">
                             <th>Category</th>
@@ -416,3 +416,8 @@ export default {
    
 }
 </script>
+<style scoped>
+    .table {
+        background-color: transparent !important;
+    }
+</style>

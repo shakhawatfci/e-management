@@ -2,22 +2,6 @@
   <div>
     <div class="row">
       <div class="col-md-3" style="margin-bottom: 10px">
-        <select
-          class="form-control"
-          v-model="office_expense_head_id"
-          @change="getOfficeExpense()"
-        >
-          <option value>All Office Head</option>
-          <option
-            v-for="office_head in office_heads"
-            :key="office_head.id"
-            :value="office_head.id"
-          >
-            {{ office_head.head_name }}
-          </option>
-        </select>
-      </div>
-      <div class="col-md-3" style="margin-bottom: 10px">
         <vue-monthly-picker
           :monthLabels="pickermonth.lebel"
           placeHolder="Start Month"
@@ -30,7 +14,7 @@
           :monthLabels="pickermonth.lebel"
           placeHolder="End Month"
           v-model="end_month"
-          @input="getOfficeExpense()"
+          @input="getOfficeExpenseInvoice()"
         ></vue-monthly-picker>
       </div>
       <div class="col-md-3" style="margin-bottom: 10px">
@@ -39,7 +23,7 @@
           v-model="keyword"
           class="form-control"
           placeholder="Search Office Expense"
-          @keyup="getOfficeExpense()"
+          @keyup="getOfficeExpenseInvoice()"
         />
       </div>
 
@@ -56,21 +40,31 @@
           <table class="table table-bordered table-hover mb-4">
             <thead>
               <tr>
+                <th>SL</th>
+                <th>Invoice No</th>
                 <th>Date</th>
                 <th>Month</th>
-                <th>Office Head</th>
                 <th>Amount</th>
                 <th>Document Link</th>
+                <th class="text-center">Action</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="value in offices.data" :key="value.id">
+              <tr v-for="(value,index) in offices.data" :key="index">
+                <td>{{ index+1 }}</td>
+                <td>{{ value.invoice_no }}</td>
                 <td>{{ value.date | dateToString }}</td>
                 <td>{{ value.month | monthToString }}</td>
-                <td>{{ value.office_expense_head.head_name }}</td>
-                <td>{{ value.amount }}</td>
+                <td>{{ value.total_amount }}</td>
                 <td>{{ value.document_link }}</td>
-                <!-- <td class="text-center">
+                <td class="text-center">
+                  <button
+                    class="btn btn-warning mb-2 mr-2 rounded-circle"
+                    title="View"
+                    @click.prevent="showOfficeExpenseInvoice(value)"
+                  >
+                    <i class="far fa-eye"></i>
+                  </button>
                   <button
                     class="btn btn-dark mb-2 mr-2 rounded-circle"
                     title="Edit"
@@ -85,7 +79,7 @@
                   >
                     <i class="far fa-trash-alt"></i>
                   </button>
-                </td> -->
+                </td>
               </tr>
               <tr v-if="offices.length > 0">
                 <td colspan="6">
@@ -117,8 +111,8 @@
         <div class="loader multi-loader mx-auto loader-xl"></div>
       </div>
     </div>
-
-    <update-officeexpense> </update-officeexpense>
+    <show-officeexpense />
+    <update-officeexpense-invoice> </update-officeexpense-invoice>
     <div class="row">
       <div class="col-md-12 text-center mb-10 mt-10">
         <!-- import pagination here  -->
@@ -135,17 +129,19 @@ import Mixin from "../../../mixin";
 import VueMonthlyPicker from "vue-monthly-picker";
 import Pagination from "../../pagination/Pagination";
 import UpdateOfficeexpense from "./UpdateOfficeExpense";
+import ViewOfficeexpense from "./SingleViewOfficeExpenseInvoice";
 export default {
   mixins: [Mixin],
-  props: ["office_heads"],
   components: {
     pagination: Pagination,
-    UpdateOfficeexpense,
+    'update-officeexpense-invoice': UpdateOfficeexpense,
+    'show-officeexpense': ViewOfficeexpense,
     VueMonthlyPicker,
   },
   data() {
     return {
       offices: [],
+      office_heads: [],
       office_expense_head_id: "",
       keyword: "",
       pickermonth: {
@@ -176,14 +172,14 @@ export default {
     var _this = this;
 
     EventBus.$on("OfficeExpense-created", function () {
-      _this.getOfficeExpense();
+      _this.getOfficeExpenseInvoice();
     });
 
-    this.getOfficeExpense();
+    this.getOfficeExpenseInvoice();
   },
 
   methods: {
-    getOfficeExpense(page = 1) {
+    getOfficeExpenseInvoice(page = 1) {
       this.isLoading = true;
       var st_mo = "";
       var lt_mo = "";
@@ -199,7 +195,7 @@ export default {
       axios
         .get(
           base_url +
-            `office-expense-list?page=${page}&keyword=${this.keyword}&office_head=${this.office_expense_head_id}&start_month=${st_mo}&end_month=${lt_mo}`
+            `office-expense-invoice-list?page=${page}&keyword=${this.keyword}&start_month=${st_mo}&end_month=${lt_mo}`
         )
         .then((response) => {
           this.offices = response.data;
@@ -209,6 +205,10 @@ export default {
 
     editOfficeExpense(value) {
       EventBus.$emit("officeexpense-update", value);
+    },
+
+    showOfficeExpenseInvoice(value) {
+      EventBus.$emit("officeexpense-invoice", value);
     },
 
     deleteOfficeExpense(id) {
@@ -227,7 +227,8 @@ export default {
         if (result.value) {
           axios.delete(`${base_url}office-expense/${id}`).then((response) => {
             this.successMessage(response.data);
-            this.getOfficeExpense();
+            EventBus.$emit('OfficeExpense-created');
+            this.getOfficeExpenseInvoice();
           });
         }
       });
@@ -238,11 +239,11 @@ export default {
       this.start_month = "";
       this.end_month = "";
       this.keyword = "";
-      this.getOfficeExpense();
+      this.getOfficeExpenseInvoice();
     },
 
     pageClicked(page) {
-      this.getOfficeExpense(page);
+      this.getOfficeExpenseInvoice(page);
     },
   },
 };

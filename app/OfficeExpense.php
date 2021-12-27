@@ -10,4 +10,8 @@ class OfficeExpense extends Model
     {
     	return $this->belongsTo('App\OfficeExpenseHead');
     }
+    public function office_expense_invoice()
+    {
+    	return $this->belongsTo('App\OfficeExpenseInvoice');
+    }
 }

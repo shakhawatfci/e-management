@@ -2055,6 +2055,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2256,6 +2268,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2320,6 +2342,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _chart_ProjectChart__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./chart/ProjectChart */ "./resources/js/components/report/chart/ProjectChart.vue");
 /* harmony import */ var vue_monthly_picker__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-monthly-picker */ "./node_modules/vue-monthly-picker/dist/lib/vue-monthly-picker.min.js");
 /* harmony import */ var vue_monthly_picker__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_monthly_picker__WEBPACK_IMPORTED_MODULE_3__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -44597,6 +44631,10 @@ var render = function() {
                                   _vm._v(_vm._s(value.vendor_bill_amount))
                                 ]),
                                 _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(value.fooding_bill_amount))
+                                ]),
+                                _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(value.bill_profit))]),
                                 _vm._v(" "),
                                 _c("td", [
@@ -44613,6 +44651,14 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("td", [
                                   _vm._v(_vm._s(value.vendor_outstanding))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(value.fooding_paid_amount))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(value.fooding_outstanding))
                                 ]),
                                 _vm._v(" "),
                                 _c("td", [
@@ -44658,6 +44704,14 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("th", [
                                   _vm._v(
+                                    _vm._s(
+                                      _vm.total_sum.total_fooding_bill_amount
+                                    )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(
                                     _vm._s(_vm.total_sum.total_bill_profit)
                                   )
                                 ]),
@@ -44686,6 +44740,22 @@ var render = function() {
                                   _vm._v(
                                     _vm._s(
                                       _vm.total_sum.total_vendor_outstanding
+                                    )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.total_sum.total_fooding_paid_amount
+                                    )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.total_sum.total_fooding_outstanding
                                     )
                                   )
                                 ]),
@@ -44761,7 +44831,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Project Bill")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Vendor  Bill")]),
+        _c("th", [_vm._v("Vendor Bill")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Fooding Bill")]),
         _vm._v(" "),
         _c("th", [_vm._v("Bill Profit")]),
         _vm._v(" "),
@@ -44772,6 +44844,10 @@ var staticRenderFns = [
         _c("th", [_vm._v("V Payment")]),
         _vm._v(" "),
         _c("th", [_vm._v("V Outstanding")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("FD Payment")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("FD Outstanding")]),
         _vm._v(" "),
         _c("th", [_vm._v("Op Salary")]),
         _vm._v(" "),
@@ -44792,7 +44868,9 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("Project Bill")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Vendor  Bill")]),
+      _c("th", [_vm._v("Vendor Bill")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Fooding Bill")]),
       _vm._v(" "),
       _c("th", [_vm._v("Bill Profit")]),
       _vm._v(" "),
@@ -44803,6 +44881,10 @@ var staticRenderFns = [
       _c("th", [_vm._v("V Payment")]),
       _vm._v(" "),
       _c("th", [_vm._v("V Outstanding")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("FD Payment")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("FD Outstanding")]),
       _vm._v(" "),
       _c("th", [_vm._v("Op Salary")]),
       _vm._v(" "),
@@ -44962,7 +45044,19 @@ var render = function() {
                                 _c("td", [_vm._v(_vm._s(value.total_profit))]),
                                 _vm._v(" "),
                                 _c("td", [
+                                  _vm._v(_vm._s(value.employee_salary))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
                                   _vm._v(_vm._s(value.operator_salary))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(value.fooding_bill_amount))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(value.fooding_paid_amount))
                                 ]),
                                 _vm._v(" "),
                                 _c("td", [
@@ -45042,7 +45136,29 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("th", [
                                   _vm._v(
+                                    _vm._s(_vm.total_sum.total_employee_salary)
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(
                                     _vm._s(_vm.total_sum.total_operator_salary)
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.total_sum.total_fooding_bill_amount
+                                    )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.total_sum.total_fooding_paid_amount
+                                    )
                                   )
                                 ]),
                                 _vm._v(" "),
@@ -45143,6 +45259,10 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Op Salary")]),
         _vm._v(" "),
+        _c("th", [_vm._v("FD Bill")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("FD Paid")]),
+        _vm._v(" "),
         _c("th", [_vm._v("Eq Expense")]),
         _vm._v(" "),
         _c("th", [_vm._v("Pr Expense")]),
@@ -45177,6 +45297,10 @@ var staticRenderFns = [
       _c("th", [_vm._v("Emp salary")]),
       _vm._v(" "),
       _c("th", [_vm._v("Op Salary")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("TT FD Bill")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("TT FD Paid")]),
       _vm._v(" "),
       _c("th", [_vm._v("Eq Expense")]),
       _vm._v(" "),
@@ -45377,6 +45501,10 @@ var render = function() {
                                   _vm._v(_vm._s(value.vendor_bill_amount))
                                 ]),
                                 _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(value.fooding_bill_amount))
+                                ]),
+                                _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(value.bill_profit))]),
                                 _vm._v(" "),
                                 _c("td", [
@@ -45393,6 +45521,14 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("td", [
                                   _vm._v(_vm._s(value.vendor_outstanding))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(value.fooding_paid_amount))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(value.fooding_outstanding))
                                 ]),
                                 _vm._v(" "),
                                 _c("td", [
@@ -45438,6 +45574,14 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("th", [
                                   _vm._v(
+                                    _vm._s(
+                                      _vm.total_sum.total_fooding_bill_amount
+                                    )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(
                                     _vm._s(_vm.total_sum.total_bill_profit)
                                   )
                                 ]),
@@ -45466,6 +45610,22 @@ var render = function() {
                                   _vm._v(
                                     _vm._s(
                                       _vm.total_sum.total_vendor_outstanding
+                                    )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.total_sum.total_fooding_paid_amount
+                                    )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("th", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.total_sum.total_fooding_outstanding
                                     )
                                   )
                                 ]),
@@ -45541,7 +45701,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Project Bill")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Vendor  Bill")]),
+        _c("th", [_vm._v("Vendor Bill")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Fooding Bill")]),
         _vm._v(" "),
         _c("th", [_vm._v("Bill Profit")]),
         _vm._v(" "),
@@ -45552,6 +45714,10 @@ var staticRenderFns = [
         _c("th", [_vm._v("V Payment")]),
         _vm._v(" "),
         _c("th", [_vm._v("V Outstanding")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("FD Payment")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("FD Outstanding")]),
         _vm._v(" "),
         _c("th", [_vm._v("Pr Expense")]),
         _vm._v(" "),
@@ -45572,7 +45738,9 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("Project Bill")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Vendor  Bill")]),
+      _c("th", [_vm._v("Vendor Bill")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Fooding Bill")]),
       _vm._v(" "),
       _c("th", [_vm._v("Bill Profit")]),
       _vm._v(" "),
@@ -45583,6 +45751,10 @@ var staticRenderFns = [
       _c("th", [_vm._v("V Payment")]),
       _vm._v(" "),
       _c("th", [_vm._v("V Outstanding")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("FD Payment")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("FD Outstanding")]),
       _vm._v(" "),
       _c("th", [_vm._v("Pr Expense")]),
       _vm._v(" "),

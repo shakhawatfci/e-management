@@ -230,9 +230,10 @@ export default {
       this.getEquipmentData()
       var _this = this;
       EventBus.$on('equipmentexpense-update', function(value){
-        $('#updateEquipmentExpense').modal('show')
           _this.euqipment = value;
           _this.month = value.month;
+        //   console.log(value)
+        $('#updateEquipmentExpense').modal('show')
       })
    },
 

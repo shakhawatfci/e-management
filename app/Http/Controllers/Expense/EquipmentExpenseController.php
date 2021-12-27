@@ -14,7 +14,7 @@ use App\Project;
 use App\ProjectClaim;
 use App\ProjectPayment;
 use App\Vendor;
-use DB;
+use DB,PDF;
 
 class EquipmentExpenseController extends Controller
 {
@@ -272,6 +272,30 @@ class EquipmentExpenseController extends Controller
     {
         return EquipmentExpenseInvoice::with(['project:id,project_name','vendor:id,vendor_name','equipement:id,eq_name','equipment_expense'])
                 ->find($id);
+    }
+
+    public function expenseData($id)
+    {
+        return EquipementExpense::where('equipment_expense_invoice_id',$id)->with('equipment_expense_head:id,head_name')
+                ->get();
+    }
+
+    public function printExpenseInvoice(Request $request)
+    {
+        $invoice_data = $this->ExpenseInvoiceData($request->id);
+        $category_data = $this->expenseData($request->id);
+
+        if($request->action == 'print')
+        {
+            return view('expense.print.equipment_expense_invoice_print',['equipment' => $invoice_data,'expense_category' => $category_data]);
+        } else {
+            // return view('expense.pdf.equipment_expense_invoice_pdf',['equipment' => $invoice_data,'expense_category' => $category_data]);
+            $pdf = \PDF::loadView('expense.pdf.equipment_expense_invoice_pdf',['equipment' => $invoice_data,'expense_category' => $category_data]);
+
+            $pdf->setPaper('A4', 'landscape');
+            $pdf_name = "equipment-invoice-".$invoice_data->invoice_no.".pdf";
+            return $pdf->download($pdf_name);
+        }
     }
     /**
      * Display the specified resource.
