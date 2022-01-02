@@ -105,6 +105,31 @@ class OperatorPaymentController extends Controller
         return $operator_payment;
     }
 
+    public function operatorPaymentPrint(Request $request)
+    {
+
+        $operator_payment = ProjectClaim::with(['operator_pay','operator:id,name','equipement:id,eq_name','project:id,project_name'])->find($request->bill_id);
+
+        if ($request->action == 'print') {
+            return view('bill.print.operator_payment_print', [
+                'bill'      => $operator_payment
+            ]);
+        } else {
+            // return $pdf = view('bill.pdf.bill_pdf', [
+            //     'bill'      => $bill,
+            //     'form_data' => $request->all(),
+            // ]);
+            $pdf = PDF::loadView('bill.pdf.operator_payment_pdf', [
+                'bill'      => $operator_payment,
+            ]);
+
+            $pdf->setPaper('A4', 'potrait');
+            $pdf_name = "bill-" . $operator_payment->bill_no . ".pdf";
+            return $pdf->download($pdf_name);
+        }
+
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

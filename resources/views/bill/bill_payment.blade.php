@@ -26,7 +26,7 @@
                          <bill-list :vendors='@json($vendors)'
                           :equipment_types='@json($equipment_types)'
                           :projects='@json($projects)'
-                          :operator='@json($projects)'
+                          :operator='@json($operators)'
                           ></bill-list>
 
                         </div>

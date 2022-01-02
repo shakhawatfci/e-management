@@ -2194,7 +2194,7 @@ __webpack_require__.r(__webpack_exports__);
         }],
         month: '',
         payment_date: '',
-        amount: '',
+        amount: 0,
         payment_method: '',
         documents_link: '',
         note: ''
@@ -4336,6 +4336,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_monthly_picker__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_monthly_picker__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _pagination_Pagination__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../pagination/Pagination */ "./resources/js/components/pagination/Pagination.vue");
 /* harmony import */ var _UpdateOfficeExpense__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./UpdateOfficeExpense */ "./resources/js/components/expense/office/UpdateOfficeExpense.vue");
+//
+//
 //
 //
 //
@@ -35988,116 +35990,130 @@ var render = function() {
                 [
                   _vm._m(0),
                   _vm._v(" "),
-                  _c(
-                    "tbody",
-                    [
-                      _vm._l(_vm.equipments.data, function(value) {
-                        return _c("tr", { key: value.id }, [
-                          _c("td", [_vm._v(_vm._s(value.invoice_no))]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _vm._v(_vm._s(_vm._f("monthToString")(value.month)))
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _vm._v(
-                              _vm._s(_vm._f("dateToString")(value.payment_date))
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _vm._v(_vm._s(value.project.project_name))
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(value.vendor.vendor_name))]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _vm._v(
-                              _vm._s(value.equipment_expense_head.head_name)
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(value.equipement.eq_name))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(value.amount))])
-                        ])
-                      }),
-                      _vm._v(" "),
-                      _vm.equipments.length > 0
-                        ? _c("tr", [
-                            _c("td", { attrs: { colspan: "7" } }, [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "btn btn-primary btn-sm",
-                                  attrs: {
-                                    href:
-                                      _vm.url +
-                                      "equipment-expense-print-pdf?action=pdf&page=" +
-                                      _vm.page +
-                                      "&keyword=" +
-                                      _vm.keyword +
-                                      "&project=" +
-                                      _vm.project_id +
-                                      "&vendor=" +
-                                      _vm.vendor_id +
-                                      "&equipment_type=" +
-                                      _vm.equipment_type_id +
-                                      "&equipement=" +
-                                      _vm.equipement_id +
-                                      "&equipment_head=" +
-                                      _vm.equipment_expense_head_id +
-                                      "&start_month=" +
-                                      _vm.start_month._i +
-                                      "&end_month=" +
-                                      _vm.end_month._i
-                                  }
-                                },
-                                [
-                                  _c("i", { staticClass: "fa fa-file-pdf-o" }),
-                                  _vm._v(" PDF")
-                                ]
-                              ),
+                  _vm.equipments.data.length > 0
+                    ? _c(
+                        "tbody",
+                        [
+                          _vm._l(_vm.equipments.data, function(value) {
+                            return _c("tr", { key: value.id }, [
+                              _c("td", [_vm._v(_vm._s(value.invoice_no))]),
                               _vm._v(" "),
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "btn btn-danger btn-sm",
-                                  attrs: {
-                                    href:
-                                      _vm.url +
-                                      "equipment-expense-print-pdf?action=print&page=" +
-                                      _vm.page +
-                                      "&keyword=" +
-                                      _vm.keyword +
-                                      "&project=" +
-                                      _vm.project_id +
-                                      "&vendor=" +
-                                      _vm.vendor_id +
-                                      "&equipment_type=" +
-                                      _vm.equipment_type_id +
-                                      "&equipement=" +
-                                      _vm.equipement_id +
-                                      "&equipment_head=" +
-                                      _vm.equipment_expense_head_id +
-                                      "&start_month=" +
-                                      _vm.start_month._i +
-                                      "&end_month=" +
-                                      _vm.end_month._i,
-                                    target: "_blank"
-                                  }
-                                },
-                                [
-                                  _c("i", { staticClass: "fa fa-file-pdf-o" }),
-                                  _vm._v(" Print")
-                                ]
-                              )
+                              _c("td", [
+                                _vm._v(
+                                  _vm._s(_vm._f("monthToString")(value.month))
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("dateToString")(value.payment_date)
+                                  )
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(_vm._s(value.project.project_name))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(_vm._s(value.vendor.vendor_name))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(
+                                  _vm._s(value.equipment_expense_head.head_name)
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(_vm._s(value.equipement.eq_name))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(value.amount))])
                             ])
-                          ])
-                        : _vm._e()
-                    ],
-                    2
-                  )
+                          }),
+                          _vm._v(" "),
+                          _vm.equipments.data.length > 0
+                            ? _c("tr", [
+                                _c("td", { attrs: { colspan: "8" } }, [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "btn btn-primary btn-sm",
+                                      attrs: {
+                                        href:
+                                          _vm.url +
+                                          "equipment-expense-print-pdf?action=pdf&page=" +
+                                          _vm.page +
+                                          "&keyword=" +
+                                          _vm.keyword +
+                                          "&project=" +
+                                          _vm.project_id +
+                                          "&vendor=" +
+                                          _vm.vendor_id +
+                                          "&equipment_type=" +
+                                          _vm.equipment_type_id +
+                                          "&equipement=" +
+                                          _vm.equipement_id +
+                                          "&equipment_head=" +
+                                          _vm.equipment_expense_head_id +
+                                          "&start_month=" +
+                                          _vm.start_month._i +
+                                          "&end_month=" +
+                                          _vm.end_month._i
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "fa fa-file-pdf-o"
+                                      }),
+                                      _vm._v(" PDF")
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "btn btn-danger btn-sm",
+                                      attrs: {
+                                        href:
+                                          _vm.url +
+                                          "equipment-expense-print-pdf?action=print&page=" +
+                                          _vm.page +
+                                          "&keyword=" +
+                                          _vm.keyword +
+                                          "&project=" +
+                                          _vm.project_id +
+                                          "&vendor=" +
+                                          _vm.vendor_id +
+                                          "&equipment_type=" +
+                                          _vm.equipment_type_id +
+                                          "&equipement=" +
+                                          _vm.equipement_id +
+                                          "&equipment_head=" +
+                                          _vm.equipment_expense_head_id +
+                                          "&start_month=" +
+                                          _vm.start_month._i +
+                                          "&end_month=" +
+                                          _vm.end_month._i,
+                                        target: "_blank"
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "fa fa-file-pdf-o"
+                                      }),
+                                      _vm._v(" Print")
+                                    ]
+                                  )
+                                ])
+                              ])
+                            : _vm._e()
+                        ],
+                        2
+                      )
+                    : _vm._e()
                 ]
               )
             ])
@@ -36209,7 +36225,7 @@ var render = function() {
                         : $$selectedVal[0]
                     },
                     function($event) {
-                      return _vm.getEquipmentExpense()
+                      return _vm.getEquipmentExpenseInvoice()
                     }
                   ]
                 }
@@ -36270,7 +36286,7 @@ var render = function() {
                         : $$selectedVal[0]
                     },
                     function($event) {
-                      return _vm.getEquipmentExpense()
+                      return _vm.getEquipmentExpenseInvoice()
                     }
                   ]
                 }
@@ -36329,7 +36345,7 @@ var render = function() {
                         : $$selectedVal[0]
                     },
                     function($event) {
-                      return _vm.getEquipmentExpense()
+                      return _vm.getEquipmentExpenseInvoice()
                     }
                   ]
                 }
@@ -36388,7 +36404,7 @@ var render = function() {
                         : $$selectedVal[0]
                     },
                     function($event) {
-                      return _vm.getEquipmentExpense()
+                      return _vm.getEquipmentExpenseInvoice()
                     }
                   ]
                 }
@@ -36449,7 +36465,7 @@ var render = function() {
               },
               on: {
                 input: function($event) {
-                  return _vm.getEquipmentExpense()
+                  return _vm.getEquipmentExpenseInvoice()
                 }
               },
               model: {
@@ -36482,7 +36498,7 @@ var render = function() {
               domProps: { value: _vm.keyword },
               on: {
                 keyup: function($event) {
-                  return _vm.getEquipmentExpense()
+                  return _vm.getEquipmentExpenseInvoice()
                 },
                 input: function($event) {
                   if ($event.target.composing) {
@@ -36623,9 +36639,9 @@ var render = function() {
                               ])
                             }),
                             _vm._v(" "),
-                            _vm.invoices.length > 0
+                            _vm.invoices.data.length > 0
                               ? _c("tr", [
-                                  _c("td", { attrs: { colspan: "7" } }, [
+                                  _c("td", { attrs: { colspan: "9" } }, [
                                     _c(
                                       "a",
                                       {
@@ -38326,92 +38342,105 @@ var render = function() {
                   [
                     _vm._m(0),
                     _vm._v(" "),
-                    _c(
-                      "tbody",
-                      [
-                        _vm._l(_vm.offices.data, function(value) {
-                          return _c("tr", { key: value.id }, [
-                            _c("td", [
-                              _vm._v(_vm._s(_vm._f("dateToString")(value.date)))
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _vm._v(
-                                _vm._s(_vm._f("monthToString")(value.month))
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _vm._v(
-                                _vm._s(value.office_expense_head.head_name)
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(value.amount))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(value.document_link))])
-                          ])
-                        }),
-                        _vm._v(" "),
-                        _vm.offices.length > 0
-                          ? _c("tr", [
-                              _c("td", { attrs: { colspan: "6" } }, [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "btn btn-primary btn-sm",
-                                    attrs: {
-                                      href:
-                                        _vm.url +
-                                        "office-expense-print-pdf?action=pdf&keyword=" +
-                                        _vm.keyword +
-                                        "&office_head=" +
-                                        _vm.office_expense_head_id +
-                                        "&start_month=" +
-                                        _vm.start_month._i +
-                                        "&end_month=" +
-                                        _vm.end_month._i
-                                    }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "fa fa-file-pdf-o"
-                                    }),
-                                    _vm._v(" PDF")
-                                  ]
-                                ),
+                    _vm.offices.data.length > 0
+                      ? _c(
+                          "tbody",
+                          [
+                            _vm._l(_vm.offices.data, function(value) {
+                              return _c("tr", { key: value.id }, [
+                                _c("td", [
+                                  _vm._v(
+                                    _vm._s(_vm._f("dateToString")(value.date))
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    _vm._s(_vm._f("monthToString")(value.month))
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    _vm._s(value.office_expense_head.head_name)
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(value.amount))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(value.document_link))]),
                                 _vm._v(" "),
                                 _c(
-                                  "a",
+                                  "td",
                                   {
-                                    staticClass: "btn btn-danger btn-sm",
-                                    attrs: {
-                                      href:
-                                        _vm.url +
-                                        "office-expense-print-pdf?action=print&keyword=" +
-                                        _vm.keyword +
-                                        "&office_head=" +
-                                        _vm.office_expense_head_id +
-                                        "&start_month=" +
-                                        _vm.start_month._i +
-                                        "&end_month=" +
-                                        _vm.end_month._i,
-                                      target: "_blank"
-                                    }
+                                    staticClass: "text-wrap",
+                                    attrs: { width: "24%" }
                                   },
-                                  [
-                                    _c("i", {
-                                      staticClass: "fa fa-file-pdf-o"
-                                    }),
-                                    _vm._v(" Print")
-                                  ]
+                                  [_vm._v(_vm._s(value.note))]
                                 )
                               ])
-                            ])
-                          : _vm._e()
-                      ],
-                      2
-                    )
+                            }),
+                            _vm._v(" "),
+                            _vm.offices.data.length > 0
+                              ? _c("tr", [
+                                  _c("td", { attrs: { colspan: "6" } }, [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "btn btn-primary btn-sm",
+                                        attrs: {
+                                          href:
+                                            _vm.url +
+                                            "office-expense-print-pdf?action=pdf&keyword=" +
+                                            _vm.keyword +
+                                            "&office_head=" +
+                                            _vm.office_expense_head_id +
+                                            "&start_month=" +
+                                            _vm.start_month._i +
+                                            "&end_month=" +
+                                            _vm.end_month._i
+                                        }
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "fa fa-file-pdf-o"
+                                        }),
+                                        _vm._v(" PDF")
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "btn btn-danger btn-sm",
+                                        attrs: {
+                                          href:
+                                            _vm.url +
+                                            "office-expense-print-pdf?action=print&keyword=" +
+                                            _vm.keyword +
+                                            "&office_head=" +
+                                            _vm.office_expense_head_id +
+                                            "&start_month=" +
+                                            _vm.start_month._i +
+                                            "&end_month=" +
+                                            _vm.end_month._i,
+                                          target: "_blank"
+                                        }
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "fa fa-file-pdf-o"
+                                        }),
+                                        _vm._v(" Print")
+                                      ]
+                                    )
+                                  ])
+                                ])
+                              : _vm._e()
+                          ],
+                          2
+                        )
+                      : _vm._e()
                   ]
                 )
               ])
@@ -38459,7 +38488,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Amount")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Document Link")])
+        _c("th", [_vm._v("Document Link")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Note")])
       ])
     ])
   }

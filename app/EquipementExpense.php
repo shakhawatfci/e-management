@@ -56,7 +56,10 @@ class EquipementExpense extends Model
     public function equipment_expense_head()
     {
 
-        return $this->belongsTo('App\EquipmentExpenseHead');
+        return $this->belongsTo('App\EquipmentExpenseHead')->withDefault([
+            'id'   => '',
+            'head_name' => '',
+        ]);
 
     }
     // public function equipment_expense_invoice()

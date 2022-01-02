@@ -121,9 +121,9 @@ class EquipmentAssignController extends Controller
             'equipment'             => 'required',
             'total_hour'            => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
             'total_project_amount'  => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'total_vendor_amount'   => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'total_vendor_amount'   => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
             'project_rate_per_hour' => 'required|gt:0',
-            'vendor_rate_per_hour'  => 'required|gt:0',
+            'vendor_rate_per_hour'  => 'nullable',
             'assign_date'           => 'required',
         ]);
 
@@ -229,9 +229,9 @@ class EquipmentAssignController extends Controller
             'equipment'             => 'required',
             'total_hour'            => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
             'total_project_amount'  => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'total_vendor_amount'   => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'total_vendor_amount'   => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
             'project_rate_per_hour' => 'required|gt:0',
-            'vendor_rate_per_hour'  => 'required|gt:0',
+            'vendor_rate_per_hour'  => 'nullable',
             'assign_date'           => 'required',
         ]);
 

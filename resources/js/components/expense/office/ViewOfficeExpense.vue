@@ -61,15 +61,17 @@
                 <th>Office Head</th>
                 <th>Amount</th>
                 <th>Document Link</th>
+                <th>Note</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody v-if="offices.data.length > 0">
               <tr v-for="value in offices.data" :key="value.id">
                 <td>{{ value.date | dateToString }}</td>
                 <td>{{ value.month | monthToString }}</td>
                 <td>{{ value.office_expense_head.head_name }}</td>
                 <td>{{ value.amount }}</td>
                 <td>{{ value.document_link }}</td>
+                <td class="text-wrap" width="24%">{{ value.note }}</td>
                 <!-- <td class="text-center">
                   <button
                     class="btn btn-dark mb-2 mr-2 rounded-circle"
@@ -87,7 +89,7 @@
                   </button>
                 </td> -->
               </tr>
-              <tr v-if="offices.length > 0">
+              <tr v-if="offices.data.length > 0">
                 <td colspan="6">
                   <a
                     :href="

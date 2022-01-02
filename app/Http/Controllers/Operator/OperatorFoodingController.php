@@ -9,7 +9,9 @@ use App\Vendor;
 use App\EquipmentType;
 use App\Equipement;
 use App\Project;
+use App\ProjectClaim;
 use App\OperatorFooding;
+use DB;
 
 class OperatorFoodingController extends Controller
 {
@@ -42,35 +44,89 @@ class OperatorFoodingController extends Controller
      */
     public function operatorFoodingList(Request $request)
     {
-        $foodings = OperatorFooding::with(['project:id,project_name','vendor:id,vendor_name','equipment_type:id,name','equipement:id,eq_name','operator:id,name'])->orderBy('id','desc');
-        if($request->project != '') {
-            $foodings->where('project_id','=',$request->project);
-        }
-        if($request->vendor != '') {
-            $foodings->where('vendor_id','=',$request->vendor);
-        }
-        if($request->equipment_type != '') {
-            $foodings->where('equipment_type_id','=',$request->equipment_type);
-        }
-        if($request->equipement != '') {
-            $foodings->where('equipement_id','=',$request->equipement);
-        }
-        if($request->operator != '') {
-            $foodings->where('operator_id','=',$request->operator);
-        }
-        if($request->keyword != '') {
-            $foodings->where('month','LIKE','%'.$request->keyword.'%');
-            $foodings->orWhere('date','LIKE','%'.$request->keyword.'%');
-            $foodings->orWhere('fooding_amount','LIKE','%'.$request->keyword.'%');
-        }
-        if ($request->end_month != '' && $request->end_month != 'undefined') {
-            $start = date('Y-m',strtotime(str_replace('/','-',$request->start_month)));
-            $end = date('Y-m',strtotime(str_replace('/','-',$request->end_month)));
+        $per_page = 3;
 
-            $foodings->whereBetween('month', [$start,$end]);
-            
+        if ($request->per_page > 0) {
+            $per_page = $request->per_page;
         }
-        return $foodings->paginate(10);
+
+        $bill = ProjectClaim::with([
+            'user:id,name',
+            'equipement',
+            'equipment_type',
+            'vendor',
+            'project',
+            'operator',
+            'operator_pay'
+        ])
+        ->select('project_id','equipement_id', DB::raw('SUM(operator_total_amount) as total_fooding_amount,
+                    SUM(operator_payment) as operator_payment_amount,
+                    SUM(operator_adjustment_payment) as operator_adjustment_payment'))
+        ->groupBy('equipement_id')
+        ->groupBy('project_id')
+        // ->havingRaw('total_fooding_amount > 0')
+        ->paginate($per_page);
+        // ProjectClaim::selectRaw(SUM(operator_total_amount) as total_fooding_amount,
+        //                     SUM(operator_payment) as operator_payment_amount,
+        //                     SUM(operator_adjustment_payment) as operator_adjustment_payment')
+        //                     ->get()
+        //                     ->groupBy('equipement_id')
+        //                     ->groupBy('project_id');
+                            // ->where('month','=',$value)
+                            // ->where('vendor_id','=',$vendor_id)
+                            // ->where('equipment_type_id','=',$equipment_type_id)
+                            // ->where('equipement_id','=',$equipment_id)
+
+        // $bill = ProjectClaim::with([
+        //     'user:id,name',
+        //     'equipement',
+        //     'equipment_type',
+        //     'vendor',
+        //     'project',
+        //     'operator'
+        // ])->orderBy('updated_at', 'desc');
+
+        // $bill_no = $request->bill_no;
+        // if ($bill_no != '') {
+        //     $bill->where(function ($query) use ($bill_no) {
+        //         $query->where('bill_no', 'LIKE', '%' . $bill_no . '%')
+        //             ->orWhere('id', 'LIKE', '%' . $bill_no . '%');
+        //     });
+        // }
+
+        // if ($request->project_id != '') {
+        //     $bill->where('project_id', '=', $request->project_id);
+        // }
+
+        // if ($request->month != '') {
+        //     $bill->where('month', '=', $request->month);
+        // }
+
+        // if ($request->vendor_id != '') {
+        //     $bill->where('vendor_id', '=', $request->vendor_id);
+        // }
+
+        // if ($request->operator_id != '') {
+        //     $bill->where('operator_id', '=', $request->operator_id);
+        // }
+
+        // if ($request->equipment_id != '') {
+        //     $bill->where('equipement_id', '=', $request->equipment_id);
+        // }
+
+        // if ($request->equipment_type_id != '') {
+        //     $bill->where('equipment_type_id', '=', $request->equipment_type_id);
+        // }
+
+        // if ($request->end_month != '') {
+        //     $start = date('Y-m', strtotime(str_replace('/', '-', $request->start_month)));
+        //     $end   = date('Y-m', strtotime(str_replace('/', '-', $request->end_month)));
+        //     $bill->whereBetween('month', [$start, $end]);
+        // }
+
+        // dd($bill);
+        // $bill = $bill->paginate($per_page)->groupBy('project_id')->groupBy('equipement_id');
+        return $bill;
     }
 
     public function operatorFoodingPrint(Request $request)

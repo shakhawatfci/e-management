@@ -59,7 +59,6 @@
                 <td>{{ value.operator_salary }}</td>
                 <td>{{ value.fooding_bill_amount }}</td>
                 <td>{{ value.fooding_paid_amount }}</td>
-                <td>{{ value.employee_salary }}</td>
                 <td>{{ value.equipment_expense }}</td>
                 <td>{{ value.project_expense }}</td>
                 <td>{{ value.office_expense }}</td>
@@ -99,7 +98,6 @@
               <th>{{ total_sum.total_operator_salary }}</th>
               <th>{{ total_sum.total_fooding_bill_amount }}</th>
               <th>{{ total_sum.total_fooding_paid_amount }}</th>
-              <th>{{ total_sum.total_employee_salary }}</th>
               <th>{{ total_sum.total_equipment_expense }}</th>
               <th>{{ total_sum.total_project_expense }}</th>
               <th>{{ total_sum.total_office_expense }}</th>

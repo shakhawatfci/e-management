@@ -80,4 +80,9 @@ class ProjectClaim extends Model
             'name' => 'None',
         ]);
     }
+
+    public function operator_pay()
+    {
+        return $this->hasMany('App\OperatorPayment');
+    }
 }

@@ -15,4 +15,9 @@ class OperatorPayment extends Model
             ]
         );
     }
+
+    public function project_claim()
+    {
+        return $this->belongsTo('App\ProjectClaim');
+    }
 }

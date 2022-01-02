@@ -127,7 +127,7 @@
                 <!-- <th class="text-center">action</th> -->
               </tr>
             </thead>
-            <tbody>
+            <tbody v-if="equipments.data.length > 0">
               <tr v-for="value in equipments.data" :key="value.id">
                 <td>{{ value.invoice_no }}</td>
                 <td>{{ value.month | monthToString }}</td>
@@ -161,8 +161,8 @@
                   </button>
                 </td> -->
               </tr>
-              <tr v-if="equipments.length > 0">
-                <td colspan="7">
+              <tr v-if="equipments.data.length > 0">
+                <td colspan="8">
                   <a
                     :href="
                       url +

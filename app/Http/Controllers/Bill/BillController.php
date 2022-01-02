@@ -42,7 +42,7 @@ class BillController extends Controller
         $operator = Operator::orderBy('name', 'asc')
             ->where('status', '=', AllStatic::$active)
             ->get();
-
+        // return $operator;
         return view('bill.bill', [
             'projects'        => $project,
             'vendors'         => $vendor,
@@ -110,9 +110,9 @@ class BillController extends Controller
             'project_rate_per_hour' => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,20})?$/',
             'vendor_rate_per_hour'  => 'nullable|regex:/^[0-9]+(\.[0-9]{1,20})?$/',
             'project_amount'        => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,20})?$/',
-            'vendor_amount'         => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'vendor_amount'         => 'nullable|regex:/^[0-9]+(\.[0-9]{1,20})?$/',
             'total_project_amount'  => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'total_vendor_amount'   => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,20})?$/',
+            'total_vendor_amount'   => 'nullable|regex:/^[0-9]+(\.[0-9]{1,20})?$/',
             'operator_rate_per_hour' => 'nullable|regex:/^[0-9]+(\.[0-9]{1,20})?$/',
             'operator_total_amount'  => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
             'project_vat'           => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
@@ -223,6 +223,10 @@ class BillController extends Controller
             $bill->where('vendor_id', '=', $request->vendor_id);
         }
 
+        if ($request->operator_id != '') {
+            $bill->where('operator_id', '=', $request->operator_id);
+        }
+
         if ($request->equipment_id != '') {
             $bill->where('equipement_id', '=', $request->equipment_id);
         }
@@ -282,9 +286,9 @@ class BillController extends Controller
             'project_rate_per_hour' => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,20})?$/',
             'vendor_rate_per_hour'  => 'nullable|regex:/^[0-9]+(\.[0-9]{1,20})?$/',
             'project_amount'        => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'vendor_amount'         => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'vendor_amount'         => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
             'total_project_amount'  => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'total_vendor_amount'   => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'total_vendor_amount'   => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
             'operator_rate_per_hour' => 'nullable|regex:/^[0-9]+(\.[0-9]{1,20})?$/',
             'operator_total_amount'  => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
             'project_vat'           => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
@@ -413,6 +417,8 @@ class BillController extends Controller
         }
 
     }
+
+    
 
     public function billPrint(Request $request)
     {

@@ -14,6 +14,20 @@
 </head>
 <body>
 	<div class="container-fluid"> 
+        <div style="display: flex;margin-top: 20px; flex-direction: inline; justify-content: space-between;">
+        <div>
+          <img src="{{ url('images/logo/logo.png') }}" style="height: 40px;" alt="" />
+        </div>
+         
+           <div style="text-align: center;">
+               <p style="font-size: 14px;text-transform: uppercase;line-height: 5px;">Limmex Construction</p>
+               <span style="font-size: 10px; line-height: 2px;">Import | Supply | Equipment Rent & Maintenance</span>
+            </div>
+     
+           <div></div>
+      
+      </div>
+           <div style="border-bottom: 1px solid #000;"></div>
     <div class="text-center">
         <h3>Equipment Expense List</h3>
         <p>

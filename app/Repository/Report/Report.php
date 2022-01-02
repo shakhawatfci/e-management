@@ -187,6 +187,7 @@ public function getEquipmentWiseReport($month_from,$month_to,$equipment_type_id,
                             SUM(project_payment) as project_payment,
                             SUM(vendor_payment) as vendor_payment,
                             SUM(operator_total_amount) as total_fooding_amount,
+                            SUM(operator_payment) as operator_payment_amount,
                             SUM(project_adjustment_payment) as project_adjustment_payment,
                             SUM(vendor_adjustment_payment) as vendor_adjustment_payment,
                             SUM(operator_adjustment_payment) as operator_adjustment_payment')
@@ -209,13 +210,6 @@ public function getEquipmentWiseReport($month_from,$month_to,$equipment_type_id,
                                 ->where('equipment_type_id','=',$equipment_type_id)
                                 ->where('equipement_id','=',$equipment_id)
                                 ->sum('amount');
-
-      $fooding_paid_amount    = OperatorPayment::where('month','=',$value)
-                                ->where('vendor_id','=',$vendor_id)
-                                ->where('equipment_type_id','=',$equipment_type_id)
-                                ->where('equipement_id','=',$equipment_id)
-                                ->sum('amount');                   
-                                                  
        $project_bill_amount   =  0;
        $vendor_bill_amount    =  0;
        $fooding_bill_amount    =  0;
@@ -226,6 +220,7 @@ public function getEquipmentWiseReport($month_from,$month_to,$equipment_type_id,
        $vendor_outstanding    =  0;
        $bill_profit           =  0;
        $fooding_outstanding   =  0;
+       $fooding_paid_amount = 0;
        
        if($bill)
        {
@@ -237,7 +232,7 @@ public function getEquipmentWiseReport($month_from,$month_to,$equipment_type_id,
          $project_payment     = $bill->project_payment+$bill->project_adjustment_payment;
          $vendor_payment      = $bill->vendor_payment+$bill->vendor_adjustment_payment;
          
-         $fooding_payment     = $bill->total_fooding_amount+$bill->operator_adjustment_payment;
+         $fooding_payment     = $bill->operator_payment_amount+$bill->operator_adjustment_payment;
 
          $project_outstanding = $project_bill_amount-$project_payment;
          $vendor_outstanding  = $vendor_bill_amount-$vendor_payment;
@@ -345,6 +340,7 @@ public function getProjectWiseReport($month_from,$month_to,$project_id)
                                SUM(project_payment) as project_payment,
                                SUM(vendor_payment) as vendor_payment,
                                SUM(operator_total_amount) as total_fooding_amount,
+                                SUM(operator_payment) as operator_payment_amount,
                                SUM(project_adjustment_payment) as project_adjustment_payment,
                                SUM(vendor_adjustment_payment) as vendor_adjustment_payment,
                                SUM(operator_adjustment_payment) as fooding_adjustment_payment')
@@ -362,9 +358,7 @@ public function getProjectWiseReport($month_from,$month_to,$project_id)
                                   ->where('project_id','=',$project_id)
                                   ->sum('amount');
 
-        $fooding_paid_amount    = OperatorPayment::where('month','=',$value)
-                                  ->where('project_id','=',$project_id)
-                                  ->sum('amount');                              
+                                  
                                                      
           $project_bill_amount   =  0;
           $vendor_bill_amount    =  0;
@@ -375,10 +369,12 @@ public function getProjectWiseReport($month_from,$month_to,$project_id)
           $project_outstanding   =  0;
           $vendor_outstanding    =  0;
           $bill_profit           =  0;
+          $fooding_paid_amount   =  0;
           $fooding_outstanding   =  0;
           
           if($bill)
           {
+            $fooding_paid_amount = $bill->operator_payment_amount;
             $project_bill_amount = $bill->project_bill_amount ? $bill->project_bill_amount : 0;
             $vendor_bill_amount  = $bill->vendor_bill_amount  ? $bill->vendor_bill_amount  : 0;
             $fooding_bill_amount  = $bill->total_fooding_amount  ? $bill->total_fooding_amount  : 0;
@@ -386,11 +382,12 @@ public function getProjectWiseReport($month_from,$month_to,$project_id)
    
             $project_payment     = $bill->project_payment+$bill->project_adjustment_payment;
             $vendor_payment      = $bill->vendor_payment+$bill->vendor_adjustment_payment;
-            $fooding_payment     = $bill->total_fooding_amount + $bill->fooding_adjustment_payment;
+            $fooding_payment     = $fooding_paid_amount + $bill->fooding_adjustment_payment;
 
             $project_outstanding = $project_bill_amount-$project_payment;
             $vendor_outstanding  = $vendor_bill_amount-$vendor_payment;
             $fooding_outstanding  = ($fooding_bill_amount - $fooding_payment);
+
      
           }
           // dd($bill);

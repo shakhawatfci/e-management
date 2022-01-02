@@ -283,7 +283,7 @@ export default {
               ],
           month : '',
           payment_date : '',
-          amount : '',
+          amount : 0,
           payment_method : '',
           documents_link : '',
           note : ''

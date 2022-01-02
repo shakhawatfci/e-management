@@ -39,9 +39,7 @@
 
                                               <tr>
                                                 <td colspan="2" class="text-right">Total Paid Amount</td>
-                                                <td>{{ totalPayment }}</td>
-                                                <td></td>
-                                                <td></td>
+                                                <td colspan="3">{{ totalPayment }}</td>
                                               </tr>
                                          </table>
                                       </div>
@@ -60,6 +58,14 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <a
+                    :href="
+                      url +
+                      `operator-payment-list-pdf/print?action=print&bill_id=${bill_id}`
+                    "
+                    class="btn btn-danger"
+                    ><i class="fa fa-print" target="_blank"></i> Print</a>
+
                     <button class="btn btn-default" data-dismiss="modal">
                          <i class="flaticon-delete-1"></i> close</button>
                 </div>
@@ -78,7 +84,9 @@ export default {
    {  
        return {
          bill : null,  
+         bill_id : null,  
          payments : [],
+         url : base_url,
          isLoading : true
        }
    },
@@ -87,6 +95,7 @@ export default {
         var _this = this;
         EventBus.$on('view-operator-payment',function(bill) {
                 _this.bill = bill;
+                _this.bill_id = bill.id;
                 _this.getOperatorPayment(bill.id);
            $('#ViewOperatorPayment').modal('show');
         });

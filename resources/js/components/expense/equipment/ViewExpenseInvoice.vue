@@ -5,7 +5,7 @@
         <select
           class="form-control"
           v-model="project_id"
-          @change="getEquipmentExpense()"
+          @change="getEquipmentExpenseInvoice()"
         >
           <option value>All Projects</option>
           <option
@@ -21,7 +21,7 @@
         <select
           class="form-control"
           v-model="equipment_type_id"
-          @change="getEquipmentExpense()"
+          @change="getEquipmentExpenseInvoice()"
         >
           <option value>All Equipment Type</option>
           <option
@@ -37,7 +37,7 @@
         <select
           class="form-control"
           v-model="vendor_id"
-          @change="getEquipmentExpense()"
+          @change="getEquipmentExpenseInvoice()"
         >
           <option value>All Vendor</option>
           <option v-for="vendor in vendors" :key="vendor.id" :value="vendor.id">
@@ -50,7 +50,7 @@
         <select
           class="form-control"
           v-model="equipement_id"
-          @change="getEquipmentExpense()"
+          @change="getEquipmentExpenseInvoice()"
         >
           <option value>All Equipment</option>
           <option
@@ -75,7 +75,7 @@
           :monthLabels="pickermonth.lebel"
           placeHolder="End Month"
           v-model="end_month"
-          @input="getEquipmentExpense()"
+          @input="getEquipmentExpenseInvoice()"
         ></vue-monthly-picker>
       </div>
       <div class="col-md-3" style="margin-bottom: 10px">
@@ -84,7 +84,7 @@
           v-model="keyword"
           class="form-control"
           placeholder="Search Equipment Expense"
-          @keyup="getEquipmentExpense()"
+          @keyup="getEquipmentExpenseInvoice()"
         />
       </div>
       <div class="col-md-2" style="margin-bottom: 15px">
@@ -145,8 +145,8 @@
                   </button>
                 </td>
               </tr>
-              <tr v-if="invoices.length > 0">
-                <td colspan="7">
+              <tr v-if="invoices.data.length > 0">
+                <td colspan="9">
                   <a
                     :href="
                       url +

@@ -2276,8 +2276,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -45060,10 +45058,6 @@ var render = function() {
                                 ]),
                                 _vm._v(" "),
                                 _c("td", [
-                                  _vm._v(_vm._s(value.employee_salary))
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [
                                   _vm._v(_vm._s(value.equipment_expense))
                                 ]),
                                 _vm._v(" "),
@@ -45159,12 +45153,6 @@ var render = function() {
                                     _vm._s(
                                       _vm.total_sum.total_fooding_paid_amount
                                     )
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("th", [
-                                  _vm._v(
-                                    _vm._s(_vm.total_sum.total_employee_salary)
                                   )
                                 ]),
                                 _vm._v(" "),

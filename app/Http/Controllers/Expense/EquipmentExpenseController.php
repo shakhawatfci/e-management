@@ -125,7 +125,7 @@ class EquipmentExpenseController extends Controller
             $month .= 'From ' .$start. ' to ' .$end;  
         }
         $equipment = $equipment->get();
-
+        // dd($equipment);
         if($request->action == 'print')
         {
             return view('expense.print.equipment_expense_print',[
@@ -133,8 +133,8 @@ class EquipmentExpenseController extends Controller
                 'month' => $month
             ]);
         } else {
-            return view('expense.pdf.equipment_expense_pdf', [
-            // $pdf = \PDF::loadView('expense.pdf.equipment_expense_pdf', [
+            // return view('expense.pdf.equipment_expense_pdf', [
+            $pdf = \PDF::loadView('expense.pdf.equipment_expense_pdf', [
                 'equipments' => $equipment,
                 'month' => $month
             ]);
@@ -230,7 +230,34 @@ class EquipmentExpenseController extends Controller
 
     public function ExpenseInvoice()
     {
-        return view('expense.equipment_expense_invoice');
+        $project = Project::orderBy('project_name', 'asc')
+            ->where('project_status', '=', AllStatic::$active)
+            ->get();
+
+        $equipment_type = EquipmentType::orderBy('name', 'asc')
+            ->where('status', '=', AllStatic::$active)
+            ->get();
+
+        $vendor = Vendor::orderBy('vendor_name', 'asc')
+            ->where('status', '=', AllStatic::$active)
+            ->get();
+
+        $equipement = Equipement::orderBy('eq_name', 'asc')
+            ->where('eq_status', '=', AllStatic::$active)
+            ->get();
+
+        $equipment_head = EquipmentExpenseHead::orderBy('head_name', 'asc')
+            ->where('status', '=', AllStatic::$active)
+            ->get();
+
+        return view('expense.equipment_expense_invoice', [
+            'projects' => $project,
+            'vendors' => $vendor,
+            'equipment_types' => $equipment_type,
+            'equipements' => $equipement,
+            'equipment_heads' => $equipment_head,
+        ]);
+        // return view('expense.equipment_expense_invoice');
     }
 
     public function ExpenseInvoiceList(Request $request)
@@ -256,8 +283,10 @@ class EquipmentExpenseController extends Controller
         }
         if($request->keyword != '') {
             $equipment->where('month','=',$request->keyword);
-            $equipment->orWhere('payment_date','=',$request->keyword);
-            $equipment->orWhere('amount','=',$request->keyword);
+            $equipment->orWhere('payment_date','like', '%'.$request->keyword.'%');
+            $equipment->orWhere('payment_method','like', '%'.$request->keyword.'%');
+            $equipment->orWhere('invoice_no','like', '%'.$request->keyword.'%');
+            $equipment->orWhere('total_amount','=',$request->keyword);
         }
         if ($request->end_month != '' && $request->end_month != 'undefined') {
             $start = date('Y-m',strtotime(str_replace('/','-',$request->start_month)));

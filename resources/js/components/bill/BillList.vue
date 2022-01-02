@@ -61,6 +61,19 @@
       <div class="col-md-3" style="margin-bottom: 10px">
         <select
           class="form-control"
+          v-model="operator_id"
+          @change="getBillList()"
+        >
+          <option value>All Operator</option>
+          <option v-for="operat in operator" :key="operat.id" :value="operat.id">
+            {{ operat.name }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-md-3" style="margin-bottom: 10px">
+        <select
+          class="form-control"
           v-model="equipment_id"
           @change="getBillList()"
         >
@@ -294,7 +307,7 @@
                   </div>
                 </td>
               </tr>
-              <tr class="float-rigth">
+              <tr class="float-rigth" v-if="bill_list.data.length > 0">
                 <td colspan="7">
                   <a
                     :href="
@@ -359,7 +372,7 @@ import EditBill from "./EditBill";
 import BillDetails from "./BillDetails";
 export default {
   mixins: [Mixin],
-  props: ["vendors", "equipment_types", "projects"],
+  props: ["vendors", "equipment_types", "projects","operator"],
   components: {
     VueMonthlyPicker,
     pagination: Pagination,
@@ -377,6 +390,7 @@ export default {
       bill_list: [],
       equipments: [],
       vendor_id: "",
+      operator_id: "",
       equipment_type_id: "",
       project_id: "",
       equipment_id: "",
@@ -413,7 +427,7 @@ export default {
     EventBus.$on("bill-changed", function () {
       _this.getBillList();
     });
-
+    // console.log(this.operator)
     this.getBillList();
   },
 
@@ -438,6 +452,7 @@ export default {
             &vendor_id=${this.vendor_id}
             &equipment_type_id=${this.equipment_type_id}
             &project_id=${this.project_id}
+            &operator_id=${this.operator_id}
             &equipment_id=${this.equipment_id}
             &payment_status=${this.payment_status}
             &bill_no=${this.bill_no}

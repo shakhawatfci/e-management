@@ -2815,6 +2815,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2829,7 +2842,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
-  props: ["vendors", "equipment_types", "projects"],
+  props: ["vendors", "equipment_types", "projects", "operator"],
   components: {
     VueMonthlyPicker: vue_monthly_picker__WEBPACK_IMPORTED_MODULE_2___default.a,
     pagination: _pagination_Pagination__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -2847,6 +2860,7 @@ __webpack_require__.r(__webpack_exports__);
       bill_list: [],
       equipments: [],
       vendor_id: "",
+      operator_id: "",
       equipment_type_id: "",
       project_id: "",
       equipment_id: "",
@@ -2868,7 +2882,8 @@ __webpack_require__.r(__webpack_exports__);
 
     _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on("bill-changed", function () {
       _this.getBillList();
-    });
+    }); // console.log(this.operator)
+
     this.getBillList();
   },
   methods: {
@@ -2889,7 +2904,7 @@ __webpack_require__.r(__webpack_exports__);
         lt_mo = this.end_month._i;
       }
 
-      axios.get(base_url + "bill-list?page=".concat(page, "\n            &vendor_id=").concat(this.vendor_id, "\n            &equipment_type_id=").concat(this.equipment_type_id, "\n            &project_id=").concat(this.project_id, "\n            &equipment_id=").concat(this.equipment_id, "\n            &payment_status=").concat(this.payment_status, "\n            &bill_no=").concat(this.bill_no, "\n            &start_month=").concat(st_mo, "\n            &end_month=").concat(lt_mo)).then(function (response) {
+      axios.get(base_url + "bill-list?page=".concat(page, "\n            &vendor_id=").concat(this.vendor_id, "\n            &equipment_type_id=").concat(this.equipment_type_id, "\n            &project_id=").concat(this.project_id, "\n            &operator_id=").concat(this.operator_id, "\n            &equipment_id=").concat(this.equipment_id, "\n            &payment_status=").concat(this.payment_status, "\n            &bill_no=").concat(this.bill_no, "\n            &start_month=").concat(st_mo, "\n            &end_month=").concat(lt_mo)).then(function (response) {
         _this2.bill_list = response.data;
         _this2.isLoading = false;
       });
@@ -5161,6 +5176,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -5168,7 +5189,9 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       bill: null,
+      bill_id: null,
       payments: [],
+      url: base_url,
       isLoading: true
     };
   },
@@ -5177,6 +5200,7 @@ __webpack_require__.r(__webpack_exports__);
 
     _vue_assets__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('view-operator-payment', function (bill) {
       _this.bill = bill;
+      _this.bill_id = bill.id;
 
       _this.getOperatorPayment(bill.id);
 
@@ -5849,7 +5873,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* .bg-green {\r\n  background-color : green;\r\n } */\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* .bg-green {\r\n  background-color : green;\r\n } */\r\n", ""]);
 
 // exports
 
@@ -33955,6 +33979,59 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
+                  value: _vm.operator_id,
+                  expression: "operator_id"
+                }
+              ],
+              staticClass: "form-control",
+              on: {
+                change: [
+                  function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.operator_id = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  },
+                  function($event) {
+                    return _vm.getBillList()
+                  }
+                ]
+              }
+            },
+            [
+              _c("option", { attrs: { value: "" } }, [_vm._v("All Operator")]),
+              _vm._v(" "),
+              _vm._l(_vm.operator, function(operat) {
+                return _c(
+                  "option",
+                  { key: operat.id, domProps: { value: operat.id } },
+                  [_vm._v("\n          " + _vm._s(operat.name) + "\n        ")]
+                )
+              })
+            ],
+            2
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-md-3", staticStyle: { "margin-bottom": "10px" } },
+        [
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
                   value: _vm.equipment_id,
                   expression: "equipment_id"
                 }
@@ -34494,74 +34571,78 @@ var render = function() {
                           ])
                         }),
                         _vm._v(" "),
-                        _c("tr", { staticClass: "float-rigth" }, [
-                          _c("td", { attrs: { colspan: "7" } }, [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "btn btn-primary btn-sm",
-                                attrs: {
-                                  href:
-                                    _vm.url +
-                                    "bill-list-pdf/print?action='pdf'&vendor_id=" +
-                                    _vm.vendor_id +
-                                    "&equipment_type_id=" +
-                                    _vm.equipment_type_id +
-                                    "&project_id=" +
-                                    _vm.project_id +
-                                    "&equipment_id=" +
-                                    _vm.equipment_id +
-                                    "&payment_status=" +
-                                    _vm.payment_status +
-                                    "&bill_no=" +
-                                    _vm.bill_no +
-                                    "&start_month=" +
-                                    _vm.start_month._i +
-                                    "&end_month=" +
-                                    _vm.end_month._i
-                                }
-                              },
-                              [
-                                _c("i", { staticClass: "fa fa-file-pdf-o" }),
-                                _vm._v(" PDF")
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "btn btn-danger btn-sm",
-                                attrs: {
-                                  href:
-                                    _vm.url +
-                                    "bill-list-pdf/print?action=print&vendor_id=" +
-                                    _vm.vendor_id +
-                                    "&equipment_type_id=" +
-                                    _vm.equipment_type_id +
-                                    "&project_id=" +
-                                    _vm.project_id +
-                                    "&equipment_id=" +
-                                    _vm.equipment_id +
-                                    "&payment_status=" +
-                                    _vm.payment_status +
-                                    "&bill_no=" +
-                                    _vm.bill_no +
-                                    "&start_month=" +
-                                    _vm.start_month._i +
-                                    "&end_month=" +
-                                    _vm.end_month._i
-                                }
-                              },
-                              [
-                                _c("i", {
-                                  staticClass: "fa fa-print",
-                                  attrs: { target: "_blank" }
-                                }),
-                                _vm._v(" Print")
-                              ]
-                            )
-                          ])
-                        ])
+                        _vm.bill_list.data.length > 0
+                          ? _c("tr", { staticClass: "float-rigth" }, [
+                              _c("td", { attrs: { colspan: "7" } }, [
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "btn btn-primary btn-sm",
+                                    attrs: {
+                                      href:
+                                        _vm.url +
+                                        "bill-list-pdf/print?action='pdf'&vendor_id=" +
+                                        _vm.vendor_id +
+                                        "&equipment_type_id=" +
+                                        _vm.equipment_type_id +
+                                        "&project_id=" +
+                                        _vm.project_id +
+                                        "&equipment_id=" +
+                                        _vm.equipment_id +
+                                        "&payment_status=" +
+                                        _vm.payment_status +
+                                        "&bill_no=" +
+                                        _vm.bill_no +
+                                        "&start_month=" +
+                                        _vm.start_month._i +
+                                        "&end_month=" +
+                                        _vm.end_month._i
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fa fa-file-pdf-o"
+                                    }),
+                                    _vm._v(" PDF")
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "btn btn-danger btn-sm",
+                                    attrs: {
+                                      href:
+                                        _vm.url +
+                                        "bill-list-pdf/print?action=print&vendor_id=" +
+                                        _vm.vendor_id +
+                                        "&equipment_type_id=" +
+                                        _vm.equipment_type_id +
+                                        "&project_id=" +
+                                        _vm.project_id +
+                                        "&equipment_id=" +
+                                        _vm.equipment_id +
+                                        "&payment_status=" +
+                                        _vm.payment_status +
+                                        "&bill_no=" +
+                                        _vm.bill_no +
+                                        "&start_month=" +
+                                        _vm.start_month._i +
+                                        "&end_month=" +
+                                        _vm.end_month._i
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fa fa-print",
+                                      attrs: { target: "_blank" }
+                                    }),
+                                    _vm._v(" Print")
+                                  ]
+                                )
+                              ])
+                            ])
+                          : _vm._e()
                       ],
                       2
                     )
@@ -38683,13 +38764,9 @@ var render = function() {
                                         [_vm._v("Total Paid Amount")]
                                       ),
                                       _vm._v(" "),
-                                      _c("td", [
+                                      _c("td", { attrs: { colspan: "3" } }, [
                                         _vm._v(_vm._s(_vm.totalPayment))
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td"),
-                                      _vm._v(" "),
-                                      _c("td")
+                                      ])
                                     ])
                                   ],
                                   2
@@ -38707,7 +38784,29 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._m(1)
+            _c("div", { staticClass: "modal-footer" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-danger",
+                  attrs: {
+                    href:
+                      _vm.url +
+                      "operator-payment-list-pdf/print?action=print&bill_id=" +
+                      _vm.bill_id
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fa fa-print",
+                    attrs: { target: "_blank" }
+                  }),
+                  _vm._v(" Print")
+                ]
+              ),
+              _vm._v(" "),
+              _vm._m(1)
+            ])
           ])
         ]
       )
@@ -38735,13 +38834,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-default", attrs: { "data-dismiss": "modal" } },
-        [_c("i", { staticClass: "flaticon-delete-1" }), _vm._v(" close")]
-      )
-    ])
+    return _c(
+      "button",
+      { staticClass: "btn btn-default", attrs: { "data-dismiss": "modal" } },
+      [_c("i", { staticClass: "flaticon-delete-1" }), _vm._v(" close")]
+    )
   }
 ]
 render._withStripped = true

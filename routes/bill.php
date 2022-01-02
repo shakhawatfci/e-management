@@ -10,11 +10,13 @@ Route::get('bill-print','Bill\BillController@billPrint')->name('bill.print');
 
 Route::get('bill-list-pdf/print','Bill\BillController@billListPdfPrint');
 
+
 // project payment 
 
 Route::resource('project-payment','ProjectPaymentController');
 Route::resource('vendor-payment','VendorPaymentController');
 Route::resource('operator-payment','OperatorPaymentController');
+Route::get('operator-payment-list-pdf/print','OperatorPaymentController@operatorPaymentPrint');
 
 // equipment  sales
 
