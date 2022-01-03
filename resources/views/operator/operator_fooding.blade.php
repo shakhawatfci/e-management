@@ -17,17 +17,17 @@
                     </div>
 
                     <div class="col-xl-8 col-lg-7 col-md-7 col-sm-5 text-sm-right text-center layout-spacing align-self-center">
-                        <div class="d-flex justify-content-sm-end justify-content-center">
+                        <!-- <div class="d-flex justify-content-sm-end justify-content-center">
                             <button  data-toggle="modal"  data-target="#createOperatorFooding"
                              class="btn btn-primary"  data-placement="top" title="Create Operator Fooding">
                             <i class="far fa-plus-square"></i> Create New
                             </button>
-                        </div>
-                        <create-operator-fooding :projects="{{ $projects }}" :vendors="{{ $vendors }}" :equipment_types="{{ $equipment_types }}" :equipements="{{ $equipements }}" :operators="{{ $operators }}"></create-operator-fooding>
+                        </div> -->
+                
                     </div>
                 </div>
 
-             <view-operator-fooding :projects="{{ $projects }}" :vendors="{{ $vendors }}" :equipment_types="{{ $equipment_types }}" :equipements="{{ $equipements }}" :operators="{{ $operators }}"></view-operator-fooding>
+             <view-operator-fooding :projects="{{ $projects }}" :equipements="{{ $equipements }}" :operators="{{ $operators }}"></view-operator-fooding>
 
             </div>
         </div>

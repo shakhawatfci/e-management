@@ -65,29 +65,27 @@
 
         	   	  <tr>
         	   	    <td>1</td>
-        	   	    <td>Equipement Bill</td>
+        	   	    <td>Equipment Bill</td>
         	   	    <td>Hour</td>
         	   	    <td>{{ $bill->total_hour }}</td>
         	   	    <td>{{ round($bill->project_rate_per_hour,2) }}</td>
         	   	    <td>{{ round($bill->project_amount,2) }}</td>
         	   	  </tr>
-
+                  <tr>
+                    <td>2</td>
+                    <td>Operator Bill</td>
+                    <td>Hour</td>
+                    <td>{{ $bill->total_hour }}</td>
+                    <td>{{ round($bill->operator_rate_per_hour,2) }}</td>
+                    <td>{{ round(($bill->operator_total_amount - $bill->operator_payment),2) }}</td>
+                  </tr>
         	   	  <tr>
-        	   	    <td>2</td>
+        	   	    <td>3</td>
         	   	    <td>VAT</td>
         	   	    <td>-</td>
         	   	    <td>-</td>
         	   	    <td>-</td>
         	   	    <td>{{ round((($bill->project_amount*$bill->project_vat)/100),2) }}</td>
-        	   	  </tr>
-
-        	   	  <tr>
-        	   	    <td>3</td>
-        	   	    <td>AIT</td>
-        	   	    <td>-</td>
-        	   	    <td>-</td>
-        	   	    <td>-</td>
-        	   	    <td>{{ round((($bill->project_amount*$bill->project_ait)/100),2) }}</td>
         	   	  </tr>
 
         	   	  <tr>
@@ -105,9 +103,9 @@
                    @endphp
 
         	   	   <tr>
-        	   	    <td style="text-align: right;" colspan="5"><strong>Total Outstanding Amount
+        	   	    <td style="text-align: right;" colspan="5"><strong>Total Bill Amount
                         @if($vat>0) (Including VAT & Tax) @endif </strong></td>
-        	   	    <td><strong>{{ round($bill->total_project_amount,2) }}</strong></td>
+        	   	    <td><strong>{{ round(($bill->total_project_amount + $bill->operator_total_amount - $bill->operator_payment),2) }}</strong></td>
         	   	  </tr>
 
 
@@ -117,7 +115,7 @@
                 $taka = new App\Helper\AmountConverter();
 
                @endphp
-        	   <p><strong>Amount In Words</strong> {{ $taka->get_bd_amount_in_text(round($bill->total_project_amount,2)) }}</p>
+        	   <p><strong>Amount In Words</strong> {{ $taka->get_bd_amount_in_text(round(($bill->total_project_amount + $bill->operator_total_amount - $bill->operator_payment),2)) }}</p>
         	</div>
         </div>
 

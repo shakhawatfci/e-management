@@ -1,176 +1,72 @@
 <template>
-<!-- Modal -->
-    <div id="ShowOperatorFooding" class="modal animated fadeInRight custo-fadeInRight show" tabindex="-1" role="dialog" aria-labelledby="addContactModalTitle" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <!-- Modal -->
+    <div class="modal animated rotateInDownLeft custo-rotateInDownLeft" id="ViewOperatorFoodingPayment" tabindex="-1" role="dialog" aria-labelledby="addContactModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-xl custom-modal" role="document" >
             <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" v-if="bill">Payment History  For {{ bill.operator.name }} for {{ bill.equipement.eq_name }} in
+                          {{ bill.project.project_name  }} Bill No {{ bill.bill_no }}</h4>
+                </div>
                 <div class="modal-body">
                     <i class="flaticon-cancel-12 close" data-dismiss="modal"></i>
                     <div class="add-contact-box">
-                        <div class="add-contact-content">
-                         <div class="layout-spacing">
-                        <div class="widget widget-table-one">
-                          <div class="widget-heading">
-                                <h5 class="">View Operator Fooding</h5>
-                            </div>
-                            <div class="widget-content">
-                          <div class="row">
-                                <div class="col-6 transactions-list">
-                                    <div class="t-item">
-                                        <div class="t-company-name">
-                                            <div class="t-icon">
-                                                <div class="avatar avatar-xl">
-                                                    <span class="avatar-title rounded-circle">PT</span>
-                                                </div>
-                                            </div>
-                                            <div class="t-name">
-                                                <h4>Project</h4>
-                                                <p class="meta-date">{{ fooding.project.project_name }}</p>
-                                            </div>
+                        <div class="add-contact-content text-left">
 
-                                        </div>
-                                       
-                                    </div>
+                                <div class="row">
+                                  
+                                  <div class="col-md-12" v-if="!isLoading">
+                                      <div class="table-responsive" v-if="payments.length > 0">
+                                         <table class="table table-bordered table-hover mb-4 text-white">
+                                             <tr>
+                                              <th>Date</th>
+                                              <th>Entry By</th>
+                                              <th>Amount</th>
+                                              <th>Note</th>
+                                             </tr>
+
+                                             <tr v-for="(value,index) in payments" :key="value.id">
+                                              <th>{{ value.date | dateToString }}</th>
+                                              <th>{{ value.user.name }}</th>
+                                              <th>{{ value.amount }}</th>
+                                              <th>{{ value.note }}</th>
+                                             </tr>
+
+                                              <tr>
+                                                <td colspan="2" class="text-right">Total Paid Amount</td>
+                                                <td colspan="3">{{ totalPayment }}</td>
+                                              </tr>
+                                         </table>
+                                      </div>
+                                      <div class="text-center" v-else>
+                                        <h3>No Payment Yet</h3>
+                                      </div>
+                                  </div>
+
+                                <div class="col-dm-12 text-center" v-else>
+                                   <h3>Loading....</h3>
                                 </div>
-
-                                <div class="col-6 transactions-list">
-                                    <div class="t-item">
-                                        <div class="t-company-name">
-                                            <div class="t-icon">
-                                                <div class="avatar avatar-xl">
-                                                    <span class="avatar-title rounded-circle">VN</span>
-                                                </div>
-                                            </div>
-                                            <div class="t-name">
-                                                <h4>Vendor</h4>
-                                                <p class="meta-date">{{ fooding.vendor.vendor_name }}</p>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
+                                
+                                    
                                 </div>
-
-                                <div class="col-6 transactions-list">
-                                    <div class="t-item">
-                                        <div class="t-company-name">
-                                            <div class="t-icon">
-                                                <div class="avatar avatar-xl">
-                                                    <span class="avatar-title rounded-circle">ET</span>
-                                                </div>
-                                            </div>
-                                            <div class="t-name">
-                                                <h4>Equipment Type</h4>
-                                                <p class="meta-date">{{ fooding.equipment_type.name }}</p>
-                                            </div>
-
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-
-                                <div class="col-6 transactions-list">
-                                    <div class="t-item">
-                                        <div class="t-company-name">
-                                            <div class="t-icon">
-                                                <div class="avatar avatar-xl">
-                                                    <span class="avatar-title rounded-circle">EQ</span>
-                                                </div>
-                                            </div>
-                                            <div class="t-name">
-                                                <h4>Equipment</h4>
-                                                <p class="meta-date">{{ fooding.equipement.eq_name }}</p>
-                                            </div>
-
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-
-                                <div class="col-6 transactions-list">
-                                    <div class="t-item">
-                                        <div class="t-company-name">
-                                            <div class="t-icon">
-                                                <div class="avatar avatar-xl">
-                                                    <span class="avatar-title rounded-circle">DT</span>
-                                                </div>
-                                            </div>
-                                            <div class="t-name">
-                                                <h4>Date</h4>
-                                                <p class="meta-date">{{ fooding.date | dateToString }}</p>
-                                            </div>
-
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-
-                                <div class="col-6 transactions-list">
-                                    <div class="t-item">
-                                        <div class="t-company-name">
-                                            <div class="t-icon">
-                                                <div class="avatar avatar-xl">
-                                                    <span class="avatar-title rounded-circle">FA</span>
-                                                </div>
-                                            </div>
-                                            <div class="t-name">
-                                                <h4>Fooding Amount</h4>
-                                                <p class="meta-date">{{ fooding.fooding_amount }}</p>
-                                            </div>
-
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-
-                                <div class="col-6 transactions-list">
-                                    <div class="t-item">
-                                        <div class="t-company-name">
-                                            <div class="t-icon">
-                                                <div class="avatar avatar-xl">
-                                                    <span class="avatar-title rounded-circle">OP</span>
-                                                </div>
-                                            </div>
-                                            <div class="t-name">
-                                                <h4>Operator</h4>
-                                                <p class="meta-date">{{ fooding.operator.name }}</p>
-                                            </div>
-
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-
-                                <div class="col-6 transactions-list">
-                                    <div class="t-item">
-                                        <div class="t-company-name">
-                                            <div class="t-icon">
-                                                <div class="avatar avatar-xl">
-                                                    <span class="avatar-title rounded-circle">ST</span>
-                                                </div>
-                                            </div>
-                                            <div class="t-name">
-                                                <h4>Status</h4>
-                                                <p class="meta-date" v-if="fooding.status == 1">Active</p>
-                                                <p class="meta-date" v-else>Inactive</p>
-                                            </div>
-
-                                        </div>
-                                        
-                                    </div>
-                                </div>  
-                            </div>
                         </div>
-                    </div>
-	                    </div>      
-                    </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-default" data-dismiss="modal"> <i class="flaticon-delete-1"></i> Close</button>
+                    <a target="_blank" 
+                    :href="
+                      url +
+                      `operator-fooding-payment-list-pdf/print?action=print&project_id=${project_id}&equipement_id=${equipement_id}`
+                    "
+                    class="btn btn-danger"
+                    ><i class="fa fa-print" target="_blank"></i> Print</a>
+
+                    <button class="btn btn-default" data-dismiss="modal">
+                         <i class="flaticon-delete-1"></i> close</button>
                 </div>
-              </div>
+            </div>
+
         </div>
     </div>
-
 </template>
 
 <script>
@@ -179,30 +75,89 @@ import Mixin from '../../../mixin';
 export default {
    mixins : [Mixin],
    data()
-   {
-        
+   {  
        return {
-        fooding : {
-          project : {id : '', project_name : ''},
-          vendor : {id : '', vendor_name : ''},
-          equipment_type : {id : '', name : ''},
-          equipement : {id : '', eq_name : ''},
-          date : '',
-          operator : {id : '', name : ''},
-          fooding_amount : '',
-          status : ''
-        },
-            url : base_url
+         bill : null,  
+         project_id : null,  
+         equipement_id : null,  
+         payments : [],
+         url : base_url,
+         isLoading : true
        }
    },
 
    mounted() {
-      var _this = this;
-      EventBus.$on('operator-fooding-show', function(value){
-        $('#ShowOperatorFooding').modal('show')
-          _this.fooding = value;
-      })
+        var _this = this;
+        EventBus.$on('operator-fooding-details',function(value) {
+                _this.bill = value;
+                _this.project_id = value.project_id;
+                _this.equipement_id = value.equipement_id;
+                _this.getOperatorPayment(value.project_id,value.equipement_id);
+           $('#ViewOperatorFoodingPayment').modal('show');
+        });
    },
-   
+
+ methods : {
+
+ getOperatorPayment(project_id,equipement_id)
+ {
+   this.isLoading = true;
+     axios.get(base_url+'operator-fooding-payment/project/'+project_id+'/equipment/'+equipement_id)
+        .then(response => {
+        this.payments = response.data;
+        this.isLoading = false;
+    });
+
+ },
+
+deletePayment(id,index) {
+      Swal.fire(
+        {
+          title: "Are you sure ?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!"
+        },
+        () => {}
+      ).then(result => {
+        if (result.value) {
+          axios.delete(`${base_url}operator-payment/${id}`)
+              .then(response => {
+            this.successMessage(response.data);
+            if(response.data.status === 'success')
+            {
+             this.payments.splice(index,1);
+             EventBus.$emit('bill-changed');
+            }
+          });
+        }
+      });
+    },
+
+ },
+
+ computed : {
+
+   totalPayment() {
+     let total = 0;
+     this.payments.forEach((payment) => {
+       total += Number(payment.amount);
+     });
+     return total;
+   }
+
+ }
+ 
+  
 }
+
 </script>
+
+<style  scoped>
+.custom-modal {
+ min-width: 95% !important;
+}
+</style>

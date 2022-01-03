@@ -119,9 +119,11 @@ class EquipmentAssignController extends Controller
             'equipment_type'        => 'required',
             'vendor'                => 'required',
             'equipment'             => 'required',
-            'total_hour'            => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'total_project_amount'  => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
-            'total_vendor_amount'   => 'nullable|regex:/^[0-9]+(\.[0-9]{1,10})?$/',
+            'total_hour'            => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,20})?$/',
+            'total_project_amount'  => 'required|gt:0|regex:/^[0-9]+(\.[0-9]{1,20})?$/',
+            'total_vendor_amount'   => 'nullable|regex:/^[0-9]+(\.[0-9]{1,20})?$/',
+            'operator_total_amount'   => 'nullable|regex:/^[0-9]+(\.[0-9]{1,20})?$/',
+            'operator_rate_per_hour'   => 'nullable|regex:/^[0-9]+(\.[0-9]{1,20})?$/',
             'project_rate_per_hour' => 'required|gt:0',
             'vendor_rate_per_hour'  => 'nullable',
             'assign_date'           => 'required',
@@ -233,6 +235,8 @@ class EquipmentAssignController extends Controller
             'project_rate_per_hour' => 'required|gt:0',
             'vendor_rate_per_hour'  => 'nullable',
             'assign_date'           => 'required',
+            'operator_total_amount'   => 'nullable|regex:/^[0-9]+(\.[0-9]{1,20})?$/',
+            'operator_rate_per_hour'   => 'nullable|regex:/^[0-9]+(\.[0-9]{1,20})?$/'
         ]);
 
         try
@@ -250,6 +254,8 @@ class EquipmentAssignController extends Controller
             $equipment_assign->total_vendor_amount   = $request->total_vendor_amount;
             $equipment_assign->project_rate_per_hour = $request->project_rate_per_hour;
             $equipment_assign->vendor_rate_per_hour  = $request->vendor_rate_per_hour;
+            $equipment_assign->operator_total_amount = $request->operator_total_amount;
+            $equipment_assign->operator_rate_per_hour = $request->operator_rate_per_hour;
             $equipment_assign->documents_link        = $request->document_links;
             $equipment_assign->assign_date           = $request->assign_date;
             $equipment_assign->update();

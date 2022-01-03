@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row">
-      <div class="col-md-3" style="margin-bottom: 10px">
+      <!-- <div class="col-md-3" style="margin-bottom: 10px">
         <input
           type="text"
           class="form-control"
@@ -9,7 +9,7 @@
           v-model="bill_no"
           @keyup="getBillList()"
         />
-      </div>
+      </div> -->
 
       <div class="col-md-3" style="margin-bottom: 10px">
         <select
@@ -28,7 +28,7 @@
         </select>
       </div>
 
-      <div class="col-md-3" style="margin-bottom: 10px">
+      <!-- <div class="col-md-3" style="margin-bottom: 10px">
         <select
           class="form-control"
           v-model="equipment_type_id"
@@ -56,7 +56,7 @@
             {{ vd.vendor_name }}
           </option>
         </select>
-      </div>
+      </div> -->
 
       <div class="col-md-3" style="margin-bottom: 10px">
         <select
@@ -65,7 +65,7 @@
           @change="getBillList()"
         >
           <option value>All Operator</option>
-          <option v-for="operat in operator" :key="operat.id" :value="operat.id">
+          <option v-for="operat in operators" :key="operat.id" :value="operat.id">
             {{ operat.name }}
           </option>
         </select>
@@ -78,13 +78,17 @@
           @change="getBillList()"
         >
           <option value>All Equipment</option>
-          <option v-for="eq in equipments" :key="eq.id" :value="eq.id">
+          <option v-for="eq in equipements" :key="eq.id" :value="eq.id">
             {{ eq.eq_name }}
           </option>
         </select>
       </div>
 
       <div class="col-md-3" style="margin-bottom: 10px">
+         <button type="button" class="btn btn-danger" @click="clearField()">Clear</button>
+      </div>
+
+      <!-- <div class="col-md-3" style="margin-bottom: 10px">
         <select
           class="form-control"
           v-model="payment_status"
@@ -111,7 +115,7 @@
           v-model="end_month"
           @input="getBillList()"
         ></vue-monthly-picker>
-      </div>
+      </div> -->
     </div>
 
     <div class="row" style="margin-top: 20px">
@@ -123,11 +127,11 @@
                 <!-- <th>Bill</th> -->
                 <th>Project</th>
                 <th>Equipment</th>
-                <!-- <th>Total Hour</th> -->
+                <th>Operator</th>
                 <!-- <th>Project Amount</th>
                 <th>Vendor Amount</th> -->
-                <th>Bill</th>
-                <th>Paid</th>
+                <th>Fooding Bill</th>
+                <th>Paid Amount</th>
                 <th>Due</th>
                 <th class="text-center">action</th>
               </tr>
@@ -136,6 +140,7 @@
               <tr v-for="value in fooding_bill.data" :key="value.id">
                 <td> {{ value.project.project_name }}</td>
                 <td>{{ value.equipement.eq_name }}</td>
+                <td> {{ value.operator.name }}</td>
                 <td>{{ value.total_fooding_amount }}</td>
                 <td>{{
                     Number(value.operator_adjustment_payment) +
@@ -150,68 +155,38 @@
                   }}</td>
 
                 <td class="text-center">
-                  <div class="dropdown custom-dropdown">
-                    <a
-                      class="dropdown-toggle"
-                      href="#"
-                      role="button"
-                      id="dropdownMenuLink2"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      <i class="fa fa-cogs fa-2x"></i>
-                    </a>
-                   
-                    <div
-                      class="dropdown-menu"
-                      aria-labelledby="dropdownMenuLink2"
-                    >
-                      <a
-                        class="dropdown-item"
-                        href
-                        @click.prevent="viewMore(value)"
-                        >View Bill Details</a
-                      >
-                      <a
-                        class="dropdown-item"
-                        :href="url + 'bill-print/' + value.id"
-                        target="_blank"
-                        >Print & PDF</a
-                      >
-                      
-
-                      <a
-                        class="dropdown-item"
-                        href
-                        @click.prevent="operatorPaymentHistory(value)"
-                        >Operator Payment History</a
-                      >
-                      <a
-                        class="dropdown-item"
-                        href
-                        @click.prevent="deleteBill(value.id)"
-                        >Delete Bill</a
-                      >
-                    </div>
-                  </div>
+                  <button
+                    class="btn btn-warning mb-2 mr-2 rounded-circle"
+                    title="View"
+                    @click="viewMore(value)"
+                  >
+                    <i class="far fa-eye"></i>
+                  </button>
+                
+                  <button
+                    class="btn btn-danger mb-2 mr-2 rounded-circle"
+                    title="Delete"
+                    @click.prevent="deleteBill(value.id)"
+                  >
+                    <i class="far fa-trash-alt"></i>
+                  </button>
                 </td>
               </tr>
               <tr class="float-rigth" v-if="fooding_bill.data.length > 0">
                 <td colspan="7">
-                  <a
+                  <a target="_blank"  
                     :href="
                       url +
-                      `bill-list-pdf/print?action='pdf'&vendor_id=${vendor_id}&equipment_type_id=${equipment_type_id}&project_id=${project_id}&equipment_id=${equipment_id}&payment_status=${payment_status}&bill_no=${bill_no}&start_month=${start_month._i}&end_month=${end_month._i}`
+                      `operator-fooding-list-pdf/print?action='pdf'&project_id=${project_id}&equipment_id=${equipment_id}&operator_id=${operator_id}&no_paginate=yes`
                     "
                     class="btn btn-primary btn-sm"
                     ><i class="fa fa-file-pdf-o"></i> PDF</a
                   >
 
-                  <a
+                  <a target="_blank"
                     :href="
                       url +
-                      `bill-list-pdf/print?action=print&vendor_id=${vendor_id}&equipment_type_id=${equipment_type_id}&project_id=${project_id}&equipment_id=${equipment_id}&payment_status=${payment_status}&bill_no=${bill_no}&start_month=${start_month._i}&end_month=${end_month._i}`
+                      `operator-fooding-list-pdf/print?action=print&project_id=${project_id}&equipment_id=${equipment_id}&operator_id=${operator_id}&no_paginate=yes`
                     "
                     class="btn btn-danger btn-sm"
                     ><i class="fa fa-print" target="_blank"></i> Print</a
@@ -232,10 +207,10 @@
     <div class="row">
       <div class="col-md-12 text-center mb-10 mt-10" v-if="fooding_bill.data.length > 0">
         <!-- import pagination here  -->
-        
-        <!-- <bill-details></bill-details> -->
+
         <pagination :pageData="fooding_bill"></pagination>
       </div>
+        <fooding-details></fooding-details>
     </div>
   </div>
 </template>
@@ -246,26 +221,27 @@ import { EventBus } from "../../../vue-assets";
 import Mixin from "../../../mixin";
 import VueMonthlyPicker from "vue-monthly-picker";
 import Pagination from "../../pagination/Pagination";
-// import BillDetails from "./BillDetails";
+import FoodingDetails from "./SingleViewoperatorFooding";
 export default {
   mixins: [Mixin],
-  props: ["vendors", "equipment_types", "projects","operator"],
+  props: ["equipements", "projects","operators"],
   components: {
+    'fooding-details': FoodingDetails,
     VueMonthlyPicker,
     pagination: Pagination,
   },
   data() {
     return {
       fooding_bill: [],
-      equipments: [],
-      vendor_id: "",
+      // equipments: [],
+      // vendor_id: "",
       operator_id: "",
-      equipment_type_id: "",
+      // equipment_type_id: "",
       project_id: "",
       equipment_id: "",
-      payment_status: "",
-      keyword: "",
-      bill_no: "",
+      // payment_status: "",
+      // keyword: "",
+      // bill_no: "",
       pickermonth: {
         lebel: [
           "JAN",
@@ -283,8 +259,8 @@ export default {
         ],
         text: "Search By Month",
       },
-      start_month: "",
-      end_month: "",
+      // start_month: "",
+      // end_month: "",
       isLoading: false,
       url: base_url,
     };
@@ -303,30 +279,14 @@ export default {
   methods: {
     getBillList(page = 1) {
       this.isLoading = true;
-      var st_mo = "";
-      var lt_mo = "";
-      if (this.end_month != "") {
-        if (this.start_month === "")
-          this.successMessage({
-            status: "error",
-            message: "Select start Month",
-          });
-        st_mo = this.start_month._i;
-        lt_mo = this.end_month._i;
-      }
+
       axios
         .get(
           base_url +
             `operator-fooding-list?page=${page}
-            &vendor_id=${this.vendor_id}
-            &equipment_type_id=${this.equipment_type_id}
             &project_id=${this.project_id}
             &operator_id=${this.operator_id}
-            &equipment_id=${this.equipment_id}
-            &payment_status=${this.payment_status}
-            &bill_no=${this.bill_no}
-            &start_month=${st_mo}
-            &end_month=${lt_mo}`
+            &equipment_id=${this.equipment_id}`
         )
         .then((response) => {
           this.fooding_bill = response.data;
@@ -334,13 +294,8 @@ export default {
         });
     },
 
-    edit(value) {
-      // passing bill by event bus
-      EventBus.$emit("edit-bill", value);
-    },
-
-    viewMore(id) {
-      EventBus.$emit("bill-details", id);
+    viewMore(value) {
+      EventBus.$emit("operator-fooding-details", value);
     },
 
     deleteBill(id) {
@@ -364,43 +319,19 @@ export default {
         }
       });
     },
-
-    makeProjectPayment(bill) {
-      EventBus.$emit("make-project-payment", bill);
-    },
-
-    projectPaymentHistory(bill) {
-      EventBus.$emit("view-project-payment", bill);
-    },
-
-    makeVendorPayment(bill) {
-      EventBus.$emit("make-vendor-payment", bill);
-    },
-
-    vendorPaymentHistory(bill) {
-      EventBus.$emit("view-vendor-payment", bill);
-    },
-
-    makeOperatorPayment(bill) {
-      EventBus.$emit("make-operator-payment", bill);
-    },
-
-    operatorPaymentHistory(bill) {
-      EventBus.$emit("view-operator-payment", bill);
-    },
-
-    getVendorEquipments() {
-      axios
-        .get(`${base_url}equipment-by-vendor/0/${this.vendor_id}`)
-        .then((response) => {
-          this.equipments = response.data;
-        });
-      this.getBillList();
-    },
-
+   
     pageClicked(page) {
       this.getBillList(page);
     },
+
+    clearField(){
+      this.fooding_bill = []
+      this.operator_id = ""
+      this.project_id = ""
+      this.equipment_id = ""
+      this.getBillList();
+    },
+
     calculatePercent(total_amount, percentage) {
       if (percentage == 0) {
         return 0;

@@ -11,6 +11,7 @@ use App\Equipement;
 use App\Project;
 use App\ProjectClaim;
 use App\OperatorFooding;
+use App\OperatorPayment;
 use DB;
 
 class OperatorFoodingController extends Controller
@@ -44,7 +45,7 @@ class OperatorFoodingController extends Controller
      */
     public function operatorFoodingList(Request $request)
     {
-        $per_page = 3;
+        $per_page = 10;
 
         if ($request->per_page > 0) {
             $per_page = $request->per_page;
@@ -56,77 +57,92 @@ class OperatorFoodingController extends Controller
             'equipment_type',
             'vendor',
             'project',
-            'operator',
-            'operator_pay'
+            'operator'
         ])
-        ->select('project_id','equipement_id', DB::raw('SUM(operator_total_amount) as total_fooding_amount,
+        ->select('operator_id','project_id','equipement_id', DB::raw('SUM(operator_total_amount) as total_fooding_amount,
                     SUM(operator_payment) as operator_payment_amount,
                     SUM(operator_adjustment_payment) as operator_adjustment_payment'))
         ->groupBy('equipement_id')
         ->groupBy('project_id')
-        // ->havingRaw('total_fooding_amount > 0')
-        ->paginate($per_page);
-        // ProjectClaim::selectRaw(SUM(operator_total_amount) as total_fooding_amount,
-        //                     SUM(operator_payment) as operator_payment_amount,
-        //                     SUM(operator_adjustment_payment) as operator_adjustment_payment')
-        //                     ->get()
-        //                     ->groupBy('equipement_id')
-        //                     ->groupBy('project_id');
-                            // ->where('month','=',$value)
-                            // ->where('vendor_id','=',$vendor_id)
-                            // ->where('equipment_type_id','=',$equipment_type_id)
-                            // ->where('equipement_id','=',$equipment_id)
+        ->groupBy('operator_id');
 
-        // $bill = ProjectClaim::with([
-        //     'user:id,name',
-        //     'equipement',
-        //     'equipment_type',
-        //     'vendor',
-        //     'project',
-        //     'operator'
-        // ])->orderBy('updated_at', 'desc');
+        if ($request->operator_id != '') {
+            $bill->where('operator_id', '=', $request->operator_id);
+        }
 
-        // $bill_no = $request->bill_no;
-        // if ($bill_no != '') {
-        //     $bill->where(function ($query) use ($bill_no) {
-        //         $query->where('bill_no', 'LIKE', '%' . $bill_no . '%')
-        //             ->orWhere('id', 'LIKE', '%' . $bill_no . '%');
-        //     });
-        // }
+        if ($request->project_id != '') {
+            $bill->where('project_id', '=', $request->project_id);
+        }
 
-        // if ($request->project_id != '') {
-        //     $bill->where('project_id', '=', $request->project_id);
-        // }
+        if ($request->equipment_id != '') {
+            $bill->where('equipement_id', '=', $request->equipment_id);
+        }
 
-        // if ($request->month != '') {
-        //     $bill->where('month', '=', $request->month);
-        // }
+        if($request->no_paginate === 'yes')
+        {
+            $bill = $bill->get();
+        } else {
 
-        // if ($request->vendor_id != '') {
-        //     $bill->where('vendor_id', '=', $request->vendor_id);
-        // }
-
-        // if ($request->operator_id != '') {
-        //     $bill->where('operator_id', '=', $request->operator_id);
-        // }
-
-        // if ($request->equipment_id != '') {
-        //     $bill->where('equipement_id', '=', $request->equipment_id);
-        // }
-
-        // if ($request->equipment_type_id != '') {
-        //     $bill->where('equipment_type_id', '=', $request->equipment_type_id);
-        // }
-
-        // if ($request->end_month != '') {
-        //     $start = date('Y-m', strtotime(str_replace('/', '-', $request->start_month)));
-        //     $end   = date('Y-m', strtotime(str_replace('/', '-', $request->end_month)));
-        //     $bill->whereBetween('month', [$start, $end]);
-        // }
-
-        // dd($bill);
-        // $bill = $bill->paginate($per_page)->groupBy('project_id')->groupBy('equipement_id');
+            $bill = $bill->paginate($per_page);
+        }
+        
         return $bill;
+    }
+
+    public function operatorFoodingPayment($project_id,$equipment_id)
+    {
+        return OperatorPayment::with('user','project_claim')->where(['project_id' => $project_id,'equipement_id' => $equipment_id])->get();
+    }
+
+    public function operatorFoodingListPrint(Request $request)
+    {
+        $bill = ProjectClaim::with([
+            'user:id,name',
+            'equipement',
+            'equipment_type',
+            'vendor',
+            'project',
+            'operator'
+        ])
+        ->select('operator_id','project_id','equipement_id', DB::raw('SUM(operator_total_amount) as total_fooding_amount,
+                    SUM(operator_payment) as operator_payment_amount,
+                    SUM(operator_adjustment_payment) as operator_adjustment_payment'))
+        ->groupBy('equipement_id')
+        ->groupBy('project_id')
+        ->groupBy('operator_id');
+
+        if ($request->operator_id != '') {
+            $bill->where('operator_id', '=', $request->operator_id);
+        }
+
+        if ($request->project_id != '') {
+            $bill->where('project_id', '=', $request->project_id);
+        }
+
+        if ($request->equipment_id != '') {
+            $bill->where('equipement_id', '=', $request->equipment_id);
+        }
+
+        $bill = $bill->get();
+
+        if($request->action == 'print')
+        {
+            return view('operator.print.operator_fooding_print',[
+                'foodings' => $bill,
+                'request_for' => request()
+            ]);
+        } else {
+            // return view('operator.pdf.operator_fooding_pdf', [
+            $pdf = \PDF::loadView('operator.pdf.operator_fooding_pdf', [
+                'foodings' => $bill,
+                'request_for' => request()
+            ]);
+
+            $pdf->setPaper('A4', 'landscape');
+            $pdf_name = "operator_fooding.pdf";
+            return $pdf->download($pdf_name);
+        }
+        
     }
 
     public function operatorFoodingPrint(Request $request)
@@ -177,6 +193,27 @@ class OperatorFoodingController extends Controller
 
             $pdf->setPaper('A4', 'landscape');
             $pdf_name = "operator_fooding.pdf";
+            return $pdf->download($pdf_name);
+        }
+    }
+
+    public function operatorFoodingPaymentPrint(Request $request)
+    {
+        $operator_payment = $this->operatorFoodingPayment($request->project_id,$request->equipement_id);
+
+        // dd($operator_payment);
+        if ($request->action == 'print') {
+            return view('operator.print.operator_fooding_payment_print', [
+                'bill'      => $operator_payment
+            ]);
+        } else {
+           
+            $pdf = PDF::loadView('operator.pdf.operator_fooding_payment_pdf', [
+                'bill'      => $operator_payment
+            ]);
+
+            $pdf->setPaper('A4', 'potrait');
+            $pdf_name = "operator_payment-" . $operator_payment->bill_no . ".pdf";
             return $pdf->download($pdf_name);
         }
     }

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	 <title>Operator Fooding</title>
+     <title>Operator Fooding</title>
      <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
      <style>
         body
         {
@@ -23,7 +23,7 @@
     </style>
 </head>
 <body>
-	<div class="container-fluid">
+    <div class="container-fluid">
         <div class="row" style="text-align: center">
             <table class="table_width">
               <thead>
@@ -46,25 +46,26 @@
     <div>
         <div class="col-12 text-center">
             <h4 style="font-weight: bold;">Operator Fooding List</h4>
-            <p style="font-size:16px">Filltered By : @if($request_for->operator_id != '') {{ $foodings[0]->operator->name }} @endif
-                @if($request_for->equipment_id != '') {{ $foodings[0]->equipement->eq_name }} @endif @if($request_for->project_id != '') {{ $foodings[0]->project->project_name }} @endif
+            <p style="font-size:16px">Operator : {{ $bill[0]->project_claim->operator->name }}</p>
+            <p style="font-size:16px">Equipment : {{ $bill[0]->project_claim->equipement->eq_name }}</p>
+            <p style="font-size:16px"> Project : {{ $bill[0]->project_claim->project->project_name }}
             </p>
         </div>
     </div>
         <div class="row">
-        	<div class="col-md-12 col-xs-12">
-        	   <table class="table table-bordered text-center">
+            <div class="col-md-12 col-xs-12">
+               <table class="table table-bordered text-center">
                 <thead>
-        	   	  <tr>
+                  <tr>
                     <th class="text-center">Project</th>
                     <th class="text-center">Equipment</th>
                     <th class="text-center">Operator</th>
                     <th class="text-center">Fooding Bill</th>
                     <th class="text-center">Paid Amount</th>
                     <th class="text-center">Due</th>
-        	   	  </tr>  
+                  </tr>  
                 </thead>
-        	   	<tbody>
+                <tbody>
                     @php
                         $i = 0;              
                     @endphp
@@ -88,12 +89,9 @@
             @endforeach
                 
             </tbody>
-        	   </table>
-        	</div>
+               </table>
+            </div>
         </div>
-	</div>
-<script>
-    window.print();
-</script>
+    </div>
 </body>
 </html>
