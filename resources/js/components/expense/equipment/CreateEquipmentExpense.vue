@@ -133,6 +133,7 @@
                                     <option value="Bank">Bank</option>
                                     <option value="Cash">Cash</option>
                                     <option value="Bkash">Bkash</option>
+                                    <option value="Nagad">Nagad</option>
                                     <option value="Other">Other</option>
                                 </select>
                                 <span
@@ -158,7 +159,7 @@
                 </div>
 
 
-                <div class="col-md-12">
+                <div class="col-md-12 mt-2">
                     <i class="flaticon-mail-26"></i>
                     <label for="equipement-name">Expense Category</label>
 
@@ -191,16 +192,16 @@
                             <td>
                                 <input
                                 type="number"
-                                name=""
+                                name="amount"
                                 placeholder="Amount"
-                                id=""
+                                :id="1+Math.random()"
                                 class="form-control"
                                 v-model="cat.amount"
                                 />
                             </td>
                             <td class="">
                                 <a
-                                href=""
+                                href="javascript:void(0)"
                                 @click.prevent="removeCategory(index)"
                                 class="btn btn-danger btn-sm mt-2"
                                 ><i class="fa fa-trash"></i></a
@@ -215,7 +216,7 @@
                         </table>
                     </div>
                     <a
-                        href=""
+                        href="javascript:void(0)"
                         @click.prevent="addCategory()"
                         class="btn btn-success"
                     >

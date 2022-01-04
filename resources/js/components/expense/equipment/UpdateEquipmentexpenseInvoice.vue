@@ -133,6 +133,7 @@
                                     <option value="Bank">Bank</option>
                                     <option value="Cash">Cash</option>
                                     <option value="Bkash">Bkash</option>
+                                    <option value="Nagad">Nagad</option>
                                     <option value="Other">Other</option>
                                 </select>
                                 <span
@@ -193,14 +194,14 @@
                                 type="number"
                                 name=""
                                 placeholder="Amount"
-                                id=""
+                                :id="1+Math.random()"
                                 class="form-control"
                                 v-model="cat.amount"
                                 />
                             </td>
                             <td class="">
                                 <a
-                                href=""
+                                href="javascript:void(0)"
                                 @click.prevent="removeCategory(index)"
                                 class="btn btn-danger btn-sm mt-2"
                                 ><i class="fa fa-trash"></i></a
@@ -215,7 +216,7 @@
                         </table>
                     </div>
                     <a
-                        href=""
+                        href="javascript:void(0)"
                         @click.prevent="addCategory()"
                         class="btn btn-success"
                     >
@@ -381,7 +382,7 @@ export default {
                   this.successMessage(response.data);
                   this.resetForm();
                   $('#UpdateEquipmentExpenseInvoice').modal('hide');
-                  EventBus.$emit('EquipmentExpense-created');
+                  EventBus.$emit('EquipmentExpenseInvoice-created');
                   this.button_name = "Update";
               }
              else
