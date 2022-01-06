@@ -18,7 +18,7 @@
                                 <div>
                                     <h6>Invoice : {{ equipment.invoice_no }}</h6>
                                     <p>Month : {{ equipment.month }}</p>
-                                    <!-- <p>Amount : {{ equipment.total_amount }}</p> -->
+                                    <p>Equipment : {{ equipment.equipement.eq_name }}</p>
                                     <p>Payment Date : {{ equipment.payment_date | dateToString }}</p>
                                     <p>Paid By : {{ equipment.payment_method }}</p>
                                 </div>
@@ -27,7 +27,7 @@
                                     <h6>Project</h6>
                                     <p>Project : {{ equipment.project.project_name }}</p>
                                     <p>Vendor : {{ equipment.vendor.vendor_name }}</p>
-                                    <p>Equipment : {{ equipment.equipement.eq_name }}</p>
+                                    <p>Operator : {{ equipment.operator.name }}</p>
                                     <p class="text-wrap">Note : {{ equipment.note }}</p>
                                 </div>
                             </div>

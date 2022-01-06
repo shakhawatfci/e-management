@@ -36,8 +36,8 @@ public function getMonthlyReport($month_from,$month_to)
     $total_office_expense           = 0;
     $total_expense                  = 0;
     $total_net_profit               = 0;
-    $total_fooding_bill_amount     = 0;
-    $total_fooding_paid_amount     = 0;
+    $total_fooding_bill_amount      = 0;
+    $total_fooding_paid_amount      = 0;
 
     // loop month and query 
     

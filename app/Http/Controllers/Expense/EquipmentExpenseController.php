@@ -14,6 +14,7 @@ use App\Project;
 use App\ProjectClaim;
 use App\ProjectPayment;
 use App\Vendor;
+use App\Operator;
 use DB,PDF;
 
 class EquipmentExpenseController extends Controller
@@ -45,12 +46,17 @@ class EquipmentExpenseController extends Controller
             ->where('status', '=', AllStatic::$active)
             ->get();
 
+        $operators = Operator::orderBy('name', 'asc')
+            ->where('status', '=', AllStatic::$active)
+            ->get();
+
         return view('expense.equipment_expense', [
             'projects' => $project,
             'vendors' => $vendor,
             'equipment_types' => $equipment_type,
             'equipements' => $equipement,
             'equipment_heads' => $equipment_head,
+            'operators' => $operators,
         ]);
     }
 
@@ -125,7 +131,7 @@ class EquipmentExpenseController extends Controller
             $month .= 'From ' .$start. ' to ' .$end;  
         }
         $equipment = $equipment->get();
-        // dd($equipment);
+
         if($request->action == 'print')
         {
             return view('expense.print.equipment_expense_print',[
@@ -180,7 +186,7 @@ class EquipmentExpenseController extends Controller
                 'vendor_id' => $request->vendor_id,
                 'equipment_type_id' => $request->equipment_type_id,
                 'equipement_id' => $request->equipement_id,
-                // 'equipement_expense_id' => $insertid,
+                'operator_id' => $request->operator_id,
                 'month' => date('Y-m',strtotime(str_replace('/','-',$request->month))),
                 'payment_date' => $request->payment_date,
                 'payment_method' => $request->payment_method,
@@ -200,6 +206,7 @@ class EquipmentExpenseController extends Controller
                     'equipment_type_id' => $request->equipment_type_id,
                     'equipment_expense_invoice_id' => $insertid,
                     'equipement_id' => $request->equipement_id,
+                    'operator_id' => $request->operator_id,
                     'equipment_expense_head_id' => $ex_cat['category_id'],
                     'month' => date('Y-m',strtotime(str_replace('/','-',$request->month))),
                     'payment_date' => $request->payment_date,
@@ -250,12 +257,17 @@ class EquipmentExpenseController extends Controller
             ->where('status', '=', AllStatic::$active)
             ->get();
 
+        $operators = Operator::orderBy('name', 'asc')
+            ->where('status', '=', AllStatic::$active)
+            ->get();
+
         return view('expense.equipment_expense_invoice', [
             'projects' => $project,
             'vendors' => $vendor,
             'equipment_types' => $equipment_type,
             'equipements' => $equipement,
             'equipment_heads' => $equipment_head,
+            'operators' => $operators,
         ]);
         // return view('expense.equipment_expense_invoice');
     }
@@ -264,7 +276,7 @@ class EquipmentExpenseController extends Controller
     {
         // $equipment = EquipmentExpenseInvoice::with(['project:id,project_name','vendor:id,vendor_name','equipement:id,eq_name','equipment_type:id,name','equipment_expense_head:id,head_name'])
         // ->orderBy('id','desc');
-        $equipment = EquipmentExpenseInvoice::with(['project:id,project_name','vendor:id,vendor_name','equipement:id,eq_name','equipment_expense'])
+        $equipment = EquipmentExpenseInvoice::with(['project:id,project_name','operator:id,name','vendor:id,vendor_name','equipement:id,eq_name','equipment_expense'])
                     ->orderBy('id','desc');
         if($request->project != '') {
             $equipment->where('project_id','=',$request->project);
@@ -299,7 +311,7 @@ class EquipmentExpenseController extends Controller
 
     public function ExpenseInvoiceData($id)
     {
-        return EquipmentExpenseInvoice::with(['project:id,project_name','vendor:id,vendor_name','equipement:id,eq_name','equipment_expense'])
+        return EquipmentExpenseInvoice::with(['project:id,project_name','operator:id,name','vendor:id,vendor_name','equipement:id,eq_name','equipment_expense'])
                 ->find($id);
     }
 
@@ -326,6 +338,53 @@ class EquipmentExpenseController extends Controller
             return $pdf->download($pdf_name);
         }
     }
+
+    public function printExpenseInvoiceList(Request $request)
+    {
+        $equipment = EquipmentExpenseInvoice::with(['project:id,project_name','operator:id,name','vendor:id,vendor_name','equipement:id,eq_name','equipment_expense'])
+                    ->orderBy('id','desc');
+        if($request->project != '') {
+            $equipment->where('project_id','=',$request->project);
+        }
+        if($request->vendor != '') {
+            $equipment->where('vendor_id','=',$request->vendor);
+        }
+        if($request->equipment_type != '') {
+            $equipment->where('equipment_type_id','=',$request->equipment_type);
+        }
+        if($request->equipement != '') {
+            $equipment->where('equipement_id','=',$request->equipement);
+        }
+        if($request->equipment_head != '') {
+            $equipment->where('equipment_expense_head_id','=',$request->equipment_head);
+        }
+        if($request->keyword != '') {
+            $equipment->where('month','=',$request->keyword);
+            $equipment->orWhere('payment_date','like', '%'.$request->keyword.'%');
+            $equipment->orWhere('payment_method','like', '%'.$request->keyword.'%');
+            $equipment->orWhere('invoice_no','like', '%'.$request->keyword.'%');
+            $equipment->orWhere('total_amount','=',$request->keyword);
+        }
+        if ($request->end_month != '' && $request->end_month != 'undefined') {
+            $start = date('Y-m',strtotime(str_replace('/','-',$request->start_month)));
+            $end = date('Y-m',strtotime(str_replace('/','-',$request->end_month)));
+
+            $equipment->whereBetween('month', [$start,$end]);   
+        }
+         $equipment = $equipment->get();
+
+        if($request->action == 'print')
+        {
+            return view('expense.print.equipment_expense_invoicelist_print',['equipments' => $equipment]);
+        } else {
+            // return view('expense.pdf.equipment_expense_invoice_pdf',['equipment' => $invoice_data,'expense_category' => $category_data]);
+            $pdf = \PDF::loadView('expense.pdf.equipment_expense_invoicelist_pdf',['equipments' => $equipment]);
+
+            $pdf->setPaper('A4', 'landscape');
+            $pdf_name = "equipment-invoice-list.pdf";
+            return $pdf->download($pdf_name);
+        }
+    }
     /**
      * Display the specified resource.
      *
@@ -337,6 +396,7 @@ class EquipmentExpenseController extends Controller
         $project = \App\Project::all();
         $vendor = \App\Vendor::where('status',1)->get();
         $eq_type = \App\EquipmentType::where('status',1)->get();
+        $operators = \App\Operator::where('status',1)->get();
         $equipment = \App\Equipement::all();
         $expense_category = \App\EquipmentExpenseHead::all();
 
@@ -345,7 +405,8 @@ class EquipmentExpenseController extends Controller
             'vendor' => $vendor,
             'eq_type' => $eq_type,
             'equipment' => $equipment,
-            'expense_category' => $expense_category
+            'expense_category' => $expense_category,
+            'operators' => $operators,
         ]);
     }
 
@@ -396,6 +457,7 @@ class EquipmentExpenseController extends Controller
                    $update->vendor_id = $request->vendor_id;
                    $update->equipment_type_id = $request->equipment_type_id;
                    $update->equipement_id = $request->equipement_id;
+                   $update->operator_id = $request->operator_id;
                 //    $update->equipement_expense_id = $insertid;
                    $update->month = date('Y-m',strtotime(str_replace('/','-',$request->month)));
                    $update->payment_date = $request->payment_date;
@@ -417,6 +479,7 @@ class EquipmentExpenseController extends Controller
                                $insert->equipment_type_id = $request->equipment_type_id;
                                $insert->equipment_expense_invoice_id = $request->id;
                                $insert->equipement_id = $request->equipement_id;
+                               $insert->operator_id = $request->operator_id;
                                $insert->equipment_expense_head_id = $ex_cat['category_id'];
                                $insert->month = date('Y-m',strtotime(str_replace('/','-',$request->month)));
                                $insert->payment_date = $request->payment_date;

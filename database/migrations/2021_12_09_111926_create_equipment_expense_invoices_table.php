@@ -20,6 +20,7 @@ class CreateEquipmentExpenseInvoicesTable extends Migration
             $table->foreignId('vendor_id');
             $table->foreignId('equipment_type_id');
             $table->foreignId('equipement_id');
+            $table->foreignId('operator_id');
             $table->string('month');
             $table->string('payment_date');
             $table->string('invoice_no')->nullable();

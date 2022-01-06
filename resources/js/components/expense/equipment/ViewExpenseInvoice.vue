@@ -106,19 +106,21 @@
                 <th>Project Name</th>
                 <th>Vendor</th>
                 <th>Equipment</th>
+                <th>Opeator</th>
                 <th>Pay Method</th>
                 <th>Amount</th>
                 <th class="text-center">action</th>
               </tr>
             </thead>
             <tbody v-if="invoices.data.length > 0">
-              <tr v-for="value in invoices.data" :key="value.id">
+              <tr v-for="(value,index) in invoices.data" :key="index">
                 <td>{{ value.invoice_no }}</td>
                 <td>{{ value.month }}</td>
                 <td>{{ value.payment_date | dateToString }}</td>
                 <td>{{ value.project.project_name }}</td>
                 <td>{{ value.vendor.vendor_name }}</td>
                 <td>{{ value.equipement.eq_name }}</td>
+                <td>{{ value.operator.name }}</td>
                 <td>{{ value.payment_method }}</td>
                 <td>{{ value.total_amount }}</td>
                 <td class="text-center">
@@ -146,11 +148,11 @@
                 </td>
               </tr>
               <tr v-if="invoices.data.length > 0">
-                <td colspan="9">
+                <td colspan="10">
                   <a
                     :href="
                       url +
-                      `equipment-expense-invoice-print-pdf?action=pdf&page=${page}&keyword=${keyword}&project=${project_id}&vendor=${vendor_id}&equipment_type=${equipment_type_id}&equipement=${equipement_id}&equipment_head=${equipment_expense_head_id}&start_month=${start_month._i}&end_month=${end_month._i}`
+                      `equipment-expense-invoice-print-pdf?action=pdf&keyword=${keyword}&project=${project_id}&vendor=${vendor_id}&equipment_type=${equipment_type_id}&equipement=${equipement_id}&equipment_head=${equipment_expense_head_id}&start_month=${start_month._i}&end_month=${end_month._i}`
                     "
                     class="btn btn-primary btn-sm"
                     ><i class="fa fa-file-pdf-o"></i> PDF</a
@@ -158,7 +160,7 @@
                   <a
                     :href="
                       url +
-                      `equipment-expense-invoice-print-pdf?action=print&page=${page}&keyword=${keyword}&project=${project_id}&vendor=${vendor_id}&equipment_type=${equipment_type_id}&equipement=${equipement_id}&equipment_head=${equipment_expense_head_id}&start_month=${start_month._i}&end_month=${end_month._i}`
+                      `equipment-expense-invoice-print-pdf?action=print&keyword=${keyword}&project=${project_id}&vendor=${vendor_id}&equipment_type=${equipment_type_id}&equipement=${equipement_id}&equipment_head=${equipment_expense_head_id}&start_month=${start_month._i}&end_month=${end_month._i}`
                     "
                     class="btn btn-danger btn-sm"
                     target="_blank"
@@ -274,6 +276,7 @@ export default {
         )
         .then((response) => {
           this.invoices = response.data;
+          // console.log(this.invoices.data)
           this.isLoading = false;
         });
     },

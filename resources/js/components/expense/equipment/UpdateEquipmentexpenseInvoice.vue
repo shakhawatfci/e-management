@@ -99,6 +99,24 @@
                               </div>
                           </div>
 
+                          <div class="col-md-4">
+                              <div class="contact-email">
+                                  <i class="flaticon-mail-26"></i>
+                                  <label for="equipement-name">Operator</label>
+                                  <select class="form-control" id="equipement-name" v-model="invoice.operator_id">
+                                      <option value="">Chose a Operator</option>
+                                      <option v-for="value in operators" :key="value.id" :value="value.id">
+                                          {{ value.name }}
+                                      </option>
+                                  </select>
+                                       <span
+                                       v-if="validation_error.hasOwnProperty('operator_id')" 
+                                      class="text-danger">
+                                      {{ validation_error.operator_id[0] }}
+                                     </span>
+                              </div>
+                          </div>
+
                         <div class="col-md-4">
                             <div class="contact-name">
                                 <i class="flaticon-user-11"></i>
@@ -144,7 +162,7 @@
                             </div>
                           </div>
 
-                      <div class="col-md-4">
+                      <div class="col-md-12">
                         <div class="contact-phone">
                             <i class="flaticon-telephone"></i>
                             <label for="documents-link">Document Link</label>
@@ -279,6 +297,7 @@ export default {
           vendor_id : '',
           equipment_type_id : '',
           equipement_id : '',
+          operator_id : '',
           expense_category : [],
           month : '',
           payment_date : '',
@@ -296,6 +315,7 @@ export default {
         vendors : [],
         equipment_types : [],
         equipments : [],
+        operators : [],
         expense_categories : [],
         isCategoryLoading: false,
         button_name : 'Update',
@@ -342,6 +362,7 @@ export default {
           this.invoice.invoice_no = response.data.invoice_no
           this.invoice.project_id = response.data.project_id
           this.invoice.project = response.data.project
+          this.invoice.operator_id = response.data.operator_id
           this.invoice.vendor_id = response.data.vendor_id
           this.invoice.vendor = response.data.vendor
           this.invoice.equipment_type_id = response.data.equipment_type_id
@@ -416,6 +437,7 @@ export default {
           this.vendors = response.data.vendor
           this.expense_categories = response.data.expense_category
           this.equipment_types = response.data.eq_type
+          this.operators = response.data.operators
         })
      },
 

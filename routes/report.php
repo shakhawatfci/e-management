@@ -9,4 +9,5 @@ Route::get('equipment-wise-report',['as'=>'report.equipmentwise','uses' => 'Repo
 Route::get('monthly-report-result','Report\ReportController@monthlyReportResult');
 Route::get('projectly-report-result','Report\ReportController@projectlyReportResult');
 Route::get('equpmently-report-result','Report\ReportController@equipmentlyReportResult');
+Route::get('monthly-report-list-print-pdf','Report\ReportController@monthlyReportPrint');//from MonthlyReport
 

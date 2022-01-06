@@ -28,6 +28,18 @@ class EquipmentExpenseInvoice extends Model
 
     }
 
+    // relation with operator
+
+    public function operator()
+    {
+
+        return $this->belongsTo('App\Operator')->withDefault([
+            'id' => 0,
+            'name' => 'NF',
+        ]);
+
+    }
+
     // relation with equipement
 
     public function equipement()

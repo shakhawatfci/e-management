@@ -15,6 +15,7 @@ class AddEquipmentExpenseInvoiceIdToEquipementExpenseTable extends Migration
     {
         Schema::table('equipement_expense', function (Blueprint $table) {
             $table->integer('equipment_expense_invoice_id');
+            $table->foreignId('operator_id');
             $table->string('payment_method')->nullable();
             $table->string('invoice_no')->nullable();
         });

@@ -79,8 +79,6 @@
                                   </div>
                               </div>
 
-                              
-
                           <div class="col-md-4">
                               <div class="contact-email">
                                   <i class="flaticon-mail-26"></i>
@@ -95,6 +93,23 @@
                                        v-if="validation_error.hasOwnProperty('equipement_id')" 
                                       class="text-danger">
                                       {{ validation_error.equipement_id[0] }}
+                                     </span>
+                              </div>
+                          </div>
+                          <div class="col-md-4">
+                              <div class="contact-email">
+                                  <i class="flaticon-mail-26"></i>
+                                  <label for="equipement-name">Operator</label>
+                                  <select class="form-control" id="equipement-name" v-model="euqipment.operator_id">
+                                      <option value="">Chose a Operator</option>
+                                      <option v-for="value in operators" :key="value.id" :value="value.id">
+                                          {{ value.name }}
+                                      </option>
+                                  </select>
+                                       <span
+                                       v-if="validation_error.hasOwnProperty('operator_id')" 
+                                      class="text-danger">
+                                      {{ validation_error.operator_id[0] }}
                                      </span>
                               </div>
                           </div>
@@ -144,7 +159,7 @@
                             </div>
                           </div>
 
-                      <div class="col-md-4">
+                      <div class="col-md-12">
                         <div class="contact-phone">
                             <i class="flaticon-telephone"></i>
                             <label for="documents-link">Document Link</label>
@@ -278,6 +293,7 @@ export default {
           vendor_id : '',
           equipment_type_id : '',
           equipement_id : '',
+          operator_id : '',
           expense_category_id: '',
           expense_category : [
               { category_id: "", amount: ""}
@@ -298,6 +314,7 @@ export default {
         vendors : [],
         equipment_types : [],
         equipments : [],
+        operators : [],
         expense_categories : [],
         isCategoryLoading: false,
         button_name : 'Save',
@@ -387,6 +404,7 @@ export default {
           this.vendors = response.data.vendor
           this.expense_categories = response.data.expense_category
           this.equipment_types = response.data.eq_type
+          this.operators = response.data.operators
         })
      },
 
@@ -400,6 +418,7 @@ export default {
           vendor_id : '',
           equipment_type_id : '',
           equipement_id : '',
+          operator_id : '',
           expense_category_id: '',
           expense_category : [
               { category_id: "", amount: ""}
@@ -410,6 +429,14 @@ export default {
           documents_link : '',
           note : ''
         };
+        this.projects = []
+        this.vendors  = []
+        this.equipment_types  = []
+        this.equipments  = []
+        this.operators  = []
+        this.expense_categories  = []
+        this.isCategoryLoading = false
+        this.button_name  = 'Save'
         this.month = '';
         this.validation_error = {};
      }

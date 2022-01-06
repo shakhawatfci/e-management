@@ -43,7 +43,7 @@
                     <th class="text-center">Vendor</th>
                     <th class="text-center">Equipment</th>
                     <th class="text-center">Eq-Type</th>
-                    <th class="text-center">Eq-Category</th>
+                    <th class="text-center">Ex-Head</th>
                     <th class="text-center">Month</th>
                     <th class="text-center">Payment Date</th>
                     <th class="text-center">Amount</th>               
@@ -65,8 +65,8 @@
                   @php $total_amount += $value->amount; @endphp
             @endforeach
             	<tr>
-            		<td colspan="7"></td>
-            		<td><strong>Total Amount : {{ $total_amount }}</strong></td>
+            		<td colspan="7" class="text-right">Total Amount </td>
+            		<td><strong>{{ $total_amount }}</strong></td>
             	</tr>
             </tbody>
         	   </table>

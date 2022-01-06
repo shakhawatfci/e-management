@@ -65,7 +65,7 @@
                   <a :href="url+'equipment-list-print-pdf?action=pdf'" class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i> PDF</a>
                   <a :href="url+'equipment-list-print-pdf?action=print'" class="btn btn-danger btn-sm" target="_blank"><i class="fa fa-file-pdf-o"></i> Print</a>
                 </td>
-            </tr>
+              </tr>
             </tbody>
           </table>
         </div>

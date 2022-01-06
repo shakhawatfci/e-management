@@ -44,6 +44,27 @@ class ReportController extends Controller
 
     }
 
+    public function monthlyReportPrint(Request $request)
+    {
+
+        $month_from    =   date('Y-m',strtotime(str_replace('/','-',$request->month_from)));
+        $month_to      =   date('Y-m',strtotime(str_replace('/','-',$request->month_to)));
+        
+        $data = $this->report->getMonthlyReport($month_from,$month_to);
+        if($request->action == 'print')
+        {
+            return view('report.print.monthly_report_print',['report_data' => $data,'request_to' => [$month_from,$month_to]]);
+        } else {
+            // return view('report.pdf.equipment_report_invoice_pdf',['equipment' => $invoice_data,'report_category' => $category_data]);
+            $pdf = \PDF::loadView('report.pdf.monthly_report_pdf',['report_data' => $data,'request_to' => [$month_from,$month_to]]);
+
+            $pdf->setPaper('A4', 'landscape');
+            $pdf_name = "monthly_report-list.pdf";
+            return $pdf->download($pdf_name);
+        }
+
+    }
+
 
     // getting to the equipment wise  report page 
 

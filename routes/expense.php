@@ -36,4 +36,7 @@ Route::get('expense-invoice','Expense\EquipmentExpenseController@ExpenseInvoice'
 Route::get('equipment-expense-invoice-list','Expense\EquipmentExpenseController@ExpenseInvoiceList');
 Route::get('get-single-invoice/{id}','Expense\EquipmentExpenseController@ExpenseInvoiceData');
 Route::get('get-single-invoice-expense/{id}','Expense\EquipmentExpenseController@expenseData');
+
+//from singleViewEquipmentExpense
 Route::get('invoice-list-print-pdf','Expense\EquipmentExpenseController@printExpenseInvoice');
+Route::get('equipment-expense-invoice-print-pdf','Expense\EquipmentExpenseController@printExpenseInvoiceList');//from ViewEquipmentExpense

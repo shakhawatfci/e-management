@@ -21,6 +21,11 @@ class Operator extends Model
       return $this->hasMany('App\CarAssign');
    }
 
+   public function equipment_expense_invoice()
+   {
+      return $this->hasMany('App\EquipmentExpenseInvoice');
+   }
+
    public function operator_fooding(){
 
         return $this->hasMany('App\OperatorFooding');

@@ -104,6 +104,12 @@
               <th>{{ total_sum.total_expense }}</th>
               <th>{{ total_sum.total_net_profit }}</th>
             </tr>
+            <tr v-if="report_data.length > 0">
+              <td colspan="16">
+                <a :href="url+`monthly-report-list-print-pdf?action=pdf&month_from=${month_from._i}&month_to=${month_to._i}`" class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i> PDF</a>
+                <a :href="url+`monthly-report-list-print-pdf?action=print&month_from=${month_from._i}&month_to=${month_to._i}`" class="btn btn-danger btn-sm" target="_blank"><i class="fa fa-file-pdf-o"></i> Print</a>
+              </td>
+            </tr>
         </tfoot>
     </table>
   </div>
@@ -141,17 +147,18 @@ export default {
   },
   data() {
     return {
-     report_data : [],
-     total_sum   : null,
-     month_from  : '',
-     month_to    : '',
-     chart_month : [],
-     isLoading : false,
-     isFiltered : false,
-      pickermonth : {
-          lebel : ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
-          text : "Month"
-        },
+       report_data : [],
+       total_sum   : null,
+       month_from  : '',
+       month_to    : '',
+       chart_month : [],
+       isLoading : false,
+       isFiltered : false,
+       pickermonth : {
+            lebel : ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
+            text : "Month"
+       },
+       url: base_url
     }
   },
 
