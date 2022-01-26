@@ -108,6 +108,12 @@
               <th>{{ total_sum.total_expense }}</th>
               <th>{{ total_sum.total_net_profit }}</th>
             </tr>
+            <tr v-if="report_data.length > 0">
+              <td colspan="15">
+                <a :href="url+`project-wise-report-list-print-pdf?action=pdf&month_from=${month_from._i}&month_to=${month_to._i}&project_id=${project_id}`" class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i> PDF</a>
+                <a :href="url+`project-wise-report-list-print-pdf?action=print&month_from=${month_from._i}&month_to=${month_to._i}&project_id=${project_id}`" class="btn btn-danger btn-sm" target="_blank"><i class="fa fa-file-pdf-o"></i> Print</a>
+              </td>
+            </tr>
         </tfoot>
     </table>
   </div>
@@ -153,6 +159,7 @@ export default {
      project_id : '',
      isLoading : false,
      isFiltered : false,
+     url: base_url,
       pickermonth : {
           lebel : ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOM', 'DEC'],
           text : "Month"

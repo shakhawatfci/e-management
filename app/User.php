@@ -62,4 +62,14 @@ class User extends Authenticatable
             'role_name' => 'N/A'
         ]);
     }
+
+    public function vendor_concern()
+    {
+        return $this->hasOne('App\VendorConcern');
+    }
+
+    public function project_concern()
+    {
+        return $this->hasOne('App\ProjectConcern');
+    }
 }

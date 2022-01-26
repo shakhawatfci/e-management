@@ -8,6 +8,7 @@ use App\Repository\Report\Report;
 use App\Vendor;
 use App\Project;
 use App\EquipmentType;
+use App\Equipement;
 use DB;
 use Auth;
 
@@ -65,7 +66,6 @@ class ReportController extends Controller
 
     }
 
-
     // getting to the equipment wise  report page 
 
     public function equipmentWiseReportPage()
@@ -90,6 +90,27 @@ class ReportController extends Controller
         return $this->report->getEquipmentWiseReport($month_from,$month_to,$request->equipment_type_id,$request->vendor_id,$request->equipment_id); 
     }
 
+    public function equipmentWiseReportPrint(Request $request)
+    {
+
+        $month_from    =   date('Y-m',strtotime(str_replace('/','-',$request->month_from)));
+        $month_to      =   date('Y-m',strtotime(str_replace('/','-',$request->month_to)));
+        $equipment       =   Equipement::find($request->equipment_id);
+        $data = $this->report->getEquipmentWiseReport($month_from,$month_to,$request->equipment_type_id,$request->vendor_id,$request->equipment_id);
+
+        if($request->action == 'print')
+        {
+            return view('report.print.equipment_wise_report_print',['report_data' => $data,'request_to' => [$month_from,$month_to],'equipment' => $equipment]);
+        } else {
+            $pdf = \PDF::loadView('report.pdf.equipment_wise_report_pdf',['report_data' => $data,'request_to' => [$month_from,$month_to],'equipment' => $equipment]);
+
+            $pdf->setPaper('A4', 'landscape');
+            $pdf_name = "equipment_wise_report-list.pdf";
+            return $pdf->download($pdf_name);
+        }
+
+    }
+
 
     public function projectWiseReportPage()
     {
@@ -109,5 +130,24 @@ class ReportController extends Controller
         return $this->report->getProjectWiseReport($month_from,$month_to,$request->project_id);
     }
 
+    public function projectWiseReportPrint(Request $request)
+    {
+
+        $month_from    =   date('Y-m',strtotime(str_replace('/','-',$request->month_from)));
+        $month_to      =   date('Y-m',strtotime(str_replace('/','-',$request->month_to)));
+        $project       =   Project::find($request->project_id);
+        $data = $this->report->getProjectWiseReport($month_from,$month_to,$request->project_id);
+        if($request->action == 'print')
+        {
+            return view('report.print.project_wise_report_print',['report_data' => $data,'request_to' => [$month_from,$month_to],'project' => $project]);
+        } else {
+            $pdf = \PDF::loadView('report.pdf.project_wise_report_pdf',['report_data' => $data,'request_to' => [$month_from,$month_to],'project' => $project]);
+
+            $pdf->setPaper('A4', 'landscape');
+            $pdf_name = "project_wise_report-list.pdf";
+            return $pdf->download($pdf_name);
+        }
+
+    }
 
 }

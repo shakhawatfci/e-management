@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-     <title>Monthly Report</title>
+     <title>Equipment Wise Report</title>
      <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
@@ -10,6 +10,7 @@
         body
         {
             margin: 0 auto;
+            font-size: 11px;
         }
         .table_width
         {
@@ -18,7 +19,7 @@
         p
         {
             /*font-size: 12px;*/
-          line-height: 15px;
+          line-height: 14px;
         }
     </style>
 </head>
@@ -45,8 +46,10 @@
         </div>
     <div>
         <div class="col-12 text-center">
-            <h4 style="font-weight: bold;">Monthly Report</h4>
-            <p style="font-size:16px">Filltered By : {{ $request_to[0] }} To {{$request_to[1]}}
+            <h4 style="font-weight: bold;">Equipment : {{ $equipment->eq_name }}</h4>
+            <p style="font-size:15px">Equipment Type : {{ $equipment->equipment_type->name }}
+            <p style="font-size:15px">Vendor : {{ $equipment->vendor->vendor_name }}
+            <p style="font-size:15px">Filltered By : {{ $request_to[0] }} To {{$request_to[1]}}
             </p>
         </div>
     </div>
@@ -57,18 +60,17 @@
                       <tr>
                           <th>Month</th>
                           <th>Project Bill</th>
-                          <th>Vendor  Bill</th>
+                          <th>Vendor Bill</th>
+                          <th>Fooding Bill</th>
                           <th>Bill Profit</th>
-                          <th>E Sales Profit</th>
-                          <th>Mob Profit</th>
-                          <th>TT Profit</th>
-                          <th>Emp salary</th>
+                          <th>P Payment</th>
+                          <th>P Outstanding</th>
+                          <th>V Payment</th>
+                          <th>V Outstanding</th>
+                          <th>FD Payment</th>
+                          <th>FD Outstanding</th>
                           <th>Op Salary</th>
-                          <th>FD Bill</th>
-                          <th>FD Paid</th>
                           <th>Eq Expense</th>
-                          <th>Pr Expense</th>
-                          <th>Off Expense</th>
                           <th>TT Expense</th>
                           <th>Net Profit</th>
                       </tr>
@@ -79,17 +81,16 @@
                           <td>{{ $value['month'] }}</td>
                           <td>{{ $value['project_bill_amount'] }}</td>
                           <td>{{ $value['vendor_bill_amount'] }}</td>
-                          <td>{{ $value['bill_profit'] }}</td>
-                          <td>{{ $value['equipment_sales_profit'] }}</td>
-                          <td>{{ $value['mobilization_profit'] }}</td>
-                          <td>{{ $value['total_profit'] }}</td>
-                          <td>{{ $value['employee_salary'] }}</td>
-                          <td>{{ $value['operator_salary'] }}</td>
                           <td>{{ $value['fooding_bill_amount'] }}</td>
+                          <td>{{ $value['bill_profit'] }}</td>
+                          <td>{{ $value['project_payment'] }}</td>
+                          <td>{{ $value['project_outstanding'] }}</td>
+                          <td>{{ $value['vendor_payment'] }}</td>
+                          <td>{{ $value['vendor_outstanding'] }}</td>
                           <td>{{ $value['fooding_paid_amount'] }}</td>
+                          <td>{{ $value['fooding_outstanding'] }}</td>
+                          <td>{{ $value['operator_salary'] }}</td>
                           <td>{{ $value['equipment_expense'] }}</td>
-                          <td>{{ $value['project_expense'] }}</td>
-                          <td>{{ $value['office_expense'] }}</td>
                           <td>{{ $value['total_expense'] }}</td>
                           <td>{{ $value['net_profit'] }}</td>
                       </tr>
@@ -98,38 +99,36 @@
 
                   <tfoot style="border-top:2px solid #ccc">
                       <tr>
-                          <th>Total =</th>
+                          <th>Total = </th>
                           <th>Project Bill</th>
-                          <th>Vendor  Bill</th>
+                          <th>Vendor Bill</th>
+                          <th>Fooding Bill</th>
                           <th>Bill Profit</th>
-                          <th>E Sales Profit</th>
-                          <th>Mob Profit</th>
-                          <th>TT Profit</th>
-                          <th>Emp salary</th>
+                          <th>P Payment</th>
+                          <th>P Outstanding</th>
+                          <th>V Payment</th>
+                          <th>V Outstanding</th>
+                          <th>FD Payment</th>
+                          <th>FD Outstanding</th>
                           <th>Op Salary</th>
-                          <th>TT FD Bill</th>
-                          <th>TT FD Paid</th>
                           <th>Eq Expense</th>
-                          <th>Pr Expense</th>
-                          <th>Off Expense</th>
                           <th>TT Expense</th>
                           <th>Net Profit</th>
                       </tr>
                       <tr>
-                        <th>$</th>
+                        <th>----</th>
                         <th>{{ $report_data['total_sum']['total_project_bill_amount'] }}</th>
                         <th>{{ $report_data['total_sum']['total_vendor_bill_amount'] }}</th>
-                        <th>{{ $report_data['total_sum']['total_bill_profit'] }}</th>
-                        <th>{{ $report_data['total_sum']['total_equipment_sales_profit'] }}</th>
-                        <th>{{ $report_data['total_sum']['total_mobilization_profit'] }}</th>
-                        <th>{{ $report_data['total_sum']['total_profit'] }}</th>
-                        <th>{{ $report_data['total_sum']['total_employee_salary'] }}</th>
-                        <th>{{ $report_data['total_sum']['total_operator_salary'] }}</th>
                         <th>{{ $report_data['total_sum']['total_fooding_bill_amount'] }}</th>
+                        <th>{{ $report_data['total_sum']['total_bill_profit'] }}</th>
+                        <th>{{ $report_data['total_sum']['total_project_payment'] }}</th>
+                        <th>{{ $report_data['total_sum']['total_project_outstanding'] }}</th>
+                        <th>{{ $report_data['total_sum']['total_vendor_payment'] }}</th>
+                        <th>{{ $report_data['total_sum']['total_vendor_outstanding'] }}</th>
                         <th>{{ $report_data['total_sum']['total_fooding_paid_amount'] }}</th>
+                        <th>{{ $report_data['total_sum']['total_fooding_outstanding'] }}</th>
+                        <th>{{ $report_data['total_sum']['total_operator_salary'] }}</th>
                         <th>{{ $report_data['total_sum']['total_equipment_expense'] }}</th>
-                        <th>{{ $report_data['total_sum']['total_project_expense'] }}</th>
-                        <th>{{ $report_data['total_sum']['total_office_expense'] }}</th>
                         <th>{{ $report_data['total_sum']['total_expense'] }}</th>
                         <th>{{ $report_data['total_sum']['total_net_profit'] }}</th>
                       </tr>
@@ -138,5 +137,9 @@
             </div>
         </div>
     </div>
+
+<script>
+    window.print();
+</script>
 </body>
 </html>

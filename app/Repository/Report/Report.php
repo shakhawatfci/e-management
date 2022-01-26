@@ -278,6 +278,7 @@ public function getEquipmentWiseReport($month_from,$month_to,$equipment_type_id,
         'fooding_bill_amount'          => round($fooding_bill_amount),
         'fooding_paid_amount'          => round($fooding_payment),
         'fooding_outstanding'          => round($fooding_outstanding),
+        'net_profit'                   => round($net_profit),
        ];
       }
 

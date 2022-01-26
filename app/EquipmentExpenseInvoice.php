@@ -35,7 +35,7 @@ class EquipmentExpenseInvoice extends Model
 
         return $this->belongsTo('App\Operator')->withDefault([
             'id' => 0,
-            'name' => 'NF',
+            'name' => 'N/F',
         ]);
 
     }
