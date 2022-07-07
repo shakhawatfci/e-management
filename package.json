@@ -26,7 +26,7 @@
     "dependencies": {
         "@johmun/vue-tags-input": "^2.1.0",
         "chart.js": "^2.9.3",
-        "moment": "^2.27.0",
+        "moment": "^2.29.4",
         "sweetalert2": "^9.15.1",
         "vue-chartjs": "^3.5.0",
         "vue-flatpickr-component": "^8.1.5",
